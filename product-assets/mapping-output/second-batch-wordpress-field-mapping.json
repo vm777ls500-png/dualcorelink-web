@@ -1,0 +1,982 @@
+{
+  "generated_at": "2026-06-17",
+  "source_files": [
+    "product-assets/mapping-output/second-batch-product-content-draft.json",
+    "product-assets/mapping-output/second-batch-product-content-draft.md"
+  ],
+  "scope": "field mapping only; no WordPress import, no media upload, no code changes, no deployment",
+  "wordpress_checks": {
+    "existing_first_batch_product_slugs": [
+      "86-type-ai-smart-control-display",
+      "ai-large-smart-display",
+      "rotary-knob-smart-control-display",
+      "thermostat-hvac-control-panel",
+      "ai-music-control-panel",
+      "hotel-delivery-robot",
+      "hotel-smart-delivery-cabinet"
+    ],
+    "existing_product_category_terms": [
+      {
+        "id": 2,
+        "name": "AI Smart Displays",
+        "slug": "ai-smart-displays"
+      },
+      {
+        "id": 3,
+        "name": "Hotel Delivery Robot System",
+        "slug": "hotel-delivery-robot-system"
+      }
+    ],
+    "required_product_category_terms": [
+      {
+        "name": "Sensors",
+        "slug": "sensors",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "RCU Room Control Host",
+        "slug": "rcu-room-control-host",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "Smart Sockets & Power Modules",
+        "slug": "smart-sockets-power-modules",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "Curtain Control Panels",
+        "slug": "curtain-control-panels",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "Room Status & Hotel Service Panels",
+        "slug": "room-status-hotel-service-panels",
+        "exists": false,
+        "term_id": null
+      }
+    ],
+    "missing_product_category_terms": [
+      {
+        "name": "Sensors",
+        "slug": "sensors",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "RCU Room Control Host",
+        "slug": "rcu-room-control-host",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "Smart Sockets & Power Modules",
+        "slug": "smart-sockets-power-modules",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "Curtain Control Panels",
+        "slug": "curtain-control-panels",
+        "exists": false,
+        "term_id": null
+      },
+      {
+        "name": "Room Status & Hotel Service Panels",
+        "slug": "room-status-hotel-service-panels",
+        "exists": false,
+        "term_id": null
+      }
+    ],
+    "product_series_taxonomy_exists": false,
+    "product_series_mapping_note": "No product_series taxonomy is currently registered. Keep series as JSON/source metadata only; do not create taxonomy in this stage.",
+    "acf_field_coverage": {
+      "product_short_description": true,
+      "product_status": true,
+      "product_application_scenarios": true,
+      "product_core_functions": true,
+      "product_features": true,
+      "product_installation_position": true,
+      "product_customization_options": true,
+      "product_technical_specs": true,
+      "product_faqs_text": true,
+      "product_image_file_names": true,
+      "product_image_alt_text": true,
+      "product_seo_title": true,
+      "product_meta_description": true,
+      "oem_available": true,
+      "odm_available": true,
+      "product_schema_enabled": true,
+      "product_schema_manufacturer_enabled": true,
+      "product_missing_information": true,
+      "product_internal_notes": true,
+      "product_series": false
+    }
+  },
+  "risk_checks": {
+    "duplicate_with_first_batch_slugs": [],
+    "duplicate_inside_second_batch_slugs": [],
+    "third_party_brand_terms_detected": false,
+    "absolute_claim_terms_detected": false,
+    "unconfirmed_parameter_risk": "No confirmed technical values were added; unconfirmed electrical, protocol, I/O, range, USB output, and circuit values remain To be confirmed.",
+    "image_path_failures": [],
+    "unmappable_fields": [
+      "product_series is not currently a registered taxonomy or ACF field; retained in mapping metadata only."
+    ]
+  },
+  "products": [
+    {
+      "title": "Embedded Human Presence Sensor",
+      "slug": "embedded-human-presence-sensor",
+      "status": "publish",
+      "content": "The Embedded Human Presence Sensor is intended for smart hotel room control, apartment automation, and system integration projects where occupancy awareness is required. It can be planned as part of a room control system for lighting scenes, comfort control, and energy-saving logic. Exact sensing technology, range, wiring, and protocol details must be confirmed before project specification.",
+      "excerpt": "An embedded human presence sensor for hotel guest rooms, smart apartments, and room automation projects. It is designed as a sensing component for occupancy-aware control scenarios.",
+      "product_category": {
+        "name": "Sensors",
+        "slug": "sensors",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": null,
+      "acf": {
+        "product_short_description": "An embedded human presence sensor for hotel guest rooms, smart apartments, and room automation projects. It is designed as a sensing component for occupancy-aware control scenarios.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room occupancy sensing\nSmart apartment automation\nLighting and comfort scene control\nEnergy-saving room automation\nSystem integrator project packages",
+        "product_core_functions": "Occupancy-aware sensing component\nRoom automation signal input\nScene and energy-saving workflow support\nCeiling or embedded installation planning",
+        "product_features": "Designed for integrated smart room projects\nSuitable for hotel and apartment control systems\nCompact embedded appearance\nCan be specified with project-based control logic",
+        "product_installation_position": "Ceiling, embedded room sensor position, corridor-adjacent sensing point, or project-defined location.",
+        "product_customization_options": "Appearance, labeling, packaging, and project integration requirements can be reviewed for OEM/ODM projects.",
+        "product_technical_specs": "sensing technology: To be confirmed\ndetection range: To be confirmed\npower supply: To be confirmed\ncommunication protocol: To be confirmed\ninstallation method: To be confirmed",
+        "product_faqs_text": "Q: What is this sensor used for?\nA: It is used as an occupancy-aware sensing component in smart hotel room and smart home automation projects.\n\nQ: Can it be used for hotel energy-saving logic?\nA: It can be planned for energy-saving workflows, but the final control logic depends on the project system design.\n\nQ: Are detection range and protocol confirmed?\nA: No. Detection range, sensing technology, and protocol must be confirmed before formal specification.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/1.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/2.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/3.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/4.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/5.png",
+        "product_image_alt_text": "embedded human presence sensor for smart hotel rooms\nceiling mounted presence sensor for room automation\nembedded occupancy sensor product detail",
+        "product_seo_title": "Embedded Human Presence Sensor for Smart Hotel Room Automation",
+        "product_meta_description": "Embedded human presence sensor for smart hotel rooms, apartments, and automation projects. Technical range and protocol details to be confirmed.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Sensing technology\nDetection range\nPower supply\nCommunication protocol\nCertification",
+        "product_internal_notes": "Classified under Sensors according to the confirmed product taxonomy. Do not state sensing range, radar, infrared, or protocol until confirmed."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/1.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/2.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/3.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/4.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/1.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/2.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/3.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/4.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/嵌入式人体存在传感器/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Sensing technology",
+        "Detection range",
+        "Power supply",
+        "Communication protocol",
+        "Certification"
+      ],
+      "internal_notes": "Classified under Sensors according to the confirmed product taxonomy. Do not state sensing range, radar, infrared, or protocol until confirmed.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Sensors"
+      ]
+    },
+    {
+      "title": "Infrared Repeater",
+      "slug": "infrared-repeater",
+      "status": "publish",
+      "content": "The Infrared Repeater is a room automation accessory for hotel rooms, apartments, and smart home projects where infrared-based equipment needs to be integrated into a control workflow. It can be used by system integrators as part of a broader room control package. Device compatibility, signal range, installation method, and protocol details must be confirmed for each project.",
+      "excerpt": "An infrared repeater for smart hotel rooms and smart home control projects. It is intended to support centralized control workflows for infrared-based room devices.",
+      "product_category": {
+        "name": "Sensors",
+        "slug": "sensors",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": null,
+      "acf": {
+        "product_short_description": "An infrared repeater for smart hotel rooms and smart home control projects. It is intended to support centralized control workflows for infrared-based room devices.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room device control\nSmart apartment retrofit projects\nRoom automation accessory packages\nSystem integrator control projects\nSmart home device control workflows",
+        "product_core_functions": "Infrared control signal relay planning\nRoom device control integration\nSupport for centralized control workflows\nAccessory for hotel room automation",
+        "product_features": "Compact accessory for room control systems\nUseful for retrofit and integration projects\nCan be specified as part of smart room packages\nProject compatibility should be confirmed before deployment",
+        "product_installation_position": "Wall, ceiling, equipment-adjacent position, or project-defined location based on controlled device placement.",
+        "product_customization_options": "Labeling, packaging, and integration support can be reviewed for OEM/ODM and project supply.",
+        "product_technical_specs": "signal type: To be confirmed\ncontrol range: To be confirmed\npower supply: To be confirmed\ncommunication protocol: To be confirmed\ncompatible devices: To be confirmed",
+        "product_faqs_text": "Q: What is the Infrared Repeater used for?\nA: It is used as an accessory for room control workflows involving infrared-based devices.\n\nQ: Can it control air conditioners or TVs?\nA: Device compatibility must be confirmed according to the project and selected control system.\n\nQ: Are signal range and protocol confirmed?\nA: No. Signal range, protocol, and compatible device list must be confirmed before specification.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/1.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/红外转发器/2.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/红外转发器/3.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/红外转发器/4.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/红外转发器/5.png",
+        "product_image_alt_text": "infrared repeater for smart hotel room control\nsmart room infrared repeater product image\ninfrared control accessory for room automation",
+        "product_seo_title": "Infrared Repeater for Smart Hotel Room Control Projects",
+        "product_meta_description": "Infrared repeater accessory for smart hotel rooms, apartments, and system integration projects. Compatibility and signal details to be confirmed.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Signal range\nSupported device types\nPower supply\nCommunication protocol\nInstallation method",
+        "product_internal_notes": "Classified under Sensors by confirmed user rule. Do not claim universal compatibility or specific controlled device support."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/1.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/2.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/3.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/4.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/1.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/2.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/3.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/4.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/红外转发器/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Signal range",
+        "Supported device types",
+        "Power supply",
+        "Communication protocol",
+        "Installation method"
+      ],
+      "internal_notes": "Classified under Sensors by confirmed user rule. Do not claim universal compatibility or specific controlled device support.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Sensors"
+      ]
+    },
+    {
+      "title": "Hotel Room Door Magnetic Sensor",
+      "slug": "hotel-room-door-magnetic-sensor",
+      "status": "publish",
+      "content": "The Hotel Room Door Magnetic Sensor is intended for smart hotel room systems, apartment projects, and room automation packages. It can be planned for door status detection workflows, room scene logic, and integration with guest room control systems. Exact wiring, protocol, power supply, and installation details must be confirmed before project use.",
+      "excerpt": "A door magnetic sensor for hotel guest room automation and room status workflows. It is designed as a sensing accessory for door state-related control logic.",
+      "product_category": {
+        "name": "Sensors",
+        "slug": "sensors",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": null,
+      "acf": {
+        "product_short_description": "A door magnetic sensor for hotel guest room automation and room status workflows. It is designed as a sensing accessory for door state-related control logic.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room door status workflows\nSmart hotel room control systems\nApartment room automation\nEnergy-saving scene logic\nSystem integration packages",
+        "product_core_functions": "Door state sensing component\nRoom automation signal input\nSupport for hotel room status workflows\nIntegration with guest room control logic",
+        "product_features": "Suitable for hotel and apartment projects\nCompact accessory for room automation systems\nCan support project-defined scene workflows\nDesigned for integration with control hosts or panels",
+        "product_installation_position": "Guest room door frame, door edge, or project-defined door sensing position.",
+        "product_customization_options": "Appearance, packaging, labeling, and system integration requirements can be reviewed for project supply.",
+        "product_technical_specs": "sensor type: To be confirmed\npower supply: To be confirmed\ncommunication protocol: To be confirmed\ninstallation method: To be confirmed\noperating environment: To be confirmed",
+        "product_faqs_text": "Q: What does this door magnetic sensor do?\nA: It is used as a door state sensing component for smart hotel room automation workflows.\n\nQ: Can it connect to a hotel room control system?\nA: It can be planned for integration, but the final connection method depends on the selected system configuration.\n\nQ: Are wiring and protocol details available?\nA: These details are To be confirmed before project specification.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/1.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/2.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/3.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/4.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/5.png",
+        "product_image_alt_text": "hotel room door magnetic sensor product image\ndoor magnetic sensor for guest room automation\nsmart hotel door status sensor",
+        "product_seo_title": "Hotel Room Door Magnetic Sensor for Smart Hotel Automation",
+        "product_meta_description": "Door magnetic sensor for hotel guest room automation, room status workflows, and system integration projects.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Sensor type\nPower supply\nCommunication protocol\nInstallation dimensions\nCertification",
+        "product_internal_notes": "Classified under Sensors. Keep content distinct from doorbell and doorplate display products."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/1.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/2.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/3.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/4.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/1.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/2.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/3.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/4.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门磁/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Sensor type",
+        "Power supply",
+        "Communication protocol",
+        "Installation dimensions",
+        "Certification"
+      ],
+      "internal_notes": "Classified under Sensors. Keep content distinct from doorbell and doorplate display products.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Sensors"
+      ]
+    },
+    {
+      "title": "Hotel Guest Room Doorbell",
+      "slug": "hotel-guest-room-doorbell",
+      "status": "publish",
+      "content": "The Hotel Guest Room Doorbell is intended for hotel guest room projects where a doorbell component is required as part of the room system. It can be planned alongside room control panels, door status devices, and hotel service workflows. Electrical connection, sound output, protocol, and installation details must be confirmed before specification.",
+      "excerpt": "A hotel guest room doorbell component for room entry and service notification scenarios. It is classified under Sensors and should not be confused with doorplate or room display panels.",
+      "product_category": {
+        "name": "Sensors",
+        "slug": "sensors",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": null,
+      "acf": {
+        "product_short_description": "A hotel guest room doorbell component for room entry and service notification scenarios. It is classified under Sensors and should not be confused with doorplate or room display panels.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room entrance\nSmart hotel service workflow\nGuest room doorbell installation\nRoom automation accessory package\nContractor and system integrator projects",
+        "product_core_functions": "Guest room doorbell component\nEntry notification workflow support\nIntegration planning with room systems\nHotel guest room accessory supply",
+        "product_features": "Designed for hotel guest room entrance scenarios\nCan be supplied as part of a smart room package\nClear product boundary from doorplate display panels\nProject wiring and system logic should be confirmed",
+        "product_installation_position": "Hotel guest room entrance, doorbell position, or project-defined room entry point.",
+        "product_customization_options": "Faceplate appearance, labeling, packaging, and project requirements can be reviewed for OEM/ODM supply.",
+        "product_technical_specs": "doorbell type: To be confirmed\npower supply: To be confirmed\nconnection method: To be confirmed\nsound output: To be confirmed\ninstallation method: To be confirmed",
+        "product_faqs_text": "Q: Is this a doorplate display product?\nA: No. This draft treats it as a hotel guest room doorbell component under Sensors.\n\nQ: Can it be used in smart hotel room projects?\nA: Yes, it can be planned as part of a guest room entrance and service workflow package.\n\nQ: Are wiring and sound specifications confirmed?\nA: No. These parameters are To be confirmed before formal specification.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/1 - 副本.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/3 - 副本.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/4 - 副本.png\nproduct-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/5 - 副本.png",
+        "product_image_alt_text": "hotel guest room doorbell product image\ndoorbell component for smart hotel rooms\nhotel room entrance doorbell detail",
+        "product_seo_title": "Hotel Guest Room Doorbell for Smart Hotel Sensor Packages",
+        "product_meta_description": "Hotel guest room doorbell component for smart hotel entrance and service workflows. Wiring and system details to be confirmed.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Doorbell type\nPower supply\nConnection method\nSound output\nCertification",
+        "product_internal_notes": "User confirmed category as Sensors. Avoid duplicate positioning with Brushed Aluminum 86-Base Doorbell Panel and doorplate display products."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/1 - 副本.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/3 - 副本.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/4 - 副本.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/5 - 副本.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/1 - 副本.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/3 - 副本.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/4 - 副本.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/传感器/酒店客房门铃/5 - 副本.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Doorbell type",
+        "Power supply",
+        "Connection method",
+        "Sound output",
+        "Certification"
+      ],
+      "internal_notes": "User confirmed category as Sensors. Avoid duplicate positioning with Brushed Aluminum 86-Base Doorbell Panel and doorplate display products.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Sensors"
+      ]
+    },
+    {
+      "title": "RCU Controller Cabinet",
+      "slug": "rcu-controller-cabinet",
+      "status": "publish",
+      "content": "The RCU Controller Cabinet is designed for smart hotel projects that require centralized room control equipment. It can be planned as part of a guest room control solution connecting panels, sensors, HVAC control, lighting control, and service workflows. Specific circuit count, electrical ratings, protocol, wiring layout, and cabinet configuration must be confirmed before project specification.",
+      "excerpt": "An RCU controller cabinet for smart hotel room control projects. It is intended as a central control cabinet option for guest room automation systems.",
+      "product_category": {
+        "name": "RCU Room Control Host",
+        "slug": "rcu-room-control-host",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": null,
+      "acf": {
+        "product_short_description": "An RCU controller cabinet for smart hotel room control projects. It is intended as a central control cabinet option for guest room automation systems.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room control systems\nSmart hotel automation projects\nRCU room control solution packages\nContractor and system integrator procurement\nOEM/ODM hotel automation projects",
+        "product_core_functions": "Central room control cabinet planning\nIntegration point for room automation devices\nProject-based guest room control architecture\nSupport for hotel room control solution design",
+        "product_features": "Suitable for B2B hotel automation projects\nCan be specified as part of a complete RCU solution\nDesigned for project-based configuration\nHelps organize room control equipment in one cabinet",
+        "product_installation_position": "Guest room weak-current cabinet, equipment cabinet, service area, or project-defined control cabinet location.",
+        "product_customization_options": "Cabinet layout, labeling, project documentation, and integration requirements can be reviewed for OEM/ODM and engineering projects.",
+        "product_technical_specs": "circuit count: To be confirmed\npower rating: To be confirmed\ncommunication protocol: To be confirmed\ncabinet dimensions: To be confirmed\nwiring layout: To be confirmed",
+        "product_faqs_text": "Q: What is the RCU Controller Cabinet used for?\nA: It is used as a central room control cabinet option in smart hotel guest room automation projects.\n\nQ: Are circuit count and electrical ratings included?\nA: No. Circuit count, voltage, current, and wiring layout are To be confirmed.\n\nQ: Can it be customized for a hotel project?\nA: Project-based cabinet layout and integration requirements can be reviewed before quotation.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/1.png\nproduct-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/13.png\nproduct-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/14.png\nproduct-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/2.png\nproduct-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/5.png",
+        "product_image_alt_text": "RCU controller cabinet for smart hotel room control\nhotel room control cabinet product image\nRCU cabinet for guest room automation projects",
+        "product_seo_title": "RCU Controller Cabinet for Smart Hotel Room Control Projects",
+        "product_meta_description": "RCU controller cabinet for smart hotel guest room automation and B2B room control solution projects.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Circuit count\nElectrical ratings\nCommunication protocol\nCabinet dimensions\nWiring diagram",
+        "product_internal_notes": "Only basic introduction is drafted. Do not publish circuit, voltage, current, I/O, or protocol claims until technical documents are provided."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/1.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/13.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/14.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/2.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/1.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/13.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/14.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/2.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/RCU控制器控制柜/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Circuit count",
+        "Electrical ratings",
+        "Communication protocol",
+        "Cabinet dimensions",
+        "Wiring diagram"
+      ],
+      "internal_notes": "Only basic introduction is drafted. Do not publish circuit, voltage, current, I/O, or protocol claims until technical documents are provided.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: RCU Room Control Host"
+      ]
+    },
+    {
+      "title": "Hotel Smart Room RCU Host 1",
+      "slug": "hotel-smart-room-rcu-host-1",
+      "status": "publish",
+      "content": "The Hotel Smart Room RCU Host 1 is intended for smart hotel room control projects where a dedicated room control host is required. It can be planned as part of a complete RCU solution connecting smart panels, sensors, lighting scenes, HVAC control, curtains, and room service workflows. Detailed I/O, wiring, protocol, and electrical specifications must be confirmed before use in formal project documents.",
+      "excerpt": "A hotel smart room RCU host for guest room automation projects. It is positioned as a room control core device for B2B smart hotel solutions.",
+      "product_category": {
+        "name": "RCU Room Control Host",
+        "slug": "rcu-room-control-host",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": null,
+      "acf": {
+        "product_short_description": "A hotel smart room RCU host for guest room automation projects. It is positioned as a room control core device for B2B smart hotel solutions.",
+        "product_status": "available",
+        "product_application_scenarios": "Smart hotel guest room control\nHotel room automation host\nRCU solution packages\nContractor procurement\nSystem integrator projects",
+        "product_core_functions": "Room control host planning\nCentralized guest room automation integration\nConnection point for panels and room devices\nProject-based RCU system design",
+        "product_features": "Designed for smart hotel room automation projects\nSuitable for integration into RCU solution packages\nSupports project-based configuration planning\nWorks as part of a broader room control architecture",
+        "product_installation_position": "Guest room control box, weak-current cabinet, ceiling service area, or project-defined RCU host location.",
+        "product_customization_options": "Project integration support, labeling, packaging, documentation, and OEM/ODM configuration review are available by request.",
+        "product_technical_specs": "input output: To be confirmed\npower supply: To be confirmed\ncommunication protocol: To be confirmed\ninstallation method: To be confirmed\nmodel: To be confirmed",
+        "product_faqs_text": "Q: What is this RCU host used for?\nA: It is used as a room control host in smart hotel guest room automation projects.\n\nQ: Are I/O and protocol specifications confirmed?\nA: No. I/O, protocol, voltage, current, and wiring details are To be confirmed.\n\nQ: Can it be used with smart panels and sensors?\nA: It can be planned as part of a room control architecture, subject to project configuration.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/1.png\nproduct-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/4.png\nproduct-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/5.png",
+        "product_image_alt_text": "hotel smart room RCU host product image\nRCU host for guest room automation\nhotel room control host detail view",
+        "product_seo_title": "Hotel Smart Room RCU Host for Guest Room Automation",
+        "product_meta_description": "Hotel smart room RCU host for guest room automation, smart hotel control systems, and B2B integration projects.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "I/O specification\nElectrical rating\nCommunication protocol\nWiring diagram\nCertification",
+        "product_internal_notes": "Only basic B2B introduction is drafted. Avoid specific I/O, protocol, voltage, current, or compatibility statements until verified."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/1.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/4.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/1.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/4.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机1/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "I/O specification",
+        "Electrical rating",
+        "Communication protocol",
+        "Wiring diagram",
+        "Certification"
+      ],
+      "internal_notes": "Only basic B2B introduction is drafted. Avoid specific I/O, protocol, voltage, current, or compatibility statements until verified.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: RCU Room Control Host"
+      ]
+    },
+    {
+      "title": "Smart USB Five-Hole Socket",
+      "slug": "smart-usb-five-hole-socket",
+      "status": "publish",
+      "content": "The Smart USB Five-Hole Socket is intended for smart hotel room, apartment, and commercial interior projects that require a coordinated socket module. It can be specified as part of a Smart Series panel package for guest rooms, bedside areas, work desks, and project-defined power points. Electrical rating, USB output, socket standard, and certification must be confirmed before formal procurement.",
+      "excerpt": "A Smart Series USB five-hole socket for hotel rooms, apartments, and B2B smart space projects. It is designed as a practical power module for guest room and residential installations.",
+      "product_category": {
+        "name": "Smart Sockets & Power Modules",
+        "slug": "smart-sockets-power-modules",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": "Smart Series",
+      "acf": {
+        "product_short_description": "A Smart Series USB five-hole socket for hotel rooms, apartments, and B2B smart space projects. It is designed as a practical power module for guest room and residential installations.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room bedside power points\nApartment and serviced apartment projects\nSmart room socket packages\nContractor procurement\nOEM/ODM panel programs",
+        "product_core_functions": "Guest room socket module\nUSB charging interface planning\nPower point integration for hotel rooms\nSmart Series panel package support",
+        "product_features": "Clean Smart Series appearance\nSuitable for hotel and apartment projects\nCan be supplied as part of a coordinated panel package\nElectrical details should be confirmed by project standard",
+        "product_installation_position": "Hotel bedside, work desk, wall power point, apartment room, or project-defined socket location.",
+        "product_customization_options": "Finish, labeling, packaging, socket standard, and project requirements can be reviewed for OEM/ODM supply.",
+        "product_technical_specs": "socket standard: To be confirmed\nrated voltage: To be confirmed\nrated current: To be confirmed\nusb output: To be confirmed\ncertification: To be confirmed",
+        "product_faqs_text": "Q: What projects is this socket suitable for?\nA: It is suitable for hotel guest rooms, apartments, and smart room panel packages.\n\nQ: Are electrical ratings and USB output confirmed?\nA: No. Voltage, current, USB output, and certification are To be confirmed.\n\nQ: Can the socket standard be customized?\nA: Socket standard and appearance can be reviewed according to project requirements.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/05.png\nproduct-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/3.png\nproduct-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/5.png",
+        "product_image_alt_text": "Smart USB five-hole socket for hotel rooms\nSmart Series USB socket product image\nhotel room USB power socket detail",
+        "product_seo_title": "Smart USB Five-Hole Socket for Hotel Room Projects",
+        "product_meta_description": "Smart Series USB five-hole socket for hotel rooms, apartments, and B2B smart space power module projects.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Socket standard\nRated voltage\nRated current\nUSB output\nCertification",
+        "product_internal_notes": "Smart Series assigned according to black smart panel series rule. Do not state electrical ratings until confirmed."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/05.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/05.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/3.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/USB五孔插座/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Socket standard",
+        "Rated voltage",
+        "Rated current",
+        "USB output",
+        "Certification"
+      ],
+      "internal_notes": "Smart Series assigned according to black smart panel series rule. Do not state electrical ratings until confirmed.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Smart Sockets & Power Modules"
+      ]
+    },
+    {
+      "title": "Smart Key Card Energy Saver Panel",
+      "slug": "smart-key-card-energy-saver-panel",
+      "status": "publish",
+      "content": "The Smart Key Card Energy Saver Panel is intended for hotel guest rooms, serviced apartments, and smart hospitality projects. It can be used as part of a room energy management workflow, helping hotels organize guest room power control through a key card panel. Electrical rating, supported card type, wiring method, and project integration details must be confirmed before specification.",
+      "excerpt": "A Smart Series key card energy saver panel for hotel guest room energy management. It is designed for hotel room power control workflows where key card operation is required.",
+      "product_category": {
+        "name": "Smart Sockets & Power Modules",
+        "slug": "smart-sockets-power-modules",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": "Smart Series",
+      "acf": {
+        "product_short_description": "A Smart Series key card energy saver panel for hotel guest room energy management. It is designed for hotel room power control workflows where key card operation is required.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room power control\nServiced apartment room energy workflows\nSmart hotel room control packages\nContractor procurement\nOEM/ODM hotel panel programs",
+        "product_core_functions": "Key card power control workflow\nGuest room energy management support\nHotel room panel package integration\nSmart Series room accessory supply",
+        "product_features": "Designed for hotel guest room applications\nSmart Series appearance for coordinated interiors\nCan be supplied with matching room panels\nProject wiring and card type should be confirmed",
+        "product_installation_position": "Hotel guest room entrance, power control point, or project-defined key card panel location.",
+        "product_customization_options": "Panel finish, logo-free labeling, card slot style, packaging, and project requirements can be reviewed for OEM/ODM supply.",
+        "product_technical_specs": "card type: To be confirmed\nrated voltage: To be confirmed\nrated current: To be confirmed\nwiring method: To be confirmed\ncertification: To be confirmed",
+        "product_faqs_text": "Q: What is this panel used for?\nA: It is used for hotel guest room key card power control workflows.\n\nQ: What card type does it support?\nA: Supported card type is To be confirmed.\n\nQ: Are voltage and current ratings confirmed?\nA: No. Electrical ratings and wiring method must be confirmed before specification.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/1.png\nproduct-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/3.png\nproduct-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/4.png\nproduct-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/5.png",
+        "product_image_alt_text": "Smart key card energy saver panel for hotel rooms\nhotel guest room key card power panel\nSmart Series key card energy saver detail",
+        "product_seo_title": "Smart Key Card Energy Saver Panel for Hotel Guest Rooms",
+        "product_meta_description": "Smart Series key card energy saver panel for hotel guest room power control and B2B hospitality projects.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Supported card type\nElectrical rating\nWiring method\nPanel dimensions\nCertification",
+        "product_internal_notes": "Classified under Smart Sockets & Power Modules because it controls room power. Avoid energy-saving percentage claims."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/1.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/4.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/1.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/3.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/4.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/插卡取电智能面板/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Supported card type",
+        "Electrical rating",
+        "Wiring method",
+        "Panel dimensions",
+        "Certification"
+      ],
+      "internal_notes": "Classified under Smart Sockets & Power Modules because it controls room power. Avoid energy-saving percentage claims.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Smart Sockets & Power Modules"
+      ]
+    },
+    {
+      "title": "Smart Four-Key Curtain Control Panel",
+      "slug": "smart-four-key-curtain-control-panel",
+      "status": "publish",
+      "content": "The Smart Four-Key Curtain Control Panel is intended for hotel rooms, apartments, villas, and smart space projects that require a dedicated curtain control interface. It can be planned with motorized curtain systems and room scene logic as part of a complete room automation package. Motor compatibility, control method, wiring, and protocol details must be confirmed before project specification.",
+      "excerpt": "A Smart Series four-key curtain control panel for hotel guest rooms and smart home projects. It is designed for curtain control workflows in room automation systems.",
+      "product_category": {
+        "name": "Curtain Control Panels",
+        "slug": "curtain-control-panels",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": "Smart Series",
+      "acf": {
+        "product_short_description": "A Smart Series four-key curtain control panel for hotel guest rooms and smart home projects. It is designed for curtain control workflows in room automation systems.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room curtain control\nApartment and villa curtain automation\nSmart room scene control\nCurtain control solution packages\nContractor and installer procurement",
+        "product_core_functions": "Curtain control panel interface\nFour-key room control workflow\nScene integration planning\nSmart Series panel package support",
+        "product_features": "Dedicated curtain control product category\nSmart Series appearance for coordinated room panels\nSuitable for hotel and residential automation projects\nProject motor compatibility should be confirmed",
+        "product_installation_position": "Bedside, entrance, curtain-adjacent wall position, or project-defined control point.",
+        "product_customization_options": "Button labeling, finish, packaging, and project-specific panel combinations can be reviewed for OEM/ODM supply.",
+        "product_technical_specs": "control channels: To be confirmed\nmotor compatibility: To be confirmed\npower supply: To be confirmed\ncommunication protocol: To be confirmed\nwiring method: To be confirmed",
+        "product_faqs_text": "Q: What is this panel used for?\nA: It is used as a curtain control interface in hotel rooms and smart home projects.\n\nQ: Does it work with any curtain motor?\nA: Motor compatibility must be confirmed according to the selected project system.\n\nQ: Are wiring and protocol details confirmed?\nA: No. Wiring, protocol, and control channel details are To be confirmed.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/2.png\nproduct-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/3.png\nproduct-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/5.png",
+        "product_image_alt_text": "Smart four-key curtain control panel for hotel rooms\nSmart Series curtain control panel product image\ncurtain control panel for smart room automation",
+        "product_seo_title": "Smart Four-Key Curtain Control Panel for Hotel Rooms",
+        "product_meta_description": "Smart Series four-key curtain control panel for hotel guest rooms, apartments, and smart curtain automation projects.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Control channels\nMotor compatibility\nPower supply\nCommunication protocol\nWiring method",
+        "product_internal_notes": "Classified under Curtain Control Panels. Do not claim compatibility with specific motors or protocols."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/2.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/5.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/2.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/3.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/窗帘四键智能面板/5.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Control channels",
+        "Motor compatibility",
+        "Power supply",
+        "Communication protocol",
+        "Wiring method"
+      ],
+      "internal_notes": "Classified under Curtain Control Panels. Do not claim compatibility with specific motors or protocols.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Curtain Control Panels"
+      ]
+    },
+    {
+      "title": "Brushed Aluminum 86-Base Doorbell Panel",
+      "slug": "brushed-aluminum-86-base-doorbell-panel",
+      "status": "publish",
+      "content": "The Brushed Aluminum 86-Base Doorbell Panel is designed for hotel guest room entrance and service panel applications. Its brushed aluminum appearance makes it suitable for hospitality interiors that require a durable, coordinated service panel design. It should be positioned as part of the Room Status & Hotel Service Panels category, while wiring, signaling, and system integration details remain To be confirmed.",
+      "excerpt": "A brushed aluminum 86-base doorbell panel for hotel guest room service areas. It is positioned as a hotel service panel product, distinct from the sensor-category guest room doorbell component.",
+      "product_category": {
+        "name": "Room Status & Hotel Service Panels",
+        "slug": "room-status-hotel-service-panels",
+        "term_id": null,
+        "exists": false,
+        "action_required": "create term before import"
+      },
+      "product_series": "Brushed Aluminum Series",
+      "acf": {
+        "product_short_description": "A brushed aluminum 86-base doorbell panel for hotel guest room service areas. It is positioned as a hotel service panel product, distinct from the sensor-category guest room doorbell component.",
+        "product_status": "available",
+        "product_application_scenarios": "Hotel guest room entrance\nRoom status and service panel packages\nHospitality interior panel projects\nContractor procurement\nBrushed aluminum hotel panel series",
+        "product_core_functions": "Doorbell panel interface\nGuest room service entrance panel\nRoom status and service panel package support\nBrushed aluminum series product option",
+        "product_features": "Brushed aluminum appearance\n86-base panel format\nSuitable for hotel service panel applications\nDistinct from sensor-category doorbell components",
+        "product_installation_position": "Hotel guest room entrance, corridor-facing service panel position, or project-defined 86-base wall box location.",
+        "product_customization_options": "Panel finish, icon marking, button layout, packaging, and project requirements can be reviewed for OEM/ODM hotel projects.",
+        "product_technical_specs": "panel format: 86-base format\nmaterial finish: Brushed aluminum series\nwiring method: To be confirmed\npower supply: To be confirmed\nsystem integration: To be confirmed",
+        "product_faqs_text": "Q: Is this the same as the Hotel Guest Room Doorbell?\nA: No. This product is positioned as a brushed aluminum hotel service panel, while the guest room doorbell draft is classified under Sensors.\n\nQ: What is the panel format?\nA: It is described as an 86-base doorbell panel.\n\nQ: Are wiring and system integration details confirmed?\nA: No. Wiring, power, and integration details are To be confirmed.",
+        "product_image_file_names": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4403_pixian_ai.png\nproduct-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4404_pixian_ai.png\nproduct-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4405_pixian_ai.png\nproduct-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4406_pixian_ai.png\nproduct-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4407_pixian_ai.png",
+        "product_image_alt_text": "brushed aluminum 86-base doorbell panel for hotel rooms\nhotel guest room service doorbell panel\nbrushed aluminum hotel service panel detail",
+        "product_seo_title": "Brushed Aluminum 86-Base Doorbell Panel for Hotel Rooms",
+        "product_meta_description": "Brushed aluminum 86-base doorbell panel for hotel guest room service panel projects and B2B hospitality interiors.",
+        "oem_available": true,
+        "odm_available": true,
+        "product_schema_enabled": true,
+        "product_schema_manufacturer_enabled": false,
+        "product_missing_information": "Wiring method\nPower supply\nSystem integration\nButton function details\nCertification",
+        "product_internal_notes": "Keep distinct from Hotel Guest Room Doorbell. Category is Room Status & Hotel Service Panels and series is Brushed Aluminum Series. Real local source image paths are confirmed from the product asset mapping table. Normalize media filenames before WordPress upload."
+      },
+      "temporary_not_imported_fields": [
+        "product_model",
+        "product_image_1",
+        "product_image_2",
+        "product_image_3",
+        "product_image_4",
+        "product_image_5",
+        "unconfirmed certifications",
+        "unconfirmed MOQ",
+        "unconfirmed warranty",
+        "unconfirmed voltage/current/protocol/I/O/range values"
+      ],
+      "source_image_files": [
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4403_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4404_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4405_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4406_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4407_pixian_ai.png"
+      ],
+      "image_file_check": [
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4403_pixian_ai.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4404_pixian_ai.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4405_pixian_ai.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4406_pixian_ai.png",
+          "exists": true
+        },
+        {
+          "path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝86底座门铃/_INK4407_pixian_ai.png",
+          "exists": true
+        }
+      ],
+      "missing_information": [
+        "Wiring method",
+        "Power supply",
+        "System integration",
+        "Button function details",
+        "Certification"
+      ],
+      "internal_notes": "Keep distinct from Hotel Guest Room Doorbell. Category is Room Status & Hotel Service Panels and series is Brushed Aluminum Series. Real local source image paths are confirmed from the product asset mapping table. Normalize media filenames before WordPress upload.",
+      "import_ready": false,
+      "import_blockers": [
+        "product_category term missing: Room Status & Hotel Service Panels"
+      ]
+    }
+  ]
+}

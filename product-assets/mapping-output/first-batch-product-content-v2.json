@@ -1,0 +1,573 @@
+{
+  "generated_at": "2026-06-17",
+  "version": "v2",
+  "scope": "first batch product drafts revised after manual review",
+  "rules": {
+    "no_code_changes": true,
+    "no_wordpress_write": true,
+    "no_deployment": true,
+    "third_party_brand_names_removed_from_public_content": true,
+    "technical_parameters_only_from_source_documents": true,
+    "high_risk_performance_claims_softened": true
+  },
+  "products": [
+    {
+      "中文产品名": "86型AI智能屏中控屏",
+      "英文产品名": "86-Type AI Smart Control Display",
+      "product_slug": "86-type-ai-smart-control-display",
+      "产品大分类": "AI Smart Displays / AI智能屏",
+      "产品系列": null,
+      "产品短描述_中文": "适配标准 86 底盒的 AI 智能中控屏，集触控、语音、灯光控制、背景音乐和多协议智能联动于一体，适用于酒店客房、公寓和全屋智能改造项目。",
+      "product_short_description_en": "An 86-box AI smart control display combining touch control, voice interaction, lighting control, background music, and multi-protocol smart device integration for hotel rooms, apartments, and smart home projects.",
+      "产品详细介绍_中文": "这款 86 型 AI 智能屏中控屏面向酒店客房与智能空间改造场景，可集中管理灯光、空调、窗帘、影音、传感器和场景模式。设备支持本地触控、语音交互、移动端控制和多协议联动，可作为客房或住宅空间的核心控制入口。标准 86 底盒安装方式有利于新建项目和旧房改造中的墙面设备替换。",
+      "product_long_description_en": "The 86-Type AI Smart Control Display is designed for hotel guest rooms, apartments, and smart space retrofit projects. It provides a compact wall-mounted control interface for lighting, HVAC, curtains, audio, sensors, and custom scenes. The device supports touch control, voice interaction, mobile control, and multi-protocol device integration, making it a practical control hub for room automation.",
+      "核心功能_中文": [
+        "86 底盒墙面安装",
+        "触控式智能控制界面",
+        "语音交互能力",
+        "灯光、空调、窗帘、影音和传感器集中控制",
+        "支持多协议智能联动",
+        "支持预设场景和自定义场景逻辑"
+      ],
+      "key_features_en": [
+        "Standard 86-box wall-mounted installation",
+        "Touch-based smart control interface",
+        "Voice interaction support",
+        "Centralized control for lighting, HVAC, curtains, audio, and sensors",
+        "Multi-protocol smart device integration",
+        "Preset and customizable scene automation"
+      ],
+      "应用场景_中文": [
+        "酒店客房智能控制",
+        "公寓与住宅全屋智能改造",
+        "样板间智能展示",
+        "商业空间弱电控制",
+        "OEM/ODM 智能面板项目"
+      ],
+      "application_scenarios_en": [
+        "Smart hotel guest room control",
+        "Apartment and residential smart home retrofits",
+        "Smart showroom demonstrations",
+        "Commercial low-voltage control projects",
+        "OEM/ODM smart panel programs"
+      ],
+      "规格参数": {
+        "安装底盒": "标准 86 底盒",
+        "通信方式": "以源文档为准，具体协议组合待确认",
+        "型号": "待确认",
+        "认证": "待确认"
+      },
+      "安装位置": "墙面 86 底盒位置；适合酒店床头、入口、客厅、样板间控制位等。",
+      "可定制内容": "面板外观、界面语言、场景逻辑、协议适配和 OEM/ODM 项目定制范围待确认。",
+      "SEO title": "86-Type AI Smart Control Display for Smart Hotel Rooms | DualcoreLink",
+      "SEO description": "86-box AI smart control display with touch, voice, lighting, HVAC, curtain, audio, and smart device integration for hotel rooms and B2B automation projects.",
+      "图片_ALT_文案": [
+        "86-type AI smart control display front view",
+        "86-box smart hotel room control display with touch interface",
+        "AI smart control panel for lighting HVAC curtain and scene control"
+      ],
+      "FAQ": [
+        {
+          "question": "Can this AI smart display fit a standard 86 wall box?",
+          "answer": "Yes. It is designed for standard 86-box wall installation, subject to project wiring and regional installation requirements."
+        },
+        {
+          "question": "Can it control hotel room lighting and HVAC?",
+          "answer": "Yes. It is intended for centralized room control. The final control scope depends on the selected system configuration."
+        },
+        {
+          "question": "Is OEM/ODM customization available?",
+          "answer": "Yes. Appearance, interface, language, and integration logic can be reviewed for OEM/ODM projects."
+        }
+      ],
+      "缺失信息": [
+        "正式型号待确认",
+        "完整认证待确认",
+        "项目接线和协议组合待确认"
+      ],
+      "备注": "产品系列尚未确认，正式导入时 product_series 使用 null；发布前可根据外观和系列规则确认。"
+    },
+    {
+      "中文产品名": "AI大屏",
+      "英文产品名": "AI Large Smart Display",
+      "product_slug": "ai-large-smart-display",
+      "产品大分类": "AI Smart Displays / AI智能屏",
+      "产品系列": null,
+      "产品短描述_中文": "面向酒店、公寓和智能空间的 AI 大屏控制终端，可用于集中展示设备状态、场景控制、语音交互和多设备联动。",
+      "product_short_description_en": "A large AI smart display terminal for hotels, apartments, and smart spaces, designed for device status display, scene control, voice interaction, and multi-device integration.",
+      "产品详细介绍_中文": "AI 大屏适合部署在酒店客房、公共空间、样板间和智能展示区域，作为更大尺寸的交互与控制入口。它可用于呈现房间设备状态、场景模式和服务入口，并配合智能面板、传感器、空调、窗帘和客控系统使用。具体屏幕尺寸、硬件配置、接口和协议组合需以最终项目资料为准。",
+      "product_long_description_en": "The AI Large Smart Display is intended for hotel rooms, public spaces, showrooms, and smart demonstration areas where a larger visual control interface is required. It can present room device status, scene modes, and service entries while integrating with smart panels, sensors, HVAC, curtain control, and room control systems. Final screen size, hardware configuration, interfaces, and protocol combinations should be confirmed by project documentation.",
+      "核心功能_中文": [
+        "大尺寸智能交互界面",
+        "设备状态与场景模式展示",
+        "语音交互能力",
+        "可联动灯光、空调、窗帘和传感器",
+        "适合酒店与商业空间展示控制"
+      ],
+      "key_features_en": [
+        "Large-format smart interaction interface",
+        "Device status and scene mode display",
+        "Voice interaction support",
+        "Integration with lighting, HVAC, curtains, and sensors",
+        "Suitable for hotel and commercial smart-space control"
+      ],
+      "应用场景_中文": [
+        "酒店客房智能控制",
+        "酒店公共区域展示控制",
+        "公寓智能中控",
+        "样板间与展厅演示",
+        "商业空间智能控制入口"
+      ],
+      "application_scenarios_en": [
+        "Smart hotel room control",
+        "Hotel public area control display",
+        "Apartment smart control",
+        "Showroom and demo room display",
+        "Commercial smart-space control interface"
+      ],
+      "规格参数": {
+        "屏幕尺寸": "待确认",
+        "通信方式": "待确认",
+        "接口": "待确认",
+        "型号": "待确认",
+        "认证": "待确认"
+      },
+      "安装位置": "墙面、桌面或项目指定安装位置，具体安装方式待确认。",
+      "可定制内容": "界面语言、控制页面、场景入口、品牌视觉和项目联动逻辑可按项目确认。",
+      "SEO title": "AI Large Smart Display for Hotel Automation | DualcoreLink",
+      "SEO description": "Large AI smart display for hotel automation, smart room control, scene display, and B2B smart space projects.",
+      "图片_ALT_文案": [
+        "AI large smart display for hotel room automation",
+        "large smart control display for lighting HVAC and scene control",
+        "hotel smart display interface for room automation"
+      ],
+      "FAQ": [
+        {
+          "question": "What is the AI Large Smart Display used for?",
+          "answer": "It is used as a larger visual control interface for hotel rooms, public spaces, apartments, and smart showrooms."
+        },
+        {
+          "question": "Can it integrate with existing hotel control systems?",
+          "answer": "Integration may be available depending on the selected protocol, gateway, and project configuration."
+        },
+        {
+          "question": "Are screen size and hardware specifications fixed?",
+          "answer": "The final screen size and hardware specifications need to be confirmed according to the selected model and project requirements."
+        }
+      ],
+      "缺失信息": [
+        "图片对应关系待确认",
+        "屏幕尺寸待确认",
+        "硬件配置待确认",
+        "协议和接口待确认"
+      ],
+      "备注": "已从原 AI大屏资料包中拆分；本草稿主要对应“其他智能屏.txt”。图片对应关系待确认，不强行判断。"
+    },
+    {
+      "中文产品名": "旋钮式多功能智慧中控屏",
+      "英文产品名": "Rotary Knob Smart Control Display",
+      "product_slug": "rotary-knob-smart-control-display",
+      "产品大分类": "AI Smart Displays / AI智能屏",
+      "产品系列": null,
+      "产品短描述_中文": "带旋钮交互的多功能智慧中控屏，适合用于灯光、空调、窗帘、音乐和场景控制，提升酒店客房与智能空间的直观操作体验。",
+      "product_short_description_en": "A multifunction smart control display with rotary knob interaction for lighting, HVAC, curtains, music, and scene control in hotel rooms and smart spaces.",
+      "产品详细介绍_中文": "旋钮式多功能智慧中控屏将屏幕触控与旋钮操作结合，适合需要更直观调节体验的酒店客房、公寓和智能空间。旋钮交互可用于音量、温度、亮度或场景切换等操作，具体功能映射应根据项目配置确认。该产品可作为客房智能控制入口，与灯光、空调、窗帘、背景音乐和传感器系统协同使用。",
+      "product_long_description_en": "The Rotary Knob Smart Control Display combines a touch interface with rotary knob interaction for hotel rooms, apartments, and smart spaces. The knob can be configured for functions such as volume, temperature, brightness, or scene switching, depending on the project setup. It can work as a room control entry point and integrate with lighting, HVAC, curtains, background music, and sensor systems.",
+      "核心功能_中文": [
+        "触控屏与旋钮交互结合",
+        "支持灯光、空调、窗帘、音乐和场景控制",
+        "适合温度、亮度、音量等直观调节",
+        "可作为酒店客房智能控制入口",
+        "支持项目化功能映射"
+      ],
+      "key_features_en": [
+        "Combined touch display and rotary knob interaction",
+        "Control for lighting, HVAC, curtains, music, and scenes",
+        "Intuitive adjustment for temperature, brightness, or volume",
+        "Room control entry point for hotel guest rooms",
+        "Project-based function mapping support"
+      ],
+      "应用场景_中文": [
+        "酒店床头或入口控制位",
+        "智能公寓与住宅中控",
+        "样板间与展厅展示",
+        "高端客房温控和场景控制",
+        "OEM/ODM 智能中控项目"
+      ],
+      "application_scenarios_en": [
+        "Hotel bedside or entrance control positions",
+        "Smart apartment and residential control",
+        "Showroom and demo room display",
+        "Premium room HVAC and scene control",
+        "OEM/ODM smart control projects"
+      ],
+      "规格参数": {
+        "屏幕尺寸": "待确认",
+        "旋钮功能": "可按项目配置，具体映射待确认",
+        "通信方式": "待确认",
+        "型号": "待确认",
+        "认证": "待确认"
+      },
+      "安装位置": "墙面控制位，常见于酒店床头、入口或智能空间主控位置；具体安装方式待确认。",
+      "可定制内容": "旋钮功能映射、界面语言、场景逻辑、图标风格、协议适配和外观方案可按项目确认。",
+      "SEO title": "Rotary Knob Smart Control Display for Hotel Rooms | DualcoreLink",
+      "SEO description": "Rotary knob smart control display for hotel room lighting, HVAC, music, curtain, and scene control in smart automation projects.",
+      "图片_ALT_文案": [
+        "rotary knob smart control display for hotel room automation",
+        "smart hotel control display with knob interaction",
+        "wall-mounted rotary smart control panel for HVAC and scene control"
+      ],
+      "FAQ": [
+        {
+          "question": "What can the rotary knob control?",
+          "answer": "The knob can be configured for functions such as temperature, brightness, volume, or scene switching depending on the project setup."
+        },
+        {
+          "question": "Is it suitable for hotel guest rooms?",
+          "answer": "Yes. It is designed for intuitive room control in hotels, apartments, and other smart spaces."
+        },
+        {
+          "question": "Can the interface be customized?",
+          "answer": "Interface language, scene logic, icons, and function mapping can be reviewed for project customization."
+        }
+      ],
+      "缺失信息": [
+        "图片对应关系待确认",
+        "正式型号待确认",
+        "屏幕尺寸待确认",
+        "旋钮具体功能映射待确认"
+      ],
+      "备注": "已从原 AI大屏资料包中拆分；本草稿对应“旋钮式 多功能智慧中控屏.txt”。图片对应关系待确认，不强行判断。"
+    },
+    {
+      "中文产品名": "温控面板空调控制器",
+      "英文产品名": "Thermostat HVAC Control Panel",
+      "product_slug": "thermostat-hvac-control-panel",
+      "产品大分类": "AI Smart Displays / AI智能屏",
+      "产品系列": null,
+      "功能标签": [
+        "HVAC Control",
+        "Thermostat",
+        "Hotel Room Temperature Control"
+      ],
+      "产品短描述_中文": "面向酒店客房和智能空间的温控面板空调控制器，用于空调、温度和房间舒适度控制，并可作为 AI 智能屏产品线中的温控功能终端。",
+      "product_short_description_en": "A thermostat HVAC control panel for hotel rooms and smart spaces, designed for air-conditioning, temperature, and comfort control within the AI Smart Displays category.",
+      "产品详细介绍_中文": "温控面板空调控制器继续归入 AI Smart Displays / AI智能屏分类，适合用于酒店客房、公寓和商业空间的温度控制。它可作为房间自动化系统中的 HVAC 控制终端，与客控主机、智能面板、传感器和场景逻辑配合使用。具体支持的空调类型、接线方式、控制协议和温控范围需根据项目资料确认。",
+      "product_long_description_en": "The Thermostat HVAC Control Panel remains under the AI Smart Displays category and is intended for temperature control in hotel rooms, apartments, and commercial smart spaces. It can work as an HVAC control terminal within a room automation system and integrate with RCU hosts, smart panels, sensors, and scene logic. Supported HVAC types, wiring methods, control protocols, and temperature ranges should be confirmed by project documentation.",
+      "核心功能_中文": [
+        "房间空调与温度控制",
+        "适用于酒店客房舒适度管理",
+        "可与客控主机和传感器联动",
+        "可纳入场景控制逻辑",
+        "支持项目化接线和协议适配确认"
+      ],
+      "key_features_en": [
+        "Room HVAC and temperature control",
+        "Suitable for hotel room comfort management",
+        "Integration with RCU hosts and sensors",
+        "Scene-control logic support",
+        "Project-based wiring and protocol confirmation"
+      ],
+      "应用场景_中文": [
+        "酒店客房温控",
+        "公寓与住宅空调控制",
+        "商业空间 HVAC 控制",
+        "客控系统温度管理",
+        "OEM/ODM 温控面板项目"
+      ],
+      "application_scenarios_en": [
+        "Hotel guest room temperature control",
+        "Apartment and residential HVAC control",
+        "Commercial HVAC control",
+        "Temperature management in room control systems",
+        "OEM/ODM thermostat panel projects"
+      ],
+      "规格参数": {
+        "控制对象": "空调 / HVAC，具体类型待确认",
+        "温控范围": "待确认",
+        "接线方式": "待确认",
+        "通信协议": "待确认",
+        "型号": "待确认",
+        "认证": "待确认"
+      },
+      "安装位置": "酒店客房墙面温控位置、床头附近、入口控制区或项目指定 HVAC 控制位。",
+      "可定制内容": "面板外观、控制界面、语言、温控逻辑、协议适配和 OEM/ODM 项目需求可按项目确认。",
+      "SEO title": "Thermostat HVAC Control Panel for Smart Hotel Rooms | DualcoreLink",
+      "SEO description": "Thermostat HVAC control panel for hotel room temperature control, smart room automation, and AI smart display system integration.",
+      "图片_ALT_文案": [
+        "thermostat HVAC control panel for hotel room temperature control",
+        "smart hotel thermostat panel for air conditioning control",
+        "AI smart display category thermostat control panel"
+      ],
+      "FAQ": [
+        {
+          "question": "Is this thermostat still part of the AI Smart Displays category?",
+          "answer": "Yes. It remains classified under AI Smart Displays and can be tagged for HVAC Control, Thermostat, and Hotel Room Temperature Control."
+        },
+        {
+          "question": "Which HVAC systems can it control?",
+          "answer": "Supported HVAC types and wiring methods need to be confirmed according to the project system and selected model."
+        },
+        {
+          "question": "Can it work with a hotel room control system?",
+          "answer": "Yes. It can be planned as part of a room control system, subject to protocol and wiring confirmation."
+        }
+      ],
+      "缺失信息": [
+        "温控范围待确认",
+        "接线方式待确认",
+        "支持空调类型待确认",
+        "认证待确认"
+      ],
+      "备注": "按用户确认规则继续归入 AI Smart Displays / AI智能屏，并增加 HVAC Control、Thermostat、Hotel Room Temperature Control 功能标签。"
+    },
+    {
+      "中文产品名": "音乐控制器",
+      "英文产品名": "AI Music Control Panel",
+      "product_slug": "ai-music-control-panel",
+      "产品大分类": "AI Smart Displays / AI智能屏",
+      "产品系列": null,
+      "产品短描述_中文": "面向酒店客房和智能空间的音乐控制面板，可用于背景音乐、音量、播放控制和场景联动。",
+      "product_short_description_en": "A music control panel for hotel rooms and smart spaces, designed for background music, volume control, playback control, and scene integration.",
+      "产品详细介绍_中文": "音乐控制器适合用于酒店客房、公寓、会所和展示空间的背景音乐控制。它可与智能中控、场景面板、音响系统和客房自动化系统配合使用，为用户提供本地音乐控制和场景联动入口。语音交互表现会受到安装环境、噪声、距离和系统配置影响，具体效果需以项目测试为准。",
+      "product_long_description_en": "The AI Music Control Panel is designed for background music control in hotel rooms, apartments, clubs, and showroom spaces. It can work with smart control displays, scene panels, audio systems, and room automation systems to provide local music control and scene integration. Voice interaction performance may vary depending on installation environment, noise level, distance, and system configuration.",
+      "核心功能_中文": [
+        "背景音乐控制",
+        "音量与播放控制",
+        "可与智能场景联动",
+        "适合酒店客房和商业空间",
+        "可按项目接入音响和客控系统"
+      ],
+      "key_features_en": [
+        "Background music control",
+        "Volume and playback control",
+        "Smart scene integration",
+        "Suitable for hotel rooms and commercial spaces",
+        "Project-based integration with audio and room control systems"
+      ],
+      "应用场景_中文": [
+        "酒店客房背景音乐",
+        "公寓和住宅音乐控制",
+        "会所与商业空间",
+        "样板间音乐场景展示",
+        "OEM/ODM 音乐控制面板项目"
+      ],
+      "application_scenarios_en": [
+        "Hotel guest room background music",
+        "Apartment and residential music control",
+        "Club and commercial spaces",
+        "Showroom music scene demonstration",
+        "OEM/ODM music control panel projects"
+      ],
+      "规格参数": {
+        "语音距离": "待确认",
+        "语音唤醒率": "待确认",
+        "音频接口": "待确认",
+        "通信方式": "待确认",
+        "型号": "待确认"
+      },
+      "安装位置": "酒店客房床头、入口、娱乐区、会所或项目指定音乐控制位置。",
+      "可定制内容": "控制界面、语言、音响系统适配、场景联动逻辑和外观方案可按项目确认。",
+      "SEO title": "AI Music Control Panel for Smart Hotel Rooms | DualcoreLink",
+      "SEO description": "Music control panel for hotel room background music, scene integration, and smart room automation projects.",
+      "图片_ALT_文案": [
+        "AI music control panel for smart hotel rooms",
+        "hotel background music control panel",
+        "smart music control interface for room automation"
+      ],
+      "FAQ": [
+        {
+          "question": "Can this panel control hotel room background music?",
+          "answer": "Yes. It is intended for background music and local audio control in hotel rooms and smart spaces."
+        },
+        {
+          "question": "Does voice wake-up performance have a fixed value?",
+          "answer": "No fixed performance claim is used in this draft. Voice wake-up performance may vary depending on installation environment and system configuration."
+        },
+        {
+          "question": "Can it be customized for OEM/ODM projects?",
+          "answer": "Yes. Interface, language, audio integration, and appearance can be reviewed for project customization."
+        }
+      ],
+      "缺失信息": [
+        "音频接口待确认",
+        "语音性能待确认",
+        "通信方式待确认",
+        "认证待确认"
+      ],
+      "备注": "已弱化语音唤醒率和距离等高风险性能表述，不作为固定承诺。"
+    },
+    {
+      "中文产品名": "智能机器人",
+      "英文产品名": "Hotel Delivery Robot",
+      "product_slug": "hotel-delivery-robot",
+      "产品大分类": "Hotel Delivery Robot System / 酒店送货智能机器人",
+      "产品系列": null,
+      "产品短描述_中文": "面向酒店场景的智能送货机器人，可用于客房配送、物品转运和服务流程自动化，配送效率会因酒店布局和项目配置而变化。",
+      "product_short_description_en": "A hotel delivery robot for guest-room delivery, item transport, and service workflow automation. Delivery efficiency may vary depending on hotel layout and project configuration.",
+      "产品详细介绍_中文": "智能机器人面向酒店客房服务和内部配送场景，可配合智能货柜、前台系统、电梯联动和客房服务流程使用。产品设计用于支持自主导航、路径规划、避障和安全运行，但实际效果会受到酒店楼层结构、电梯系统、网络环境、运营流程和项目配置影响。发布和销售前应根据具体项目确认接口、载重、续航、充电、调度系统和安全认证信息。",
+      "product_long_description_en": "The Hotel Delivery Robot is designed for hotel guest-room service and internal delivery workflows. It can work with smart delivery cabinets, front-desk systems, elevator integration, and room service processes. The system is designed to support autonomous navigation, route planning, obstacle avoidance, and safe operation, while actual performance may vary depending on hotel layout, elevator integration, network conditions, operating workflow, and project configuration.",
+      "核心功能_中文": [
+        "酒店客房配送支持",
+        "自主导航与路径规划",
+        "障碍物识别与避障设计",
+        "可配合智能货柜和服务流程使用",
+        "可按项目对接电梯和管理系统"
+      ],
+      "key_features_en": [
+        "Hotel guest-room delivery support",
+        "Autonomous navigation and route planning",
+        "Designed for obstacle detection and avoidance",
+        "Can work with smart delivery cabinets and service workflows",
+        "Project-based elevator and management system integration"
+      ],
+      "应用场景_中文": [
+        "酒店客房物品配送",
+        "前台到客房服务流程",
+        "智能货柜联动配送",
+        "酒店运营自动化展示",
+        "高端酒店和公寓服务升级"
+      ],
+      "application_scenarios_en": [
+        "Hotel guest-room item delivery",
+        "Front desk to guest room service workflows",
+        "Smart delivery cabinet integration",
+        "Hotel operation automation showcase",
+        "Service upgrade for hotels and serviced apartments"
+      ],
+      "规格参数": {
+        "配送效率": "受酒店布局、流程和系统配置影响，需项目验证",
+        "导航方式": "待确认",
+        "载重": "待确认",
+        "续航": "待确认",
+        "充电方式": "待确认",
+        "电梯联动": "待确认",
+        "认证": "待确认"
+      },
+      "安装位置": "酒店前台、服务区、楼层配送点、智能货柜旁或项目指定机器人停靠位置。",
+      "可定制内容": "外观、语音提示、配送流程、系统接口、货柜联动和电梯对接方案可按项目确认。",
+      "SEO title": "Hotel Delivery Robot System for Smart Hotels | DualcoreLink",
+      "SEO description": "Hotel delivery robot for guest-room delivery, service automation, smart cabinet integration, and B2B hotel automation projects.",
+      "图片_ALT_文案": [
+        "hotel delivery robot for smart hotel service automation",
+        "smart delivery robot for guest room item transport",
+        "hotel robot system for delivery workflow automation"
+      ],
+      "FAQ": [
+        {
+          "question": "Can the robot guarantee a fixed delivery time?",
+          "answer": "No fixed delivery time is claimed. Delivery efficiency may vary depending on hotel layout, elevator integration, and project configuration."
+        },
+        {
+          "question": "Does it support obstacle avoidance?",
+          "answer": "It is designed to support obstacle detection and avoidance. Final safety behavior should be validated in the project environment."
+        },
+        {
+          "question": "Can it connect with a smart delivery cabinet?",
+          "answer": "Yes. Smart cabinet integration can be planned based on the selected system and project interface requirements."
+        }
+      ],
+      "缺失信息": [
+        "载重待确认",
+        "续航待确认",
+        "导航方案待确认",
+        "电梯联动接口待确认",
+        "安全认证待确认"
+      ],
+      "备注": "已移除固定送达率、绝对化性能和无风险表述，改为项目条件相关的中性表达。"
+    },
+    {
+      "中文产品名": "酒店智能货柜",
+      "英文产品名": "Hotel Smart Delivery Cabinet",
+      "product_slug": "hotel-smart-delivery-cabinet",
+      "产品大分类": "Hotel Delivery Robot System / 酒店送货智能机器人",
+      "产品系列": null,
+      "产品短描述_中文": "面向酒店场景的智能货柜，可用于管理饮料、零食、客需用品、酒店零售商品和可选零售商品，并可与酒店配送机器人或服务流程配合。",
+      "product_short_description_en": "A hotel smart delivery cabinet for beverages, snacks, guest supplies, hotel retail items, and optional retail products, designed to support hotel service workflows and robot delivery integration.",
+      "产品详细介绍_中文": "酒店智能货柜用于酒店前台、楼层服务区或智能配送场景，可帮助集中管理客用品、零售补给和可选商品。它可与酒店配送机器人、前台系统或服务流程结合，用于提升物品管理和客房配送效率。具体柜体尺寸、格口数量、开门方式、支付或权限逻辑、系统接口和运营规则需根据项目资料确认。",
+      "product_long_description_en": "The Hotel Smart Delivery Cabinet is designed for front desks, floor service areas, and smart delivery scenarios. It can help manage guest supplies, retail replenishment, and optional products while working with hotel delivery robots, front-desk systems, or service workflows. Cabinet size, compartment quantity, door-opening method, access logic, system interfaces, and operating rules should be confirmed according to project requirements.",
+      "核心功能_中文": [
+        "酒店客用品和零售补给管理",
+        "支持饮料、零食、客需用品和酒店零售商品",
+        "可配合配送机器人或服务流程",
+        "格口、权限和接口可按项目确认",
+        "适合酒店前台和楼层服务区"
+      ],
+      "key_features_en": [
+        "Guest supply and hotel retail item management",
+        "Supports beverages, snacks, guest supplies, and hotel retail items",
+        "Can work with delivery robots or service workflows",
+        "Project-based compartment, access, and interface configuration",
+        "Suitable for hotel front desks and floor service areas"
+      ],
+      "应用场景_中文": [
+        "酒店前台智能货柜",
+        "楼层客用品补给点",
+        "机器人配送联动场景",
+        "酒店零售服务升级",
+        "公寓和服务式住宅补给管理"
+      ],
+      "application_scenarios_en": [
+        "Hotel front-desk smart cabinet",
+        "Floor-level guest supply station",
+        "Robot delivery integration scenario",
+        "Hotel retail service upgrade",
+        "Supply management for apartments and serviced residences"
+      ],
+      "规格参数": {
+        "柜体尺寸": "待确认",
+        "格口数量": "待确认",
+        "开门方式": "待确认",
+        "系统接口": "待确认",
+        "支付或权限逻辑": "待确认",
+        "认证": "待确认"
+      },
+      "安装位置": "酒店前台、楼层服务区、机器人停靠点旁、服务式公寓公共区域或项目指定位置。",
+      "可定制内容": "柜体尺寸、格口数量、门锁方案、界面语言、系统接口、机器人联动和运营逻辑可按项目确认。",
+      "SEO title": "Hotel Smart Delivery Cabinet for Guest Supplies | DualcoreLink",
+      "SEO description": "Smart delivery cabinet for hotel guest supplies, snacks, beverages, retail items, and robot delivery workflow integration.",
+      "图片_ALT_文案": [
+        "hotel smart delivery cabinet for guest supplies",
+        "smart hotel cabinet for snacks beverages and retail items",
+        "hotel delivery cabinet for robot service workflow integration"
+      ],
+      "FAQ": [
+        {
+          "question": "What items can the hotel smart cabinet manage?",
+          "answer": "It can be configured for beverages, snacks, guest supplies, hotel retail items, and optional retail products depending on hotel operations."
+        },
+        {
+          "question": "Can it work with a delivery robot?",
+          "answer": "Yes. Robot integration can be planned according to the selected system interface and hotel workflow."
+        },
+        {
+          "question": "Are cabinet size and compartments customizable?",
+          "answer": "Cabinet size, compartment quantity, access logic, and system interfaces can be reviewed for project customization."
+        }
+      ],
+      "缺失信息": [
+        "柜体尺寸待确认",
+        "格口数量待确认",
+        "开门方式待确认",
+        "系统接口待确认",
+        "运营规则待确认"
+      ],
+      "备注": "已将商品表达调整为中性 B2B 表述，未在主文案、SEO 或 FAQ 中突出敏感商品。"
+    }
+  ],
+  "summary": {
+    "generated_product_drafts": 7,
+    "ai_large_display_split": true,
+    "high_risk_claims_cleaned": true,
+    "third_party_brand_cleanup_maintained": true,
+    "products_still_need_confirmation": [
+      "AI大屏：图片对应关系、屏幕尺寸、硬件配置、接口和协议待确认",
+      "旋钮式多功能智慧中控屏：图片对应关系、正式型号、屏幕尺寸和旋钮功能映射待确认",
+      "温控面板空调控制器：温控范围、接线方式、支持空调类型和认证待确认",
+      "音乐控制器：音频接口、语音性能、通信方式和认证待确认",
+      "智能机器人：载重、续航、导航方案、电梯联动接口和安全认证待确认",
+      "酒店智能货柜：柜体尺寸、格口数量、开门方式、系统接口和运营规则待确认"
+    ],
+    "ready_for_wordpress_import_pre_review": true
+  }
+}

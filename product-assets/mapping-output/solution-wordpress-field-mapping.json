@@ -1,0 +1,1584 @@
+{
+  "generated_at": "2026-06-17",
+  "stage": "solution_wordpress_import_preparation",
+  "source_files": [
+    "product-assets/mapping-output/solution-content-draft.md",
+    "product-assets/mapping-output/solution-content-draft.json"
+  ],
+  "safety_scope": {
+    "wordpress_modified": false,
+    "solutions_created": false,
+    "products_modified": false,
+    "media_uploaded": false,
+    "frontend_modified": false,
+    "deployed": false
+  },
+  "wordpress_readonly_check": {
+    "local_service": "running at http://127.0.0.1:8080",
+    "solution_rest_base": "solutions",
+    "solution_endpoint": "http://127.0.0.1:8080/wp-json/wp/v2/solutions",
+    "singular_solution_endpoint": "http://127.0.0.1:8080/wp-json/wp/v2/solution returns 404",
+    "solution_cpt_supports_rest": true,
+    "existing_published_solution_slugs": [],
+    "duplicate_slug_check_scope": "anonymous published REST only; draft/private duplicates should be checked again during authenticated test import",
+    "product_count": 17,
+    "product_records": [
+      {
+        "id": 6,
+        "slug": "86-type-ai-smart-control-display",
+        "title": "86-Type AI Smart Control Display",
+        "status": "publish"
+      },
+      {
+        "id": 8,
+        "slug": "ai-large-smart-display",
+        "title": "AI Large Smart Display",
+        "status": "publish"
+      },
+      {
+        "id": 9,
+        "slug": "rotary-knob-smart-control-display",
+        "title": "Rotary Knob Smart Control Display",
+        "status": "publish"
+      },
+      {
+        "id": 10,
+        "slug": "thermostat-hvac-control-panel",
+        "title": "Thermostat HVAC Control Panel",
+        "status": "publish"
+      },
+      {
+        "id": 11,
+        "slug": "ai-music-control-panel",
+        "title": "AI Music Control Panel",
+        "status": "publish"
+      },
+      {
+        "id": 12,
+        "slug": "hotel-delivery-robot",
+        "title": "Hotel Delivery Robot",
+        "status": "publish"
+      },
+      {
+        "id": 13,
+        "slug": "hotel-smart-delivery-cabinet",
+        "title": "Hotel Smart Delivery Cabinet",
+        "status": "publish"
+      },
+      {
+        "id": 43,
+        "slug": "embedded-human-presence-sensor",
+        "title": "Embedded Human Presence Sensor",
+        "status": "publish"
+      },
+      {
+        "id": 44,
+        "slug": "infrared-repeater",
+        "title": "Infrared Repeater",
+        "status": "publish"
+      },
+      {
+        "id": 45,
+        "slug": "hotel-room-door-magnetic-sensor",
+        "title": "Hotel Room Door Magnetic Sensor",
+        "status": "publish"
+      },
+      {
+        "id": 46,
+        "slug": "hotel-guest-room-doorbell",
+        "title": "Hotel Guest Room Doorbell",
+        "status": "publish"
+      },
+      {
+        "id": 47,
+        "slug": "rcu-controller-cabinet",
+        "title": "RCU Controller Cabinet",
+        "status": "publish"
+      },
+      {
+        "id": 48,
+        "slug": "hotel-smart-room-rcu-host-1",
+        "title": "Hotel Smart Room RCU Host 1",
+        "status": "publish"
+      },
+      {
+        "id": 49,
+        "slug": "smart-usb-five-hole-socket",
+        "title": "Smart USB Five-Hole Socket",
+        "status": "publish"
+      },
+      {
+        "id": 50,
+        "slug": "smart-key-card-energy-saver-panel",
+        "title": "Smart Key Card Energy Saver Panel",
+        "status": "publish"
+      },
+      {
+        "id": 51,
+        "slug": "smart-four-key-curtain-control-panel",
+        "title": "Smart Four-Key Curtain Control Panel",
+        "status": "publish"
+      },
+      {
+        "id": 52,
+        "slug": "brushed-aluminum-86-base-doorbell-panel",
+        "title": "Brushed Aluminum 86-Base Doorbell Panel",
+        "status": "publish"
+      }
+    ]
+  },
+  "acf_field_check": {
+    "direct_post_fields": [
+      "title",
+      "slug",
+      "status",
+      "content",
+      "excerpt"
+    ],
+    "direct_acf_fields": [
+      "solution_summary",
+      "customer_challenges",
+      "solution_architecture",
+      "key_benefits_text",
+      "deployment_process",
+      "solution_inquiry_cta_label",
+      "integration_notes",
+      "compatibility_notes",
+      "known_limitations",
+      "recommended_products",
+      "solution_seo_title",
+      "solution_meta_description",
+      "solution_breadcrumb_label",
+      "solution_schema_enabled",
+      "solution_geo_direct_answer",
+      "solution_geo_entity_summary",
+      "solution_geo_key_facts",
+      "solution_geo_buyer_questions",
+      "solution_geo_known_limitations"
+    ],
+    "fallback_to_post_content_or_sections": [
+      "target_customers",
+      "recommended_product_categories",
+      "application_scenarios",
+      "typical_project_types",
+      "customization_options",
+      "faq_items",
+      "full inquiry_cta_text"
+    ],
+    "field_missing": [
+      "target_customers",
+      "recommended_product_categories",
+      "application_scenarios",
+      "typical_project_types",
+      "customization_options",
+      "faq_items_inline"
+    ],
+    "internal_or_not_used_now": [
+      "internal_solution_code",
+      "solution_sales_notes",
+      "technical_review_status",
+      "solution_hero_image",
+      "system_diagram",
+      "solution_case_studies",
+      "solution_faqs",
+      "solution_resources",
+      "solution_downloads"
+    ]
+  },
+  "product_match_summary": {
+    "all_recommended_products_matched": true,
+    "unmatched_products": []
+  },
+  "duplicate_slug_summary": {
+    "published_duplicates_found": []
+  },
+  "solutions": [
+    {
+      "solution_title": "Hotel Guest Room Control Solution",
+      "slug": "hotel-guest-room-control-solution",
+      "status": "draft",
+      "duplicate_check": "no_published_duplicate_found",
+      "post_fields": {
+        "title": "Hotel Guest Room Control Solution",
+        "slug": "hotel-guest-room-control-solution",
+        "status": "draft",
+        "excerpt": "A smart guest room control solution for hotels, serviced apartments, and renovation projects that need coordinated room control hardware for lighting, HVAC, curtains, sensing, power, and service panels.",
+        "content": "The Hotel Guest Room Control Solution combines smart room control displays, RCU cabinet planning, sensing devices, power modules, curtain control panels, and hotel service panels into a practical product mix for guest room automation. It is designed as a B2B solution direction for hotel room projects where buyers need a coordinated hardware package rather than isolated single products. The solution can support project discussions around room control workflow, panel selection, guest comfort, energy management, and OEM/ODM product planning.\n\n## Target Customers\n- Hotel owners\n- Hotel developers\n- Contractors\n- System integrators\n- Distributors\n- OEM/ODM buyers\n\n## Customer Challenges\n- Hotel rooms often require multiple control points for lighting, temperature, curtains, service status, and guest comfort.\n- Project teams need product combinations that are easier to specify, source, and coordinate across room types.\n- Contractors and integrators need a practical hardware package that can fit different hotel room layouts without relying on unverified technical claims.\n- Distributors and OEM/ODM buyers need product options that can support project branding, panel style selection, and bulk supply planning.\n\n## Recommended Product Categories\n- AI Smart Displays\n- RCU Room Control Host\n- Sensors\n- Smart Sockets & Power Modules\n- Curtain Control Panels\n- Room Status & Hotel Service Panels\n\n## Recommended Products\n- 86-Type AI Smart Control Display (#6)\n- RCU Controller Cabinet (#47)\n- Embedded Human Presence Sensor (#43)\n- Smart USB Five-Hole Socket (#49)\n- Smart Four-Key Curtain Control Panel (#51)\n- Brushed Aluminum 86-Base Doorbell Panel (#52)\n\n## Key Benefits\n- Helps buyers plan a complete guest room product mix from control display to sensors and service panels.\n- Supports hotel room control workflows for lighting, HVAC, curtains, room status, and power access.\n- Gives contractors and system integrators a clear product grouping for project specification discussions.\n- Supports OEM/ODM and distributor conversations around panel style, finish, labeling, and supply planning.\n\n## Application Scenarios\n- Hotel guest rooms\n- Serviced apartments\n- Smart room renovation projects\n- Boutique hotels\n- Contractor-led guest room automation packages\n\n## Typical Project Types\n- New hotel guest room control projects\n- Hotel renovation and room upgrade projects\n- Smart apartment room control packages\n- Distributor product bundle planning\n- OEM/ODM hotel panel programs\n\n## Integration Notes\nThis solution should be reviewed according to each hotel's room layout, wiring plan, control logic, selected product models, and system integration requirements. Product compatibility, electrical ratings, communication method, and installation details should be confirmed during project specification.\n\n## Customization Options\n- Panel finish and appearance\n- Button icons and labeling\n- Product bundle selection\n- Packaging and documentation\n- OEM/ODM branding requirements\n- Room type based product matching\n\n## Inquiry CTA\nSend us your room type, product list, estimated quantity, and project market. Our B2B team can help prepare a guest room control product mix for quotation.\n\n## FAQ\n### What products are included in a hotel guest room control solution?\nA typical product mix can include smart control displays, RCU room control hardware, sensors, sockets, curtain control panels, and room status or service panels.\n\n### Is this solution suitable for hotel renovation projects?\nYes. The product mix can be discussed for both new hotel projects and renovation projects, depending on room layout, wiring conditions, and project requirements.\n\n### Can the panel appearance be customized for hotel projects?\nPanel finish, labeling, icon design, packaging, and product bundle options can be reviewed for OEM/ODM and project supply.\n\n### Do you provide a complete control system design?\nThis draft defines the product solution direction. Final system design should be confirmed with project requirements, room drawings, control logic, and integration partners.\n\n## Missing Information\n- Final wiring plan and room control logic by project\n- Confirmed communication method and device compatibility\n- Detailed RCU configuration and electrical parameters\n- Final panel finish and labeling requirements\n- Project quantity, room type, and target delivery schedule"
+      },
+      "content_sections": {
+        "target_customers": [
+          "Hotel owners",
+          "Hotel developers",
+          "Contractors",
+          "System integrators",
+          "Distributors",
+          "OEM/ODM buyers"
+        ],
+        "customer_challenges": [
+          "Hotel rooms often require multiple control points for lighting, temperature, curtains, service status, and guest comfort.",
+          "Project teams need product combinations that are easier to specify, source, and coordinate across room types.",
+          "Contractors and integrators need a practical hardware package that can fit different hotel room layouts without relying on unverified technical claims.",
+          "Distributors and OEM/ODM buyers need product options that can support project branding, panel style selection, and bulk supply planning."
+        ],
+        "solution_overview": "The Hotel Guest Room Control Solution combines smart room control displays, RCU cabinet planning, sensing devices, power modules, curtain control panels, and hotel service panels into a practical product mix for guest room automation. It is designed as a B2B solution direction for hotel room projects where buyers need a coordinated hardware package rather than isolated single products. The solution can support project discussions around room control workflow, panel selection, guest comfort, energy management, and OEM/ODM product planning.",
+        "recommended_product_categories": [
+          "AI Smart Displays",
+          "RCU Room Control Host",
+          "Sensors",
+          "Smart Sockets & Power Modules",
+          "Curtain Control Panels",
+          "Room Status & Hotel Service Panels"
+        ],
+        "recommended_products": [
+          "86-Type AI Smart Control Display (#6)",
+          "RCU Controller Cabinet (#47)",
+          "Embedded Human Presence Sensor (#43)",
+          "Smart USB Five-Hole Socket (#49)",
+          "Smart Four-Key Curtain Control Panel (#51)",
+          "Brushed Aluminum 86-Base Doorbell Panel (#52)"
+        ],
+        "key_benefits": [
+          "Helps buyers plan a complete guest room product mix from control display to sensors and service panels.",
+          "Supports hotel room control workflows for lighting, HVAC, curtains, room status, and power access.",
+          "Gives contractors and system integrators a clear product grouping for project specification discussions.",
+          "Supports OEM/ODM and distributor conversations around panel style, finish, labeling, and supply planning."
+        ],
+        "application_scenarios": [
+          "Hotel guest rooms",
+          "Serviced apartments",
+          "Smart room renovation projects",
+          "Boutique hotels",
+          "Contractor-led guest room automation packages"
+        ],
+        "typical_project_types": [
+          "New hotel guest room control projects",
+          "Hotel renovation and room upgrade projects",
+          "Smart apartment room control packages",
+          "Distributor product bundle planning",
+          "OEM/ODM hotel panel programs"
+        ],
+        "integration_notes": "This solution should be reviewed according to each hotel's room layout, wiring plan, control logic, selected product models, and system integration requirements. Product compatibility, electrical ratings, communication method, and installation details should be confirmed during project specification.",
+        "customization_options": [
+          "Panel finish and appearance",
+          "Button icons and labeling",
+          "Product bundle selection",
+          "Packaging and documentation",
+          "OEM/ODM branding requirements",
+          "Room type based product matching"
+        ],
+        "inquiry_cta_text": "Send us your room type, product list, estimated quantity, and project market. Our B2B team can help prepare a guest room control product mix for quotation.",
+        "faq_items": [
+          {
+            "question": "What products are included in a hotel guest room control solution?",
+            "answer": "A typical product mix can include smart control displays, RCU room control hardware, sensors, sockets, curtain control panels, and room status or service panels."
+          },
+          {
+            "question": "Is this solution suitable for hotel renovation projects?",
+            "answer": "Yes. The product mix can be discussed for both new hotel projects and renovation projects, depending on room layout, wiring conditions, and project requirements."
+          },
+          {
+            "question": "Can the panel appearance be customized for hotel projects?",
+            "answer": "Panel finish, labeling, icon design, packaging, and product bundle options can be reviewed for OEM/ODM and project supply."
+          },
+          {
+            "question": "Do you provide a complete control system design?",
+            "answer": "This draft defines the product solution direction. Final system design should be confirmed with project requirements, room drawings, control logic, and integration partners."
+          }
+        ],
+        "missing_information": [
+          "Final wiring plan and room control logic by project",
+          "Confirmed communication method and device compatibility",
+          "Detailed RCU configuration and electrical parameters",
+          "Final panel finish and labeling requirements",
+          "Project quantity, room type, and target delivery schedule"
+        ]
+      },
+      "acf_direct_fields": {
+        "solution_summary": "A smart guest room control solution for hotels, serviced apartments, and renovation projects that need coordinated room control hardware for lighting, HVAC, curtains, sensing, power, and service panels.",
+        "customer_challenges": "Hotel rooms often require multiple control points for lighting, temperature, curtains, service status, and guest comfort.\nProject teams need product combinations that are easier to specify, source, and coordinate across room types.\nContractors and integrators need a practical hardware package that can fit different hotel room layouts without relying on unverified technical claims.\nDistributors and OEM/ODM buyers need product options that can support project branding, panel style selection, and bulk supply planning.",
+        "solution_architecture": "The Hotel Guest Room Control Solution combines smart room control displays, RCU cabinet planning, sensing devices, power modules, curtain control panels, and hotel service panels into a practical product mix for guest room automation. It is designed as a B2B solution direction for hotel room projects where buyers need a coordinated hardware package rather than isolated single products. The solution can support project discussions around room control workflow, panel selection, guest comfort, energy management, and OEM/ODM product planning.",
+        "key_benefits_text": "Helps buyers plan a complete guest room product mix from control display to sensors and service panels.\nSupports hotel room control workflows for lighting, HVAC, curtains, room status, and power access.\nGives contractors and system integrators a clear product grouping for project specification discussions.\nSupports OEM/ODM and distributor conversations around panel style, finish, labeling, and supply planning.",
+        "deployment_process": "New hotel guest room control projects\nHotel renovation and room upgrade projects\nSmart apartment room control packages\nDistributor product bundle planning\nOEM/ODM hotel panel programs",
+        "solution_inquiry_cta_label": "Send Inquiry",
+        "integration_notes": "This solution should be reviewed according to each hotel's room layout, wiring plan, control logic, selected product models, and system integration requirements. Product compatibility, electrical ratings, communication method, and installation details should be confirmed during project specification.",
+        "compatibility_notes": "Recommended product categories:\nAI Smart Displays\nRCU Room Control Host\nSensors\nSmart Sockets & Power Modules\nCurtain Control Panels\nRoom Status & Hotel Service Panels\n\nCustomization options:\nPanel finish and appearance\nButton icons and labeling\nProduct bundle selection\nPackaging and documentation\nOEM/ODM branding requirements\nRoom type based product matching",
+        "known_limitations": "Final wiring plan and room control logic by project\nConfirmed communication method and device compatibility\nDetailed RCU configuration and electrical parameters\nFinal panel finish and labeling requirements\nProject quantity, room type, and target delivery schedule",
+        "recommended_products": [
+          6,
+          47,
+          43,
+          49,
+          51,
+          52
+        ],
+        "solution_seo_title": "Hotel Guest Room Control Solution for Smart Hotel Projects",
+        "solution_meta_description": "Smart hotel guest room control solution with AI control displays, RCU cabinet planning, sensors, sockets, curtain panels, and service panels for B2B hotel projects.",
+        "solution_breadcrumb_label": "Hotel Guest Room Control Solution",
+        "solution_schema_enabled": true,
+        "solution_geo_direct_answer": "A smart guest room control solution for hotels, serviced apartments, and renovation projects that need coordinated room control hardware for lighting, HVAC, curtains, sensing, power, and service panels.",
+        "solution_geo_entity_summary": "The Hotel Guest Room Control Solution combines smart room control displays, RCU cabinet planning, sensing devices, power modules, curtain control panels, and hotel service panels into a practical product mix for guest room automation. It is designed as a B2B solution direction for hotel room projects where buyers need a coordinated hardware package rather than isolated single products. The solution can support project discussions around room control workflow, panel selection, guest comfort, energy management, and OEM/ODM product planning.",
+        "solution_geo_key_facts": "Solution: Hotel Guest Room Control Solution\nRecommended product categories: AI Smart Displays, RCU Room Control Host, Sensors, Smart Sockets & Power Modules, Curtain Control Panels, Room Status & Hotel Service Panels\nRecommended products: 86-Type AI Smart Control Display (#6), RCU Controller Cabinet (#47), Embedded Human Presence Sensor (#43), Smart USB Five-Hole Socket (#49), Smart Four-Key Curtain Control Panel (#51), Brushed Aluminum 86-Base Doorbell Panel (#52)\nTarget customers: Hotel owners, Hotel developers, Contractors, System integrators, Distributors, OEM/ODM buyers",
+        "solution_geo_buyer_questions": "What products are included in a hotel guest room control solution?\nIs this solution suitable for hotel renovation projects?\nCan the panel appearance be customized for hotel projects?\nDo you provide a complete control system design?",
+        "solution_geo_known_limitations": "Final wiring plan and room control logic by project\nConfirmed communication method and device compatibility\nDetailed RCU configuration and electrical parameters\nFinal panel finish and labeling requirements\nProject quantity, room type, and target delivery schedule"
+      },
+      "field_fallbacks": [
+        {
+          "field": "target_customers",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "recommended_product_categories",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "application_scenarios",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "typical_project_types",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "customization_options",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "faq_items",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "full inquiry_cta_text",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        }
+      ],
+      "recommended_products": [
+        {
+          "name": "86-Type AI Smart Control Display",
+          "slug": "86-type-ai-smart-control-display",
+          "id": 6,
+          "title": "86-Type AI Smart Control Display",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "RCU Controller Cabinet",
+          "slug": "rcu-controller-cabinet",
+          "id": 47,
+          "title": "RCU Controller Cabinet",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Embedded Human Presence Sensor",
+          "slug": "embedded-human-presence-sensor",
+          "id": 43,
+          "title": "Embedded Human Presence Sensor",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Smart USB Five-Hole Socket",
+          "slug": "smart-usb-five-hole-socket",
+          "id": 49,
+          "title": "Smart USB Five-Hole Socket",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Smart Four-Key Curtain Control Panel",
+          "slug": "smart-four-key-curtain-control-panel",
+          "id": 51,
+          "title": "Smart Four-Key Curtain Control Panel",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Brushed Aluminum 86-Base Doorbell Panel",
+          "slug": "brushed-aluminum-86-base-doorbell-panel",
+          "id": 52,
+          "title": "Brushed Aluminum 86-Base Doorbell Panel",
+          "status": "publish",
+          "match_status": "matched"
+        }
+      ],
+      "recommended_product_ids": [
+        6,
+        47,
+        43,
+        49,
+        51,
+        52
+      ],
+      "faq_items": [
+        {
+          "question": "What products are included in a hotel guest room control solution?",
+          "answer": "A typical product mix can include smart control displays, RCU room control hardware, sensors, sockets, curtain control panels, and room status or service panels."
+        },
+        {
+          "question": "Is this solution suitable for hotel renovation projects?",
+          "answer": "Yes. The product mix can be discussed for both new hotel projects and renovation projects, depending on room layout, wiring conditions, and project requirements."
+        },
+        {
+          "question": "Can the panel appearance be customized for hotel projects?",
+          "answer": "Panel finish, labeling, icon design, packaging, and product bundle options can be reviewed for OEM/ODM and project supply."
+        },
+        {
+          "question": "Do you provide a complete control system design?",
+          "answer": "This draft defines the product solution direction. Final system design should be confirmed with project requirements, room drawings, control logic, and integration partners."
+        }
+      ],
+      "missing_information": [
+        "Final wiring plan and room control logic by project",
+        "Confirmed communication method and device compatibility",
+        "Detailed RCU configuration and electrical parameters",
+        "Final panel finish and labeling requirements",
+        "Project quantity, room type, and target delivery schedule"
+      ],
+      "internal_notes": "Source: product-assets/mapping-output/solution-content-draft.json. Import as draft first. Do not create products or media during solution import. Product IDs were matched from current WordPress REST products on 2026-06-17."
+    },
+    {
+      "solution_title": "Smart Hotel Automation Solution",
+      "slug": "smart-hotel-automation-solution",
+      "status": "draft",
+      "duplicate_check": "no_published_duplicate_found",
+      "post_fields": {
+        "title": "Smart Hotel Automation Solution",
+        "slug": "smart-hotel-automation-solution",
+        "status": "draft",
+        "excerpt": "A broader smart hotel automation solution direction for projects that need room control, public area service workflows, smart displays, RCU hardware, infrared control accessories, delivery robots, and delivery cabinets.",
+        "content": "The Smart Hotel Automation Solution connects room control products with hotel service automation devices. It combines large smart display interfaces, RCU host planning, infrared repeater accessories, hotel delivery robots, and smart delivery cabinets into a solution direction for hotel automation projects. The solution is suitable for discussions around guest experience, staff workflow support, public area automation, and B2B product supply.\n\n## Target Customers\n- Hotel owners\n- Hotel management groups\n- Property developers\n- System integrators\n- Contractors\n- Distributors\n\n## Customer Challenges\n- Smart hotel projects often involve multiple areas, including guest rooms, public spaces, and service workflows.\n- Buyers need a clear way to connect room control hardware with operational devices such as delivery robots and smart cabinets.\n- Project teams need product options that can support phased deployment without relying on unverified system promises.\n- Contractors and integrators need a practical product list that can be reviewed against building layout and operational requirements.\n\n## Recommended Product Categories\n- AI Smart Displays\n- RCU Room Control Host\n- Sensors\n- Hotel Delivery Robot System\n\n## Recommended Products\n- AI Large Smart Display (#8)\n- Hotel Smart Room RCU Host 1 (#48)\n- Infrared Repeater (#44)\n- Hotel Delivery Robot (#12)\n- Hotel Smart Delivery Cabinet (#13)\n\n## Key Benefits\n- Connects guest room automation and hotel service automation in one planning direction.\n- Supports discussions for room control, device control accessories, and hotel delivery workflows.\n- Helps B2B buyers evaluate product bundles for different hotel areas.\n- Gives distributors and integrators a product grouping that can be adapted by project phase.\n\n## Application Scenarios\n- Smart hotel guest rooms\n- Hotel public areas\n- Guest supply delivery workflows\n- Hotel renovation projects\n- Integrated hotel automation showrooms\n\n## Typical Project Types\n- New smart hotel projects\n- Hotel automation upgrade projects\n- Public area service automation projects\n- Multi-product distributor programs\n- System integrator solution packages\n\n## Integration Notes\nThis solution should be reviewed with hotel floor plans, room types, public area requirements, robot operation routes, cabinet placement, network planning, and system integration responsibilities. Delivery workflow performance can vary by project layout and configuration.\n\n## Customization Options\n- Product mix by hotel area\n- Panel and display appearance\n- Smart cabinet channel planning\n- Robot and cabinet workflow matching\n- Project documentation and packaging\n- OEM/ODM product supply planning\n\n## Inquiry CTA\nShare your hotel area plan, room count, automation goals, and expected product mix. Our B2B team can help prepare a smart hotel automation quotation plan.\n\n## FAQ\n### What areas can this smart hotel automation solution cover?\nIt can support planning for guest rooms, public areas, and hotel service delivery workflows, depending on project requirements.\n\n### Can delivery robots and smart cabinets be planned with room control products?\nYes. They can be discussed as part of a broader hotel automation product mix, while final workflow design should be confirmed by project layout.\n\n### Is this solution suitable for phased deployment?\nThe product mix can be planned by project phase, such as guest rooms first and service automation later, depending on budget and site readiness.\n\n### What information is needed for quotation?\nUseful information includes room count, hotel area plan, expected product categories, target market, quantity, and integration requirements.\n\n## Missing Information\n- Confirmed hotel floor plans and robot route conditions\n- Network and integration architecture\n- Detailed RCU and control device parameters\n- Smart cabinet product channel requirements\n- Project phase, quantity, and delivery schedule"
+      },
+      "content_sections": {
+        "target_customers": [
+          "Hotel owners",
+          "Hotel management groups",
+          "Property developers",
+          "System integrators",
+          "Contractors",
+          "Distributors"
+        ],
+        "customer_challenges": [
+          "Smart hotel projects often involve multiple areas, including guest rooms, public spaces, and service workflows.",
+          "Buyers need a clear way to connect room control hardware with operational devices such as delivery robots and smart cabinets.",
+          "Project teams need product options that can support phased deployment without relying on unverified system promises.",
+          "Contractors and integrators need a practical product list that can be reviewed against building layout and operational requirements."
+        ],
+        "solution_overview": "The Smart Hotel Automation Solution connects room control products with hotel service automation devices. It combines large smart display interfaces, RCU host planning, infrared repeater accessories, hotel delivery robots, and smart delivery cabinets into a solution direction for hotel automation projects. The solution is suitable for discussions around guest experience, staff workflow support, public area automation, and B2B product supply.",
+        "recommended_product_categories": [
+          "AI Smart Displays",
+          "RCU Room Control Host",
+          "Sensors",
+          "Hotel Delivery Robot System"
+        ],
+        "recommended_products": [
+          "AI Large Smart Display (#8)",
+          "Hotel Smart Room RCU Host 1 (#48)",
+          "Infrared Repeater (#44)",
+          "Hotel Delivery Robot (#12)",
+          "Hotel Smart Delivery Cabinet (#13)"
+        ],
+        "key_benefits": [
+          "Connects guest room automation and hotel service automation in one planning direction.",
+          "Supports discussions for room control, device control accessories, and hotel delivery workflows.",
+          "Helps B2B buyers evaluate product bundles for different hotel areas.",
+          "Gives distributors and integrators a product grouping that can be adapted by project phase."
+        ],
+        "application_scenarios": [
+          "Smart hotel guest rooms",
+          "Hotel public areas",
+          "Guest supply delivery workflows",
+          "Hotel renovation projects",
+          "Integrated hotel automation showrooms"
+        ],
+        "typical_project_types": [
+          "New smart hotel projects",
+          "Hotel automation upgrade projects",
+          "Public area service automation projects",
+          "Multi-product distributor programs",
+          "System integrator solution packages"
+        ],
+        "integration_notes": "This solution should be reviewed with hotel floor plans, room types, public area requirements, robot operation routes, cabinet placement, network planning, and system integration responsibilities. Delivery workflow performance can vary by project layout and configuration.",
+        "customization_options": [
+          "Product mix by hotel area",
+          "Panel and display appearance",
+          "Smart cabinet channel planning",
+          "Robot and cabinet workflow matching",
+          "Project documentation and packaging",
+          "OEM/ODM product supply planning"
+        ],
+        "inquiry_cta_text": "Share your hotel area plan, room count, automation goals, and expected product mix. Our B2B team can help prepare a smart hotel automation quotation plan.",
+        "faq_items": [
+          {
+            "question": "What areas can this smart hotel automation solution cover?",
+            "answer": "It can support planning for guest rooms, public areas, and hotel service delivery workflows, depending on project requirements."
+          },
+          {
+            "question": "Can delivery robots and smart cabinets be planned with room control products?",
+            "answer": "Yes. They can be discussed as part of a broader hotel automation product mix, while final workflow design should be confirmed by project layout."
+          },
+          {
+            "question": "Is this solution suitable for phased deployment?",
+            "answer": "The product mix can be planned by project phase, such as guest rooms first and service automation later, depending on budget and site readiness."
+          },
+          {
+            "question": "What information is needed for quotation?",
+            "answer": "Useful information includes room count, hotel area plan, expected product categories, target market, quantity, and integration requirements."
+          }
+        ],
+        "missing_information": [
+          "Confirmed hotel floor plans and robot route conditions",
+          "Network and integration architecture",
+          "Detailed RCU and control device parameters",
+          "Smart cabinet product channel requirements",
+          "Project phase, quantity, and delivery schedule"
+        ]
+      },
+      "acf_direct_fields": {
+        "solution_summary": "A broader smart hotel automation solution direction for projects that need room control, public area service workflows, smart displays, RCU hardware, infrared control accessories, delivery robots, and delivery cabinets.",
+        "customer_challenges": "Smart hotel projects often involve multiple areas, including guest rooms, public spaces, and service workflows.\nBuyers need a clear way to connect room control hardware with operational devices such as delivery robots and smart cabinets.\nProject teams need product options that can support phased deployment without relying on unverified system promises.\nContractors and integrators need a practical product list that can be reviewed against building layout and operational requirements.",
+        "solution_architecture": "The Smart Hotel Automation Solution connects room control products with hotel service automation devices. It combines large smart display interfaces, RCU host planning, infrared repeater accessories, hotel delivery robots, and smart delivery cabinets into a solution direction for hotel automation projects. The solution is suitable for discussions around guest experience, staff workflow support, public area automation, and B2B product supply.",
+        "key_benefits_text": "Connects guest room automation and hotel service automation in one planning direction.\nSupports discussions for room control, device control accessories, and hotel delivery workflows.\nHelps B2B buyers evaluate product bundles for different hotel areas.\nGives distributors and integrators a product grouping that can be adapted by project phase.",
+        "deployment_process": "New smart hotel projects\nHotel automation upgrade projects\nPublic area service automation projects\nMulti-product distributor programs\nSystem integrator solution packages",
+        "solution_inquiry_cta_label": "Send Inquiry",
+        "integration_notes": "This solution should be reviewed with hotel floor plans, room types, public area requirements, robot operation routes, cabinet placement, network planning, and system integration responsibilities. Delivery workflow performance can vary by project layout and configuration.",
+        "compatibility_notes": "Recommended product categories:\nAI Smart Displays\nRCU Room Control Host\nSensors\nHotel Delivery Robot System\n\nCustomization options:\nProduct mix by hotel area\nPanel and display appearance\nSmart cabinet channel planning\nRobot and cabinet workflow matching\nProject documentation and packaging\nOEM/ODM product supply planning",
+        "known_limitations": "Confirmed hotel floor plans and robot route conditions\nNetwork and integration architecture\nDetailed RCU and control device parameters\nSmart cabinet product channel requirements\nProject phase, quantity, and delivery schedule",
+        "recommended_products": [
+          8,
+          48,
+          44,
+          12,
+          13
+        ],
+        "solution_seo_title": "Smart Hotel Automation Solution for B2B Hotel Projects",
+        "solution_meta_description": "Smart hotel automation solution direction combining smart displays, RCU room control hardware, infrared control accessories, delivery robots, and smart delivery cabinets.",
+        "solution_breadcrumb_label": "Smart Hotel Automation Solution",
+        "solution_schema_enabled": true,
+        "solution_geo_direct_answer": "A broader smart hotel automation solution direction for projects that need room control, public area service workflows, smart displays, RCU hardware, infrared control accessories, delivery robots, and delivery cabinets.",
+        "solution_geo_entity_summary": "The Smart Hotel Automation Solution connects room control products with hotel service automation devices. It combines large smart display interfaces, RCU host planning, infrared repeater accessories, hotel delivery robots, and smart delivery cabinets into a solution direction for hotel automation projects. The solution is suitable for discussions around guest experience, staff workflow support, public area automation, and B2B product supply.",
+        "solution_geo_key_facts": "Solution: Smart Hotel Automation Solution\nRecommended product categories: AI Smart Displays, RCU Room Control Host, Sensors, Hotel Delivery Robot System\nRecommended products: AI Large Smart Display (#8), Hotel Smart Room RCU Host 1 (#48), Infrared Repeater (#44), Hotel Delivery Robot (#12), Hotel Smart Delivery Cabinet (#13)\nTarget customers: Hotel owners, Hotel management groups, Property developers, System integrators, Contractors, Distributors",
+        "solution_geo_buyer_questions": "What areas can this smart hotel automation solution cover?\nCan delivery robots and smart cabinets be planned with room control products?\nIs this solution suitable for phased deployment?\nWhat information is needed for quotation?",
+        "solution_geo_known_limitations": "Confirmed hotel floor plans and robot route conditions\nNetwork and integration architecture\nDetailed RCU and control device parameters\nSmart cabinet product channel requirements\nProject phase, quantity, and delivery schedule"
+      },
+      "field_fallbacks": [
+        {
+          "field": "target_customers",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "recommended_product_categories",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "application_scenarios",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "typical_project_types",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "customization_options",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "faq_items",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "full inquiry_cta_text",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        }
+      ],
+      "recommended_products": [
+        {
+          "name": "AI Large Smart Display",
+          "slug": "ai-large-smart-display",
+          "id": 8,
+          "title": "AI Large Smart Display",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Hotel Smart Room RCU Host 1",
+          "slug": "hotel-smart-room-rcu-host-1",
+          "id": 48,
+          "title": "Hotel Smart Room RCU Host 1",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Infrared Repeater",
+          "slug": "infrared-repeater",
+          "id": 44,
+          "title": "Infrared Repeater",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Hotel Delivery Robot",
+          "slug": "hotel-delivery-robot",
+          "id": 12,
+          "title": "Hotel Delivery Robot",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Hotel Smart Delivery Cabinet",
+          "slug": "hotel-smart-delivery-cabinet",
+          "id": 13,
+          "title": "Hotel Smart Delivery Cabinet",
+          "status": "publish",
+          "match_status": "matched"
+        }
+      ],
+      "recommended_product_ids": [
+        8,
+        48,
+        44,
+        12,
+        13
+      ],
+      "faq_items": [
+        {
+          "question": "What areas can this smart hotel automation solution cover?",
+          "answer": "It can support planning for guest rooms, public areas, and hotel service delivery workflows, depending on project requirements."
+        },
+        {
+          "question": "Can delivery robots and smart cabinets be planned with room control products?",
+          "answer": "Yes. They can be discussed as part of a broader hotel automation product mix, while final workflow design should be confirmed by project layout."
+        },
+        {
+          "question": "Is this solution suitable for phased deployment?",
+          "answer": "The product mix can be planned by project phase, such as guest rooms first and service automation later, depending on budget and site readiness."
+        },
+        {
+          "question": "What information is needed for quotation?",
+          "answer": "Useful information includes room count, hotel area plan, expected product categories, target market, quantity, and integration requirements."
+        }
+      ],
+      "missing_information": [
+        "Confirmed hotel floor plans and robot route conditions",
+        "Network and integration architecture",
+        "Detailed RCU and control device parameters",
+        "Smart cabinet product channel requirements",
+        "Project phase, quantity, and delivery schedule"
+      ],
+      "internal_notes": "Source: product-assets/mapping-output/solution-content-draft.json. Import as draft first. Do not create products or media during solution import. Product IDs were matched from current WordPress REST products on 2026-06-17."
+    },
+    {
+      "solution_title": "AI Smart Display Solution",
+      "slug": "ai-smart-display-solution",
+      "status": "draft",
+      "duplicate_check": "no_published_duplicate_found",
+      "post_fields": {
+        "title": "AI Smart Display Solution",
+        "slug": "ai-smart-display-solution",
+        "status": "draft",
+        "excerpt": "A display-centered control solution for hotel rooms, apartments, villas, and smart spaces that need wall-mounted interfaces for room scenes, HVAC, music, and smart device control.",
+        "content": "The AI Smart Display Solution focuses on smart room display interfaces. It brings together 86-type control displays, larger smart displays, rotary knob control displays, thermostat HVAC control panels, and music control panels. The solution helps B2B customers plan a display-based product mix for room automation, guest comfort, and project-specific control scenes.\n\n## Target Customers\n- Hotel owners\n- Interior design contractors\n- System integrators\n- Smart home installers\n- Distributors\n- OEM/ODM buyers\n\n## Customer Challenges\n- Project buyers need a clear choice of display interfaces for different room types and design positions.\n- Hotels and smart spaces often need intuitive control points for scenes, climate, music, curtains, and room devices.\n- Distributors need display product options that can support different price positions and project aesthetics.\n- Integrators need to confirm device compatibility and control workflow before final specification.\n\n## Recommended Product Categories\n- AI Smart Displays\n- HVAC & Thermostat Control\n\n## Recommended Products\n- 86-Type AI Smart Control Display (#6)\n- AI Large Smart Display (#8)\n- Rotary Knob Smart Control Display (#9)\n- Thermostat HVAC Control Panel (#10)\n- AI Music Control Panel (#11)\n\n## Key Benefits\n- Offers multiple display interface options for different room control needs.\n- Supports control planning for room scenes, HVAC, curtains, music, and smart devices.\n- Helps buyers compare compact displays, large displays, rotary interaction, thermostat panels, and music panels.\n- Supports OEM/ODM conversations around appearance, labeling, and product positioning.\n\n## Application Scenarios\n- Hotel guest room control\n- Smart apartment control\n- Villa and residence automation\n- Showroom display control\n- Hospitality interior control panels\n\n## Typical Project Types\n- Hotel room smart display upgrades\n- Apartment smart control packages\n- Design-led smart room projects\n- Distributor AI display product lines\n- OEM/ODM display panel programs\n\n## Integration Notes\nDisplay selection should be reviewed according to wall box conditions, room control requirements, HVAC needs, music control requirements, desired interaction method, and integration environment. Compatibility and control logic should be confirmed before final project documentation.\n\n## Customization Options\n- Display product selection by room type\n- Panel finish and appearance\n- Interface labeling and icons\n- Packaging and documentation\n- Product bundle planning\n- OEM/ODM appearance requirements\n\n## Inquiry CTA\nSend your room type, display size preference, control functions, and estimated quantity. Our team can help recommend an AI smart display product mix.\n\n## FAQ\n### Which products are included in the AI Smart Display Solution?\nThe solution can include 86-type smart control displays, large smart displays, rotary knob control displays, thermostat HVAC control panels, and music control panels.\n\n### Can these displays be used in hotel rooms?\nYes. They are positioned for hotel rooms, apartments, and smart spaces, depending on project wiring, control requirements, and product selection.\n\n### How should buyers choose between display models?\nSelection should be based on room type, interaction preference, wall installation conditions, controlled devices, and project budget.\n\n### Can the appearance be customized?\nAppearance, labeling, packaging, and product positioning can be reviewed for OEM/ODM and distributor projects.\n\n## Missing Information\n- Final display model selection by project\n- Wall box and installation requirements\n- Confirmed HVAC and music control requirements\n- Device compatibility and control workflow\n- Branding, packaging, and quantity requirements"
+      },
+      "content_sections": {
+        "target_customers": [
+          "Hotel owners",
+          "Interior design contractors",
+          "System integrators",
+          "Smart home installers",
+          "Distributors",
+          "OEM/ODM buyers"
+        ],
+        "customer_challenges": [
+          "Project buyers need a clear choice of display interfaces for different room types and design positions.",
+          "Hotels and smart spaces often need intuitive control points for scenes, climate, music, curtains, and room devices.",
+          "Distributors need display product options that can support different price positions and project aesthetics.",
+          "Integrators need to confirm device compatibility and control workflow before final specification."
+        ],
+        "solution_overview": "The AI Smart Display Solution focuses on smart room display interfaces. It brings together 86-type control displays, larger smart displays, rotary knob control displays, thermostat HVAC control panels, and music control panels. The solution helps B2B customers plan a display-based product mix for room automation, guest comfort, and project-specific control scenes.",
+        "recommended_product_categories": [
+          "AI Smart Displays",
+          "HVAC & Thermostat Control"
+        ],
+        "recommended_products": [
+          "86-Type AI Smart Control Display (#6)",
+          "AI Large Smart Display (#8)",
+          "Rotary Knob Smart Control Display (#9)",
+          "Thermostat HVAC Control Panel (#10)",
+          "AI Music Control Panel (#11)"
+        ],
+        "key_benefits": [
+          "Offers multiple display interface options for different room control needs.",
+          "Supports control planning for room scenes, HVAC, curtains, music, and smart devices.",
+          "Helps buyers compare compact displays, large displays, rotary interaction, thermostat panels, and music panels.",
+          "Supports OEM/ODM conversations around appearance, labeling, and product positioning."
+        ],
+        "application_scenarios": [
+          "Hotel guest room control",
+          "Smart apartment control",
+          "Villa and residence automation",
+          "Showroom display control",
+          "Hospitality interior control panels"
+        ],
+        "typical_project_types": [
+          "Hotel room smart display upgrades",
+          "Apartment smart control packages",
+          "Design-led smart room projects",
+          "Distributor AI display product lines",
+          "OEM/ODM display panel programs"
+        ],
+        "integration_notes": "Display selection should be reviewed according to wall box conditions, room control requirements, HVAC needs, music control requirements, desired interaction method, and integration environment. Compatibility and control logic should be confirmed before final project documentation.",
+        "customization_options": [
+          "Display product selection by room type",
+          "Panel finish and appearance",
+          "Interface labeling and icons",
+          "Packaging and documentation",
+          "Product bundle planning",
+          "OEM/ODM appearance requirements"
+        ],
+        "inquiry_cta_text": "Send your room type, display size preference, control functions, and estimated quantity. Our team can help recommend an AI smart display product mix.",
+        "faq_items": [
+          {
+            "question": "Which products are included in the AI Smart Display Solution?",
+            "answer": "The solution can include 86-type smart control displays, large smart displays, rotary knob control displays, thermostat HVAC control panels, and music control panels."
+          },
+          {
+            "question": "Can these displays be used in hotel rooms?",
+            "answer": "Yes. They are positioned for hotel rooms, apartments, and smart spaces, depending on project wiring, control requirements, and product selection."
+          },
+          {
+            "question": "How should buyers choose between display models?",
+            "answer": "Selection should be based on room type, interaction preference, wall installation conditions, controlled devices, and project budget."
+          },
+          {
+            "question": "Can the appearance be customized?",
+            "answer": "Appearance, labeling, packaging, and product positioning can be reviewed for OEM/ODM and distributor projects."
+          }
+        ],
+        "missing_information": [
+          "Final display model selection by project",
+          "Wall box and installation requirements",
+          "Confirmed HVAC and music control requirements",
+          "Device compatibility and control workflow",
+          "Branding, packaging, and quantity requirements"
+        ]
+      },
+      "acf_direct_fields": {
+        "solution_summary": "A display-centered control solution for hotel rooms, apartments, villas, and smart spaces that need wall-mounted interfaces for room scenes, HVAC, music, and smart device control.",
+        "customer_challenges": "Project buyers need a clear choice of display interfaces for different room types and design positions.\nHotels and smart spaces often need intuitive control points for scenes, climate, music, curtains, and room devices.\nDistributors need display product options that can support different price positions and project aesthetics.\nIntegrators need to confirm device compatibility and control workflow before final specification.",
+        "solution_architecture": "The AI Smart Display Solution focuses on smart room display interfaces. It brings together 86-type control displays, larger smart displays, rotary knob control displays, thermostat HVAC control panels, and music control panels. The solution helps B2B customers plan a display-based product mix for room automation, guest comfort, and project-specific control scenes.",
+        "key_benefits_text": "Offers multiple display interface options for different room control needs.\nSupports control planning for room scenes, HVAC, curtains, music, and smart devices.\nHelps buyers compare compact displays, large displays, rotary interaction, thermostat panels, and music panels.\nSupports OEM/ODM conversations around appearance, labeling, and product positioning.",
+        "deployment_process": "Hotel room smart display upgrades\nApartment smart control packages\nDesign-led smart room projects\nDistributor AI display product lines\nOEM/ODM display panel programs",
+        "solution_inquiry_cta_label": "Send Inquiry",
+        "integration_notes": "Display selection should be reviewed according to wall box conditions, room control requirements, HVAC needs, music control requirements, desired interaction method, and integration environment. Compatibility and control logic should be confirmed before final project documentation.",
+        "compatibility_notes": "Recommended product categories:\nAI Smart Displays\nHVAC & Thermostat Control\n\nCustomization options:\nDisplay product selection by room type\nPanel finish and appearance\nInterface labeling and icons\nPackaging and documentation\nProduct bundle planning\nOEM/ODM appearance requirements",
+        "known_limitations": "Final display model selection by project\nWall box and installation requirements\nConfirmed HVAC and music control requirements\nDevice compatibility and control workflow\nBranding, packaging, and quantity requirements",
+        "recommended_products": [
+          6,
+          8,
+          9,
+          10,
+          11
+        ],
+        "solution_seo_title": "AI Smart Display Solution for Hotel Room Control",
+        "solution_meta_description": "AI smart display solution with 86-type control displays, large smart displays, rotary control displays, thermostat panels, and music control panels for B2B projects.",
+        "solution_breadcrumb_label": "AI Smart Display Solution",
+        "solution_schema_enabled": true,
+        "solution_geo_direct_answer": "A display-centered control solution for hotel rooms, apartments, villas, and smart spaces that need wall-mounted interfaces for room scenes, HVAC, music, and smart device control.",
+        "solution_geo_entity_summary": "The AI Smart Display Solution focuses on smart room display interfaces. It brings together 86-type control displays, larger smart displays, rotary knob control displays, thermostat HVAC control panels, and music control panels. The solution helps B2B customers plan a display-based product mix for room automation, guest comfort, and project-specific control scenes.",
+        "solution_geo_key_facts": "Solution: AI Smart Display Solution\nRecommended product categories: AI Smart Displays, HVAC & Thermostat Control\nRecommended products: 86-Type AI Smart Control Display (#6), AI Large Smart Display (#8), Rotary Knob Smart Control Display (#9), Thermostat HVAC Control Panel (#10), AI Music Control Panel (#11)\nTarget customers: Hotel owners, Interior design contractors, System integrators, Smart home installers, Distributors, OEM/ODM buyers",
+        "solution_geo_buyer_questions": "Which products are included in the AI Smart Display Solution?\nCan these displays be used in hotel rooms?\nHow should buyers choose between display models?\nCan the appearance be customized?",
+        "solution_geo_known_limitations": "Final display model selection by project\nWall box and installation requirements\nConfirmed HVAC and music control requirements\nDevice compatibility and control workflow\nBranding, packaging, and quantity requirements"
+      },
+      "field_fallbacks": [
+        {
+          "field": "target_customers",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "recommended_product_categories",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "application_scenarios",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "typical_project_types",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "customization_options",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "faq_items",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "full inquiry_cta_text",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        }
+      ],
+      "recommended_products": [
+        {
+          "name": "86-Type AI Smart Control Display",
+          "slug": "86-type-ai-smart-control-display",
+          "id": 6,
+          "title": "86-Type AI Smart Control Display",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "AI Large Smart Display",
+          "slug": "ai-large-smart-display",
+          "id": 8,
+          "title": "AI Large Smart Display",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Rotary Knob Smart Control Display",
+          "slug": "rotary-knob-smart-control-display",
+          "id": 9,
+          "title": "Rotary Knob Smart Control Display",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Thermostat HVAC Control Panel",
+          "slug": "thermostat-hvac-control-panel",
+          "id": 10,
+          "title": "Thermostat HVAC Control Panel",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "AI Music Control Panel",
+          "slug": "ai-music-control-panel",
+          "id": 11,
+          "title": "AI Music Control Panel",
+          "status": "publish",
+          "match_status": "matched"
+        }
+      ],
+      "recommended_product_ids": [
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "faq_items": [
+        {
+          "question": "Which products are included in the AI Smart Display Solution?",
+          "answer": "The solution can include 86-type smart control displays, large smart displays, rotary knob control displays, thermostat HVAC control panels, and music control panels."
+        },
+        {
+          "question": "Can these displays be used in hotel rooms?",
+          "answer": "Yes. They are positioned for hotel rooms, apartments, and smart spaces, depending on project wiring, control requirements, and product selection."
+        },
+        {
+          "question": "How should buyers choose between display models?",
+          "answer": "Selection should be based on room type, interaction preference, wall installation conditions, controlled devices, and project budget."
+        },
+        {
+          "question": "Can the appearance be customized?",
+          "answer": "Appearance, labeling, packaging, and product positioning can be reviewed for OEM/ODM and distributor projects."
+        }
+      ],
+      "missing_information": [
+        "Final display model selection by project",
+        "Wall box and installation requirements",
+        "Confirmed HVAC and music control requirements",
+        "Device compatibility and control workflow",
+        "Branding, packaging, and quantity requirements"
+      ],
+      "internal_notes": "Source: product-assets/mapping-output/solution-content-draft.json. Import as draft first. Do not create products or media during solution import. Product IDs were matched from current WordPress REST products on 2026-06-17."
+    },
+    {
+      "solution_title": "RCU Room Control Solution",
+      "slug": "rcu-room-control-solution",
+      "status": "draft",
+      "duplicate_check": "no_published_duplicate_found",
+      "post_fields": {
+        "title": "RCU Room Control Solution",
+        "slug": "rcu-room-control-solution",
+        "status": "draft",
+        "excerpt": "An RCU-centered room control solution for hotel guest rooms that require a control host or cabinet, sensing devices, curtain control, and power-related room accessories.",
+        "content": "The RCU Room Control Solution focuses on room control host and cabinet planning for hotel guest room automation. It combines RCU controller cabinet options, smart room RCU host products, sensing hardware, curtain control panels, and key card energy saver panels. The solution is intended for B2B project discussions where the final control architecture, wiring, and technical configuration will be confirmed during specification.\n\n## Target Customers\n- Hotel owners\n- MEP contractors\n- Low-voltage contractors\n- System integrators\n- Hotel automation distributors\n- OEM/ODM buyers\n\n## Customer Challenges\n- Hotel guest rooms need organized control hardware for panels, sensors, power accessories, curtain control, and room logic.\n- Project teams often need to discuss RCU hardware without committing to unverified circuit, I/O, protocol, or electrical parameters.\n- Contractors need a product grouping that can be reviewed against room drawings and site wiring conditions.\n- Integrators need clear product boundaries between RCU hosts, sensors, panels, and power modules.\n\n## Recommended Product Categories\n- RCU Room Control Host\n- Sensors\n- Curtain Control Panels\n- Smart Sockets & Power Modules\n\n## Recommended Products\n- RCU Controller Cabinet (#47)\n- Hotel Smart Room RCU Host 1 (#48)\n- Embedded Human Presence Sensor (#43)\n- Smart Four-Key Curtain Control Panel (#51)\n- Smart Key Card Energy Saver Panel (#50)\n\n## Key Benefits\n- Helps structure RCU hardware discussions around real project needs.\n- Connects control host planning with sensors, curtain control, and room power workflows.\n- Keeps unconfirmed electrical and protocol details out of marketing copy while preserving project flexibility.\n- Supports contractor and integrator discussions for guest room automation packages.\n\n## Application Scenarios\n- Hotel guest room control systems\n- RCU cabinet planning\n- Smart room renovation projects\n- Curtain and sensing integration\n- Energy saver panel planning\n\n## Typical Project Types\n- RCU room control projects\n- Hotel automation integration packages\n- Contractor-led room control supply\n- Smart hotel room upgrades\n- Distributor RCU product bundles\n\n## Integration Notes\nRCU solution planning should be based on confirmed room drawings, load schedule, control point requirements, panel layout, wiring method, and integration responsibilities. Circuit count, I/O details, electrical ratings, and communication method should be confirmed before formal quotation or technical documentation.\n\n## Customization Options\n- RCU product selection\n- Cabinet planning support\n- Panel and accessory bundle matching\n- Room type based product package\n- Documentation and project labeling\n- OEM/ODM supply planning\n\n## Inquiry CTA\nSend your room control drawings, device list, and control requirements. Our team can help review an RCU-centered product package for your project.\n\n## FAQ\n### What is included in an RCU room control solution?\nThe solution can include an RCU controller cabinet or host, sensors, curtain control panels, and power-related room accessories.\n\n### Are circuit count and electrical ratings included in this draft?\nNo. These details should be confirmed based on project drawings, room layout, and technical requirements.\n\n### Who is this solution suitable for?\nIt is suitable for hotel owners, contractors, system integrators, and distributors planning guest room automation hardware.\n\n### Can this solution be adjusted by room type?\nYes. Product selection and package planning can be adjusted for different room types and project phases.\n\n## Missing Information\n- Room drawings and device point schedule\n- Confirmed RCU circuit and I/O requirements\n- Electrical ratings and wiring method\n- Communication method and integration scope\n- Final product models and project quantity"
+      },
+      "content_sections": {
+        "target_customers": [
+          "Hotel owners",
+          "MEP contractors",
+          "Low-voltage contractors",
+          "System integrators",
+          "Hotel automation distributors",
+          "OEM/ODM buyers"
+        ],
+        "customer_challenges": [
+          "Hotel guest rooms need organized control hardware for panels, sensors, power accessories, curtain control, and room logic.",
+          "Project teams often need to discuss RCU hardware without committing to unverified circuit, I/O, protocol, or electrical parameters.",
+          "Contractors need a product grouping that can be reviewed against room drawings and site wiring conditions.",
+          "Integrators need clear product boundaries between RCU hosts, sensors, panels, and power modules."
+        ],
+        "solution_overview": "The RCU Room Control Solution focuses on room control host and cabinet planning for hotel guest room automation. It combines RCU controller cabinet options, smart room RCU host products, sensing hardware, curtain control panels, and key card energy saver panels. The solution is intended for B2B project discussions where the final control architecture, wiring, and technical configuration will be confirmed during specification.",
+        "recommended_product_categories": [
+          "RCU Room Control Host",
+          "Sensors",
+          "Curtain Control Panels",
+          "Smart Sockets & Power Modules"
+        ],
+        "recommended_products": [
+          "RCU Controller Cabinet (#47)",
+          "Hotel Smart Room RCU Host 1 (#48)",
+          "Embedded Human Presence Sensor (#43)",
+          "Smart Four-Key Curtain Control Panel (#51)",
+          "Smart Key Card Energy Saver Panel (#50)"
+        ],
+        "key_benefits": [
+          "Helps structure RCU hardware discussions around real project needs.",
+          "Connects control host planning with sensors, curtain control, and room power workflows.",
+          "Keeps unconfirmed electrical and protocol details out of marketing copy while preserving project flexibility.",
+          "Supports contractor and integrator discussions for guest room automation packages."
+        ],
+        "application_scenarios": [
+          "Hotel guest room control systems",
+          "RCU cabinet planning",
+          "Smart room renovation projects",
+          "Curtain and sensing integration",
+          "Energy saver panel planning"
+        ],
+        "typical_project_types": [
+          "RCU room control projects",
+          "Hotel automation integration packages",
+          "Contractor-led room control supply",
+          "Smart hotel room upgrades",
+          "Distributor RCU product bundles"
+        ],
+        "integration_notes": "RCU solution planning should be based on confirmed room drawings, load schedule, control point requirements, panel layout, wiring method, and integration responsibilities. Circuit count, I/O details, electrical ratings, and communication method should be confirmed before formal quotation or technical documentation.",
+        "customization_options": [
+          "RCU product selection",
+          "Cabinet planning support",
+          "Panel and accessory bundle matching",
+          "Room type based product package",
+          "Documentation and project labeling",
+          "OEM/ODM supply planning"
+        ],
+        "inquiry_cta_text": "Send your room control drawings, device list, and control requirements. Our team can help review an RCU-centered product package for your project.",
+        "faq_items": [
+          {
+            "question": "What is included in an RCU room control solution?",
+            "answer": "The solution can include an RCU controller cabinet or host, sensors, curtain control panels, and power-related room accessories."
+          },
+          {
+            "question": "Are circuit count and electrical ratings included in this draft?",
+            "answer": "No. These details should be confirmed based on project drawings, room layout, and technical requirements."
+          },
+          {
+            "question": "Who is this solution suitable for?",
+            "answer": "It is suitable for hotel owners, contractors, system integrators, and distributors planning guest room automation hardware."
+          },
+          {
+            "question": "Can this solution be adjusted by room type?",
+            "answer": "Yes. Product selection and package planning can be adjusted for different room types and project phases."
+          }
+        ],
+        "missing_information": [
+          "Room drawings and device point schedule",
+          "Confirmed RCU circuit and I/O requirements",
+          "Electrical ratings and wiring method",
+          "Communication method and integration scope",
+          "Final product models and project quantity"
+        ]
+      },
+      "acf_direct_fields": {
+        "solution_summary": "An RCU-centered room control solution for hotel guest rooms that require a control host or cabinet, sensing devices, curtain control, and power-related room accessories.",
+        "customer_challenges": "Hotel guest rooms need organized control hardware for panels, sensors, power accessories, curtain control, and room logic.\nProject teams often need to discuss RCU hardware without committing to unverified circuit, I/O, protocol, or electrical parameters.\nContractors need a product grouping that can be reviewed against room drawings and site wiring conditions.\nIntegrators need clear product boundaries between RCU hosts, sensors, panels, and power modules.",
+        "solution_architecture": "The RCU Room Control Solution focuses on room control host and cabinet planning for hotel guest room automation. It combines RCU controller cabinet options, smart room RCU host products, sensing hardware, curtain control panels, and key card energy saver panels. The solution is intended for B2B project discussions where the final control architecture, wiring, and technical configuration will be confirmed during specification.",
+        "key_benefits_text": "Helps structure RCU hardware discussions around real project needs.\nConnects control host planning with sensors, curtain control, and room power workflows.\nKeeps unconfirmed electrical and protocol details out of marketing copy while preserving project flexibility.\nSupports contractor and integrator discussions for guest room automation packages.",
+        "deployment_process": "RCU room control projects\nHotel automation integration packages\nContractor-led room control supply\nSmart hotel room upgrades\nDistributor RCU product bundles",
+        "solution_inquiry_cta_label": "Send Inquiry",
+        "integration_notes": "RCU solution planning should be based on confirmed room drawings, load schedule, control point requirements, panel layout, wiring method, and integration responsibilities. Circuit count, I/O details, electrical ratings, and communication method should be confirmed before formal quotation or technical documentation.",
+        "compatibility_notes": "Recommended product categories:\nRCU Room Control Host\nSensors\nCurtain Control Panels\nSmart Sockets & Power Modules\n\nCustomization options:\nRCU product selection\nCabinet planning support\nPanel and accessory bundle matching\nRoom type based product package\nDocumentation and project labeling\nOEM/ODM supply planning",
+        "known_limitations": "Room drawings and device point schedule\nConfirmed RCU circuit and I/O requirements\nElectrical ratings and wiring method\nCommunication method and integration scope\nFinal product models and project quantity",
+        "recommended_products": [
+          47,
+          48,
+          43,
+          51,
+          50
+        ],
+        "solution_seo_title": "RCU Room Control Solution for Smart Hotel Guest Rooms",
+        "solution_meta_description": "RCU room control solution with RCU controller cabinet, room control host, sensors, curtain control panel, and key card energy saver panel for hotel projects.",
+        "solution_breadcrumb_label": "RCU Room Control Solution",
+        "solution_schema_enabled": true,
+        "solution_geo_direct_answer": "An RCU-centered room control solution for hotel guest rooms that require a control host or cabinet, sensing devices, curtain control, and power-related room accessories.",
+        "solution_geo_entity_summary": "The RCU Room Control Solution focuses on room control host and cabinet planning for hotel guest room automation. It combines RCU controller cabinet options, smart room RCU host products, sensing hardware, curtain control panels, and key card energy saver panels. The solution is intended for B2B project discussions where the final control architecture, wiring, and technical configuration will be confirmed during specification.",
+        "solution_geo_key_facts": "Solution: RCU Room Control Solution\nRecommended product categories: RCU Room Control Host, Sensors, Curtain Control Panels, Smart Sockets & Power Modules\nRecommended products: RCU Controller Cabinet (#47), Hotel Smart Room RCU Host 1 (#48), Embedded Human Presence Sensor (#43), Smart Four-Key Curtain Control Panel (#51), Smart Key Card Energy Saver Panel (#50)\nTarget customers: Hotel owners, MEP contractors, Low-voltage contractors, System integrators, Hotel automation distributors, OEM/ODM buyers",
+        "solution_geo_buyer_questions": "What is included in an RCU room control solution?\nAre circuit count and electrical ratings included in this draft?\nWho is this solution suitable for?\nCan this solution be adjusted by room type?",
+        "solution_geo_known_limitations": "Room drawings and device point schedule\nConfirmed RCU circuit and I/O requirements\nElectrical ratings and wiring method\nCommunication method and integration scope\nFinal product models and project quantity"
+      },
+      "field_fallbacks": [
+        {
+          "field": "target_customers",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "recommended_product_categories",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "application_scenarios",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "typical_project_types",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "customization_options",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "faq_items",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "full inquiry_cta_text",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        }
+      ],
+      "recommended_products": [
+        {
+          "name": "RCU Controller Cabinet",
+          "slug": "rcu-controller-cabinet",
+          "id": 47,
+          "title": "RCU Controller Cabinet",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Hotel Smart Room RCU Host 1",
+          "slug": "hotel-smart-room-rcu-host-1",
+          "id": 48,
+          "title": "Hotel Smart Room RCU Host 1",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Embedded Human Presence Sensor",
+          "slug": "embedded-human-presence-sensor",
+          "id": 43,
+          "title": "Embedded Human Presence Sensor",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Smart Four-Key Curtain Control Panel",
+          "slug": "smart-four-key-curtain-control-panel",
+          "id": 51,
+          "title": "Smart Four-Key Curtain Control Panel",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Smart Key Card Energy Saver Panel",
+          "slug": "smart-key-card-energy-saver-panel",
+          "id": 50,
+          "title": "Smart Key Card Energy Saver Panel",
+          "status": "publish",
+          "match_status": "matched"
+        }
+      ],
+      "recommended_product_ids": [
+        47,
+        48,
+        43,
+        51,
+        50
+      ],
+      "faq_items": [
+        {
+          "question": "What is included in an RCU room control solution?",
+          "answer": "The solution can include an RCU controller cabinet or host, sensors, curtain control panels, and power-related room accessories."
+        },
+        {
+          "question": "Are circuit count and electrical ratings included in this draft?",
+          "answer": "No. These details should be confirmed based on project drawings, room layout, and technical requirements."
+        },
+        {
+          "question": "Who is this solution suitable for?",
+          "answer": "It is suitable for hotel owners, contractors, system integrators, and distributors planning guest room automation hardware."
+        },
+        {
+          "question": "Can this solution be adjusted by room type?",
+          "answer": "Yes. Product selection and package planning can be adjusted for different room types and project phases."
+        }
+      ],
+      "missing_information": [
+        "Room drawings and device point schedule",
+        "Confirmed RCU circuit and I/O requirements",
+        "Electrical ratings and wiring method",
+        "Communication method and integration scope",
+        "Final product models and project quantity"
+      ],
+      "internal_notes": "Source: product-assets/mapping-output/solution-content-draft.json. Import as draft first. Do not create products or media during solution import. Product IDs were matched from current WordPress REST products on 2026-06-17."
+    },
+    {
+      "solution_title": "Hotel Delivery Robot Solution",
+      "slug": "hotel-delivery-robot-solution",
+      "status": "draft",
+      "duplicate_check": "no_published_duplicate_found",
+      "post_fields": {
+        "title": "Hotel Delivery Robot Solution",
+        "slug": "hotel-delivery-robot-solution",
+        "status": "draft",
+        "excerpt": "A hotel service automation solution direction combining delivery robot and smart delivery cabinet products for guest supply workflows and hotel retail item delivery.",
+        "content": "The Hotel Delivery Robot Solution combines the Hotel Delivery Robot and Hotel Smart Delivery Cabinet as a service automation product direction. It is suitable for hotels exploring guest supply delivery, optional hotel retail item workflows, and smart service operations. The solution should be planned around real site conditions, cabinet placement, robot movement routes, guest interaction points, and project operation requirements.\n\n## Target Customers\n- Hotel owners\n- Hotel operators\n- Property developers\n- System integrators\n- Service automation distributors\n- B2B procurement teams\n\n## Customer Challenges\n- Hotels need practical ways to support guest supply delivery and reduce repetitive service tasks.\n- Robot and cabinet planning requires attention to hotel layout, product placement, operation workflow, and guest experience.\n- Buyers need neutral B2B product language that avoids overpromising delivery performance.\n- Project teams need to understand which products belong to the delivery robot system before discussing workflow details.\n\n## Recommended Product Categories\n- Hotel Delivery Robot System\n\n## Recommended Products\n- Hotel Delivery Robot (#12)\n- Hotel Smart Delivery Cabinet (#13)\n\n## Key Benefits\n- Creates a clear product grouping for hotel delivery automation discussions.\n- Supports guest supply and hotel retail item delivery workflow planning.\n- Helps buyers evaluate robot and cabinet pairing without relying on unverified performance claims.\n- Supports B2B quotation discussions for hotel service automation projects.\n\n## Application Scenarios\n- Hotel public areas\n- Guest supply delivery\n- Hotel retail item access\n- Smart service operation zones\n- Hotel technology demonstration areas\n\n## Typical Project Types\n- Hotel service automation projects\n- Delivery robot pilot projects\n- Smart cabinet and robot pairing projects\n- Public area automation upgrades\n- Distributor service automation packages\n\n## Integration Notes\nRobot and cabinet deployment should be reviewed against hotel layout, route conditions, elevator or access requirements, cabinet location, item management workflow, and on-site operation process. Delivery performance can vary according to site conditions and project configuration.\n\n## Customization Options\n- Robot and cabinet product mix\n- Cabinet product channel planning\n- Guest supply and retail item workflow\n- Project documentation\n- Operational process planning\n- Branding and packaging discussions\n\n## Inquiry CTA\nSend your hotel layout, service workflow, cabinet placement idea, and target quantity. Our team can help review a delivery robot solution direction.\n\n## FAQ\n### Which products are included in this solution?\nThe solution currently includes Hotel Delivery Robot and Hotel Smart Delivery Cabinet products.\n\n### Can this solution support guest supply delivery?\nYes. It is positioned for guest supply delivery and hotel service automation workflow planning.\n\n### Is delivery performance fixed for every hotel?\nNo. Delivery performance can vary by hotel layout, route conditions, operation process, and project configuration.\n\n### What information is needed before quotation?\nHotel layout, target workflow, cabinet placement, expected item types, quantity, and site conditions are useful for quotation planning.\n\n## Missing Information\n- Hotel layout and operation route conditions\n- Cabinet placement and item channel requirements\n- Robot access requirements and site restrictions\n- Operation workflow responsibilities\n- Final quantity and delivery schedule"
+      },
+      "content_sections": {
+        "target_customers": [
+          "Hotel owners",
+          "Hotel operators",
+          "Property developers",
+          "System integrators",
+          "Service automation distributors",
+          "B2B procurement teams"
+        ],
+        "customer_challenges": [
+          "Hotels need practical ways to support guest supply delivery and reduce repetitive service tasks.",
+          "Robot and cabinet planning requires attention to hotel layout, product placement, operation workflow, and guest experience.",
+          "Buyers need neutral B2B product language that avoids overpromising delivery performance.",
+          "Project teams need to understand which products belong to the delivery robot system before discussing workflow details."
+        ],
+        "solution_overview": "The Hotel Delivery Robot Solution combines the Hotel Delivery Robot and Hotel Smart Delivery Cabinet as a service automation product direction. It is suitable for hotels exploring guest supply delivery, optional hotel retail item workflows, and smart service operations. The solution should be planned around real site conditions, cabinet placement, robot movement routes, guest interaction points, and project operation requirements.",
+        "recommended_product_categories": [
+          "Hotel Delivery Robot System"
+        ],
+        "recommended_products": [
+          "Hotel Delivery Robot (#12)",
+          "Hotel Smart Delivery Cabinet (#13)"
+        ],
+        "key_benefits": [
+          "Creates a clear product grouping for hotel delivery automation discussions.",
+          "Supports guest supply and hotel retail item delivery workflow planning.",
+          "Helps buyers evaluate robot and cabinet pairing without relying on unverified performance claims.",
+          "Supports B2B quotation discussions for hotel service automation projects."
+        ],
+        "application_scenarios": [
+          "Hotel public areas",
+          "Guest supply delivery",
+          "Hotel retail item access",
+          "Smart service operation zones",
+          "Hotel technology demonstration areas"
+        ],
+        "typical_project_types": [
+          "Hotel service automation projects",
+          "Delivery robot pilot projects",
+          "Smart cabinet and robot pairing projects",
+          "Public area automation upgrades",
+          "Distributor service automation packages"
+        ],
+        "integration_notes": "Robot and cabinet deployment should be reviewed against hotel layout, route conditions, elevator or access requirements, cabinet location, item management workflow, and on-site operation process. Delivery performance can vary according to site conditions and project configuration.",
+        "customization_options": [
+          "Robot and cabinet product mix",
+          "Cabinet product channel planning",
+          "Guest supply and retail item workflow",
+          "Project documentation",
+          "Operational process planning",
+          "Branding and packaging discussions"
+        ],
+        "inquiry_cta_text": "Send your hotel layout, service workflow, cabinet placement idea, and target quantity. Our team can help review a delivery robot solution direction.",
+        "faq_items": [
+          {
+            "question": "Which products are included in this solution?",
+            "answer": "The solution currently includes Hotel Delivery Robot and Hotel Smart Delivery Cabinet products."
+          },
+          {
+            "question": "Can this solution support guest supply delivery?",
+            "answer": "Yes. It is positioned for guest supply delivery and hotel service automation workflow planning."
+          },
+          {
+            "question": "Is delivery performance fixed for every hotel?",
+            "answer": "No. Delivery performance can vary by hotel layout, route conditions, operation process, and project configuration."
+          },
+          {
+            "question": "What information is needed before quotation?",
+            "answer": "Hotel layout, target workflow, cabinet placement, expected item types, quantity, and site conditions are useful for quotation planning."
+          }
+        ],
+        "missing_information": [
+          "Hotel layout and operation route conditions",
+          "Cabinet placement and item channel requirements",
+          "Robot access requirements and site restrictions",
+          "Operation workflow responsibilities",
+          "Final quantity and delivery schedule"
+        ]
+      },
+      "acf_direct_fields": {
+        "solution_summary": "A hotel service automation solution direction combining delivery robot and smart delivery cabinet products for guest supply workflows and hotel retail item delivery.",
+        "customer_challenges": "Hotels need practical ways to support guest supply delivery and reduce repetitive service tasks.\nRobot and cabinet planning requires attention to hotel layout, product placement, operation workflow, and guest experience.\nBuyers need neutral B2B product language that avoids overpromising delivery performance.\nProject teams need to understand which products belong to the delivery robot system before discussing workflow details.",
+        "solution_architecture": "The Hotel Delivery Robot Solution combines the Hotel Delivery Robot and Hotel Smart Delivery Cabinet as a service automation product direction. It is suitable for hotels exploring guest supply delivery, optional hotel retail item workflows, and smart service operations. The solution should be planned around real site conditions, cabinet placement, robot movement routes, guest interaction points, and project operation requirements.",
+        "key_benefits_text": "Creates a clear product grouping for hotel delivery automation discussions.\nSupports guest supply and hotel retail item delivery workflow planning.\nHelps buyers evaluate robot and cabinet pairing without relying on unverified performance claims.\nSupports B2B quotation discussions for hotel service automation projects.",
+        "deployment_process": "Hotel service automation projects\nDelivery robot pilot projects\nSmart cabinet and robot pairing projects\nPublic area automation upgrades\nDistributor service automation packages",
+        "solution_inquiry_cta_label": "Send Inquiry",
+        "integration_notes": "Robot and cabinet deployment should be reviewed against hotel layout, route conditions, elevator or access requirements, cabinet location, item management workflow, and on-site operation process. Delivery performance can vary according to site conditions and project configuration.",
+        "compatibility_notes": "Recommended product categories:\nHotel Delivery Robot System\n\nCustomization options:\nRobot and cabinet product mix\nCabinet product channel planning\nGuest supply and retail item workflow\nProject documentation\nOperational process planning\nBranding and packaging discussions",
+        "known_limitations": "Hotel layout and operation route conditions\nCabinet placement and item channel requirements\nRobot access requirements and site restrictions\nOperation workflow responsibilities\nFinal quantity and delivery schedule",
+        "recommended_products": [
+          12,
+          13
+        ],
+        "solution_seo_title": "Hotel Delivery Robot Solution for Smart Hotel Service Automation",
+        "solution_meta_description": "Hotel delivery robot solution with delivery robot and smart delivery cabinet products for guest supply workflows and B2B smart hotel service projects.",
+        "solution_breadcrumb_label": "Hotel Delivery Robot Solution",
+        "solution_schema_enabled": true,
+        "solution_geo_direct_answer": "A hotel service automation solution direction combining delivery robot and smart delivery cabinet products for guest supply workflows and hotel retail item delivery.",
+        "solution_geo_entity_summary": "The Hotel Delivery Robot Solution combines the Hotel Delivery Robot and Hotel Smart Delivery Cabinet as a service automation product direction. It is suitable for hotels exploring guest supply delivery, optional hotel retail item workflows, and smart service operations. The solution should be planned around real site conditions, cabinet placement, robot movement routes, guest interaction points, and project operation requirements.",
+        "solution_geo_key_facts": "Solution: Hotel Delivery Robot Solution\nRecommended product categories: Hotel Delivery Robot System\nRecommended products: Hotel Delivery Robot (#12), Hotel Smart Delivery Cabinet (#13)\nTarget customers: Hotel owners, Hotel operators, Property developers, System integrators, Service automation distributors, B2B procurement teams",
+        "solution_geo_buyer_questions": "Which products are included in this solution?\nCan this solution support guest supply delivery?\nIs delivery performance fixed for every hotel?\nWhat information is needed before quotation?",
+        "solution_geo_known_limitations": "Hotel layout and operation route conditions\nCabinet placement and item channel requirements\nRobot access requirements and site restrictions\nOperation workflow responsibilities\nFinal quantity and delivery schedule"
+      },
+      "field_fallbacks": [
+        {
+          "field": "target_customers",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "recommended_product_categories",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "application_scenarios",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "typical_project_types",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "customization_options",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "faq_items",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "full inquiry_cta_text",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        }
+      ],
+      "recommended_products": [
+        {
+          "name": "Hotel Delivery Robot",
+          "slug": "hotel-delivery-robot",
+          "id": 12,
+          "title": "Hotel Delivery Robot",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Hotel Smart Delivery Cabinet",
+          "slug": "hotel-smart-delivery-cabinet",
+          "id": 13,
+          "title": "Hotel Smart Delivery Cabinet",
+          "status": "publish",
+          "match_status": "matched"
+        }
+      ],
+      "recommended_product_ids": [
+        12,
+        13
+      ],
+      "faq_items": [
+        {
+          "question": "Which products are included in this solution?",
+          "answer": "The solution currently includes Hotel Delivery Robot and Hotel Smart Delivery Cabinet products."
+        },
+        {
+          "question": "Can this solution support guest supply delivery?",
+          "answer": "Yes. It is positioned for guest supply delivery and hotel service automation workflow planning."
+        },
+        {
+          "question": "Is delivery performance fixed for every hotel?",
+          "answer": "No. Delivery performance can vary by hotel layout, route conditions, operation process, and project configuration."
+        },
+        {
+          "question": "What information is needed before quotation?",
+          "answer": "Hotel layout, target workflow, cabinet placement, expected item types, quantity, and site conditions are useful for quotation planning."
+        }
+      ],
+      "missing_information": [
+        "Hotel layout and operation route conditions",
+        "Cabinet placement and item channel requirements",
+        "Robot access requirements and site restrictions",
+        "Operation workflow responsibilities",
+        "Final quantity and delivery schedule"
+      ],
+      "internal_notes": "Source: product-assets/mapping-output/solution-content-draft.json. Import as draft first. Do not create products or media during solution import. Product IDs were matched from current WordPress REST products on 2026-06-17."
+    },
+    {
+      "solution_title": "OEM / ODM Custom Panel Solution",
+      "slug": "oem-odm-custom-panel-solution",
+      "status": "draft",
+      "duplicate_check": "no_published_duplicate_found",
+      "post_fields": {
+        "title": "OEM / ODM Custom Panel Solution",
+        "slug": "oem-odm-custom-panel-solution",
+        "status": "draft",
+        "excerpt": "An OEM/ODM panel customization solution direction for distributors, wholesalers, contractors, and private-label buyers who need coordinated smart panel, socket, curtain control, and service panel options.",
+        "content": "The OEM / ODM Custom Panel Solution focuses on customizable panel and accessory product planning. It combines Smart Series products and Brushed Aluminum Series product options such as smart sockets, key card energy saver panels, curtain control panels, and hotel service panels. The solution supports B2B discussions around finish, labeling, product bundles, packaging, and market-specific product positioning.\n\n## Target Customers\n- Distributors\n- Wholesalers\n- OEM/ODM buyers\n- Contractors\n- Smart home installers\n- Hotel project procurement teams\n\n## Customer Challenges\n- B2B buyers often need panel products that match project positioning, finish preference, and local market expectations.\n- Distributors need clear product families for catalog planning and quotation discussions.\n- OEM/ODM buyers need room for appearance, labeling, packaging, and product mix customization.\n- Project teams need a practical product bundle without unconfirmed technical parameters in marketing content.\n\n## Recommended Product Categories\n- Smart Series\n- Brushed Aluminum Series\n- Smart Sockets & Power Modules\n- Curtain Control Panels\n- Room Status & Hotel Service Panels\n\n## Recommended Products\n- Smart USB Five-Hole Socket (#49)\n- Smart Key Card Energy Saver Panel (#50)\n- Smart Four-Key Curtain Control Panel (#51)\n- Brushed Aluminum 86-Base Doorbell Panel (#52)\n\n## Key Benefits\n- Supports product line planning for distributors and OEM/ODM buyers.\n- Helps buyers compare Smart Series and Brushed Aluminum Series positioning.\n- Supports discussions around panel finish, labeling, packaging, and product bundle selection.\n- Provides a practical starting point for hotel and smart home product sourcing.\n\n## Application Scenarios\n- Distributor product catalogs\n- Hotel panel customization projects\n- Smart home product line planning\n- Private-label product programs\n- Contractor and installer procurement\n\n## Typical Project Types\n- OEM/ODM product development\n- Distributor product bundle planning\n- Hotel smart panel procurement\n- Private-label smart home accessories\n- Regional market product selection\n\n## Integration Notes\nCustomization should be reviewed based on selected product models, finish requirements, labeling rules, packaging needs, target market, quantity, certification requirements, and project delivery schedule. Technical and compliance details should be confirmed before formal production planning.\n\n## Customization Options\n- Panel finish and surface style\n- Icon and label design\n- Product bundle selection\n- Packaging and documentation\n- Private-label presentation\n- Market-specific product positioning\n\n## Inquiry CTA\nSend your target market, preferred product series, quantity estimate, and customization requirements. Our team can help prepare an OEM/ODM panel solution discussion.\n\n## FAQ\n### Which products can be discussed for OEM/ODM customization?\nCurrent draft products include Smart USB Five-Hole Socket, Smart Key Card Energy Saver Panel, Smart Four-Key Curtain Control Panel, and Brushed Aluminum 86-Base Doorbell Panel.\n\n### Can panel appearance and labeling be customized?\nPanel finish, labeling, icons, packaging, and product bundle selection can be reviewed during OEM/ODM discussions.\n\n### Is this solution only for hotels?\nNo. It can support hotel projects, smart home distribution, contractor procurement, and regional product line planning.\n\n### What information should buyers provide?\nTarget market, product series preference, quantity estimate, customization needs, and certification requirements are useful for early review.\n\n## Missing Information\n- Final customization scope\n- Target market certification requirements\n- Quantity and packaging requirements\n- Approved product finish and labeling design\n- Production and delivery schedule"
+      },
+      "content_sections": {
+        "target_customers": [
+          "Distributors",
+          "Wholesalers",
+          "OEM/ODM buyers",
+          "Contractors",
+          "Smart home installers",
+          "Hotel project procurement teams"
+        ],
+        "customer_challenges": [
+          "B2B buyers often need panel products that match project positioning, finish preference, and local market expectations.",
+          "Distributors need clear product families for catalog planning and quotation discussions.",
+          "OEM/ODM buyers need room for appearance, labeling, packaging, and product mix customization.",
+          "Project teams need a practical product bundle without unconfirmed technical parameters in marketing content."
+        ],
+        "solution_overview": "The OEM / ODM Custom Panel Solution focuses on customizable panel and accessory product planning. It combines Smart Series products and Brushed Aluminum Series product options such as smart sockets, key card energy saver panels, curtain control panels, and hotel service panels. The solution supports B2B discussions around finish, labeling, product bundles, packaging, and market-specific product positioning.",
+        "recommended_product_categories": [
+          "Smart Series",
+          "Brushed Aluminum Series",
+          "Smart Sockets & Power Modules",
+          "Curtain Control Panels",
+          "Room Status & Hotel Service Panels"
+        ],
+        "recommended_products": [
+          "Smart USB Five-Hole Socket (#49)",
+          "Smart Key Card Energy Saver Panel (#50)",
+          "Smart Four-Key Curtain Control Panel (#51)",
+          "Brushed Aluminum 86-Base Doorbell Panel (#52)"
+        ],
+        "key_benefits": [
+          "Supports product line planning for distributors and OEM/ODM buyers.",
+          "Helps buyers compare Smart Series and Brushed Aluminum Series positioning.",
+          "Supports discussions around panel finish, labeling, packaging, and product bundle selection.",
+          "Provides a practical starting point for hotel and smart home product sourcing."
+        ],
+        "application_scenarios": [
+          "Distributor product catalogs",
+          "Hotel panel customization projects",
+          "Smart home product line planning",
+          "Private-label product programs",
+          "Contractor and installer procurement"
+        ],
+        "typical_project_types": [
+          "OEM/ODM product development",
+          "Distributor product bundle planning",
+          "Hotel smart panel procurement",
+          "Private-label smart home accessories",
+          "Regional market product selection"
+        ],
+        "integration_notes": "Customization should be reviewed based on selected product models, finish requirements, labeling rules, packaging needs, target market, quantity, certification requirements, and project delivery schedule. Technical and compliance details should be confirmed before formal production planning.",
+        "customization_options": [
+          "Panel finish and surface style",
+          "Icon and label design",
+          "Product bundle selection",
+          "Packaging and documentation",
+          "Private-label presentation",
+          "Market-specific product positioning"
+        ],
+        "inquiry_cta_text": "Send your target market, preferred product series, quantity estimate, and customization requirements. Our team can help prepare an OEM/ODM panel solution discussion.",
+        "faq_items": [
+          {
+            "question": "Which products can be discussed for OEM/ODM customization?",
+            "answer": "Current draft products include Smart USB Five-Hole Socket, Smart Key Card Energy Saver Panel, Smart Four-Key Curtain Control Panel, and Brushed Aluminum 86-Base Doorbell Panel."
+          },
+          {
+            "question": "Can panel appearance and labeling be customized?",
+            "answer": "Panel finish, labeling, icons, packaging, and product bundle selection can be reviewed during OEM/ODM discussions."
+          },
+          {
+            "question": "Is this solution only for hotels?",
+            "answer": "No. It can support hotel projects, smart home distribution, contractor procurement, and regional product line planning."
+          },
+          {
+            "question": "What information should buyers provide?",
+            "answer": "Target market, product series preference, quantity estimate, customization needs, and certification requirements are useful for early review."
+          }
+        ],
+        "missing_information": [
+          "Final customization scope",
+          "Target market certification requirements",
+          "Quantity and packaging requirements",
+          "Approved product finish and labeling design",
+          "Production and delivery schedule"
+        ]
+      },
+      "acf_direct_fields": {
+        "solution_summary": "An OEM/ODM panel customization solution direction for distributors, wholesalers, contractors, and private-label buyers who need coordinated smart panel, socket, curtain control, and service panel options.",
+        "customer_challenges": "B2B buyers often need panel products that match project positioning, finish preference, and local market expectations.\nDistributors need clear product families for catalog planning and quotation discussions.\nOEM/ODM buyers need room for appearance, labeling, packaging, and product mix customization.\nProject teams need a practical product bundle without unconfirmed technical parameters in marketing content.",
+        "solution_architecture": "The OEM / ODM Custom Panel Solution focuses on customizable panel and accessory product planning. It combines Smart Series products and Brushed Aluminum Series product options such as smart sockets, key card energy saver panels, curtain control panels, and hotel service panels. The solution supports B2B discussions around finish, labeling, product bundles, packaging, and market-specific product positioning.",
+        "key_benefits_text": "Supports product line planning for distributors and OEM/ODM buyers.\nHelps buyers compare Smart Series and Brushed Aluminum Series positioning.\nSupports discussions around panel finish, labeling, packaging, and product bundle selection.\nProvides a practical starting point for hotel and smart home product sourcing.",
+        "deployment_process": "OEM/ODM product development\nDistributor product bundle planning\nHotel smart panel procurement\nPrivate-label smart home accessories\nRegional market product selection",
+        "solution_inquiry_cta_label": "Send Inquiry",
+        "integration_notes": "Customization should be reviewed based on selected product models, finish requirements, labeling rules, packaging needs, target market, quantity, certification requirements, and project delivery schedule. Technical and compliance details should be confirmed before formal production planning.",
+        "compatibility_notes": "Recommended product categories:\nSmart Series\nBrushed Aluminum Series\nSmart Sockets & Power Modules\nCurtain Control Panels\nRoom Status & Hotel Service Panels\n\nCustomization options:\nPanel finish and surface style\nIcon and label design\nProduct bundle selection\nPackaging and documentation\nPrivate-label presentation\nMarket-specific product positioning",
+        "known_limitations": "Final customization scope\nTarget market certification requirements\nQuantity and packaging requirements\nApproved product finish and labeling design\nProduction and delivery schedule",
+        "recommended_products": [
+          49,
+          50,
+          51,
+          52
+        ],
+        "solution_seo_title": "OEM ODM Custom Panel Solution for Smart Hotel and Smart Home Buyers",
+        "solution_meta_description": "OEM/ODM custom panel solution for distributors and B2B buyers, covering Smart Series sockets, energy saver panels, curtain panels, and brushed aluminum service panels.",
+        "solution_breadcrumb_label": "OEM / ODM Custom Panel Solution",
+        "solution_schema_enabled": true,
+        "solution_geo_direct_answer": "An OEM/ODM panel customization solution direction for distributors, wholesalers, contractors, and private-label buyers who need coordinated smart panel, socket, curtain control, and service panel options.",
+        "solution_geo_entity_summary": "The OEM / ODM Custom Panel Solution focuses on customizable panel and accessory product planning. It combines Smart Series products and Brushed Aluminum Series product options such as smart sockets, key card energy saver panels, curtain control panels, and hotel service panels. The solution supports B2B discussions around finish, labeling, product bundles, packaging, and market-specific product positioning.",
+        "solution_geo_key_facts": "Solution: OEM / ODM Custom Panel Solution\nRecommended product categories: Smart Series, Brushed Aluminum Series, Smart Sockets & Power Modules, Curtain Control Panels, Room Status & Hotel Service Panels\nRecommended products: Smart USB Five-Hole Socket (#49), Smart Key Card Energy Saver Panel (#50), Smart Four-Key Curtain Control Panel (#51), Brushed Aluminum 86-Base Doorbell Panel (#52)\nTarget customers: Distributors, Wholesalers, OEM/ODM buyers, Contractors, Smart home installers, Hotel project procurement teams",
+        "solution_geo_buyer_questions": "Which products can be discussed for OEM/ODM customization?\nCan panel appearance and labeling be customized?\nIs this solution only for hotels?\nWhat information should buyers provide?",
+        "solution_geo_known_limitations": "Final customization scope\nTarget market certification requirements\nQuantity and packaging requirements\nApproved product finish and labeling design\nProduction and delivery schedule"
+      },
+      "field_fallbacks": [
+        {
+          "field": "target_customers",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "recommended_product_categories",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "application_scenarios",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "typical_project_types",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "customization_options",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "faq_items",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        },
+        {
+          "field": "full inquiry_cta_text",
+          "reason": "no dedicated current ACF field",
+          "fallback_target": "post_content/content_sections"
+        }
+      ],
+      "recommended_products": [
+        {
+          "name": "Smart USB Five-Hole Socket",
+          "slug": "smart-usb-five-hole-socket",
+          "id": 49,
+          "title": "Smart USB Five-Hole Socket",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Smart Key Card Energy Saver Panel",
+          "slug": "smart-key-card-energy-saver-panel",
+          "id": 50,
+          "title": "Smart Key Card Energy Saver Panel",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Smart Four-Key Curtain Control Panel",
+          "slug": "smart-four-key-curtain-control-panel",
+          "id": 51,
+          "title": "Smart Four-Key Curtain Control Panel",
+          "status": "publish",
+          "match_status": "matched"
+        },
+        {
+          "name": "Brushed Aluminum 86-Base Doorbell Panel",
+          "slug": "brushed-aluminum-86-base-doorbell-panel",
+          "id": 52,
+          "title": "Brushed Aluminum 86-Base Doorbell Panel",
+          "status": "publish",
+          "match_status": "matched"
+        }
+      ],
+      "recommended_product_ids": [
+        49,
+        50,
+        51,
+        52
+      ],
+      "faq_items": [
+        {
+          "question": "Which products can be discussed for OEM/ODM customization?",
+          "answer": "Current draft products include Smart USB Five-Hole Socket, Smart Key Card Energy Saver Panel, Smart Four-Key Curtain Control Panel, and Brushed Aluminum 86-Base Doorbell Panel."
+        },
+        {
+          "question": "Can panel appearance and labeling be customized?",
+          "answer": "Panel finish, labeling, icons, packaging, and product bundle selection can be reviewed during OEM/ODM discussions."
+        },
+        {
+          "question": "Is this solution only for hotels?",
+          "answer": "No. It can support hotel projects, smart home distribution, contractor procurement, and regional product line planning."
+        },
+        {
+          "question": "What information should buyers provide?",
+          "answer": "Target market, product series preference, quantity estimate, customization needs, and certification requirements are useful for early review."
+        }
+      ],
+      "missing_information": [
+        "Final customization scope",
+        "Target market certification requirements",
+        "Quantity and packaging requirements",
+        "Approved product finish and labeling design",
+        "Production and delivery schedule"
+      ],
+      "internal_notes": "Source: product-assets/mapping-output/solution-content-draft.json. Import as draft first. Do not create products or media during solution import. Product IDs were matched from current WordPress REST products on 2026-06-17."
+    }
+  ]
+}

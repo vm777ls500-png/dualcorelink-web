@@ -1,0 +1,35 @@
+{
+  "name": "dualcorelink-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && npm run export:clean",
+    "export:clean": "tsx scripts/clean-static-export.ts",
+    "lint": "eslint",
+    "test:data": "tsx --test tests/*.test.ts",
+    "rest:check": "tsx scripts/check-wordpress-rest.ts",
+    "pages:build": "npm run build",
+    "pages:preview": "npm run pages:build && wrangler pages dev out",
+    "pages:deploy": "npm run pages:build && wrangler pages deploy out --project-name dualcorelink-web",
+    "wp:up": "docker compose up -d",
+    "wp:down": "docker compose down"
+  },
+  "dependencies": {
+    "next": "15.5.19",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.19",
+    "tailwindcss": "^4",
+    "tsx": "4.20.6",
+    "typescript": "^5",
+    "wrangler": "^4.100.0"
+  }
+}

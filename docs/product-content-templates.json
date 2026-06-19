@@ -1,0 +1,103 @@
+{
+  "schema": "smart-home-b2b-product-template/v2",
+  "wordpress_post_type": "product",
+  "base_acf": {
+    "product_model": "",
+    "product_short_description": "",
+    "product_status": "available",
+    "product_image_1": null,
+    "product_image_2": null,
+    "product_image_3": null,
+    "product_image_4": null,
+    "product_image_5": null,
+    "is_featured_product": false,
+    "is_new_product": false,
+    "country_of_origin": "",
+    "wireless_frequency": "",
+    "input_voltage": "",
+    "rated_power": "",
+    "operating_temperature": "",
+    "product_dimensions": "",
+    "product_material": "",
+    "color_options": "",
+    "ip_rating": "",
+    "mobile_app": "",
+    "voice_assistants": [],
+    "minimum_order_quantity": null,
+    "moq_unit": "units",
+    "lead_time": "",
+    "warranty": "",
+    "oem_available": false,
+    "odm_available": false,
+    "private_label_available": false,
+    "sample_available": false,
+    "packaging_options": "",
+    "related_solutions": [],
+    "related_case_studies": [],
+    "related_faqs": [],
+    "related_certifications": [],
+    "related_downloads": []
+  },
+  "products": [
+    {
+      "title": "Hotel Room Control Unit",
+      "slug": "hotel-room-control-unit",
+      "inquiry_cta_label": "Discuss room control architecture"
+    },
+    {
+      "title": "Hotel Smart Touch Switch",
+      "slug": "hotel-smart-touch-switch",
+      "inquiry_cta_label": "Request touch switch options"
+    },
+    {
+      "title": "Smart Thermostat Panel",
+      "slug": "smart-thermostat-panel",
+      "inquiry_cta_label": "Discuss thermostat compatibility"
+    },
+    {
+      "title": "Hotel DND & MUR Panel",
+      "slug": "hotel-dnd-mur-panel",
+      "inquiry_cta_label": "Request service panel options"
+    },
+    {
+      "title": "Hotel Doorbell Panel",
+      "slug": "hotel-doorbell-panel",
+      "inquiry_cta_label": "Request doorbell panel options"
+    },
+    {
+      "title": "Hotel Key Card Energy Saver",
+      "slug": "hotel-key-card-energy-saver",
+      "inquiry_cta_label": "Discuss energy saver integration"
+    },
+    {
+      "title": "Hotel USB Power Socket",
+      "slug": "hotel-usb-power-socket",
+      "inquiry_cta_label": "Request socket specifications"
+    },
+    {
+      "title": "Smart Curtain Control Panel",
+      "slug": "smart-curtain-control-panel",
+      "inquiry_cta_label": "Discuss curtain control options"
+    },
+    {
+      "title": "Motion Sensor",
+      "slug": "motion-sensor",
+      "inquiry_cta_label": "Request sensor specifications"
+    },
+    {
+      "title": "Zigbee Gateway",
+      "slug": "zigbee-gateway",
+      "inquiry_cta_label": "Discuss gateway compatibility"
+    }
+  ],
+  "publishing_gate": [
+    "Verified model number",
+    "Verified short description and overview",
+    "At least one approved product image",
+    "Electrical and wireless specifications",
+    "MOQ, lead time, warranty, and OEM/ODM status",
+    "Related solution and download IDs",
+    "SEO, GEO, and Schema fields reviewed",
+    "No unsupported certification, Offer, or manufacturer claims"
+  ]
+}

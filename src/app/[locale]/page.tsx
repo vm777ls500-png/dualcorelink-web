@@ -10,6 +10,7 @@ import { brand } from "@/config/brand";
 import { isLocale, locales } from "@/config/i18n";
 import { productCategories } from "@/config/product-taxonomy";
 import { productSeries } from "@/config/product-series";
+import { staticCaseStudies } from "@/config/static-case-studies";
 import {
   buildLocalizedPath,
   buildSiteUrl,
@@ -373,6 +374,43 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
               emptyTitle="Solution portfolios are being prepared."
               emptyDescription="Hotel room control, energy management, and property automation solutions will appear here."
             />
+          </div>
+        </section>
+
+        <section className="border-b border-line bg-background">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
+            <SectionHeading
+              eyebrow="Case studies"
+              title="Anonymous Project References"
+              description="Explore how DualCoreLink supports smart hotel room control, residential automation, and OEM/ODM smart panel customization for overseas B2B projects."
+              href={`/${locale}/case-studies/`}
+              actionLabel="View All Case Studies"
+            />
+            <div className="mt-8 grid gap-5 lg:grid-cols-3">
+              {staticCaseStudies.map((caseStudy) => (
+                <Link
+                  key={caseStudy.slug}
+                  href={`/${locale}/case-studies/${caseStudy.slug}/`}
+                  className="border border-line bg-surface p-5 hover:border-brand"
+                >
+                  <p className="text-xs font-semibold uppercase text-brand">
+                    {caseStudy.region}
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold leading-7 text-foreground">
+                    {caseStudy.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-semibold text-muted">
+                    {caseStudy.projectType}
+                  </p>
+                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">
+                    {caseStudy.summary}
+                  </p>
+                  <span className="mt-5 inline-flex min-h-10 items-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white">
+                    View Case Study
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

@@ -339,6 +339,38 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           </div>
         </section>
 
+        <section className="mt-8 border border-line bg-surface p-6">
+          <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase text-brand">
+                Case studies
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold text-foreground">
+                See Anonymous Project References
+              </h2>
+              <p className="mt-3 leading-7 text-muted">
+                Review practical project examples for hotel room control,
+                serviced apartment automation, and OEM/ODM smart panel
+                customization.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href={`/${locale}/case-studies/`}
+                className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+              >
+                View Case Studies
+              </Link>
+              <Link
+                href={`/${locale}/contact/#get-a-quote`}
+                className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
+              >
+                Discuss Your Project
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="mt-8 bg-brand p-6 text-white">
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">

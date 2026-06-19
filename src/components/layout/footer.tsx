@@ -23,6 +23,9 @@ export function Footer() {
           <Link className="mt-2 block text-white/70" href="/en/solutions/">
             Solutions
           </Link>
+          <Link className="mt-2 block text-white/70" href="/en/case-studies/">
+            Case Studies
+          </Link>
           <Link
             className="mt-2 block text-white/70"
             href="/en/application-scenarios/"

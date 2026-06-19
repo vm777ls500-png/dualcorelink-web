@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "solutions",
     "application-scenarios",
     "faqs",
+    "case-studies",
     "contact",
   ].map((pathname) => ({
     url: buildSiteUrl(buildLocalizedPath(locale, pathname)),
@@ -43,6 +44,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "weekly" as const,
         priority: item.seo.sitemapPriority ?? 0.7,
       })),
+    ...[
+      "middle-east-smart-hotel-guest-room-control-project",
+      "southeast-asia-serviced-apartment-residential-automation-project",
+      "overseas-oem-odm-smart-panel-customization-project",
+    ].map((slug) => ({
+      url: buildSiteUrl(buildLocalizedPath(locale, `case-studies/${slug}`)),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 
   return [...staticRoutes, ...contentRoutes];

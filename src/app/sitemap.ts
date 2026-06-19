@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "product-series",
     "solutions",
     "application-scenarios",
+    "faqs",
     "contact",
   ].map((pathname) => ({
     url: buildSiteUrl(buildLocalizedPath(locale, pathname)),

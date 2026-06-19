@@ -17,7 +17,6 @@ import {
 } from "@/lib/seo";
 import {
   createBreadcrumbSchema,
-  createProductSchema,
   createSchemaGraph,
 } from "@/lib/schema";
 import { stripHtml } from "@/lib/text";
@@ -145,25 +144,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       { name: product.seo.breadcrumbLabel || stripHtml(product.title), url },
     ]),
   ];
-  if (product.schema.enabled) {
-    pageNodes.unshift(
-      createProductSchema(
-        {
-          ...product,
-          shortDescription: cleanPublicProductText(product.shortDescription),
-          excerpt: cleanPublicProductText(product.excerpt),
-          schema: {
-            ...product.schema,
-            nameOverride: cleanPublicProductText(product.schema.nameOverride),
-            descriptionOverride: cleanPublicProductText(
-              product.schema.descriptionOverride,
-            ),
-          },
-        },
-        url,
-      ),
-    );
-  }
   const specifications = cleanSpecifications(product.specifications);
   const technicalSpecsText = cleanPublicProductText(product.technicalSpecsText);
   const faqsText = cleanPublicProductText(product.faqsText);

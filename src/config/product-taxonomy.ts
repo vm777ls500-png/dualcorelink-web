@@ -10,6 +10,7 @@ export const productCategories: ProductCategoryConfig[] = [
   {
     slug: "smart-panels-switches",
     title: "Smart Panels & Switches",
+    termId: 9,
     chineseTitle: "智能面板与智能开关",
     description:
       "Touch panels, smart switches, and control interfaces for guest rooms and smart home projects.",
@@ -49,6 +50,7 @@ export const productCategories: ProductCategoryConfig[] = [
   {
     slug: "hvac-thermostat-control",
     title: "HVAC & Thermostat Control",
+    termId: 10,
     chineseTitle: "空调温控控制",
     description:
       "Thermostat panels and HVAC control interfaces for room comfort management.",

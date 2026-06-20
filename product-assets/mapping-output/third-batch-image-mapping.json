@@ -1,0 +1,497 @@
+{
+  "batch": "third-batch",
+  "source": "third-batch-product-content-draft.json and local raw image review",
+  "wordpress_modified": false,
+  "images_uploaded": false,
+  "product_series_taxonomy_exists": false,
+  "product_series_note": "Retain series as source metadata only. Do not write it as a taxonomy value.",
+  "readiness_confirmations": [
+    {
+      "slug": "borui-red-matte-usb-five-hole-socket",
+      "confirmation": "USB output label confirmed by user."
+    },
+    {
+      "slug": "vintage-gold-key-card-energy-saver-panel",
+      "confirmation": "ELITE mark confirmed by user."
+    },
+    {
+      "slug": "vintage-gold-four-key-smart-switch-panel",
+      "confirmation": "ELITE mark confirmed by user; four-key switch functions confirmed for general control use."
+    }
+  ],
+  "summary": {
+    "product_count": 10,
+    "candidate_image_count": 41,
+    "recommended_image_count": 37,
+    "excluded_image_count": 4,
+    "missing_source_files": 0,
+    "exact_duplicate_files": 0
+  },
+  "products": [
+    {
+      "title": "Smart Curtain Motor",
+      "slug": "smart-curtain-motor",
+      "category": "Curtain Control Panels",
+      "series": null,
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/窗帘电机",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/电机+轨道.png",
+          "recommended_filename": "smart-curtain-motor-1.png",
+          "alt_text": "Smart curtain motor with rail components for room automation projects",
+          "is_featured": true,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/窗帘套装.png",
+          "recommended_filename": "smart-curtain-motor-2.png",
+          "alt_text": "Smart curtain motor set for hotel and residential automation",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/窗帘电机.png",
+          "recommended_filename": "smart-curtain-motor-3.png",
+          "alt_text": "Smart curtain motor product view for motorized curtain systems",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/导轨.png",
+          "recommended_filename": "smart-curtain-motor-4.png",
+          "alt_text": "Curtain motor and guide rail assembly for smart room projects",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/轨道.png",
+          "recommended_filename": "smart-curtain-motor-5.png",
+          "alt_text": "Curtain rail detail for a smart curtain motor system",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/IMG_20250905_105848.jpg",
+          "reason": "Installed-room photograph; excluded from the initial product image set to avoid using a scene image as a product image."
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/IMG_20250905_110000.jpg",
+          "reason": "Installed-room photograph; excluded from the initial product image set to avoid using a scene image as a product image."
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/IMG_20250905_110036.jpg",
+          "reason": "Installed-room photograph; excluded from the initial product image set to avoid using a scene image as a product image."
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/窗帘电机/电动窗帘.png",
+          "reason": "Full curtain scene image; excluded because the product-focused motor and rail images are more suitable."
+        }
+      ],
+      "image_count": 5,
+      "ready_for_import": true,
+      "import_notes": [
+        "Use only the five product-focused motor and rail images in the initial upload."
+      ]
+    },
+    {
+      "title": "Hotel Smart Room RCU Host 2",
+      "slug": "hotel-smart-room-rcu-host-2",
+      "category": "RCU Room Control Host",
+      "series": null,
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机2",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机2/2.png",
+          "recommended_filename": "hotel-smart-room-rcu-host-2-1.png",
+          "alt_text": "Hotel smart room RCU host controller front view",
+          "is_featured": true,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机2/4.png",
+          "recommended_filename": "hotel-smart-room-rcu-host-2-2.png",
+          "alt_text": "Hotel smart room RCU host controller angled view",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店智能客控控制器 客房中枢 RCU主机2/5.png",
+          "recommended_filename": "hotel-smart-room-rcu-host-2-3.png",
+          "alt_text": "Hotel smart room RCU host enclosure rear view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 3,
+      "ready_for_import": true,
+      "import_notes": [
+        "The available images show the controller board and enclosure rather than a closed front cover."
+      ]
+    },
+    {
+      "title": "Hotel Delivery Robot Charging Dock",
+      "slug": "hotel-delivery-robot-charging-dock",
+      "category": "Hotel Delivery Robot System",
+      "series": null,
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/酒店送货智能机器人/机器人充电底座",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/酒店送货智能机器人/机器人充电底座/1.png",
+          "recommended_filename": "hotel-delivery-robot-charging-dock-1.png",
+          "alt_text": "Hotel delivery robot charging dock front view",
+          "is_featured": true,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/酒店送货智能机器人/机器人充电底座/2.png",
+          "recommended_filename": "hotel-delivery-robot-charging-dock-2.png",
+          "alt_text": "Hotel delivery robot charging dock product view",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/酒店送货智能机器人/机器人充电底座/3.png",
+          "recommended_filename": "hotel-delivery-robot-charging-dock-3.png",
+          "alt_text": "Hotel delivery robot charging dock angled view",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/酒店送货智能机器人/机器人充电底座/4.png",
+          "recommended_filename": "hotel-delivery-robot-charging-dock-4.png",
+          "alt_text": "Charging dock detail for a hotel delivery robot system",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/酒店送货智能机器人/机器人充电底座/5.png",
+          "recommended_filename": "hotel-delivery-robot-charging-dock-5.png",
+          "alt_text": "Hotel delivery robot charging dock connection area",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 5,
+      "ready_for_import": true,
+      "import_notes": []
+    },
+    {
+      "title": "Borui Red Matte USB Five-Hole Socket",
+      "slug": "borui-red-matte-usb-five-hole-socket",
+      "category": "Smart Sockets & Power Modules",
+      "series": "Borui Series",
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂USB五孔",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂USB五孔/1.png",
+          "recommended_filename": "borui-red-matte-usb-five-hole-socket-1.png",
+          "alt_text": "Borui red matte USB five-hole socket front view",
+          "is_featured": true,
+          "risk_notes": [
+            "USB output label confirmed by user."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂USB五孔/3.png",
+          "recommended_filename": "borui-red-matte-usb-five-hole-socket-2.png",
+          "alt_text": "Borui red matte USB five-hole socket angled view",
+          "is_featured": false,
+          "risk_notes": [
+            "USB output label confirmed by user."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂USB五孔/5.png",
+          "recommended_filename": "borui-red-matte-usb-five-hole-socket-3.png",
+          "alt_text": "Borui red matte USB five-hole socket rear view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 3,
+      "ready_for_import": true,
+      "import_notes": [
+        "USB output label confirmed by user; do not expand it into additional unverified parameters in ALT text or product copy.",
+        "Series is metadata only because product_series taxonomy is not registered."
+      ]
+    },
+    {
+      "title": "Borui Red Matte Room Status and Four-Key Switch Panel",
+      "slug": "borui-red-matte-room-status-four-key-switch-panel",
+      "category": "Room Status & Hotel Service Panels",
+      "series": "Borui Series",
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂二联排房态+四键智能开关面板",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂二联排房态+四键智能开关面板/1.png",
+          "recommended_filename": "borui-red-matte-room-status-four-key-switch-panel-1.png",
+          "alt_text": "Borui red matte room status and four-key switch panel front view",
+          "is_featured": true,
+          "risk_notes": [
+            "The product face contains bilingual function labels; no customer or hotel brand was observed."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂二联排房态+四键智能开关面板/3.png",
+          "recommended_filename": "borui-red-matte-room-status-four-key-switch-panel-2.png",
+          "alt_text": "Borui red matte room status and four-key switch panel angled view",
+          "is_featured": false,
+          "risk_notes": [
+            "The product face contains bilingual function labels; no customer or hotel brand was observed."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂二联排房态+四键智能开关面板/5.png",
+          "recommended_filename": "borui-red-matte-room-status-four-key-switch-panel-3.png",
+          "alt_text": "Borui red matte room status and four-key switch panel rear view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 3,
+      "ready_for_import": true,
+      "import_notes": [
+        "Series is metadata only because product_series taxonomy is not registered."
+      ]
+    },
+    {
+      "title": "Vintage Gold Key Card Energy Saver Panel",
+      "slug": "vintage-gold-key-card-energy-saver-panel",
+      "category": "Smart Sockets & Power Modules",
+      "series": "Vintage Series",
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色插卡取电",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色插卡取电/1.png",
+          "recommended_filename": "vintage-gold-key-card-energy-saver-panel-1.png",
+          "alt_text": "Vintage gold key card energy saver panel front view",
+          "is_featured": true,
+          "risk_notes": [
+            "ELITE mark confirmed by user."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色插卡取电/5.png",
+          "recommended_filename": "vintage-gold-key-card-energy-saver-panel-2.png",
+          "alt_text": "Vintage gold key card energy saver panel angled view",
+          "is_featured": false,
+          "risk_notes": [
+            "ELITE mark confirmed by user."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色插卡取电/3.png",
+          "recommended_filename": "vintage-gold-key-card-energy-saver-panel-3.png",
+          "alt_text": "Vintage gold key card energy saver panel rear connection view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 3,
+      "ready_for_import": true,
+      "import_notes": [
+        "ELITE mark confirmed by user; cleared for import preparation.",
+        "Series is metadata only because product_series taxonomy is not registered."
+      ]
+    },
+    {
+      "title": "Vintage Gold Four-Key Smart Switch Panel",
+      "slug": "vintage-gold-four-key-smart-switch-panel",
+      "category": "Smart Panels & Switches",
+      "series": "Vintage Series",
+      "category_term_status": "needs_creation_before_import",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色窗帘四键智能开关",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色窗帘四键智能开关/2.png",
+          "recommended_filename": "vintage-gold-four-key-smart-switch-panel-1.png",
+          "alt_text": "Vintage gold four-key smart switch panel for lighting curtain and screen control",
+          "is_featured": true,
+          "risk_notes": [
+            "ELITE mark confirmed by user; four-key switch functions confirmed as general control use."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色窗帘四键智能开关/3.png",
+          "recommended_filename": "vintage-gold-four-key-smart-switch-panel-2.png",
+          "alt_text": "Vintage gold four-key smart switch panel angled view",
+          "is_featured": false,
+          "risk_notes": [
+            "ELITE mark confirmed by user; four-key switch functions confirmed as general control use."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色窗帘四键智能开关/5.png",
+          "recommended_filename": "vintage-gold-four-key-smart-switch-panel-3.png",
+          "alt_text": "Vintage gold four-key smart switch panel product view",
+          "is_featured": false,
+          "risk_notes": [
+            "ELITE mark confirmed by user; four-key switch functions confirmed as general control use."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色窗帘四键智能开关/4.png",
+          "recommended_filename": "vintage-gold-four-key-smart-switch-panel-4.png",
+          "alt_text": "Vintage gold four-key smart switch panel rear view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 4,
+      "ready_for_import": true,
+      "import_notes": [
+        "The screen and curtain labels are accepted application examples and do not limit the product to those functions.",
+        "ELITE mark confirmed by user; four-key switch functions confirmed as general control use.",
+        "Needs category creation before import.",
+        "Series is metadata only because product_series taxonomy is not registered."
+      ]
+    },
+    {
+      "title": "Brushed Aluminum SOS Alarm Panel",
+      "slug": "brushed-aluminum-sos-alarm-panel",
+      "category": "Room Status & Hotel Service Panels",
+      "series": "Brushed Aluminum Series",
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝SOS报警面板",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝SOS报警面板/1.png",
+          "recommended_filename": "brushed-aluminum-sos-alarm-panel-1.png",
+          "alt_text": "Brushed aluminum SOS alarm panel front view",
+          "is_featured": true,
+          "risk_notes": [
+            "The product face contains a bilingual SOS function label; no customer or hotel brand was observed."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝SOS报警面板/3.png",
+          "recommended_filename": "brushed-aluminum-sos-alarm-panel-2.png",
+          "alt_text": "Brushed aluminum SOS alarm panel angled view",
+          "is_featured": false,
+          "risk_notes": [
+            "The product face contains a bilingual SOS function label; no customer or hotel brand was observed."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝SOS报警面板/4.png",
+          "recommended_filename": "brushed-aluminum-sos-alarm-panel-3.png",
+          "alt_text": "Brushed aluminum SOS alarm panel detail view",
+          "is_featured": false,
+          "risk_notes": [
+            "This angle is visually similar to the second image but is not an exact or near duplicate."
+          ]
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝SOS报警面板/5.png",
+          "recommended_filename": "brushed-aluminum-sos-alarm-panel-4.png",
+          "alt_text": "Brushed aluminum SOS alarm panel rear connection view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 4,
+      "ready_for_import": true,
+      "import_notes": [
+        "Series is metadata only because product_series taxonomy is not registered."
+      ]
+    },
+    {
+      "title": "Brushed Aluminum Thermostat Control Panel",
+      "slug": "brushed-aluminum-thermostat-control-panel",
+      "category": "HVAC & Thermostat Control",
+      "series": "Brushed Aluminum Series",
+      "category_term_status": "needs_creation_before_import",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝空调控制智能面板",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝空调控制智能面板/1.png",
+          "recommended_filename": "brushed-aluminum-thermostat-control-panel-1.png",
+          "alt_text": "Brushed aluminum thermostat control panel front view",
+          "is_featured": true,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝空调控制智能面板/3.png",
+          "recommended_filename": "brushed-aluminum-thermostat-control-panel-2.png",
+          "alt_text": "Brushed aluminum thermostat control panel angled view",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝空调控制智能面板/4.png",
+          "recommended_filename": "brushed-aluminum-thermostat-control-panel-3.png",
+          "alt_text": "Brushed aluminum thermostat control panel product view",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝空调控制智能面板/5.png",
+          "recommended_filename": "brushed-aluminum-thermostat-control-panel-4.png",
+          "alt_text": "Brushed aluminum thermostat control panel rear connection view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 4,
+      "ready_for_import": false,
+      "import_notes": [
+        "Needs category creation before import.",
+        "Series is metadata only because product_series taxonomy is not registered."
+      ]
+    },
+    {
+      "title": "Smart Voice and Telephone Information Socket",
+      "slug": "smart-voice-telephone-information-socket",
+      "category": "Smart Sockets & Power Modules",
+      "series": "Smart Series",
+      "category_term_status": "exists",
+      "source_directory": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/语音信息插座 电话插座",
+      "images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/语音信息插座 电话插座/1.png",
+          "recommended_filename": "smart-voice-telephone-information-socket-1.png",
+          "alt_text": "Smart voice and telephone information socket front view",
+          "is_featured": true,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/语音信息插座 电话插座/3.png",
+          "recommended_filename": "smart-voice-telephone-information-socket-2.png",
+          "alt_text": "Smart voice and telephone information socket angled view",
+          "is_featured": false,
+          "risk_notes": []
+        },
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/语音信息插座 电话插座/5.png",
+          "recommended_filename": "smart-voice-telephone-information-socket-3.png",
+          "alt_text": "Smart voice and telephone information socket rear view",
+          "is_featured": false,
+          "risk_notes": []
+        }
+      ],
+      "excluded_images": [],
+      "image_count": 3,
+      "ready_for_import": true,
+      "import_notes": [
+        "Confirm the interface type during technical review; the ALT text does not claim a protocol or connector standard.",
+        "Series is metadata only because product_series taxonomy is not registered."
+      ]
+    }
+  ]
+}

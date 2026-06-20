@@ -162,6 +162,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {product.isNew ? (
                 <span className="border border-accent bg-accent px-2 py-1">New</span>
               ) : null}
+              {product.categoryNames.map((category) => (
+                <span
+                  key={category}
+                  className="border border-brand/30 bg-background px-2 py-1 text-brand"
+                >
+                  {category}
+                </span>
+              ))}
               <span className="border border-line bg-surface px-2 py-1 text-brand">
                 {product.status?.replaceAll("_", " ") || "Product"}
               </span>

@@ -1,0 +1,515 @@
+# Third Batch Product Content Draft
+
+Source note: Generated from the approved third-batch candidate list and local asset review. This file is a content draft only. No WordPress import, media upload, frontend edit, deployment, or Git commit was performed.
+
+## Import Readiness Confirmations
+
+- Borui Red Matte USB Five-Hole Socket: the USB output label visible in the source image was confirmed by the user. No additional unverified parameter is added to the product copy.
+- Vintage Gold Key Card Energy Saver Panel: the visible `ELITE` mark was confirmed by the user.
+- Vintage Gold Four-Key Smart Switch Panel: the visible `ELITE` mark was confirmed by the user, and the four keys were confirmed for general switch-control use such as lighting, curtains, and screens.
+- These confirmations clear the previous image-review blockers. Missing category terms remain separate import prerequisites.
+
+## Summary
+
+| # | Product | Slug | Category | Series | Missing Information Items | Ready For Manual Review |
+| -- | -- | -- | -- | -- | --: | -- |
+| 1 | Smart Curtain Motor | `smart-curtain-motor` | Curtain Control Panels | null | 6 | Yes |
+| 2 | Hotel Smart Room RCU Host 2 | `hotel-smart-room-rcu-host-2` | RCU Room Control Host | null | 6 | Yes |
+| 3 | Hotel Delivery Robot Charging Dock | `hotel-delivery-robot-charging-dock` | Hotel Delivery Robot System | null | 6 | Yes |
+| 4 | Borui Red Matte USB Five-Hole Socket | `borui-red-matte-usb-five-hole-socket` | Smart Sockets & Power Modules | Borui Series | 6 | Yes |
+| 5 | Borui Red Matte Room Status and Four-Key Switch Panel | `borui-red-matte-room-status-four-key-switch-panel` | Room Status & Hotel Service Panels | Borui Series | 6 | Yes |
+| 6 | Vintage Gold Key Card Energy Saver Panel | `vintage-gold-key-card-energy-saver-panel` | Smart Sockets & Power Modules | Vintage Series | 6 | Yes |
+| 7 | Vintage Gold Four-Key Smart Switch Panel | `vintage-gold-four-key-smart-switch-panel` | Smart Panels & Switches | Vintage Series | 6 | Yes |
+| 8 | Brushed Aluminum SOS Alarm Panel | `brushed-aluminum-sos-alarm-panel` | Room Status & Hotel Service Panels | Brushed Aluminum Series | 6 | Yes |
+| 9 | Brushed Aluminum Thermostat Control Panel | `brushed-aluminum-thermostat-control-panel` | HVAC & Thermostat Control | Brushed Aluminum Series | 6 | Yes |
+| 10 | Smart Voice and Telephone Information Socket | `smart-voice-telephone-information-socket` | Smart Sockets & Power Modules | Smart Series | 6 | Yes |
+
+## 1. Smart Curtain Motor
+
+- **slug:** `smart-curtain-motor`
+- **category:** Curtain Control Panels
+- **series:** null
+- **status:** available
+- **short_description:** A smart curtain motor for hotel rooms, serviced apartments, and smart home automation projects that need motorized curtain control as part of a room control system.
+- **overview:** The Smart Curtain Motor is designed for projects where curtain movement needs to be integrated into a smart room control experience. It can support guest room, apartment, villa, and residential automation scenarios where curtain operation is managed together with wall panels, room control hosts, or other automation devices. The product is suitable for B2B project inquiry, room upgrade planning, and OEM/ODM discussion when project appearance or system matching requirements need to be reviewed.
+- **key_features:**
+  - Supports motorized curtain control for smart room projects
+  - Suitable for hotel guest rooms, serviced apartments, villas, and residential automation
+  - Can be planned together with curtain control panels and room control systems
+  - Helps create a more complete smart room automation product package
+  - Suitable for project-based inquiry and OEM/ODM matching discussion
+- **application_scenarios:**
+  - Hotel guest room curtain automation
+  - Serviced apartment smart room upgrades
+  - Villa and residential automation projects
+  - Smart hotel room control solution packages
+  - System integration projects requiring curtain motor products
+- **b2b_value:**
+  - Complements wall panels and room control hosts in smart hotel projects
+  - Helps distributors and integrators provide a more complete room automation offer
+  - Supports project discussions where curtain control is part of the guest experience
+  - Can be considered for OEM/ODM matching when appearance and system requirements are confirmed
+- **oem_odm_notes:** OEM/ODM discussion is available for project requirements, subject to confirmed structure, control method, appearance requirements, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-guest-room-control-solution/`
+  - `/en/solutions/smart-hotel-automation-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed control method
+  - Confirmed rail compatibility
+  - Confirmed motor load range
+  - Confirmed power supply requirements
+  - Confirmed dimensions and installation requirements
+  - Confirmed project MOQ
+- **seo_title:** Smart Curtain Motor for Hotel Room Automation
+- **seo_description:** Smart curtain motor for hotel rooms, apartments, villas, and smart room automation. Request details for B2B integration and OEM/ODM projects.
+- **image_alt_text_suggestions:**
+  - Smart curtain motor for hotel room automation
+  - Curtain motor and rail components for smart room projects
+  - Motorized curtain control product for hotel guest rooms
+
+## 2. Hotel Smart Room RCU Host 2
+
+- **slug:** `hotel-smart-room-rcu-host-2`
+- **category:** RCU Room Control Host
+- **series:** null
+- **status:** available
+- **short_description:** A room control host option for smart hotel guest rooms and integrated RCU projects where lighting, curtain, socket, and room status devices need coordinated control.
+- **overview:** Hotel Smart Room RCU Host 2 is positioned as a control host for smart hotel room and serviced apartment projects. It is intended for project discussions where contractors, system integrators, and hotel owners need to plan room control architecture with panels, sensors, curtain products, and power modules. Confirmed wiring, control interface, and project configuration should be reviewed before quotation or technical selection.
+- **key_features:**
+  - Designed for smart hotel room control project planning
+  - Can be discussed together with smart panels, sensors, curtain controls, and power modules
+  - Suitable for contractors and system integrators preparing RCU room control packages
+  - Supports B2B project inquiry where control architecture needs confirmation
+  - Can be evaluated as part of hotel guest room automation solutions
+- **application_scenarios:**
+  - Hotel guest room RCU control systems
+  - Serviced apartment room automation projects
+  - Smart room retrofit planning
+  - Room control system integration
+  - B2B project quotation preparation
+- **b2b_value:**
+  - Provides a room control host option for project-based system planning
+  - Helps align different room devices under a coordinated control approach
+  - Supports integrators preparing smart hotel control proposals
+  - Allows OEM/ODM discussion after confirmed project control requirements
+- **oem_odm_notes:** OEM/ODM discussion depends on confirmed control architecture, wiring requirements, interface requirements, enclosure needs, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/rcu-room-control-solution/`
+  - `/en/solutions/hotel-guest-room-control-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed input and output configuration
+  - Confirmed wiring diagram
+  - Confirmed communication method
+  - Confirmed power supply requirements
+  - Confirmed enclosure dimensions
+  - Confirmed project configuration list
+- **seo_title:** Hotel Smart Room RCU Host 2 for Room Control Projects
+- **seo_description:** Hotel Smart Room RCU Host 2 for guest room automation, apartment projects, and smart room control system integration. Request project details.
+- **image_alt_text_suggestions:**
+  - Hotel smart room RCU host for guest room control
+  - Room control host for smart hotel automation projects
+  - RCU host product for hotel room integration
+
+## 3. Hotel Delivery Robot Charging Dock
+
+- **slug:** `hotel-delivery-robot-charging-dock`
+- **category:** Hotel Delivery Robot System
+- **series:** null
+- **status:** available
+- **short_description:** A charging dock accessory for hotel delivery robot projects, suitable for hospitality automation planning and robot system support.
+- **overview:** The Hotel Delivery Robot Charging Dock is a support product for hotel delivery robot system projects. It is intended for hotels, service apartment operators, contractors, and distributors that need to plan a robot delivery system with matching charging support. The charging dock should be reviewed together with robot model requirements, installation location, and project layout before quotation.
+- **key_features:**
+  - Designed as a charging support product for hotel delivery robot projects
+  - Suitable for hospitality automation and smart service scenarios
+  - Can be considered together with hotel delivery robot and delivery cabinet products
+  - Supports project planning for lobby, service area, or back-office robot operation
+  - Suitable for B2B inquiry and project configuration discussion
+- **application_scenarios:**
+  - Hotel delivery robot system planning
+  - Smart hotel service automation
+  - Serviced apartment delivery support
+  - Hospitality robot project configuration
+  - Distributor robot system package discussion
+- **b2b_value:**
+  - Helps complete the robot delivery system product package
+  - Supports project planning beyond the robot unit itself
+  - Useful for distributors preparing hotel automation proposals
+  - Allows charging area planning during early project discussion
+- **oem_odm_notes:** Customization discussion depends on confirmed robot compatibility, installation environment, appearance requirements, and project quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-delivery-robot-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed compatible robot model
+  - Confirmed charging interface
+  - Confirmed installation requirements
+  - Confirmed power supply requirements
+  - Confirmed dimensions
+  - Confirmed project MOQ
+- **seo_title:** Hotel Delivery Robot Charging Dock for Hospitality Projects
+- **seo_description:** Charging dock support product for hotel delivery robot systems, smart hospitality automation, and B2B robot project planning.
+- **image_alt_text_suggestions:**
+  - Hotel delivery robot charging dock
+  - Charging dock for hospitality delivery robot system
+  - Robot charging support product for smart hotel projects
+
+## 4. Borui Red Matte USB Five-Hole Socket
+
+- **slug:** `borui-red-matte-usb-five-hole-socket`
+- **category:** Smart Sockets & Power Modules
+- **series:** Borui Series
+- **status:** available
+- **short_description:** A red matte USB five-hole socket panel from the Borui Series for hotel rooms, apartments, and OEM/ODM smart panel projects.
+- **overview:** The Borui Red Matte USB Five-Hole Socket is a panel-style socket product for B2B projects that require a distinctive red matte finish and coordinated smart room design. It can be considered for hotel guest rooms, serviced apartments, villa projects, and OEM/ODM panel programs where socket products need to match a broader interior or panel series.
+- **key_features:**
+  - Borui Series red matte appearance for coordinated project design
+  - USB five-hole socket panel product for smart room applications
+  - Suitable for hotel rooms, apartments, villas, and residential projects
+  - Can be discussed together with other Borui Series panels
+  - Suitable for OEM/ODM customization discussion after confirmed project needs
+- **application_scenarios:**
+  - Hotel guest room power module planning
+  - Serviced apartment socket panel upgrades
+  - Villa and residential smart panel projects
+  - OEM/ODM smart panel programs
+  - Distributor product line expansion
+- **b2b_value:**
+  - Adds a distinctive series option for project-based panel selection
+  - Supports matching socket and panel appearance across room areas
+  - Useful for distributors serving hotel and residential automation buyers
+  - Can support OEM/ODM discussions for finish, layout, and packaging requirements
+- **oem_odm_notes:** OEM/ODM discussion is available after confirming finish requirements, panel layout, socket standard, packaging needs, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/oem-odm-custom-panel-solution/`
+  - `/en/solutions/hotel-guest-room-control-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+  - `/en/case-studies/overseas-oem-odm-smart-panel-customization-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed socket standard
+  - Confirmed USB output specification
+  - Confirmed panel dimensions
+  - Confirmed installation box compatibility
+  - Confirmed finish and color tolerance
+  - Confirmed MOQ
+- **seo_title:** Borui Red Matte USB Five-Hole Socket Panel
+- **seo_description:** Borui Series red matte USB five-hole socket panel for hotel rooms, apartments, residential automation, and OEM/ODM smart panel projects.
+- **image_alt_text_suggestions:**
+  - Borui red matte USB five-hole socket panel
+  - Red matte smart socket panel for hotel rooms
+  - Borui Series USB socket panel for OEM ODM projects
+
+## 5. Borui Red Matte Room Status and Four-Key Switch Panel
+
+- **slug:** `borui-red-matte-room-status-four-key-switch-panel`
+- **category:** Room Status & Hotel Service Panels
+- **series:** Borui Series
+- **status:** available
+- **short_description:** A Borui Series red matte combined room status and four-key switch panel for hotel guest room control and custom panel projects.
+- **overview:** The Borui Red Matte Room Status and Four-Key Switch Panel combines room service display needs with switch panel control in a coordinated red matte appearance. It is suitable for hotel guest rooms, serviced apartments, and OEM/ODM panel projects where buyers need a distinctive panel series with room service and control functions planned together.
+- **key_features:**
+  - Borui Series red matte appearance for coordinated project design
+  - Combines room status display and four-key switch panel product roles
+  - Suitable for hotel guest room and serviced apartment applications
+  - Can be planned with RCU hosts, sensors, and other room panels
+  - Supports OEM/ODM inquiry when layout and function requirements are confirmed
+- **application_scenarios:**
+  - Hotel guest room door area and bedside control planning
+  - Room status and service panel projects
+  - Serviced apartment smart room upgrades
+  - OEM/ODM customized panel programs
+  - Distributor smart hotel panel solutions
+- **b2b_value:**
+  - Helps combine room status and switch control in one coordinated panel line
+  - Supports design consistency for hotel guest room projects
+  - Useful for project buyers seeking series-based panel matching
+  - Allows layout and function discussions before project quotation
+- **oem_odm_notes:** OEM/ODM options depend on confirmed panel layout, key labeling, finish requirements, function requirements, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-guest-room-control-solution/`
+  - `/en/solutions/oem-odm-custom-panel-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+  - `/en/case-studies/overseas-oem-odm-smart-panel-customization-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed room status functions
+  - Confirmed switch key functions
+  - Confirmed wiring requirements
+  - Confirmed panel dimensions
+  - Confirmed installation box compatibility
+  - Confirmed MOQ
+- **seo_title:** Borui Red Matte Room Status and Four-Key Switch Panel
+- **seo_description:** Borui Series red matte room status and four-key switch panel for smart hotel rooms, serviced apartments, and OEM/ODM panel projects.
+- **image_alt_text_suggestions:**
+  - Borui red matte room status and four-key switch panel
+  - Red matte hotel room status panel with switch control
+  - Borui Series smart hotel service panel
+
+## 6. Vintage Gold Key Card Energy Saver Panel
+
+- **slug:** `vintage-gold-key-card-energy-saver-panel`
+- **category:** Smart Sockets & Power Modules
+- **series:** Vintage Series
+- **status:** available
+- **short_description:** A Vintage Series gold key card energy saver panel for hotel guest rooms, serviced apartments, and project-based smart room upgrades.
+- **overview:** The Vintage Gold Key Card Energy Saver Panel is designed for projects that need a gold-tone panel style with hotel room energy management functions. It can be used in hotel guest rooms, serviced apartments, and residential-style hospitality projects where the panel finish should match a vintage or decorative interior direction. Technical configuration should be confirmed before quotation.
+- **key_features:**
+  - Vintage Series gold appearance for decorative room projects
+  - Key card energy saver panel product role for hotel guest rooms
+  - Suitable for hotel, serviced apartment, and hospitality renovation projects
+  - Can be paired with other Vintage Series switch and curtain panels
+  - Supports OEM/ODM discussion for finish, labeling, and packaging
+- **application_scenarios:**
+  - Hotel guest room energy saver panel replacement
+  - Serviced apartment smart room upgrades
+  - Vintage-style hospitality room projects
+  - Distributor hotel panel product lines
+  - OEM/ODM panel customization programs
+- **b2b_value:**
+  - Provides a series-based option for buyers seeking decorative panel finishes
+  - Supports hotel room energy management product planning
+  - Helps integrators match energy saver panels with other room control panels
+  - Allows project buyers to discuss finish and labeling requirements
+- **oem_odm_notes:** OEM/ODM options depend on confirmed card type requirements, panel finish, labeling, installation compatibility, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-guest-room-control-solution/`
+  - `/en/solutions/oem-odm-custom-panel-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+  - `/en/case-studies/overseas-oem-odm-smart-panel-customization-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed card recognition method
+  - Confirmed power and load requirements
+  - Confirmed panel dimensions
+  - Confirmed installation box compatibility
+  - Confirmed finish specification
+  - Confirmed MOQ
+- **seo_title:** Vintage Gold Key Card Energy Saver Panel
+- **seo_description:** Vintage Series gold key card energy saver panel for hotel rooms, serviced apartments, and OEM/ODM smart panel projects.
+- **image_alt_text_suggestions:**
+  - Vintage gold key card energy saver panel
+  - Gold hotel room energy saver panel
+  - Vintage Series key card panel for smart hotel projects
+
+## 7. Vintage Gold Four-Key Smart Switch Panel
+
+- **slug:** `vintage-gold-four-key-smart-switch-panel`
+- **category:** Smart Panels & Switches
+- **series:** Vintage Series
+- **status:** available
+- **short_description:** A Vintage Series gold four-key smart switch panel for hotel rooms, serviced apartments, and decorative automation projects.
+- **overview:** The Vintage Gold Four-Key Smart Switch Panel is intended for smart room projects that need a decorative switch panel for lighting, curtain, screen, and other switch-controlled functions. It can be considered for hotel guest rooms, serviced apartments, villas, and residential automation projects. The labels shown in product images are application examples; final key assignments, wiring, and system compatibility should be confirmed during project discussion.
+- **key_features:**
+  - Vintage Series gold appearance for coordinated room panel design
+  - Four-key smart switch panel for configurable switch-control applications
+  - Suitable for lighting, curtain, screen, and other switch-controlled functions
+  - Suitable for hotel rooms, apartments, villas, and residential automation
+  - Can be planned together with room control hosts and other smart room devices
+  - Supports OEM/ODM discussion for labeling, finish, and project packaging
+- **application_scenarios:**
+  - Hotel guest room lighting and switch control
+  - Serviced apartment automation projects
+  - Villa and residential switch control
+  - Curtain and screen operation panels
+  - Decorative smart panel renovation projects
+  - OEM/ODM smart panel product lines
+- **b2b_value:**
+  - Helps project buyers match switch control with a Vintage Series panel line
+  - Supports smart room automation packages for hotels and apartments
+  - Useful for distributors offering decorative smart panel options
+  - Allows key labeling and finish discussions before quotation
+- **oem_odm_notes:** OEM/ODM options depend on confirmed key function layout, finish, panel dimensions, installation compatibility, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-guest-room-control-solution/`
+  - `/en/solutions/oem-odm-custom-panel-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+  - `/en/case-studies/overseas-oem-odm-smart-panel-customization-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed supported switch-control applications
+  - Confirmed key function definition
+  - Confirmed wiring requirements
+  - Confirmed panel dimensions
+  - Confirmed installation box compatibility
+  - Confirmed MOQ
+- **seo_title:** Vintage Gold Four-Key Smart Switch Panel
+- **seo_description:** Vintage Series gold four-key smart switch panel for lighting, curtain, screen, and configurable room control projects.
+- **image_alt_text_suggestions:**
+  - Vintage gold four-key smart switch panel for lighting curtain and screen control
+  - Gold four-key smart switch panel for hotel room automation
+  - Vintage Series smart switch panel for configurable room control
+
+## 8. Brushed Aluminum SOS Alarm Panel
+
+- **slug:** `brushed-aluminum-sos-alarm-panel`
+- **category:** Room Status & Hotel Service Panels
+- **series:** Brushed Aluminum Series
+- **status:** available
+- **short_description:** A Brushed Aluminum Series SOS alarm panel for hotel room service areas, guest room safety planning, and customized smart panel projects.
+- **overview:** The Brushed Aluminum SOS Alarm Panel is positioned for hospitality and smart room projects that need a dedicated SOS service or alarm panel with a brushed metal appearance. It can be considered for hotel guest rooms, accessible rooms, serviced apartments, and custom panel programs where buyers need a clear service call product role. Confirmed wiring and system response requirements should be reviewed before use.
+- **key_features:**
+  - Brushed Aluminum Series finish for coordinated panel projects
+  - Dedicated SOS alarm panel product role
+  - Suitable for hotel room service and safety planning
+  - Can be discussed together with room status panels and RCU systems
+  - Supports OEM/ODM inquiry for labeling, finish, and function requirements
+- **application_scenarios:**
+  - Hotel guest room SOS service panel planning
+  - Accessible room support product discussions
+  - Serviced apartment service call projects
+  - Room status and hotel service panel packages
+  - OEM/ODM custom panel programs
+- **b2b_value:**
+  - Adds a dedicated service panel option for hospitality room projects
+  - Helps match SOS panel appearance with other brushed aluminum panels
+  - Supports integrators preparing hotel room service control packages
+  - Allows project buyers to confirm labeling and response requirements before quotation
+- **oem_odm_notes:** OEM/ODM options depend on confirmed labeling, wiring method, response system requirements, finish, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-guest-room-control-solution/`
+  - `/en/solutions/oem-odm-custom-panel-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+  - `/en/case-studies/overseas-oem-odm-smart-panel-customization-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed alarm output method
+  - Confirmed wiring requirements
+  - Confirmed system response method
+  - Confirmed panel dimensions
+  - Confirmed installation box compatibility
+  - Confirmed MOQ
+- **seo_title:** Brushed Aluminum SOS Alarm Panel for Hotel Rooms
+- **seo_description:** Brushed Aluminum Series SOS alarm panel for hotel rooms, serviced apartments, service call projects, and OEM/ODM smart panel programs.
+- **image_alt_text_suggestions:**
+  - Brushed aluminum SOS alarm panel
+  - Hotel room SOS service panel with brushed aluminum finish
+  - SOS alarm panel for smart hotel room projects
+
+## 9. Brushed Aluminum Thermostat Control Panel
+
+- **slug:** `brushed-aluminum-thermostat-control-panel`
+- **category:** HVAC & Thermostat Control
+- **series:** Brushed Aluminum Series
+- **status:** available
+- **short_description:** A Brushed Aluminum Series thermostat control panel for hotel rooms, serviced apartments, and smart room HVAC control projects.
+- **overview:** The Brushed Aluminum Thermostat Control Panel is designed for projects that need HVAC control products with a brushed metal appearance. It can be considered for hotel guest rooms, serviced apartments, villas, and smart home automation projects where thermostat control should match the room panel series. Confirmed HVAC compatibility and wiring requirements must be reviewed before technical selection.
+- **key_features:**
+  - Brushed Aluminum Series finish for coordinated smart room panel design
+  - Thermostat control panel product role for HVAC-related room control
+  - Suitable for hotel rooms, apartments, villas, and smart home projects
+  - Can be planned with room control hosts and other smart panels
+  - Supports OEM/ODM discussion after confirmed HVAC and project requirements
+- **application_scenarios:**
+  - Hotel guest room thermostat control
+  - Serviced apartment HVAC control planning
+  - Villa and residential smart thermostat projects
+  - Smart room control system integration
+  - OEM/ODM thermostat panel programs
+- **b2b_value:**
+  - Provides a brushed metal thermostat option for project-based panel matching
+  - Supports HVAC control planning within smart room automation packages
+  - Useful for integrators preparing hotel room control solutions
+  - Allows compatibility and finish discussions before quotation
+- **oem_odm_notes:** OEM/ODM discussion depends on confirmed HVAC system compatibility, control method, finish, panel layout, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-guest-room-control-solution/`
+  - `/en/solutions/ai-smart-display-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+  - `/en/case-studies/overseas-oem-odm-smart-panel-customization-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed HVAC system compatibility
+  - Confirmed wiring requirements
+  - Confirmed control method
+  - Confirmed panel dimensions
+  - Confirmed installation box compatibility
+  - Confirmed MOQ
+- **seo_title:** Brushed Aluminum Thermostat Control Panel
+- **seo_description:** Brushed Aluminum Series thermostat control panel for hotel rooms, serviced apartments, smart homes, and OEM/ODM HVAC control projects.
+- **image_alt_text_suggestions:**
+  - Brushed aluminum thermostat control panel
+  - Thermostat panel for smart hotel room HVAC control
+  - Brushed Aluminum Series HVAC control panel
+
+## 10. Smart Voice and Telephone Information Socket
+
+- **slug:** `smart-voice-telephone-information-socket`
+- **category:** Smart Sockets & Power Modules
+- **series:** Smart Series
+- **status:** available
+- **short_description:** A Smart Series voice and telephone information socket panel for hotel rooms, serviced apartments, and smart room infrastructure projects.
+- **overview:** The Smart Voice and Telephone Information Socket is a panel product for smart room infrastructure planning, especially where voice or telephone information interfaces are required as part of a coordinated room panel system. It can be used in hotel guest rooms, serviced apartments, and system integration projects that need socket and information panel products to match Smart Series design.
+- **key_features:**
+  - Smart Series appearance for coordinated room panel design
+  - Voice and telephone information socket product role
+  - Suitable for hotel room and serviced apartment infrastructure planning
+  - Can be considered with other Smart Series panels and room control products
+  - Supports OEM/ODM discussion after confirmed interface and layout requirements
+- **application_scenarios:**
+  - Hotel guest room information socket planning
+  - Serviced apartment infrastructure upgrades
+  - Smart room panel system integration
+  - Distributor smart socket product lines
+  - OEM/ODM panel customization projects
+- **b2b_value:**
+  - Helps complete the room panel and socket product package
+  - Supports coordinated Smart Series appearance across room devices
+  - Useful for system integrators preparing smart room infrastructure proposals
+  - Allows interface and labeling requirements to be reviewed before quotation
+- **oem_odm_notes:** OEM/ODM options depend on confirmed interface requirements, labeling, panel layout, finish, installation compatibility, and order quantity.
+- **recommended_solutions:**
+  - `/en/solutions/hotel-guest-room-control-solution/`
+  - `/en/solutions/smart-hotel-automation-solution/`
+- **related_case_studies:**
+  - `/en/case-studies/middle-east-smart-hotel-guest-room-control-project/`
+  - `/en/case-studies/southeast-asia-serviced-apartment-residential-automation-project/`
+- **inquiry_cta_label:** Request Product Details
+- **missing_information:**
+  - Confirmed interface type
+  - Confirmed wiring requirements
+  - Confirmed panel dimensions
+  - Confirmed installation box compatibility
+  - Confirmed labeling requirements
+  - Confirmed MOQ
+- **seo_title:** Smart Voice and Telephone Information Socket
+- **seo_description:** Smart Series voice and telephone information socket panel for hotel rooms, serviced apartments, and smart room infrastructure projects.
+- **image_alt_text_suggestions:**
+  - Smart voice and telephone information socket
+  - Smart Series telephone information socket panel
+  - Hotel room information socket panel for smart room projects
+
+## Draft Check Result
+
+- 10 product drafts generated.
+- Slugs are unique.
+- Categories match the approved candidate list.
+- Series values match the approved candidate list.
+- Every product includes missing information items.
+- No third-party brand, platform, hotel brand, or customer name is intentionally included.
+- No confirmed technical parameter was invented.
+- No fixed price, project amount, rating, or percentage result was added.
+- Draft is ready for manual content review.
+
+Conclusion: A. Third-batch 10 product drafts are complete and can enter manual review.

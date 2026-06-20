@@ -11,6 +11,9 @@ export function Footer() {
           <a className="mt-3 block text-white/70" href={`mailto:${brand.emails.general}`}>
             {brand.emails.general}
           </a>
+          <Link className="mt-3 block text-white/70" href="/en/about/">
+            About DualCoreLink
+          </Link>
         </div>
         <div>
           <p className="font-semibold">Product Navigation</p>

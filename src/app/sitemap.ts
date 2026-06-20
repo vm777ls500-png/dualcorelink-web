@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const locale = "en";
   const staticRoutes = [
     "",
+    "about",
     "products",
     "product-series",
     "solutions",

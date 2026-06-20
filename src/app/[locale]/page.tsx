@@ -498,23 +498,32 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 {brand.legalEntity} manages the global brand and B2B customer
                 relationship.
               </p>
-              <Link
-                href={`/${locale}/contact/#get-a-quote`}
-                className="mt-6 inline-block font-semibold text-brand"
-              >
-                Contact Sales -&gt;
-              </Link>
+              <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3">
+                <Link
+                  href={`/${locale}/about/`}
+                  className="font-semibold text-brand"
+                >
+                  Learn About DualCoreLink -&gt;
+                </Link>
+                <Link
+                  href={`/${locale}/contact/#get-a-quote`}
+                  className="font-semibold text-brand"
+                >
+                  Contact Sales -&gt;
+                </Link>
+              </div>
             </div>
             <div className="border-s-4 border-accent ps-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                Manufacturing & supply chain
+                Production coordination
               </p>
               <h2 className="mt-2 text-2xl font-semibold">
-                {brand.supplyChainEntity}
+                Qualified OEM manufacturing partners
               </h2>
               <p className="mt-4 leading-8 text-muted">
-                Production coordination and supply-chain support are presented
-                separately from Schema manufacturer claims.
+                Products are produced according to our design requirements and
+                confirmed project needs, with product matching and project
+                communication coordinated by DualCoreLink.
               </p>
             </div>
           </div>

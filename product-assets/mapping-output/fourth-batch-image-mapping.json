@@ -1,0 +1,293 @@
+{
+  "batch": "fourth-batch",
+  "source_content_draft": "product-assets/mapping-output/fourth-batch-product-content-draft.json",
+  "source_image_count": 28,
+  "mapping_note": "Read-only image review. Source images were not moved, renamed, deleted, edited, uploaded, or imported.",
+  "products": [
+    {
+      "product_title": "Hotel Smart Room RCU Host 3",
+      "slug": "hotel-smart-room-rcu-host-3",
+      "category": "RCU Room Control Host",
+      "series_text": null,
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/258f46b8592c7779378baf731fbfee4.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/3cc4edcb6c350109f5b6ed8342611b0.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/a7e408cba5f85bc1d5fbdcc39a67bdd.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/a91fa4136246a31c7f78c18beb20f42.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/e71801ec9f829a663de8a2f45a96617.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/258f46b8592c7779378baf731fbfee4.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/a91fa4136246a31c7f78c18beb20f42.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/a7e408cba5f85bc1d5fbdcc39a67bdd.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/e71801ec9f829a663de8a2f45a96617.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/3cc4edcb6c350109f5b6ed8342611b0.png",
+          "reason": "Portrait canvas contains excessive white space and presents less product detail than the selected front view."
+        }
+      ],
+      "image_count": 5,
+      "image_quality_notes": [
+        "High-resolution transparent-background product images",
+        "Selected images cover front, angled, side, and rear views",
+        "Featured candidate shows the complete control host clearly on a clean background"
+      ],
+      "risk_notes": [
+        "Generic SMART CONTROL HOST text and terminal labels are visible",
+        "No customer name, hotel brand, room number, or third-party platform brand detected",
+        "Visible terminal markings must not be converted into unconfirmed public specifications"
+      ],
+      "needs_user_review": false
+    },
+    {
+      "product_title": "Smart Single-Key Switch Panel",
+      "slug": "smart-single-key-switch-panel",
+      "category": "Smart Panels & Switches",
+      "series_text": "Smart Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/1.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/25.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/3.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/25.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/1.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/3.png",
+          "reason": "Rear view exposes an unconfirmed power and terminal label; retain internally until specifications are verified."
+        }
+      ],
+      "image_count": 3,
+      "image_quality_notes": [
+        "High-resolution clean-background images",
+        "No exact duplicate detected",
+        "Featured candidate gives the clearest near-front presentation of the unmarked key surface"
+      ],
+      "risk_notes": [
+        "Rear image contains an unconfirmed technical label and is excluded from the public candidate set",
+        "No customer, hotel, room number, or third-party brand detected"
+      ],
+      "needs_user_review": false
+    },
+    {
+      "product_title": "Smart Three-Key Music Control Panel",
+      "slug": "smart-three-key-music-control-panel",
+      "category": "Smart Panels & Switches",
+      "series_text": "Smart Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/1.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/2.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/5.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/1.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/2.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/3.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/5.png",
+          "reason": "Rear view exposes terminal details that could be mistaken for confirmed interface specifications."
+        }
+      ],
+      "image_count": 4,
+      "image_quality_notes": [
+        "High-resolution front and angled product views",
+        "Featured candidate is centered and shows all three keys clearly",
+        "Supporting candidates provide left and right perspective views"
+      ],
+      "risk_notes": [
+        "Chinese and English key labels are visible and treated only as the photographed configuration",
+        "Labels do not confirm audio protocol or system compatibility",
+        "No customer, hotel, room number, or third-party brand detected"
+      ],
+      "needs_user_review": false
+    },
+    {
+      "product_title": "Smart Four-Key Scene Control Panel",
+      "slug": "smart-four-key-scene-control-panel",
+      "category": "Smart Panels & Switches",
+      "series_text": "Smart Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/1.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/5.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/1.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/3.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/5.png",
+          "reason": "Rear view includes unconfirmed terminal markings and is not required for the public gallery."
+        }
+      ],
+      "image_count": 3,
+      "image_quality_notes": [
+        "High-resolution front and angled views",
+        "Featured candidate is centered with all four labeled control areas visible",
+        "Clean background and complete product outline"
+      ],
+      "risk_notes": [
+        "Scene labels are examples of the photographed configuration and may vary by project",
+        "No customer, hotel, room number, or third-party brand detected"
+      ],
+      "needs_user_review": false
+    },
+    {
+      "product_title": "Smart Footlight and Night Light Panel",
+      "slug": "smart-footlight-night-light-panel",
+      "category": "Smart Panels & Switches",
+      "series_text": "Smart Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/1.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/5.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/1.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/5.png"
+      ],
+      "excluded_images": [],
+      "image_count": 3,
+      "image_quality_notes": [
+        "High-resolution front, angled, and rear views",
+        "Featured candidate clearly shows the light opening and full panel",
+        "Rear view does not display a clearly readable public specification"
+      ],
+      "risk_notes": [
+        "Images do not demonstrate light output, color temperature, or activation method",
+        "No customer, hotel, room number, or third-party brand detected"
+      ],
+      "needs_user_review": false
+    },
+    {
+      "product_title": "Smart Series Dual Vertical Socket Panel",
+      "slug": "smart-series-dual-vertical-socket-panel",
+      "category": "Smart Sockets & Power Modules",
+      "series_text": "Smart Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/1.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/5.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/1.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/3.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/5.png",
+          "reason": "Rear view contains electrical markings that have not been confirmed for public specification use."
+        }
+      ],
+      "image_count": 3,
+      "image_quality_notes": [
+        "High-resolution front and angled views on clean backgrounds",
+        "Featured candidate shows both socket positions clearly",
+        "No exact duplicate or cross-product image match detected"
+      ],
+      "risk_notes": [
+        "Socket format and regional compatibility require technical confirmation",
+        "Rear image is excluded because visible electrical markings are unconfirmed",
+        "No customer, hotel, room number, or third-party brand detected"
+      ],
+      "needs_user_review": false
+    },
+    {
+      "product_title": "Borui Red Matte Triple Socket Panel",
+      "slug": "borui-red-matte-triple-socket-panel",
+      "category": "Smart Sockets & Power Modules",
+      "series_text": "Borui Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/1.png",
+        "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/4.png",
+        "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/5.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/1.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/4.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/5.png",
+          "reason": "Rear view clearly exposes unconfirmed electrical rating labels; exclude until verified."
+        }
+      ],
+      "image_count": 3,
+      "image_quality_notes": [
+        "High-resolution front and angled product images",
+        "Featured candidate gives the clearest complete front view",
+        "Red matte finish and three socket positions are clearly visible"
+      ],
+      "risk_notes": [
+        "Front and angled images include a visible USB output label that has not been confirmed for this product",
+        "Rear electrical rating label is unconfirmed and the rear image is excluded",
+        "No customer, hotel, room number, or third-party brand detected"
+      ],
+      "needs_user_review": true
+    },
+    {
+      "product_title": "Brushed Aluminum Voice and Telephone Information Panel",
+      "slug": "brushed-aluminum-voice-telephone-information-panel",
+      "category": "Smart Sockets & Power Modules",
+      "series_text": "Brushed Aluminum Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座",
+      "source_image_paths": [
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4398_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4399_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4400_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4402_pixian_ai.png"
+      ],
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4398_pixian_ai.png",
+      "supporting_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4399_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4400_pixian_ai.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4402_pixian_ai.png",
+          "reason": "Rear view visibly identifies an interface category that remains unconfirmed in the product draft."
+        }
+      ],
+      "image_count": 4,
+      "image_quality_notes": [
+        "High-resolution front and angled views",
+        "Featured candidate is the clearest straight-on presentation",
+        "Brushed aluminum finish and central information connector are clearly visible"
+      ],
+      "risk_notes": [
+        "Exact connector and signal standard remain unconfirmed",
+        "Rear interface-label image is excluded from the public candidate set",
+        "No customer, hotel, room number, or third-party brand detected"
+      ],
+      "needs_user_review": false
+    }
+  ],
+  "review_summary": {
+    "product_count": 8,
+    "source_image_count": 28,
+    "featured_image_count": 8,
+    "supporting_image_count": 13,
+    "excluded_image_count": 7,
+    "products_needing_user_review": 1,
+    "exact_duplicate_images_within_batch": 0,
+    "exact_matches_with_existing_static_media": 0,
+    "application_scenario_images_included": 0,
+    "deferred_product_images_included": 0
+  }
+}

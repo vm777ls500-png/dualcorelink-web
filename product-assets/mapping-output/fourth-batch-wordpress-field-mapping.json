@@ -1,0 +1,1110 @@
+{
+  "batch": "fourth-batch",
+  "source_files": [
+    "fourth-batch-product-content-draft.json",
+    "fourth-batch-image-mapping.json"
+  ],
+  "post_type": "product",
+  "default_post_status": "draft",
+  "existing_product_count_checked": 27,
+  "product_series_taxonomy_exists": false,
+  "do_not_write_product_series_taxonomy": true,
+  "do_not_enable_product_json_ld": true,
+  "do_not_create_categories": true,
+  "category_terms": [
+    {
+      "name": "RCU Room Control Host",
+      "slug": "rcu-room-control-host",
+      "term_id": 5,
+      "term_status": "exists"
+    },
+    {
+      "name": "Smart Panels & Switches",
+      "slug": "smart-panels-switches",
+      "term_id": 9,
+      "term_status": "exists"
+    },
+    {
+      "name": "Smart Sockets & Power Modules",
+      "slug": "smart-sockets-power-modules",
+      "term_id": 6,
+      "term_status": "exists"
+    }
+  ],
+  "products": [
+    {
+      "post_title": "Hotel Smart Room RCU Host 3",
+      "post_name": "hotel-smart-room-rcu-host-3",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>Hotel Smart Room RCU Host 3 is positioned for smart hotel and serviced apartment projects that require a central room control device. It can be considered when a project needs coordinated planning for lighting, curtains, wall panels, sensors, HVAC, and guest service controls.</p><p>The final system architecture must be reviewed against the selected room devices, wiring plan, and project requirements. This draft does not assign unverified circuit counts, protocols, power ratings, or interface specifications.</p><h2>Key Features</h2><ul><li>Designed for project-based hotel guest room control planning</li><li>Supports coordinated system planning for room devices and control panels</li><li>Can be evaluated with lighting, curtain, sensor, HVAC, and service-control requirements</li><li>Suitable for new-build and room renovation discussions</li><li>Supports technical selection with contractors and system integrators</li><li>Available for project matching and OEM/ODM discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel guest room control systems</li><li>Serviced apartment automation</li><li>Guest room renovation projects</li><li>RCU system integration</li><li>OEM/ODM room control projects</li></ul><h2>B2B Project Value</h2><ul><li>Provides a central product option for guest room control proposals</li><li>Helps contractors and integrators plan compatible room devices around one control architecture</li><li>Supports distributors preparing project-specific hotel automation packages</li><li>Allows technical requirements to be reviewed before quotation and system matching</li></ul><h2>OEM / ODM Project Support</h2><p>OEM/ODM options may be discussed for enclosure presentation, project matching, labeling, packaging, and supported control requirements. Final scope depends on the confirmed product configuration, quantity, wiring plan, and technical review.</p>",
+      "post_content_sections": {
+        "overview": "Hotel Smart Room RCU Host 3 is positioned for smart hotel and serviced apartment projects that require a central room control device. It can be considered when a project needs coordinated planning for lighting, curtains, wall panels, sensors, HVAC, and guest service controls.\n\nThe final system architecture must be reviewed against the selected room devices, wiring plan, and project requirements. This draft does not assign unverified circuit counts, protocols, power ratings, or interface specifications.",
+        "key_features": [
+          "Designed for project-based hotel guest room control planning",
+          "Supports coordinated system planning for room devices and control panels",
+          "Can be evaluated with lighting, curtain, sensor, HVAC, and service-control requirements",
+          "Suitable for new-build and room renovation discussions",
+          "Supports technical selection with contractors and system integrators",
+          "Available for project matching and OEM/ODM discussion"
+        ],
+        "application_scenarios": [
+          "Hotel guest room control systems",
+          "Serviced apartment automation",
+          "Guest room renovation projects",
+          "RCU system integration",
+          "OEM/ODM room control projects"
+        ],
+        "b2b_value": [
+          "Provides a central product option for guest room control proposals",
+          "Helps contractors and integrators plan compatible room devices around one control architecture",
+          "Supports distributors preparing project-specific hotel automation packages",
+          "Allows technical requirements to be reviewed before quotation and system matching"
+        ],
+        "oem_odm_notes": "OEM/ODM options may be discussed for enclosure presentation, project matching, labeling, packaging, and supported control requirements. Final scope depends on the confirmed product configuration, quantity, wiring plan, and technical review."
+      },
+      "post_excerpt": "A hotel room control host for project-based integration of guest room lighting, curtains, panels, sensors, HVAC, and service controls.",
+      "product_category": {
+        "name": "RCU Room Control Host",
+        "slug": "rcu-room-control-host",
+        "term_id": 5,
+        "term_status": "exists"
+      },
+      "series_text": null,
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/258f46b8592c7779378baf731fbfee4.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/a91fa4136246a31c7f78c18beb20f42.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/a7e408cba5f85bc1d5fbdcc39a67bdd.png",
+        "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/e71801ec9f829a663de8a2f45a96617.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/客控主机/酒店客房 强电主机控制器网关 客控主机3/3cc4edcb6c350109f5b6ed8342611b0.png",
+          "reason": "Portrait canvas contains excessive white space and presents less product detail than the selected front view."
+        }
+      ],
+      "image_review_status": "not_required",
+      "seo_title": "Hotel Smart Room RCU Host 3 | DualCoreLink",
+      "seo_description": "Hotel smart room RCU host for project-based guest room control planning, serving hotel owners, contractors, system integrators, and OEM/ODM buyers worldwide.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A hotel room control host for project-based integration of guest room lighting, curtains, panels, sensors, HVAC, and service controls.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "",
+        "related_solutions": [
+          "/en/solutions/rcu-room-control-solution/",
+          "/en/solutions/hotel-guest-room-control-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. No confirmed series text. Missing information: Confirmed I/O configuration; Communication protocol; Power input; Wiring diagram; Supported load type; Installation environment; Certification details; Product dimensions; MOQ and lead time. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Confirmed I/O configuration",
+        "Communication protocol",
+        "Power input",
+        "Wiring diagram",
+        "Supported load type",
+        "Installation environment",
+        "Certification details",
+        "Product dimensions",
+        "MOQ and lead time"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "General source presentation contains technical details that have not been independently confirmed",
+        "No confirmed electrical specification",
+        "No confirmed protocol",
+        "No confirmed certification",
+        "Conservative copy required"
+      ],
+      "import_ready": true
+    },
+    {
+      "post_title": "Smart Single-Key Switch Panel",
+      "post_name": "smart-single-key-switch-panel",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Smart Single-Key Switch Panel provides a simple wall-control option for projects that need one clearly assigned control function. Its key function can be reviewed according to the room design and system requirements rather than being limited to one fixed device.</p><p>The panel is suitable for coordinated Smart Series installations in hotels, serviced apartments, villas, and residential projects. Contractors and OEM/ODM buyers can discuss labeling, function assignment, appearance matching, and packaging after the project requirements are confirmed.</p><h2>Key Features</h2><ul><li>Single-key layout for a clear room control action</li><li>Function assignment can be reviewed for project requirements</li><li>Suitable for coordinated Smart Series panel installations</li><li>Applicable to hotel and residential automation projects</li><li>Supports project-specific labeling discussion</li><li>Suitable for distributor and OEM/ODM product programs</li></ul><h2>Application Scenarios</h2><ul><li>Hotel bedside and entrance control</li><li>Serviced apartment automation</li><li>Villa and residential control</li><li>Guest room renovation projects</li><li>OEM/ODM smart panel programs</li></ul><h2>B2B Project Value</h2><ul><li>Offers a straightforward panel option for projects requiring one assigned function</li><li>Helps integrators maintain a coordinated panel appearance across a room</li><li>Supports distributors building configurable smart panel selections</li><li>Allows function and labeling decisions to be made during project review</li></ul><h2>OEM / ODM Project Support</h2><p>Appearance, key labeling, assigned function, panel combination, packaging, and project matching may be discussed. Final availability depends on the selected product type, quantity, and confirmed technical requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Smart Single-Key Switch Panel provides a simple wall-control option for projects that need one clearly assigned control function. Its key function can be reviewed according to the room design and system requirements rather than being limited to one fixed device.\n\nThe panel is suitable for coordinated Smart Series installations in hotels, serviced apartments, villas, and residential projects. Contractors and OEM/ODM buyers can discuss labeling, function assignment, appearance matching, and packaging after the project requirements are confirmed.",
+        "key_features": [
+          "Single-key layout for a clear room control action",
+          "Function assignment can be reviewed for project requirements",
+          "Suitable for coordinated Smart Series panel installations",
+          "Applicable to hotel and residential automation projects",
+          "Supports project-specific labeling discussion",
+          "Suitable for distributor and OEM/ODM product programs"
+        ],
+        "application_scenarios": [
+          "Hotel bedside and entrance control",
+          "Serviced apartment automation",
+          "Villa and residential control",
+          "Guest room renovation projects",
+          "OEM/ODM smart panel programs"
+        ],
+        "b2b_value": [
+          "Offers a straightforward panel option for projects requiring one assigned function",
+          "Helps integrators maintain a coordinated panel appearance across a room",
+          "Supports distributors building configurable smart panel selections",
+          "Allows function and labeling decisions to be made during project review"
+        ],
+        "oem_odm_notes": "Appearance, key labeling, assigned function, panel combination, packaging, and project matching may be discussed. Final availability depends on the selected product type, quantity, and confirmed technical requirements."
+      },
+      "post_excerpt": "A single-key smart switch panel for configurable control functions in hotel rooms, serviced apartments, villas, and residential automation projects.",
+      "product_category": {
+        "name": "Smart Panels & Switches",
+        "slug": "smart-panels-switches",
+        "term_id": 9,
+        "term_status": "exists"
+      },
+      "series_text": "Smart Series",
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/25.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/1.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/单键智能面板/3.png",
+          "reason": "Rear view exposes an unconfirmed power and terminal label; retain internally until specifications are verified."
+        }
+      ],
+      "image_review_status": "not_required",
+      "seo_title": "Smart Single-Key Switch Panel | DualCoreLink",
+      "seo_description": "Smart single-key switch panel for configurable hotel room, apartment, and residential control projects, serving integrators and OEM/ODM buyers worldwide.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A single-key smart switch panel for configurable control functions in hotel rooms, serviced apartments, villas, and residential automation projects.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "Smart Series",
+        "related_solutions": [
+          "/en/solutions/hotel-guest-room-control-solution/",
+          "/en/solutions/oem-odm-custom-panel-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. Series text: Smart Series. Missing information: Electrical rating; Communication protocol; Product dimensions; Material specification; Installation box compatibility; Supported control functions; Certification details; MOQ and lead time; Customization scope. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Electrical rating",
+        "Communication protocol",
+        "Product dimensions",
+        "Material specification",
+        "Installation box compatibility",
+        "Supported control functions",
+        "Certification details",
+        "MOQ and lead time",
+        "Customization scope"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "Image-only source",
+        "No fixed control function confirmed",
+        "No confirmed electrical specification",
+        "No confirmed protocol",
+        "Conservative copy required"
+      ],
+      "import_ready": true
+    },
+    {
+      "post_title": "Smart Three-Key Music Control Panel",
+      "post_name": "smart-three-key-music-control-panel",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Smart Three-Key Music Control Panel offers three physical control positions for music-related actions, scene operation, or other functions defined during project planning. The visible key labels provide a functional example and do not establish an audio protocol or equipment specification.</p><p>It can be included in coordinated Smart Series installations for hotel rooms, serviced apartments, villas, and residential automation. Final key assignments and system compatibility should be confirmed with the contractor or system integrator before quotation.</p><h2>Key Features</h2><ul><li>Three-key layout for music, scene, or project-assigned control</li><li>Physical keys provide direct room-side operation</li><li>Suitable for coordinated Smart Series panel layouts</li><li>Applicable to hospitality and residential automation projects</li><li>Key functions and labels can be reviewed by project</li><li>Supports OEM/ODM panel and packaging discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel guest room music control</li><li>Bedside room control</li><li>Serviced apartment automation</li><li>Villa and residential scene control</li><li>OEM/ODM smart panel projects</li></ul><h2>B2B Project Value</h2><ul><li>Gives integrators a compact physical interface for three assigned actions</li><li>Supports coordinated room-control panel proposals</li><li>Allows distributors to offer a function-configurable panel option</li><li>Keeps final audio and control compatibility within the technical review process</li></ul><h2>OEM / ODM Project Support</h2><p>Key labels, assigned functions, panel appearance, combination layout, packaging, and project matching may be discussed. Final scope depends on quantity, selected control system, and confirmed requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Smart Three-Key Music Control Panel offers three physical control positions for music-related actions, scene operation, or other functions defined during project planning. The visible key labels provide a functional example and do not establish an audio protocol or equipment specification.\n\nIt can be included in coordinated Smart Series installations for hotel rooms, serviced apartments, villas, and residential automation. Final key assignments and system compatibility should be confirmed with the contractor or system integrator before quotation.",
+        "key_features": [
+          "Three-key layout for music, scene, or project-assigned control",
+          "Physical keys provide direct room-side operation",
+          "Suitable for coordinated Smart Series panel layouts",
+          "Applicable to hospitality and residential automation projects",
+          "Key functions and labels can be reviewed by project",
+          "Supports OEM/ODM panel and packaging discussion"
+        ],
+        "application_scenarios": [
+          "Hotel guest room music control",
+          "Bedside room control",
+          "Serviced apartment automation",
+          "Villa and residential scene control",
+          "OEM/ODM smart panel projects"
+        ],
+        "b2b_value": [
+          "Gives integrators a compact physical interface for three assigned actions",
+          "Supports coordinated room-control panel proposals",
+          "Allows distributors to offer a function-configurable panel option",
+          "Keeps final audio and control compatibility within the technical review process"
+        ],
+        "oem_odm_notes": "Key labels, assigned functions, panel appearance, combination layout, packaging, and project matching may be discussed. Final scope depends on quantity, selected control system, and confirmed requirements."
+      },
+      "post_excerpt": "A three-key smart panel for music control, scene operation, or other project-assigned functions in hotel rooms and residential automation projects.",
+      "product_category": {
+        "name": "Smart Panels & Switches",
+        "slug": "smart-panels-switches",
+        "term_id": 9,
+        "term_status": "exists"
+      },
+      "series_text": "Smart Series",
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/1.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/2.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/3.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三键智能面板/5.png",
+          "reason": "Rear view exposes terminal details that could be mistaken for confirmed interface specifications."
+        }
+      ],
+      "image_review_status": "not_required",
+      "seo_title": "Smart Three-Key Music Control Panel | DualCoreLink",
+      "seo_description": "Three-key smart panel for music, scene, or assigned room controls in hotel and residential projects, with project-based OEM/ODM options available worldwide.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A three-key smart panel for music control, scene operation, or other project-assigned functions in hotel rooms and residential automation projects.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "Smart Series",
+        "related_solutions": [
+          "/en/solutions/ai-smart-display-solution/",
+          "/en/solutions/oem-odm-custom-panel-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. Series text: Smart Series. Missing information: Electrical rating; Communication protocol; Audio system compatibility; Supported control functions; Product dimensions; Material specification; Installation box compatibility; Certification details; MOQ and lead time. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Electrical rating",
+        "Communication protocol",
+        "Audio system compatibility",
+        "Supported control functions",
+        "Product dimensions",
+        "Material specification",
+        "Installation box compatibility",
+        "Certification details",
+        "MOQ and lead time"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "Image-only source",
+        "Visible music labels are treated as examples rather than a confirmed fixed interface",
+        "No confirmed audio protocol",
+        "No confirmed wireless function",
+        "Conservative copy required"
+      ],
+      "import_ready": true
+    },
+    {
+      "post_title": "Smart Four-Key Scene Control Panel",
+      "post_name": "smart-four-key-scene-control-panel",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Smart Four-Key Scene Control Panel provides four control positions for room scenes or project-defined switch functions. It can be considered for lighting, curtains, room modes, or other compatible controls after the project function list is confirmed.</p><p>The panel is intended for coordinated hotel room, serviced apartment, villa, and residential automation layouts. Its final protocol, wiring, labels, and assigned functions remain part of the technical selection process.</p><h2>Key Features</h2><ul><li>Four-key layout for scene or project-assigned control</li><li>Suitable for lighting, curtain, and room mode planning</li><li>Physical controls support straightforward guest operation</li><li>Coordinates with Smart Series panel arrangements</li><li>Applicable to hospitality and residential automation</li><li>Supports project-specific labeling and OEM/ODM discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel guest room scene control</li><li>Lighting and curtain control positions</li><li>Serviced apartment automation</li><li>Villa and residential smart control</li><li>OEM/ODM panel programs</li></ul><h2>B2B Project Value</h2><ul><li>Provides one panel position for several frequently used room actions</li><li>Helps integrators organize scene controls in a consistent visual format</li><li>Supports distributors offering configurable panel selections</li><li>Allows key labels and functions to follow the approved project schedule</li></ul><h2>OEM / ODM Project Support</h2><p>Key functions, labels, panel appearance, combination layout, packaging, and project matching may be discussed. Final implementation depends on the selected control system, quantity, and confirmed requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Smart Four-Key Scene Control Panel provides four control positions for room scenes or project-defined switch functions. It can be considered for lighting, curtains, room modes, or other compatible controls after the project function list is confirmed.\n\nThe panel is intended for coordinated hotel room, serviced apartment, villa, and residential automation layouts. Its final protocol, wiring, labels, and assigned functions remain part of the technical selection process.",
+        "key_features": [
+          "Four-key layout for scene or project-assigned control",
+          "Suitable for lighting, curtain, and room mode planning",
+          "Physical controls support straightforward guest operation",
+          "Coordinates with Smart Series panel arrangements",
+          "Applicable to hospitality and residential automation",
+          "Supports project-specific labeling and OEM/ODM discussion"
+        ],
+        "application_scenarios": [
+          "Hotel guest room scene control",
+          "Lighting and curtain control positions",
+          "Serviced apartment automation",
+          "Villa and residential smart control",
+          "OEM/ODM panel programs"
+        ],
+        "b2b_value": [
+          "Provides one panel position for several frequently used room actions",
+          "Helps integrators organize scene controls in a consistent visual format",
+          "Supports distributors offering configurable panel selections",
+          "Allows key labels and functions to follow the approved project schedule"
+        ],
+        "oem_odm_notes": "Key functions, labels, panel appearance, combination layout, packaging, and project matching may be discussed. Final implementation depends on the selected control system, quantity, and confirmed requirements."
+      },
+      "post_excerpt": "A four-key smart scene control panel for configurable lighting, curtain, room mode, and other switch-control functions in B2B automation projects.",
+      "product_category": {
+        "name": "Smart Panels & Switches",
+        "slug": "smart-panels-switches",
+        "term_id": 9,
+        "term_status": "exists"
+      },
+      "series_text": "Smart Series",
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/1.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/3.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/四键智能面板智能开关场景模式面板/5.png",
+          "reason": "Rear view includes unconfirmed terminal markings and is not required for the public gallery."
+        }
+      ],
+      "image_review_status": "not_required",
+      "seo_title": "Smart Four-Key Scene Control Panel | DualCoreLink",
+      "seo_description": "Four-key smart scene panel for lighting, curtain, room mode, and assigned controls in hotel, apartment, villa, and OEM/ODM automation projects worldwide.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A four-key smart scene control panel for configurable lighting, curtain, room mode, and other switch-control functions in B2B automation projects.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "Smart Series",
+        "related_solutions": [
+          "/en/solutions/hotel-guest-room-control-solution/",
+          "/en/solutions/oem-odm-custom-panel-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. Series text: Smart Series. Missing information: Electrical rating; Communication protocol; Supported control functions; Product dimensions; Material specification; Installation box compatibility; Certification details; MOQ and lead time; Customization scope. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Electrical rating",
+        "Communication protocol",
+        "Supported control functions",
+        "Product dimensions",
+        "Material specification",
+        "Installation box compatibility",
+        "Certification details",
+        "MOQ and lead time",
+        "Customization scope"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "Image-only source",
+        "Visible scene labels are examples and may not represent every project configuration",
+        "No confirmed electrical specification",
+        "No confirmed protocol",
+        "Conservative copy required"
+      ],
+      "import_ready": true
+    },
+    {
+      "post_title": "Smart Footlight and Night Light Panel",
+      "post_name": "smart-footlight-night-light-panel",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Smart Footlight and Night Light Panel is intended for low-level guidance and auxiliary lighting in guest rooms and residential spaces. Typical placement may include bedside areas, room entrances, corridors, and other locations where discreet night-time illumination is required.</p><p>The final light source, activation method, electrical requirements, and installation conditions must be confirmed for each project. The panel can be discussed as part of a coordinated Smart Series room design.</p><h2>Key Features</h2><ul><li>Designed for low-level guidance and auxiliary night lighting</li><li>Suitable for bedside, entrance, corridor, and guest room positions</li><li>Wall-panel format for coordinated interior planning</li><li>Can be considered with other Smart Series room panels</li><li>Applicable to hospitality and residential projects</li><li>Supports project matching and OEM/ODM discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel guest room footlights</li><li>Bedside night lighting</li><li>Room entrance and corridor guidance</li><li>Serviced apartment projects</li><li>Villa and residential auxiliary lighting</li></ul><h2>B2B Project Value</h2><ul><li>Adds a dedicated low-level lighting option to room panel packages</li><li>Helps contractors coordinate functional lighting with the panel design</li><li>Supports hospitality projects focused on convenient night-time movement</li><li>Allows appearance and activation requirements to be reviewed by project</li></ul><h2>OEM / ODM Project Support</h2><p>Panel appearance, light opening, activation method, packaging, and project matching may be discussed. Final scope depends on the selected product configuration, quantity, and confirmed installation requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Smart Footlight and Night Light Panel is intended for low-level guidance and auxiliary lighting in guest rooms and residential spaces. Typical placement may include bedside areas, room entrances, corridors, and other locations where discreet night-time illumination is required.\n\nThe final light source, activation method, electrical requirements, and installation conditions must be confirmed for each project. The panel can be discussed as part of a coordinated Smart Series room design.",
+        "key_features": [
+          "Designed for low-level guidance and auxiliary night lighting",
+          "Suitable for bedside, entrance, corridor, and guest room positions",
+          "Wall-panel format for coordinated interior planning",
+          "Can be considered with other Smart Series room panels",
+          "Applicable to hospitality and residential projects",
+          "Supports project matching and OEM/ODM discussion"
+        ],
+        "application_scenarios": [
+          "Hotel guest room footlights",
+          "Bedside night lighting",
+          "Room entrance and corridor guidance",
+          "Serviced apartment projects",
+          "Villa and residential auxiliary lighting"
+        ],
+        "b2b_value": [
+          "Adds a dedicated low-level lighting option to room panel packages",
+          "Helps contractors coordinate functional lighting with the panel design",
+          "Supports hospitality projects focused on convenient night-time movement",
+          "Allows appearance and activation requirements to be reviewed by project"
+        ],
+        "oem_odm_notes": "Panel appearance, light opening, activation method, packaging, and project matching may be discussed. Final scope depends on the selected product configuration, quantity, and confirmed installation requirements."
+      },
+      "post_excerpt": "A wall-mounted footlight and night light panel for low-level guidance lighting in hotel rooms, corridors, bedside areas, and residential projects.",
+      "product_category": {
+        "name": "Smart Panels & Switches",
+        "slug": "smart-panels-switches",
+        "term_id": 9,
+        "term_status": "exists"
+      },
+      "series_text": "Smart Series",
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/1.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/3.png",
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/地脚灯小夜灯/5.png"
+      ],
+      "excluded_images": [],
+      "image_review_status": "not_required",
+      "seo_title": "Smart Footlight and Night Light Panel | DualCoreLink",
+      "seo_description": "Wall-mounted footlight and night light panel for hotel rooms, bedside areas, corridors, apartments, and coordinated smart panel projects, with OEM/ODM options.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A wall-mounted footlight and night light panel for low-level guidance lighting in hotel rooms, corridors, bedside areas, and residential projects.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "Smart Series",
+        "related_solutions": [
+          "/en/solutions/hotel-guest-room-control-solution/",
+          "/en/solutions/smart-hotel-automation-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. Series text: Smart Series. Missing information: Electrical rating; Light source specification; Light output; Color temperature; Activation method; Product dimensions; Material specification; Installation box compatibility; Certification details; MOQ and lead time. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Electrical rating",
+        "Light source specification",
+        "Light output",
+        "Color temperature",
+        "Activation method",
+        "Product dimensions",
+        "Material specification",
+        "Installation box compatibility",
+        "Certification details",
+        "MOQ and lead time"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "Image-only source",
+        "No confirmed light source specification",
+        "No confirmed sensor or activation method",
+        "No confirmed electrical specification",
+        "Conservative copy required"
+      ],
+      "import_ready": true
+    },
+    {
+      "post_title": "Smart Series Dual Vertical Socket Panel",
+      "post_name": "smart-series-dual-vertical-socket-panel",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Smart Series Dual Vertical Socket Panel combines two vertically oriented socket positions in one coordinated panel arrangement. It is intended for hospitality and residential projects where socket placement and panel appearance need to follow the room design.</p><p>Regional socket compatibility, electrical ratings, wiring, and installation requirements must be confirmed before technical selection. The product can be reviewed alongside other Smart Series panels for a consistent project presentation.</p><h2>Key Features</h2><ul><li>Dual vertical socket arrangement for coordinated room layouts</li><li>Smart Series appearance for consistent panel selection</li><li>Suitable for hotel rooms, apartments, villas, and residences</li><li>Can be planned with switch and room control panels</li><li>Supports project-based socket configuration review</li><li>Available for distributor and OEM/ODM discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel bedside and work-area power access</li><li>Serviced apartment projects</li><li>Villa and residential interiors</li><li>Smart room panel packages</li><li>OEM/ODM socket panel programs</li></ul><h2>B2B Project Value</h2><ul><li>Provides a coordinated dual-socket option for room packages</li><li>Helps contractors align power access with the selected panel style</li><li>Supports distributors building consistent socket and switch collections</li><li>Keeps regional electrical requirements within the project confirmation process</li></ul><h2>OEM / ODM Project Support</h2><p>Socket format, panel appearance, arrangement, labeling, packaging, and project matching may be discussed. Final availability depends on the target market, quantity, and confirmed electrical requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Smart Series Dual Vertical Socket Panel combines two vertically oriented socket positions in one coordinated panel arrangement. It is intended for hospitality and residential projects where socket placement and panel appearance need to follow the room design.\n\nRegional socket compatibility, electrical ratings, wiring, and installation requirements must be confirmed before technical selection. The product can be reviewed alongside other Smart Series panels for a consistent project presentation.",
+        "key_features": [
+          "Dual vertical socket arrangement for coordinated room layouts",
+          "Smart Series appearance for consistent panel selection",
+          "Suitable for hotel rooms, apartments, villas, and residences",
+          "Can be planned with switch and room control panels",
+          "Supports project-based socket configuration review",
+          "Available for distributor and OEM/ODM discussion"
+        ],
+        "application_scenarios": [
+          "Hotel bedside and work-area power access",
+          "Serviced apartment projects",
+          "Villa and residential interiors",
+          "Smart room panel packages",
+          "OEM/ODM socket panel programs"
+        ],
+        "b2b_value": [
+          "Provides a coordinated dual-socket option for room packages",
+          "Helps contractors align power access with the selected panel style",
+          "Supports distributors building consistent socket and switch collections",
+          "Keeps regional electrical requirements within the project confirmation process"
+        ],
+        "oem_odm_notes": "Socket format, panel appearance, arrangement, labeling, packaging, and project matching may be discussed. Final availability depends on the target market, quantity, and confirmed electrical requirements."
+      },
+      "post_excerpt": "A dual vertical socket panel from the Smart Series for coordinated power access in hotel rooms, apartments, villas, and residential projects.",
+      "product_category": {
+        "name": "Smart Sockets & Power Modules",
+        "slug": "smart-sockets-power-modules",
+        "term_id": 6,
+        "term_status": "exists"
+      },
+      "series_text": "Smart Series",
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/1.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/3.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排竖孔插座/5.png",
+          "reason": "Rear view contains electrical markings that have not been confirmed for public specification use."
+        }
+      ],
+      "image_review_status": "not_required",
+      "seo_title": "Smart Series Dual Vertical Socket Panel | DualCoreLink",
+      "seo_description": "Dual vertical socket panel for coordinated hotel room, apartment, villa, and residential projects, with project-based OEM/ODM discussion available worldwide.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A dual vertical socket panel from the Smart Series for coordinated power access in hotel rooms, apartments, villas, and residential projects.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "Smart Series",
+        "related_solutions": [
+          "/en/solutions/hotel-guest-room-control-solution/",
+          "/en/solutions/oem-odm-custom-panel-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. Series text: Smart Series. Missing information: Socket standard and target market; Electrical rating; Power and load requirements; Product dimensions; Material specification; Installation box compatibility; Certification details; MOQ and lead time; Customization scope. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Socket standard and target market",
+        "Electrical rating",
+        "Power and load requirements",
+        "Product dimensions",
+        "Material specification",
+        "Installation box compatibility",
+        "Certification details",
+        "MOQ and lead time",
+        "Customization scope"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "Image-only source",
+        "Regional socket standard not confirmed",
+        "No confirmed electrical specification",
+        "No confirmed certification",
+        "Conservative copy required"
+      ],
+      "import_ready": true
+    },
+    {
+      "post_title": "Borui Red Matte Triple Socket Panel",
+      "post_name": "borui-red-matte-triple-socket-panel",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Borui Red Matte Triple Socket Panel presents three socket positions within a coordinated red matte panel assembly. It is intended for hotel rooms, serviced apartments, villas, and residential projects where multiple power-access points need to share one visual treatment.</p><p>Any labels visible in the source images are not treated as confirmed public specifications. Socket standards, electrical ratings, internal configuration, and target-market compliance must be reviewed before quotation or import.</p><h2>Key Features</h2><ul><li>Triple socket arrangement in one coordinated panel assembly</li><li>Borui Series red matte appearance</li><li>Suitable for hotel and residential project interiors</li><li>Can be coordinated with other Borui Series room panels</li><li>Supports project-based socket selection and layout review</li><li>Available for OEM/ODM appearance and packaging discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel bedside and work-area power access</li><li>Serviced apartment projects</li><li>Villa and residential interiors</li><li>Coordinated Borui Series panel packages</li><li>OEM/ODM socket panel projects</li></ul><h2>B2B Project Value</h2><ul><li>Offers multiple socket positions with a consistent panel finish</li><li>Helps contractors coordinate power access with the room design</li><li>Supports distributors presenting a broader Borui Series selection</li><li>Allows socket and compliance requirements to be reviewed for each target market</li></ul><h2>OEM / ODM Project Support</h2><p>Panel finish, socket arrangement, target-market format, labeling, packaging, and project matching may be discussed. Final scope depends on quantity and confirmed electrical and compliance requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Borui Red Matte Triple Socket Panel presents three socket positions within a coordinated red matte panel assembly. It is intended for hotel rooms, serviced apartments, villas, and residential projects where multiple power-access points need to share one visual treatment.\n\nAny labels visible in the source images are not treated as confirmed public specifications. Socket standards, electrical ratings, internal configuration, and target-market compliance must be reviewed before quotation or import.",
+        "key_features": [
+          "Triple socket arrangement in one coordinated panel assembly",
+          "Borui Series red matte appearance",
+          "Suitable for hotel and residential project interiors",
+          "Can be coordinated with other Borui Series room panels",
+          "Supports project-based socket selection and layout review",
+          "Available for OEM/ODM appearance and packaging discussion"
+        ],
+        "application_scenarios": [
+          "Hotel bedside and work-area power access",
+          "Serviced apartment projects",
+          "Villa and residential interiors",
+          "Coordinated Borui Series panel packages",
+          "OEM/ODM socket panel projects"
+        ],
+        "b2b_value": [
+          "Offers multiple socket positions with a consistent panel finish",
+          "Helps contractors coordinate power access with the room design",
+          "Supports distributors presenting a broader Borui Series selection",
+          "Allows socket and compliance requirements to be reviewed for each target market"
+        ],
+        "oem_odm_notes": "Panel finish, socket arrangement, target-market format, labeling, packaging, and project matching may be discussed. Final scope depends on quantity and confirmed electrical and compliance requirements."
+      },
+      "post_excerpt": "A Borui Series red matte triple socket panel for coordinated power access and a consistent visual finish in hotel and residential projects.",
+      "product_category": {
+        "name": "Smart Sockets & Power Modules",
+        "slug": "smart-sockets-power-modules",
+        "term_id": 6,
+        "term_status": "exists"
+      },
+      "series_text": "Borui Series",
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/1.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/4.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/5.png",
+          "reason": "Rear view clearly exposes unconfirmed electrical rating labels; exclude until verified."
+        }
+      ],
+      "image_review_status": "confirmed_by_user",
+      "seo_title": "Borui Red Matte Triple Socket Panel | DualCoreLink",
+      "seo_description": "Borui Series red matte triple socket panel for coordinated hotel room, serviced apartment, villa, and OEM/ODM electrical product projects for overseas buyers.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A Borui Series red matte triple socket panel for coordinated power access and a consistent visual finish in hotel and residential projects.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "Borui Series",
+        "related_solutions": [
+          "/en/solutions/hotel-guest-room-control-solution/",
+          "/en/solutions/oem-odm-custom-panel-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. Series text: Borui Series. Missing information: Socket standard and target market; Electrical rating; Power and load requirements; Internal socket configuration; Product dimensions; Material specification; Installation requirements; Certification details; MOQ and lead time. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Socket standard and target market",
+        "Electrical rating",
+        "Power and load requirements",
+        "Internal socket configuration",
+        "Product dimensions",
+        "Material specification",
+        "Installation requirements",
+        "Certification details",
+        "MOQ and lead time"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "Image-only source",
+        "No confirmed electrical specification",
+        "No confirmed certification",
+        "Conservative copy required",
+        "Visible USB output label is confirmed by user as real and public.",
+        "Do not expand the visible label into additional unconfirmed technical specifications."
+      ],
+      "import_ready": true
+    },
+    {
+      "post_title": "Brushed Aluminum Voice and Telephone Information Panel",
+      "post_name": "brushed-aluminum-voice-telephone-information-panel",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Brushed Aluminum Voice and Telephone Information Panel is an appearance variant for projects requiring coordinated low-voltage information connection points. It can be considered for hotel rooms, serviced apartments, offices, and other interiors where voice or telephone-related interfaces need to match a brushed metal panel series.</p><p>The exact connector type, wiring standard, signal compatibility, and regional requirements are not confirmed in the source material. These details must be reviewed during project selection rather than inferred from the product appearance.</p><h2>Key Features</h2><ul><li>Brushed aluminum appearance for coordinated project interiors</li><li>Panel format for voice, telephone, or information connection planning</li><li>Suitable for hotel rooms, apartments, and office projects</li><li>Can be coordinated with other Brushed Aluminum Series panels</li><li>Provides an appearance variant of an existing functional product type</li><li>Supports OEM/ODM labeling, packaging, and project matching discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel guest room information connection points</li><li>Serviced apartment low-voltage installations</li><li>Office and meeting-room projects</li><li>Coordinated brushed metal panel packages</li><li>OEM/ODM hotel panel programs</li></ul><h2>B2B Project Value</h2><ul><li>Provides a brushed aluminum option for coordinated room panel schedules</li><li>Helps contractors align low-voltage connection points with the selected finish</li><li>Expands distributor offerings without claiming a different unverified interface standard</li><li>Supports project-specific labeling and connector confirmation</li></ul><h2>OEM / ODM Project Support</h2><p>Panel finish, interface labeling, connector selection, arrangement, packaging, and project matching may be discussed. Final scope depends on confirmed interface standards, quantity, and installation requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Brushed Aluminum Voice and Telephone Information Panel is an appearance variant for projects requiring coordinated low-voltage information connection points. It can be considered for hotel rooms, serviced apartments, offices, and other interiors where voice or telephone-related interfaces need to match a brushed metal panel series.\n\nThe exact connector type, wiring standard, signal compatibility, and regional requirements are not confirmed in the source material. These details must be reviewed during project selection rather than inferred from the product appearance.",
+        "key_features": [
+          "Brushed aluminum appearance for coordinated project interiors",
+          "Panel format for voice, telephone, or information connection planning",
+          "Suitable for hotel rooms, apartments, and office projects",
+          "Can be coordinated with other Brushed Aluminum Series panels",
+          "Provides an appearance variant of an existing functional product type",
+          "Supports OEM/ODM labeling, packaging, and project matching discussion"
+        ],
+        "application_scenarios": [
+          "Hotel guest room information connection points",
+          "Serviced apartment low-voltage installations",
+          "Office and meeting-room projects",
+          "Coordinated brushed metal panel packages",
+          "OEM/ODM hotel panel programs"
+        ],
+        "b2b_value": [
+          "Provides a brushed aluminum option for coordinated room panel schedules",
+          "Helps contractors align low-voltage connection points with the selected finish",
+          "Expands distributor offerings without claiming a different unverified interface standard",
+          "Supports project-specific labeling and connector confirmation"
+        ],
+        "oem_odm_notes": "Panel finish, interface labeling, connector selection, arrangement, packaging, and project matching may be discussed. Final scope depends on confirmed interface standards, quantity, and installation requirements."
+      },
+      "post_excerpt": "A brushed aluminum voice and telephone information panel for coordinated low-voltage connection points in hotel rooms, offices, and project interiors.",
+      "product_category": {
+        "name": "Smart Sockets & Power Modules",
+        "slug": "smart-sockets-power-modules",
+        "term_id": 6,
+        "term_status": "exists"
+      },
+      "series_text": "Brushed Aluminum Series",
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4398_pixian_ai.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4399_pixian_ai.png",
+        "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4400_pixian_ai.png"
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝语音信息面板电话插座/_INK4402_pixian_ai.png",
+          "reason": "Rear view visibly identifies an interface category that remains unconfirmed in the product draft."
+        }
+      ],
+      "image_review_status": "not_required",
+      "seo_title": "Brushed Aluminum Voice and Telephone Information Panel | DualCoreLink",
+      "seo_description": "Brushed aluminum voice and telephone information panel for coordinated hotel room, apartment, office, and OEM/ODM low-voltage projects for overseas buyers.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A brushed aluminum voice and telephone information panel for coordinated low-voltage connection points in hotel rooms, offices, and project interiors.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "Brushed Aluminum Series",
+        "related_solutions": [
+          "/en/solutions/hotel-guest-room-control-solution/",
+          "/en/solutions/oem-odm-custom-panel-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/",
+          "/en/case-studies/overseas-oem-odm-smart-panel-customization-project/"
+        ],
+        "product_internal_notes": "Fourth-batch draft import. Series text: Brushed Aluminum Series. Missing information: Connector type and interface standard; Supported signal type; Wiring requirements; Product dimensions; Material specification; Installation box compatibility; Certification details; MOQ and lead time; Customization scope. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Connector type and interface standard",
+        "Supported signal type",
+        "Wiring requirements",
+        "Product dimensions",
+        "Material specification",
+        "Installation box compatibility",
+        "Certification details",
+        "MOQ and lead time",
+        "Customization scope"
+      ],
+      "import_notes": [
+        "Import as draft only.",
+        "Use the existing product category term; do not create a category.",
+        "Do not write product_series taxonomy.",
+        "Do not enable Product JSON-LD.",
+        "Do not populate price, offer, review, rating, aggregateRating, or inventory fields.",
+        "Upload and bind only the mapped featured and gallery image candidates."
+      ],
+      "risk_notes": [
+        "Image-only source",
+        "Functional overlap with Smart Voice and Telephone Information Socket; retained as a Brushed Aluminum Series appearance variant",
+        "No confirmed connector standard",
+        "No confirmed electrical or signal specification",
+        "Conservative copy required"
+      ],
+      "import_ready": true
+    }
+  ]
+}

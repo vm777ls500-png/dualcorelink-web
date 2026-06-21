@@ -501,258 +501,405 @@
         "static_path":  "/media/wordpress/2026/06/smart-curtain-motor-1-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-curtain-motor-1-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-curtain-motor-1-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-curtain-motor-2.png",
         "static_path":  "/media/wordpress/2026/06/smart-curtain-motor-2.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-curtain-motor-2.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-curtain-motor-2.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-curtain-motor-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/smart-curtain-motor-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-curtain-motor-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-curtain-motor-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-curtain-motor-4.png",
         "static_path":  "/media/wordpress/2026/06/smart-curtain-motor-4.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-curtain-motor-4.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-curtain-motor-4.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-curtain-motor-5-scaled.png",
         "static_path":  "/media/wordpress/2026/06/smart-curtain-motor-5-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-curtain-motor-5-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-curtain-motor-5-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-smart-room-rcu-host-2-1-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-smart-room-rcu-host-2-1-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-smart-room-rcu-host-2-1-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-smart-room-rcu-host-2-1-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-smart-room-rcu-host-2-2-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-smart-room-rcu-host-2-2-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-smart-room-rcu-host-2-2-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-smart-room-rcu-host-2-2-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-smart-room-rcu-host-2-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-smart-room-rcu-host-2-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-smart-room-rcu-host-2-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-smart-room-rcu-host-2-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-delivery-robot-charging-dock-1-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-delivery-robot-charging-dock-1-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-delivery-robot-charging-dock-1-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-delivery-robot-charging-dock-1-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-delivery-robot-charging-dock-2-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-delivery-robot-charging-dock-2-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-delivery-robot-charging-dock-2-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-delivery-robot-charging-dock-2-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-delivery-robot-charging-dock-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-delivery-robot-charging-dock-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-delivery-robot-charging-dock-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-delivery-robot-charging-dock-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-delivery-robot-charging-dock-4-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-delivery-robot-charging-dock-4-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-delivery-robot-charging-dock-4-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-delivery-robot-charging-dock-4-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-delivery-robot-charging-dock-5-scaled.png",
         "static_path":  "/media/wordpress/2026/06/hotel-delivery-robot-charging-dock-5-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-delivery-robot-charging-dock-5-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-delivery-robot-charging-dock-5-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-usb-five-hole-socket-1.png",
         "static_path":  "/media/wordpress/2026/06/borui-red-matte-usb-five-hole-socket-1.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-usb-five-hole-socket-1.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-usb-five-hole-socket-1.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-usb-five-hole-socket-2-scaled.png",
         "static_path":  "/media/wordpress/2026/06/borui-red-matte-usb-five-hole-socket-2-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-usb-five-hole-socket-2-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-usb-five-hole-socket-2-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-usb-five-hole-socket-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/borui-red-matte-usb-five-hole-socket-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-usb-five-hole-socket-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-usb-five-hole-socket-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-room-status-four-key-switch-panel-1.png",
         "static_path":  "/media/wordpress/2026/06/borui-red-matte-room-status-four-key-switch-panel-1.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-room-status-four-key-switch-panel-1.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-room-status-four-key-switch-panel-1.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-room-status-four-key-switch-panel-2-scaled.png",
         "static_path":  "/media/wordpress/2026/06/borui-red-matte-room-status-four-key-switch-panel-2-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-room-status-four-key-switch-panel-2-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-room-status-four-key-switch-panel-2-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-room-status-four-key-switch-panel-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/borui-red-matte-room-status-four-key-switch-panel-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-room-status-four-key-switch-panel-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-room-status-four-key-switch-panel-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/vintage-gold-key-card-energy-saver-panel-1.png",
         "static_path":  "/media/wordpress/2026/06/vintage-gold-key-card-energy-saver-panel-1.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\vintage-gold-key-card-energy-saver-panel-1.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\vintage-gold-key-card-energy-saver-panel-1.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/vintage-gold-key-card-energy-saver-panel-2.png",
         "static_path":  "/media/wordpress/2026/06/vintage-gold-key-card-energy-saver-panel-2.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\vintage-gold-key-card-energy-saver-panel-2.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\vintage-gold-key-card-energy-saver-panel-2.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/vintage-gold-key-card-energy-saver-panel-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/vintage-gold-key-card-energy-saver-panel-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\vintage-gold-key-card-energy-saver-panel-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\vintage-gold-key-card-energy-saver-panel-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/vintage-gold-four-key-smart-switch-panel-1.png",
         "static_path":  "/media/wordpress/2026/06/vintage-gold-four-key-smart-switch-panel-1.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\vintage-gold-four-key-smart-switch-panel-1.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\vintage-gold-four-key-smart-switch-panel-1.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/vintage-gold-four-key-smart-switch-panel-2.png",
         "static_path":  "/media/wordpress/2026/06/vintage-gold-four-key-smart-switch-panel-2.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\vintage-gold-four-key-smart-switch-panel-2.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\vintage-gold-four-key-smart-switch-panel-2.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/vintage-gold-four-key-smart-switch-panel-3.png",
         "static_path":  "/media/wordpress/2026/06/vintage-gold-four-key-smart-switch-panel-3.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\vintage-gold-four-key-smart-switch-panel-3.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\vintage-gold-four-key-smart-switch-panel-3.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/vintage-gold-four-key-smart-switch-panel-4.png",
         "static_path":  "/media/wordpress/2026/06/vintage-gold-four-key-smart-switch-panel-4.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\vintage-gold-four-key-smart-switch-panel-4.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\vintage-gold-four-key-smart-switch-panel-4.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-sos-alarm-panel-1.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-sos-alarm-panel-1.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-sos-alarm-panel-1.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-sos-alarm-panel-1.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-sos-alarm-panel-2-scaled.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-sos-alarm-panel-2-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-sos-alarm-panel-2-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-sos-alarm-panel-2-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-sos-alarm-panel-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-sos-alarm-panel-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-sos-alarm-panel-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-sos-alarm-panel-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-sos-alarm-panel-4-scaled.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-sos-alarm-panel-4-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-sos-alarm-panel-4-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-sos-alarm-panel-4-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-thermostat-control-panel-1-scaled.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-thermostat-control-panel-1-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-thermostat-control-panel-1-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-thermostat-control-panel-1-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-thermostat-control-panel-2-scaled.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-thermostat-control-panel-2-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-thermostat-control-panel-2-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-thermostat-control-panel-2-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-thermostat-control-panel-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-thermostat-control-panel-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-thermostat-control-panel-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-thermostat-control-panel-3-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-thermostat-control-panel-4-scaled.png",
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-thermostat-control-panel-4-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-thermostat-control-panel-4-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-thermostat-control-panel-4-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-voice-telephone-information-socket-1-scaled.png",
         "static_path":  "/media/wordpress/2026/06/smart-voice-telephone-information-socket-1-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-voice-telephone-information-socket-1-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-voice-telephone-information-socket-1-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-voice-telephone-information-socket-2-scaled.png",
         "static_path":  "/media/wordpress/2026/06/smart-voice-telephone-information-socket-2-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-voice-telephone-information-socket-2-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-voice-telephone-information-socket-2-scaled.png",
-        "status":  "copied"
+        "status":  "skipped"
     },
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-voice-telephone-information-socket-3-scaled.png",
         "static_path":  "/media/wordpress/2026/06/smart-voice-telephone-information-socket-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-voice-telephone-information-socket-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\smart-voice-telephone-information-socket-3-scaled.png",
+        "status":  "skipped"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-smart-room-rcu-host-3-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/hotel-smart-room-rcu-host-3-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-smart-room-rcu-host-3-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-smart-room-rcu-host-3-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-smart-room-rcu-host-3-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/hotel-smart-room-rcu-host-3-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-smart-room-rcu-host-3-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-smart-room-rcu-host-3-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-smart-room-rcu-host-3-3-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/hotel-smart-room-rcu-host-3-3-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-smart-room-rcu-host-3-3-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-smart-room-rcu-host-3-3-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-smart-room-rcu-host-3-4-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/hotel-smart-room-rcu-host-3-4-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-smart-room-rcu-host-3-4-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-smart-room-rcu-host-3-4-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-single-key-switch-panel-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-single-key-switch-panel-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-single-key-switch-panel-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-single-key-switch-panel-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-single-key-switch-panel-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-single-key-switch-panel-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-single-key-switch-panel-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-single-key-switch-panel-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-three-key-music-control-panel-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-three-key-music-control-panel-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-three-key-music-control-panel-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-three-key-music-control-panel-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-three-key-music-control-panel-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-three-key-music-control-panel-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-three-key-music-control-panel-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-three-key-music-control-panel-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-three-key-music-control-panel-3-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-three-key-music-control-panel-3-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-three-key-music-control-panel-3-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-three-key-music-control-panel-3-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-four-key-scene-control-panel-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-four-key-scene-control-panel-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-four-key-scene-control-panel-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-four-key-scene-control-panel-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-four-key-scene-control-panel-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-four-key-scene-control-panel-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-four-key-scene-control-panel-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-four-key-scene-control-panel-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-footlight-night-light-panel-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-footlight-night-light-panel-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-footlight-night-light-panel-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-footlight-night-light-panel-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-footlight-night-light-panel-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-footlight-night-light-panel-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-footlight-night-light-panel-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-footlight-night-light-panel-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-footlight-night-light-panel-3-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-footlight-night-light-panel-3-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-footlight-night-light-panel-3-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-footlight-night-light-panel-3-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-series-dual-vertical-socket-panel-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-series-dual-vertical-socket-panel-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-series-dual-vertical-socket-panel-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-series-dual-vertical-socket-panel-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/smart-series-dual-vertical-socket-panel-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/smart-series-dual-vertical-socket-panel-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\smart-series-dual-vertical-socket-panel-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\smart-series-dual-vertical-socket-panel-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-triple-socket-panel-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/borui-red-matte-triple-socket-panel-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-triple-socket-panel-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-triple-socket-panel-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/borui-red-matte-triple-socket-panel-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/borui-red-matte-triple-socket-panel-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\borui-red-matte-triple-socket-panel-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\borui-red-matte-triple-socket-panel-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-voice-telephone-information-panel-1-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/brushed-aluminum-voice-telephone-information-panel-1-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-1-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-1-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-voice-telephone-information-panel-2-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/brushed-aluminum-voice-telephone-information-panel-2-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-2-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-2-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/brushed-aluminum-voice-telephone-information-panel-3-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/brushed-aluminum-voice-telephone-information-panel-3-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-3-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-3-scaled.png",
         "status":  "copied"
     }
 ]

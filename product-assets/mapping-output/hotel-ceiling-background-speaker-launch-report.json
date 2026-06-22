@@ -1,0 +1,66 @@
+{
+  "report_type": "product_launch_completion",
+  "generated_at": "2026-06-22",
+  "product": {
+    "title": "Hotel Ceiling Background Speaker",
+    "slug": "hotel-ceiling-background-speaker",
+    "wordpress_id": 238,
+    "status": "publish",
+    "category": {
+      "name": "Hotel Audio & Communication Devices",
+      "term_id": 11
+    },
+    "featured_media_id": 235,
+    "gallery_media_ids": [236, 237],
+    "production_url": "https://dualcorelink.com/en/products/hotel-ceiling-background-speaker/"
+  },
+  "final_website_status": {
+    "published_products": 36,
+    "media": 132,
+    "categories": 10,
+    "sitemap_url_count": 54,
+    "pages_build_generated": 130,
+    "pages_build_expected": 130,
+    "products_list_count": 36,
+    "product_json_ld_pages": 0,
+    "total_product_pages": 36,
+    "cloudflare_pages_deployed": true,
+    "production_product_http_status": 200
+  },
+  "added_static_media": [
+    "/media/wordpress/2026/06/hotel-ceiling-background-speaker-angled-view-scaled.png",
+    "/media/wordpress/2026/06/hotel-ceiling-background-speaker-front-view-scaled.png",
+    "/media/wordpress/2026/06/hotel-ceiling-background-speaker-alternate-front-view-scaled.png"
+  ],
+  "git": {
+    "commit_message": "feat: add hotel ceiling background speaker",
+    "commit_hash": "a467e371cf6b6b6fd272d9d845be1d9429551ffa",
+    "remote_branch": "origin/main",
+    "remote_synced": true
+  },
+  "risk_controls": {
+    "back_label_image_public": false,
+    "unverified_parameters_published": false,
+    "unverified_parameters": ["6.5-inch", "8-ohm", "10 W", "165 mm"],
+    "price_present": false,
+    "stock_present": false,
+    "offer_schema_present": false,
+    "review_schema_present": false,
+    "rating_schema_present": false,
+    "aggregate_rating_present": false,
+    "product_json_ld_enabled": false,
+    "wp_content_uploads_url_present": false,
+    "localhost_url_present": false,
+    "loopback_url_present": false,
+    "pages_dev_url_present": false
+  },
+  "follow_up_recommendations": [
+    "Submit https://dualcorelink.com/sitemap.xml in Google Search Console.",
+    "Use multi-gang combination panels as OEM/ODM configuration display material rather than standard product SKUs.",
+    "Use doorplate and room-status display materials as project display content rather than standard product SKUs."
+  ],
+  "conclusion": {
+    "code": "A",
+    "message": "The Hotel Ceiling Background Speaker launch workflow is complete and the project can proceed to the next stage."
+  }
+}

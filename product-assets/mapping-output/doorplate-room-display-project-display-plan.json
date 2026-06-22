@@ -1,0 +1,563 @@
+{
+  "plan_type": "doorplate_room_display_project_display_plan",
+  "generated_at": "2026-06-22",
+  "scope": {
+    "source_images_reviewed": 18,
+    "source_groups_reviewed": 4,
+    "recommended_public_images": 8,
+    "modifies_wordpress": false,
+    "creates_products": false,
+    "creates_product_pages": false,
+    "creates_categories": false,
+    "creates_taxonomy": false,
+    "creates_sitemap_urls": false,
+    "modifies_frontend_in_this_stage": false,
+    "runs_build_in_this_stage": false,
+    "deploys_in_this_stage": false,
+    "creates_git_commit": false
+  },
+  "source_inventory": [
+    {
+      "group_id": "86-base-group",
+      "group": "86-Base Doorplate / Room Display Group",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/门牌/86底座智能门显",
+      "source_image_count": 4,
+      "visible_text_or_brand": [
+        "Visible hotel branding"
+      ],
+      "room_number": "Visible room number",
+      "product_type": "Wide black room-number, doorbell, and service-status display",
+      "notes": "Three front or angled views and one rear construction view. The photographs are isolated product references rather than installed hotel-environment photographs."
+    },
+    {
+      "group_id": "brushed-silver-group",
+      "group": "Brushed Silver Doorplate / Room Display Group",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显",
+      "source_image_count": 5,
+      "visible_text_or_brand": [
+        "Visible hotel branding"
+      ],
+      "room_number": "Visible room number",
+      "product_type": "Brushed silver recessed room-number and service-status doorplate display",
+      "notes": "Four front or angled views and one rear construction view. One front image has a visible top-edge image artifact."
+    },
+    {
+      "group_id": "hotel-guest-room-display-group",
+      "group": "Hotel Guest Room Display Group",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/门牌/酒店客房智能门牌门显",
+      "source_image_count": 4,
+      "visible_text_or_brand": [
+        "Visible hotel branding"
+      ],
+      "room_number": "Visible room number",
+      "product_type": "Dark glass room-status display with guest service and doorbell interface examples",
+      "notes": "Three front or angled views and one rear construction view. Branding is prominent, so this group must not be used as a hero or customer endorsement."
+    },
+    {
+      "group_id": "brushed-aluminum-group",
+      "group": "Brushed Aluminum Doorplate / Room Display Group",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显",
+      "source_image_count": 5,
+      "visible_text_or_brand": [
+        "Visible hotel branding"
+      ],
+      "room_number": "Visible room number",
+      "product_type": "Wide brushed aluminum room-number, doorbell, and service-status display",
+      "notes": "Four front or angled views and one rear construction view. The files are project-style product references without a visible installed room environment."
+    }
+  ],
+  "public_suitability": [
+    {
+      "group": "86-Base Doorplate / Room Display Group",
+      "public_suitable": true,
+      "reason": "Clear front and angled product views communicate a long-format room display configuration.",
+      "risk": "A hotel brand and room number are visible and may be misunderstood as a customer reference or standard SKU.",
+      "handling": "Use only inside a Project Display Reference section, add the full disclaimer, avoid brand language in headings and ALT text, and exclude the rear image."
+    },
+    {
+      "group": "Brushed Silver Doorplate / Room Display Group",
+      "public_suitable": true,
+      "reason": "The finish and recessed number-window format add useful material and layout variety.",
+      "risk": "A hotel brand and room number are visible; one front image has an image artifact and the rear image exposes construction details.",
+      "handling": "Use two cleaner angled views, exclude the artifact-heavy front view and rear view, and retain project-reference framing."
+    },
+    {
+      "group": "Hotel Guest Room Display Group",
+      "public_suitable": true,
+      "reason": "The dark glass format clearly shows guest-service and room-status interface examples.",
+      "risk": "Branding is prominent and could be interpreted as a customer endorsement.",
+      "handling": "Do not use as a hero, do not name the visible brand in copy or ALT text, and state that visible branding is application-context content only."
+    },
+    {
+      "group": "Brushed Aluminum Doorplate / Room Display Group",
+      "public_suitable": true,
+      "reason": "The wide brushed-metal format complements the other finishes and shows a separate doorbell, service, and number layout.",
+      "risk": "A hotel brand and room number are visible and multiple angles are similar.",
+      "handling": "Use one front and one angled view, omit near-duplicates and the rear image, and apply the mandatory disclaimer."
+    }
+  ],
+  "display_location_assessment": [
+    {
+      "display_location": "Hotel Guest Room Control Solution page",
+      "recommended": "primary",
+      "pros": [
+        "Directly supports room control, service status, doorbell, and room-identification planning",
+        "Keeps the materials in project context rather than a product catalog",
+        "Uses an existing indexed URL"
+      ],
+      "risks": [
+        "Branding and room numbers require careful project-reference framing"
+      ],
+      "notes": "Recommended first-release location as a Room Signage & Door Display Project References section."
+    },
+    {
+      "display_location": "OEM/ODM Custom Panel Solution page",
+      "recommended": "secondary_later",
+      "pros": [
+        "Supports customization discussion"
+      ],
+      "risks": [
+        "Repeats visual content already planned for the hotel room Solution page"
+      ],
+      "notes": "Consider a later text link or two-image teaser rather than duplicating the full gallery."
+    },
+    {
+      "display_location": "Case Studies page",
+      "recommended": "no",
+      "pros": [
+        "Project visuals could add context"
+      ],
+      "risks": [
+        "There is no authorized project narrative or confirmed customer relationship"
+      ],
+      "notes": "Do not present as a Case Study without documented project authorization and background."
+    },
+    {
+      "display_location": "Homepage",
+      "recommended": "no_first_release",
+      "pros": [
+        "High visibility"
+      ],
+      "risks": [
+        "Prominent brand imagery can imply endorsement and adds page weight"
+      ],
+      "notes": "Do not use branded doorplate imagery as homepage or hero media."
+    },
+    {
+      "display_location": "Products page",
+      "recommended": "no",
+      "pros": [
+        "Product visitors may notice room-signage capability"
+      ],
+      "risks": [
+        "Strong risk of standard-SKU interpretation"
+      ],
+      "notes": "Keep these references outside product listing and product detail templates."
+    },
+    {
+      "display_location": "Standalone Project Display Gallery page",
+      "recommended": "no_first_release",
+      "pros": [
+        "Could organize future project media"
+      ],
+      "risks": [
+        "Creates a new URL, sitemap entry, thin-content risk, and broader authorization questions"
+      ],
+      "notes": "Not required for the current eight-image module."
+    },
+    {
+      "display_location": "Internal sales materials only",
+      "recommended": "fallback",
+      "pros": [
+        "Lowest public interpretation risk"
+      ],
+      "risks": [
+        "Provides no website support for room-signage capability"
+      ],
+      "notes": "Use this fallback for excluded rear, duplicate, or artifact-heavy images."
+    }
+  ],
+  "module": {
+    "module_id": "room-signage-door-display-project-references",
+    "section_title": "Room Signage & Door Display Project References",
+    "section_subtitle": "Reference formats for hotel room identification, doorbell, service status, and guest-facing display planning.",
+    "intro_text": "Review representative hospitality room-signage formats across dark glass, brushed silver, and brushed aluminum finishes. These images illustrate project-style layouts and visible interface treatments for discussion; they are not standard stocked SKUs or customer endorsements.",
+    "card_label": "Project display reference",
+    "display_groups": [
+      {
+        "id": "86-base-wide-display-references",
+        "title": "86-Base Wide Display References",
+        "description": "Long-format room-number, doorbell, and service-status layout references.",
+        "recommended_image_ids": [
+          "86-base-front",
+          "86-base-angle"
+        ]
+      },
+      {
+        "id": "brushed-silver-doorplate-references",
+        "title": "Brushed Silver Doorplate References",
+        "description": "Recessed room-number and status-display layouts with a brushed silver finish.",
+        "recommended_image_ids": [
+          "brushed-silver-angle-a",
+          "brushed-silver-angle-b"
+        ]
+      },
+      {
+        "id": "dark-glass-room-status-references",
+        "title": "Dark Glass Room Status Display References",
+        "description": "Guest-service, room-status, and doorbell interface references on a dark glass face.",
+        "recommended_image_ids": [
+          "hotel-room-display-front",
+          "hotel-room-display-angle"
+        ]
+      },
+      {
+        "id": "brushed-aluminum-doorplate-references",
+        "title": "Brushed Aluminum Doorplate References",
+        "description": "Wide brushed-metal doorplate layouts for room identification and service controls.",
+        "recommended_image_ids": [
+          "brushed-aluminum-front",
+          "brushed-aluminum-angle"
+        ]
+      }
+    ],
+    "recommended_images": [
+      "hotel-room-door-display-project-reference-01.png",
+      "hotel-room-door-display-angle-reference-02.png",
+      "brushed-silver-room-signage-display-reference-01.png",
+      "brushed-silver-room-signage-angle-reference-02.png",
+      "hotel-room-status-doorplate-display-reference-01.png",
+      "hotel-room-status-doorplate-angle-reference-02.png",
+      "brushed-aluminum-room-signage-display-reference-01.png",
+      "brushed-aluminum-room-signage-angle-reference-02.png"
+    ],
+    "cta_primary": {
+      "label": "Discuss Your Hotel Room Display Requirements",
+      "target": "/en/contact/#get-a-quote"
+    },
+    "cta_secondary": {
+      "label": "Request Room Signage Customization",
+      "target": "sales@dualcorelink.com"
+    },
+    "cta_whatsapp": {
+      "label": "Get a Quote on WhatsApp",
+      "target": "https://wa.me/85270390436"
+    },
+    "disclaimer_text": "Images are presented as hotel room signage and door display project references. Any visible brand names, room numbers, or interface content appear only to illustrate application context and configuration format and do not indicate endorsement, authorization, or a customer relationship. Actual appearance, text, icons, functions, material, dimensions, connectivity, MOQ, lead time, compatibility, and production scope are subject to project review and written confirmation. Displayed configurations are not representations of standard in-stock SKUs.",
+    "risk_notes": [
+      "Do not use any selected brand image as the page hero.",
+      "Do not name visible brands or room numbers in headings, captions, filenames, ALT text, metadata, or schema.",
+      "Do not link image cards to product pages or describe them as purchasable SKUs.",
+      "Keep the Project display reference label and full disclaimer visible."
+    ]
+  },
+  "recommended_images": [
+    {
+      "id": "86-base-front",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/86底座智能门显/2.png",
+      "group": "86-Base Doorplate / Room Display Group",
+      "recommended_use": "Front-view project display card",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Visible brand and room number; possible customer or SKU interpretation.",
+      "handling": "Use only with project-reference label and disclaimer; do not repeat visible text in copy."
+    },
+    {
+      "id": "86-base-angle",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/86底座智能门显/4.png",
+      "group": "86-Base Doorplate / Room Display Group",
+      "recommended_use": "Angled-view project display card",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Visible brand and room number; black background requires consistent card framing.",
+      "handling": "Keep inside a neutral image frame and use non-branded ALT text."
+    },
+    {
+      "id": "brushed-silver-angle-a",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显/2.png",
+      "group": "Brushed Silver Doorplate / Room Display Group",
+      "recommended_use": "Brushed-finish perspective reference",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Visible brand and room number.",
+      "handling": "Use as a material and layout reference, not a customer example."
+    },
+    {
+      "id": "brushed-silver-angle-b",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显/4.png",
+      "group": "Brushed Silver Doorplate / Room Display Group",
+      "recommended_use": "Alternate brushed-finish angle",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Visible brand and room number; similar to another angle.",
+      "handling": "Use only if the two selected views remain visually distinct after responsive cropping."
+    },
+    {
+      "id": "hotel-room-display-front",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/酒店客房智能门牌门显/1.png",
+      "group": "Hotel Guest Room Display Group",
+      "recommended_use": "Front-view room-status display reference",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Prominent visible branding could be interpreted as endorsement.",
+      "handling": "Do not use as hero media; keep caption and ALT neutral."
+    },
+    {
+      "id": "hotel-room-display-angle",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/酒店客房智能门牌门显/3.png",
+      "group": "Hotel Guest Room Display Group",
+      "recommended_use": "Angled dark-glass display reference",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Prominent visible branding and room number.",
+      "handling": "Use in a grouped project-reference gallery with the mandatory disclaimer."
+    },
+    {
+      "id": "brushed-aluminum-front",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显/1 - 副本.png",
+      "group": "Brushed Aluminum Doorplate / Room Display Group",
+      "recommended_use": "Front-view brushed aluminum reference",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Visible brand and room number.",
+      "handling": "Use as a project layout reference and do not repeat the visible identity in public copy."
+    },
+    {
+      "id": "brushed-aluminum-angle",
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显/3 - 副本.png",
+      "group": "Brushed Aluminum Doorplate / Room Display Group",
+      "recommended_use": "Angled brushed aluminum reference",
+      "visible_brand_or_room_number": "Visible hotel branding and room number",
+      "public_suitable": true,
+      "risk": "Visible brand and room number.",
+      "handling": "Use inside the module only; avoid customer-reference wording."
+    }
+  ],
+  "excluded_or_internal_images": [
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/86底座智能门显/3.png",
+      "reason": "Near-duplicate angle of the selected 86-base views."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/86底座智能门显/5.png",
+      "reason": "Rear construction and terminal view; keep internal."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显/1.png",
+      "reason": "Visible top-edge image artifact reduces first-release quality."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显/3.png",
+      "reason": "Less clean cutout treatment than the selected angled views."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显/5.png",
+      "reason": "Rear construction and wiring view; keep internal."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/酒店客房智能门牌门显/4.png",
+      "reason": "Cutout background artifact is more prominent than in the selected views."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/酒店客房智能门牌门显/5.png",
+      "reason": "Rear terminal and electrical label view; keep internal."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显/2 - 副本.png",
+      "reason": "Near-duplicate front perspective."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显/4 - 副本.png",
+      "reason": "Near-duplicate angled view."
+    },
+    {
+      "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显/5 - 副本.png",
+      "reason": "Rear construction and wiring view; keep internal."
+    }
+  ],
+  "static_media_plan": {
+    "recommended_directory": "public/media/project-displays/room-signage",
+    "public_url_prefix": "/media/project-displays/room-signage/",
+    "copy_files_in_this_stage": false,
+    "uses_wordpress_media": false,
+    "requires_wordpress_manifest_change": false,
+    "files": [
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/86底座智能门显/2.png",
+        "recommended_static_name": "hotel-room-door-display-project-reference-01.png",
+        "alt_text": "Wide black hotel room door display with room number and service status icons",
+        "use": "86-base front reference",
+        "risk": "Visible brand and room number remain inside the image."
+      },
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/86底座智能门显/4.png",
+        "recommended_static_name": "hotel-room-door-display-angle-reference-02.png",
+        "alt_text": "Angled black room signage display with doorbell and service icons",
+        "use": "86-base angled reference",
+        "risk": "Visible brand and room number remain inside the image."
+      },
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显/2.png",
+        "recommended_static_name": "brushed-silver-room-signage-display-reference-01.png",
+        "alt_text": "Brushed silver hotel room signage reference with number window and status icons",
+        "use": "Brushed silver perspective reference",
+        "risk": "Visible brand and room number remain inside the image."
+      },
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/拉丝银智能门牌门显/4.png",
+        "recommended_static_name": "brushed-silver-room-signage-angle-reference-02.png",
+        "alt_text": "Angled brushed silver room display housing for hospitality projects",
+        "use": "Brushed silver alternate angle",
+        "risk": "Visible brand and room number remain inside the image."
+      },
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/酒店客房智能门牌门显/1.png",
+        "recommended_static_name": "hotel-room-status-doorplate-display-reference-01.png",
+        "alt_text": "Dark glass hotel room status display with service and doorbell icons",
+        "use": "Dark glass front reference",
+        "risk": "Prominent visible brand and room number remain inside the image."
+      },
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/酒店客房智能门牌门显/3.png",
+        "recommended_static_name": "hotel-room-status-doorplate-angle-reference-02.png",
+        "alt_text": "Angled hotel room display reference with status icon layout",
+        "use": "Dark glass angled reference",
+        "risk": "Prominent visible brand and room number remain inside the image."
+      },
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显/1 - 副本.png",
+        "recommended_static_name": "brushed-aluminum-room-signage-display-reference-01.png",
+        "alt_text": "Brushed aluminum hotel room door display with number window and service controls",
+        "use": "Brushed aluminum front reference",
+        "risk": "Visible brand and room number remain inside the image."
+      },
+      {
+        "source_image": "product-assets/raw-images/产品列表/产品列表/门牌/金属拉丝智能门牌门显/3 - 副本.png",
+        "recommended_static_name": "brushed-aluminum-room-signage-angle-reference-02.png",
+        "alt_text": "Angled brushed aluminum room signage project reference",
+        "use": "Brushed aluminum angled reference",
+        "risk": "Visible brand and room number remain inside the image."
+      }
+    ]
+  },
+  "seo_schema_assessment": [
+    {
+      "item": "Existing Solution page metadata and canonical",
+      "needed": true,
+      "reason": "Retain the current Hotel Guest Room Control Solution metadata unchanged.",
+      "risk": "None if untouched."
+    },
+    {
+      "item": "Existing Service and BreadcrumbList schema",
+      "needed": true,
+      "reason": "The display module is supporting content inside an existing Solution page.",
+      "risk": "Do not add branded project claims to structured data."
+    },
+    {
+      "item": "Product schema",
+      "needed": false,
+      "reason": "The images are project display references, not products or SKUs.",
+      "risk": "Would incorrectly classify the references as products."
+    },
+    {
+      "item": "Offer schema",
+      "needed": false,
+      "reason": "No public price or inventory state is provided.",
+      "risk": "Unsupported commercial data would be misleading."
+    },
+    {
+      "item": "Review or Rating schema",
+      "needed": false,
+      "reason": "Visible brands do not represent reviews, endorsements, or customer testimonials.",
+      "risk": "Could imply an unsupported customer relationship."
+    },
+    {
+      "item": "CaseStudy schema",
+      "needed": false,
+      "reason": "There is no authorized project narrative or new Case Study page.",
+      "risk": "Could overstate the provenance of the images."
+    },
+    {
+      "item": "Sitemap URL",
+      "needed": false,
+      "reason": "The module should enhance an existing Solution URL only.",
+      "risk": "A new gallery URL would create unnecessary scope and thin-content risk."
+    }
+  ],
+  "risk_assessment": [
+    {
+      "risk": "Hotel brands are visible",
+      "exists": true,
+      "handling": "Keep brands inside source imagery only; omit them from public filenames, ALT text, headings, metadata, and promotional claims; show the disclaimer.",
+      "blocking": false
+    },
+    {
+      "risk": "Room numbers are visible",
+      "exists": true,
+      "handling": "Use them only as visual application context and do not repeat the specific numbers in copy or metadata.",
+      "blocking": false
+    },
+    {
+      "risk": "Customer endorsement may be inferred",
+      "exists": true,
+      "handling": "Do not describe any visible brand as a customer, partner, case study, or endorsement; keep the explicit no-endorsement disclaimer.",
+      "blocking": false
+    },
+    {
+      "risk": "Standard SKU or ready-stock interpretation",
+      "exists": true,
+      "handling": "Use Project display reference labels, no product links, no product cards, and clear project-confirmation language.",
+      "blocking": false
+    },
+    {
+      "risk": "Unconfirmed technical parameters",
+      "exists": true,
+      "handling": "Exclude rear construction and electrical-label images and publish no dimensions, material claims, protocols, or compatibility specifications.",
+      "blocking": false
+    },
+    {
+      "risk": "Low-quality, artifact-heavy, or repetitive images",
+      "exists": true,
+      "handling": "Use eight selected images and retain ten artifact-heavy, rear, or near-duplicate images internally.",
+      "blocking": false
+    },
+    {
+      "risk": "Confusion with product pages",
+      "exists": true,
+      "handling": "Place the module only on the Hotel Guest Room Control Solution page and do not create product routes or taxonomy entries.",
+      "blocking": false
+    },
+    {
+      "risk": "Disclaimer required",
+      "exists": true,
+      "handling": "Treat the card label and full disclaimer as mandatory module content.",
+      "blocking": true
+    },
+    {
+      "risk": "First-release suitability",
+      "exists": false,
+      "handling": "The selected eight images are suitable when the module remains project-reference content and the disclaimer is visible.",
+      "blocking": false
+    },
+    {
+      "risk": "Final user sign-off on branded image selection",
+      "exists": true,
+      "handling": "Obtain final confirmation of the eight-image selection before copying assets into public media and implementing the module.",
+      "blocking": true
+    }
+  ],
+  "implementation_recommendation": {
+    "target_page": "/en/solutions/hotel-guest-room-control-solution/",
+    "module_scope": "Existing Solution page content enhancement only",
+    "recommended_public_image_count": 8,
+    "new_route": false,
+    "sitemap_change": false,
+    "wordpress_change": false,
+    "product_change": false,
+    "required_pre_implementation_gate": "User confirms the selected eight branded project-reference images and mandatory disclaimer."
+  },
+  "conclusion": {
+    "code": "A",
+    "message": "Doorplate and room-display materials are suitable for a project display module on the Hotel Guest Room Control Solution page."
+  }
+}

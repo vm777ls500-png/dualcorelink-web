@@ -1,0 +1,130 @@
+{
+  "report_type": "oem_odm_configuration_showcase_launch_completion",
+  "generated_at": "2026-06-22",
+  "module": {
+    "name": "OEM/ODM Custom Panel Configuration",
+    "display_title": "Custom Room Panel Configuration Options",
+    "live": true,
+    "production_url": "https://dualcorelink.com/en/solutions/oem-odm-custom-panel-solution/",
+    "position": "After Recommended Products and before Planning Details",
+    "configuration_card_count": 9,
+    "series": [
+      "Smart Series",
+      "Vintage Gold Series",
+      "Borui Series",
+      "Brushed Aluminum Series"
+    ],
+    "cta_present": true,
+    "disclaimer_present": true,
+    "creates_products": false,
+    "creates_categories": false,
+    "creates_sitemap_urls": false,
+    "modifies_wordpress": false
+  },
+  "final_website_status": {
+    "published_products": 36,
+    "media": 132,
+    "categories": 10,
+    "sitemap_url_count": 54,
+    "pages_build_generated": 130,
+    "pages_build_expected": 130,
+    "product_json_ld_pages": 0,
+    "total_product_pages": 36,
+    "cloudflare_pages_deployed": true,
+    "production_page_http_status": 200
+  },
+  "implementation_files": [
+    {
+      "path": "src/components/content/custom-panel-configuration-section.tsx",
+      "purpose": "Renders the grouped configuration gallery, card notes, CTAs, and disclaimer."
+    },
+    {
+      "path": "src/config/static-oem-odm-configurations.ts",
+      "purpose": "Stores the typed module copy and nine configuration records."
+    },
+    {
+      "path": "src/app/[locale]/solutions/[slug]/page.tsx",
+      "purpose": "Inserts the module only on the English OEM/ODM Custom Panel Solution page."
+    },
+    {
+      "path": "public/media/oem-odm-configurations/",
+      "purpose": "Stores the nine public static configuration images."
+    }
+  ],
+  "public_static_media": [
+    "/media/oem-odm-configurations/smart-series-key-card-room-service-configuration.png",
+    "/media/oem-odm-configurations/smart-series-key-card-room-status-lighting-configuration.png",
+    "/media/oem-odm-configurations/vintage-gold-dual-usb-socket-configuration.png",
+    "/media/oem-odm-configurations/vintage-gold-four-gang-socket-switch-configuration.png",
+    "/media/oem-odm-configurations/vintage-gold-lighting-usb-curtain-configuration.png",
+    "/media/oem-odm-configurations/borui-series-room-status-lighting-configuration.png",
+    "/media/oem-odm-configurations/borui-series-multi-gang-socket-configuration.png",
+    "/media/oem-odm-configurations/borui-series-lighting-curtain-socket-configuration.png",
+    "/media/oem-odm-configurations/brushed-aluminum-key-card-service-lighting-configuration.png"
+  ],
+  "production_verification": {
+    "oem_odm_page_http_200": true,
+    "module_found": true,
+    "position_correct": true,
+    "public_images_http_200_count": 9,
+    "series_count": 4,
+    "cta_verified": true,
+    "disclaimer_verified": true,
+    "products_count_unchanged": true,
+    "sitemap_count_unchanged": true,
+    "product_json_ld_disabled": true,
+    "wp_content_uploads_url_present": false,
+    "localhost_url_present": false,
+    "loopback_url_present": false,
+    "pages_dev_url_present": false
+  },
+  "risk_controls": {
+    "multi_gang_combinations_imported_as_products": false,
+    "sku_created": false,
+    "product_detail_page_created": false,
+    "taxonomy_created": false,
+    "sitemap_url_created": false,
+    "configuration_disclaimer_present": true,
+    "ready_stock_promised": false,
+    "fixed_price_published": false,
+    "inventory_commitment_published": false,
+    "unconfirmed_parameters_published": false,
+    "customer_name_present": false,
+    "hotel_name_present": false,
+    "room_number_present": false,
+    "product_schema_present": false,
+    "offer_schema_present": false,
+    "review_schema_present": false,
+    "rating_schema_present": false,
+    "price_schema_present": false,
+    "stock_schema_present": false
+  },
+  "git": {
+    "commit_message": "feat: add OEM ODM panel configuration showcase",
+    "commit_hash": "57baffac8b78441c1d5e78414b5cccb96fb81f2b",
+    "remote_branch": "origin/main",
+    "remote_synced": true
+  },
+  "archived_planning_files": [
+    "product-assets/mapping-output/oem-odm-configuration-display-plan.md",
+    "product-assets/mapping-output/oem-odm-configuration-display-plan.json",
+    "product-assets/mapping-output/oem-odm-configuration-image-placement.md",
+    "product-assets/mapping-output/oem-odm-configuration-image-placement.json",
+    "product-assets/mapping-output/oem-odm-configuration-frontend-implementation-plan.md",
+    "product-assets/mapping-output/oem-odm-configuration-frontend-implementation-plan.json"
+  ],
+  "remaining_items": [
+    "Two Hotel Ceiling Background Speaker launch report files remain untracked and can be archived or ignored in a later housekeeping stage.",
+    "Hotel Guest Room Solution teaser images have not been implemented.",
+    "Two configuration images remain internal and are not publicly exposed.",
+    "Doorplate and room-display project materials remain available for a later planning stage."
+  ],
+  "follow_up": {
+    "stage": "Doorplate / Room Display Project Display Materials Planning",
+    "guidance": "Use doorplate and room-display assets as project display material rather than importing them as standard product SKUs."
+  },
+  "conclusion": {
+    "code": "A",
+    "message": "The OEM/ODM configuration showcase launch workflow is complete and can proceed to Doorplate / Room Display project display materials planning."
+  }
+}

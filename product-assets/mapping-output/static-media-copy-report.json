@@ -1,4 +1,4 @@
-[
+﻿[
     {
         "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/86-type-ai-smart-control-display-1-scaled.png",
         "static_path":  "/media/wordpress/2026/06/86-type-ai-smart-control-display-1-scaled.png",
@@ -900,6 +900,27 @@
         "static_path":  "/media/wordpress/2026/06/brushed-aluminum-voice-telephone-information-panel-3-scaled.png",
         "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-3-scaled.png",
         "target_file":  "public\\media\\wordpress\\2026\\06\\brushed-aluminum-voice-telephone-information-panel-3-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-ceiling-background-speaker-angled-view-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/hotel-ceiling-background-speaker-angled-view-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-ceiling-background-speaker-angled-view-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-ceiling-background-speaker-angled-view-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-ceiling-background-speaker-front-view-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/hotel-ceiling-background-speaker-front-view-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-ceiling-background-speaker-front-view-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-ceiling-background-speaker-front-view-scaled.png",
+        "status":  "copied"
+    },
+    {
+        "source_url":  "http://127.0.0.1:8080/wp-content/uploads/2026/06/hotel-ceiling-background-speaker-alternate-front-view-scaled.png",
+        "static_path":  "/media/wordpress/2026/06/hotel-ceiling-background-speaker-alternate-front-view-scaled.png",
+        "source_file":  "wordpress\\wp-content\\uploads\\2026\\06\\hotel-ceiling-background-speaker-alternate-front-view-scaled.png",
+        "target_file":  "public\\media\\wordpress\\2026\\06\\hotel-ceiling-background-speaker-alternate-front-view-scaled.png",
         "status":  "copied"
     }
 ]

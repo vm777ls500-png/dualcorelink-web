@@ -1,0 +1,191 @@
+{
+  "batch": "deferred-audio-product",
+  "source_files": [
+    "deferred-audio-product-content-draft.json",
+    "deferred-audio-image-mapping.json"
+  ],
+  "post_type": "product",
+  "default_post_status": "draft",
+  "existing_published_product_count_checked": 35,
+  "slug_conflict_count": 0,
+  "product_series_taxonomy_exists": false,
+  "do_not_write_product_series_taxonomy": true,
+  "do_not_enable_product_json_ld": true,
+  "category_creation_performed": false,
+  "category_term": {
+    "name": "Hotel Audio & Communication Devices",
+    "slug": "hotel-audio-communication-devices",
+    "description": "Ceiling speakers, background music controls, intercom interfaces, and room communication devices for hotel and commercial projects.",
+    "term_id": null,
+    "term_status": "needs_creation_before_import"
+  },
+  "products": [
+    {
+      "post_title": "Hotel Ceiling Background Speaker",
+      "post_name": "hotel-ceiling-background-speaker",
+      "post_status": "draft",
+      "post_type": "product",
+      "post_content": "<p>The Hotel Ceiling Background Speaker is intended for background music and general audio distribution in hospitality, residential, and commercial interior projects. Its ceiling-mounted format supports a discreet installation approach for guest rooms, corridors, lobbies, and other shared spaces.</p><p>It can be considered as part of a hotel low-voltage package, guest room solution, or project-specific commercial audio system. Final system matching must be based on the selected audio equipment, installation plan, and confirmed project requirements rather than assumed compatibility.</p><p>The product is positioned for B2B project selection by contractors, system integrators, low-voltage engineering companies, distributors, and OEM/ODM buyers.</p><h2>Key Features</h2><ul><li>Ceiling-mounted speaker format for hotel and commercial projects</li><li>Suitable for background music and general audio distribution</li><li>Clean appearance for guest rooms, corridors, and public areas</li><li>Can be matched with project-specific audio system requirements</li><li>Applicable to hotels, serviced apartments, villas, and commercial interiors</li><li>Available for project matching and OEM/ODM discussion</li></ul><h2>Application Scenarios</h2><ul><li>Hotel guest rooms</li><li>Hotel corridors</li><li>Lobbies and public areas</li><li>Serviced apartments</li><li>Villas and smart home projects</li><li>Commercial interior audio projects</li></ul><h2>B2B Project Value</h2><ul><li>Adds a background audio product option to hotel and commercial project proposals</li><li>Supports coordinated purchasing for low-voltage and room solution packages</li><li>Can be discussed together with smart hotel and guest room control solutions</li><li>Allows contractors and integrators to match the product to confirmed project requirements</li><li>Provides distributors with a project-oriented ceiling speaker option</li></ul><h2>OEM / ODM Project Support</h2><p>Appearance, packaging, project combination, labeling, and audio system matching may be discussed according to project requirements. Final scope depends on the selected product type, order quantity, installation plan, and confirmed customization requirements.</p>",
+      "post_content_sections": {
+        "overview": "The Hotel Ceiling Background Speaker is intended for background music and general audio distribution in hospitality, residential, and commercial interior projects. Its ceiling-mounted format supports a discreet installation approach for guest rooms, corridors, lobbies, and other shared spaces.\n\nIt can be considered as part of a hotel low-voltage package, guest room solution, or project-specific commercial audio system. Final system matching must be based on the selected audio equipment, installation plan, and confirmed project requirements rather than assumed compatibility.\n\nThe product is positioned for B2B project selection by contractors, system integrators, low-voltage engineering companies, distributors, and OEM/ODM buyers.",
+        "key_features": [
+          "Ceiling-mounted speaker format for hotel and commercial projects",
+          "Suitable for background music and general audio distribution",
+          "Clean appearance for guest rooms, corridors, and public areas",
+          "Can be matched with project-specific audio system requirements",
+          "Applicable to hotels, serviced apartments, villas, and commercial interiors",
+          "Available for project matching and OEM/ODM discussion"
+        ],
+        "application_scenarios": [
+          "Hotel guest rooms",
+          "Hotel corridors",
+          "Lobbies and public areas",
+          "Serviced apartments",
+          "Villas and smart home projects",
+          "Commercial interior audio projects"
+        ],
+        "b2b_value": [
+          "Adds a background audio product option to hotel and commercial project proposals",
+          "Supports coordinated purchasing for low-voltage and room solution packages",
+          "Can be discussed together with smart hotel and guest room control solutions",
+          "Allows contractors and integrators to match the product to confirmed project requirements",
+          "Provides distributors with a project-oriented ceiling speaker option"
+        ],
+        "oem_odm_notes": "Appearance, packaging, project combination, labeling, and audio system matching may be discussed according to project requirements. Final scope depends on the selected product type, order quantity, installation plan, and confirmed customization requirements."
+      },
+      "post_excerpt": "A ceiling-mounted background speaker for hotel guest rooms, public areas, serviced apartments, and commercial interiors, available for B2B project matching.",
+      "product_category": {
+        "name": "Hotel Audio & Communication Devices",
+        "slug": "hotel-audio-communication-devices",
+        "description": "Ceiling speakers, background music controls, intercom interfaces, and room communication devices for hotel and commercial projects.",
+        "term_id": null,
+        "term_status": "needs_creation_before_import"
+      },
+      "category_creation_required": true,
+      "category_name": "Hotel Audio & Communication Devices",
+      "category_slug": "hotel-audio-communication-devices",
+      "category_description": "Ceiling speakers, background music controls, intercom interfaces, and room communication devices for hotel and commercial projects.",
+      "series_text": null,
+      "do_not_write_product_series_taxonomy": true,
+      "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/1.png",
+      "gallery_image_candidates": [
+        "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/2.png",
+        "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/4.png"
+      ],
+      "internal_reference_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/5.png",
+          "public_upload": false,
+          "reason": "Back label image contains unverified technical parameters and is excluded from the public product gallery."
+        }
+      ],
+      "excluded_images": [
+        {
+          "source_path": "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/5.png",
+          "reason": "Back label image contains unverified technical parameters and should not be uploaded to the public product gallery."
+        }
+      ],
+      "public_image_upload_count": 3,
+      "image_review_status": "complete",
+      "seo_title": "Hotel Ceiling Background Speaker | DualCoreLink",
+      "seo_description": "Hotel ceiling background speaker for guest rooms, corridors, public areas, and commercial interiors, supporting project-based audio system matching worldwide.",
+      "acf_or_meta_fields": {
+        "product_model": "",
+        "product_short_description": "A ceiling-mounted background speaker for hotel guest rooms, public areas, serviced apartments, and commercial interiors, available for B2B project matching.",
+        "product_status": "available",
+        "is_featured_product": false,
+        "is_new_product": true,
+        "country_of_origin": "",
+        "oem_available": true,
+        "odm_available": true,
+        "sample_available": true,
+        "inquiry_cta_label": "Request Project Quote",
+        "minimum_order_quantity": "",
+        "lead_time": "Depends on order quantity and customization requirements",
+        "warranty": "Generally one year, subject to product and order terms",
+        "internal_sku": "",
+        "series_text": "",
+        "related_solutions": [
+          "/en/solutions/hotel-guest-room-control-solution/",
+          "/en/solutions/smart-hotel-automation-solution/"
+        ],
+        "related_case_studies": [
+          "/en/case-studies/middle-east-smart-hotel-guest-room-control-project/"
+        ],
+        "product_internal_notes": "Deferred audio product draft. Import only after creating Hotel Audio & Communication Devices. Upload only 1.png, 2.png, and 4.png. Keep 5.png internal because its back label contains unverified technical markings. Missing information: confirmed speaker size; rated power; impedance; installation cut-out size; frequency response; material specification; fire rating; ceiling installation requirements; compatible audio system; certification details; MOQ; lead time; customization scope. Do not write product_series taxonomy or enable Product JSON-LD.",
+        "product_schema_enabled": false
+      },
+      "acf_or_meta_field_policy": {
+        "confirmed_existing_or_previously_used": [
+          "product_short_description",
+          "product_status",
+          "is_featured_product",
+          "is_new_product",
+          "inquiry_cta_label",
+          "related_solutions",
+          "related_case_studies",
+          "product_schema_enabled"
+        ],
+        "write_only_if_field_exists": [
+          "product_model",
+          "country_of_origin",
+          "oem_available",
+          "odm_available",
+          "sample_available",
+          "minimum_order_quantity",
+          "lead_time",
+          "warranty",
+          "internal_sku",
+          "series_text",
+          "product_internal_notes"
+        ],
+        "do_not_create_missing_fields": true
+      },
+      "missing_information": [
+        "Confirmed speaker size",
+        "Rated power",
+        "Impedance",
+        "Installation cut-out size",
+        "Frequency response",
+        "Material specification",
+        "Fire rating",
+        "Ceiling installation requirements",
+        "Compatible audio system",
+        "Certification details",
+        "MOQ",
+        "Lead time",
+        "Customization scope"
+      ],
+      "import_notes": [
+        "This product requires the new Hotel Audio & Communication Devices product category before import.",
+        "Import should start as draft.",
+        "Only three public images should be uploaded: 1.png, 2.png, and 4.png.",
+        "The back label image 5.png should remain an internal reference and must not be uploaded to the public product gallery.",
+        "Do not assign the product to Sensors or Smart Panels & Switches.",
+        "Do not write product_series taxonomy.",
+        "Product JSON-LD should remain disabled.",
+        "Do not populate price, stock, offer, review, rating, or aggregateRating fields."
+      ],
+      "risk_notes": [
+        "Back label image contains unverified technical parameters and is excluded from public gallery.",
+        "Do not publish 6.5-inch / 8-ohm / 10 W / 165 mm as confirmed public specifications unless the user confirms them later.",
+        "New category Hotel Audio & Communication Devices must be created before import.",
+        "Product should not be assigned to Sensors or Smart Panels & Switches.",
+        "Public images are clean front/side product views without customer, hotel brand, room number, or project environment information."
+      ],
+      "forbidden_commerce_or_rating_fields": [
+        "price",
+        "stock",
+        "offers",
+        "review",
+        "rating",
+        "aggregateRating"
+      ],
+      "import_ready": false,
+      "ready_for_pre_import_backup": true,
+      "blocking_items_before_import": [
+        "Create the Hotel Audio & Communication Devices product category and record its term ID."
+      ]
+    }
+  ]
+}

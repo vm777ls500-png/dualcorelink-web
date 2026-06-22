@@ -1,0 +1,47 @@
+{
+  "product_title": "Hotel Ceiling Background Speaker",
+  "slug": "hotel-ceiling-background-speaker",
+  "recommended_category": "Hotel Audio & Communication Devices",
+  "category_creation_required": true,
+  "source_folder": "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱",
+  "source_image_paths": [
+    "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/1.png",
+    "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/2.png",
+    "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/4.png",
+    "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/5.png"
+  ],
+  "featured_image_candidate": "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/1.png",
+  "supporting_image_candidates": [
+    "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/2.png",
+    "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/4.png"
+  ],
+  "excluded_images": [
+    {
+      "source_path": "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/5.png",
+      "reason": "Back label image contains unverified technical parameters and should not be used as public featured image."
+    }
+  ],
+  "internal_reference_images": [
+    {
+      "source_path": "product-assets/raw-images/产品列表/产品列表/传感器/背景音箱/5.png",
+      "reason": "Retain internally for product identification only; do not publish until the visible technical markings are independently confirmed."
+    }
+  ],
+  "image_count": 4,
+  "public_image_count": 3,
+  "image_quality_notes": [
+    "All four source files are 3464 x 2309 PNG images with alpha transparency.",
+    "The featured candidate provides the clearest complete angled view and shows the ceiling-mount form without a parameter label.",
+    "The two supporting candidates provide clean front-facing views from slightly different angles.",
+    "No exact SHA-256 match was found against the existing 129 static WordPress media files.",
+    "No exact duplicate was found within the four-image source group."
+  ],
+  "risk_notes": [
+    "No hotel brand, customer name, room number, project-location detail, or obvious third-party brand was detected in the three public candidates.",
+    "The back image visibly contains unverified 6.5-inch, 8-ohm / 10 W, and 165 mm markings; these must not be converted into public specifications without confirmation.",
+    "The back image also contains printed audio wording and is excluded from the public candidate set.",
+    "The images are isolated product views rather than application-scenario images.",
+    "The recommended category must be created and confirmed before WordPress import."
+  ],
+  "needs_user_review": false
+}

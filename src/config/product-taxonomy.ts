@@ -37,7 +37,7 @@ export const productCategories: ProductCategoryConfig[] = [
     chineseTitle: "传感器",
     termId: 4,
     description:
-      "Presence sensors, door magnets, infrared forwarding devices, doorbells, and background speakers.",
+      "Presence sensors, door magnets, infrared forwarding devices, doorbells, and related room-detection accessories.",
   },
   {
     slug: "smart-sockets-power-modules",
@@ -70,6 +70,14 @@ export const productCategories: ProductCategoryConfig[] = [
     termId: 8,
     description:
       "DND, MUR, doorbell, and hotel service panels for guest room operation workflows.",
+  },
+  {
+    slug: "hotel-audio-communication-devices",
+    title: "Hotel Audio & Communication Devices",
+    chineseTitle: "酒店音频与通信设备",
+    termId: 11,
+    description:
+      "Ceiling speakers, background music controls, intercom interfaces, and room communication devices for hotel and commercial projects.",
   },
   {
     slug: "hotel-delivery-robot-system",

@@ -1,0 +1,323 @@
+{
+  "report_title": "DualCoreLink Site Stage Acceptance Report - 2026-06-21",
+  "report_date": "2026-06-21",
+  "scope": "site_stage_acceptance",
+  "site_overview": {
+    "production_url": "https://dualcorelink.com",
+    "deployed": true,
+    "github_remote_synced": true,
+    "wordpress_stable": true,
+    "products_publish": 36,
+    "media": 132,
+    "categories": 10,
+    "sitemap_url_count": 54,
+    "product_json_ld": {
+      "enabled": false,
+      "product_pages_with_schema": 0,
+      "total_product_pages": 36
+    },
+    "latest_commit": {
+      "hash": "5e33ce68b6244a9bd1986e38153a1cde459b416b",
+      "message": "docs: archive launch and planning reports"
+    }
+  },
+  "completed_work": {
+    "hotel_ceiling_background_speaker": {
+      "product_title": "Hotel Ceiling Background Speaker",
+      "slug": "hotel-ceiling-background-speaker",
+      "wordpress_id": 238,
+      "status": "publish",
+      "category": "Hotel Audio & Communication Devices",
+      "category_term_id": 11,
+      "featured_media_id": 235,
+      "gallery_media_ids": [236, 237],
+      "static_media_added": 3,
+      "page_url": "https://dualcorelink.com/en/products/hotel-ceiling-background-speaker/",
+      "risk_controls": [
+        "The rear parameter image is not public or attached to the gallery.",
+        "Unconfirmed 6.5-inch, 8-ohm, 10 W, and 165 mm values are not published.",
+        "No price, stock, offers, review, rating, or aggregateRating data is present.",
+        "Product JSON-LD remains disabled."
+      ],
+      "git_commit": "a467e371cf6b6b6fd272d9d845be1d9429551ffa"
+    },
+    "oem_odm_custom_panel_configuration": {
+      "page_url": "https://dualcorelink.com/en/solutions/oem-odm-custom-panel-solution/",
+      "position": "After Recommended Products and before Planning Details",
+      "configuration_cards": 9,
+      "series": [
+        "Smart Series",
+        "Vintage Gold Series",
+        "Borui Series",
+        "Brushed Aluminum Series"
+      ],
+      "disclaimer_present": true,
+      "cta_present": true,
+      "creates_product": false,
+      "creates_category": false,
+      "creates_taxonomy": false,
+      "creates_sitemap_url": false,
+      "git_commit": {
+        "hash": "57baffac8b78441c1d5e78414b5cccb96fb81f2b",
+        "message": "feat: add OEM ODM panel configuration showcase"
+      }
+    },
+    "doorplate_room_display_project_display": {
+      "page_name": "Hotel Guest Room Control Solution",
+      "page_url": "https://dualcorelink.com/en/solutions/hotel-guest-room-control-solution/",
+      "position": "After Recommended Products and before Planning Details",
+      "display_images": 8,
+      "group_count": 4,
+      "groups": [
+        "86-Base Wide Display References",
+        "Brushed Silver Doorplate References",
+        "Dark Glass Room Status Display References",
+        "Brushed Aluminum Doorplate References"
+      ],
+      "brand_and_room_numbers_only_in_image_pixels": true,
+      "identity_text_absent_from_filename_alt_body_json_and_seo": true,
+      "standard_sku": false,
+      "customer_endorsement": false,
+      "creates_product": false,
+      "creates_category": false,
+      "creates_sitemap_url": false,
+      "adds_product_offer_review_rating_or_case_study_schema": false,
+      "git_commit": {
+        "hash": "512f4da7d3ef67e6548045737ebabc6e221225c9",
+        "message": "feat: add room display project references"
+      }
+    },
+    "documentation_archive": {
+      "commit_hash": "5e33ce68b6244a9bd1986e38153a1cde459b416b",
+      "commit_message": "docs: archive launch and planning reports",
+      "remote_synced": true,
+      "archived_content": [
+        "Hotel Ceiling Background Speaker launch report",
+        "OEM/ODM configuration showcase launch report",
+        "Doorplate and room display planning files",
+        "Doorplate and room display frontend implementation plan"
+      ],
+      "json_files_parseable": true,
+      "sensitive_information_scan_passed": true
+    }
+  },
+  "current_site_status": {
+    "products": 36,
+    "media": 132,
+    "categories": 10,
+    "sitemap_urls": 54,
+    "product_json_ld": "disabled_0_of_36",
+    "faq_page_schema": "normal",
+    "about_page_schema": "normal",
+    "case_study_schema": "normal",
+    "core_pages": "normal",
+    "git": "remote_synced"
+  },
+  "seo_schema_status": [
+    {
+      "item": "Product JSON-LD",
+      "status": "disabled",
+      "notes": "No Product schema on 36 product pages."
+    },
+    {
+      "item": "Offer schema",
+      "status": "absent",
+      "notes": "No fixed price or inventory data is published."
+    },
+    {
+      "item": "aggregateRating",
+      "status": "absent",
+      "notes": "No rating aggregation is published."
+    },
+    {
+      "item": "Review schema",
+      "status": "absent",
+      "notes": "No review schema is published."
+    },
+    {
+      "item": "Price and stock schema",
+      "status": "absent",
+      "notes": "The site uses B2B project inquiry workflows."
+    },
+    {
+      "item": "FAQPage schema",
+      "status": "normal"
+    },
+    {
+      "item": "AboutPage schema",
+      "status": "normal"
+    },
+    {
+      "item": "Case Study schema",
+      "status": "normal"
+    },
+    {
+      "item": "Sitemap",
+      "status": "normal",
+      "url_count": 54
+    },
+    {
+      "item": "Google Search Console sitemap submission",
+      "status": "manual_or_later_retry_required",
+      "notes": "The sitemap is accessible, but automated submission previously timed out."
+    }
+  ],
+  "risk_controls": [
+    {
+      "risk": "Unconfirmed technical parameters",
+      "status": "controlled",
+      "handling": "Keep in missing information or internal records; do not publish as specifications."
+    },
+    {
+      "risk": "Rear parameter image",
+      "status": "controlled",
+      "handling": "The background speaker rear-label image is not public."
+    },
+    {
+      "risk": "Visible hotel brands and room numbers",
+      "status": "controlled",
+      "handling": "Keep only in image pixels and omit from filenames, ALT text, body copy, JSON, and SEO text."
+    },
+    {
+      "risk": "Customer endorsement interpretation",
+      "status": "controlled",
+      "handling": "Use a disclaimer and do not present references as customers, partners, or endorsements."
+    },
+    {
+      "risk": "Standard SKU interpretation",
+      "status": "controlled",
+      "handling": "Label materials as configuration or project references."
+    },
+    {
+      "risk": "Ready-stock promise",
+      "status": "absent",
+      "handling": "No stock commitment is made."
+    },
+    {
+      "risk": "Fixed pricing",
+      "status": "absent",
+      "handling": "Pricing, MOQ, lead time, and compatibility are confirmed per project."
+    },
+    {
+      "risk": "Product schema",
+      "status": "controlled",
+      "handling": "Product JSON-LD remains disabled on all product pages."
+    },
+    {
+      "risk": "/wp-content/uploads/ direct links",
+      "status": "absent",
+      "handling": "Public pages use static media paths."
+    },
+    {
+      "risk": "Local or temporary URLs",
+      "status": "absent",
+      "handling": "No localhost, 127.0.0.1, or pages.dev text is published."
+    },
+    {
+      "risk": "Backup or credential file Git inclusion",
+      "status": "controlled",
+      "handling": "Backups, SQL, ZIP, environment files, and credentials were excluded through precise staging."
+    }
+  ],
+  "git_history": [
+    {
+      "stage": "Hotel Ceiling Background Speaker",
+      "message": "feat: add hotel ceiling background speaker",
+      "hash": "a467e371cf6b6b6fd272d9d845be1d9429551ffa",
+      "status": "pushed"
+    },
+    {
+      "stage": "OEM/ODM Configuration Showcase",
+      "message": "feat: add OEM ODM panel configuration showcase",
+      "hash": "57baffac8b78441c1d5e78414b5cccb96fb81f2b",
+      "status": "pushed"
+    },
+    {
+      "stage": "Doorplate / Room Display Module",
+      "message": "feat: add room display project references",
+      "hash": "512f4da7d3ef67e6548045737ebabc6e221225c9",
+      "status": "pushed"
+    },
+    {
+      "stage": "Documentation Archive",
+      "message": "docs: archive launch and planning reports",
+      "hash": "5e33ce68b6244a9bd1986e38153a1cde459b416b",
+      "status": "pushed"
+    }
+  ],
+  "outstanding_items": [
+    {
+      "item": "Resubmit the sitemap in Google Search Console",
+      "blocking": false,
+      "recommendation": "Submit https://dualcorelink.com/sitemap.xml manually and monitor processing."
+    },
+    {
+      "item": "OEM/ODM supporting images are not yet linked from the Hotel Guest Room Solution",
+      "blocking": false,
+      "recommendation": "Consider a lightweight entry rather than duplicating the full gallery."
+    },
+    {
+      "item": "Ten internal doorplate and room-display images remain unpublished",
+      "blocking": false,
+      "recommendation": "Keep internal unless they pass a separate public-risk review."
+    },
+    {
+      "item": "Background speaker supporting images are static but the product template primarily shows the featured image",
+      "blocking": false,
+      "recommendation": "Plan gallery behavior and mobile performance separately."
+    },
+    {
+      "item": "Product gallery capability is not standardized",
+      "blocking": false,
+      "recommendation": "Handle as a dedicated frontend enhancement."
+    },
+    {
+      "item": "Future product imports",
+      "blocking": false,
+      "recommendation": "Continue the backup, draft, validation, publish, deploy, and commit workflow."
+    }
+  ],
+  "recommended_routes": [
+    {
+      "route": "E",
+      "content": "GSC, sitemap, and indexing tracking",
+      "priority": 1,
+      "reason": "Confirm discovery, crawl, and indexing for recently added content."
+    },
+    {
+      "route": "A",
+      "content": "Site-wide SEO and GEO optimization",
+      "priority": 2,
+      "reason": "Improve topic coverage and entity signals after the content structure has stabilized."
+    },
+    {
+      "route": "B",
+      "content": "Product detail gallery template optimization",
+      "priority": 3,
+      "reason": "Use existing supporting images more effectively."
+    },
+    {
+      "route": "D",
+      "content": "Solution page content enhancement",
+      "priority": 4,
+      "reason": "Improve project pathways, references, and related-product discovery."
+    },
+    {
+      "route": "C",
+      "content": "Additional product batches",
+      "priority": 5,
+      "reason": "Continue with complete, clearly mapped product materials."
+    },
+    {
+      "route": "F",
+      "content": "Multilingual structure preparation",
+      "priority": 6,
+      "reason": "Plan translation and hreflang governance after English content and templates stabilize."
+    }
+  ],
+  "acceptance": {
+    "code": "A",
+    "conclusion": "Site stage acceptance passed and the project can proceed to the next optimization stage.",
+    "blocking_issues": []
+  }
+}

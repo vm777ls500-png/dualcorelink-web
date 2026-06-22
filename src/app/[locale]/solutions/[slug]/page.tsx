@@ -6,6 +6,7 @@ import { ContactCta } from "@/components/content/contact-cta";
 import { ContentSection } from "@/components/content/content-section";
 import { CustomPanelConfigurationSection } from "@/components/content/custom-panel-configuration-section";
 import { MediaFrame } from "@/components/content/media-frame";
+import { RoomDisplayProjectReferencesSection } from "@/components/content/room-display-project-references-section";
 import { isLocale, locales } from "@/config/i18n";
 import { ensureStaticExportParams } from "@/lib/routing/static-export";
 import {
@@ -367,6 +368,9 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             locale={locale}
             products={solution.relatedProducts}
           />
+          {locale === "en" && slug === "hotel-guest-room-control-solution" ? (
+            <RoomDisplayProjectReferencesSection locale={locale} />
+          ) : null}
           {locale === "en" && slug === "oem-odm-custom-panel-solution" ? (
             <CustomPanelConfigurationSection locale={locale} />
           ) : null}

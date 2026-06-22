@@ -1,0 +1,238 @@
+{
+  "plan_type": "oem_odm_configuration_image_placement",
+  "generated_at": "2026-06-22",
+  "source_plan": "product-assets/mapping-output/oem-odm-configuration-display-plan.json",
+  "summary": {
+    "reviewed_images": 14,
+    "oem_odm_primary_images": 9,
+    "hotel_solution_teaser_images": 3,
+    "archive_only_images": 2,
+    "creates_products": false,
+    "creates_taxonomy": false,
+    "creates_sitemap_urls": false,
+    "modifies_wordpress": false
+  },
+  "image_review": [
+    {
+      "id": "smart-usb-four-key",
+      "source_image": "智慧系列智能面板/二联排USB五孔插座+四键智能面板/1.png",
+      "series": "Smart Series",
+      "group": "USB socket + four-key controls",
+      "recommended_use": "archive_reference",
+      "risk": ["prominent unconfirmed electrical label", "close to existing socket and switch product imagery", "stock SKU interpretation"],
+      "public_suitable": false
+    },
+    {
+      "id": "smart-key-card-room-service",
+      "source_image": "智慧系列智能面板/二联排插卡取电+四键智能面板/1.png",
+      "series": "Smart Series",
+      "group": "Key card + room service controls",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["function labels are examples", "stock SKU interpretation without disclaimer"],
+      "public_suitable": true
+    },
+    {
+      "id": "smart-key-card-room-status-lighting",
+      "source_image": "智慧系列智能面板/三联排插卡取电+房态四键智能面板+卫生间四键智能面板/1.png",
+      "series": "Smart Series",
+      "group": "Key card + room status + lighting and service controls",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["stock SKU interpretation without disclaimer"],
+      "public_suitable": true
+    },
+    {
+      "id": "smart-curtain-thermostat-usb",
+      "source_image": "智慧系列智能面板/三联排四键智能开关+空调控制器+USB不间断电源五孔插座/1.png",
+      "series": "Smart Series",
+      "group": "Curtain + thermostat/display + USB socket",
+      "recommended_use": "hotel_solution_teaser",
+      "risk": ["visible electrical marking", "do not transcribe label as specification"],
+      "public_suitable": true
+    },
+    {
+      "id": "smart-four-gang-display-socket",
+      "source_image": "智慧系列智能面板/四联排USB五孔插座+空调控制器+四键智能面板/1.png",
+      "series": "Smart Series",
+      "group": "Socket + USB + thermostat/display + scene controls",
+      "recommended_use": "hotel_solution_teaser",
+      "risk": ["visible electrical marking", "broad module mix may imply fixed SKU"],
+      "public_suitable": true
+    },
+    {
+      "id": "vintage-dual-usb-socket",
+      "source_image": "复古系列智能面板/复古金色二联排USB五孔插座/08.png",
+      "series": "Vintage Gold Series",
+      "group": "Dual socket configuration",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["visible ELITE mark confirmed by user"],
+      "public_suitable": true
+    },
+    {
+      "id": "vintage-four-gang-socket-switch",
+      "source_image": "复古系列智能面板/复古金色四联排USB五孔插座+智能开关面板/22.png",
+      "series": "Vintage Gold Series",
+      "group": "Switch + dual USB sockets + curtain controls",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["visible ELITE mark", "function labels are examples"],
+      "public_suitable": true
+    },
+    {
+      "id": "vintage-lighting-usb-curtain",
+      "source_image": "复古系列智能面板/复古金色智能开关面板+USB五孔插座/22.png",
+      "series": "Vintage Gold Series",
+      "group": "Lighting and scene + USB socket + curtain controls",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["visible ELITE mark", "function labels are examples"],
+      "public_suitable": true
+    },
+    {
+      "id": "borui-room-status-lighting",
+      "source_image": "铂智系列智能面板/红色磨砂二联排房态+四键智能开关面板/1.png",
+      "series": "Borui Series",
+      "group": "Room status + lighting and service controls",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["stock SKU interpretation without disclaimer"],
+      "public_suitable": true
+    },
+    {
+      "id": "borui-multi-gang-socket",
+      "source_image": "铂智系列智能面板/红色磨砂三联排USB五孔插座/1.png",
+      "series": "Borui Series",
+      "group": "Multi-gang socket configuration",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["visible USB label previously confirmed", "do not generalize label into specifications"],
+      "public_suitable": true
+    },
+    {
+      "id": "borui-lighting-curtain-socket",
+      "source_image": "铂智系列智能面板/红色磨砂三联排USB五孔插座  四键智能面板 六键智能面板/1.png",
+      "series": "Borui Series",
+      "group": "Scene and lighting + curtain + USB socket",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["visible USB label previously confirmed", "stock SKU interpretation without disclaimer"],
+      "public_suitable": true
+    },
+    {
+      "id": "brushed-key-card-service-front",
+      "source_image": "铝拉丝系列智能面板/金属拉丝三联排插卡取电+四键智能面板/1.png",
+      "series": "Brushed Aluminum Series",
+      "group": "Key card + service and lighting controls",
+      "recommended_use": "oem_odm_primary",
+      "risk": ["function labels are examples"],
+      "public_suitable": true
+    },
+    {
+      "id": "brushed-key-card-service-angle",
+      "source_image": "铝拉丝系列智能面板/金属拉丝三联排插卡取电+四键智能面板/3.png",
+      "series": "Brushed Aluminum Series",
+      "group": "Key card + service and lighting controls, angled view",
+      "recommended_use": "hotel_solution_teaser",
+      "risk": ["same configuration as main front image", "use only as material perspective"],
+      "public_suitable": true
+    },
+    {
+      "id": "brushed-lighting-usb-type-c",
+      "source_image": "铝拉丝系列智能面板/拉丝银二联排智能四键+USB Type-c五孔插座/1.png",
+      "series": "Brushed Aluminum Series",
+      "group": "Lighting and scene + USB and Type-C socket",
+      "recommended_use": "archive_reference",
+      "risk": ["prominent unconfirmed electrical label", "close to existing panel and socket product imagery"],
+      "public_suitable": false
+    }
+  ],
+  "placement": {
+    "oem_odm_primary": [
+      "smart-key-card-room-service",
+      "smart-key-card-room-status-lighting",
+      "vintage-dual-usb-socket",
+      "vintage-four-gang-socket-switch",
+      "vintage-lighting-usb-curtain",
+      "borui-room-status-lighting",
+      "borui-multi-gang-socket",
+      "borui-lighting-curtain-socket",
+      "brushed-key-card-service-front"
+    ],
+    "hotel_solution_teaser": [
+      "smart-curtain-thermostat-usb",
+      "smart-four-gang-display-socket",
+      "brushed-key-card-service-angle"
+    ],
+    "archive_only": [
+      "smart-usb-four-key",
+      "brushed-lighting-usb-type-c"
+    ]
+  },
+  "module": {
+    "module_id": "custom-panel-configuration-options",
+    "section_title": "Custom Room Panel Configuration Options",
+    "section_subtitle": "Coordinate panel finishes and selectable modules for hotel guest room and OEM/ODM projects.",
+    "intro_text": "Review representative panel layouts for lighting, curtain control, room status, key-card power, thermostat control, sockets, USB, and low-voltage functions. Each layout is a project configuration example rather than a fixed stock SKU.",
+    "series_tabs": ["Smart Series", "Vintage Gold Series", "Borui Series", "Brushed Aluminum Series"],
+    "configuration_examples": [
+      "Lighting + USB + Curtain Control",
+      "Key Card + Room Status + Socket",
+      "Thermostat + Service Panel + Lighting",
+      "Multi-gang Socket and Low-voltage Combinations"
+    ],
+    "display_images": [
+      "smart-series-key-card-room-service-configuration.png",
+      "smart-series-key-card-room-status-lighting-configuration.png",
+      "vintage-gold-dual-usb-socket-configuration.png",
+      "vintage-gold-four-gang-socket-switch-configuration.png",
+      "vintage-gold-lighting-usb-curtain-configuration.png",
+      "borui-series-room-status-lighting-configuration.png",
+      "borui-series-multi-gang-socket-configuration.png",
+      "borui-series-lighting-curtain-socket-configuration.png",
+      "brushed-aluminum-key-card-service-lighting-configuration.png"
+    ],
+    "cta_primary": "Request OEM/ODM Configuration",
+    "cta_secondary": "Send Your Room Layout",
+    "cta_tertiary": "Get a Quote on WhatsApp",
+    "disclaimer_text": "Images show OEM/ODM configuration examples, not standard stock SKUs. Modules, colors, panel layouts, functions, and quantities can be adapted to project requirements. Final configuration, compatibility, MOQ, lead time, and quotation are subject to project review and written confirmation.",
+    "risk_notes": [
+      "Do not transcribe visible electrical labels into copy or ALT text.",
+      "Do not create product URLs, prices, stock states, Product schema, or taxonomy terms for configurations.",
+      "Keep the Configuration Example badge visible on every image card."
+    ]
+  },
+  "static_media": {
+    "recommended_directory": "public/media/oem-odm-configurations",
+    "public_url_prefix": "/media/oem-odm-configurations/",
+    "uses_wordpress_media": false,
+    "requires_wordpress_manifest_change": false,
+    "files": [
+      {"id": "smart-key-card-room-service", "static_name": "smart-series-key-card-room-service-configuration.png", "alt_text": "Smart Series key card and room service panel configuration for hotel projects", "use": "oem_odm_primary"},
+      {"id": "smart-key-card-room-status-lighting", "static_name": "smart-series-key-card-room-status-lighting-configuration.png", "alt_text": "Smart Series key card room status and lighting control configuration", "use": "oem_odm_primary"},
+      {"id": "vintage-dual-usb-socket", "static_name": "vintage-gold-dual-usb-socket-configuration.png", "alt_text": "Vintage Gold Series dual socket configuration for hospitality projects", "use": "oem_odm_primary"},
+      {"id": "vintage-four-gang-socket-switch", "static_name": "vintage-gold-four-gang-socket-switch-configuration.png", "alt_text": "Vintage Gold Series multi-gang socket and switch configuration", "use": "oem_odm_primary"},
+      {"id": "vintage-lighting-usb-curtain", "static_name": "vintage-gold-lighting-usb-curtain-configuration.png", "alt_text": "Vintage Gold Series lighting USB and curtain control configuration", "use": "oem_odm_primary"},
+      {"id": "borui-room-status-lighting", "static_name": "borui-series-room-status-lighting-configuration.png", "alt_text": "Borui Series room status and lighting control configuration", "use": "oem_odm_primary"},
+      {"id": "borui-multi-gang-socket", "static_name": "borui-series-multi-gang-socket-configuration.png", "alt_text": "Borui Series multi-gang socket configuration for room projects", "use": "oem_odm_primary"},
+      {"id": "borui-lighting-curtain-socket", "static_name": "borui-series-lighting-curtain-socket-configuration.png", "alt_text": "Borui Series lighting curtain and socket panel configuration", "use": "oem_odm_primary"},
+      {"id": "brushed-key-card-service-front", "static_name": "brushed-aluminum-key-card-service-lighting-configuration.png", "alt_text": "Brushed Aluminum Series key card service and lighting configuration", "use": "oem_odm_primary"},
+      {"id": "smart-curtain-thermostat-usb", "static_name": "smart-series-curtain-thermostat-usb-configuration.png", "alt_text": "Smart Series curtain thermostat and USB panel configuration for guest rooms", "use": "hotel_solution_teaser"},
+      {"id": "smart-four-gang-display-socket", "static_name": "smart-series-four-gang-display-socket-configuration.png", "alt_text": "Smart Series multi-gang display socket and scene control configuration", "use": "hotel_solution_teaser"},
+      {"id": "brushed-key-card-service-angle", "static_name": "brushed-aluminum-key-card-service-lighting-angle.png", "alt_text": "Angled view of a Brushed Aluminum Series key card and service panel configuration", "use": "hotel_solution_teaser"}
+    ]
+  },
+  "frontend_impact": [
+    {"file_or_module": "src/app/[locale]/solutions/[slug]/page.tsx", "recommended_change": true, "reason": "Exact slug-guarded render for oem-odm-custom-panel-solution", "risk": "Shared template regression if guard is broad"},
+    {"file_or_module": "src/components/content/custom-panel-configuration-options.tsx", "recommended_change": true, "reason": "Isolated tabbed gallery, disclaimer, and CTAs", "risk": "Responsive and accessibility testing required"},
+    {"file_or_module": "src/config/static-oem-odm-configurations.ts", "recommended_change": true, "reason": "Static configuration metadata outside WordPress and product models", "risk": "Must remain configuration-only"},
+    {"file_or_module": "public/media/oem-odm-configurations", "recommended_change": true, "reason": "Optimized static assets outside WordPress", "risk": "Naming and compression review required"},
+    {"file_or_module": "WordPress static media sync script and manifest", "recommended_change": false, "reason": "Assets are not WordPress media", "risk": "Do not mix media ownership"},
+    {"file_or_module": "Hotel Guest Room Control Solution page", "recommended_change": false, "reason": "Defer teaser to a later phase", "risk": "Avoid scope growth"},
+    {"file_or_module": "Homepage", "recommended_change": false, "reason": "Not part of first release", "risk": "Avoid page density"},
+    {"file_or_module": "Products page and product detail template", "recommended_change": false, "reason": "Configurations are not products", "risk": "SKU and compatibility confusion"},
+    {"file_or_module": "src/app/sitemap.ts", "recommended_change": false, "reason": "No new route", "risk": "Sitemap must remain unchanged"},
+    {"file_or_module": "WordPress", "recommended_change": false, "reason": "Static frontend content only", "risk": "None if untouched"}
+  ],
+  "risk_control_copy": {
+    "disclaimer_text": "Images show OEM/ODM configuration examples, not standard stock SKUs. Modules, colors, panel layouts, functions, and quantities can be adapted to project requirements. Final configuration, compatibility, MOQ, lead time, and quotation are subject to project review and written confirmation.",
+    "short_card_note": "Configuration example. Final module selection and production scope require project confirmation."
+  },
+  "conclusion": {
+    "code": "A",
+    "message": "Image selection and page placement are complete and can proceed to OEM/ODM module implementation preparation."
+  }
+}

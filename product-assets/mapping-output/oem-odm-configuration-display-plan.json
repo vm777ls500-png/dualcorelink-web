@@ -1,0 +1,168 @@
+{
+  "plan_type": "oem_odm_configuration_display",
+  "generated_at": "2026-06-22",
+  "strategy": {
+    "standard_products": false,
+    "individual_product_pages": false,
+    "sku_management": false,
+    "product_taxonomy_changes": false,
+    "product_series_taxonomy": false,
+    "primary_placement": "OEM/ODM Custom Panel Solution page",
+    "secondary_placement": "Hotel Guest Room Control Solution page teaser",
+    "standalone_gallery_now": false
+  },
+  "source_groups": [
+    {
+      "series": "Smart Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板",
+      "source_image_count": 42,
+      "group_count": 13,
+      "typical_modules": ["lighting switches", "USB sockets", "key-card power", "room-status controls", "curtain controls", "thermostat controls", "display modules"],
+      "notes": ["Broadest configuration range", "Some USB labels contain visible electrical markings"]
+    },
+    {
+      "series": "Vintage Gold Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板",
+      "source_image_count": 16,
+      "group_count": 4,
+      "typical_modules": ["USB and power sockets", "lighting switches", "curtain switches", "smart display combinations"],
+      "notes": ["ELITE mark previously confirmed by user", "Exclude display UI containing date, location, weather, or music content"]
+    },
+    {
+      "series": "Borui Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板",
+      "source_image_count": 13,
+      "group_count": 4,
+      "typical_modules": ["room-status panels", "switches", "USB and power sockets", "thermostat controls"],
+      "notes": ["Red matte appearance", "Visible USB markings must not be generalized into specifications"]
+    },
+    {
+      "series": "Brushed Aluminum Series",
+      "source_folder": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板",
+      "source_image_count": 8,
+      "group_count": 2,
+      "typical_modules": ["key-card power", "service controls", "lighting switches", "USB and Type-C sockets"],
+      "notes": ["Two clear configuration groups", "Avoid repeated angles and specification claims based on visible labels"]
+    }
+  ],
+  "display_locations": [
+    {"location": "OEM/ODM page", "recommended": true, "priority": "primary", "recommendation": "Full tabbed configuration module with disclaimer and enquiry CTAs"},
+    {"location": "Hotel Guest Room Solution page", "recommended": true, "priority": "secondary", "recommendation": "Three or four image teaser linking to the OEM/ODM section"},
+    {"location": "Products category page", "recommended": false, "recommendation": "Keep limited to published products"},
+    {"location": "Homepage", "recommended": false, "priority": "later_optional", "recommendation": "Consider a compact teaser only after the primary module is live"},
+    {"location": "Standalone Configuration Gallery page", "recommended": false, "priority": "defer", "recommendation": "Reconsider after at least 25 curated images are ready"},
+    {"location": "Related product detail pages", "recommended": false, "recommendation": "Avoid implied product-specific compatibility or availability"}
+  ],
+  "module": {
+    "section_title": "Custom Room Panel Configuration Options",
+    "section_subtitle": "Select panel finishes and module combinations for hotel guest room and OEM/ODM projects.",
+    "intro_text": "DualCoreLink supports project-based panel configuration for lighting, curtain control, room status, key-card power, thermostat control, USB, socket, and low-voltage modules. The examples below illustrate possible layouts for project discussion rather than fixed stock SKUs.",
+    "series_tabs": ["Smart Series", "Vintage Gold Series", "Borui Series", "Brushed Aluminum Series"],
+    "configuration_card_fields": ["series", "configuration_label", "modules", "application", "image", "is_configuration_example", "cta_label"],
+    "configuration_examples": [
+      "Lighting + USB + Curtain Control",
+      "Key Card + Room Status + Socket",
+      "Thermostat + Service Panel + Lighting",
+      "Multi-gang Socket and Low-voltage Combinations"
+    ],
+    "inquiry_cta": ["Send Your Room Layout", "Request OEM/ODM Configuration", "Get a Quote on WhatsApp"],
+    "disclaimer_text": "Configuration images are for project reference. Module compatibility, electrical requirements, labels, finishes, dimensions, production scope, MOQ, and lead time must be confirmed for each project. Displayed combinations are not presented as standard stock SKUs."
+  },
+  "series_copy": [
+    {
+      "series": "Smart Series",
+      "description": "A restrained black panel direction for coordinated room-control layouts. It can support project discussions covering switches, room status, key-card power, curtain control, thermostat interfaces, sockets, USB, and display modules."
+    },
+    {
+      "series": "Vintage Gold Series",
+      "description": "A decorative gold-tone option for hospitality and residential interiors that require a more distinctive panel appearance. Module combinations can be reviewed according to the room layout and project requirements."
+    },
+    {
+      "series": "Borui Series",
+      "description": "A red matte panel direction for projects seeking a stronger visual identity across room-status, switch, socket, USB, thermostat, and curtain-control arrangements."
+    },
+    {
+      "series": "Brushed Aluminum Series",
+      "description": "A brushed metal appearance for coordinated hotel room and commercial interior projects. Typical discussions may include key-card power, service controls, lighting switches, sockets, USB/Type-C, and low-voltage modules."
+    }
+  ],
+  "image_recommendations": [
+    {
+      "series": "Smart Series",
+      "recommended_display_count": 5,
+      "recommended_images": [
+        "智慧系列智能面板/二联排USB五孔插座+四键智能面板/1.png",
+        "智慧系列智能面板/二联排插卡取电+四键智能面板/1.png",
+        "智慧系列智能面板/三联排插卡取电+房态四键智能面板+卫生间四键智能面板/1.png",
+        "智慧系列智能面板/三联排四键智能开关+空调控制器+USB不间断电源五孔插座/1.png",
+        "智慧系列智能面板/四联排USB五孔插座+空调控制器+四键智能面板/1.png"
+      ],
+      "excluded_images": ["Repeated angles", "Dual vertical socket group already represented by a published product", "Images dominated by electrical labels when a cleaner example exists"],
+      "risk": "Chinese labels and USB markings are visible; treat them as visual examples only."
+    },
+    {
+      "series": "Vintage Gold Series",
+      "recommended_display_count": 3,
+      "recommended_images": [
+        "复古系列智能面板/复古金色二联排USB五孔插座/08.png",
+        "复古系列智能面板/复古金色四联排USB五孔插座+智能开关面板/22.png",
+        "复古系列智能面板/复古金色智能开关面板+USB五孔插座/22.png"
+      ],
+      "excluded_images": ["三联排复古金色智能面板+五孔插座+中控屏/11.png", "Display images containing date, location, weather, or music content", "Repeated angles"],
+      "risk": "ELITE mark was user-confirmed but should not become a separate unsupported brand claim."
+    },
+    {
+      "series": "Borui Series",
+      "recommended_display_count": 3,
+      "recommended_images": [
+        "铂智系列智能面板/红色磨砂二联排房态+四键智能开关面板/1.png",
+        "铂智系列智能面板/红色磨砂三联排USB五孔插座/1.png",
+        "铂智系列智能面板/红色磨砂三联排USB五孔插座  四键智能面板 六键智能面板/1.png"
+      ],
+      "excluded_images": ["Repeated angles", "Thermostat combination pending presentation review"],
+      "risk": "Visible USB markings may remain in images but must not be generalized into specifications."
+    },
+    {
+      "series": "Brushed Aluminum Series",
+      "recommended_display_count": 3,
+      "recommended_images": [
+        "铝拉丝系列智能面板/金属拉丝三联排插卡取电+四键智能面板/1.png",
+        "铝拉丝系列智能面板/金属拉丝三联排插卡取电+四键智能面板/3.png",
+        "铝拉丝系列智能面板/拉丝银二联排智能四键+USB Type-c五孔插座/1.png"
+      ],
+      "excluded_images": ["Near-duplicate angles", "Strong close-up of USB electrical marking"],
+      "risk": "Do not repeat visible electrical text as a confirmed specification."
+    }
+  ],
+  "risk_controls": [
+    {"risk": "Misunderstood as standard SKU", "exists": true, "handling": "Configuration Example badges, no product URLs, no prices or stock, and visible disclaimer", "blocking": false},
+    {"risk": "Customer or hotel brand", "exists": false, "handling": "Final full-resolution review before media preparation", "blocking": "conditional"},
+    {"risk": "Room number", "exists": false, "handling": "Exclude any project-specific image found later", "blocking": "conditional"},
+    {"risk": "Unconfirmed electrical parameters", "exists": true, "handling": "Do not transcribe labels; prefer cleaner images; confirm specifications separately", "blocking": false},
+    {"risk": "Duplicate content with product pages", "exists": true, "handling": "OEM/ODM context only; avoid single-product hero duplication", "blocking": false},
+    {"risk": "Product-category confusion", "exists": true, "handling": "No products, categories, taxonomy terms, product schema, or sitemap URLs", "blocking": false},
+    {"risk": "Disclaimer required", "exists": true, "handling": "Place below module and near enquiry CTA", "blocking": false},
+    {"risk": "Image compression and SEO naming", "exists": true, "handling": "Prepare 14 selected images later with unique English filenames and neutral ALT text", "blocking": false},
+    {"risk": "Visible series mark", "exists": true, "handling": "ELITE was user-confirmed; do not create an unsupported brand claim", "blocking": false},
+    {"risk": "Screen UI, location, date, or music content", "exists": true, "handling": "Exclude Vintage display group from first public release", "blocking": false}
+  ],
+  "routes": [
+    {"route": "A", "description": "Add the full module to the OEM/ODM Custom Panel Solution page", "pros": ["Best alignment with customization", "Strong enquiry intent", "No new URL"], "risks": ["Requires disclaimer and curated media"], "recommendation": "primary"},
+    {"route": "B", "description": "Add a compact teaser to the Hotel Guest Room Control Solution page", "pros": ["Connects configurations to room-control context"], "risks": ["Can distract if oversized"], "recommendation": "secondary"},
+    {"route": "C", "description": "Create a standalone Configuration Gallery page", "pros": ["Supports a future library and filters"], "risks": ["Thin page", "Navigation overhead", "SKU confusion"], "recommendation": "defer"},
+    {"route": "D", "description": "Keep images only as internal sales material", "pros": ["Lowest public risk"], "risks": ["No website value"], "recommendation": "fallback"},
+    {"route": "E", "description": "Import every combination as a product", "pros": ["Individual records"], "risks": ["Duplicate products", "Category confusion", "Availability confusion", "Unnecessary sitemap growth"], "recommendation": "not_recommended"}
+  ],
+  "next_steps": [
+    "Confirm the 14-image first-release shortlist.",
+    "Perform full-resolution risk review and remove near duplicates.",
+    "Create SEO filenames and neutral ALT text.",
+    "Prepare optimized static copies while preserving source images.",
+    "Draft the OEM/ODM module and Hotel Guest Room Solution teaser.",
+    "Verify locally that product, taxonomy, sitemap, and Product JSON-LD behavior do not change."
+  ],
+  "conclusion": {
+    "code": "A",
+    "message": "Multi-gang combinations are suitable for an OEM/ODM configuration display module."
+  }
+}

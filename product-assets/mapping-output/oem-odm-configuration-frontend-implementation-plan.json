@@ -1,0 +1,512 @@
+{
+  "plan_type": "oem_odm_configuration_frontend_implementation_plan",
+  "generated_at": "2026-06-22",
+  "source_file": "product-assets/mapping-output/oem-odm-configuration-image-placement.json",
+  "scope": {
+    "read_only_analysis_completed": true,
+    "modifies_wordpress": false,
+    "modifies_frontend_in_this_stage": false,
+    "runs_build_in_this_stage": false,
+    "deploys_in_this_stage": false,
+    "creates_git_commit": false,
+    "creates_new_route": false,
+    "changes_sitemap": false
+  },
+  "route_analysis": {
+    "target_url": "/en/solutions/oem-odm-custom-panel-solution/",
+    "route_file": "src/app/[locale]/solutions/[slug]/page.tsx",
+    "content_source": "WordPress Solution repository rendered through the shared Solution detail template",
+    "independent_oem_odm_page_exists": false,
+    "existing_oem_odm_solution_exists": true,
+    "existing_supporting_sections": [
+      "Solution hero or snapshot",
+      "Customer challenges",
+      "Solution architecture",
+      "Key benefits",
+      "Deployment process",
+      "Supported protocols",
+      "Integration notes",
+      "Compatibility",
+      "Known limitations",
+      "Recommended Products",
+      "Project planning details",
+      "B2B project support CTA"
+    ],
+    "recommended_insertion": {
+      "position": "After RecommendedProducts and before FallbackContent",
+      "render_guard": "locale === 'en' && slug === 'oem-odm-custom-panel-solution'",
+      "reason": "The gallery follows the recommended product context, precedes detailed planning notes, and remains isolated from all other Solution routes."
+    }
+  },
+  "related_pages": [
+    {
+      "file": "src/app/[locale]/solutions/[slug]/page.tsx",
+      "related": true,
+      "current_role": "Shared detail template for all Solution pages",
+      "recommended_for_first_release": true,
+      "reason": "It renders the existing OEM/ODM Custom Panel Solution URL."
+    },
+    {
+      "file": "src/app/[locale]/solutions/page.tsx",
+      "related": true,
+      "current_role": "Solution index with an OEM/ODM Custom Panel Solution entry",
+      "recommended_for_first_release": false,
+      "reason": "The existing link already leads to the target detail page; no index change is required."
+    },
+    {
+      "file": "src/app/[locale]/page.tsx",
+      "related": true,
+      "current_role": "Homepage with B2B and Solution entry points",
+      "recommended_for_first_release": false,
+      "reason": "Defer homepage promotion to avoid first-release scope growth."
+    },
+    {
+      "file": "src/app/[locale]/products/page.tsx",
+      "related": false,
+      "current_role": "Published product listing and taxonomy display",
+      "recommended_for_first_release": false,
+      "reason": "Configuration examples are not product SKUs."
+    },
+    {
+      "file": "src/components/content/contact-cta.tsx",
+      "related": true,
+      "current_role": "Existing page-level B2B contact CTA",
+      "recommended_for_first_release": false,
+      "reason": "Reuse its visual and link patterns without modifying the component."
+    },
+    {
+      "file": "src/components/content/media-frame.tsx",
+      "related": true,
+      "current_role": "Existing next/image-based static media frame",
+      "recommended_for_first_release": false,
+      "reason": "Reuse its image layout conventions; the gallery requires its own repeated-card markup."
+    },
+    {
+      "file": "src/app/sitemap.ts",
+      "related": false,
+      "current_role": "Existing sitemap generation",
+      "recommended_for_first_release": false,
+      "reason": "No new URL is introduced."
+    }
+  ],
+  "placement_options": [
+    {
+      "position": "Existing OEM/ODM Custom Panel Solution detail page",
+      "recommendation_level": "primary",
+      "benefits": [
+        "Matches user intent and existing Solution navigation",
+        "Uses an already indexed URL",
+        "Keeps configuration examples separate from product SKUs",
+        "Requires changes to only one rendered page"
+      ],
+      "risks": [
+        "The page uses a shared template, so the render condition must be exact"
+      ],
+      "recommendation": "Implement the first release here with locale and slug guards."
+    },
+    {
+      "position": "Hotel Guest Room Control Solution detail page",
+      "recommendation_level": "later",
+      "benefits": [
+        "Strong project-use context"
+      ],
+      "risks": [
+        "Duplicates content and expands the first-release scope"
+      ],
+      "recommendation": "Consider a small future entry link, not the full gallery now."
+    },
+    {
+      "position": "Homepage B2B customization section",
+      "recommendation_level": "later",
+      "benefits": [
+        "High visibility"
+      ],
+      "risks": [
+        "Nine images increase homepage weight and density"
+      ],
+      "recommendation": "Defer until engagement data supports homepage promotion."
+    },
+    {
+      "position": "Products page lower section",
+      "recommendation_level": "not_recommended",
+      "benefits": [
+        "Product visitors may notice customization capability"
+      ],
+      "risks": [
+        "Can make configuration examples look like purchasable SKUs"
+      ],
+      "recommendation": "Do not use for the first release."
+    }
+  ],
+  "component_design": {
+    "recommended_component": "CustomPanelConfigurationSection",
+    "recommended_file": "src/components/content/custom-panel-configuration-section.tsx",
+    "is_new": true,
+    "rendering": "Server Component with no client state",
+    "interaction": "Four visible series groups rather than interactive tabs",
+    "style_reuse": [
+      "Existing max-w-7xl content width",
+      "Existing border-line and bg-surface tokens",
+      "Existing brand-colored eyebrow and CTA styles",
+      "Existing next/image fill pattern",
+      "Existing contact and WhatsApp link behavior"
+    ],
+    "layout": {
+      "mobile": "One-column image cards with stable aspect ratio",
+      "tablet": "Two-column image cards",
+      "desktop": "Three-column image cards",
+      "series_distribution": {
+        "Smart Series": 2,
+        "Vintage Gold Series": 3,
+        "Borui Series": 3,
+        "Brushed Aluminum Series": 1
+      }
+    },
+    "image_behavior": {
+      "component": "next/image",
+      "optimization_mode": "Project-wide images.unoptimized static export configuration",
+      "loading": "Default lazy loading for all nine gallery images",
+      "priority_images": 0,
+      "sizes": "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+      "fit": "object-contain inside a fixed aspect-ratio frame"
+    },
+    "accessibility": [
+      "Use a section h2 and card h3 headings",
+      "Use descriptive ALT text from static data",
+      "Keep all CTAs keyboard accessible",
+      "Do not make series names look like tabs unless they have tab semantics and interaction"
+    ]
+  },
+  "data_design": {
+    "recommended_file": "src/config/static-oem-odm-configurations.ts",
+    "location_decision": "Use src/config rather than page-local data or a new src/data directory",
+    "reason": "The repository already keeps curated static FAQ and Case Study content under src/config, and the data is shared presentation configuration rather than WordPress content.",
+    "typescript_shape": "type PanelConfigurationImage = { id: string; series: PanelConfigurationSeries; title: string; image: string; alt: string; modules: readonly string[]; useCase: string; }",
+    "series": [
+      "Smart Series",
+      "Vintage Gold Series",
+      "Borui Series",
+      "Brushed Aluminum Series"
+    ],
+    "copy": {
+      "module_id": "custom-panel-configuration-options",
+      "section_title": "Custom Room Panel Configuration Options",
+      "section_subtitle": "Coordinate panel finishes and selectable modules for hotel guest room and OEM/ODM projects.",
+      "intro_text": "Review representative panel layouts for lighting, curtain control, room status, key-card power, thermostat control, sockets, USB, and low-voltage functions. Each layout is a project configuration example rather than a fixed stock SKU.",
+      "cta_primary": "Request OEM/ODM Configuration",
+      "cta_secondary": "Send Your Room Layout",
+      "cta_tertiary": "Get a Quote on WhatsApp",
+      "disclaimer_text": "Images show OEM/ODM configuration examples, not standard stock SKUs. Modules, colors, panel layouts, functions, and quantities can be adapted to project requirements. Final configuration, compatibility, MOQ, lead time, and quotation are subject to project review and written confirmation.",
+      "card_note": "Configuration example. Final module selection and production scope require project confirmation."
+    },
+    "configurations": [
+      {
+        "id": "smart-key-card-room-service",
+        "series": "Smart Series",
+        "title": "Key Card and Room Service Controls",
+        "image": "/media/oem-odm-configurations/smart-series-key-card-room-service-configuration.png",
+        "alt": "Smart Series key card and room service panel configuration for hotel projects",
+        "modules": ["Key-card power", "Room service status", "Guest controls"],
+        "useCase": "Hotel guest room entry and service panel planning"
+      },
+      {
+        "id": "smart-key-card-room-status-lighting",
+        "series": "Smart Series",
+        "title": "Key Card, Room Status and Lighting Controls",
+        "image": "/media/oem-odm-configurations/smart-series-key-card-room-status-lighting-configuration.png",
+        "alt": "Smart Series key card room status and lighting control configuration",
+        "modules": ["Key-card power", "Room status", "Lighting and service controls"],
+        "useCase": "Coordinated guest room control layouts"
+      },
+      {
+        "id": "vintage-dual-usb-socket",
+        "series": "Vintage Gold Series",
+        "title": "Dual Socket Configuration",
+        "image": "/media/oem-odm-configurations/vintage-gold-dual-usb-socket-configuration.png",
+        "alt": "Vintage Gold Series dual socket configuration for hospitality projects",
+        "modules": ["Power socket", "USB connection", "Vintage Gold finish"],
+        "useCase": "Bedside and work-area power layouts"
+      },
+      {
+        "id": "vintage-four-gang-socket-switch",
+        "series": "Vintage Gold Series",
+        "title": "Four-gang Socket and Switch Configuration",
+        "image": "/media/oem-odm-configurations/vintage-gold-four-gang-socket-switch-configuration.png",
+        "alt": "Vintage Gold Series multi-gang socket and switch configuration",
+        "modules": ["Lighting controls", "USB sockets", "Curtain controls"],
+        "useCase": "Coordinated multi-gang room panel layouts"
+      },
+      {
+        "id": "vintage-lighting-usb-curtain",
+        "series": "Vintage Gold Series",
+        "title": "Lighting, USB and Curtain Configuration",
+        "image": "/media/oem-odm-configurations/vintage-gold-lighting-usb-curtain-configuration.png",
+        "alt": "Vintage Gold Series lighting USB and curtain control configuration",
+        "modules": ["Lighting scenes", "USB socket", "Curtain controls"],
+        "useCase": "Guest room bedside and control panel planning"
+      },
+      {
+        "id": "borui-room-status-lighting",
+        "series": "Borui Series",
+        "title": "Room Status and Lighting Configuration",
+        "image": "/media/oem-odm-configurations/borui-series-room-status-lighting-configuration.png",
+        "alt": "Borui Series room status and lighting control configuration",
+        "modules": ["Room status", "Lighting controls", "Service controls"],
+        "useCase": "Hotel service and lighting panel coordination"
+      },
+      {
+        "id": "borui-multi-gang-socket",
+        "series": "Borui Series",
+        "title": "Multi-gang Socket Configuration",
+        "image": "/media/oem-odm-configurations/borui-series-multi-gang-socket-configuration.png",
+        "alt": "Borui Series multi-gang socket configuration for room projects",
+        "modules": ["Power sockets", "USB connection", "Borui finish"],
+        "useCase": "Project-specific power access layouts"
+      },
+      {
+        "id": "borui-lighting-curtain-socket",
+        "series": "Borui Series",
+        "title": "Lighting, Curtain and Socket Configuration",
+        "image": "/media/oem-odm-configurations/borui-series-lighting-curtain-socket-configuration.png",
+        "alt": "Borui Series lighting curtain and socket panel configuration",
+        "modules": ["Lighting scenes", "Curtain controls", "Power and USB"],
+        "useCase": "Mixed control and power panel planning"
+      },
+      {
+        "id": "brushed-key-card-service-front",
+        "series": "Brushed Aluminum Series",
+        "title": "Key Card, Service and Lighting Configuration",
+        "image": "/media/oem-odm-configurations/brushed-aluminum-key-card-service-lighting-configuration.png",
+        "alt": "Brushed Aluminum Series key card service and lighting configuration",
+        "modules": ["Key-card power", "Service controls", "Lighting controls"],
+        "useCase": "Brushed metal guest room panel coordination"
+      }
+    ]
+  },
+  "static_media_plan": {
+    "directory": "public/media/oem-odm-configurations",
+    "public_prefix": "/media/oem-odm-configurations/",
+    "uses_wordpress_media": false,
+    "requires_wordpress_manifest_change": false,
+    "copy_files_in_this_stage": false,
+    "images": [
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/二联排插卡取电+四键智能面板/1.png",
+        "static_path": "/media/oem-odm-configurations/smart-series-key-card-room-service-configuration.png",
+        "alt": "Smart Series key card and room service panel configuration for hotel projects",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Function labels are examples; configuration disclaimer required."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/智慧系列智能面板/三联排插卡取电+房态四键智能面板+卫生间四键智能面板/1.png",
+        "static_path": "/media/oem-odm-configurations/smart-series-key-card-room-status-lighting-configuration.png",
+        "alt": "Smart Series key card room status and lighting control configuration",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Configuration disclaimer required to avoid fixed-SKU interpretation."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色二联排USB五孔插座/08.png",
+        "static_path": "/media/oem-odm-configurations/vintage-gold-dual-usb-socket-configuration.png",
+        "alt": "Vintage Gold Series dual socket configuration for hospitality projects",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Visible ELITE mark was previously confirmed by the user."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色四联排USB五孔插座+智能开关面板/22.png",
+        "static_path": "/media/oem-odm-configurations/vintage-gold-four-gang-socket-switch-configuration.png",
+        "alt": "Vintage Gold Series multi-gang socket and switch configuration",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Visible mark and function labels are examples; do not describe them as universal specifications."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/复古系列智能面板/复古金色智能开关面板+USB五孔插座/22.png",
+        "static_path": "/media/oem-odm-configurations/vintage-gold-lighting-usb-curtain-configuration.png",
+        "alt": "Vintage Gold Series lighting USB and curtain control configuration",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Function labels are examples; final functions require project confirmation."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂二联排房态+四键智能开关面板/1.png",
+        "static_path": "/media/oem-odm-configurations/borui-series-room-status-lighting-configuration.png",
+        "alt": "Borui Series room status and lighting control configuration",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Configuration disclaimer required to avoid fixed-SKU interpretation."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座/1.png",
+        "static_path": "/media/oem-odm-configurations/borui-series-multi-gang-socket-configuration.png",
+        "alt": "Borui Series multi-gang socket configuration for room projects",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Visible USB label was previously confirmed; do not transcribe it into specifications."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/铂智系列智能面板/红色磨砂三联排USB五孔插座  四键智能面板 六键智能面板/1.png",
+        "static_path": "/media/oem-odm-configurations/borui-series-lighting-curtain-socket-configuration.png",
+        "alt": "Borui Series lighting curtain and socket panel configuration",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Do not generalize visible labels into technical specifications."
+      },
+      {
+        "source": "product-assets/raw-images/产品列表/产品列表/铝拉丝系列智能面板/金属拉丝三联排插卡取电+四键智能面板/1.png",
+        "static_path": "/media/oem-odm-configurations/brushed-aluminum-key-card-service-lighting-configuration.png",
+        "alt": "Brushed Aluminum Series key card service and lighting configuration",
+        "use": "OEM/ODM primary gallery",
+        "risk": "Function labels are configuration examples."
+      }
+    ]
+  },
+  "seo_schema_assessment": [
+    {
+      "item": "Existing page metadata and canonical",
+      "needed": true,
+      "reason": "Keep the current Solution page metadata unchanged.",
+      "risk": "None if untouched."
+    },
+    {
+      "item": "Existing Service and BreadcrumbList schema",
+      "needed": true,
+      "reason": "The module is supporting content inside the existing Solution page.",
+      "risk": "Do not alter the current graph."
+    },
+    {
+      "item": "Product schema",
+      "needed": false,
+      "reason": "Configuration examples are not products or SKUs.",
+      "risk": "Would misclassify the content and reintroduce product-rich-result requirements."
+    },
+    {
+      "item": "Offer, Review or Rating schema",
+      "needed": false,
+      "reason": "There is no public price, inventory, or review data.",
+      "risk": "Any such data would be unsupported."
+    },
+    {
+      "item": "ImageObject schema",
+      "needed": false,
+      "reason": "The project has no unified ImageObject pattern for gallery content.",
+      "risk": "Adds complexity without a supported rich-result benefit."
+    },
+    {
+      "item": "Sitemap entry",
+      "needed": false,
+      "reason": "The module is added to an existing indexed URL.",
+      "risk": "Changing sitemap logic would be unrelated scope."
+    }
+  ],
+  "implementation_file_boundary": [
+    {
+      "file": "src/app/[locale]/solutions/[slug]/page.tsx",
+      "change_type": "Add an exact locale-and-slug-guarded component render",
+      "reason": "Insert the module only on the English OEM/ODM Solution detail page.",
+      "required": true
+    },
+    {
+      "file": "src/components/content/custom-panel-configuration-section.tsx",
+      "change_type": "New presentational Server Component",
+      "reason": "Keep gallery markup, disclaimer, and CTAs isolated from the shared page template.",
+      "required": true
+    },
+    {
+      "file": "src/config/static-oem-odm-configurations.ts",
+      "change_type": "New typed static data and copy",
+      "reason": "Keep configuration examples separate from WordPress and product models.",
+      "required": true
+    },
+    {
+      "file": "public/media/oem-odm-configurations/*.png",
+      "change_type": "Add nine optimized static image copies",
+      "reason": "Serve public English paths without WordPress media ownership or Chinese URL segments.",
+      "required": true
+    },
+    {
+      "file": "tests/oem-odm-configuration.test.ts",
+      "change_type": "Optional focused static-data validation",
+      "reason": "Can enforce nine unique paths, four-series coverage, disclaimer presence, and forbidden-field absence.",
+      "required": false
+    }
+  ],
+  "explicitly_excluded_files_and_systems": [
+    "WordPress",
+    "product CPT",
+    "product taxonomy",
+    "src/app/sitemap.ts",
+    "src/lib/schema",
+    "src/app/[locale]/products/[slug]/page.tsx",
+    "existing product content",
+    "Hotel Guest Room Control Solution in the first release",
+    "homepage in the first release",
+    "WordPress media sync script and manifest"
+  ],
+  "risk_assessment": [
+    {
+      "risk": "Configuration examples may be interpreted as stocked SKUs",
+      "exists": true,
+      "handling": "Show a Configuration Example label on every card and the full disclaimer beside the CTAs.",
+      "blocking": false
+    },
+    {
+      "risk": "Customer names, hotel brands or room numbers",
+      "exists": false,
+      "handling": "Use only the nine previously approved primary images and recheck copied assets before implementation.",
+      "blocking": false
+    },
+    {
+      "risk": "Unconfirmed electrical labels visible in selected images",
+      "exists": true,
+      "handling": "Do not transcribe labels into titles, ALT text, modules, specifications, or schema; retain project-confirmation wording.",
+      "blocking": false
+    },
+    {
+      "risk": "Product page SEO or schema impact",
+      "exists": false,
+      "handling": "Render only on the OEM/ODM Solution route and do not touch product templates or schema builders.",
+      "blocking": false
+    },
+    {
+      "risk": "Sitemap impact",
+      "exists": false,
+      "handling": "Create no route and leave sitemap logic unchanged.",
+      "blocking": false
+    },
+    {
+      "risk": "Overlap with existing product imagery",
+      "exists": true,
+      "handling": "Frame cards as multi-module project configurations and avoid product-detail links or SKU language.",
+      "blocking": false
+    },
+    {
+      "risk": "Nine images may affect mobile performance",
+      "exists": true,
+      "handling": "Pre-compress static copies, use responsive sizes, fixed aspect ratios, and default lazy loading with no priority images.",
+      "blocking": false
+    },
+    {
+      "risk": "Interactive tabs could add accessibility and client JavaScript complexity",
+      "exists": true,
+      "handling": "Use visible grouped series sections in the first release rather than client-side tabs.",
+      "blocking": false
+    },
+    {
+      "risk": "Disclaimer omission",
+      "exists": true,
+      "handling": "Treat the disclaimer as required module content and include a short note on every card.",
+      "blocking": true
+    }
+  ],
+  "implementation_validation_plan": [
+    "Confirm exactly nine copied public images and unique public paths.",
+    "Confirm all four series are represented.",
+    "Confirm the module appears only on /en/solutions/oem-odm-custom-panel-solution/.",
+    "Confirm no new route or sitemap URL is created.",
+    "Confirm no Product, Offer, Review, Rating or ImageObject schema is added.",
+    "Confirm all images use /media/oem-odm-configurations/ paths and no WordPress upload URLs.",
+    "Confirm responsive one-, two-, and three-column layouts without overflow.",
+    "Confirm all images lazy load and use stable aspect-ratio containers.",
+    "Confirm the disclaimer and project-confirmation wording are visible.",
+    "Run lint, data tests, static export build, and focused output scans in the implementation stage."
+  ],
+  "conclusion": {
+    "code": "A",
+    "message": "Frontend implementation preparation is complete and can proceed to local implementation of the OEM/ODM configuration module."
+  }
+}

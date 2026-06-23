@@ -274,6 +274,8 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 href: `/${locale}/products/${product.slug}/`,
                 categoryLabel: product.categoryNames[0],
                 imageUrl: product.primaryImage?.sourceUrl,
+                imageAlt:
+                  product.primaryImage?.altText || stripHtml(product.title),
               }))}
               emptyTitle="Our first hotel control products are being prepared."
               emptyDescription="Technical specifications and project options will be available here after verification."
@@ -374,6 +376,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 href: `/${locale}/solutions/${solution.slug}/`,
                 meta: solution.typicalDeploymentTime || "Smart building solution",
                 imageUrl: solution.heroImage?.sourceUrl,
+                imageAlt: solution.heroImage?.altText || stripHtml(solution.title),
               }))}
               emptyTitle="Solution portfolios are being prepared."
               emptyDescription="Hotel room control, energy management, and property automation solutions will appear here."
@@ -463,6 +466,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 href: `/${locale}/regions/${region.slug}/`,
                 meta: region.marketMaturity || region.regionType,
                 imageUrl: region.heroImage?.sourceUrl,
+                imageAlt: region.heroImage?.altText || stripHtml(region.title),
               }))}
               emptyTitle="Regional market guides are being prepared."
               emptyDescription={`Initial coverage will focus on ${brand.targetMarkets.join(", ")}.`}

@@ -9,6 +9,7 @@ export type PreviewItem = {
   meta?: string;
   categoryLabel?: string;
   imageUrl?: string;
+  imageAlt?: string;
 };
 
 type PreviewGridProps = {
@@ -43,7 +44,7 @@ export function PreviewGrid({
             {item.imageUrl ? (
               <Image
                 src={item.imageUrl}
-                alt=""
+                alt={item.imageAlt ?? item.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-contain p-5"

@@ -131,8 +131,12 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
         ])}
       />
       <main>
-        <section className="border-b border-line bg-foreground text-white">
-          <div className="mx-auto min-h-[42rem] max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
+        <section className="relative overflow-hidden border-b border-line bg-[#101820] text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(233,185,73,0.24),transparent_28%),radial-gradient(circle_at_80%_8%,rgba(0,95,115,0.52),transparent_34%),linear-gradient(135deg,#101820_0%,#0a2530_48%,#111827_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:48px_48px] opacity-45" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#101820] to-transparent" />
+          <div className="absolute right-0 top-10 hidden h-[30rem] w-[42rem] border-y border-l border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0)),linear-gradient(90deg,rgba(233,185,73,0.16)_1px,transparent_1px)] bg-[size:auto,72px_72px] lg:block" />
+          <div className="relative mx-auto min-h-[42rem] max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <div className="flex min-h-[34rem] flex-col justify-between gap-12">
               <div className="max-w-4xl">
                 <p className="text-sm font-semibold uppercase text-accent">
@@ -159,15 +163,15 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                   </Link>
                   <a
                     href={whatsappUrl}
-                    className="inline-flex min-h-11 items-center border border-white bg-white px-5 py-3 font-semibold text-foreground"
+                    className="inline-flex min-h-11 items-center border border-white/55 bg-white/10 px-5 py-3 font-semibold text-white backdrop-blur hover:bg-white/15"
                   >
-                    {brand.whatsapp.label}
+                    Contact Sales
                   </a>
                 </div>
               </div>
 
               <dl className="grid gap-px border border-white/20 bg-white/20 sm:grid-cols-3">
-                <div className="bg-foreground p-5">
+                <div className="bg-[#101820]/85 p-5 backdrop-blur">
                   <dt className="text-xs font-semibold uppercase text-white/55">
                     Product systems
                   </dt>
@@ -175,7 +179,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     Room control, panels, sensors, gateways
                   </dd>
                 </div>
-                <div className="bg-foreground p-5">
+                <div className="bg-[#101820]/85 p-5 backdrop-blur">
                   <dt className="text-xs font-semibold uppercase text-white/55">
                     Commercial support
                   </dt>
@@ -183,7 +187,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     OEM, ODM, private label, project supply
                   </dd>
                 </div>
-                <div className="bg-foreground p-5">
+                <div className="bg-[#101820]/85 p-5 backdrop-blur">
                   <dt className="text-xs font-semibold uppercase text-white/55">
                     Priority markets
                   </dt>

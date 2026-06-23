@@ -177,7 +177,8 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
       </p>
       {status === "mailto" ? (
         <p className="mt-3 text-sm font-semibold text-brand">
-          Your email client should open with the inquiry details.
+          Your email client should open with the inquiry details. We will reply
+          within 24 hours on business days.
         </p>
       ) : null}
     </form>

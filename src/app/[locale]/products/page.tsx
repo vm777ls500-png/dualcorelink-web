@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
-import { ContentList } from "@/components/content/content-list";
 import { EmptyState } from "@/components/content/empty-state";
+import { ProductFilteredList } from "@/components/content/product-filtered-list";
 import { isLocale, locales } from "@/config/i18n";
 import { applicationScenarios } from "@/config/application-scenarios";
 import { productCategories } from "@/config/product-taxonomy";
@@ -55,6 +56,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
   const products = await productRepository.list(locale);
   const productCountsByCategory = new Map<string, number>();
   const publishedSlugs = new Set(products.map((product) => product.slug));
+  const seriesSlugsByProduct = new Map<string, string[]>();
 
   for (const product of products) {
     for (const categorySlug of product.categorySlugs) {
@@ -62,6 +64,14 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         categorySlug,
         (productCountsByCategory.get(categorySlug) ?? 0) + 1,
       );
+    }
+  }
+  for (const series of productSeries) {
+    for (const slug of series.productSlugs) {
+      seriesSlugsByProduct.set(slug, [
+        ...(seriesSlugsByProduct.get(slug) ?? []),
+        series.slug,
+      ]);
     }
   }
 
@@ -133,7 +143,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
                   return (
                 <a
-                  href={`#category-${category.slug}`}
+                  href={`/${locale}/products/?category=${category.slug}`}
                   className={
                     hasProducts
                       ? "block border border-line bg-background p-3 hover:border-brand"
@@ -186,7 +196,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               return (
               <li key={series.slug}>
                 <Link
-                  href={`/${locale}/product-series/#${series.slug}`}
+                  href={`/${locale}/products/?series=${series.slug}`}
                   className={
                     hasProducts
                       ? "block border border-line bg-background p-3 hover:border-brand"
@@ -253,23 +263,41 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           description="Product content will appear here after it is published in WordPress."
         />
       ) : (
-        <ContentList
-          locale={locale}
-          route="products"
-          items={products.map((product) => ({
-            id: product.id,
-            slug: product.slug,
-            title: stripHtml(product.title),
-            description: stripHtml(
-              product.shortDescription || product.excerpt,
-            ),
-            reference: product.model || undefined,
-            hasMedia: product.primaryImage !== null,
-            mediaUrl: product.primaryImage?.sourceUrl,
-            mediaAlt: stripHtml(product.title),
-            categories: product.categoryNames,
-          }))}
-        />
+        <Suspense
+          fallback={
+            <EmptyState
+              title="Loading products"
+              description="Preparing product results."
+            />
+          }
+        >
+          <ProductFilteredList
+            locale={locale}
+            categories={productCategories.map((category) => ({
+              slug: category.slug,
+              title: category.title,
+            }))}
+            series={productSeries.map((item) => ({
+              slug: item.slug,
+              title: item.title,
+            }))}
+            items={products.map((product) => ({
+              id: product.id,
+              slug: product.slug,
+              title: stripHtml(product.title),
+              description: stripHtml(
+                product.shortDescription || product.excerpt,
+              ),
+              reference: product.model || undefined,
+              hasMedia: product.primaryImage !== null,
+              mediaUrl: product.primaryImage?.sourceUrl,
+              mediaAlt: stripHtml(product.title),
+              categories: product.categoryNames,
+              categorySlugs: product.categorySlugs,
+              seriesSlugs: seriesSlugsByProduct.get(product.slug) ?? [],
+            }))}
+          />
+        </Suspense>
       )}
       <section className="mt-12 border border-line bg-surface p-6">
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">

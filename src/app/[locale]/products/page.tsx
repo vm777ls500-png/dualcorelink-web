@@ -143,7 +143,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
                   return (
                 <a
-                  href={`/${locale}/products/?category=${category.slug}`}
+                  href={`/${locale}/products/?category=${category.slug}#product-results`}
                   className={
                     hasProducts
                       ? "block border border-line bg-background p-3 hover:border-brand"
@@ -196,7 +196,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               return (
               <li key={series.slug}>
                 <Link
-                  href={`/${locale}/products/?series=${series.slug}`}
+                  href={`/${locale}/products/?series=${series.slug}#product-results`}
                   className={
                     hasProducts
                       ? "block border border-line bg-background p-3 hover:border-brand"

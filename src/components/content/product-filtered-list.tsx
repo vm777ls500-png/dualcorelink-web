@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { ContentList, type ContentListItem } from "./content-list";
 import { EmptyState } from "./empty-state";
@@ -29,6 +30,7 @@ export function ProductFilteredList({
   categories,
   series,
 }: ProductFilteredListProps) {
+  const resultsRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
   const categorySlug = searchParams.get("category") || "";
   const seriesSlug = searchParams.get("series") || "";
@@ -49,9 +51,18 @@ export function ProductFilteredList({
     activeCategory ? `Category: ${activeCategory.title}` : "",
     activeSeries ? `Series: ${activeSeries.title}` : "",
   ].filter(Boolean);
+  const hasFilter = Boolean(activeCategory || activeSeries);
+
+  useEffect(() => {
+    if (!hasFilter) return;
+
+    window.requestAnimationFrame(() => {
+      resultsRef.current?.scrollIntoView({ block: "start" });
+    });
+  }, [hasFilter, categorySlug, seriesSlug]);
 
   return (
-    <div id="product-results">
+    <div id="product-results" ref={resultsRef} className="scroll-mt-24">
       {filterLabels.length > 0 ? (
         <div className="mb-6 border border-line bg-surface p-5">
           <p className="text-sm font-semibold uppercase text-brand">

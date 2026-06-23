@@ -18,6 +18,7 @@ import {
   organizationId,
   websiteId,
 } from "../src/lib/schema";
+import { productRepository } from "../src/lib/wordpress/repositories";
 import type { ProductDetailModel } from "../src/types/content";
 
 function createProduct(): ProductDetailModel {
@@ -35,6 +36,9 @@ function createProduct(): ProductDetailModel {
     model: "DL-100",
     shortDescription: "A connected wall switch.",
     status: "active",
+    categoryIds: [9],
+    categorySlugs: ["smart-panels-switches"],
+    categoryNames: ["Smart Panels & Switches"],
     isFeatured: false,
     isNew: false,
     specifications: [],
@@ -158,8 +162,44 @@ test("Product schema has no Offer or manufacturer by default", () => {
 
   assert.equal("offers" in schema, false);
   assert.equal("manufacturer" in schema, false);
+  assert.deepEqual(schema.category, ["Smart Panels & Switches"]);
   assert.equal(serialized.includes("internal"), false);
   assert.equal(serialized.includes("attachment"), false);
+});
+
+test("all published product detail pages can emit safe Product schema", async () => {
+  const params = await productRepository.getStaticParams("en");
+  assert.equal(params.length, 36);
+
+  const schemas = await Promise.all(
+    params.map(async ({ slug }) => {
+      const product = await productRepository.getBySlug("en", slug);
+      assert.ok(product, `Expected product for ${slug}`);
+
+      return createProductSchema(
+        product,
+        `https://dualcorelink.com/en/products/${slug}/`,
+      );
+    }),
+  );
+
+  assert.equal(
+    schemas.filter((schema) => schema["@type"] === "Product").length,
+    36,
+  );
+
+  for (const schema of schemas) {
+    assert.ok(schema.name);
+    assert.ok(schema.description);
+    assert.ok(schema.url);
+    assert.ok(schema.brand);
+    assert.ok(Array.isArray(schema.category));
+    assert.ok(schema.category.length > 0);
+    assert.equal("price" in schema, false);
+    assert.equal("availability" in schema, false);
+    assert.equal("aggregateRating" in schema, false);
+    assert.equal("review" in schema, false);
+  }
 });
 
 test("manufacturer requires an explicit verified declaration", () => {

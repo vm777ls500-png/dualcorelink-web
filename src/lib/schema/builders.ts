@@ -106,6 +106,7 @@ export function createProductSchema(
       .map((image) => publicUrl(image.sourceUrl))
       .filter(Boolean),
     brand: { "@id": brandId },
+    category: product.categoryNames,
     manufacturer,
     mainEntityOfPage: url,
   });

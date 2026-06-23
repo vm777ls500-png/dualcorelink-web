@@ -11,6 +11,7 @@ export type ContentListItem = {
   categories?: string[];
   hasMedia: boolean;
   mediaUrl?: string;
+  mediaAlt?: string;
 };
 
 type ContentListProps = {
@@ -31,7 +32,7 @@ export function ContentList({ locale, route, items }: ContentListProps) {
             {item.mediaUrl ? (
               <Image
                 src={item.mediaUrl}
-                alt=""
+                alt={item.mediaAlt ?? ""}
                 fill
                 sizes="192px"
                 className="object-contain p-5"

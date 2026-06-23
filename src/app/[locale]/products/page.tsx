@@ -27,6 +27,9 @@ type ProductsPageProps = {
   params: Promise<{ locale: string }>;
 };
 
+const productsDescription =
+  "Explore DualCoreLink smart hotel and smart home products, including panels, RCU systems, sensors, AI displays, hotel robots, and audio devices for B2B projects.";
+
 export async function generateMetadata({
   params,
 }: ProductsPageProps): Promise<Metadata> {
@@ -37,7 +40,7 @@ export async function generateMetadata({
     locale,
     path,
     title: "Products",
-    description: "DUALCORE LINK smart home products.",
+    description: productsDescription,
     hreflang: createStaticHreflang(locales, "products"),
   });
 }
@@ -72,7 +75,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
       id: `${url}#collection`,
       url,
       name: "DUALCORE LINK Products",
-      description: "DUALCORE LINK smart home products.",
+      description: productsDescription,
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
       { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
@@ -263,6 +266,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             reference: product.model || undefined,
             hasMedia: product.primaryImage !== null,
             mediaUrl: product.primaryImage?.sourceUrl,
+            mediaAlt: stripHtml(product.title),
             categories: product.categoryNames,
           }))}
         />

@@ -17,9 +17,14 @@ import {
 } from "@/lib/seo";
 import {
   createBreadcrumbSchema,
+  createProductSchema,
   createSchemaGraph,
 } from "@/lib/schema";
 import { stripHtml } from "@/lib/text";
+import {
+  createProductSeoDescription,
+  createProductSeoTitle,
+} from "@/lib/seo/product-metadata";
 import { productRepository } from "@/lib/wordpress/repositories";
 import type { SeoModel } from "@/types/content";
 
@@ -98,15 +103,26 @@ export async function generateMetadata({
   if (!product) return {};
   const path = buildLocalizedPath(locale, `products/${slug}`);
   const seo = cleanProductSeo(product.seo);
+  const productTitle = cleanPublicProductText(product.title);
+  const fallbackDescription = cleanPublicProductText(
+    product.shortDescription || product.excerpt,
+  );
+  const metadataSeo = {
+    ...seo,
+    title: createProductSeoTitle(slug, productTitle, seo.title),
+    description: createProductSeoDescription(
+      slug,
+      seo.description || "",
+      fallbackDescription,
+    ),
+  };
 
   return createMetadata({
     locale,
     path,
-    title: cleanPublicProductText(product.title),
-    description: cleanPublicProductText(
-      product.shortDescription || product.excerpt,
-    ),
-    seo,
+    title: productTitle,
+    description: fallbackDescription,
+    seo: metadataSeo,
     hreflang: createContentHreflang({
       locale,
       currentPath: path,
@@ -143,6 +159,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       },
       { name: product.seo.breadcrumbLabel || stripHtml(product.title), url },
     ]),
+    createProductSchema(product, url),
   ];
   const specifications = cleanSpecifications(product.specifications);
   const technicalSpecsText = cleanPublicProductText(product.technicalSpecsText);

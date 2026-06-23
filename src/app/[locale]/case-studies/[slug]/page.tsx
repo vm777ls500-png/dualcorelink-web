@@ -24,6 +24,27 @@ type CaseStudyPageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
+const caseStudyMetaOverrides: Record<
+  string,
+  { title: string; description: string }
+> = {
+  "middle-east-smart-hotel-guest-room-control-project": {
+    title: "Middle East Hotel Room Control Case",
+    description:
+      "Anonymous smart hotel case study for Middle East guest room control, covering RCU planning, sensors, sockets, curtain control, and service panels.",
+  },
+  "southeast-asia-serviced-apartment-residential-automation-project": {
+    title: "Southeast Asia Apartment Automation Case",
+    description:
+      "Anonymous serviced apartment automation case for Southeast Asia buyers planning smart displays, sensors, sockets, curtain panels, and OEM/ODM options.",
+  },
+  "overseas-oem-odm-smart-panel-customization-project": {
+    title: "Overseas OEM/ODM Smart Panel Case",
+    description:
+      "Anonymous OEM/ODM smart panel case for overseas partners planning private label design, panel layout options, product mix, and B2B project supply.",
+  },
+};
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -42,12 +63,13 @@ export async function generateMetadata({
   if (!caseStudy) return {};
 
   const path = buildLocalizedPath(locale, `case-studies/${caseStudy.slug}`);
+  const metaOverride = caseStudyMetaOverrides[caseStudy.slug];
 
   return createMetadata({
     locale,
     path,
-    title: `${caseStudy.title} | Anonymous Case Study`,
-    description: caseStudy.summary,
+    title: metaOverride?.title ?? `${caseStudy.title} | Anonymous Case Study`,
+    description: metaOverride?.description ?? caseStudy.summary,
   });
 }
 

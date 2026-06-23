@@ -29,7 +29,7 @@ type ProductsPageProps = {
 };
 
 const productsDescription =
-  "Explore DualCoreLink smart hotel and smart home products, including panels, RCU systems, sensors, AI displays, hotel robots, and audio devices for B2B projects.";
+  "Explore smart hotel panels, RCU hosts, sensors, sockets, thermostats, robots, and OEM/ODM automation devices for B2B projects.";
 
 export async function generateMetadata({
   params,
@@ -40,7 +40,7 @@ export async function generateMetadata({
   return createMetadata({
     locale,
     path,
-    title: "Products",
+    title: "Smart Hotel Products & OEM/ODM Devices",
     description: productsDescription,
     hreflang: createStaticHreflang(locales, "products"),
   });

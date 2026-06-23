@@ -19,9 +19,9 @@ import {
 
 type AboutPageProps = { params: Promise<{ locale: string }> };
 
-const title = "About DualCoreLink | Smart Hotel & Smart Home Solution Provider";
+const title = "About DUALCORE LINK B2B Automation";
 const description =
-  "Learn about DualCoreLink, a smart hotel and smart home solution provider supporting product design, OEM/ODM customization, hotel room control solutions, and overseas B2B project support.";
+  "Learn how DUALCORE LINK supports smart hotel and smart home automation buyers with OEM/ODM product planning, room control devices, and B2B project support.";
 
 const deliverySteps = [
   "Product concept and function planning",

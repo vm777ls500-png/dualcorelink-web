@@ -32,7 +32,7 @@ export async function generateMetadata({
     path,
     title: "Product Series",
     description:
-      "DUALCORE LINK product series for smart hotel and smart home B2B projects.",
+      "Compare DUALCORE LINK smart panel series for hotel, apartment, and OEM/ODM projects, including Smart, Borui, Vintage, and Brushed Aluminum designs.",
     hreflang: createStaticHreflang(locales, "product-series"),
   });
 }

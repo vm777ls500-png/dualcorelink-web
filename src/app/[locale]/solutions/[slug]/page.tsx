@@ -29,6 +29,37 @@ type SolutionPageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
+const solutionMetaOverrides: Record<
+  string,
+  { title?: string; description?: string }
+> = {
+  "oem-odm-custom-panel-solution": {
+    title: "OEM/ODM Smart Panel Solution",
+    description:
+      "OEM/ODM smart panel solution for distributors and B2B buyers planning sockets, energy saver panels, curtain controls, and brushed aluminum service panels.",
+  },
+  "hotel-delivery-robot-solution": {
+    title: "Hotel Delivery Robot Solution",
+  },
+  "rcu-room-control-solution": {
+    title: "RCU Room Control Solution",
+  },
+  "smart-hotel-automation-solution": {
+    title: "Smart Hotel Automation Solution",
+    description:
+      "Smart hotel automation solution combining smart displays, RCU room control hardware, infrared accessories, delivery robots, and smart delivery cabinets.",
+  },
+  "hotel-guest-room-control-solution": {
+    title: "Hotel Guest Room Control Solution",
+    description:
+      "Smart hotel guest room control solution with AI displays, RCU cabinet planning, sensors, sockets, curtain panels, and service panels for B2B projects.",
+  },
+  "ai-smart-display-solution": {
+    description:
+      "AI smart display solution with wall control displays, rotary controls, thermostat panels, and music panels for smart hotel and B2B automation projects.",
+  },
+};
+
 export const dynamicParams = false;
 
 function cleanDisplayText(value?: string) {
@@ -258,13 +289,21 @@ export async function generateMetadata({
   const solution = await solutionRepository.getBySlug(locale, slug);
   if (!solution) return {};
   const path = buildLocalizedPath(locale, `solutions/${slug}`);
+  const metaOverride = solutionMetaOverrides[slug];
+  const seo = metaOverride
+    ? {
+        ...solution.seo,
+        title: metaOverride.title ?? solution.seo.title,
+        description: metaOverride.description ?? solution.seo.description,
+      }
+    : solution.seo;
 
   return createMetadata({
     locale,
     path,
     title: stripHtml(solution.title),
     description: stripHtml(solution.summary || solution.excerpt),
-    seo: solution.seo,
+    seo,
     hreflang: createContentHreflang({
       locale,
       currentPath: path,

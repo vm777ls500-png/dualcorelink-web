@@ -23,7 +23,7 @@ export async function generateMetadata({
   return createMetadata({
     locale,
     path: buildLocalizedPath(locale, "faqs"),
-    title: "Frequently Asked Questions | Smart Hotel & Smart Home FAQ",
+    title: "Smart Hotel & OEM/ODM FAQ",
     description:
       "FAQ for B2B buyers about smart hotel room control, smart home automation, OEM/ODM cooperation, samples, delivery, technical support, and after-sales service.",
     hreflang: createStaticHreflang(locales, "faqs"),

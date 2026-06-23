@@ -31,7 +31,7 @@ export async function generateMetadata({
   return createMetadata({
     locale,
     path,
-    title: "Case Studies | Anonymous Smart Hotel & Smart Home Projects",
+    title: "B2B Smart Hotel Case Studies",
     description:
       "Anonymous B2B case studies for smart hotel guest room control, serviced apartment automation, and OEM/ODM smart panel customization projects.",
     hreflang: createStaticHreflang(locales, "case-studies"),

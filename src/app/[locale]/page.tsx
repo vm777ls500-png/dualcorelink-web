@@ -46,6 +46,24 @@ const representativeProductSlugs = [
   "hotel-smart-delivery-cabinet",
   "brushed-aluminum-86-base-doorbell-panel",
 ];
+const representativeProductThumbnails: Record<string, string> = {
+  "86-type-ai-smart-control-display":
+    "/media/home-thumbnails/86-type-ai-smart-control-display.jpg",
+  "embedded-human-presence-sensor":
+    "/media/home-thumbnails/embedded-human-presence-sensor.jpg",
+  "rcu-controller-cabinet":
+    "/media/home-thumbnails/rcu-controller-cabinet.jpg",
+  "smart-usb-five-hole-socket":
+    "/media/home-thumbnails/smart-usb-five-hole-socket.jpg",
+  "smart-four-key-curtain-control-panel":
+    "/media/home-thumbnails/smart-four-key-curtain-control-panel.jpg",
+  "hotel-delivery-robot":
+    "/media/home-thumbnails/hotel-delivery-robot.jpg",
+  "hotel-smart-delivery-cabinet":
+    "/media/home-thumbnails/hotel-smart-delivery-cabinet.jpg",
+  "brushed-aluminum-86-base-doorbell-panel":
+    "/media/home-thumbnails/brushed-aluminum-86-base-doorbell-panel.jpg",
+};
 const homeCategorySlugs = [
   "ai-smart-displays",
   "sensors",
@@ -273,7 +291,9 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 ),
                 href: `/${locale}/products/${product.slug}/`,
                 categoryLabel: product.categoryNames[0],
-                imageUrl: product.primaryImage?.sourceUrl,
+                imageUrl:
+                  representativeProductThumbnails[product.slug] ??
+                  product.primaryImage?.sourceUrl,
                 imageAlt:
                   product.primaryImage?.altText || stripHtml(product.title),
               }))}

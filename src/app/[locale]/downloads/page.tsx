@@ -60,6 +60,17 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
               certification needs, and estimated quantity so our team can
               provide the right files.
             </p>
+            <div className="mt-5 border-t border-line pt-5">
+              <p className="text-sm font-semibold text-foreground">
+                Available by request
+              </p>
+              <ul className="mt-3 grid gap-2 text-sm leading-6 text-muted sm:grid-cols-2">
+                <li>Product datasheets and catalogs</li>
+                <li>Installation and wiring references</li>
+                <li>Certificate or test report copies when verified</li>
+                <li>OEM/ODM customization documents</li>
+              </ul>
+            </div>
             <Link
               href={`/${locale}/contact/#get-a-quote`}
               className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"

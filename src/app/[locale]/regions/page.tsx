@@ -14,6 +14,17 @@ import { regionRepository } from "@/lib/wordpress/repositories";
 
 type RegionsPageProps = { params: Promise<{ locale: string }> };
 
+const plannedMarkets = [
+  "Middle East",
+  "Saudi Arabia",
+  "United Arab Emirates",
+  "Southeast Asia",
+  "Vietnam",
+  "Indonesia",
+  "Thailand",
+  "Malaysia",
+];
+
 export async function generateMetadata({
   params,
 }: RegionsPageProps): Promise<Metadata> {
@@ -44,8 +55,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
       {regions.length === 0 ? (
         <div className="mt-10">
           <EmptyState
-            title="No regions published"
-            description="Published WordPress region pages will appear here automatically."
+            title="Regional pages are being prepared"
+            description="We currently support regional inquiries through the contact form, WhatsApp, and multilingual catalogs while dedicated market pages are prepared."
           />
         </div>
       ) : (
@@ -67,6 +78,49 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
           ))}
         </ul>
       )}
+      <section className="mt-10 border border-line bg-surface p-6">
+        <p className="text-sm font-semibold uppercase text-brand">
+          Target markets
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold text-foreground">
+          Regional Project Inquiry Support
+        </h2>
+        <p className="mt-3 max-w-4xl leading-7 text-muted">
+          We support smart hotel and OEM/ODM project inquiries from the Middle
+          East and Southeast Asia, including product selection, panel
+          customization, catalog sharing, and controlled document requests.
+        </p>
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {plannedMarkets.map((market) => (
+            <li
+              key={market}
+              className="border border-line bg-background px-3 py-2 text-sm font-semibold text-brand"
+            >
+              {market}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-5 max-w-4xl text-sm leading-6 text-muted">
+          For regional projects, share your country, hotel room type, voltage
+          and frequency requirements, protocol preference, estimated quantity,
+          and required documents so our team can prepare the right product
+          direction.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link
+            href={`/${locale}/contact/#get-a-quote`}
+            className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+          >
+            Discuss Regional Project
+          </Link>
+          <Link
+            href={`/${locale}/downloads/`}
+            className="inline-flex min-h-11 items-center justify-center border border-line bg-background px-5 py-3 font-semibold text-brand"
+          >
+            View Catalogs
+          </Link>
+        </div>
+      </section>
     </main>
   );
 }

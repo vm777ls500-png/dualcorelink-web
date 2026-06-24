@@ -88,6 +88,11 @@ export default async function ContactPage({ params }: ContactPageProps) {
           </a>
           .
         </p>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
+          For Middle East and Southeast Asia projects, include your country,
+          hotel room type, voltage and frequency requirements, protocol
+          preference, estimated quantity, and required documents.
+        </p>
         <div className="mt-6">
           <GetQuoteForm />
         </div>

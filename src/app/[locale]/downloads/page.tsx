@@ -86,6 +86,10 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
           hosts, sensors, sockets, thermostats, robot systems and OEM/ODM
           automation projects.
         </p>
+        <p className="mt-3 max-w-4xl text-sm leading-6 text-muted">
+          These catalogs support early product selection for Middle East and
+          Southeast Asia hotel, distributor, and OEM/ODM inquiries.
+        </p>
         <ul className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {catalogDownloads.map((catalog) => (
             <li

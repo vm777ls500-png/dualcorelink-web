@@ -75,10 +75,16 @@ export default async function FaqPage({ params }: FaqPageProps) {
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
-                  href={`/${locale}/contact/`}
+                  href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-2 text-sm font-semibold text-white"
                 >
                   Send Inquiry
+                </Link>
+                <Link
+                  href={`/${locale}/downloads/`}
+                  className="inline-flex min-h-11 items-center border border-line px-5 py-2 text-sm font-semibold text-foreground"
+                >
+                  View Catalogs
                 </Link>
                 <a
                   href={`https://wa.me/${brand.whatsapp.international}`}
@@ -158,10 +164,16 @@ export default async function FaqPage({ params }: FaqPageProps) {
               </div>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={`/${locale}/contact/`}
+                  href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-11 items-center border border-white bg-white px-5 py-2 text-sm font-semibold text-foreground"
                 >
                   Send Inquiry
+                </Link>
+                <Link
+                  href={`/${locale}/products/`}
+                  className="inline-flex min-h-11 items-center border border-white/50 px-5 py-2 text-sm font-semibold text-white"
+                >
+                  View Products
                 </Link>
                 <a
                   href={`https://wa.me/${brand.whatsapp.international}`}

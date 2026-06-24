@@ -74,7 +74,7 @@ export const staticFaqCategories: StaticFaqCategory[] = [
       {
         question: "What can be customized?",
         answer:
-          "Customization may include product appearance, panel layout, button functions, logo, packaging, software interface, project function configuration, and solution matching. The final customization scope depends on the product type and project requirements.",
+          "Customization may include product appearance, panel finish, panel layout, button functions, logo, packaging, software interface, project function configuration, and solution matching. The final customization scope depends on the product type and project requirements.",
       },
       {
         question: "Can you design products according to our requirements?",
@@ -93,19 +93,29 @@ export const staticFaqCategories: StaticFaqCategory[] = [
     slug: "ordering-delivery",
     items: [
       {
-        question: "What is your MOQ?",
+        question: "What information should I provide to get a quotation?",
         answer:
-          "The MOQ depends on the product model, customization level, and order requirements. Please contact us with the product type and estimated quantity, and we will confirm the MOQ for you.",
+          "For faster quotation, please share the product type, project country, estimated quantity, voltage or frequency requirements, protocol or wiring needs, panel finish, logo or packaging requests, and target delivery time.",
       },
       {
-        question: "Do you provide samples?",
+        question: "What is your MOQ?",
         answer:
-          "Yes. Samples can be provided for evaluation. Customers need to pay the sample cost and shipping cost.",
+          "MOQ depends on product type, customization scope, and order quantity. Please contact us with the product model, project market, and estimated quantity so we can confirm the suitable order requirement.",
+      },
+      {
+        question: "Can I request samples before bulk orders?",
+        answer:
+          "Yes. Samples can be discussed for evaluation before bulk orders. Sample availability, sample cost, shipping cost, and preparation time depend on the product type and current project requirements.",
       },
       {
         question: "What is the lead time?",
         answer:
-          "The lead time depends on the order quantity, product type, and customization requirements. In general, the delivery time is about 7 to 30 days after order confirmation.",
+          "MOQ and lead time depend on product type, customization scope, and order quantity. We will confirm the schedule after reviewing the product list, customization needs, and project delivery target.",
+      },
+      {
+        question: "Can I send project drawings, BOM, or product lists?",
+        answer:
+          "Yes. You can send room schedules, product lists, BOM files, drawings, or function requirements. Our team can review them and help match smart panels, RCU hosts, sensors, sockets, thermostats, and related devices.",
       },
       {
         question: "Can you ship to the Middle East and Southeast Asia?",
@@ -119,6 +129,11 @@ export const staticFaqCategories: StaticFaqCategory[] = [
     slug: "technical-support-after-sales",
     items: [
       {
+        question: "What protocols or wiring details should I confirm before ordering?",
+        answer:
+          "Please confirm the project voltage and frequency, wiring method, control functions, communication protocol preference, RCU or gateway requirements, and any hotel system integration needs before final product selection.",
+      },
+      {
         question: "Do you provide installation and wiring support?",
         answer:
           "Yes. We can provide installation guidance, wiring reference, product information, and technical support according to the project requirements.",
@@ -129,14 +144,55 @@ export const staticFaqCategories: StaticFaqCategory[] = [
           "Yes. We can support hotel project communication, product matching, wiring guidance, and technical coordination. The specific support method can be confirmed based on the project scope.",
       },
       {
+        question: "Can you provide RCU, thermostat, curtain, service panel, and sensor combinations?",
+        answer:
+          "Yes. For hotel guest room control projects, we can help match RCU hosts, smart panels, thermostats, curtain control panels, service panels, sensors, sockets, and related automation devices according to the room control requirements.",
+      },
+      {
         question: "What is the warranty period?",
         answer:
-          "The general warranty period is one year. The final warranty terms may depend on the product type, order terms, and project requirements.",
+          "Warranty and after-sales terms depend on the product type, order terms, and project requirements. Please share the product model and project scope so we can confirm the applicable support terms.",
       },
       {
         question: "How can customers contact you?",
         answer:
           "Customers can contact us by email or WhatsApp. For product inquiries, quotation requests, OEM/ODM cooperation, or project solutions, please contact us through the website inquiry form, email, or WhatsApp.",
+      },
+    ],
+  },
+  {
+    title: "Catalogs, Documents & Regional Projects",
+    slug: "catalogs-documents-regional-projects",
+    items: [
+      {
+        question: "Where can I download the product catalog?",
+        answer:
+          "Public multilingual product catalogs are available on the Downloads page. The catalog files support early product selection for smart hotel panels, RCU hosts, sensors, sockets, thermostats, robot systems, and OEM/ODM automation projects.",
+      },
+      {
+        question: "How can I request datasheets, certificates, or wiring references?",
+        answer:
+          "Please contact us through the inquiry form or WhatsApp with the product model, target market, project type, and required documents. Datasheets, wiring references, and certificate or test report copies can be shared when verified and relevant to the requested product or market.",
+      },
+      {
+        question: "Are certificate or test report copies publicly downloadable?",
+        answer:
+          "Not all documents are public downloads. Certificate or test report copies can be shared when verified and relevant to the requested product or market, especially when the project requires product and market confirmation.",
+      },
+      {
+        question: "Do you support Middle East or Southeast Asia hotel projects?",
+        answer:
+          "We support inquiries from the Middle East and Southeast Asia. Please share the country, voltage and frequency requirements, protocol preference, product quantity, project type, and required documents so we can review the project needs.",
+      },
+      {
+        question: "Do you work with distributors, contractors, and system integrators?",
+        answer:
+          "Yes. We support communication with distributors, contractors, system integrators, hotel project teams, and OEM/ODM partners. Cooperation details depend on the product scope, market needs, and project requirements.",
+      },
+      {
+        question: "Can you help match a hotel project BOM or room schedule?",
+        answer:
+          "Yes. You can send a hotel room schedule, BOM, device list, or control function list. We can help review the required smart panels, RCU hosts, sensors, sockets, thermostats, service panels, and related automation devices.",
       },
     ],
   },

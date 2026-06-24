@@ -67,14 +67,14 @@ export const staticFaqCategories: StaticFaqCategory[] = [
     slug: "oem-odm-customization",
     items: [
       {
-        question: "Do you support OEM and ODM?",
+        question: "Do you support OEM/ODM?",
         answer:
-          "Yes. We support both OEM and ODM cooperation for smart panels, control devices, room control products, and related smart hotel solution products.",
+          "Yes. We support OEM/ODM requests for smart panels, hotel room control products and related automation devices.",
       },
       {
-        question: "What can be customized?",
+        question: "Can you customize panel color, logo and button layout?",
         answer:
-          "Customization may include product appearance, panel finish, panel layout, button functions, logo, packaging, software interface, project function configuration, and solution matching. The final customization scope depends on the product type and project requirements.",
+          "Yes. Panel color, logo and button layout can be customized based on the product series, mold availability and project requirements. Please share drawings, reference photos or customization details for evaluation.",
       },
       {
         question: "Can you design products according to our requirements?",
@@ -93,14 +93,14 @@ export const staticFaqCategories: StaticFaqCategory[] = [
     slug: "ordering-delivery",
     items: [
       {
-        question: "What information should I provide to get a quotation?",
+        question: "How can I get a quotation?",
         answer:
-          "For faster quotation, please share the product type, project country, estimated quantity, voltage or frequency requirements, protocol or wiring needs, panel finish, logo or packaging requests, and target delivery time.",
+          "You can request a quotation by email or WhatsApp. For faster quotation, please include the product list, country, estimated quantity, voltage, protocol or wiring needs, customization requirements and target delivery time.",
       },
       {
-        question: "What is your MOQ?",
+        question: "What is your MOQ for regular and customized products?",
         answer:
-          "MOQ depends on product type, customization scope, and order quantity. Please contact us with the product model, project market, and estimated quantity so we can confirm the suitable order requirement.",
+          "For regular products, there is no fixed MOQ. Custom products may require a customization or tooling fee when new molds are needed. If an existing mold is used and only the color is changed, no customization fee is required.",
       },
       {
         question: "Can I request samples before bulk orders?",
@@ -108,14 +108,14 @@ export const staticFaqCategories: StaticFaqCategory[] = [
           "Yes. Samples can be discussed for evaluation before bulk orders. Sample availability, sample cost, shipping cost, and preparation time depend on the product type and current project requirements.",
       },
       {
-        question: "What is the lead time?",
+        question: "What is the typical lead time?",
         answer:
-          "MOQ and lead time depend on product type, customization scope, and order quantity. We will confirm the schedule after reviewing the product list, customization needs, and project delivery target.",
+          "Typical lead time is 7-15 days, depending on product type, customization requirements and order quantity. For hotel projects or OEM/ODM orders, please share your target delivery schedule when requesting a quote.",
       },
       {
-        question: "Can I send project drawings, BOM, or product lists?",
+        question: "Can I send project drawings, BOM or product lists?",
         answer:
-          "Yes. You can send room schedules, product lists, BOM files, drawings, or function requirements. Our team can review them and help match smart panels, RCU hosts, sensors, sockets, thermostats, and related devices.",
+          "Yes. You can send project drawings, BOM, room schedules or product lists by email or through the inquiry form. These documents help us match smart panels, RCU hosts, sensors, sockets and accessories for your project.",
       },
       {
         question: "Can you ship to the Middle East and Southeast Asia?",
@@ -144,9 +144,9 @@ export const staticFaqCategories: StaticFaqCategory[] = [
           "Yes. We can support hotel project communication, product matching, wiring guidance, and technical coordination. The specific support method can be confirmed based on the project scope.",
       },
       {
-        question: "Can you provide RCU, thermostat, curtain, service panel, and sensor combinations?",
+        question: "Do you support hotel project RCU requirements?",
         answer:
-          "Yes. For hotel guest room control projects, we can help match RCU hosts, smart panels, thermostats, curtain control panels, service panels, sensors, sockets, and related automation devices according to the room control requirements.",
+          "Yes. We support hotel project RCU requirements, including RCU hosts, smart panels, sensors, thermostats, curtain control and service panels.",
       },
       {
         question: "What is the warranty period?",
@@ -170,9 +170,9 @@ export const staticFaqCategories: StaticFaqCategory[] = [
           "Public multilingual product catalogs are available on the Downloads page. The catalog files support early product selection for smart hotel panels, RCU hosts, sensors, sockets, thermostats, robot systems, and OEM/ODM automation projects.",
       },
       {
-        question: "How can I request datasheets, certificates, or wiring references?",
+        question: "Can you provide datasheets, certificates or wiring diagrams?",
         answer:
-          "Please contact us through the inquiry form or WhatsApp with the product model, target market, project type, and required documents. Datasheets, wiring references, and certificate or test report copies can be shared when verified and relevant to the requested product or market.",
+          "Yes. Product datasheets, certificate copies and wiring diagrams can be provided. Some documents may require product, market or project confirmation before sharing.",
       },
       {
         question: "Are certificate or test report copies publicly downloadable?",
@@ -180,14 +180,14 @@ export const staticFaqCategories: StaticFaqCategory[] = [
           "Not all documents are public downloads. Certificate or test report copies can be shared when verified and relevant to the requested product or market, especially when the project requires product and market confirmation.",
       },
       {
-        question: "Do you support Middle East or Southeast Asia hotel projects?",
+        question: "Are your products suitable for Middle East and Southeast Asia projects?",
         answer:
-          "We support inquiries from the Middle East and Southeast Asia. Please share the country, voltage and frequency requirements, protocol preference, product quantity, project type, and required documents so we can review the project needs.",
+          "Yes. Our smart hotel and smart home automation products are suitable for Middle East and Southeast Asia project inquiries. Please share the country, voltage/frequency, protocol preference, quantity and required documents.",
       },
       {
-        question: "Do you work with distributors, contractors, and system integrators?",
+        question: "Do you work with distributors, contractors and system integrators?",
         answer:
-          "Yes. We support communication with distributors, contractors, system integrators, hotel project teams, and OEM/ODM partners. Cooperation details depend on the product scope, market needs, and project requirements.",
+          "Yes. We support inquiries from distributors, contractors and system integrators for smart hotel and smart home automation projects. Please share your target market, product interests and required documents.",
       },
       {
         question: "Can you help match a hotel project BOM or room schedule?",

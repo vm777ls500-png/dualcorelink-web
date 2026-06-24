@@ -47,6 +47,26 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
             title="No downloads published"
             description="Published WordPress downloads will appear here automatically."
           />
+          <section className="mt-6 border border-line bg-surface p-6">
+            <p className="text-sm font-semibold uppercase text-brand">
+              Project document request
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold text-foreground">
+              Need datasheets, certificates, or catalog files?
+            </h2>
+            <p className="mt-3 max-w-3xl leading-7 text-muted">
+              Some project documents are shared after product and market
+              confirmation. Send your product list, target country,
+              certification needs, and estimated quantity so our team can
+              provide the right files.
+            </p>
+            <Link
+              href={`/${locale}/contact/#get-a-quote`}
+              className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+            >
+              Request Project Documents
+            </Link>
+          </section>
         </div>
       ) : (
         <ul className="mt-10 divide-y divide-line border-y border-line">

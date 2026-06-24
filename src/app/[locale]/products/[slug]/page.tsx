@@ -224,6 +224,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 className="inline-flex min-h-11 items-center justify-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
               />
             </div>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-muted">
+              For faster quotation, include project country, estimated
+              quantity, voltage, protocol or wiring needs, panel finish, logo
+              or packaging requests, and target delivery time.
+            </p>
             <div className="mt-8 grid grid-cols-2 gap-4 border-t border-line pt-6 text-sm">
               <div>
                 <p className="text-muted">Lead time</p>

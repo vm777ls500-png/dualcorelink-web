@@ -14,6 +14,39 @@ import { downloadRepository } from "@/lib/wordpress/repositories";
 
 type DownloadsPageProps = { params: Promise<{ locale: string }> };
 
+const catalogDownloads = [
+  {
+    language: "English",
+    fileName: "dualcorelink-smart-hotel-automation-catalog-en.pdf",
+    fileSize: "3.17 MiB",
+  },
+  {
+    language: "Persian",
+    fileName: "dualcorelink-smart-hotel-automation-catalog-fa.pdf",
+    fileSize: "3.22 MiB",
+  },
+  {
+    language: "Vietnamese",
+    fileName: "dualcorelink-smart-hotel-automation-catalog-vi.pdf",
+    fileSize: "3.18 MiB",
+  },
+  {
+    language: "Spanish",
+    fileName: "dualcorelink-smart-hotel-automation-catalog-es.pdf",
+    fileSize: "3.18 MiB",
+  },
+  {
+    language: "German",
+    fileName: "dualcorelink-smart-hotel-automation-catalog-de.pdf",
+    fileSize: "3.18 MiB",
+  },
+  {
+    language: "Arabic",
+    fileName: "dualcorelink-smart-hotel-automation-catalog-ar.pdf",
+    fileSize: "3.22 MiB",
+  },
+] as const;
+
 export async function generateMetadata({
   params,
 }: DownloadsPageProps): Promise<Metadata> {
@@ -41,6 +74,52 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
         title="Download Center"
         description="Access public technical files or contact our team for controlled project documents."
       />
+      <section className="mt-10 border border-line bg-surface p-6">
+        <p className="text-sm font-semibold uppercase text-brand">
+          Public catalogs
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold text-foreground">
+          Multilingual Product Catalogs
+        </h2>
+        <p className="mt-3 max-w-4xl leading-7 text-muted">
+          Download DUALCORE LINK product catalogs for smart hotel panels, RCU
+          hosts, sensors, sockets, thermostats, robot systems and OEM/ODM
+          automation projects.
+        </p>
+        <ul className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {catalogDownloads.map((catalog) => (
+            <li
+              key={catalog.fileName}
+              className="border border-line bg-background p-5"
+            >
+              <p className="text-xs font-semibold uppercase text-brand">
+                {catalog.language}
+              </p>
+              <h3 className="mt-2 text-lg font-semibold text-foreground">
+                Product Catalog
+              </h3>
+              <dl className="mt-3 space-y-2 text-sm text-muted">
+                <div className="flex justify-between gap-4">
+                  <dt>File type</dt>
+                  <dd className="font-semibold text-foreground">PDF Catalog</dd>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <dt>File size</dt>
+                  <dd className="font-semibold text-foreground">
+                    {catalog.fileSize}
+                  </dd>
+                </div>
+              </dl>
+              <a
+                href={`/downloads/catalog/${catalog.fileName}`}
+                className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+              >
+                Download PDF
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
       {downloads.length === 0 ? (
         <div className="mt-10">
           <EmptyState
@@ -59,6 +138,11 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
               confirmation. Send your product list, target country,
               certification needs, and estimated quantity so our team can
               provide the right files.
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
+              Catalogs are available for public download. Datasheets,
+              certificates, wiring references and OEM/ODM project documents may
+              still require product and market confirmation.
             </p>
             <div className="mt-5 border-t border-line pt-5">
               <p className="text-sm font-semibold text-foreground">

@@ -4,6 +4,8 @@ export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "en";
 
+export const visibleLocales: readonly Locale[] = ["en"];
+
 export const rtlLocales: readonly Locale[] = ["ar", "fa"];
 
 export const localeNames: Record<Locale, string> = {

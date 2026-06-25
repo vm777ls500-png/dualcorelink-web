@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { localeNames, locales, type Locale } from "@/config/i18n";
+import { localeNames, visibleLocales, type Locale } from "@/config/i18n";
 
 type HeaderProps = {
   locale: Locale;
@@ -42,7 +42,7 @@ export function Header({ locale }: HeaderProps) {
 
         <nav aria-label="Language">
           <ul className="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 text-sm">
-            {locales.map((item) => (
+            {visibleLocales.map((item) => (
               <li key={item}>
                 <Link
                   href={`/${item}/`}

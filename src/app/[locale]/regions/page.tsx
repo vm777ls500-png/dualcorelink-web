@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { EmptyState } from "@/components/content/empty-state";
 import { PageHeading } from "@/components/content/page-heading";
 import { isLocale, locales } from "@/config/i18n";
+import { getRegionLandingPage } from "@/config/region-landing-pages";
 import {
   buildLocalizedPath,
   createMetadata,
@@ -15,14 +16,14 @@ import { regionRepository } from "@/lib/wordpress/repositories";
 type RegionsPageProps = { params: Promise<{ locale: string }> };
 
 const plannedMarkets = [
-  "Middle East",
-  "Saudi Arabia",
-  "United Arab Emirates",
-  "Southeast Asia",
-  "Vietnam",
-  "Indonesia",
-  "Thailand",
-  "Malaysia",
+  { title: "Middle East", slug: "middle-east" },
+  { title: "Saudi Arabia", slug: "saudi-arabia" },
+  { title: "United Arab Emirates", slug: "uae" },
+  { title: "Southeast Asia", slug: "southeast-asia" },
+  { title: "Vietnam", slug: "vietnam" },
+  { title: "Indonesia", slug: "indonesia" },
+  { title: "Thailand", slug: "thailand" },
+  { title: "Malaysia", slug: "malaysia" },
 ];
 
 export async function generateMetadata({
@@ -92,11 +93,19 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
         </p>
         <ul className="mt-5 flex flex-wrap gap-2">
           {plannedMarkets.map((market) => (
-            <li
-              key={market}
-              className="border border-line bg-background px-3 py-2 text-sm font-semibold text-brand"
-            >
-              {market}
+            <li key={market.slug}>
+              {getRegionLandingPage(market.slug) ? (
+                <Link
+                  href={`/${locale}/regions/${market.slug}/`}
+                  className="inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-brand hover:border-brand"
+                >
+                  {market.title}
+                </Link>
+              ) : (
+                <span className="inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-muted">
+                  {market.title}
+                </span>
+              )}
             </li>
           ))}
         </ul>

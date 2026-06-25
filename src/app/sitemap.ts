@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { regionLandingPages } from "@/config/region-landing-pages";
 import { buildLocalizedPath, buildSiteUrl } from "@/lib/seo";
 import {
   productRepository,
@@ -54,6 +55,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: buildSiteUrl(buildLocalizedPath(locale, `case-studies/${slug}`)),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...regionLandingPages.map((region) => ({
+      url: buildSiteUrl(buildLocalizedPath(locale, `regions/${region.slug}`)),
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
     })),
   ];
 

@@ -89,10 +89,9 @@ test("canonical validation permits only the production frontend origin", () => {
   );
 });
 
-test("hreflang includes only current or verified same-origin translations", () => {
+test("hreflang includes only indexable published locales", () => {
   assert.deepEqual(createStaticHreflang(["en", "ar"], "products"), {
     en: "https://dualcorelink.com/en/products/",
-    ar: "https://dualcorelink.com/ar/products/",
     "x-default": "https://dualcorelink.com/en/products/",
   });
 
@@ -107,7 +106,6 @@ test("hreflang includes only current or verified same-origin translations", () =
     }),
     {
       en: "https://dualcorelink.com/en/products/smart-switch/",
-      ar: "https://dualcorelink.com/ar/products/smart-switch/",
       "x-default": "https://dualcorelink.com/en/products/smart-switch/",
     },
   );

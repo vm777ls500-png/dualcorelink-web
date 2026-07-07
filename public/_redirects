@@ -1,0 +1,12 @@
+/zh/ /en/ 301
+/zh/* /en/:splat 301
+/de/ /en/ 301
+/de/* /en/:splat 301
+/es/ /en/ 301
+/es/* /en/:splat 301
+/ar/ /en/ 301
+/ar/* /en/:splat 301
+/vi/ /en/ 301
+/vi/* /en/:splat 301
+/fa/ /en/ 301
+/fa/* /en/:splat 301

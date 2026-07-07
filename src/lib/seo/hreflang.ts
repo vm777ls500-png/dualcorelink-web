@@ -1,5 +1,6 @@
 import {
   defaultLocale,
+  indexableLocales,
   isLocale,
   type Locale,
 } from "@/config/i18n";
@@ -11,14 +12,18 @@ export function createStaticHreflang(
   locales: readonly Locale[],
   pathname: string,
 ): HreflangMap {
+  const publishedLocales = locales.filter((locale) =>
+    indexableLocales.includes(locale),
+  );
+
   const languages = Object.fromEntries(
-    locales.map((locale) => [
+    publishedLocales.map((locale) => [
       locale,
       buildSiteUrl(buildLocalizedPath(locale, pathname)),
     ]),
   ) as HreflangMap;
 
-  if (locales.includes(defaultLocale)) {
+  if (publishedLocales.includes(defaultLocale)) {
     languages["x-default"] = languages[defaultLocale];
   }
 
@@ -30,12 +35,16 @@ export function createContentHreflang(input: {
   currentPath: string;
   published: Partial<Record<Locale, string>>;
 }): HreflangMap {
-  const languages: HreflangMap = {
-    [input.locale]: buildSiteUrl(input.currentPath),
-  };
+  const languages: HreflangMap = {};
+
+  if (indexableLocales.includes(input.locale)) {
+    languages[input.locale] = buildSiteUrl(input.currentPath);
+  }
 
   for (const [locale, url] of Object.entries(input.published)) {
-    if (!isLocale(locale) || !url) continue;
+    if (!isLocale(locale) || !indexableLocales.includes(locale) || !url) {
+      continue;
+    }
     try {
       const normalized = new URL(url).toString();
       const validated = validateCanonical(url, input.currentPath);

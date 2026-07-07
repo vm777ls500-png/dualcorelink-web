@@ -10,6 +10,7 @@ export type PreviewItem = {
   categoryLabel?: string;
   imageUrl?: string;
   imageAlt?: string;
+  imageFit?: "contain" | "cover";
 };
 
 type PreviewGridProps = {
@@ -47,7 +48,11 @@ export function PreviewGrid({
                 alt={item.imageAlt ?? item.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-contain p-5"
+                className={
+                  item.imageFit === "cover"
+                    ? "object-cover"
+                    : "object-contain p-5"
+                }
               />
             ) : (
               <div className="grid h-full place-items-center text-xs font-semibold uppercase text-muted">

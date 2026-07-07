@@ -64,6 +64,20 @@ const representativeProductThumbnails: Record<string, string> = {
   "brushed-aluminum-86-base-doorbell-panel":
     "/media/home-thumbnails/brushed-aluminum-86-base-doorbell-panel.jpg",
 };
+const solutionPreviewImages: Record<string, { src: string; alt: string }> = {
+  "oem-odm-custom-panel-solution": {
+    src: "/media/solutions/oem-odm-custom-panel-solution-cover.jpg",
+    alt: "custom smart hotel panel configuration for OEM and ODM projects",
+  },
+  "hotel-delivery-robot-solution": {
+    src: "/media/solutions/hotel-delivery-robot-solution-cover.jpg",
+    alt: "hotel delivery robot interface for guest service automation",
+  },
+  "rcu-room-control-solution": {
+    src: "/media/solutions/rcu-room-control-solution-cover.jpg",
+    alt: "RCU controller cabinet for smart hotel room control",
+  },
+};
 const homeCategorySlugs = [
   "ai-smart-displays",
   "sensors",
@@ -395,8 +409,16 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 description: stripHtml(solution.summary || solution.excerpt),
                 href: `/${locale}/solutions/${solution.slug}/`,
                 meta: solution.typicalDeploymentTime || "Smart building solution",
-                imageUrl: solution.heroImage?.sourceUrl,
-                imageAlt: solution.heroImage?.altText || stripHtml(solution.title),
+                imageUrl:
+                  solutionPreviewImages[solution.slug]?.src ??
+                  solution.heroImage?.sourceUrl,
+                imageAlt:
+                  solutionPreviewImages[solution.slug]?.alt ??
+                  solution.heroImage?.altText ??
+                  stripHtml(solution.title),
+                imageFit: solutionPreviewImages[solution.slug]
+                  ? "cover"
+                  : undefined,
               }))}
               emptyTitle="Solution portfolios are being prepared."
               emptyDescription="Hotel room control, energy management, and property automation solutions will appear here."

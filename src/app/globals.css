@@ -57,21 +57,20 @@ a {
   outline-offset: 3px;
 }
 
-.cta-button-light {
-  border-color: #ffffff;
-  background: #ffffff;
-}
-
 .cta-button-light,
 a.cta-button-light,
 .cta-button-light:visited,
 a.cta-button-light:visited {
-  color: #2563eb !important;
+  border-color: #006b78;
+  background-color: #006b78;
+  color: #ffffff !important;
 }
 
 .cta-button-light:hover,
 a.cta-button-light:hover,
 .cta-button-light:focus-visible,
 a.cta-button-light:focus-visible {
-  color: #1d4ed8 !important;
+  border-color: #005866;
+  background-color: #005866;
+  color: #ffffff !important;
 }

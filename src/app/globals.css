@@ -60,15 +60,18 @@ a {
 .cta-button-light {
   border-color: #ffffff;
   background: #ffffff;
-  color: #0d1117;
 }
 
-.cta-button-light:hover {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #0d1117;
+.cta-button-light,
+a.cta-button-light,
+.cta-button-light:visited,
+a.cta-button-light:visited {
+  color: #2563eb !important;
 }
 
-.cta-button-light:focus-visible {
-  color: #0d1117;
+.cta-button-light:hover,
+a.cta-button-light:hover,
+.cta-button-light:focus-visible,
+a.cta-button-light:focus-visible {
+  color: #1d4ed8 !important;
 }

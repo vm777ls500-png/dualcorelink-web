@@ -165,7 +165,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/${locale}/contact/#get-a-quote`}
-                  className="inline-flex min-h-11 items-center border border-white bg-white px-5 py-2 text-sm font-semibold text-foreground"
+                  className="cta-button-light inline-flex min-h-11 items-center px-5 py-2 text-sm font-semibold"
                 >
                   Send Inquiry
                 </Link>

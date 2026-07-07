@@ -384,7 +384,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
             <div className="flex flex-wrap gap-3">
               <Link
                 href={`/${locale}/products/`}
-                className="inline-flex min-h-11 items-center justify-center border border-white bg-white px-5 py-3 font-semibold text-brand"
+                className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
               >
                 Explore Products
               </Link>

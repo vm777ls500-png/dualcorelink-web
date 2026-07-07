@@ -307,7 +307,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </Link>
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
-                className="inline-flex min-h-11 items-center justify-center border border-white bg-white px-5 py-3 font-semibold text-brand"
+                className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
               >
                 Send Inquiry
               </Link>

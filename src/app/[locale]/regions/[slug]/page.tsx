@@ -314,7 +314,7 @@ function StaticRegionPage({
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={`/${locale}/contact/#get-a-quote`}
-                  className="inline-flex min-h-11 items-center justify-center border border-white bg-white px-5 py-3 font-semibold text-foreground"
+                  className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
                 >
                   {region.primaryCta}
                 </Link>

@@ -595,7 +595,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
             </div>
             <a
               href={whatsappUrl}
-              className="inline-flex min-h-11 shrink-0 items-center justify-center border border-white bg-white px-5 py-3 font-semibold text-brand"
+              className="cta-button-light inline-flex min-h-11 shrink-0 items-center justify-center px-5 py-3 font-semibold"
             >
               {brand.whatsapp.label}
             </a>

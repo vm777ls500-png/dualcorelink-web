@@ -61,16 +61,16 @@ a {
 a.cta-button-light,
 .cta-button-light:visited,
 a.cta-button-light:visited {
-  border-color: #006b78;
-  background-color: #006b78;
-  color: #ffffff !important;
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #006b78 !important;
 }
 
 .cta-button-light:hover,
 a.cta-button-light:hover,
 .cta-button-light:focus-visible,
 a.cta-button-light:focus-visible {
-  border-color: #005866;
-  background-color: #005866;
-  color: #ffffff !important;
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #005866 !important;
 }

@@ -124,7 +124,7 @@ function FallbackContent({ content }: { content?: string }) {
   }
 
   return (
-    <section className="border-t border-line pt-8">
+    <section className="solution-planning-panel border-t border-line pt-8">
       <h2 className="text-2xl font-semibold text-foreground">
         Project planning details
       </h2>
@@ -140,7 +140,7 @@ function FallbackContent({ content }: { content?: string }) {
         ) : null}
       </div>
       {faqs.length ? (
-        <div className="mt-5 border border-line bg-surface p-5">
+        <div className="solution-detail-system-card mt-5 border border-line bg-surface p-5">
           <p className="text-sm font-semibold uppercase text-brand">FAQ</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {faqs.map((item) => (
@@ -162,7 +162,7 @@ function FallbackContent({ content }: { content?: string }) {
 
 function PlanningList({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="border border-line bg-surface p-5">
+    <div className="solution-detail-system-card border border-line bg-surface p-5">
       <p className="text-sm font-semibold uppercase text-brand">{title}</p>
       <ul className="mt-4 grid gap-2 text-sm leading-6 text-muted">
         {items.map((item) => (
@@ -183,7 +183,7 @@ function RecommendedProducts({
   if (!products.length) return null;
 
   return (
-    <section className="border-t border-line pt-8">
+    <section className="solution-recommended-panel border-t border-line pt-8">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="text-sm font-semibold uppercase text-brand">
@@ -195,14 +195,14 @@ function RecommendedProducts({
         </div>
         <Link
           href={`/${locale}/products/`}
-          className="inline-flex min-h-10 w-fit items-center border border-line px-4 py-2 text-sm font-semibold text-brand"
+          className="solution-card-link inline-flex min-h-10 w-fit items-center border border-line px-4 py-2 text-sm font-semibold text-brand"
         >
           Explore Products
         </Link>
       </div>
       <ul className="mt-5 grid gap-4 md:grid-cols-2">
         {products.map((product) => (
-          <li key={product.id} className="border border-line bg-surface p-5">
+          <li key={product.id} className="solution-related-product-card border border-line bg-surface p-5">
             <h3 className="text-lg font-semibold leading-7 text-foreground">
               {stripHtml(product.title)}
             </h3>
@@ -213,7 +213,7 @@ function RecommendedProducts({
             ) : null}
             <Link
               href={`/${locale}/products/${product.slug}/`}
-              className="mt-5 inline-flex min-h-10 items-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white"
+              className="solution-card-link mt-5 inline-flex min-h-10 items-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white"
             >
               View Product
             </Link>
@@ -235,7 +235,7 @@ function SolutionSnapshot({
     summary.split(/[.;]/)[0]?.trim() || "B2B hotel projects";
 
   return (
-    <aside className="border border-line bg-surface p-6">
+    <aside className="solution-snapshot-panel border border-line bg-surface p-6">
       <p className="text-sm font-semibold uppercase text-brand">
         Solution snapshot
       </p>
@@ -348,18 +348,18 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   return (
     <>
       <JsonLd graph={createSchemaGraph(pageNodes)} />
-      <article>
+      <article className="solution-detail-page">
         <div
-          className={`mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:px-12 ${
+          className={`solution-detail-hero mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:px-12 ${
             solution.heroImage
               ? "lg:grid-cols-[1.1fr_0.9fr]"
               : "lg:grid-cols-[minmax(0,0.85fr)_minmax(18rem,0.45fr)]"
           }`}
         >
-          <header className="self-center">
+          <header className="solution-detail-summary self-center">
             <Link
               href={`/${locale}/solutions/`}
-              className="text-sm font-semibold text-brand"
+              className="solution-back-link text-sm font-semibold text-brand"
             >
               Back to Solutions
             </Link>
@@ -377,16 +377,18 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             ) : null}
             <Link
               href={`/${locale}/products/`}
-              className="mt-7 inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+              className="solution-detail-primary-link mt-7 inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
               Explore Products
             </Link>
           </header>
           {solution.heroImage ? (
-            <MediaFrame
-              src={solution.heroImage.sourceUrl}
-              alt={solution.heroImage.altText || stripHtml(solution.title)}
-            />
+            <div className="solution-detail-media-panel">
+              <MediaFrame
+                src={solution.heroImage.sourceUrl}
+                alt={solution.heroImage.altText || stripHtml(solution.title)}
+              />
+            </div>
           ) : (
             <SolutionSnapshot
               productCount={solution.relatedProducts.length}
@@ -394,7 +396,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             />
           )}
         </div>
-        <div className="mx-auto max-w-7xl space-y-10 px-5 pb-14 sm:px-8 lg:px-12">
+        <div className="solution-detail-content mx-auto max-w-7xl space-y-10 px-5 pb-14 sm:px-8 lg:px-12">
           <ContentSection title="Customer challenges" content={solution.customerChallenges} />
           <ContentSection title="Solution architecture" content={solution.architecture} />
           <ContentSection title="Key benefits" content={solution.keyBenefitsText} />
@@ -415,10 +417,12 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           ) : null}
           <FallbackContent content={solution.content} />
         </div>
-        <ContactCta
-          locale={locale}
-          label={solution.inquiryCtaLabel || "Contact Sales"}
-        />
+        <div className="solution-detail-quote">
+          <ContactCta
+            locale={locale}
+            label={solution.inquiryCtaLabel || "Contact Sales"}
+          />
+        </div>
       </article>
     </>
   );

@@ -201,8 +201,8 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
   return (
     <>
       <JsonLd graph={graph} />
-      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
-        <header className="mb-10 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+      <section className="solutions-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
+        <header className="solutions-system-hero mb-10 flex flex-col justify-between gap-5 border border-line p-6 lg:flex-row lg:items-end">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase text-brand">
               B2B solution planning
@@ -216,7 +216,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
               hotel room control and automation projects.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="solutions-hero-actions flex flex-wrap gap-3">
             <Link
               href={`/${locale}/contact/#get-a-quote`}
               className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
@@ -232,7 +232,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           </div>
         </header>
 
-        <div className="mb-10 grid gap-3 border-y border-line py-5 text-sm font-semibold text-muted sm:grid-cols-2 lg:grid-cols-5">
+        <div className="solutions-audience-strip mb-10 grid gap-3 border-y border-line py-5 text-sm font-semibold text-muted sm:grid-cols-2 lg:grid-cols-5">
           <p>Hotel owners</p>
           <p>Contractors</p>
           <p>System integrators</p>
@@ -245,7 +245,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
             <section
               key={entry.slug}
               id={entry.slug}
-              className="border border-line bg-surface p-6"
+              className="solution-list-card border border-line bg-surface p-6"
             >
               <p className="text-xs font-semibold uppercase text-brand">
                 Solution
@@ -272,7 +272,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
                   {entry.categories.map((category) => (
                     <li
                       key={category}
-                      className="border border-line bg-background px-3 py-2 text-xs font-semibold text-brand"
+                      className="solution-filter-chip border border-line bg-background px-3 py-2 text-xs font-semibold text-brand"
                     >
                       {category}
                     </li>
@@ -289,7 +289,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
                     <li key={slug}>
                       <Link
                         href={`/${locale}/products/${slug}/`}
-                        className="hover:text-brand"
+                        className="solution-product-link hover:text-brand"
                       >
                         {name}
                       </Link>
@@ -301,7 +301,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href={`/${locale}/solutions/${entry.slug}/`}
-                  className="inline-flex min-h-10 items-center justify-center border border-line px-4 py-2 text-sm font-semibold text-brand"
+                  className="solution-card-link inline-flex min-h-10 items-center justify-center border border-line px-4 py-2 text-sm font-semibold text-brand"
                 >
                   View Solution
                 </Link>
@@ -316,7 +316,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           ))}
         </div>
 
-        <section className="mt-12 border border-line bg-background p-6">
+        <section className="solutions-entry-panel mt-12 border border-line bg-background p-6">
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-brand">
@@ -339,7 +339,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           </div>
         </section>
 
-        <section className="mt-8 border border-line bg-surface p-6">
+        <section className="solutions-entry-panel mt-8 border border-line bg-surface p-6">
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-brand">
@@ -371,7 +371,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           </div>
         </section>
 
-        <section className="mt-8 bg-brand p-6 text-white">
+        <section className="solutions-quote-panel mt-8 bg-brand p-6 text-white">
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-white/70">

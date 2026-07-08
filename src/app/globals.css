@@ -642,6 +642,354 @@ a.brand-button-outline:focus-visible {
     linear-gradient(135deg, rgba(0, 107, 120, 0.24), rgba(34, 211, 238, 0.15), rgba(233, 185, 73, 0.16)) border-box;
 }
 
+.solutions-page-shell,
+.solution-detail-page {
+  isolation: isolate;
+}
+
+.solutions-system-hero,
+.solutions-entry-panel,
+.solutions-quote-panel,
+.solution-list-card,
+.solution-detail-hero,
+.solution-detail-media-panel,
+.solution-detail-summary,
+.solution-snapshot-panel,
+.solution-detail-system-card,
+.solution-recommended-panel,
+.solution-related-product-card,
+.solution-detail-quote {
+  position: relative;
+}
+
+.solutions-system-hero,
+.solutions-entry-panel,
+.solution-detail-summary,
+.solution-snapshot-panel,
+.solution-detail-system-card,
+.solution-related-product-card {
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.24), rgba(34, 211, 238, 0.15), rgba(233, 185, 73, 0.16)) border-box;
+  box-shadow: 0 16px 42px rgba(23, 32, 42, 0.06);
+}
+
+.solutions-system-hero {
+  background:
+    radial-gradient(circle at 86% 14%, rgba(34, 211, 238, 0.15), transparent 30%),
+    radial-gradient(circle at 12% 0%, rgba(233, 185, 73, 0.13), transparent 28%),
+    linear-gradient(#f8fcfd, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.34), rgba(34, 211, 238, 0.2), rgba(233, 185, 73, 0.24)) border-box;
+}
+
+.solutions-system-hero::before,
+.solutions-entry-panel::before,
+.solutions-quote-panel::before,
+.solution-detail-hero::before,
+.solution-detail-media-panel::before,
+.solution-detail-quote::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(0, 95, 115, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 95, 115, 0.045) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.38;
+}
+
+.solutions-system-hero::after,
+.solution-detail-hero::after {
+  position: absolute;
+  inset: 1rem 2rem auto;
+  height: 18rem;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 18% 14%, rgba(233, 185, 73, 0.12), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(34, 211, 238, 0.13), transparent 32%);
+}
+
+.solutions-system-hero > *,
+.solutions-entry-panel > *,
+.solutions-quote-panel > *,
+.solution-list-card > *,
+.solution-detail-hero > *,
+.solution-detail-media-panel > *,
+.solution-detail-quote > * {
+  position: relative;
+  z-index: 1;
+}
+
+.solutions-audience-strip p {
+  position: relative;
+  min-width: 0;
+  border: 1px solid rgba(0, 95, 115, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 251, 252, 0.84));
+  padding: 0.75rem 0.85rem;
+}
+
+.solutions-audience-strip p::before {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-right: 0.55rem;
+  border: 1px solid rgba(34, 211, 238, 0.48);
+  background: rgba(0, 107, 120, 0.12);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.08);
+  content: "";
+  vertical-align: 0.08em;
+}
+
+.solution-list-card {
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(34, 211, 238, 0.08), transparent 28%),
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.18), rgba(34, 211, 238, 0.12), rgba(233, 185, 73, 0.13)) border-box;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.solution-list-card::before,
+.solution-related-product-card::before,
+.solution-detail-system-card::before {
+  position: absolute;
+  top: -1px;
+  right: 1rem;
+  left: 1rem;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(0, 107, 120, 0.46), rgba(34, 211, 238, 0.26), transparent);
+  opacity: 0.62;
+}
+
+.solution-list-card::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 0.52rem;
+  height: 0.52rem;
+  border: 1px solid rgba(34, 211, 238, 0.48);
+  background: rgba(0, 107, 120, 0.12);
+  box-shadow:
+    0 0 0 3px rgba(34, 211, 238, 0.08),
+    -1.05rem 0.85rem 0 -0.12rem rgba(0, 107, 120, 0.24);
+  content: "";
+}
+
+.solution-list-card:hover,
+.solution-list-card:focus-within,
+.solution-related-product-card:hover,
+.solution-related-product-card:focus-within,
+.solution-detail-system-card:hover,
+.solution-detail-system-card:focus-within {
+  border-color: rgba(0, 107, 120, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.12),
+    0 18px 46px rgba(0, 95, 115, 0.12),
+    0 22px 52px rgba(23, 32, 42, 0.08);
+  transform: translateY(-2px);
+}
+
+.solution-filter-chip {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 251, 252, 0.92));
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.solution-filter-chip:hover,
+.solution-list-card:focus-within .solution-filter-chip {
+  border-color: rgba(0, 107, 120, 0.24);
+  box-shadow: 0 8px 20px rgba(0, 95, 115, 0.08);
+}
+
+.solution-card-link,
+.solution-product-link,
+.solutions-hero-actions a,
+.solutions-entry-panel a,
+.solutions-quote-panel a,
+.solution-detail-primary-link,
+.solution-back-link {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+
+.solution-card-link {
+  position: relative;
+}
+
+.solution-card-link::after {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-left: 0.5rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.solution-list-card:hover .solution-card-link::after,
+.solution-list-card:focus-within .solution-card-link::after,
+.solution-related-product-card:hover .solution-card-link::after,
+.solution-related-product-card:focus-within .solution-card-link::after {
+  transform: translateX(3px) rotate(45deg);
+}
+
+.solution-card-link:hover,
+.solution-card-link:focus-visible,
+.solutions-hero-actions a:hover,
+.solutions-hero-actions a:focus-visible,
+.solutions-entry-panel a:hover,
+.solutions-entry-panel a:focus-visible,
+.solutions-quote-panel a:hover,
+.solutions-quote-panel a:focus-visible,
+.solution-detail-primary-link:hover,
+.solution-detail-primary-link:focus-visible,
+.solution-back-link:hover,
+.solution-back-link:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 95, 115, 0.12);
+}
+
+.solution-card-link:focus-visible,
+.solution-product-link:focus-visible,
+.solutions-hero-actions a:focus-visible,
+.solutions-entry-panel a:focus-visible,
+.solutions-quote-panel a:focus-visible,
+.solution-detail-primary-link:focus-visible,
+.solution-back-link:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.24);
+  outline-offset: 3px;
+}
+
+.solution-product-link {
+  text-decoration-color: rgba(0, 107, 120, 0);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+}
+
+.solution-product-link:hover,
+.solution-product-link:focus-visible {
+  color: var(--brand);
+  text-decoration-color: rgba(0, 107, 120, 0.34);
+}
+
+.solutions-entry-panel {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(34, 211, 238, 0.1), transparent 30%),
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.2), rgba(34, 211, 238, 0.12), rgba(233, 185, 73, 0.14)) border-box;
+}
+
+.solutions-quote-panel,
+.solution-detail-quote .section-tech {
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
+    radial-gradient(circle at 14% 0%, rgba(233, 185, 73, 0.16), transparent 28%),
+    linear-gradient(135deg, #08313d 0%, var(--brand) 48%, #10202b 100%) padding-box,
+    linear-gradient(135deg, rgba(34, 211, 238, 0.42), rgba(255, 255, 255, 0.18), rgba(233, 185, 73, 0.28)) border-box;
+  box-shadow: 0 18px 52px rgba(0, 41, 54, 0.16);
+}
+
+.solution-detail-hero {
+  overflow: hidden;
+}
+
+.solution-detail-summary {
+  padding: 1.5rem;
+}
+
+.solution-detail-summary p,
+.solution-snapshot-panel p,
+.solution-snapshot-panel dl {
+  position: relative;
+  z-index: 1;
+}
+
+.solution-detail-media-panel {
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.28), rgba(34, 211, 238, 0.18), rgba(233, 185, 73, 0.2)) border-box;
+  box-shadow:
+    0 22px 56px rgba(23, 32, 42, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.72) inset;
+  padding: 0.85rem;
+}
+
+.solution-detail-media-panel .media-shell {
+  min-height: 22rem;
+  border-color: rgba(0, 107, 120, 0.16);
+}
+
+.solution-snapshot-panel dl > div {
+  border: 1px solid rgba(0, 95, 115, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 251, 252, 0.9));
+  padding: 0.85rem;
+}
+
+.solution-detail-content .border-t,
+.solution-planning-panel,
+.solution-recommended-panel {
+  border-color: rgba(0, 95, 115, 0.16);
+}
+
+.solution-detail-content > section,
+.solution-planning-panel,
+.solution-recommended-panel {
+  position: relative;
+}
+
+.solution-detail-content > section::before,
+.solution-planning-panel::before,
+.solution-recommended-panel::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 6rem;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, rgba(0, 107, 120, 0.55), rgba(34, 211, 238, 0.18), transparent);
+}
+
+.solution-detail-system-card,
+.solution-related-product-card {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.solution-detail-quote {
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+}
+
 .section-tech {
   position: relative;
   overflow: hidden;
@@ -1622,6 +1970,113 @@ a.cta-button-light:focus-visible {
     margin-bottom: 2rem;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
+  }
+
+  .solutions-page-shell,
+  .solution-detail-hero,
+  .solution-detail-content {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .solutions-system-hero,
+  .solutions-entry-panel,
+  .solutions-quote-panel,
+  .solution-list-card,
+  .solution-detail-summary,
+  .solution-snapshot-panel,
+  .solution-detail-system-card,
+  .solution-related-product-card {
+    padding: 1.15rem;
+  }
+
+  .solutions-system-hero h1,
+  .solution-detail-summary h1 {
+    font-size: clamp(2rem, 8.8vw, 2.65rem);
+    line-height: 1.12;
+  }
+
+  .solutions-system-hero::before,
+  .solutions-system-hero::after,
+  .solution-detail-hero::before,
+  .solution-detail-hero::after,
+  .solutions-entry-panel::before,
+  .solutions-quote-panel::before,
+  .solution-detail-media-panel::before,
+  .solution-detail-quote::before {
+    opacity: 0.24;
+  }
+
+  .solutions-hero-actions,
+  .solutions-entry-panel .flex.flex-wrap,
+  .solutions-quote-panel .flex.flex-wrap,
+  .solution-list-card .flex.flex-wrap,
+  .solution-detail-quote .flex.flex-wrap {
+    width: 100%;
+  }
+
+  .solutions-hero-actions a,
+  .solutions-entry-panel a,
+  .solutions-quote-panel a,
+  .solution-list-card .flex.flex-wrap a,
+  .solution-detail-primary-link,
+  .solution-detail-quote a,
+  .solution-detail-quote button {
+    width: 100%;
+    min-height: 3rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .solutions-audience-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .solution-list-card {
+    transform: none;
+  }
+
+  .solution-list-card:hover,
+  .solution-list-card:focus-within,
+  .solution-related-product-card:hover,
+  .solution-related-product-card:focus-within,
+  .solution-detail-system-card:hover,
+  .solution-detail-system-card:focus-within {
+    transform: translateY(-1px);
+  }
+
+  .solution-filter-chip {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .solution-detail-hero {
+    gap: 1.25rem;
+  }
+
+  .solution-detail-media-panel {
+    padding: 0.55rem;
+  }
+
+  .solution-detail-media-panel .media-shell {
+    min-height: 17rem;
+  }
+
+  .solution-snapshot-panel dl > div,
+  .solution-detail-system-card,
+  .solution-related-product-card {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .solution-recommended-panel .grid,
+  .solution-planning-panel .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .solution-detail-quote {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
   }
 
   .solution-frame,

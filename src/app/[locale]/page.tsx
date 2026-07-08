@@ -232,7 +232,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-surface">
+        <section className="section-soft border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Product categories"
@@ -249,7 +249,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                   <Link
                     key={category.slug}
                     href={`/${locale}/products/#category-${category.slug}`}
-                    className="border border-line bg-background p-5 hover:border-brand"
+                    className="surface-card surface-card-hover p-5"
                   >
                     <h3 className="text-lg font-semibold text-foreground">
                       {category.title}
@@ -257,7 +257,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     <p className="mt-3 line-clamp-2 text-sm leading-6 text-muted">
                       {category.description}
                     </p>
-                    <p className="mt-4 text-xs font-semibold uppercase text-brand">
+                    <p className="eyebrow-chip mt-4">
                       {count} {count === 1 ? "product" : "products"}
                     </p>
                   </Link>
@@ -267,19 +267,19 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
             <div className="mt-8 flex flex-wrap gap-3 border-t border-line pt-6">
               <Link
                 href={`/${locale}/products/`}
-                className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+                className="brand-button px-5 py-3"
               >
                 Explore Products
               </Link>
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
-                className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
+                className="brand-button-outline px-5 py-3"
               >
                 Send Inquiry
               </Link>
               <a
                 href={whatsappUrl}
-                className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
+                className="brand-button-outline px-5 py-3"
               >
                 {brand.whatsapp.label}
               </a>
@@ -287,7 +287,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-background">
+        <section className="section-soft border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Product portfolio"
@@ -359,8 +359,8 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     href={`/${locale}/product-series/#${series.slug}`}
                     className={
                       hasProducts
-                        ? "border border-line bg-surface p-5 hover:border-brand"
-                        : "border border-line bg-surface/50 p-5 text-muted"
+                        ? "surface-card surface-card-hover p-5"
+                        : "surface-card p-5 text-muted"
                     }
                   >
                     <h3
@@ -378,8 +378,8 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     <p
                       className={
                         hasProducts
-                          ? "mt-4 text-xs font-semibold uppercase text-brand"
-                          : "mt-4 text-xs font-semibold uppercase text-muted"
+                          ? "eyebrow-chip mt-4"
+                          : "mt-4 inline-flex border border-line bg-surface px-2 py-1 text-xs font-semibold uppercase text-muted"
                       }
                     >
                       {hasProducts
@@ -426,7 +426,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-background">
+        <section className="section-soft border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Case studies"
@@ -440,9 +440,9 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 <Link
                   key={caseStudy.slug}
                   href={`/${locale}/case-studies/${caseStudy.slug}/`}
-                  className="border border-line bg-surface p-5 hover:border-brand"
+                  className="surface-card surface-card-hover p-5"
                 >
-                  <p className="text-xs font-semibold uppercase text-brand">
+                  <p className="eyebrow-chip">
                     {caseStudy.region}
                   </p>
                   <h3 className="mt-2 text-xl font-semibold leading-7 text-foreground">
@@ -454,7 +454,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                   <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">
                     {caseStudy.summary}
                   </p>
-                  <span className="mt-5 inline-flex min-h-10 items-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white">
+                  <span className="brand-button mt-5 px-4 py-2 text-sm">
                     View Case Study
                   </span>
                 </Link>
@@ -463,7 +463,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-background">
+        <section className="border-b border-line bg-surface">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Application scenarios"
@@ -477,8 +477,9 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 <Link
                   key={scenario.slug}
                   href={`/${locale}/application-scenarios/#${scenario.slug}`}
-                  className="border border-line bg-surface p-5 hover:border-brand"
+                  className="surface-card surface-card-hover p-5"
                 >
+                  <p className="eyebrow-chip mb-3">Scenario</p>
                   <h3 className="text-lg font-semibold">{scenario.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted">
                     {scenario.description}
@@ -489,7 +490,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-background">
+        <section className="section-soft border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Regional markets"
@@ -517,7 +518,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
               {brand.targetMarkets.map((market) => (
                 <li
                   key={market}
-                  className="border border-line bg-surface px-3 py-2 text-sm font-semibold"
+                  className="eyebrow-chip bg-white/80 px-3 py-2 text-sm"
                 >
                   {market}
                 </li>
@@ -526,7 +527,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-surface">
+        <section className="section-soft border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Buyer knowledge"
@@ -539,7 +540,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
 
         <section className="border-b border-line bg-background">
           <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
-            <div>
+            <div className="surface-card p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Company
               </p>
@@ -563,7 +564,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 </Link>
               </div>
             </div>
-            <div className="border-s-4 border-accent ps-6">
+            <div className="surface-card border-s-4 border-accent p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Production coordination
               </p>
@@ -579,8 +580,9 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="bg-brand text-white">
-          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-5 py-12 sm:px-8 lg:flex-row lg:items-center lg:px-12">
+        <section className="section-tech text-white">
+          <div className="tech-grid absolute inset-0 opacity-35" />
+          <div className="relative mx-auto flex max-w-7xl flex-col justify-between gap-8 px-5 py-12 sm:px-8 lg:flex-row lg:items-center lg:px-12">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-white/65">
                 Project contact

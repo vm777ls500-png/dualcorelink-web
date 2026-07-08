@@ -27,7 +27,7 @@ export function SectionHeading({
       {href && actionLabel ? (
         <Link
           href={href}
-          className="shrink-0 text-sm font-semibold text-brand hover:text-brand-strong"
+          className="brand-button-outline shrink-0 px-4 py-2 text-sm"
         >
           {actionLabel} →
         </Link>

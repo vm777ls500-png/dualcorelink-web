@@ -149,6 +149,32 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
   const whatsappUrl = `https://wa.me/${brand.whatsapp.international}?text=${encodeURIComponent(
     "Hello DUALCORE LINK, I would like to discuss a smart hotel or smart home B2B project.",
   )}`;
+  const dashboardModules = [
+    {
+      label: "Smart room",
+      value: "Guest mode",
+      detail: "lighting / curtain / HVAC",
+      status: "Online",
+    },
+    {
+      label: "RCU",
+      value: "Protocol hub",
+      detail: "dry contact + gateway I/O",
+      status: "Sync",
+    },
+    {
+      label: "Sensor",
+      value: "Presence",
+      detail: "occupancy signal active",
+      status: "Live",
+    },
+    {
+      label: "Gateway",
+      value: "Project link",
+      detail: "protocol scope to confirm",
+      status: "Ready",
+    },
+  ];
 
   return (
     <>
@@ -163,8 +189,8 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
         ])}
       />
       <main>
-        <section className="relative overflow-hidden border-b border-line bg-[#101820] text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(233,185,73,0.24),transparent_28%),radial-gradient(circle_at_80%_8%,rgba(0,95,115,0.52),transparent_34%),linear-gradient(135deg,#101820_0%,#0a2530_48%,#111827_100%)]" />
+        <section className="tech-hero-shell relative overflow-hidden border-b border-line bg-[#101820] text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(233,185,73,0.42),transparent_31%),radial-gradient(circle_at_78%_16%,rgba(16,185,229,0.34),transparent_28%),radial-gradient(circle_at_80%_8%,rgba(0,95,115,0.68),transparent_38%),linear-gradient(135deg,#101820_0%,#0a2530_48%,#111827_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:48px_48px] opacity-45" />
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#101820] to-transparent" />
           <div className="absolute right-0 top-10 hidden h-[30rem] w-[42rem] border-y border-l border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0)),linear-gradient(90deg,rgba(233,185,73,0.16)_1px,transparent_1px)] bg-[size:auto,72px_72px] lg:block" />
@@ -202,15 +228,28 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 </div>
               </div>
 
-              <div className="relative w-full overflow-hidden border border-white/15 bg-white/10 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.22)] backdrop-blur">
+              <div className="hero-dashboard-frame relative w-full overflow-hidden p-4 backdrop-blur">
                 <div className="tech-grid absolute inset-0 opacity-30" />
-                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 bg-accent/20 blur-3xl" />
+                <div className="dashboard-node-field" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 bg-accent/25 blur-3xl" />
+                <div className="pointer-events-none absolute left-8 top-20 h-32 w-32 bg-cyan-300/15 blur-3xl" />
                 <div className="relative space-y-4">
                   <div className="flex items-center justify-between border-b border-white/15 pb-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase text-white/55">
-                        Control dashboard
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <span className="signal-dot bg-emerald-300" />
+                        <span className="signal-dot bg-cyan-300" />
+                        <span className="signal-dot bg-accent" />
+                        <p className="text-xs font-semibold uppercase text-white/55">
+                          Control dashboard
+                        </p>
+                      </div>
                       <p className="mt-1 text-lg font-semibold">
                         Smart room planning view
                       </p>
@@ -221,7 +260,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="border border-white/15 bg-[#101820]/70 p-3">
+                    <div className="device-panel p-3">
                       <p className="text-xs uppercase text-white/55">
                         Products
                       </p>
@@ -230,7 +269,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                         product models
                       </p>
                     </div>
-                    <div className="border border-white/15 bg-[#101820]/70 p-3">
+                    <div className="device-panel p-3">
                       <p className="text-xs uppercase text-white/55">
                         Project type
                       </p>
@@ -241,7 +280,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                         room control planning
                       </p>
                     </div>
-                    <div className="border border-white/15 bg-[#101820]/70 p-3">
+                    <div className="device-panel p-3">
                       <p className="text-xs uppercase text-white/55">
                         Supply
                       </p>
@@ -254,20 +293,26 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    {[
-                      "Smart room control",
-                      "RCU planning",
-                      "Smart panels",
-                      "Sensors",
-                    ].map((item) => (
+                  <div className="control-flow relative grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    {dashboardModules.map((item) => (
                       <div
-                        key={item}
-                        className="flex items-center justify-between border border-white/10 bg-white/5 px-3 py-2"
+                        key={item.label}
+                        className="device-panel relative z-10 min-h-32 p-4"
                       >
-                        <span className="text-sm font-semibold">{item}</span>
-                        <span className="text-xs uppercase text-cyan-200">
-                          Scope
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-semibold uppercase text-white/50">
+                            {item.label}
+                          </span>
+                          <span className="signal-dot bg-emerald-300" />
+                        </div>
+                        <p className="mt-4 text-base font-semibold">
+                          {item.value}
+                        </p>
+                        <p className="mt-2 text-xs leading-5 text-white/58">
+                          {item.detail}
+                        </p>
+                        <span className="mt-4 inline-flex border border-cyan-200/30 bg-cyan-200/10 px-2 py-1 text-xs font-semibold uppercase text-cyan-100">
+                          {item.status}
                         </span>
                       </div>
                     ))}
@@ -326,7 +371,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="section-soft border-b border-line">
+        <section className="section-soft section-rhythm border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Product categories"
@@ -343,8 +388,9 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                   <Link
                     key={category.slug}
                     href={`/${locale}/products/#category-${category.slug}`}
-                    className="surface-card surface-card-hover p-5"
+                    className="product-system-card surface-card surface-card-hover p-5"
                   >
+                    <span className="category-marker" />
                     <h3 className="text-lg font-semibold text-foreground">
                       {category.title}
                     </h3>
@@ -381,7 +427,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="section-soft border-b border-line">
+        <section className="section-soft section-rhythm-alt border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Product portfolio"
@@ -431,7 +477,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-background">
+        <section className="section-rhythm border-b border-line bg-background">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Product series"
@@ -487,7 +533,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-surface">
+        <section className="section-rhythm-alt border-b border-line bg-surface">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Solutions"
@@ -496,31 +542,34 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
               href={`/${locale}/solutions/`}
               actionLabel="View all solutions"
             />
-            <PreviewGrid
-              items={featuredSolutions.map((solution) => ({
-                id: solution.id,
-                title: stripHtml(solution.title),
-                description: stripHtml(solution.summary || solution.excerpt),
-                href: `/${locale}/solutions/${solution.slug}/`,
-                meta: solution.typicalDeploymentTime || "Smart building solution",
-                imageUrl:
-                  solutionPreviewImages[solution.slug]?.src ??
-                  solution.heroImage?.sourceUrl,
-                imageAlt:
-                  solutionPreviewImages[solution.slug]?.alt ??
-                  solution.heroImage?.altText ??
-                  stripHtml(solution.title),
-                imageFit: solutionPreviewImages[solution.slug]
-                  ? "cover"
-                  : undefined,
-              }))}
-              emptyTitle="Solution portfolios are being prepared."
-              emptyDescription="Hotel room control, energy management, and property automation solutions will appear here."
-            />
+            <div className="solution-frame solution-system-layer mt-8">
+              <PreviewGrid
+                items={featuredSolutions.map((solution) => ({
+                  id: solution.id,
+                  title: stripHtml(solution.title),
+                  description: stripHtml(solution.summary || solution.excerpt),
+                  href: `/${locale}/solutions/${solution.slug}/`,
+                  meta:
+                    solution.typicalDeploymentTime || "Smart building solution",
+                  imageUrl:
+                    solutionPreviewImages[solution.slug]?.src ??
+                    solution.heroImage?.sourceUrl,
+                  imageAlt:
+                    solutionPreviewImages[solution.slug]?.alt ??
+                    solution.heroImage?.altText ??
+                    stripHtml(solution.title),
+                  imageFit: solutionPreviewImages[solution.slug]
+                    ? "cover"
+                    : undefined,
+                }))}
+                emptyTitle="Solution portfolios are being prepared."
+                emptyDescription="Hotel room control, energy management, and property automation solutions will appear here."
+              />
+            </div>
           </div>
         </section>
 
-        <section className="section-soft border-b border-line">
+        <section className="section-soft section-rhythm border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Case studies"
@@ -557,7 +606,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-surface">
+        <section className="section-rhythm-alt border-b border-line bg-surface">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Application scenarios"
@@ -584,7 +633,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="section-soft border-b border-line">
+        <section className="section-soft section-rhythm border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Regional markets"
@@ -593,21 +642,24 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
               href={`/${locale}/regions/`}
               actionLabel="Explore regions"
             />
-            <PreviewGrid
-              items={featuredRegions.map((region) => ({
-                id: region.id,
-                title: stripHtml(region.title),
-                description: stripHtml(
-                  region.marketSummary || region.excerpt,
-                ),
-                href: `/${locale}/regions/${region.slug}/`,
-                meta: region.marketMaturity || region.regionType,
-                imageUrl: region.heroImage?.sourceUrl,
-                imageAlt: region.heroImage?.altText || stripHtml(region.title),
-              }))}
-              emptyTitle="Regional market guides are being prepared."
-              emptyDescription={`Initial coverage will focus on ${brand.targetMarkets.join(", ")}.`}
-            />
+            <div className="region-tech-frame mt-8">
+              <PreviewGrid
+                items={featuredRegions.map((region) => ({
+                  id: region.id,
+                  title: stripHtml(region.title),
+                  description: stripHtml(
+                    region.marketSummary || region.excerpt,
+                  ),
+                  href: `/${locale}/regions/${region.slug}/`,
+                  meta: region.marketMaturity || region.regionType,
+                  imageUrl: region.heroImage?.sourceUrl,
+                  imageAlt:
+                    region.heroImage?.altText || stripHtml(region.title),
+                }))}
+                emptyTitle="Regional market guides are being prepared."
+                emptyDescription={`Initial coverage will focus on ${brand.targetMarkets.join(", ")}.`}
+              />
+            </div>
             <ul className="mt-8 flex flex-wrap gap-2">
               {brand.targetMarkets.map((market) => (
                 <li
@@ -621,7 +673,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="section-soft border-b border-line">
+        <section className="section-soft section-rhythm-alt border-b border-line">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <SectionHeading
               eyebrow="Buyer knowledge"
@@ -632,7 +684,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="border-b border-line bg-background">
+        <section className="section-rhythm border-b border-line bg-background">
           <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
             <div className="surface-card p-6">
               <p className="text-sm font-semibold uppercase text-brand">
@@ -674,27 +726,34 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           </div>
         </section>
 
-        <section className="section-tech text-white">
+        <section className="section-tech cta-tech-wrap text-white">
           <div className="tech-grid absolute inset-0 opacity-35" />
-          <div className="relative mx-auto flex max-w-7xl flex-col justify-between gap-8 px-5 py-12 sm:px-8 lg:flex-row lg:items-center lg:px-12">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase text-white/65">
-                Project contact
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold">
-                Plan your hotel automation product mix with our B2B team.
-              </h2>
-              <p className="mt-4 leading-7 text-white/75">
-                Share your market, room type, protocol requirements, estimated
-                quantity, and target delivery schedule.
-              </p>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(233,185,73,0.28),transparent_28%),radial-gradient(circle_at_82%_62%,rgba(34,211,238,0.18),transparent_30%)]" />
+          <div className="relative mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
+            <div className="cta-tech-panel flex flex-col justify-between gap-8 p-6 sm:p-8 lg:flex-row lg:items-center">
+              <div className="max-w-3xl">
+                <div className="flex items-center gap-2">
+                  <span className="signal-dot bg-emerald-300" />
+                  <span className="signal-dot bg-cyan-300" />
+                  <p className="text-sm font-semibold uppercase text-white/65">
+                    Project contact
+                  </p>
+                </div>
+                <h2 className="mt-3 text-3xl font-semibold">
+                  Plan your hotel automation product mix with our B2B team.
+                </h2>
+                <p className="mt-4 leading-7 text-white/75">
+                  Share your market, room type, protocol requirements,
+                  estimated quantity, and target delivery schedule.
+                </p>
+              </div>
+              <a
+                href={whatsappUrl}
+                className="cta-button-light inline-flex min-h-11 shrink-0 items-center justify-center px-5 py-3 font-semibold"
+              >
+                {brand.whatsapp.label}
+              </a>
             </div>
-            <a
-              href={whatsappUrl}
-              className="cta-button-light inline-flex min-h-11 shrink-0 items-center justify-center px-5 py-3 font-semibold"
-            >
-              {brand.whatsapp.label}
-            </a>
           </div>
         </section>
       </main>

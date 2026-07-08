@@ -909,21 +909,69 @@ a.cta-button-light:focus-visible {
       0 0 34px rgba(34, 211, 238, 0.1);
   }
 
+  .hero-dashboard-frame .relative.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.65rem;
+  }
+
   .hero-dashboard-frame .tech-grid,
   .dashboard-node-field {
-    opacity: 0.18;
+    opacity: 0.1;
   }
 
   .hero-dashboard-frame .device-panel {
-    padding: 0.85rem;
+    padding: 0.7rem;
+  }
+
+  .hero-dashboard-frame .dashboard-core-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .hero-dashboard-frame .dashboard-core-metrics .device-panel {
+    min-height: 0;
+    padding: 0.62rem;
+  }
+
+  .hero-dashboard-frame .dashboard-core-metrics p:first-child {
+    font-size: 0.62rem;
+    line-height: 1.2;
+  }
+
+  .hero-dashboard-frame .dashboard-core-metrics p:nth-child(2) {
+    margin-top: 0.32rem;
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+
+  .hero-dashboard-frame .dashboard-core-metrics p:nth-child(3) {
+    display: none;
   }
 
   .hero-dashboard-frame .control-flow {
-    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
   }
 
   .hero-dashboard-frame .control-flow .device-panel {
     min-height: auto;
+  }
+
+  .hero-dashboard-frame .control-flow .device-panel p {
+    margin-top: 0.6rem;
+  }
+
+  .hero-dashboard-frame .control-flow .device-panel p + p {
+    display: none;
+  }
+
+  .hero-dashboard-frame .control-flow .device-panel span.mt-4 {
+    margin-top: 0.55rem;
+  }
+
+  .hero-dashboard-frame .dashboard-mobile-hide,
+  .hero-dashboard-frame .dashboard-tags-panel,
+  .dashboard-summary-panel {
+    display: none;
   }
 
   .control-flow::before {

@@ -259,7 +259,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     </span>
                   </div>
 
-                  <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="dashboard-core-metrics grid gap-3 sm:grid-cols-3">
                     <div className="device-panel p-3">
                       <p className="text-xs uppercase text-white/55">
                         Products
@@ -297,7 +297,11 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     {dashboardModules.map((item) => (
                       <div
                         key={item.label}
-                        className="device-panel relative z-10 min-h-32 p-4"
+                        className={`device-panel relative z-10 min-h-32 p-4 ${
+                          item.label === "Sensor" || item.label === "Gateway"
+                            ? "dashboard-mobile-hide"
+                            : ""
+                        }`}
                       >
                         <div className="flex items-center justify-between">
                           <span className="text-xs font-semibold uppercase text-white/50">
@@ -318,7 +322,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="dashboard-tags-panel flex flex-wrap gap-2">
                     {[
                       "Middle East",
                       "Southeast Asia",
@@ -340,7 +344,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
               </div>
             </div>
 
-            <div className="mt-10">
+            <div className="dashboard-summary-panel mt-10">
               <dl className="grid gap-px border border-white/20 bg-white/20 sm:grid-cols-3">
                 <div className="bg-[#101820]/85 p-5 backdrop-blur">
                   <dt className="text-xs font-semibold uppercase text-white/55">

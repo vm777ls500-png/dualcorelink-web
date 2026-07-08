@@ -909,13 +909,52 @@ a.cta-button-light:focus-visible {
       0 0 34px rgba(34, 211, 238, 0.1);
   }
 
+  .hero-dashboard-frame::after,
+  .hero-dashboard-frame .dashboard-mobile-overlay,
+  .hero-dashboard-frame .dashboard-node-field {
+    display: none;
+  }
+
+  .hero-dashboard-frame > .relative,
+  .hero-dashboard-frame .dashboard-header,
+  .hero-dashboard-frame .dashboard-core-metrics,
+  .hero-dashboard-frame .control-flow,
+  .hero-dashboard-frame .device-panel {
+    position: relative;
+    z-index: 2;
+  }
+
   .hero-dashboard-frame .relative.space-y-4 > :not([hidden]) ~ :not([hidden]) {
     margin-top: 0.65rem;
   }
 
-  .hero-dashboard-frame .tech-grid,
-  .dashboard-node-field {
-    opacity: 0.1;
+  .hero-dashboard-frame .tech-grid {
+    opacity: 0.06;
+  }
+
+  .hero-dashboard-frame .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .hero-dashboard-frame .dashboard-header-title {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-dashboard-frame .dashboard-header-title > p:last-child {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .hero-dashboard-frame .dashboard-status-badge {
+    align-self: flex-start;
+    padding: 0.25rem 0.55rem;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
   .hero-dashboard-frame .device-panel {
@@ -941,6 +980,7 @@ a.cta-button-light:focus-visible {
     margin-top: 0.32rem;
     font-size: 0.82rem;
     line-height: 1.25;
+    overflow-wrap: anywhere;
   }
 
   .hero-dashboard-frame .dashboard-core-metrics p:nth-child(3) {

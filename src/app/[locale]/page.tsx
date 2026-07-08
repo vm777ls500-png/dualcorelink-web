@@ -237,11 +237,11 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                   <span />
                   <span />
                 </div>
-                <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 bg-accent/25 blur-3xl" />
-                <div className="pointer-events-none absolute left-8 top-20 h-32 w-32 bg-cyan-300/15 blur-3xl" />
+                <div className="dashboard-mobile-overlay pointer-events-none absolute -right-16 -top-16 h-56 w-56 bg-accent/25 blur-3xl" />
+                <div className="dashboard-mobile-overlay pointer-events-none absolute left-8 top-20 h-32 w-32 bg-cyan-300/15 blur-3xl" />
                 <div className="relative space-y-4">
-                  <div className="flex items-center justify-between border-b border-white/15 pb-4">
-                    <div>
+                  <div className="dashboard-header flex items-center justify-between border-b border-white/15 pb-4">
+                    <div className="dashboard-header-title">
                       <div className="flex items-center gap-2">
                         <span className="signal-dot bg-emerald-300" />
                         <span className="signal-dot bg-cyan-300" />
@@ -254,7 +254,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                         Smart room planning view
                       </p>
                     </div>
-                    <span className="border border-cyan-200/40 bg-cyan-200/10 px-3 py-1 text-xs font-semibold text-cyan-200">
+                    <span className="dashboard-status-badge border border-cyan-200/40 bg-cyan-200/10 px-3 py-1 text-xs font-semibold text-cyan-200">
                       Inquiry ready
                     </span>
                   </div>

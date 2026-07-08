@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { localeNames, visibleLocales, type Locale } from "@/config/i18n";
 
 type HeaderProps = {
@@ -6,6 +9,7 @@ type HeaderProps = {
 };
 
 export function Header({ locale }: HeaderProps) {
+  const pathname = usePathname();
   const primaryNavigation = [
     ["Products", "products"],
     ["Series", "product-series"],
@@ -16,9 +20,18 @@ export function Header({ locale }: HeaderProps) {
     ["FAQ", "faqs"],
     ["About", "about"],
   ] as const;
+  const isActiveRoute = (href: string) => {
+    const normalizedPathname = pathname.replace(/\/$/, "");
+    const normalizedHref = href.replace(/\/$/, "");
+
+    return (
+      normalizedPathname === normalizedHref ||
+      normalizedPathname.startsWith(`${normalizedHref}/`)
+    );
+  };
 
   return (
-    <header className="border-b border-line bg-surface">
+    <header className="site-header site-header-sticky">
       <div className="mx-auto flex min-h-18 max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4 sm:px-8 lg:px-12">
         <Link
           href={`/${locale}/`}
@@ -31,8 +44,18 @@ export function Header({ locale }: HeaderProps) {
         <nav aria-label="Primary" className="order-3 w-full lg:order-none lg:w-auto">
           <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
             {primaryNavigation.map(([label, route]) => (
-              <li key={route}>
-                <Link href={`/${locale}/${route}/`} className="hover:text-brand">
+              <li key={route} className="flex">
+                <Link
+                  href={`/${locale}/${route}/`}
+                  className={
+                    isActiveRoute(`/${locale}/${route}/`)
+                      ? "nav-link nav-link-active"
+                      : "nav-link"
+                  }
+                  aria-current={
+                    isActiveRoute(`/${locale}/${route}/`) ? "page" : undefined
+                  }
+                >
                   {label}
                 </Link>
               </li>

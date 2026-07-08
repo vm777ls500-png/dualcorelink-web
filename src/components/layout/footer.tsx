@@ -1,6 +1,11 @@
 import { brand } from "@/config/brand";
 import Link from "next/link";
 
+const officeLocation = "Cangzhou, Hebei, China";
+const wechatId = "a13703333750";
+const phoneNumber = "+86 13703333750";
+const phoneHref = "tel:+8613703333750";
+
 export function Footer() {
   return (
     <footer className="border-t border-line bg-foreground text-white">
@@ -57,6 +62,13 @@ export function Footer() {
           >
             {brand.whatsapp.label}
           </a>
+          <div className="mt-4 space-y-1 text-white/70">
+            <p>Office: {officeLocation}</p>
+            <p>WeChat: {wechatId}</p>
+            <a className="block" href={phoneHref}>
+              Phone: {phoneNumber}
+            </a>
+          </div>
         </div>
       </div>
     </footer>

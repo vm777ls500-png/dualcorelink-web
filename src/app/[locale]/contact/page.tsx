@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ContactCard } from "@/components/contact/contact-card";
 import { GetQuoteForm } from "@/components/contact/get-quote-form";
@@ -15,6 +16,12 @@ import { stripHtml } from "@/lib/text";
 import { pageRepository } from "@/lib/wordpress/repositories";
 
 type ContactPageProps = { params: Promise<{ locale: string }> };
+
+const officeAddress =
+  "Unit 1-2202, Building 19, Yuhe Xincheng East District, Yuhe Road, Yunhe District, Cangzhou City, Hebei Province, China";
+const wechatId = "a13703333750";
+const phoneNumber = "+86 13703333750";
+const phoneHref = "tel:+8613703333750";
 
 export async function generateMetadata({
   params,
@@ -78,6 +85,48 @@ export default async function ContactPage({ params }: ContactPageProps) {
           <WhatsAppButton message={whatsappMessage} className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white" />
         </div>
       </div>
+      <section className="mt-8 border border-line bg-surface p-6">
+        <div className="grid gap-8 lg:grid-cols-[1fr_220px] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase text-brand">
+              Contact Details
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-foreground">
+              Office Address, WeChat and Phone
+            </h2>
+            <dl className="mt-6 space-y-5 text-sm">
+              <div>
+                <dt className="font-semibold text-foreground">Office Address</dt>
+                <dd className="mt-2 leading-7 text-muted">{officeAddress}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-foreground">WeChat ID</dt>
+                <dd className="mt-2 text-muted">{wechatId}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-foreground">Phone</dt>
+                <dd className="mt-2">
+                  <a className="font-semibold text-brand" href={phoneHref}>
+                    {phoneNumber}
+                  </a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+          <div className="max-w-[220px]">
+            <Image
+              src="/media/contact/wechat-allan-qr.png"
+              alt="WeChat QR code for DualCoreLink contact"
+              width={220}
+              height={220}
+              className="h-auto w-full border border-line bg-white p-2"
+            />
+            <p className="mt-3 text-sm leading-6 text-muted">
+              Scan to add WeChat contact.
+            </p>
+          </div>
+        </div>
+      </section>
       <section id="get-a-quote" className="mt-12">
         <h2 className="text-3xl font-semibold text-foreground">Get a Quote</h2>
         <p className="mt-3 max-w-3xl leading-7 text-muted">

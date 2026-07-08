@@ -171,17 +171,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <>
       <JsonLd graph={createSchemaGraph(pageNodes)} />
-      <article>
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-2 lg:px-12">
-          <MediaFrame
-            src={displayImage?.src ?? heroImage?.sourceUrl}
-            alt={heroImage?.altText || stripHtml(product.title)}
-            width={displayImage?.width ?? heroImage?.width}
-            height={displayImage?.height ?? heroImage?.height}
-            loading="eager"
-            fetchPriority="high"
-          />
-          <header className="self-center">
+      <article className="product-detail-page">
+        <div className="product-detail-hero mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-2 lg:px-12">
+          <div className="product-detail-media-panel">
+            <MediaFrame
+              src={displayImage?.src ?? heroImage?.sourceUrl}
+              alt={heroImage?.altText || stripHtml(product.title)}
+              width={displayImage?.width ?? heroImage?.width}
+              height={displayImage?.height ?? heroImage?.height}
+              loading="eager"
+              fetchPriority="high"
+            />
+          </div>
+          <header className="product-detail-summary self-center">
             <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase">
               {product.isNew ? (
                 <span className="border border-accent bg-accent px-2 py-1">New</span>
@@ -212,7 +214,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <p className="mt-6 text-lg leading-8 text-muted">
               {stripHtml(product.shortDescription || product.excerpt)}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="product-detail-actions mt-8 flex flex-wrap gap-3">
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
                 className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
@@ -229,7 +231,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               quantity, voltage, protocol or wiring needs, panel finish, logo
               or packaging requests, and target delivery time.
             </p>
-            <div className="mt-8 grid grid-cols-2 gap-4 border-t border-line pt-6 text-sm">
+            <div className="product-detail-commerce mt-8 grid grid-cols-2 gap-4 border-t border-line pt-6 text-sm">
               <div>
                 <p className="text-muted">Lead time</p>
                 <p className="mt-1 font-semibold">{product.commerce.leadTime || "On request"}</p>
@@ -246,7 +248,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </header>
         </div>
 
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 pb-14 sm:px-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:px-12">
+        <div className="product-detail-content mx-auto grid max-w-7xl gap-10 px-5 pb-14 sm:px-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:px-12">
           <div className="space-y-10">
             <ContentSection
               title="Product overview"
@@ -276,7 +278,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               )}
             />
             {specifications.length > 0 ? (
-              <section>
+              <section className="product-detail-spec-panel">
                 <h2 className="mb-5 text-2xl font-semibold">
                   Technical specifications
                 </h2>
@@ -289,7 +291,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               />
             )}
             {product.relatedProducts.length > 0 ? (
-              <section className="border-t border-line pt-8">
+              <section className="product-detail-related border-t border-line pt-8">
                 <h2 className="text-2xl font-semibold text-foreground">
                   Related products
                 </h2>
@@ -298,7 +300,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <Link
                       key={item.id}
                       href={`/${locale}/products/${item.slug}/`}
-                      className="border border-line bg-surface p-5 hover:border-brand"
+                      className="product-detail-related-card border border-line bg-surface p-5 hover:border-brand"
                     >
                       <h3 className="font-semibold">
                         {stripHtml(item.title)}
@@ -312,14 +314,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </section>
             ) : null}
             {product.relatedFaqs.length > 0 ? (
-              <section className="border-t border-line pt-8">
+              <section className="product-detail-related border-t border-line pt-8">
                 <h2 className="text-2xl font-semibold text-foreground">FAQ</h2>
                 <div className="mt-5 space-y-3">
                   {product.relatedFaqs.map((item) => (
                     <Link
                       key={item.id}
                       href={`/${locale}/faqs/#faq-${item.id}`}
-                      className="block border border-line bg-surface p-5 hover:border-brand"
+                      className="product-detail-related-card block border border-line bg-surface p-5 hover:border-brand"
                     >
                       <h3 className="font-semibold">
                         {stripHtml(item.title)}
@@ -335,7 +337,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <ContentSection title="FAQ" content={faqsText} />
             )}
           </div>
-          <aside className="border border-line bg-surface p-6">
+          <aside className="product-detail-aside border border-line bg-surface p-6">
             <h2 className="text-lg font-semibold">Commercial options</h2>
             <dl className="mt-5 space-y-4 text-sm">
               <div><dt className="text-muted">MOQ</dt><dd className="mt-1 font-semibold">{product.commerce.minimumOrderQuantity ? `${product.commerce.minimumOrderQuantity} ${product.commerce.moqUnit || "units"}` : "On request"}</dd></div>
@@ -345,7 +347,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </dl>
           </aside>
         </div>
-        <section id="get-a-quote" className="mx-auto max-w-7xl px-5 pb-14 sm:px-8 lg:px-12">
+        <section id="get-a-quote" className="product-detail-quote mx-auto max-w-7xl px-5 pb-14 sm:px-8 lg:px-12">
           <h2 className="text-3xl font-semibold">Get a Quote</h2>
           <p className="mt-3 max-w-3xl leading-7 text-muted">
             Use the contact page form to send project requirements, quantities,

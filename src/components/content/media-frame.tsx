@@ -20,7 +20,7 @@ export function MediaFrame({
   fetchPriority = "auto",
 }: MediaFrameProps) {
   return (
-    <div className="relative aspect-[4/3] overflow-hidden border border-line bg-surface">
+    <div className="media-shell aspect-[4/3] shadow-[0_24px_60px_rgba(23,32,42,0.09)]">
       {src ? (
         <Image
           src={src}
@@ -31,10 +31,10 @@ export function MediaFrame({
           decoding="async"
           loading={loading}
           fetchPriority={fetchPriority}
-          className="h-full w-full object-contain p-6"
+          className="relative z-10 h-full w-full object-contain p-6"
         />
       ) : (
-        <div className="grid h-full place-items-center p-6 text-center text-sm font-medium text-muted">
+        <div className="relative z-10 grid h-full place-items-center p-6 text-center text-sm font-medium text-muted">
           {label}
         </div>
       )}

@@ -28,7 +28,7 @@ export function PreviewGrid({
 }: PreviewGridProps) {
   if (items.length === 0) {
     return (
-      <div className="mt-8 border-y border-line bg-surface px-6 py-10">
+      <div className="surface-card mt-8 px-6 py-10">
         <p className="font-semibold text-foreground">{emptyTitle}</p>
         <p className="mt-2 max-w-2xl leading-7 text-muted">
           {emptyDescription}
@@ -38,10 +38,10 @@ export function PreviewGrid({
   }
 
   return (
-    <ul className="mt-8 grid gap-4 md:grid-cols-3">
+    <ul className="mt-8 grid gap-5 md:grid-cols-3">
       {items.map((item) => (
-        <li key={item.id} className="border border-line bg-surface">
-          <div className="relative aspect-[4/3] bg-background">
+        <li key={item.id} className="surface-card surface-card-hover overflow-hidden">
+          <div className="media-shell aspect-[4/3]">
             {item.imageUrl ? (
               <Image
                 src={item.imageUrl}
@@ -55,18 +55,18 @@ export function PreviewGrid({
                 }
               />
             ) : (
-              <div className="grid h-full place-items-center text-xs font-semibold uppercase text-muted">
+              <div className="relative z-10 grid h-full place-items-center text-xs font-semibold uppercase text-muted">
                 Media preview unavailable
               </div>
             )}
           </div>
           <div className="p-5">
             {item.categoryLabel ? (
-              <p className="inline-flex border border-line bg-background px-2 py-1 text-xs font-semibold uppercase text-brand">
+              <p className="eyebrow-chip">
                 {item.categoryLabel}
               </p>
             ) : item.meta ? (
-              <p className="text-xs font-semibold uppercase text-brand">
+              <p className="eyebrow-chip">
                 {item.meta}
               </p>
             ) : null}
@@ -78,7 +78,7 @@ export function PreviewGrid({
             </p>
             <Link
               href={item.href}
-              className="mt-5 inline-flex min-h-10 items-center justify-center border border-brand px-4 py-2 text-sm font-semibold text-brand hover:bg-brand hover:text-white"
+              className="brand-button-outline mt-5 px-4 py-2 text-sm"
             >
               {actionLabel}
             </Link>

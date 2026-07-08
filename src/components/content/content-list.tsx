@@ -22,13 +22,13 @@ type ContentListProps = {
 
 export function ContentList({ locale, route, items }: ContentListProps) {
   return (
-    <ul className="grid gap-4 md:grid-cols-2">
+    <ul className="grid gap-5 md:grid-cols-2">
       {items.map((item) => (
         <li
           key={item.id}
-          className="grid overflow-hidden border border-line bg-surface sm:grid-cols-[12rem_1fr]"
+          className="surface-card surface-card-hover grid overflow-hidden sm:grid-cols-[12rem_1fr]"
         >
-          <div className="relative aspect-[4/3] min-h-40 bg-background sm:aspect-auto">
+          <div className="media-shell aspect-[4/3] min-h-40 sm:aspect-auto">
             {item.mediaUrl ? (
               <Image
                 src={item.mediaUrl}
@@ -38,14 +38,14 @@ export function ContentList({ locale, route, items }: ContentListProps) {
                 className="object-contain p-5"
               />
             ) : (
-              <div className="grid h-full min-h-32 place-items-center text-xs font-semibold uppercase text-muted">
+              <div className="relative z-10 grid h-full min-h-32 place-items-center text-xs font-semibold uppercase text-muted">
                 {item.hasMedia ? "Media ready" : "Media preview unavailable"}
               </div>
             )}
           </div>
           <div className="flex flex-col p-6">
             {item.categories?.length ? (
-              <p className="mb-3 w-fit border border-brand/30 px-2 py-1 text-xs font-semibold uppercase text-brand">
+              <p className="eyebrow-chip mb-3 w-fit">
                 {item.categories.join(" / ")}
               </p>
             ) : null}
@@ -64,7 +64,7 @@ export function ContentList({ locale, route, items }: ContentListProps) {
             </p>
             <Link
               href={`/${locale}/${route}/${item.slug}/`}
-              className="mt-5 inline-flex min-h-10 w-fit items-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white"
+              className="brand-button mt-5 w-fit px-4 py-2 text-sm"
             >
               View Details
             </Link>

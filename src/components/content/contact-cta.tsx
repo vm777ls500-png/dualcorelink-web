@@ -12,8 +12,9 @@ export function ContactCta({
   label = "Contact Sales",
 }: ContactCtaProps) {
   return (
-    <aside className="border-y border-line bg-brand px-6 py-8 text-white sm:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 lg:flex-row lg:items-center">
+    <aside className="section-tech border-y border-brand/30 px-6 py-9 text-white sm:px-8">
+      <div className="tech-grid absolute inset-0 opacity-35" />
+      <div className="relative mx-auto flex max-w-7xl flex-col justify-between gap-5 lg:flex-row lg:items-center">
         <div>
           <p className="text-sm font-semibold uppercase text-white/70">
             B2B project support
@@ -30,7 +31,7 @@ export function ContactCta({
             {label || "Contact Sales"}
           </Link>
           <WhatsAppButton
-            className="inline-flex min-h-11 shrink-0 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center border border-white/55 bg-white/10 px-5 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/15"
             message="Hello DUALCORE LINK, I would like to get a quote."
           />
         </div>

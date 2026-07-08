@@ -96,8 +96,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
   return (
     <>
       <JsonLd graph={graph} />
-      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
-      <header className="mb-8 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+      <section className="products-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
+      <header className="products-catalog-hero mb-8 flex flex-col justify-between gap-5 p-6 lg:flex-row lg:items-end lg:p-8">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase text-brand">
             B2B product catalog
@@ -111,7 +111,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             global project sourcing teams.
           </p>
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="products-hero-actions flex flex-wrap gap-3">
           <Link
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
@@ -127,8 +127,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         </div>
       </header>
 
-      <div className="mb-10 grid gap-6 lg:grid-cols-3">
-        <section className="border border-line bg-surface p-5">
+      <div className="products-browse-grid mb-10 grid gap-6 lg:grid-cols-3">
+        <section className="products-browse-panel border border-line bg-surface p-5">
           <h2 className="text-lg font-semibold">Browse by Category</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             Choose product groups for hotel rooms, public areas, integration
@@ -146,8 +146,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                   href={`/${locale}/products/?category=${category.slug}#product-results`}
                   className={
                     hasProducts
-                      ? "block border border-line bg-background p-3 hover:border-brand"
-                      : "block border border-line bg-background/50 p-3 text-muted"
+                      ? "products-entry-card block border border-line bg-background p-3 hover:border-brand"
+                      : "products-entry-card products-entry-card-muted block border border-line bg-background/50 p-3 text-muted"
                   }
                 >
                   <span
@@ -181,7 +181,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           </ul>
         </section>
 
-        <section className="border border-line bg-surface p-5">
+        <section className="products-browse-panel border border-line bg-surface p-5">
           <h2 className="text-lg font-semibold">Browse by Series</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             Compare product finishes, panel styles, and project positioning.
@@ -199,8 +199,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                   href={`/${locale}/products/?series=${series.slug}#product-results`}
                   className={
                     hasProducts
-                      ? "block border border-line bg-background p-3 hover:border-brand"
-                      : "block border border-line bg-background/50 p-3 text-muted"
+                      ? "products-entry-card block border border-line bg-background p-3 hover:border-brand"
+                      : "products-entry-card products-entry-card-muted block border border-line bg-background/50 p-3 text-muted"
                   }
                 >
                   <span
@@ -233,7 +233,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           </ul>
         </section>
 
-        <section className="border border-line bg-surface p-5">
+        <section className="products-browse-panel border border-line bg-surface p-5">
           <h2 className="text-lg font-semibold">Browse by Application Scenario</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             Application scenarios are independent scene materials, not product
@@ -244,7 +244,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               <li key={scenario.slug}>
                 <Link
                   href={`/${locale}/application-scenarios/#${scenario.slug}`}
-                  className="block border border-line bg-background p-3 hover:border-brand"
+                  className="products-entry-card block border border-line bg-background p-3 hover:border-brand"
                 >
                   <span className="block font-semibold">{scenario.title}</span>
                   <span className="mt-1 block text-sm text-muted">
@@ -273,6 +273,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         >
           <ProductFilteredList
             locale={locale}
+            variant="product"
             categories={productCategories.map((category) => ({
               slug: category.slug,
               title: category.title,
@@ -299,7 +300,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           />
         </Suspense>
       )}
-      <section className="mt-12 border border-line bg-surface p-6">
+      <section className="products-quote-panel mt-12 border border-line bg-surface p-6">
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
             <h2 className="text-2xl font-semibold text-foreground">

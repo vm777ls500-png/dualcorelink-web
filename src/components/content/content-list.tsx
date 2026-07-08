@@ -18,17 +18,30 @@ type ContentListProps = {
   locale: Locale;
   route: "products" | "solutions";
   items: ContentListItem[];
+  variant?: "product";
 };
 
-export function ContentList({ locale, route, items }: ContentListProps) {
+export function ContentList({ locale, route, items, variant }: ContentListProps) {
+  const isProductList = variant === "product";
+
   return (
-    <ul className="grid gap-5 md:grid-cols-2">
+    <ul
+      className={
+        isProductList
+          ? "product-list-grid grid gap-5 md:grid-cols-2"
+          : "grid gap-5 md:grid-cols-2"
+      }
+    >
       {items.map((item) => (
         <li
           key={item.id}
-          className="surface-card surface-card-hover grid overflow-hidden sm:grid-cols-[12rem_1fr]"
+          className={
+            isProductList
+              ? "product-list-card surface-card surface-card-hover grid overflow-hidden sm:grid-cols-[12rem_1fr]"
+              : "surface-card surface-card-hover grid overflow-hidden sm:grid-cols-[12rem_1fr]"
+          }
         >
-          <div className="media-shell aspect-[4/3] min-h-40 sm:aspect-auto">
+          <div className="media-shell product-card-media aspect-[4/3] min-h-40 sm:aspect-auto">
             {item.mediaUrl ? (
               <Image
                 src={item.mediaUrl}
@@ -43,7 +56,7 @@ export function ContentList({ locale, route, items }: ContentListProps) {
               </div>
             )}
           </div>
-          <div className="flex flex-col p-6">
+          <div className="product-card-body flex flex-col p-6">
             {item.categories?.length ? (
               <p className="eyebrow-chip mb-3 w-fit">
                 {item.categories.join(" / ")}
@@ -64,7 +77,11 @@ export function ContentList({ locale, route, items }: ContentListProps) {
             </p>
             <Link
               href={`/${locale}/${route}/${item.slug}/`}
-              className="brand-button mt-5 w-fit px-4 py-2 text-sm"
+              className={
+                isProductList
+                  ? "product-card-link brand-button mt-5 w-fit px-4 py-2 text-sm"
+                  : "brand-button mt-5 w-fit px-4 py-2 text-sm"
+              }
             >
               View Details
             </Link>

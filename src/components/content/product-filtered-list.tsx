@@ -22,6 +22,7 @@ type ProductFilteredListProps = {
   items: ProductFilteredListItem[];
   categories: ProductFilterOption[];
   series: ProductFilterOption[];
+  variant?: "product";
 };
 
 export function ProductFilteredList({
@@ -29,6 +30,7 @@ export function ProductFilteredList({
   items,
   categories,
   series,
+  variant,
 }: ProductFilteredListProps) {
   const resultsRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -62,9 +64,13 @@ export function ProductFilteredList({
   }, [hasFilter, categorySlug, seriesSlug]);
 
   return (
-    <div id="product-results" ref={resultsRef} className="scroll-mt-24">
+    <div
+      id="product-results"
+      ref={resultsRef}
+      className="product-results-panel scroll-mt-24"
+    >
       {filterLabels.length > 0 ? (
-        <div className="mb-6 border border-line bg-surface p-5">
+        <div className="product-filter-panel mb-6 border border-line bg-surface p-5">
           <p className="text-sm font-semibold uppercase text-brand">
             Filtered product results
           </p>
@@ -89,7 +95,12 @@ export function ProductFilteredList({
           description="No published products match this filter. View all products or contact our team for project matching."
         />
       ) : (
-        <ContentList locale={locale} route="products" items={filteredItems} />
+        <ContentList
+          locale={locale}
+          route="products"
+          items={filteredItems}
+          variant={variant}
+        />
       )}
     </div>
   );

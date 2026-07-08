@@ -400,6 +400,7 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                     <p className="eyebrow-chip mt-4">
                       {count} {count === 1 ? "product" : "products"}
                     </p>
+                    <span className="product-card-cue" aria-hidden="true" />
                   </Link>
                 );
               })}

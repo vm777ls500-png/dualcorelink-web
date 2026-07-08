@@ -168,8 +168,8 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:48px_48px] opacity-45" />
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#101820] to-transparent" />
           <div className="absolute right-0 top-10 hidden h-[30rem] w-[42rem] border-y border-l border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0)),linear-gradient(90deg,rgba(233,185,73,0.16)_1px,transparent_1px)] bg-[size:auto,72px_72px] lg:block" />
-          <div className="relative mx-auto min-h-[42rem] max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
-            <div className="flex min-h-[34rem] flex-col justify-between gap-12">
+          <div className="relative mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
+            <div className="grid min-h-[34rem] gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
               <div className="max-w-4xl">
                 <p className="text-sm font-semibold uppercase text-accent">
                   Smart hotel infrastructure
@@ -183,13 +183,13 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     href={`/${locale}/products/`}
-                    className="inline-flex min-h-11 items-center border border-accent bg-accent px-5 py-3 font-semibold text-foreground"
+                    className="brand-button px-5 py-3"
                   >
                     View Products
                   </Link>
                   <Link
                     href={`/${locale}/contact/#get-a-quote`}
-                    className="inline-flex min-h-11 items-center border border-white/40 px-5 py-3 font-semibold text-white"
+                    className="cta-button-light inline-flex min-h-11 items-center border px-5 py-3 font-semibold"
                   >
                     Get a Quote
                   </Link>
@@ -202,6 +202,100 @@ export default async function LocaleHome({ params }: LocaleHomeProps) {
                 </div>
               </div>
 
+              <div className="relative w-full overflow-hidden border border-white/15 bg-white/10 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.22)] backdrop-blur">
+                <div className="tech-grid absolute inset-0 opacity-30" />
+                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 bg-accent/20 blur-3xl" />
+                <div className="relative space-y-4">
+                  <div className="flex items-center justify-between border-b border-white/15 pb-4">
+                    <div>
+                      <p className="text-xs font-semibold uppercase text-white/55">
+                        Control dashboard
+                      </p>
+                      <p className="mt-1 text-lg font-semibold">
+                        Smart room planning view
+                      </p>
+                    </div>
+                    <span className="border border-cyan-200/40 bg-cyan-200/10 px-3 py-1 text-xs font-semibold text-cyan-200">
+                      Inquiry ready
+                    </span>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="border border-white/15 bg-[#101820]/70 p-3">
+                      <p className="text-xs uppercase text-white/55">
+                        Products
+                      </p>
+                      <p className="mt-1 text-2xl font-semibold">36</p>
+                      <p className="mt-1 text-xs text-white/60">
+                        product models
+                      </p>
+                    </div>
+                    <div className="border border-white/15 bg-[#101820]/70 p-3">
+                      <p className="text-xs uppercase text-white/55">
+                        Project type
+                      </p>
+                      <p className="mt-1 text-sm font-semibold">
+                        Hotel RCU support
+                      </p>
+                      <p className="mt-1 text-xs text-white/60">
+                        room control planning
+                      </p>
+                    </div>
+                    <div className="border border-white/15 bg-[#101820]/70 p-3">
+                      <p className="text-xs uppercase text-white/55">
+                        Supply
+                      </p>
+                      <p className="mt-1 text-sm font-semibold">
+                        OEM/ODM ready
+                      </p>
+                      <p className="mt-1 text-xs text-white/60">
+                        panel customization
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    {[
+                      "Smart room control",
+                      "RCU planning",
+                      "Smart panels",
+                      "Sensors",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center justify-between border border-white/10 bg-white/5 px-3 py-2"
+                      >
+                        <span className="text-sm font-semibold">{item}</span>
+                        <span className="text-xs uppercase text-cyan-200">
+                          Scope
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "Middle East",
+                      "Southeast Asia",
+                      "Vietnam",
+                      "Datasheets",
+                      "Wiring diagrams",
+                      "Protocol to confirm",
+                      "Voltage / frequency to confirm",
+                    ].map((item) => (
+                      <span
+                        key={item}
+                        className="border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white/75"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10">
               <dl className="grid gap-px border border-white/20 bg-white/20 sm:grid-cols-3">
                 <div className="bg-[#101820]/85 p-5 backdrop-blur">
                   <dt className="text-xs font-semibold uppercase text-white/55">

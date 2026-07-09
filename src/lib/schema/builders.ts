@@ -62,6 +62,25 @@ export function createCollectionPageSchema(input: {
   });
 }
 
+export function createItemListSchema(input: {
+  id: string;
+  items: Array<{ name: string; url: string; description?: string }>;
+}): JsonLdNode {
+  return {
+    "@type": "ItemList",
+    "@id": input.id,
+    itemListElement: input.items.map((item, index) =>
+      compact({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        url: item.url,
+        description: item.description,
+      }),
+    ),
+  };
+}
+
 export function createBreadcrumbSchema(
   id: string,
   items: Array<{ name: string; url: string }>,

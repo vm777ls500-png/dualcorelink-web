@@ -19,6 +19,12 @@ export type ResourceGuide = {
   summary: string;
   category: "Guide";
   topic: string;
+  listingGroup:
+    | "Buying Guides"
+    | "Hotel Automation Guides"
+    | "OEM/ODM Guides"
+    | "Technical Resources";
+  featuredPriority?: number;
   readingTime: string;
   primaryKeyword: string;
   secondaryKeywords: string[];
@@ -81,6 +87,7 @@ export const resources: ResourceGuide[] = [
       "A practical planning guide for hotel owners, contractors, system integrators, distributors, and OEM/ODM buyers evaluating RCU-based guest room control projects.",
     category: "Guide",
     topic: "RCU room control",
+    listingGroup: "Technical Resources",
     readingTime: "8 min read",
     primaryKeyword: "hotel RCU room control system",
     secondaryKeywords: [
@@ -237,6 +244,8 @@ export const resources: ResourceGuide[] = [
       "A buyer-focused guide to selecting hotel RCU products, preparing room control requirements, and requesting accurate quotations for B2B projects.",
     category: "Guide",
     topic: "RCU buying",
+    listingGroup: "Buying Guides",
+    featuredPriority: 1,
     readingTime: "7 min read",
     primaryKeyword: "hotel RCU buying guide",
     secondaryKeywords: [
@@ -368,6 +377,8 @@ export const resources: ResourceGuide[] = [
       "A practical guide for planning smart hotel room control systems across guest experience, device selection, integration, and quotation preparation.",
     category: "Guide",
     topic: "Room control system",
+    listingGroup: "Hotel Automation Guides",
+    featuredPriority: 2,
     readingTime: "8 min read",
     primaryKeyword: "smart hotel room control system",
     secondaryKeywords: [
@@ -498,6 +509,7 @@ export const resources: ResourceGuide[] = [
       "A focused guide to smart switch panel selection for hotel rooms, including appearance, functions, wiring review, OEM/ODM needs, and inquiry preparation.",
     category: "Guide",
     topic: "Smart panels",
+    listingGroup: "Buying Guides",
     readingTime: "7 min read",
     primaryKeyword: "hotel smart switch panel",
     secondaryKeywords: [
@@ -628,6 +640,8 @@ export const resources: ResourceGuide[] = [
       "A customization planning guide for distributors and OEM/ODM buyers evaluating smart panel appearance, functions, documents, samples, and project requirements.",
     category: "Guide",
     topic: "OEM/ODM customization",
+    listingGroup: "OEM/ODM Guides",
+    featuredPriority: 3,
     readingTime: "7 min read",
     primaryKeyword: "OEM ODM smart panel customization",
     secondaryKeywords: [
@@ -753,6 +767,7 @@ export const resources: ResourceGuide[] = [
       "A project planning guide for hotel guest room automation, covering control functions, devices, application scenarios, documents, and inquiry preparation.",
     category: "Guide",
     topic: "Guest room automation",
+    listingGroup: "Hotel Automation Guides",
     readingTime: "8 min read",
     primaryKeyword: "hotel guest room automation",
     secondaryKeywords: [

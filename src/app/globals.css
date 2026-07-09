@@ -1572,6 +1572,119 @@ a.brand-button-outline:focus-visible {
   box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.14);
 }
 
+.about-page-shell {
+  isolation: isolate;
+}
+
+.about-company-hero,
+.about-info-panel,
+.about-step-card,
+.about-capability-card,
+.about-final-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-company-hero {
+  background:
+    radial-gradient(circle at 84% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
+    radial-gradient(circle at 14% 0%, rgba(233, 185, 73, 0.16), transparent 28%),
+    linear-gradient(135deg, #08313d 0%, var(--brand) 48%, #10202b 100%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.about-company-hero::before,
+.about-final-cta::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 38px 38px;
+  opacity: 0.36;
+}
+
+.about-company-hero > *,
+.about-final-cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-info-panel,
+.about-step-card,
+.about-capability-card {
+  border-color: rgba(0, 95, 115, 0.14);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 251, 252, 0.94)),
+    var(--surface);
+  box-shadow: 0 14px 36px rgba(23, 32, 42, 0.05);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.about-info-panel::before,
+.about-step-card::before,
+.about-capability-card::before {
+  position: absolute;
+  top: -1px;
+  right: 1rem;
+  left: 1rem;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(0, 107, 120, 0.4), rgba(34, 211, 238, 0.18), transparent);
+  opacity: 0.52;
+}
+
+.about-info-panel:hover,
+.about-info-panel:focus-within,
+.about-step-card:hover,
+.about-step-card:focus-within,
+.about-capability-card:hover,
+.about-capability-card:focus-within {
+  border-color: rgba(0, 107, 120, 0.3);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.1),
+    0 16px 40px rgba(0, 95, 115, 0.1);
+  transform: translateY(-1px);
+}
+
+.about-final-cta {
+  border-top: 1px solid rgba(34, 211, 238, 0.22);
+  background:
+    radial-gradient(circle at 86% 18%, rgba(34, 211, 238, 0.2), transparent 30%),
+    radial-gradient(circle at 12% 4%, rgba(233, 185, 73, 0.16), transparent 30%),
+    linear-gradient(135deg, #08313d 0%, var(--brand) 46%, #10202b 100%);
+}
+
+.about-final-cta a {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.about-final-cta a:hover,
+.about-final-cta a:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 41, 54, 0.18);
+}
+
+.about-info-panel:focus-within,
+.about-step-card:focus-within,
+.about-capability-card:focus-within,
+.about-final-cta a:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.24);
+  outline-offset: 3px;
+}
+
 .faq-category-chip:focus-visible,
 .faq-item-card summary:focus-visible,
 .download-action:focus-visible,
@@ -2860,6 +2973,50 @@ a.cta-button-light:focus-visible {
     min-height: 3rem;
   }
 
+  .about-company-hero > div,
+  .about-page-shell section > div {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .about-company-hero h1 {
+    font-size: clamp(2rem, 8.8vw, 2.65rem);
+    line-height: 1.12;
+  }
+
+  .about-company-hero::before,
+  .about-final-cta::before {
+    opacity: 0.24;
+  }
+
+  .about-info-panel,
+  .about-step-card,
+  .about-capability-card {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 1.15rem;
+  }
+
+  .about-info-panel:hover,
+  .about-info-panel:focus-within,
+  .about-step-card:hover,
+  .about-step-card:focus-within,
+  .about-capability-card:hover,
+  .about-capability-card:focus-within {
+    transform: translateY(-1px);
+  }
+
+  .about-final-cta .flex.flex-wrap,
+  .about-final-cta a {
+    width: 100%;
+  }
+
+  .about-final-cta a {
+    min-height: 3rem;
+    justify-content: center;
+    text-align: center;
+  }
+
   .solution-frame,
   .region-tech-frame {
     padding: 0.75rem;
@@ -3006,6 +3163,18 @@ a.cta-button-light:focus-visible {
 
   .contact-check-option {
     padding: 0.5rem;
+  }
+
+  .about-company-hero > div,
+  .about-page-shell section > div {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .about-info-panel,
+  .about-step-card,
+  .about-capability-card {
+    padding: 1rem;
   }
 
   .solution-system-layer .media-shell,

@@ -96,8 +96,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
         ])}
       />
 
-      <main>
-        <section className="border-b border-line bg-foreground text-white">
+      <main className="about-page-shell">
+        <section className="about-company-hero border-b border-line bg-foreground text-white">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
             <p className="text-sm font-semibold uppercase text-accent">
               Company profile
@@ -116,7 +116,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
         <section className="border-b border-line bg-background">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
-            <div>
+            <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Company profile
               </p>
@@ -138,7 +138,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 qualified production partners.
               </p>
             </div>
-            <div className="border-s-4 border-accent ps-6">
+            <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Delivery model
               </p>
@@ -165,7 +165,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </h2>
             <ol className="mt-8 grid gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
               {deliverySteps.map((step, index) => (
-                <li key={step} className="bg-background p-5">
+                <li key={step} className="about-step-card bg-background p-5">
                   <span className="text-sm font-semibold text-brand">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -192,7 +192,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               {capabilities.map((capability) => (
                 <li
                   key={capability}
-                  className="border border-line bg-surface p-5 font-semibold text-foreground"
+                  className="about-capability-card border border-line bg-surface p-5 font-semibold text-foreground"
                 >
                   {capability}
                 </li>
@@ -203,7 +203,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
         <section className="border-b border-line bg-surface">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
-            <div>
+            <div className="about-info-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Customization
               </p>
@@ -220,7 +220,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 quantity, and confirmed project requirements.
               </p>
             </div>
-            <div>
+            <div className="about-info-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Customers
               </p>
@@ -243,7 +243,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
         <section className="border-b border-line bg-background">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
-            <div>
+            <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Target markets
               </p>
@@ -257,7 +257,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 clearly reviewed.
               </p>
             </div>
-            <div>
+            <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Commercial terms
               </p>
@@ -297,7 +297,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           </div>
         </section>
 
-        <section className="bg-brand text-white">
+        <section className="about-final-cta bg-brand text-white">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <p className="text-sm font-semibold uppercase text-white/65">
               Project inquiry

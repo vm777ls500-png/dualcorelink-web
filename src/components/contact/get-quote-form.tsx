@@ -59,11 +59,11 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
   }
 
   const inputClass =
-    "mt-2 min-h-11 w-full border border-line bg-white px-3 py-2 text-foreground";
+    "contact-field mt-2 min-h-11 w-full border border-line bg-white px-3 py-2 text-foreground";
   const labelClass = "block text-sm font-semibold text-foreground";
 
   return (
-    <form onSubmit={handleSubmit} className="border border-line bg-surface p-6">
+    <form onSubmit={handleSubmit} className="contact-inquiry-form border border-line bg-surface p-6">
       <div className="grid gap-5 md:grid-cols-2">
         <label className={labelClass}>
           Name *
@@ -106,7 +106,7 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
         </legend>
         <div className="mt-3 grid gap-2 md:grid-cols-2">
           {productInterestOptions.map((option) => (
-            <label key={option} className="flex gap-3 text-sm text-muted">
+            <label key={option} className="contact-check-option flex gap-3 text-sm text-muted">
               <input
                 name="productInterest"
                 value={option}
@@ -142,7 +142,7 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
           required
           rows={5}
           defaultValue={defaultMessage}
-          className="mt-2 w-full border border-line bg-white px-3 py-2 text-foreground"
+          className="contact-field mt-2 w-full border border-line bg-white px-3 py-2 text-foreground"
         />
       </label>
 
@@ -163,7 +163,7 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
 
       <button
         type="submit"
-        className="mt-6 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+        className="contact-submit-button mt-6 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
       >
         Send Inquiry
       </button>

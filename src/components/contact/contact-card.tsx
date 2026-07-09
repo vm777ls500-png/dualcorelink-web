@@ -18,8 +18,8 @@ export function ContactCard({
       href={href}
       className={
         highlight
-          ? "block border border-brand bg-brand p-6 text-white"
-          : "block border border-line bg-surface p-6"
+          ? "contact-method-card contact-method-card-highlight block border border-brand bg-brand p-6 text-white"
+          : "contact-method-card block border border-line bg-surface p-6"
       }
     >
       <p

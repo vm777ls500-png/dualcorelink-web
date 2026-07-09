@@ -1306,6 +1306,284 @@ a.brand-button-outline:focus-visible {
   box-shadow: 0 18px 52px rgba(0, 41, 54, 0.16);
 }
 
+.faq-page-shell,
+.downloads-page-shell,
+.contact-page-shell {
+  isolation: isolate;
+}
+
+.faq-help-hero,
+.faq-support-panel,
+.faq-support-quote,
+.downloads-resource-hero,
+.downloads-public-panel,
+.downloads-request-panel,
+.contact-conversion-hero,
+.contact-details-panel,
+.contact-inquiry-form,
+.contact-quote-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-help-hero,
+.faq-support-panel,
+.downloads-resource-hero,
+.downloads-public-panel,
+.downloads-request-panel,
+.contact-conversion-hero,
+.contact-details-panel,
+.contact-inquiry-form {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.22), rgba(34, 211, 238, 0.13), rgba(233, 185, 73, 0.16)) border-box;
+  box-shadow: 0 16px 42px rgba(23, 32, 42, 0.06);
+}
+
+.faq-help-hero,
+.downloads-resource-hero,
+.contact-conversion-hero {
+  background:
+    radial-gradient(circle at 86% 12%, rgba(34, 211, 238, 0.14), transparent 30%),
+    radial-gradient(circle at 12% 0%, rgba(233, 185, 73, 0.12), transparent 28%),
+    linear-gradient(#f8fcfd, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.32), rgba(34, 211, 238, 0.18), rgba(233, 185, 73, 0.22)) border-box;
+}
+
+.faq-help-hero::before,
+.faq-support-panel::before,
+.faq-support-quote::before,
+.downloads-resource-hero::before,
+.downloads-public-panel::before,
+.downloads-request-panel::before,
+.contact-conversion-hero::before,
+.contact-details-panel::before,
+.contact-inquiry-form::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(0, 95, 115, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 95, 115, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.36;
+}
+
+.faq-help-hero::after,
+.downloads-resource-hero::after,
+.contact-conversion-hero::after,
+.faq-support-quote::after {
+  position: absolute;
+  inset: 1rem 2rem auto;
+  height: 16rem;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 14% 14%, rgba(233, 185, 73, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 14%, rgba(34, 211, 238, 0.13), transparent 32%);
+}
+
+.faq-help-hero > *,
+.faq-support-panel > *,
+.faq-support-quote > *,
+.downloads-resource-hero > *,
+.downloads-public-panel > *,
+.downloads-request-panel > *,
+.contact-conversion-hero > *,
+.contact-details-panel > *,
+.contact-inquiry-form > * {
+  position: relative;
+  z-index: 1;
+}
+
+.faq-category-chip,
+.download-resource-card,
+.downloads-list-card,
+.contact-method-card,
+.contact-check-option,
+.faq-item-card {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.faq-category-chip,
+.download-resource-card,
+.downloads-list-card,
+.contact-method-card,
+.faq-item-card {
+  position: relative;
+}
+
+.faq-category-chip:hover,
+.faq-category-chip:focus-visible,
+.download-resource-card:hover,
+.download-resource-card:focus-within,
+.downloads-list-card:hover,
+.downloads-list-card:focus-within,
+.contact-method-card:hover,
+.contact-method-card:focus-visible,
+.faq-item-card:hover,
+.faq-item-card:focus-within {
+  border-color: rgba(0, 107, 120, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.1),
+    0 14px 36px rgba(0, 95, 115, 0.11);
+  transform: translateY(-1px);
+}
+
+.download-resource-card::before,
+.downloads-list-card::before,
+.contact-method-card::before,
+.faq-item-card::before {
+  position: absolute;
+  top: -1px;
+  right: 1rem;
+  left: 1rem;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(0, 107, 120, 0.42), rgba(34, 211, 238, 0.2), transparent);
+  opacity: 0.55;
+}
+
+.faq-item-card[open] {
+  border-color: rgba(0, 107, 120, 0.24);
+  background:
+    radial-gradient(circle at 94% 10%, rgba(34, 211, 238, 0.07), transparent 26%),
+    linear-gradient(180deg, #ffffff, rgba(247, 252, 253, 0.94));
+}
+
+.faq-item-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-toggle-mark {
+  display: inline-flex;
+  width: 1.7rem;
+  min-width: 1.7rem;
+  height: 1.7rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 107, 120, 0.18);
+  background: rgba(0, 107, 120, 0.06);
+  line-height: 1;
+}
+
+.faq-item-card[open] .faq-toggle-mark {
+  background: var(--brand);
+  color: #ffffff;
+  transform: rotate(45deg);
+}
+
+.faq-answer-panel {
+  background: rgba(248, 252, 253, 0.74);
+}
+
+.faq-support-quote {
+  border: 1px solid transparent;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
+    radial-gradient(circle at 14% 0%, rgba(233, 185, 73, 0.16), transparent 28%),
+    linear-gradient(135deg, #08313d 0%, var(--brand) 48%, #10202b 100%) padding-box,
+    linear-gradient(135deg, rgba(34, 211, 238, 0.42), rgba(255, 255, 255, 0.18), rgba(233, 185, 73, 0.28)) border-box;
+  box-shadow: 0 18px 52px rgba(0, 41, 54, 0.16);
+}
+
+.faq-support-actions a,
+.download-action,
+.contact-method-action,
+.contact-submit-button {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.faq-support-actions a:hover,
+.faq-support-actions a:focus-visible,
+.download-action:hover,
+.download-action:focus-visible,
+.contact-method-action:hover,
+.contact-method-action:focus-visible,
+.contact-submit-button:hover,
+.contact-submit-button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 95, 115, 0.13);
+}
+
+.download-meta-list > div {
+  border-top: 1px solid rgba(0, 95, 115, 0.1);
+  padding-top: 0.5rem;
+}
+
+.downloads-list-card {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.contact-method-card {
+  overflow: hidden;
+}
+
+.contact-method-card-highlight {
+  background:
+    radial-gradient(circle at 92% 10%, rgba(34, 211, 238, 0.22), transparent 30%),
+    linear-gradient(135deg, var(--brand), var(--brand-strong));
+  box-shadow: 0 16px 42px rgba(0, 95, 115, 0.14);
+}
+
+.contact-intro-copy,
+.contact-quote-section {
+  border-color: rgba(0, 95, 115, 0.16);
+}
+
+.contact-field {
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.contact-field:focus {
+  border-color: rgba(0, 107, 120, 0.48);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.13);
+  outline: none;
+}
+
+.contact-check-option {
+  min-height: 2.4rem;
+  align-items: flex-start;
+  border: 1px solid rgba(0, 95, 115, 0.1);
+  background: rgba(255, 255, 255, 0.68);
+  padding: 0.55rem 0.65rem;
+}
+
+.contact-check-option:focus-within {
+  border-color: rgba(0, 107, 120, 0.36);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.14);
+}
+
+.faq-category-chip:focus-visible,
+.faq-item-card summary:focus-visible,
+.download-action:focus-visible,
+.download-resource-card:focus-within,
+.downloads-list-card:focus-within,
+.contact-method-card:focus-visible,
+.contact-method-action:focus-visible,
+.contact-submit-button:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.24);
+  outline-offset: 3px;
+}
+
 .section-tech {
   position: relative;
   overflow: hidden;
@@ -2481,6 +2759,107 @@ a.cta-button-light:focus-visible {
     padding: 1.25rem;
   }
 
+  .faq-help-hero,
+  .faq-support-panel,
+  .faq-support-quote,
+  .downloads-resource-hero,
+  .downloads-public-panel,
+  .downloads-request-panel,
+  .download-resource-card,
+  .contact-conversion-hero,
+  .contact-details-panel,
+  .contact-inquiry-form {
+    padding: 1.15rem;
+  }
+
+  .faq-help-hero h1,
+  .downloads-resource-hero h1,
+  .contact-conversion-hero h1 {
+    font-size: clamp(2rem, 8.8vw, 2.65rem);
+    line-height: 1.12;
+  }
+
+  .faq-help-hero::before,
+  .faq-help-hero::after,
+  .faq-support-panel::before,
+  .faq-support-quote::before,
+  .faq-support-quote::after,
+  .downloads-resource-hero::before,
+  .downloads-resource-hero::after,
+  .downloads-public-panel::before,
+  .downloads-request-panel::before,
+  .contact-conversion-hero::before,
+  .contact-conversion-hero::after,
+  .contact-details-panel::before,
+  .contact-inquiry-form::before {
+    opacity: 0.22;
+  }
+
+  .faq-support-actions,
+  .downloads-public-panel .grid,
+  .downloads-request-panel .grid,
+  .contact-quote-section,
+  .contact-inquiry-form .grid {
+    width: 100%;
+  }
+
+  .faq-support-actions a,
+  .download-action,
+  .contact-method-action,
+  .contact-submit-button {
+    width: 100%;
+    min-height: 3rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .faq-category-chip,
+  .faq-item-card,
+  .download-resource-card,
+  .downloads-list-card,
+  .contact-method-card,
+  .contact-details-panel,
+  .contact-inquiry-form,
+  .contact-check-option {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .faq-item-card:hover,
+  .faq-item-card:focus-within,
+  .download-resource-card:hover,
+  .download-resource-card:focus-within,
+  .downloads-list-card:hover,
+  .downloads-list-card:focus-within,
+  .contact-method-card:hover,
+  .contact-method-card:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .faq-item-card summary {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .faq-answer-panel {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .download-meta-list > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .contact-details-panel .max-w-\[220px\] {
+    max-width: 12rem;
+  }
+
+  .contact-field {
+    min-height: 3rem;
+  }
+
   .solution-frame,
   .region-tech-frame {
     padding: 0.75rem;
@@ -2599,6 +2978,34 @@ a.cta-button-light:focus-visible {
   .solution-system-layer .surface-card,
   .region-tech-frame .surface-card {
     overflow: hidden;
+  }
+
+  .faq-help-hero,
+  .faq-support-panel,
+  .faq-support-quote,
+  .downloads-resource-hero,
+  .downloads-public-panel,
+  .downloads-request-panel,
+  .download-resource-card,
+  .contact-conversion-hero,
+  .contact-details-panel,
+  .contact-inquiry-form {
+    padding: 1rem;
+  }
+
+  .faq-category-chip {
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+  }
+
+  .faq-toggle-mark {
+    width: 1.55rem;
+    min-width: 1.55rem;
+    height: 1.55rem;
+  }
+
+  .contact-check-option {
+    padding: 0.5rem;
   }
 
   .solution-system-layer .media-shell,

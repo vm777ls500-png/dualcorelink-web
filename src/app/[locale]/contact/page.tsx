@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ContactCard } from "@/components/contact/contact-card";
 import { GetQuoteForm } from "@/components/contact/get-quote-form";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
-import { CmsPage } from "@/components/content/cms-page";
+import { PageHeading } from "@/components/content/page-heading";
 import { brand } from "@/config/brand";
 import { isLocale, locales } from "@/config/i18n";
 import {
@@ -47,14 +47,25 @@ export default async function ContactPage({ params }: ContactPageProps) {
   if (!isLocale(locale)) notFound();
   const page = await pageRepository.getBySlug(locale, "contact");
   const whatsappMessage = `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
+  const body = stripHtml(page?.content || "");
 
   return (
-    <CmsPage
-      page={page}
-      eyebrow="Project contact"
-      fallbackTitle="Talk to our B2B team"
-      fallbackDescription="Share your market, project type, required products, estimated quantity, and delivery target."
-    >
+    <main className="contact-page-shell mx-auto max-w-5xl px-5 py-12 sm:px-8 lg:px-12">
+      <section className="contact-conversion-hero border border-line bg-surface p-6">
+        <PageHeading
+          eyebrow="Project contact"
+          title={stripHtml(page?.title || "Talk to our B2B team")}
+          description={stripHtml(
+            page?.excerpt ||
+              "Share your market, project type, required products, estimated quantity, and delivery target.",
+          )}
+        />
+      </section>
+      {body ? (
+        <p className="contact-intro-copy mt-10 whitespace-pre-line border-t border-line pt-8 leading-8 text-muted">
+          {body}
+        </p>
+      ) : null}
       <div className="mt-10 grid gap-4 lg:grid-cols-2">
         <ContactCard
           label="Sales & quotations"
@@ -75,17 +86,17 @@ export default async function ContactPage({ params }: ContactPageProps) {
           href={`mailto:${brand.emails.support}`}
           description={brand.emailPurposes.support}
         />
-        <div className="border border-line bg-surface p-6">
+        <div className="contact-method-card border border-line bg-surface p-6">
           <p className="text-sm font-semibold uppercase text-brand">WhatsApp</p>
           <p className="mt-3 text-xl font-semibold">{brand.whatsapp.display}</p>
           <p className="mt-3 leading-7 text-muted">
             Fast quotation support for product lists, hotel projects, and
             OEM/ODM requirements.
           </p>
-          <WhatsAppButton message={whatsappMessage} className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white" />
+          <WhatsAppButton message={whatsappMessage} className="contact-method-action mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white" />
         </div>
       </div>
-      <section className="mt-8 border border-line bg-surface p-6">
+      <section className="contact-details-panel mt-8 border border-line bg-surface p-6">
         <div className="grid gap-8 lg:grid-cols-[1fr_220px] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase text-brand">
@@ -127,7 +138,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
           </div>
         </div>
       </section>
-      <section id="get-a-quote" className="mt-12">
+      <section id="get-a-quote" className="contact-quote-section mt-12">
         <h2 className="text-3xl font-semibold text-foreground">Get a Quote</h2>
         <p className="mt-3 max-w-3xl leading-7 text-muted">
           Send inquiry details to our sales team. Until backend email delivery
@@ -146,6 +157,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
           <GetQuoteForm />
         </div>
       </section>
-    </CmsPage>
+    </main>
   );
 }

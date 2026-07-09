@@ -68,13 +68,15 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
   const downloads = await downloadRepository.list(locale);
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
-      <PageHeading
-        eyebrow="Technical library"
-        title="Download Center"
-        description="Access public technical files or contact our team for controlled project documents."
-      />
-      <section className="mt-10 border border-line bg-surface p-6">
+    <main className="downloads-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
+      <section className="downloads-resource-hero border border-line bg-surface p-6">
+        <PageHeading
+          eyebrow="Technical library"
+          title="Download Center"
+          description="Access public technical files or contact our team for controlled project documents."
+        />
+      </section>
+      <section className="downloads-public-panel mt-10 border border-line bg-surface p-6">
         <p className="text-sm font-semibold uppercase text-brand">
           Public catalogs
         </p>
@@ -94,7 +96,7 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
           {catalogDownloads.map((catalog) => (
             <li
               key={catalog.fileName}
-              className="border border-line bg-background p-5"
+              className="download-resource-card border border-line bg-background p-5"
             >
               <p className="text-xs font-semibold uppercase text-brand">
                 {catalog.language}
@@ -102,7 +104,7 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
               <h3 className="mt-2 text-lg font-semibold text-foreground">
                 Product Catalog
               </h3>
-              <dl className="mt-3 space-y-2 text-sm text-muted">
+              <dl className="download-meta-list mt-3 space-y-2 text-sm text-muted">
                 <div className="flex justify-between gap-4">
                   <dt>File type</dt>
                   <dd className="font-semibold text-foreground">PDF Catalog</dd>
@@ -116,7 +118,7 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
               </dl>
               <a
                 href={`/downloads/catalog/${catalog.fileName}`}
-                className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+                className="download-action mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
                 Download PDF
               </a>
@@ -130,7 +132,7 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
             title="No downloads published"
             description="Published WordPress downloads will appear here automatically."
           />
-          <section className="mt-6 border border-line bg-surface p-6">
+          <section className="downloads-request-panel mt-6 border border-line bg-surface p-6">
             <p className="text-sm font-semibold uppercase text-brand">
               Project document request
             </p>
@@ -161,7 +163,7 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
             </div>
             <Link
               href={`/${locale}/contact/#get-a-quote`}
-              className="mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+              className="download-action mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
               Request Project Documents
             </Link>
@@ -172,7 +174,7 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
           {downloads.map((download) => (
             <li
               key={download.id}
-              className="grid gap-5 py-6 sm:grid-cols-[1fr_auto] sm:items-center"
+              className="downloads-list-card grid gap-5 py-6 sm:grid-cols-[1fr_auto] sm:items-center"
             >
               <div>
                 <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase text-brand">
@@ -190,14 +192,14 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
               {download.access.exposeFile && download.publicFileUrl ? (
                 <a
                   href={download.publicFileUrl}
-                  className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+                  className="download-action inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
                 >
                   Download
                 </a>
               ) : (
                 <Link
                   href={`/${locale}/contact/`}
-                  className="inline-flex min-h-11 items-center justify-center border border-line bg-surface px-5 py-3 font-semibold"
+                  className="download-action inline-flex min-h-11 items-center justify-center border border-line bg-surface px-5 py-3 font-semibold"
                 >
                   Request access
                 </Link>

@@ -48,10 +48,10 @@ export default async function FaqPage({ params }: FaqPageProps) {
           createFaqPageSchema(`${url}#faq`, url, schemaQuestions),
         ])}
       />
-      <main>
+      <main className="faq-page-shell">
         <section className="border-b border-line bg-surface">
           <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1.3fr_0.7fr] lg:px-12">
-            <div>
+            <div className="faq-help-hero border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 FAQ
               </p>
@@ -64,7 +64,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
                 after-sales service.
               </p>
             </div>
-            <div className="border border-line bg-background p-6">
+            <div className="faq-support-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold text-foreground">
                 B2B inquiry support
               </p>
@@ -73,7 +73,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
                 cooperation, or OEM/ODM quotation, contact our team with your
                 product type, quantity, target market, and project needs.
               </p>
-              <div className="mt-5 flex flex-wrap gap-3">
+              <div className="faq-support-actions mt-5 flex flex-wrap gap-3">
                 <Link
                   href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-2 text-sm font-semibold text-white"
@@ -106,7 +106,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
               <a
                 key={category.slug}
                 href={`#${category.slug}`}
-                className="border border-line bg-surface px-4 py-2 text-sm font-semibold text-foreground hover:border-brand hover:text-brand"
+                className="faq-category-chip border border-line bg-surface px-4 py-2 text-sm font-semibold text-foreground hover:border-brand hover:text-brand"
               >
                 {category.title}
               </a>
@@ -115,7 +115,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
 
           <div className="mt-10 space-y-12">
             {staticFaqCategories.map((category) => (
-              <section key={category.slug} id={category.slug}>
+              <section key={category.slug} id={category.slug} className="faq-group-panel">
                 <div className="mb-5 flex items-end justify-between gap-4 border-b border-line pb-3">
                   <div>
                     <p className="text-sm font-semibold uppercase text-brand">
@@ -130,14 +130,14 @@ export default async function FaqPage({ params }: FaqPageProps) {
                   {category.items.map((faq, index) => (
                     <details
                       key={faq.question}
-                      className="group border border-line bg-surface"
+                      className="faq-item-card group border border-line bg-surface"
                       open={index === 0}
                     >
                       <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-4 font-semibold text-foreground">
                         <span>{faq.question}</span>
-                        <span className="text-brand">+</span>
+                        <span className="faq-toggle-mark text-brand">+</span>
                       </summary>
-                      <div className="border-t border-line px-5 py-4">
+                      <div className="faq-answer-panel border-t border-line px-5 py-4">
                         <p className="max-w-4xl leading-8 text-muted">
                           {faq.answer}
                         </p>
@@ -151,7 +151,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
         </section>
 
         <section className="mx-auto max-w-7xl px-5 pb-14 sm:px-8 lg:px-12">
-          <div className="border border-line bg-foreground p-7 text-white sm:p-8">
+          <div className="faq-support-quote border border-line bg-foreground p-7 text-white sm:p-8">
             <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <h2 className="text-2xl font-semibold">
@@ -162,7 +162,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
                   and hotel project solutions.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="faq-support-actions flex flex-wrap gap-3">
                 <Link
                   href={`/${locale}/contact/#get-a-quote`}
                   className="cta-button-light inline-flex min-h-11 items-center px-5 py-2 text-sm font-semibold"

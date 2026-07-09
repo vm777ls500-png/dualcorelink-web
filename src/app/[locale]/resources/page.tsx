@@ -103,6 +103,12 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
                     {resource.category}
                   </span>
                   <span className="border border-line bg-background px-2 py-1">
+                    {resource.topic}
+                  </span>
+                  <span className="border border-line bg-background px-2 py-1">
+                    {resource.readingTime}
+                  </span>
+                  <span className="border border-line bg-background px-2 py-1">
                     Last reviewed {resource.lastReviewed}
                   </span>
                 </div>

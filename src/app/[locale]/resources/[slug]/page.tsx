@@ -150,11 +150,17 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                 {resource.category}
               </span>
               <span className="border border-line bg-background px-2 py-1">
+                {resource.topic}
+              </span>
+              <span className="border border-line bg-background px-2 py-1">
+                {resource.readingTime}
+              </span>
+              <span className="border border-line bg-background px-2 py-1">
                 Last reviewed {resource.lastReviewed}
               </span>
             </div>
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
-              What Is a Hotel RCU Room Control System?
+              {resource.h1}
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
               {resource.summary}
@@ -277,6 +283,16 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                 Guide focus
               </h2>
               <dl className="mt-4 space-y-4 text-sm">
+                <div>
+                  <dt className="font-semibold text-muted">Topic</dt>
+                  <dd className="mt-1 text-foreground">{resource.topic}</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-muted">Reading time</dt>
+                  <dd className="mt-1 text-foreground">
+                    {resource.readingTime}
+                  </dd>
+                </div>
                 <div>
                   <dt className="font-semibold text-muted">Primary keyword</dt>
                   <dd className="mt-1 text-foreground">

@@ -172,13 +172,14 @@ test("Product schema has no Offer or manufacturer by default", () => {
 test("resources are included in the sitemap without non-English or PDF URLs", async () => {
   const urls = (await sitemap()).map((entry) => entry.url);
 
-  assert.equal(urls.length, 62);
+  assert.equal(urls.length, 61 + resources.length);
   assert.ok(urls.includes("https://dualcorelink.com/en/resources/"));
-  assert.ok(
-    urls.includes(
-      "https://dualcorelink.com/en/resources/what-is-hotel-rcu-room-control-system/",
-    ),
-  );
+  for (const resource of resources) {
+    assert.ok(
+      urls.includes(`https://dualcorelink.com/en/resources/${resource.slug}/`),
+      `Expected sitemap to include resource ${resource.slug}`,
+    );
+  }
   assert.equal(urls.some((url) => /\/(zh|de|es|ar|vi|fa)\//.test(url)), false);
   assert.equal(urls.some((url) => url.endsWith(".pdf")), false);
 });
@@ -220,6 +221,65 @@ test("RCU guide can emit safe Article schema and breadcrumbs", () => {
   assert.equal(serializedArticle.includes("author"), false);
   assert.equal(breadcrumb["@type"], "BreadcrumbList");
   assert.equal(breadcrumb.itemListElement.length, 3);
+});
+
+test("all resources have safe Article schema inputs", () => {
+  const slugs = new Set<string>();
+
+  for (const resource of resources) {
+    assert.equal(slugs.has(resource.slug), false, `Duplicate ${resource.slug}`);
+    slugs.add(resource.slug);
+    assert.ok(resource.h1);
+    assert.ok(resource.seoTitle);
+    assert.ok(resource.metaDescription);
+    assert.ok(resource.summary);
+    assert.ok(resource.topic);
+    assert.ok(resource.readingTime);
+    assert.ok(resource.sections.length >= 6);
+    assert.ok(resource.relatedSolutions.length >= 1);
+    assert.ok(resource.relatedProducts.length >= 2);
+    assert.ok(resource.relatedDownloads.length >= 1);
+    assert.equal(resource.cta.primaryHref, "/en/contact/#get-a-quote");
+
+    const url = `https://dualcorelink.com/en/resources/${resource.slug}/`;
+    const article = createArticleSchema({
+      id: `${url}#article`,
+      url,
+      headline: resource.title,
+      description: resource.metaDescription,
+      datePublished: resource.lastReviewed,
+      dateModified: resource.lastReviewed,
+    });
+    const serialized = JSON.stringify({
+      article,
+      title: resource.title,
+      h1: resource.h1,
+      seoTitle: resource.seoTitle,
+      metaDescription: resource.metaDescription,
+      summary: resource.summary,
+      sections: resource.sections,
+      relatedSolutions: resource.relatedSolutions,
+      relatedProducts: resource.relatedProducts,
+      relatedRegions: resource.relatedRegions,
+      relatedDownloads: resource.relatedDownloads,
+      cta: resource.cta,
+      safeClaims: resource.safeClaims,
+    }).toLowerCase();
+
+    assert.equal(article["@type"], "Article");
+    assert.equal("offers" in article, false);
+    assert.equal("price" in article, false);
+    assert.equal("review" in article, false);
+    assert.equal("aggregateRating" in article, false);
+    assert.equal(serialized.includes("local office"), false);
+    assert.equal(serialized.includes("local stock"), false);
+    assert.equal(serialized.includes("certified for saudi"), false);
+    assert.equal(serialized.includes("certified for uae"), false);
+    assert.equal(serialized.includes("certified for vietnam"), false);
+    assert.equal(serialized.includes("fake price"), false);
+    assert.equal(serialized.includes("fake review"), false);
+    assert.equal(serialized.includes("fake rating"), false);
+  }
 });
 
 test("all published product detail pages can emit safe Product schema", async () => {

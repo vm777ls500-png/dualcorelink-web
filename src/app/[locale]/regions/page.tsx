@@ -47,12 +47,14 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
   const regions = await regionRepository.list(locale);
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
-      <PageHeading
-        eyebrow="Markets"
-        title="Regional smart home intelligence"
-        description="Local demand, technical conditions, certification context, and recommended product strategies."
-      />
+    <main className="regions-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
+      <div className="region-market-hero border border-line p-6">
+        <PageHeading
+          eyebrow="Markets"
+          title="Regional smart home intelligence"
+          description="Local demand, technical conditions, certification context, and recommended product strategies."
+        />
+      </div>
       {regions.length === 0 ? (
         <div className="mt-10">
           <EmptyState
@@ -63,12 +65,18 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
       ) : (
         <ul className="mt-10 grid gap-4 md:grid-cols-2">
           {regions.map((region) => (
-            <li key={region.id} className="border border-line bg-surface p-6">
+            <li
+              key={region.id}
+              className="region-market-card border border-line bg-surface p-6"
+            >
               <p className="text-xs font-semibold uppercase text-brand">
                 {region.regionType} · {region.marketMaturity || "market"}
               </p>
               <h2 className="mt-3 text-2xl font-semibold">
-                <Link href={`/${locale}/regions/${region.slug}/`}>
+                <Link
+                  href={`/${locale}/regions/${region.slug}/`}
+                  className="region-card-title-link"
+                >
                   {stripHtml(region.title)}
                 </Link>
               </h2>
@@ -79,7 +87,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
           ))}
         </ul>
       )}
-      <section className="mt-10 border border-line bg-surface p-6">
+      <section className="region-market-quote mt-10 border border-line bg-surface p-6">
         <p className="text-sm font-semibold uppercase text-brand">
           Target markets
         </p>
@@ -97,12 +105,12 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
               {getRegionLandingPage(market.slug) ? (
                 <Link
                   href={`/${locale}/regions/${market.slug}/`}
-                  className="inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-brand hover:border-brand"
+                  className="region-entry-card inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-brand hover:border-brand"
                 >
                   {market.title}
                 </Link>
               ) : (
-                <span className="inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-muted">
+                <span className="region-entry-card region-entry-card-muted inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-muted">
                   {market.title}
                 </span>
               )}
@@ -115,7 +123,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
           and required documents so our team can prepare the right product
           direction.
         </p>
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="region-market-actions mt-6 flex flex-wrap gap-3">
           <Link
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"

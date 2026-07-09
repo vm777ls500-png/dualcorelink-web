@@ -990,6 +990,322 @@ a.brand-button-outline:focus-visible {
   padding-left: 1.25rem;
 }
 
+.regions-page-shell,
+.region-detail-page {
+  isolation: isolate;
+}
+
+.region-market-hero,
+.region-market-card,
+.region-market-quote,
+.region-entry-card,
+.region-detail-hero,
+.region-detail-summary,
+.region-detail-media-panel,
+.region-market-snapshot,
+.region-market-panel,
+.region-detail-quote {
+  position: relative;
+}
+
+.region-market-hero,
+.region-market-card,
+.region-market-quote,
+.region-market-panel,
+.region-detail-summary,
+.region-detail-media-panel {
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.24), rgba(34, 211, 238, 0.14), rgba(233, 185, 73, 0.16)) border-box;
+  box-shadow: 0 16px 42px rgba(23, 32, 42, 0.06);
+}
+
+.region-market-hero {
+  background:
+    radial-gradient(circle at 86% 12%, rgba(34, 211, 238, 0.14), transparent 30%),
+    radial-gradient(circle at 12% 0%, rgba(233, 185, 73, 0.12), transparent 28%),
+    linear-gradient(#f8fcfd, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.32), rgba(34, 211, 238, 0.18), rgba(233, 185, 73, 0.22)) border-box;
+}
+
+.region-market-hero::before,
+.region-market-quote::before,
+.region-detail-hero::before,
+.region-detail-media-panel::before,
+.region-detail-quote::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(0, 95, 115, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 95, 115, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.38;
+}
+
+.region-market-hero::after,
+.region-detail-hero::after,
+.region-market-quote::after {
+  position: absolute;
+  inset: 1rem 2rem auto;
+  height: 18rem;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 16% 12%, rgba(233, 185, 73, 0.12), transparent 30%),
+    radial-gradient(circle at 82% 12%, rgba(34, 211, 238, 0.13), transparent 32%);
+}
+
+.region-market-hero > *,
+.region-market-card > *,
+.region-market-quote > *,
+.region-detail-hero > *,
+.region-detail-media-panel > *,
+.region-detail-quote > * {
+  position: relative;
+  z-index: 1;
+}
+
+.region-market-card {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(34, 211, 238, 0.08), transparent 28%),
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.18), rgba(34, 211, 238, 0.12), rgba(233, 185, 73, 0.13)) border-box;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.region-market-card::before,
+.region-market-panel::before {
+  position: absolute;
+  top: -1px;
+  right: 1rem;
+  left: 1rem;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(0, 107, 120, 0.44), rgba(34, 211, 238, 0.24), transparent);
+  opacity: 0.64;
+}
+
+.region-market-card::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(0, 107, 120, 0.5), rgba(0, 107, 120, 0.5)) 50% 0 / 1px 100% no-repeat,
+    linear-gradient(90deg, rgba(0, 107, 120, 0.5), rgba(0, 107, 120, 0.5)) 0 50% / 100% 1px no-repeat;
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.16),
+    0 0 18px rgba(34, 211, 238, 0.14);
+  opacity: 0.62;
+}
+
+.region-market-card:hover,
+.region-market-card:focus-within,
+.region-market-panel:hover,
+.region-market-panel:focus-within {
+  border-color: rgba(0, 107, 120, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.12),
+    0 18px 46px rgba(0, 95, 115, 0.12),
+    0 22px 52px rgba(23, 32, 42, 0.08);
+  transform: translateY(-2px);
+}
+
+.region-card-title-link {
+  text-decoration-color: rgba(0, 107, 120, 0);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+
+.region-market-card:hover .region-card-title-link,
+.region-market-card:focus-within .region-card-title-link,
+.region-card-title-link:hover,
+.region-card-title-link:focus-visible {
+  color: var(--brand);
+  text-decoration-color: rgba(0, 107, 120, 0.34);
+}
+
+.region-entry-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 251, 252, 0.92));
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
+}
+
+.region-entry-card:hover,
+.region-entry-card:focus-visible {
+  border-color: rgba(0, 107, 120, 0.3);
+  box-shadow: 0 10px 24px rgba(0, 95, 115, 0.1);
+  transform: translateY(-1px);
+}
+
+.region-entry-card-muted {
+  opacity: 0.72;
+}
+
+.region-market-actions a,
+.region-detail-actions a,
+.region-card-link,
+.region-detail-quote a,
+.region-detail-quote button {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.region-card-link {
+  position: relative;
+}
+
+.region-card-link::after {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-left: 0.5rem;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.region-card-link:hover,
+.region-card-link:focus-visible,
+.region-market-actions a:hover,
+.region-market-actions a:focus-visible,
+.region-detail-actions a:hover,
+.region-detail-actions a:focus-visible,
+.region-detail-quote a:hover,
+.region-detail-quote a:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 95, 115, 0.12);
+}
+
+.region-card-link:hover::after,
+.region-card-link:focus-visible::after {
+  transform: translateX(3px) rotate(45deg);
+}
+
+.region-card-title-link:focus-visible,
+.region-entry-card:focus-visible,
+.region-card-link:focus-visible,
+.region-market-actions a:focus-visible,
+.region-detail-actions a:focus-visible,
+.region-detail-quote a:focus-visible,
+.region-detail-quote button:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.24);
+  outline-offset: 3px;
+}
+
+.region-market-quote {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(34, 211, 238, 0.1), transparent 30%),
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0, 107, 120, 0.22), rgba(34, 211, 238, 0.13), rgba(233, 185, 73, 0.15)) border-box;
+}
+
+.region-detail-hero {
+  overflow: hidden;
+}
+
+.region-detail-hero.border-b {
+  border-bottom-color: rgba(0, 107, 120, 0.24);
+}
+
+.region-detail-summary {
+  padding: 1.5rem;
+}
+
+.region-detail-media-panel {
+  padding: 0.85rem;
+}
+
+.region-detail-media-panel .media-shell {
+  min-height: 22rem;
+  border-color: rgba(0, 107, 120, 0.16);
+}
+
+.region-market-snapshot {
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04)) padding-box,
+    linear-gradient(135deg, rgba(34, 211, 238, 0.32), rgba(255, 255, 255, 0.14), rgba(233, 185, 73, 0.2)) border-box;
+}
+
+.region-market-snapshot li,
+.region-market-list-panel li,
+.region-faq-item {
+  min-width: 0;
+}
+
+.region-faq-item {
+  overflow: hidden;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.region-faq-item:hover,
+.region-faq-item:focus-within {
+  border-color: rgba(0, 107, 120, 0.26);
+  box-shadow: 0 10px 24px rgba(0, 95, 115, 0.08);
+}
+
+.region-detail-content .border-t {
+  border-color: rgba(0, 95, 115, 0.16);
+}
+
+.region-detail-content > section,
+.region-detail-content .border-t {
+  position: relative;
+}
+
+.region-detail-content > section::before,
+.region-detail-content .border-t::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 6rem;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(90deg, rgba(0, 107, 120, 0.55), rgba(34, 211, 238, 0.18), transparent);
+}
+
+.region-detail-quote,
+.region-detail-quote .section-tech {
+  overflow: hidden;
+  border: 1px solid transparent;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(34, 211, 238, 0.18), transparent 30%),
+    radial-gradient(circle at 14% 0%, rgba(233, 185, 73, 0.16), transparent 28%),
+    linear-gradient(135deg, #08313d 0%, var(--brand) 48%, #10202b 100%) padding-box,
+    linear-gradient(135deg, rgba(34, 211, 238, 0.42), rgba(255, 255, 255, 0.18), rgba(233, 185, 73, 0.28)) border-box;
+  box-shadow: 0 18px 52px rgba(0, 41, 54, 0.16);
+}
+
 .section-tech {
   position: relative;
   overflow: hidden;
@@ -2077,6 +2393,92 @@ a.cta-button-light:focus-visible {
   .solution-detail-quote {
     padding-right: 0.75rem;
     padding-left: 0.75rem;
+  }
+
+  .regions-page-shell,
+  .region-detail-hero,
+  .region-detail-content {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .region-market-hero,
+  .region-market-card,
+  .region-market-quote,
+  .region-market-panel,
+  .region-detail-summary,
+  .region-market-snapshot {
+    padding: 1.15rem;
+  }
+
+  .region-market-hero h1,
+  .region-detail-summary h1 {
+    font-size: clamp(2rem, 8.8vw, 2.65rem);
+    line-height: 1.12;
+  }
+
+  .region-market-hero::before,
+  .region-market-hero::after,
+  .region-market-quote::before,
+  .region-market-quote::after,
+  .region-detail-hero::before,
+  .region-detail-hero::after,
+  .region-detail-media-panel::before,
+  .region-detail-quote::before {
+    opacity: 0.24;
+  }
+
+  .region-market-actions,
+  .region-detail-actions,
+  .region-detail-quote .flex.flex-wrap {
+    width: 100%;
+  }
+
+  .region-market-actions a,
+  .region-detail-actions a,
+  .region-detail-quote a,
+  .region-detail-quote button,
+  .region-card-link {
+    width: 100%;
+    min-height: 3rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .region-market-card:hover,
+  .region-market-card:focus-within,
+  .region-market-panel:hover,
+  .region-market-panel:focus-within {
+    transform: translateY(-1px);
+  }
+
+  .region-entry-card,
+  .region-market-card,
+  .region-market-panel,
+  .region-market-snapshot,
+  .region-faq-item {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .region-detail-hero {
+    gap: 1.25rem;
+  }
+
+  .region-detail-media-panel {
+    padding: 0.55rem;
+  }
+
+  .region-detail-media-panel .media-shell {
+    min-height: 17rem;
+  }
+
+  .region-detail-content .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .region-detail-quote {
+    padding: 1.25rem;
   }
 
   .solution-frame,

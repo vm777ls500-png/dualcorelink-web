@@ -8,8 +8,12 @@ import {
   createStaticHreflang,
   validateCanonical,
 } from "../src/lib/seo";
+import sitemap from "../src/app/sitemap";
+import { resources } from "../src/config/resources";
+import { staticFaqItems } from "../src/config/static-faqs";
 import {
   brandId,
+  createArticleSchema,
   createBreadcrumbSchema,
   createDigitalDocumentSchema,
   createGlobalEntities,
@@ -163,6 +167,59 @@ test("Product schema has no Offer or manufacturer by default", () => {
   assert.deepEqual(schema.category, ["Smart Panels & Switches"]);
   assert.equal(serialized.includes("internal"), false);
   assert.equal(serialized.includes("attachment"), false);
+});
+
+test("resources are included in the sitemap without non-English or PDF URLs", async () => {
+  const urls = (await sitemap()).map((entry) => entry.url);
+
+  assert.equal(urls.length, 62);
+  assert.ok(urls.includes("https://dualcorelink.com/en/resources/"));
+  assert.ok(
+    urls.includes(
+      "https://dualcorelink.com/en/resources/what-is-hotel-rcu-room-control-system/",
+    ),
+  );
+  assert.equal(urls.some((url) => /\/(zh|de|es|ar|vi|fa)\//.test(url)), false);
+  assert.equal(urls.some((url) => url.endsWith(".pdf")), false);
+});
+
+test("static FAQPage source still contains 30 questions", () => {
+  assert.equal(staticFaqItems.length, 30);
+});
+
+test("RCU guide can emit safe Article schema and breadcrumbs", () => {
+  const resource = resources.find(
+    (item) => item.slug === "what-is-hotel-rcu-room-control-system",
+  );
+  assert.ok(resource);
+
+  const url =
+    "https://dualcorelink.com/en/resources/what-is-hotel-rcu-room-control-system/";
+  const article = createArticleSchema({
+    id: `${url}#article`,
+    url,
+    headline: resource.title,
+    description: resource.metaDescription,
+    datePublished: resource.lastReviewed,
+    dateModified: resource.lastReviewed,
+  });
+  const breadcrumb = createBreadcrumbSchema(`${url}#breadcrumb`, [
+    { name: "Home", url: "https://dualcorelink.com/en/" },
+    { name: "Resources", url: "https://dualcorelink.com/en/resources/" },
+    { name: resource.title, url },
+  ]);
+  const serializedArticle = JSON.stringify(article);
+
+  assert.equal(article["@type"], "Article");
+  assert.equal(article.url, url);
+  assert.equal(article.headline, resource.title);
+  assert.equal("offers" in article, false);
+  assert.equal("price" in article, false);
+  assert.equal("review" in article, false);
+  assert.equal("aggregateRating" in article, false);
+  assert.equal(serializedArticle.includes("author"), false);
+  assert.equal(breadcrumb["@type"], "BreadcrumbList");
+  assert.equal(breadcrumb.itemListElement.length, 3);
 });
 
 test("all published product detail pages can emit safe Product schema", async () => {

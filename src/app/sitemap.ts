@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { regionLandingPages } from "@/config/region-landing-pages";
+import { resources } from "@/config/resources";
 import { buildLocalizedPath, buildSiteUrl } from "@/lib/seo";
 import {
   productRepository,
@@ -21,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "case-studies",
     "downloads",
     "contact",
+    "resources",
   ].map((pathname) => ({
     url: buildSiteUrl(buildLocalizedPath(locale, pathname)),
     changeFrequency: pathname ? ("weekly" as const) : ("daily" as const),
@@ -60,6 +62,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: buildSiteUrl(buildLocalizedPath(locale, `regions/${region.slug}`)),
       changeFrequency: "monthly" as const,
       priority: 0.65,
+    })),
+    ...resources.map((resource) => ({
+      url: buildSiteUrl(buildLocalizedPath(locale, `resources/${resource.slug}`)),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
   ];
 

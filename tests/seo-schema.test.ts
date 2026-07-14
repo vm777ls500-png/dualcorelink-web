@@ -26,6 +26,20 @@ import {
 import { productRepository } from "../src/lib/wordpress/repositories";
 import type { ProductDetailModel } from "../src/types/content";
 
+const phase2DResourceSlugs = [
+  "hotel-rcu-wiring-system-architecture-guide",
+  "hotel-room-control-system-cost-factors",
+  "hotel-occupancy-sensor-selection-guide",
+  "hotel-doorplate-room-display-buying-guide",
+] as const;
+
+const publishedSolutionSlugs = new Set([
+  "hotel-guest-room-control-solution",
+  "oem-odm-custom-panel-solution",
+  "rcu-room-control-solution",
+  "smart-hotel-automation-solution",
+]);
+
 function createProduct(): ProductDetailModel {
   return {
     id: 10,
@@ -173,7 +187,9 @@ test("Product schema has no Offer or manufacturer by default", () => {
 test("resources are included in the sitemap without non-English or PDF URLs", async () => {
   const urls = (await sitemap()).map((entry) => entry.url);
 
+  assert.equal(resources.length, 10);
   assert.equal(urls.length, 61 + resources.length);
+  assert.equal(urls.length, 71);
   assert.ok(urls.includes("https://dualcorelink.com/en/resources/"));
   for (const resource of resources) {
     assert.ok(
@@ -226,6 +242,10 @@ test("RCU guide can emit safe Article schema and breadcrumbs", () => {
 
 test("all resources have safe Article schema inputs", () => {
   const slugs = new Set<string>();
+  const seoTitles = new Set<string>();
+  const metaDescriptions = new Set<string>();
+  let articleCount = 0;
+  let breadcrumbCount = 0;
 
   for (const resource of resources) {
     assert.equal(slugs.has(resource.slug), false, `Duplicate ${resource.slug}`);
@@ -233,6 +253,10 @@ test("all resources have safe Article schema inputs", () => {
     assert.ok(resource.h1);
     assert.ok(resource.seoTitle);
     assert.ok(resource.metaDescription);
+    assert.equal(seoTitles.has(resource.seoTitle), false);
+    assert.equal(metaDescriptions.has(resource.metaDescription), false);
+    seoTitles.add(resource.seoTitle);
+    metaDescriptions.add(resource.metaDescription);
     assert.ok(resource.summary);
     assert.ok(resource.topic);
     assert.ok(resource.readingTime);
@@ -268,6 +292,15 @@ test("all resources have safe Article schema inputs", () => {
     }).toLowerCase();
 
     assert.equal(article["@type"], "Article");
+    articleCount += 1;
+    const breadcrumb = createBreadcrumbSchema(`${url}#breadcrumb`, [
+      { name: "Home", url: "https://dualcorelink.com/en/" },
+      { name: "Resources", url: "https://dualcorelink.com/en/resources/" },
+      { name: resource.title, url },
+    ]);
+    assert.equal(breadcrumb["@type"], "BreadcrumbList");
+    assert.equal(breadcrumb.itemListElement.length, 3);
+    breadcrumbCount += 1;
     assert.equal("offers" in article, false);
     assert.equal("price" in article, false);
     assert.equal("review" in article, false);
@@ -280,14 +313,22 @@ test("all resources have safe Article schema inputs", () => {
     assert.equal(serialized.includes("fake price"), false);
     assert.equal(serialized.includes("fake review"), false);
     assert.equal(serialized.includes("fake rating"), false);
+    assert.equal(serialized.includes("127.0.0.1"), false);
+    assert.equal(serialized.includes("localhost"), false);
+    assert.equal(serialized.includes("staging2.cms.dualcorelink.com"), false);
   }
+
+  assert.equal(articleCount, 10);
+  assert.equal(breadcrumbCount, 10);
+  assert.equal(seoTitles.size, resources.length);
+  assert.equal(metaDescriptions.size, resources.length);
 });
 
 test("Phase 2C resource conversion maps are complete and internally valid", () => {
   const conversionResources = resources.filter((resource) => resource.conversion);
   const resourceSlugs = new Set(resources.map((resource) => resource.slug));
 
-  assert.equal(conversionResources.length, 5);
+  assert.equal(conversionResources.length, 9);
 
   for (const resource of conversionResources) {
     const conversion = resource.conversion;
@@ -319,12 +360,69 @@ test("Phase 2C resource conversion maps are complete and internally valid", () =
     for (const solution of resource.relatedSolutions) {
       assert.ok(solution.href.startsWith("/en/solutions/"));
       assert.ok(solution.description);
+      const solutionSlug = solution.href.split("/").filter(Boolean).at(-1);
+      assert.ok(solutionSlug && publishedSolutionSlugs.has(solutionSlug));
     }
 
     for (const relatedSlug of conversion.continueReadingSlugs) {
       assert.notEqual(relatedSlug, resource.slug);
       assert.ok(resourceSlugs.has(relatedSlug));
     }
+  }
+});
+
+test("Phase 2D resources have complete topic-cluster content and links", async () => {
+  const sitemapUrls = new Set((await sitemap()).map((entry) => entry.url));
+  const resourceSlugs = new Set(resources.map((resource) => resource.slug));
+
+  for (const slug of phase2DResourceSlugs) {
+    const resource = resources.find((item) => item.slug === slug);
+    assert.ok(resource, `Expected Phase 2D resource ${slug}`);
+    assert.ok(resource.conversion);
+    assert.ok(resource.sections.length >= 9);
+    assert.ok(resource.sections.some((section) => section.subsections?.length));
+    assert.ok(resource.sections.some((section) => section.relatedLinks?.length));
+    assert.ok(
+      sitemapUrls.has(`https://dualcorelink.com/en/resources/${slug}/`),
+    );
+
+    const contentWords = resource.sections
+      .flatMap((section) => [
+        ...section.body,
+        ...(section.subsections?.flatMap((subsection) => subsection.body) ?? []),
+      ])
+      .join(" ")
+      .split(/\s+/)
+      .filter(Boolean).length;
+    assert.ok(contentWords >= 1000, `${slug} has only ${contentWords} words`);
+
+    for (const section of resource.sections) {
+      for (const link of section.relatedLinks ?? []) {
+        assert.ok(link.href.startsWith("/en/resources/"));
+        const relatedSlug = link.href.split("/").filter(Boolean).at(-1);
+        assert.ok(relatedSlug && resourceSlugs.has(relatedSlug));
+        assert.notEqual(relatedSlug, resource.slug);
+      }
+    }
+
+    const allLinks = [
+      ...resource.relatedProducts,
+      ...resource.relatedSolutions,
+      ...resource.relatedRegions,
+      ...resource.relatedDownloads,
+      ...resource.sections.flatMap((section) => section.relatedLinks ?? []),
+      { href: resource.cta.primaryHref },
+      { href: resource.cta.secondaryHref },
+    ];
+    assert.equal(allLinks.some((link) => link.href === "#"), false);
+    assert.equal(
+      allLinks.some((link) =>
+        /localhost|127\.0\.0\.1|staging2\.cms\.dualcorelink\.com/i.test(
+          link.href,
+        ),
+      ),
+      false,
+    );
   }
 });
 

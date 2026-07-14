@@ -203,7 +203,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               <p className="mt-3 leading-8 text-muted">
                 This guide is designed for {resource.audience.join(", ")} teams
                 preparing early product selection, project quotation, and
-                document review for hotel RCU room control systems.
+                document review for hotel room control and automation projects.
               </p>
             </section>
 
@@ -241,6 +241,35 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                     {section.body.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
+                    {section.subsections?.map((subsection) => (
+                      <section key={subsection.id} id={subsection.id}>
+                        <h3 className="pt-2 text-xl font-semibold leading-7 text-foreground">
+                          {subsection.heading}
+                        </h3>
+                        <div className="mt-3 space-y-4">
+                          {subsection.body.map((paragraph) => (
+                            <p key={paragraph}>{paragraph}</p>
+                          ))}
+                        </div>
+                      </section>
+                    ))}
+                    {section.relatedLinks?.length ? (
+                      <p className="border-l-2 border-brand pl-4 text-sm leading-7">
+                        Related planning reference:{" "}
+                        {section.relatedLinks.map((link, index) => (
+                          <Fragment key={link.href}>
+                            {index > 0 ? ", " : null}
+                            <Link
+                              href={link.href}
+                              className="font-semibold text-brand hover:text-foreground"
+                            >
+                              {link.title}
+                            </Link>
+                          </Fragment>
+                        ))}
+                        .
+                      </p>
+                    ) : null}
                   </div>
                 </section>
                 {resource.conversion?.midCtaAfterSectionId === section.id ? (

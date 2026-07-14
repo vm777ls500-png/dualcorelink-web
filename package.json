@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "tsx scripts/diagnose-cms-network.ts",
     "dev": "next dev",
     "build": "next build && npm run export:clean",
     "export:clean": "tsx scripts/clean-static-export.ts",

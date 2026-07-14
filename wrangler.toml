@@ -1,3 +1,6 @@
 name = "dualcorelink-web"
 compatibility_date = "2026-06-12"
 pages_build_output_dir = "out"
+
+[vars]
+WORDPRESS_REST_ROOT = "https://cms.dualcorelink.com/wp-json"

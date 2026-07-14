@@ -35,6 +35,10 @@ export type ResourceGuide = {
   relatedProducts: ResourceLink[];
   relatedRegions: ResourceLink[];
   relatedDownloads: ResourceLink[];
+  conversion?: {
+    midCtaAfterSectionId: string;
+    continueReadingSlugs: string[];
+  };
   cta: {
     title: string;
     body: string;
@@ -316,28 +320,40 @@ export const resources: ResourceGuide[] = [
       {
         title: "RCU Room Control Solution",
         href: "/en/solutions/rcu-room-control-solution/",
+        description:
+          "Coordinate the RCU host, cabinet, sensors, panels, and room devices as one project package.",
       },
       {
         title: "Hotel Guest Room Control Solution",
         href: "/en/solutions/hotel-guest-room-control-solution/",
+        description:
+          "Plan lighting, HVAC, curtains, room status, sensing, and power workflows around the guest room.",
       },
     ],
     relatedProducts: [
       {
         title: "RCU Controller Cabinet",
         href: "/en/products/rcu-controller-cabinet/",
+        description:
+          "Strong-current control cabinet for organizing guest room circuits and RCU project wiring.",
       },
       {
         title: "Hotel Smart Room RCU Host 1",
         href: "/en/products/hotel-smart-room-rcu-host-1/",
+        description:
+          "Room control host option for coordinating connected hotel room devices.",
       },
       {
-        title: "Hotel Smart Room RCU Host 2",
-        href: "/en/products/hotel-smart-room-rcu-host-2/",
+        title: "Smart Four Key Scene Control Panel",
+        href: "/en/products/smart-four-key-scene-control-panel/",
+        description:
+          "Guest-facing scene panel for common room control functions and layout planning.",
       },
       {
-        title: "Hotel Smart Room RCU Host 3",
-        href: "/en/products/hotel-smart-room-rcu-host-3/",
+        title: "Embedded Human Presence Sensor",
+        href: "/en/products/embedded-human-presence-sensor/",
+        description:
+          "Occupancy sensing option for room-status and automation logic review.",
       },
     ],
     relatedRegions: [
@@ -352,6 +368,14 @@ export const resources: ResourceGuide[] = [
           "Use public catalogs for early selection and request project documents after product confirmation.",
       },
     ],
+    conversion: {
+      midCtaAfterSectionId: "compare-rcu-products",
+      continueReadingSlugs: [
+        "smart-hotel-room-control-system-guide",
+        "hotel-guest-room-automation-guide",
+        "hotel-smart-switch-panel-guide",
+      ],
+    },
     cta: {
       title: "Request a hotel RCU quotation",
       body: "Share your room quantity, room functions, voltage, protocol preference, product interests, and document needs. We can help review the RCU direction and prepare a focused quotation.",
@@ -448,28 +472,40 @@ export const resources: ResourceGuide[] = [
       {
         title: "Hotel Guest Room Control Solution",
         href: "/en/solutions/hotel-guest-room-control-solution/",
+        description:
+          "Combine lighting, HVAC, curtains, room status, sensing, and power controls for guest rooms.",
       },
       {
         title: "RCU Room Control Solution",
         href: "/en/solutions/rcu-room-control-solution/",
+        description:
+          "Review the RCU layer and connected room devices as a coordinated system package.",
       },
     ],
     relatedProducts: [
       {
         title: "86 Type AI Smart Control Display",
         href: "/en/products/86-type-ai-smart-control-display/",
+        description:
+          "Room control interface for consolidating selected guest-facing control functions.",
       },
       {
         title: "Thermostat HVAC Control Panel",
         href: "/en/products/thermostat-hvac-control-panel/",
+        description:
+          "Dedicated interface for guest room temperature and HVAC control planning.",
       },
       {
         title: "Smart Four Key Curtain Control Panel",
         href: "/en/products/smart-four-key-curtain-control-panel/",
+        description:
+          "Curtain control panel for open, close, stop, and scene-related room workflows.",
       },
       {
         title: "Embedded Human Presence Sensor",
         href: "/en/products/embedded-human-presence-sensor/",
+        description:
+          "Occupancy sensing option for room automation and operational status logic.",
       },
     ],
     relatedRegions: [
@@ -484,6 +520,14 @@ export const resources: ResourceGuide[] = [
           "Review catalogs for early device selection and request project documents when product scope is clear.",
       },
     ],
+    conversion: {
+      midCtaAfterSectionId: "key-devices",
+      continueReadingSlugs: [
+        "hotel-rcu-buying-guide",
+        "hotel-guest-room-automation-guide",
+        "hotel-smart-switch-panel-guide",
+      ],
+    },
     cta: {
       title: "Plan a smart hotel room control package",
       body: "Send your room type, device interests, quantity, voltage, protocol preference, and project market. We can review product selection and quotation direction with your team.",
@@ -580,28 +624,40 @@ export const resources: ResourceGuide[] = [
       {
         title: "Hotel Guest Room Control Solution",
         href: "/en/solutions/hotel-guest-room-control-solution/",
+        description:
+          "Plan guest-facing panels together with lighting, HVAC, curtain, status, and room power functions.",
       },
       {
         title: "OEM/ODM Custom Panel Solution",
         href: "/en/solutions/oem-odm-custom-panel-solution/",
+        description:
+          "Review panel appearance, labeling, product mix, and private-label requirements by project.",
       },
     ],
     relatedProducts: [
       {
         title: "Smart Single Key Switch Panel",
         href: "/en/products/smart-single-key-switch-panel/",
+        description:
+          "Single-function smart panel for focused lighting or room control points.",
       },
       {
         title: "Smart Four Key Scene Control Panel",
         href: "/en/products/smart-four-key-scene-control-panel/",
+        description:
+          "Multi-key scene panel for common hotel room control combinations.",
       },
       {
-        title: "Vintage Gold Four Key Smart Switch Panel",
-        href: "/en/products/vintage-gold-four-key-smart-switch-panel/",
+        title: "Smart Four Key Curtain Control Panel",
+        href: "/en/products/smart-four-key-curtain-control-panel/",
+        description:
+          "Dedicated curtain panel for guest room opening, closing, and stop functions.",
       },
       {
-        title: "Borui Red Matte Room Status Four Key Switch Panel",
-        href: "/en/products/borui-red-matte-room-status-four-key-switch-panel/",
+        title: "Thermostat HVAC Control Panel",
+        href: "/en/products/thermostat-hvac-control-panel/",
+        description:
+          "Temperature control panel for coordinating room comfort and HVAC requirements.",
       },
     ],
     relatedRegions: [
@@ -615,6 +671,14 @@ export const resources: ResourceGuide[] = [
           "Use catalogs for panel series review and request project documents after product selection.",
       },
     ],
+    conversion: {
+      midCtaAfterSectionId: "appearance-material",
+      continueReadingSlugs: [
+        "oem-odm-smart-panel-customization-guide",
+        "smart-hotel-room-control-system-guide",
+        "hotel-rcu-buying-guide",
+      ],
+    },
     cta: {
       title: "Select hotel smart switch panels for your project",
       body: "Share the room functions, panel finish, quantity, voltage, wiring needs, and OEM/ODM requirements. We can review suitable panel series and quote details.",
@@ -706,28 +770,40 @@ export const resources: ResourceGuide[] = [
       {
         title: "OEM/ODM Custom Panel Solution",
         href: "/en/solutions/oem-odm-custom-panel-solution/",
+        description:
+          "Evaluate appearance, labeling, product mix, packaging, and private-label needs for B2B programs.",
       },
       {
         title: "Hotel Guest Room Control Solution",
         href: "/en/solutions/hotel-guest-room-control-solution/",
+        description:
+          "Keep custom panel decisions aligned with the full guest room control scope and device list.",
       },
     ],
     relatedProducts: [
       {
         title: "Vintage Gold Four Key Smart Switch Panel",
         href: "/en/products/vintage-gold-four-key-smart-switch-panel/",
+        description:
+          "Panel series example for reviewing finish, color, icons, and key layout requirements.",
       },
       {
-        title: "Smart Four Key Scene Control Panel",
-        href: "/en/products/smart-four-key-scene-control-panel/",
+        title: "Borui Red Matte Room Status Four Key Switch Panel",
+        href: "/en/products/borui-red-matte-room-status-four-key-switch-panel/",
+        description:
+          "Room status panel example for comparing matte finishes and labeled service functions.",
       },
       {
         title: "Brushed Aluminum 86 Base Doorbell Panel",
         href: "/en/products/brushed-aluminum-86-base-doorbell-panel/",
+        description:
+          "Brushed aluminum panel example for material, labeling, and hotel service review.",
       },
       {
         title: "Smart Series Dual Vertical Socket Panel",
         href: "/en/products/smart-series-dual-vertical-socket-panel/",
+        description:
+          "Smart Series socket panel for evaluating coordinated appearance across a room package.",
       },
     ],
     relatedRegions: [
@@ -742,6 +818,14 @@ export const resources: ResourceGuide[] = [
           "Review public catalogs first, then request customization documents after product series confirmation.",
       },
     ],
+    conversion: {
+      midCtaAfterSectionId: "technical-confirmation",
+      continueReadingSlugs: [
+        "hotel-smart-switch-panel-guide",
+        "smart-hotel-room-control-system-guide",
+        "hotel-guest-room-automation-guide",
+      ],
+    },
     cta: {
       title: "Discuss an OEM/ODM smart panel request",
       body: "Send your target product series, logo needs, finish, button layout, quantity, market, and document requirements. We can review customization feasibility by product and project.",
@@ -837,28 +921,40 @@ export const resources: ResourceGuide[] = [
       {
         title: "Hotel Guest Room Control Solution",
         href: "/en/solutions/hotel-guest-room-control-solution/",
+        description:
+          "Coordinate guest-facing controls, sensing, room status, HVAC, curtains, and power workflows.",
       },
       {
-        title: "RCU Room Control Solution",
-        href: "/en/solutions/rcu-room-control-solution/",
+        title: "Smart Hotel Automation Solution",
+        href: "/en/solutions/smart-hotel-automation-solution/",
+        description:
+          "Plan connected room and hotel automation requirements across devices and operational areas.",
       },
     ],
     relatedProducts: [
       {
+        title: "Hotel Smart Room RCU Host 1",
+        href: "/en/products/hotel-smart-room-rcu-host-1/",
+        description:
+          "Room control host option for coordinating connected automation devices.",
+      },
+      {
         title: "86 Type AI Smart Control Display",
         href: "/en/products/86-type-ai-smart-control-display/",
+        description:
+          "Guest-facing control interface for selected room scenes and device functions.",
       },
       {
-        title: "Smart Key Card Energy Saver Panel",
-        href: "/en/products/smart-key-card-energy-saver-panel/",
-      },
-      {
-        title: "Hotel Room Door Magnetic Sensor",
-        href: "/en/products/hotel-room-door-magnetic-sensor/",
+        title: "Embedded Human Presence Sensor",
+        href: "/en/products/embedded-human-presence-sensor/",
+        description:
+          "Occupancy sensing option for automation and room-status logic.",
       },
       {
         title: "Hotel Guest Room Doorbell",
         href: "/en/products/hotel-guest-room-doorbell/",
+        description:
+          "Guest room service device for door-side communication and arrival workflows.",
       },
     ],
     relatedRegions: [
@@ -873,6 +969,14 @@ export const resources: ResourceGuide[] = [
           "Use public catalogs for early product review and request detailed documents when the room scope is defined.",
       },
     ],
+    conversion: {
+      midCtaAfterSectionId: "project-scenarios",
+      continueReadingSlugs: [
+        "smart-hotel-room-control-system-guide",
+        "hotel-rcu-buying-guide",
+        "oem-odm-smart-panel-customization-guide",
+      ],
+    },
     cta: {
       title: "Plan a guest room automation quotation",
       body: "Share your room type, automation functions, quantity, voltage, product interests, and project documents. We can review the product mix and quotation direction.",

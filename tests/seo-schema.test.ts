@@ -9,6 +9,7 @@ import {
   validateCanonical,
 } from "../src/lib/seo";
 import sitemap from "../src/app/sitemap";
+import { productDisplayImages } from "../src/config/product-display-images";
 import { resources } from "../src/config/resources";
 import { staticFaqItems } from "../src/config/static-faqs";
 import {
@@ -279,6 +280,51 @@ test("all resources have safe Article schema inputs", () => {
     assert.equal(serialized.includes("fake price"), false);
     assert.equal(serialized.includes("fake review"), false);
     assert.equal(serialized.includes("fake rating"), false);
+  }
+});
+
+test("Phase 2C resource conversion maps are complete and internally valid", () => {
+  const conversionResources = resources.filter((resource) => resource.conversion);
+  const resourceSlugs = new Set(resources.map((resource) => resource.slug));
+
+  assert.equal(conversionResources.length, 5);
+
+  for (const resource of conversionResources) {
+    const conversion = resource.conversion;
+    assert.ok(conversion);
+    assert.ok(
+      resource.sections.some(
+        (section) => section.id === conversion.midCtaAfterSectionId,
+      ),
+      `Missing CTA insertion section for ${resource.slug}`,
+    );
+    assert.ok(resource.relatedProducts.length >= 2);
+    assert.ok(resource.relatedProducts.length <= 4);
+    assert.ok(resource.relatedSolutions.length >= 1);
+    assert.ok(resource.relatedSolutions.length <= 3);
+    assert.ok(conversion.continueReadingSlugs.length >= 2);
+    assert.ok(conversion.continueReadingSlugs.length <= 3);
+    assert.equal(
+      new Set(conversion.continueReadingSlugs).size,
+      conversion.continueReadingSlugs.length,
+    );
+
+    for (const product of resource.relatedProducts) {
+      const productSlug = product.href.split("/").filter(Boolean).at(-1);
+      assert.ok(product.href.startsWith("/en/products/"));
+      assert.ok(product.description);
+      assert.ok(productSlug && productDisplayImages[productSlug]);
+    }
+
+    for (const solution of resource.relatedSolutions) {
+      assert.ok(solution.href.startsWith("/en/solutions/"));
+      assert.ok(solution.description);
+    }
+
+    for (const relatedSlug of conversion.continueReadingSlugs) {
+      assert.notEqual(relatedSlug, resource.slug);
+      assert.ok(resourceSlugs.has(relatedSlug));
+    }
   }
 });
 

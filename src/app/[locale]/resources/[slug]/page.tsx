@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
+import {
+  ResourceConversionSections,
+  ResourceMidArticleCta,
+} from "@/components/content/resource-conversion-sections";
 import { JsonLd } from "@/components/seo/json-ld";
 import { brand, createWhatsAppUrl } from "@/config/brand";
 import { isLocale } from "@/config/i18n";
@@ -132,6 +137,13 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   if (!resource) notFound();
 
   const whatsappUrl = createWhatsAppUrl(resource.cta.whatsappMessage);
+  const continueReading =
+    resource.conversion?.continueReadingSlugs
+      .map((relatedSlug) => getResourceBySlug(relatedSlug))
+      .filter(
+        (relatedResource): relatedResource is ResourceGuide =>
+          relatedResource !== undefined && relatedResource.slug !== resource.slug,
+      ) ?? [];
 
   return (
     <>
@@ -217,20 +229,27 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
             </nav>
 
             {resource.sections.map((section) => (
-              <section
-                key={section.id}
-                id={section.id}
-                className="border-t border-line pt-8"
-              >
-                <h2 className="text-2xl font-semibold leading-8 text-foreground">
-                  {section.heading}
-                </h2>
-                <div className="mt-4 space-y-4 leading-8 text-muted">
-                  {section.body.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </section>
+              <Fragment key={section.id}>
+                <section
+                  id={section.id}
+                  className="border-t border-line pt-8"
+                >
+                  <h2 className="text-2xl font-semibold leading-8 text-foreground">
+                    {section.heading}
+                  </h2>
+                  <div className="mt-4 space-y-4 leading-8 text-muted">
+                    {section.body.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </section>
+                {resource.conversion?.midCtaAfterSectionId === section.id ? (
+                  <ResourceMidArticleCta
+                    resource={resource}
+                    continueReading={continueReading}
+                  />
+                ) : null}
+              </Fragment>
             ))}
 
             <section className="border border-line bg-surface p-6">
@@ -244,37 +263,44 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               </ul>
             </section>
 
-            <section className="border border-line bg-foreground p-7 text-white sm:p-8">
-              <p className="text-sm font-semibold uppercase text-white/70">
-                Project quotation
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold">
-                {resource.cta.title}
-              </h2>
-              <p className="mt-3 max-w-3xl leading-8 text-white/75">
-                {resource.cta.body}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href={resource.cta.primaryHref}
-                  className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
-                >
-                  {resource.cta.primaryLabel}
-                </Link>
-                <Link
-                  href={resource.cta.secondaryHref}
-                  className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
-                >
-                  {resource.cta.secondaryLabel}
-                </Link>
-                <a
-                  href={whatsappUrl}
-                  className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
-                >
-                  {brand.whatsapp.label}
-                </a>
-              </div>
-            </section>
+            {resource.conversion ? (
+              <ResourceConversionSections
+                resource={resource}
+                continueReading={continueReading}
+              />
+            ) : (
+              <section className="border border-line bg-foreground p-7 text-white sm:p-8">
+                <p className="text-sm font-semibold uppercase text-white/70">
+                  Project quotation
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold">
+                  {resource.cta.title}
+                </h2>
+                <p className="mt-3 max-w-3xl leading-8 text-white/75">
+                  {resource.cta.body}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href={resource.cta.primaryHref}
+                    className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
+                  >
+                    {resource.cta.primaryLabel}
+                  </Link>
+                  <Link
+                    href={resource.cta.secondaryHref}
+                    className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
+                  >
+                    {resource.cta.secondaryLabel}
+                  </Link>
+                  <a
+                    href={whatsappUrl}
+                    className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
+                  >
+                    {brand.whatsapp.label}
+                  </a>
+                </div>
+              </section>
+            )}
           </div>
 
           <aside className="space-y-5">
@@ -315,14 +341,18 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               </dl>
             </section>
 
-            <LinkList
-              title="Related solutions"
-              links={resource.relatedSolutions}
-            />
-            <LinkList
-              title="Related products"
-              links={resource.relatedProducts}
-            />
+            {!resource.conversion ? (
+              <>
+                <LinkList
+                  title="Related solutions"
+                  links={resource.relatedSolutions}
+                />
+                <LinkList
+                  title="Related products"
+                  links={resource.relatedProducts}
+                />
+              </>
+            ) : null}
             <LinkList
               title="Related regions"
               links={resource.relatedRegions}

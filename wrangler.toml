@@ -3,6 +3,4 @@ compatibility_date = "2026-06-12"
 pages_build_output_dir = "out"
 
 [vars]
-BUILD_FETCH_CONCURRENCY = "1"
-CIRCLE_NODE_TOTAL = "1"
 WORDPRESS_REST_ROOT = "https://cms.dualcorelink.com/wp-json"

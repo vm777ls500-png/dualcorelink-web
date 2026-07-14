@@ -1,6 +1,8 @@
 export type WordPressErrorContext = {
   endpoint: string;
   status?: number;
+  attempt?: number;
+  elapsedMs?: number;
   contentType?: string;
   contentId?: number;
   field?: string;

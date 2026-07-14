@@ -10,23 +10,31 @@ export function createRegionRepository(
 ) {
   let source: ReturnType<WordPressClient["listPosts"]> | undefined;
   const load = () => (source ??= client.listPosts("regions"));
+  const listPromises = new Map<Locale, Promise<RegionModel[]>>();
 
-  async function list(locale: Locale): Promise<RegionModel[]> {
-    const regions = (await load())
-      .filter((post) => post.language === locale)
-      .map(adaptRegion);
-    const media = await resolveMediaIds(
-      client,
-      regions.map((item) => item.heroImageId),
-      mediaConcurrency,
-    );
+  function list(locale: Locale): Promise<RegionModel[]> {
+    const existing = listPromises.get(locale);
+    if (existing) return existing;
 
-    return regions.map((item) => ({
-      ...item,
-      heroImage: item.heroImageId
-        ? (media.get(item.heroImageId) ?? null)
-        : null,
-    }));
+    const request = (async () => {
+      const regions = (await load())
+        .filter((post) => post.language === locale)
+        .map(adaptRegion);
+      const media = await resolveMediaIds(
+        client,
+        regions.map((item) => item.heroImageId),
+        mediaConcurrency,
+      );
+
+      return regions.map((item) => ({
+        ...item,
+        heroImage: item.heroImageId
+          ? (media.get(item.heroImageId) ?? null)
+          : null,
+      }));
+    })();
+    listPromises.set(locale, request);
+    return request;
   }
 
   return {

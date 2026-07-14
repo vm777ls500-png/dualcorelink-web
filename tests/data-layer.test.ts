@@ -9,6 +9,7 @@ import {
 } from "../src/lib/wordpress/adapters";
 import { createWordPressClient } from "../src/lib/wordpress/client";
 import { publicCollectionEndpoints } from "../src/lib/wordpress/endpoints";
+import { WordPressDataError } from "../src/lib/wordpress/errors";
 import { discardInternalFields } from "../src/lib/wordpress/internal-fields";
 import {
   normalizeMediaId,
@@ -122,11 +123,14 @@ test("empty product collections adapt without errors", () => {
 });
 
 test("client media resolver accepts IDs and handles 404", async () => {
-  const fetcher: typeof fetch = async () =>
-    new Response(JSON.stringify({ code: "rest_post_invalid_id" }), {
+  let calls = 0;
+  const fetcher: typeof fetch = async () => {
+    calls += 1;
+    return new Response(JSON.stringify({ code: "rest_post_invalid_id" }), {
       status: 404,
       headers: { "Content-Type": "application/json" },
     });
+  };
   const client = createWordPressClient({
     restRoot: "http://127.0.0.1:8080/wp-json",
     fetcher,
@@ -134,6 +138,111 @@ test("client media resolver accepts IDs and handles 404", async () => {
 
   assert.equal(await client.getMedia(0), null);
   assert.equal(await client.getMedia(999), null);
+  assert.equal(await client.getMedia(999), null);
+  assert.equal(calls, 1);
+});
+
+test("client reuses identical collection and media requests", async () => {
+  let calls = 0;
+  const fetcher: typeof fetch = async (input) => {
+    calls += 1;
+    const url = String(input);
+    return url.endsWith("/wp/v2/media/44")
+      ? Response.json({
+          id: 44,
+          source_url: "https://cms.example.com/image.jpg",
+          alt_text: "Smart switch",
+          media_type: "image",
+          mime_type: "image/jpeg",
+          media_details: { width: 1200, height: 800 },
+        })
+      : Response.json([]);
+  };
+  const client = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher,
+  });
+
+  await Promise.all([
+    client.listPosts("products"),
+    client.listPosts("products"),
+    client.getMedia(44),
+    client.getMedia(44),
+  ]);
+  await client.listPosts("products");
+  await client.getMedia(44);
+
+  assert.equal(calls, 2);
+});
+
+test("client retries one transient network failure and returns validated data", async () => {
+  let calls = 0;
+  const fetcher: typeof fetch = async () => {
+    calls += 1;
+    if (calls === 1) throw new TypeError("temporary network failure");
+    return Response.json([]);
+  };
+  const client = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher,
+  });
+
+  assert.deepEqual(await client.listPosts("products"), []);
+  assert.equal(calls, 2);
+});
+
+test("client does not retry HTTP or JSON response errors", async () => {
+  let httpCalls = 0;
+  const httpClient = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher: async () => {
+      httpCalls += 1;
+      return Response.json({ code: "rest_no_route" }, { status: 404 });
+    },
+  });
+  await assert.rejects(
+    () => httpClient.listPosts("products"),
+    (error) =>
+      error instanceof WordPressDataError &&
+      error.code === "WORDPRESS_HTTP_ERROR",
+  );
+  assert.equal(httpCalls, 1);
+
+  let jsonCalls = 0;
+  const jsonClient = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher: async () => {
+      jsonCalls += 1;
+      return new Response("not-json", { status: 200 });
+    },
+  });
+  await assert.rejects(
+    () => jsonClient.listPosts("products"),
+    (error) =>
+      error instanceof WordPressDataError &&
+      error.code === "WORDPRESS_INVALID_JSON",
+  );
+  assert.equal(jsonCalls, 1);
+});
+
+test("client surfaces an explicit error after two network attempts", async () => {
+  let calls = 0;
+  const client = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher: async () => {
+      calls += 1;
+      throw new TypeError("network unavailable");
+    },
+  });
+
+  await assert.rejects(
+    () => client.listPosts("products"),
+    (error) =>
+      error instanceof WordPressDataError &&
+      error.code === "WORDPRESS_REQUEST_FAILED" &&
+      error.context.attempt === 2,
+  );
+  assert.equal(calls, 2);
 });
 
 test("client validates and maps a public media response", async () => {

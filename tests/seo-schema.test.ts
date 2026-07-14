@@ -33,6 +33,13 @@ const phase2DResourceSlugs = [
   "hotel-doorplate-room-display-buying-guide",
 ] as const;
 
+const phase2EResourceSlugs = [
+  "oem-odm-hotel-control-panel-development-process",
+  "hotel-renovation-smart-room-upgrade-guide",
+  "smart-panel-material-finish-selection-guide",
+  "knx-vs-rcu-hotel-room-control",
+] as const;
+
 const publishedSolutionSlugs = new Set([
   "hotel-guest-room-control-solution",
   "oem-odm-custom-panel-solution",
@@ -187,9 +194,9 @@ test("Product schema has no Offer or manufacturer by default", () => {
 test("resources are included in the sitemap without non-English or PDF URLs", async () => {
   const urls = (await sitemap()).map((entry) => entry.url);
 
-  assert.equal(resources.length, 10);
+  assert.equal(resources.length, 14);
   assert.equal(urls.length, 61 + resources.length);
-  assert.equal(urls.length, 71);
+  assert.equal(urls.length, 75);
   assert.ok(urls.includes("https://dualcorelink.com/en/resources/"));
   for (const resource of resources) {
     assert.ok(
@@ -318,8 +325,8 @@ test("all resources have safe Article schema inputs", () => {
     assert.equal(serialized.includes("staging2.cms.dualcorelink.com"), false);
   }
 
-  assert.equal(articleCount, 10);
-  assert.equal(breadcrumbCount, 10);
+  assert.equal(articleCount, 14);
+  assert.equal(breadcrumbCount, 14);
   assert.equal(seoTitles.size, resources.length);
   assert.equal(metaDescriptions.size, resources.length);
 });
@@ -328,7 +335,7 @@ test("Phase 2C resource conversion maps are complete and internally valid", () =
   const conversionResources = resources.filter((resource) => resource.conversion);
   const resourceSlugs = new Set(resources.map((resource) => resource.slug));
 
-  assert.equal(conversionResources.length, 9);
+  assert.equal(conversionResources.length, 13);
 
   for (const resource of conversionResources) {
     const conversion = resource.conversion;
@@ -424,6 +431,192 @@ test("Phase 2D resources have complete topic-cluster content and links", async (
       false,
     );
   }
+});
+
+test("Phase 2E resources cover procurement topics with valid SEO and links", async () => {
+  const sitemapUrls = new Set((await sitemap()).map((entry) => entry.url));
+  const resourceSlugs = new Set(resources.map((resource) => resource.slug));
+
+  for (const slug of phase2EResourceSlugs) {
+    const resource = resources.find((item) => item.slug === slug);
+    assert.ok(resource, `Expected Phase 2E resource ${slug}`);
+    assert.ok(resource.conversion);
+    assert.ok(resource.sections.length >= 9);
+    assert.ok(resource.sections.some((section) => section.subsections?.length));
+    assert.ok(resource.sections.some((section) => section.relatedLinks?.length));
+    assert.ok(
+      sitemapUrls.has(`https://dualcorelink.com/en/resources/${slug}/`),
+    );
+
+    const contentWords = resource.sections
+      .flatMap((section) => [
+        ...section.body,
+        ...(section.subsections?.flatMap((subsection) => subsection.body) ?? []),
+      ])
+      .join(" ")
+      .split(/\s+/)
+      .filter(Boolean).length;
+    assert.ok(contentWords >= 1400, `${slug} has only ${contentWords} words`);
+
+    const path = buildLocalizedPath("en", `resources/${resource.slug}`);
+    const metadata = createMetadata({
+      locale: "en",
+      path,
+      title: resource.seoTitle,
+      description: resource.metaDescription,
+      hreflang: createContentHreflang({
+        locale: "en",
+        currentPath: path,
+        published: {},
+      }),
+    });
+    assert.equal(metadata.title, resource.seoTitle);
+    assert.equal(metadata.description, resource.metaDescription);
+    assert.equal(
+      metadata.alternates?.canonical,
+      `https://dualcorelink.com/en/resources/${resource.slug}/`,
+    );
+    assert.equal(metadata.openGraph?.title, resource.seoTitle);
+    assert.equal(metadata.openGraph?.description, resource.metaDescription);
+    assert.ok(metadata.twitter);
+
+    for (const section of resource.sections) {
+      for (const link of section.relatedLinks ?? []) {
+        assert.ok(link.href.startsWith("/en/resources/"));
+        const relatedSlug = link.href.split("/").filter(Boolean).at(-1);
+        assert.ok(relatedSlug && resourceSlugs.has(relatedSlug));
+        assert.notEqual(relatedSlug, resource.slug);
+      }
+    }
+
+    const allLinks = [
+      ...resource.relatedProducts,
+      ...resource.relatedSolutions,
+      ...resource.relatedRegions,
+      ...resource.relatedDownloads,
+      ...resource.sections.flatMap((section) => section.relatedLinks ?? []),
+      { href: resource.cta.primaryHref },
+      { href: resource.cta.secondaryHref },
+    ];
+    assert.equal(allLinks.some((link) => link.href === "#"), false);
+    assert.equal(
+      allLinks.some((link) =>
+        /localhost|127\.0\.0\.1|staging2\.cms\.dualcorelink\.com/i.test(
+          link.href,
+        ),
+      ),
+      false,
+    );
+  }
+});
+
+test("Phase 2E old-resource relationships are bidirectional and self-safe", () => {
+  const requiredRelationships = new Map<string, string[]>([
+    [
+      "oem-odm-smart-panel-customization-guide",
+      [
+        "oem-odm-hotel-control-panel-development-process",
+        "smart-panel-material-finish-selection-guide",
+      ],
+    ],
+    [
+      "hotel-smart-switch-panel-guide",
+      ["smart-panel-material-finish-selection-guide"],
+    ],
+    [
+      "hotel-doorplate-room-display-buying-guide",
+      [
+        "smart-panel-material-finish-selection-guide",
+        "hotel-renovation-smart-room-upgrade-guide",
+      ],
+    ],
+    [
+      "hotel-room-control-system-cost-factors",
+      [
+        "oem-odm-hotel-control-panel-development-process",
+        "hotel-renovation-smart-room-upgrade-guide",
+      ],
+    ],
+    ["hotel-rcu-buying-guide", ["knx-vs-rcu-hotel-room-control"]],
+    [
+      "hotel-rcu-wiring-system-architecture-guide",
+      ["knx-vs-rcu-hotel-room-control"],
+    ],
+    [
+      "smart-hotel-room-control-system-guide",
+      ["knx-vs-rcu-hotel-room-control"],
+    ],
+    [
+      "hotel-guest-room-automation-guide",
+      ["hotel-renovation-smart-room-upgrade-guide"],
+    ],
+    [
+      "hotel-occupancy-sensor-selection-guide",
+      ["hotel-renovation-smart-room-upgrade-guide"],
+    ],
+  ]);
+
+  for (const [slug, targets] of requiredRelationships) {
+    const resource = resources.find((item) => item.slug === slug);
+    assert.ok(resource?.conversion, `Missing conversion map for ${slug}`);
+    for (const target of targets) {
+      assert.ok(
+        resource.conversion.continueReadingSlugs.includes(target),
+        `${slug} should link to ${target}`,
+      );
+    }
+    assert.equal(
+      resource.conversion.continueReadingSlugs.includes(resource.slug),
+      false,
+    );
+  }
+});
+
+test("Phase 2E content keeps FAQ purchasing terms and KNX claims controlled", () => {
+  const oemResource = resources.find(
+    (resource) =>
+      resource.slug === "oem-odm-hotel-control-panel-development-process",
+  );
+  const knxResource = resources.find(
+    (resource) => resource.slug === "knx-vs-rcu-hotel-room-control",
+  );
+  assert.ok(oemResource);
+  assert.ok(knxResource);
+
+  const oemText = JSON.stringify(oemResource).toLowerCase();
+  assert.ok(oemText.includes("regular products have no fixed moq"));
+  assert.ok(
+    oemText.includes(
+      "existing mold is used and only the color is changed, no customization fee",
+    ),
+  );
+  assert.ok(oemText.includes("customization or tooling fee"));
+  assert.ok(oemText.includes("7-15 days"));
+  assert.ok(oemText.includes("depending on product type"));
+  assert.equal(oemText.includes("all customization is free of charge"), false);
+  assert.equal(oemText.includes("all custom products have no moq"), false);
+
+  const knxText = JSON.stringify(knxResource).toLowerCase();
+  assert.ok(
+    knxText.includes("standardized building automation protocol ecosystem"),
+  );
+  assert.ok(knxText.includes("rcu is an architecture and product-category"));
+  assert.ok(knxText.includes("knx is not always more expensive"));
+  assert.ok(knxText.includes("rcu is not always cheaper"));
+  assert.equal(knxText.includes("all products support knx"), false);
+  assert.equal(knxText.includes("dualcorelink products natively support knx"), false);
+  assert.equal(
+    knxResource.relatedProducts.some((product) =>
+      /knx/i.test(product.href),
+    ),
+    false,
+  );
+  assert.equal(
+    knxResource.relatedSolutions.some((solution) =>
+      /knx/i.test(solution.href),
+    ),
+    false,
+  );
 });
 
 test("all published product detail pages can emit safe Product schema", async () => {

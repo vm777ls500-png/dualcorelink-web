@@ -1,6 +1,7 @@
 import https from "node:https";
 
 type TimingResult = {
+  client: "https" | "fetch";
   endpoint: string;
   status: number;
   address?: string;
@@ -17,6 +18,9 @@ type TimingResult = {
   contentEncoding?: string;
   server?: string;
   cacheStatus?: string;
+  contentType?: string;
+  bodyKind?: "json" | "html" | "other";
+  bodyPrefix?: string;
 };
 
 const endpoints = [
@@ -53,6 +57,21 @@ function headerValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value.join(", ") : value;
 }
 
+function classifyBody(body: string) {
+  try {
+    JSON.parse(body);
+    return "json" as const;
+  } catch {
+    return /^\s*<!doctype html|^\s*<html/i.test(body)
+      ? ("html" as const)
+      : ("other" as const);
+  }
+}
+
+function bodyPrefix(body: string) {
+  return body.replace(/\s+/g, " ").trim().slice(0, 180);
+}
+
 function requestEndpoint(endpoint: string): Promise<TimingResult> {
   return new Promise((resolve, reject) => {
     const startedAt = performance.now();
@@ -85,6 +104,7 @@ function requestEndpoint(endpoint: string): Promise<TimingResult> {
           clearTimeout(timeout);
           const completedAt = performance.now();
           resolve({
+            client: "https",
             endpoint,
             status: response.statusCode ?? 0,
             address,
@@ -103,6 +123,7 @@ function requestEndpoint(endpoint: string): Promise<TimingResult> {
             cacheStatus:
               headerValue(response.headers["cf-cache-status"]) ??
               headerValue(response.headers["x-proxy-cache"]),
+            contentType: headerValue(response.headers["content-type"]),
           });
         });
       },
@@ -148,6 +169,44 @@ function requestEndpoint(endpoint: string): Promise<TimingResult> {
   });
 }
 
+async function requestEndpointWithFetch(
+  endpoint: string,
+): Promise<TimingResult> {
+  const startedAt = performance.now();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(diagnosticUrl(endpoint), {
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    });
+    const responseAt = performance.now();
+    const body = await response.text();
+
+    return {
+      client: "fetch",
+      endpoint,
+      status: response.status,
+      httpVersion: "fetch-managed",
+      ttfbMs: elapsed(startedAt, responseAt) ?? 0,
+      totalMs: elapsed(startedAt, performance.now()) ?? 0,
+      bytes: Buffer.byteLength(body),
+      contentEncoding: response.headers.get("content-encoding") ?? undefined,
+      server: response.headers.get("server") ?? undefined,
+      cacheStatus:
+        response.headers.get("cf-cache-status") ??
+        response.headers.get("x-proxy-cache") ??
+        undefined,
+      contentType: response.headers.get("content-type") ?? undefined,
+      bodyKind: classifyBody(body),
+      bodyPrefix: classifyBody(body) === "json" ? undefined : bodyPrefix(body),
+    };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function main() {
   console.log(
     JSON.stringify({
@@ -168,6 +227,46 @@ async function main() {
       console.error(JSON.stringify(error));
     }
   }
+
+  console.log(JSON.stringify({ phase: "fetch-sequential" }));
+  for (const endpoint of endpoints) {
+    try {
+      console.log(JSON.stringify(await requestEndpointWithFetch(endpoint)));
+    } catch (error) {
+      failed = true;
+      console.error(
+        JSON.stringify({
+          client: "fetch",
+          endpoint,
+          error: error instanceof Error ? error.name : "UnknownError",
+          message: error instanceof Error ? error.message : String(error),
+        }),
+      );
+    }
+  }
+
+  console.log(JSON.stringify({ phase: "fetch-collection-burst", concurrency: 3 }));
+  const collectionEndpoints = endpoints.slice(2);
+  const burstResults = await Promise.allSettled(
+    collectionEndpoints.map(requestEndpointWithFetch),
+  );
+  burstResults.forEach((result, index) => {
+    if (result.status === "fulfilled") {
+      console.log(JSON.stringify(result.value));
+      return;
+    }
+
+    failed = true;
+    const error = result.reason;
+    console.error(
+      JSON.stringify({
+        client: "fetch",
+        endpoint: collectionEndpoints[index],
+        error: error instanceof Error ? error.name : "UnknownError",
+        message: error instanceof Error ? error.message : String(error),
+      }),
+    );
+  });
 
   if (failed) {
     process.exitCode = 1;

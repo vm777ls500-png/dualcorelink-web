@@ -1,0 +1,82 @@
+name: AWS static production deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "docs/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aws-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy AWS static export
+    runs-on:
+      - self-hosted
+      - linux
+      - x64
+      - dualcorelink-production
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout exact source commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Load validated build environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          env_file=/srv/dualcorelink/frontend/shared/build.env
+          test -r "$env_file"
+          wordpress_rest_root="$(awk -F= '$1 == "WORDPRESS_REST_ROOT" { print substr($0, index($0, "=") + 1) }' "$env_file")"
+          case "$wordpress_rest_root" in
+            https://cms-aws.dualcorelink.com/wp-json|https://cms.dualcorelink.com/wp-json) ;;
+            *) echo "Unexpected WORDPRESS_REST_ROOT" >&2; exit 1 ;;
+          esac
+          echo "WORDPRESS_REST_ROOT=$wordpress_rest_root" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Validate data
+        run: npm run test:data
+
+      - name: Build static export
+        shell: bash
+        run: |
+          set -euo pipefail
+          export NO_COLOR=1
+          npm run build 2>&1 | tee build.log
+          grep -Eq 'Generating static pages.*155/155' build.log
+
+      - name: Deploy atomic release
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash deploy/scripts/deploy-static.sh \
+            "$GITHUB_WORKSPACE/out" \
+            "$GITHUB_SHA" \
+            "https://aws.dualcorelink.com/en/"
+
+      - name: Verify test-domain indexing protection
+        shell: bash
+        run: |
+          set -euo pipefail
+          headers="$(curl --fail --silent --show-error --head https://aws.dualcorelink.com/en/)"
+          grep -Eiq '^x-robots-tag:.*noindex' <<< "$headers"
+          curl --fail --silent --show-error https://aws.dualcorelink.com/sitemap.xml >/dev/null

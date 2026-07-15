@@ -1,0 +1,61 @@
+# Prepared in AWS Migration Phase B5. Do not enable before the approved B6 cutover.
+server {
+    listen 80;
+    listen [::]:80;
+    server_name cms.dualcorelink.com;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/cms.dualcorelink.com;
+        allow all;
+        try_files $uri =404;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name cms.dualcorelink.com;
+
+    root /srv/dualcorelink/wordpress/current;
+    index index.php index.html;
+
+    access_log /var/log/nginx/cms-production-access.log;
+    error_log /var/log/nginx/cms-production-error.log;
+
+    ssl_certificate /etc/letsencrypt/live/cms.dualcorelink.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/cms.dualcorelink.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    client_max_body_size 256M;
+    autoindex off;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~* ^/wp-content/uploads/.*\.php$ {
+        deny all;
+    }
+
+    location = /wp-config.php {
+        deny all;
+    }
+
+    location ~* \.(?:env|sql|bak|backup|old|orig|save|zip|tar|tar\.gz|tgz)$ {
+        deny all;
+    }
+
+    location ~ /\.(?!well-known(?:/|$)) {
+        deny all;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+    }
+}

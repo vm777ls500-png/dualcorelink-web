@@ -8,8 +8,9 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   experimental: {
-    staticGenerationMaxConcurrency: 2,
-    staticGenerationMinPagesPerWorker: 80,
+    cpus: 1,
+    staticGenerationMaxConcurrency: 1,
+    staticGenerationMinPagesPerWorker: 200,
   },
 };
 

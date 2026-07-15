@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsx scripts/diagnose-cms-network.ts && next build && npm run export:clean",
+    "build": "tsx scripts/build-cms-edge-probe.ts",
     "export:clean": "tsx scripts/clean-static-export.ts",
     "lint": "eslint",
     "test:data": "tsx --test tests/*.test.ts",

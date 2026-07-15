@@ -84,6 +84,7 @@ function requestEndpoint(endpoint: string): Promise<TimingResult> {
     let tlsVersion: string | undefined;
     let cipher: string | undefined;
     let bytes = 0;
+    const bodyChunks: Buffer[] = [];
 
     const request = https.get(
       diagnosticUrl(endpoint),
@@ -99,10 +100,15 @@ function requestEndpoint(endpoint: string): Promise<TimingResult> {
         responseAt = performance.now();
         response.on("data", (chunk: Buffer) => {
           bytes += chunk.length;
+          if (bodyChunks.reduce((total, item) => total + item.length, 0) < 512) {
+            bodyChunks.push(chunk);
+          }
         });
         response.on("end", () => {
           clearTimeout(timeout);
           const completedAt = performance.now();
+          const body = Buffer.concat(bodyChunks).toString("utf8");
+          const bodyKind = classifyBody(body);
           resolve({
             client: "https",
             endpoint,
@@ -124,6 +130,8 @@ function requestEndpoint(endpoint: string): Promise<TimingResult> {
               headerValue(response.headers["cf-cache-status"]) ??
               headerValue(response.headers["x-proxy-cache"]),
             contentType: headerValue(response.headers["content-type"]),
+            bodyKind,
+            bodyPrefix: bodyKind === "json" ? undefined : bodyPrefix(body),
           });
         });
       },
@@ -207,6 +215,26 @@ async function requestEndpointWithFetch(
   }
 }
 
+function fetchErrorDetails(error: unknown) {
+  const cause =
+    error instanceof Error && "cause" in error ? error.cause : undefined;
+
+  return {
+    error: error instanceof Error ? error.name : "UnknownError",
+    message: error instanceof Error ? error.message : String(error),
+    causeCode:
+      cause && typeof cause === "object" && "code" in cause
+        ? String(cause.code)
+        : undefined,
+    causeMessage:
+      cause instanceof Error
+        ? cause.message
+        : cause && typeof cause === "object" && "message" in cause
+          ? String(cause.message)
+          : undefined,
+  };
+}
+
 async function main() {
   console.log(
     JSON.stringify({
@@ -238,8 +266,7 @@ async function main() {
         JSON.stringify({
           client: "fetch",
           endpoint,
-          error: error instanceof Error ? error.name : "UnknownError",
-          message: error instanceof Error ? error.message : String(error),
+          ...fetchErrorDetails(error),
         }),
       );
     }
@@ -262,8 +289,7 @@ async function main() {
       JSON.stringify({
         client: "fetch",
         endpoint: collectionEndpoints[index],
-        error: error instanceof Error ? error.name : "UnknownError",
-        message: error instanceof Error ? error.message : String(error),
+        ...fetchErrorDetails(error),
       }),
     );
   });

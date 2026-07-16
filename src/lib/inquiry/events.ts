@@ -1,4 +1,5 @@
 import type { InquiryAttribution } from "@/lib/inquiry/attribution";
+import { sendGa4InquiryEvent } from "@/lib/analytics/ga4";
 
 export type InquiryChannel = "form" | "whatsapp" | "email";
 export type InquiryAction = "cta_click" | "form_submit";
@@ -13,7 +14,7 @@ export type InquiryEvent = {
 };
 
 type AnalyticsWindow = Window & {
-  dataLayer?: InquiryEvent[];
+  dataLayer?: unknown[];
 };
 
 export function trackInquiryEvent(
@@ -35,6 +36,7 @@ export function trackInquiryEvent(
   window.dispatchEvent(
     new CustomEvent("dualcorelink:inquiry", { detail: payload }),
   );
+  sendGa4InquiryEvent(payload);
 }
 
 export function createInquiryEvent(

@@ -40,11 +40,18 @@ jobs:
           env_file=/srv/dualcorelink/frontend/shared/build.env
           test -r "$env_file"
           wordpress_rest_root="$(awk -F= '$1 == "WORDPRESS_REST_ROOT" { print substr($0, index($0, "=") + 1) }' "$env_file")"
+          ga4_measurement_id="$(awk -F= '$1 == "NEXT_PUBLIC_GA4_MEASUREMENT_ID" { print substr($0, index($0, "=") + 1) }' "$env_file")"
           case "$wordpress_rest_root" in
             https://cms-aws.dualcorelink.com/wp-json|https://cms.dualcorelink.com/wp-json) ;;
             *) echo "Unexpected WORDPRESS_REST_ROOT" >&2; exit 1 ;;
           esac
+          if [[ ! "$ga4_measurement_id" =~ ^G-[A-Z0-9]{6,20}$ ]]; then
+            echo "Invalid NEXT_PUBLIC_GA4_MEASUREMENT_ID" >&2
+            exit 1
+          fi
+          echo "::add-mask::$ga4_measurement_id"
           echo "WORDPRESS_REST_ROOT=$wordpress_rest_root" >> "$GITHUB_ENV"
+          echo "NEXT_PUBLIC_GA4_MEASUREMENT_ID=$ga4_measurement_id" >> "$GITHUB_ENV"
 
       - name: Install dependencies
         run: npm ci

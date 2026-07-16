@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Ga4Consent } from "@/components/analytics/ga4-consent";
 import { siteUrl } from "@/lib/seo/site";
 import "./globals.css";
 
@@ -15,7 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Ga4Consent
+          measurementId={process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}
+        />
+      </body>
     </html>
   );
 }

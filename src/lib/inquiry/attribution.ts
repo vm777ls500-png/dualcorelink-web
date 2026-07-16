@@ -53,14 +53,30 @@ export function parseInquiryAttribution(
 ): InquiryAttribution {
   const params = new URLSearchParams(search);
   const rawContentType = cleanValue(params.get("content_type"), 32);
+  const contentSlug = cleanValue(params.get("content_slug"), 120);
+  const contentTypeIsValid = contentTypeSet.has(rawContentType);
+  const contentTypeNeedsSlug = [
+    "product",
+    "resource",
+    "solution",
+    "region",
+  ].includes(rawContentType);
+
+  if (!contentTypeIsValid || (contentTypeNeedsSlug && !contentSlug)) {
+    return {
+      sourcePage: fallbackSourcePage,
+      contentType: "contact",
+      contentSlug: undefined,
+      sourceTitle: undefined,
+      ctaPosition: "contact_page",
+    };
+  }
 
   return {
     sourcePage:
       cleanValue(params.get("source_page"), 240) || fallbackSourcePage,
-    contentType: contentTypeSet.has(rawContentType)
-      ? (rawContentType as InquiryContentType)
-      : "contact",
-    contentSlug: cleanValue(params.get("content_slug"), 120) || undefined,
+    contentType: rawContentType as InquiryContentType,
+    contentSlug: contentSlug || undefined,
     sourceTitle: cleanValue(params.get("source_title"), 160) || undefined,
     ctaPosition:
       cleanValue(params.get("cta_position"), 80) || "contact_page",

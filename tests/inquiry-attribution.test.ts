@@ -33,8 +33,26 @@ test("inquiry attribution rejects unknown content types and control characters",
   );
 
   assert.equal(attribution.contentType, "contact");
+  assert.equal(attribution.sourcePage, "/en/contact/");
+  assert.equal(attribution.sourceTitle, undefined);
+  assert.equal(attribution.ctaPosition, "contact_page");
   assert.equal(attribution.sourcePage.includes("\n"), false);
   assert.equal(attribution.ctaPosition.includes("\r"), false);
+});
+
+test("content attribution requiring a slug falls back when the slug is missing", () => {
+  assert.deepEqual(
+    parseInquiryAttribution(
+      "?source_page=%2Fen%2Fresources%2F&content_type=resource&source_title=Untrusted&cta_position=qa",
+    ),
+    {
+      sourcePage: "/en/contact/",
+      contentType: "contact",
+      contentSlug: undefined,
+      sourceTitle: undefined,
+      ctaPosition: "contact_page",
+    },
+  );
 });
 
 test("direct contact visits receive stable fallback attribution", () => {

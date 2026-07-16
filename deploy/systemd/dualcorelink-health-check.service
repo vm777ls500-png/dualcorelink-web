@@ -1,0 +1,28 @@
+[Unit]
+Description=DualCoreLink production health and backup check
+Wants=network-online.target
+After=network-online.target nginx.service mariadb.service php8.3-fpm.service
+ConditionPathExists=/usr/local/sbin/dualcorelink-health-check
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0077
+Environment=AWS_SHARED_CREDENTIALS_FILE=/etc/dualcorelink-backup/credentials
+Environment=AWS_CONFIG_FILE=/etc/dualcorelink-backup/config
+Environment=AWS_REGION=ap-southeast-1
+ExecStart=/usr/local/sbin/dualcorelink-health-check
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+NoNewPrivileges=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+LockPersonality=true
+RestrictRealtime=true

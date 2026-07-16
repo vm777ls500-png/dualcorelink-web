@@ -1,0 +1,12 @@
+[Unit]
+Description=Run the DualCoreLink production health check daily
+
+[Timer]
+OnCalendar=*-*-* 05:00:00 Asia/Singapore
+RandomizedDelaySec=10m
+Persistent=true
+AccuracySec=1m
+Unit=dualcorelink-health-check.service
+
+[Install]
+WantedBy=timers.target

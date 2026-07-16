@@ -93,6 +93,16 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
       const value = String(rawValue ?? "").trim();
       return value ? [`${label}: ${value}`] : [];
     });
+    const sourceLines = [
+      ["Source Page", attribution.sourcePage],
+      ["Content Type", attribution.contentType],
+      ["Content Slug", attribution.contentSlug],
+      ["Source Title", attribution.sourceTitle],
+      ["CTA Position", attribution.ctaPosition],
+    ].flatMap(([label, rawValue]) => {
+      const value = String(rawValue ?? "").trim();
+      return value ? [`${label}: ${value}`] : [];
+    });
     const lines = [
       ...detailLines,
       "",
@@ -100,11 +110,7 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
       `${data.get("message") ?? ""}`,
       "",
       "Inquiry source:",
-      `Source Page: ${attribution.sourcePage}`,
-      `Content Type: ${attribution.contentType}`,
-      `Content Slug: ${attribution.contentSlug ?? ""}`,
-      `Source Title: ${attribution.sourceTitle ?? ""}`,
-      `CTA Position: ${attribution.ctaPosition}`,
+      ...sourceLines,
       "",
       "Project files:",
       "Please attach project files manually in your email client if needed.",

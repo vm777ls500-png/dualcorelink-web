@@ -1,0 +1,38 @@
+{
+  "Rules": [
+    {
+      "ID": "daily-backups-35-days",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": "production/daily/"
+      },
+      "Expiration": {
+        "Days": 35
+      },
+      "NoncurrentVersionExpiration": {
+        "NoncurrentDays": 7,
+        "NewerNoncurrentVersions": 2
+      },
+      "AbortIncompleteMultipartUpload": {
+        "DaysAfterInitiation": 7
+      }
+    },
+    {
+      "ID": "monthly-backups-370-days",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": "production/monthly/"
+      },
+      "Expiration": {
+        "Days": 370
+      },
+      "NoncurrentVersionExpiration": {
+        "NoncurrentDays": 7,
+        "NewerNoncurrentVersions": 2
+      },
+      "AbortIncompleteMultipartUpload": {
+        "DaysAfterInitiation": 7
+      }
+    }
+  ]
+}

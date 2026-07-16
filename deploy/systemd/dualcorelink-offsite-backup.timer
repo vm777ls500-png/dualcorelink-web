@@ -1,0 +1,12 @@
+[Unit]
+Description=Run the DualCoreLink offsite production backup daily
+
+[Timer]
+OnCalendar=*-*-* 01:30:00 Asia/Singapore
+RandomizedDelaySec=10m
+Persistent=true
+AccuracySec=1m
+Unit=dualcorelink-offsite-backup.service
+
+[Install]
+WantedBy=timers.target

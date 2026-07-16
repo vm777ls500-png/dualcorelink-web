@@ -1,0 +1,33 @@
+[Unit]
+Description=DualCoreLink encrypted offsite production backup to Amazon S3
+Wants=network-online.target
+After=network-online.target mariadb.service php8.3-fpm.service
+ConditionPathExists=/etc/dualcorelink-backup/credentials
+ConditionPathExists=/srv/dualcorelink/wordpress/current
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0077
+Environment=AWS_SHARED_CREDENTIALS_FILE=/etc/dualcorelink-backup/credentials
+Environment=AWS_CONFIG_FILE=/etc/dualcorelink-backup/config
+Environment=AWS_REGION=ap-southeast-1
+ExecStart=/usr/local/sbin/dualcorelink-offsite-backup
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/dualcorelink/backups/offsite-staging
+NoNewPrivileges=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+LockPersonality=true
+RestrictRealtime=true
+
+[Install]
+WantedBy=multi-user.target

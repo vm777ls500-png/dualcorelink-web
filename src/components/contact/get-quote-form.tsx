@@ -78,17 +78,23 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
       event.currentTarget.reportValidity();
       return;
     }
+    const detailLines = [
+      ["Name", data.get("name")],
+      ["Company", data.get("company")],
+      ["Email", data.get("email")],
+      ["WhatsApp / Phone", data.get("phone")],
+      ["Country / Region", data.get("country")],
+      ["Customer Type", data.get("customerType")],
+      ["Project Stage", data.get("projectStage")],
+      ["Product Interest", interests],
+      ["Estimated Quantity", data.get("quantity")],
+      ["Target Delivery Timing", data.get("targetDelivery")],
+    ].flatMap(([label, rawValue]) => {
+      const value = String(rawValue ?? "").trim();
+      return value ? [`${label}: ${value}`] : [];
+    });
     const lines = [
-      `Name: ${data.get("name") ?? ""}`,
-      `Company: ${data.get("company") ?? ""}`,
-      `Email: ${data.get("email") ?? ""}`,
-      `WhatsApp / Phone: ${data.get("phone") ?? ""}`,
-      `Country / Region: ${data.get("country") ?? ""}`,
-      `Customer Type: ${data.get("customerType") ?? ""}`,
-      `Project Stage: ${data.get("projectStage") ?? ""}`,
-      `Product Interest: ${interests}`,
-      `Estimated Quantity: ${data.get("quantity") ?? ""}`,
-      `Target Delivery Timing: ${data.get("targetDelivery") ?? ""}`,
+      ...detailLines,
       "",
       "Message:",
       `${data.get("message") ?? ""}`,

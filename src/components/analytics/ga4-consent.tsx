@@ -17,8 +17,10 @@ const googleTagScriptId = "dualcorelink-ga4";
 
 function ensureGtag() {
   window.dataLayer ??= [];
-  window.gtag ??= (...args: unknown[]) => {
-    window.dataLayer?.push(args);
+  window.gtag ??= function gtag() {
+    // Google Tag consumes the native arguments object, not a copied array.
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer?.push(arguments);
   };
 }
 

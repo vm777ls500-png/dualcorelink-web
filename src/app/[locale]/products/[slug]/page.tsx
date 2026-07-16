@@ -7,8 +7,10 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { ContactCta } from "@/components/content/contact-cta";
 import { ContentSection } from "@/components/content/content-section";
 import { MediaFrame } from "@/components/content/media-frame";
+import { ProductProjectBuyingGuide } from "@/components/content/product-project-buying-guide";
 import { SpecificationList } from "@/components/content/specification-list";
 import { productDisplayImages } from "@/config/product-display-images";
+import { getProductConversionProfile } from "@/config/product-conversion";
 import { isLocale, locales } from "@/config/i18n";
 import { ensureStaticExportParams } from "@/lib/routing/static-export";
 import {
@@ -170,6 +172,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const displayImage = productDisplayImages[product.slug];
   const heroImage = product.images[0];
   const productTitle = stripHtml(product.title);
+  const conversionProfile = getProductConversionProfile(product.categorySlugs);
   const productAttribution = {
     sourcePage: `/${locale}/products/${slug}/`,
     contentType: "product" as const,
@@ -227,6 +230,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <p className="mt-6 text-lg leading-8 text-muted">
               {stripHtml(product.shortDescription || product.excerpt)}
             </p>
+            {conversionProfile ? (
+              <div className="product-procurement-summary mt-7 border-y border-line py-5">
+                <p className="text-xs font-semibold uppercase text-brand">
+                  {conversionProfile.label}
+                </p>
+                <dl className="mt-4 grid gap-4 sm:grid-cols-3">
+                  {conversionProfile.highlights.map((item) => (
+                    <div key={item.label}>
+                      <dt className="text-xs font-semibold uppercase text-muted">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold leading-6 text-foreground">
+                        {item.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ) : null}
             <div className="product-detail-actions mt-8 flex flex-wrap gap-3">
               <TrackedInquiryLink
                 href={buildQuoteHref(locale, heroQuoteAttribution)}
@@ -285,6 +307,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
               title="Application scenarios"
               content={cleanPublicProductText(product.applicationScenarios)}
             />
+            {conversionProfile ? (
+              <ProductProjectBuyingGuide
+                locale={locale}
+                productSlug={slug}
+                productTitle={productTitle}
+                profile={conversionProfile}
+              />
+            ) : null}
             <ContentSection
               title="Installation position"
               content={cleanPublicProductText(product.installationPosition)}

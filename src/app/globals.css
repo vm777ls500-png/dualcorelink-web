@@ -552,6 +552,45 @@ a.brand-button-outline:focus-visible {
   border-color: rgba(0, 95, 115, 0.14);
 }
 
+.product-procurement-summary {
+  border-color: rgba(0, 95, 115, 0.16);
+}
+
+.product-procurement-summary dl > div {
+  min-width: 0;
+}
+
+.product-project-guide {
+  scroll-margin-top: 8rem;
+}
+
+.product-project-guide-column {
+  border-inline-start: 1px solid rgba(0, 95, 115, 0.18);
+  padding-inline-start: 1.25rem;
+}
+
+.product-project-guide-link {
+  display: block;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.product-project-guide-link:hover,
+.product-project-guide-link:focus-visible {
+  border-color: var(--color-accent);
+  transform: translateX(2px);
+}
+
+.product-project-guide-link:focus-visible {
+  outline: 3px solid rgba(34, 211, 238, 0.24);
+  outline-offset: 3px;
+}
+
+.product-project-guide-cta {
+  border-color: rgba(0, 95, 115, 0.16);
+}
+
 .product-detail-commerce > div,
 .product-detail-aside dl > div {
   border: 1px solid rgba(0, 95, 115, 0.1);
@@ -2634,6 +2673,30 @@ a.cta-button-light:focus-visible {
   .product-detail-commerce {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.75rem;
+  }
+
+  .product-procurement-summary dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+
+  .product-procurement-summary dl > div {
+    border-inline-start: 2px solid rgba(0, 107, 120, 0.28);
+    padding-inline-start: 0.8rem;
+  }
+
+  .product-project-guide-grid,
+  .product-project-guide-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .product-project-guide-column {
+    padding-inline-start: 1rem;
+  }
+
+  .product-project-guide-actions,
+  .product-project-guide-actions a {
+    width: 100%;
   }
 
   .product-detail-commerce > div,

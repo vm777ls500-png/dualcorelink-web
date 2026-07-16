@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 import { brand } from "@/config/brand";
 import type { Locale } from "@/config/i18n";
+import { buildQuoteHref } from "@/lib/inquiry/attribution";
 import {
   roomDisplayGroups,
   roomDisplayProjectCopy,
@@ -19,6 +20,16 @@ export function RoomDisplayProjectReferencesSection({
   const emailUrl = `mailto:${brand.emails.sales}?subject=${encodeURIComponent(
     "Hotel room signage customization",
   )}`;
+  const baseAttribution = {
+    sourcePage: `/${locale}/solutions/hotel-guest-room-control-solution/`,
+    contentType: "solution" as const,
+    contentSlug: "hotel-guest-room-control-solution",
+    sourceTitle: "Hotel Guest Room Control Solution",
+  };
+  const quoteAttribution = {
+    ...baseAttribution,
+    ctaPosition: "room_display_references",
+  };
 
   return (
     <section
@@ -103,21 +114,32 @@ export function RoomDisplayProjectReferencesSection({
           {roomDisplayProjectCopy.disclaimer}
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
-          <Link
-            href={`/${locale}/contact/#get-a-quote`}
+          <TrackedInquiryLink
+            href={buildQuoteHref(locale, quoteAttribution)}
+            channel="form"
+            attribution={quoteAttribution}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
             {roomDisplayProjectCopy.primaryCta}
-          </Link>
-          <a
+          </TrackedInquiryLink>
+          <TrackedInquiryLink
             href={emailUrl}
+            channel="email"
+            attribution={{
+              ...baseAttribution,
+              ctaPosition: "room_display_email",
+            }}
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
           >
             {roomDisplayProjectCopy.secondaryCta}
-          </a>
+          </TrackedInquiryLink>
           <WhatsAppButton
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
             message="Hello DUALCORE LINK, I would like to discuss a hotel room signage configuration."
+            attribution={{
+              ...baseAttribution,
+              ctaPosition: "room_display_whatsapp",
+            }}
           />
         </div>
       </div>

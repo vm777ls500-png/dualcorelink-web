@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { brand, createWhatsAppUrl } from "@/config/brand";
 import { productDisplayImages } from "@/config/product-display-images";
 import type { ResourceGuide, ResourceLink } from "@/config/resources";
-
-const projectInquiryHref = "/en/contact/#get-a-quote";
-const contactSalesHref = "/en/contact/";
+import { buildQuoteHref } from "@/lib/inquiry/attribution";
 
 function getSlugFromHref(href: string) {
   return href.split("/").filter(Boolean).at(-1) ?? "";
@@ -21,6 +20,20 @@ export function ResourceMidArticleCta({
   const nextResource = continueReading[0];
   const primaryProduct = resource.relatedProducts[0];
   const primarySolution = resource.relatedSolutions[0];
+  const baseAttribution = {
+    sourcePage: `/en/resources/${resource.slug}/`,
+    contentType: "resource" as const,
+    contentSlug: resource.slug,
+    sourceTitle: resource.h1,
+  };
+  const projectAttribution = {
+    ...baseAttribution,
+    ctaPosition: "resource_mid_article",
+  };
+  const salesAttribution = {
+    ...baseAttribution,
+    ctaPosition: "resource_mid_contact_sales",
+  };
 
   return (
     <aside
@@ -42,18 +55,22 @@ export function ResourceMidArticleCta({
         control panel, and room automation options.
       </p>
       <div className="resource-conversion-actions mt-5 flex flex-wrap gap-3">
-        <Link
-          href={projectInquiryHref}
+        <TrackedInquiryLink
+          href={buildQuoteHref("en", projectAttribution)}
+          channel="form"
+          attribution={projectAttribution}
           className="brand-button w-full px-5 py-3 sm:w-auto"
         >
           Discuss Your Project
-        </Link>
-        <Link
-          href={contactSalesHref}
+        </TrackedInquiryLink>
+        <TrackedInquiryLink
+          href={buildQuoteHref("en", salesAttribution)}
+          channel="form"
+          attribution={salesAttribution}
           className="brand-button-outline w-full px-5 py-3 sm:w-auto"
         >
           Contact Sales
-        </Link>
+        </TrackedInquiryLink>
       </div>
 
       <div className="mt-6 border-t border-line pt-5">
@@ -198,6 +215,20 @@ export function ResourceConversionSections({
   continueReading: ResourceGuide[];
 }) {
   const whatsappUrl = createWhatsAppUrl(resource.cta.whatsappMessage);
+  const baseAttribution = {
+    sourcePage: `/en/resources/${resource.slug}/`,
+    contentType: "resource" as const,
+    contentSlug: resource.slug,
+    sourceTitle: resource.h1,
+  };
+  const projectAttribution = {
+    ...baseAttribution,
+    ctaPosition: "resource_bottom_project_inquiry",
+  };
+  const salesAttribution = {
+    ...baseAttribution,
+    ctaPosition: "resource_bottom_contact_sales",
+  };
 
   return (
     <div className="resource-conversion-sections space-y-10">
@@ -273,24 +304,33 @@ export function ResourceConversionSections({
           and OEM/ODM options for your project.
         </p>
         <div className="resource-conversion-actions mt-6 flex flex-wrap gap-3">
-          <Link
-            href={projectInquiryHref}
+          <TrackedInquiryLink
+            href={buildQuoteHref("en", projectAttribution)}
+            channel="form"
+            attribution={projectAttribution}
             className="cta-button-light inline-flex min-h-11 w-full items-center justify-center border px-5 py-3 font-semibold sm:w-auto"
           >
             Send Project Inquiry
-          </Link>
-          <Link
-            href={contactSalesHref}
+          </TrackedInquiryLink>
+          <TrackedInquiryLink
+            href={buildQuoteHref("en", salesAttribution)}
+            channel="form"
+            attribution={salesAttribution}
             className="inline-flex min-h-11 w-full items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white sm:w-auto"
           >
             Contact Sales
-          </Link>
-          <a
+          </TrackedInquiryLink>
+          <TrackedInquiryLink
             href={whatsappUrl}
+            channel="whatsapp"
+            attribution={{
+              ...baseAttribution,
+              ctaPosition: "resource_bottom_whatsapp",
+            }}
             className="inline-flex min-h-11 w-full items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white sm:w-auto"
           >
             {brand.whatsapp.label}
-          </a>
+          </TrackedInquiryLink>
         </div>
         <ul className="mt-6 grid gap-2 border-t border-white/20 pt-5 text-sm text-white/75 sm:grid-cols-2">
           <li>OEM/ODM support by product series and project requirements.</li>

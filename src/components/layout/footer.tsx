@@ -1,5 +1,13 @@
+"use client";
+
 import { brand } from "@/config/brand";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
+import {
+  buildQuoteHref,
+  type InquiryContentType,
+} from "@/lib/inquiry/attribution";
 
 const officeLocation = "Cangzhou, Hebei, China";
 const wechatId = "a13703333750";
@@ -7,15 +15,38 @@ const phoneNumber = "+86 13703333750";
 const phoneHref = "tel:+8613703333750";
 
 export function Footer() {
+  const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
+  const contentTypeBySection: Record<string, InquiryContentType> = {
+    products: "product",
+    resources: "resource",
+    solutions: "solution",
+    regions: "region",
+    contact: "contact",
+  };
+  const footerAttribution = {
+    sourcePage: pathname,
+    contentType: contentTypeBySection[pathSegments[1]] ?? ("site" as const),
+    contentSlug: pathSegments[2],
+  };
+
   return (
     <footer className="border-t border-line bg-foreground text-white">
       <div className="mx-auto grid max-w-7xl gap-6 px-5 py-8 text-sm sm:grid-cols-4 sm:px-8 lg:px-12">
         <div>
           <p className="font-semibold">{brand.name}</p>
           <p className="mt-2 text-white/70">{brand.legalEntity}</p>
-          <a className="mt-3 block text-white/70" href={`mailto:${brand.emails.general}`}>
+          <TrackedInquiryLink
+            className="mt-3 block text-white/70"
+            href={`mailto:${brand.emails.general}`}
+            channel="email"
+            attribution={{
+              ...footerAttribution,
+              ctaPosition: "footer_general_email",
+            }}
+          >
             {brand.emails.general}
-          </a>
+          </TrackedInquiryLink>
           <Link className="mt-3 block text-white/70" href="/en/about/">
             About DualCoreLink
           </Link>
@@ -43,25 +74,57 @@ export function Footer() {
         </div>
         <div>
           <p className="font-semibold">Get a Quote</p>
-          <a className="mt-2 block text-white/70" href={`mailto:${brand.emails.sales}`}>
+          <TrackedInquiryLink
+            className="mt-3 inline-flex min-h-10 items-center border border-white/50 px-4 py-2 font-semibold text-white"
+            href={buildQuoteHref("en", {
+              ...footerAttribution,
+              ctaPosition: "global_footer",
+            })}
+            channel="form"
+            attribution={{
+              ...footerAttribution,
+              ctaPosition: "global_footer",
+            }}
+          >
+            Send Project Inquiry
+          </TrackedInquiryLink>
+          <TrackedInquiryLink
+            className="mt-3 block text-white/70"
+            href={`mailto:${brand.emails.sales}`}
+            channel="email"
+            attribution={{
+              ...footerAttribution,
+              ctaPosition: "footer_sales_email",
+            }}
+          >
             {brand.emails.sales}
-          </a>
+          </TrackedInquiryLink>
           <p className="mt-2 text-white/60">{brand.emailPurposes.sales}</p>
         </div>
         <div>
           <p className="font-semibold">WhatsApp</p>
-          <a
+          <TrackedInquiryLink
             className="mt-2 block text-white/70"
             href={`https://wa.me/${brand.whatsapp.international}`}
+            channel="whatsapp"
+            attribution={{
+              ...footerAttribution,
+              ctaPosition: "footer_whatsapp_number",
+            }}
           >
             WhatsApp: {brand.whatsapp.display}
-          </a>
-          <a
+          </TrackedInquiryLink>
+          <TrackedInquiryLink
             className="mt-3 inline-flex min-h-10 items-center border border-white/50 px-4 py-2 font-semibold text-white"
             href={`https://wa.me/${brand.whatsapp.international}`}
+            channel="whatsapp"
+            attribution={{
+              ...footerAttribution,
+              ctaPosition: "footer_whatsapp_cta",
+            }}
           >
             {brand.whatsapp.label}
-          </a>
+          </TrackedInquiryLink>
           <div className="mt-4 space-y-1 text-white/70">
             <p>Office: {officeLocation}</p>
             <p>WeChat: {wechatId}</p>

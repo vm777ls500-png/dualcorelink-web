@@ -1,12 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import {
   brand,
   customerTypeOptions,
   productInterestOptions,
 } from "@/config/brand";
+import {
+  parseInquiryAttribution,
+  type InquiryAttribution,
+} from "@/lib/inquiry/attribution";
+import { trackInquiryEvent } from "@/lib/inquiry/events";
 
 type GetQuoteFormProps = {
   productName?: string;
@@ -14,15 +20,52 @@ type GetQuoteFormProps = {
 
 type FormStatus = "idle" | "mailto";
 
+const defaultAttribution: InquiryAttribution = {
+  sourcePage: "/en/contact/",
+  contentType: "contact",
+  ctaPosition: "contact_page",
+};
+
+const projectStageOptions = [
+  "Early research",
+  "Specification and design",
+  "Quotation and supplier selection",
+  "Sample evaluation",
+  "Procurement",
+  "Renovation or replacement",
+] as const;
+
 export function GetQuoteForm({ productName }: GetQuoteFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
-  const defaultMessage = useMemo(
-    () =>
-      productName
-        ? `I am interested in ${productName}. Please send quotation details.`
-        : "",
-    [productName],
+  const [attribution, setAttribution] =
+    useState<InquiryAttribution>(defaultAttribution);
+  const [message, setMessage] = useState(
+    productName
+      ? `I am interested in ${productName}. Please send quotation details.`
+      : "",
   );
+
+  useEffect(() => {
+    const nextAttribution = parseInquiryAttribution(
+      window.location.search,
+      window.location.pathname,
+    );
+    setAttribution(nextAttribution);
+    if (!productName && nextAttribution.sourceTitle) {
+      setMessage((current) =>
+        current ||
+        `I would like to discuss a project related to ${nextAttribution.sourceTitle}.`,
+      );
+    }
+  }, [productName]);
+
+  const contextLabel = useMemo(() => {
+    if (attribution.sourceTitle) return attribution.sourceTitle;
+    if (attribution.contentSlug) {
+      return attribution.contentSlug.replaceAll("-", " ");
+    }
+    return "Direct contact inquiry";
+  }, [attribution]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -42,18 +85,33 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
       `WhatsApp / Phone: ${data.get("phone") ?? ""}`,
       `Country / Region: ${data.get("country") ?? ""}`,
       `Customer Type: ${data.get("customerType") ?? ""}`,
+      `Project Stage: ${data.get("projectStage") ?? ""}`,
       `Product Interest: ${interests}`,
       `Estimated Quantity: ${data.get("quantity") ?? ""}`,
+      `Target Delivery Timing: ${data.get("targetDelivery") ?? ""}`,
       "",
       "Message:",
       `${data.get("message") ?? ""}`,
+      "",
+      "Inquiry source:",
+      `Source Page: ${attribution.sourcePage}`,
+      `Content Type: ${attribution.contentType}`,
+      `Content Slug: ${attribution.contentSlug ?? ""}`,
+      `Source Title: ${attribution.sourceTitle ?? ""}`,
+      `CTA Position: ${attribution.ctaPosition}`,
       "",
       "Project files:",
       "Please attach project files manually in your email client if needed.",
     ];
     const mailto = new URL(`mailto:${brand.emails.sales}`);
-    mailto.searchParams.set("subject", "New Inquiry from Website");
+    mailto.searchParams.set(
+      "subject",
+      attribution.sourceTitle
+        ? `Website Inquiry: ${attribution.sourceTitle}`
+        : "New Inquiry from Website",
+    );
     mailto.searchParams.set("body", lines.join("\n"));
+    trackInquiryEvent("form_submit", "form", attribution);
     setStatus("mailto");
     window.location.href = mailto.toString();
   }
@@ -64,6 +122,16 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="contact-inquiry-form border border-line bg-surface p-6">
+      <div className="mb-6 border-s-4 border-brand bg-background px-4 py-3">
+        <p className="text-xs font-semibold uppercase text-brand">
+          Inquiry context
+        </p>
+        <p className="mt-1 font-semibold text-foreground">{contextLabel}</p>
+        <p className="mt-1 text-sm leading-6 text-muted">
+          Source: {attribution.contentType.replaceAll("_", " ")} /{" "}
+          {attribution.ctaPosition.replaceAll("_", " ")}
+        </p>
+      </div>
       <div className="grid gap-5 md:grid-cols-2">
         <label className={labelClass}>
           Name *
@@ -97,6 +165,25 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
               </option>
             ))}
           </select>
+        </label>
+        <label className={labelClass}>
+          Project Stage
+          <select name="projectStage" className={inputClass} defaultValue="">
+            <option value="">Select project stage</option>
+            {projectStageOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={labelClass}>
+          Target Delivery Timing
+          <input
+            name="targetDelivery"
+            placeholder="Example: October 2026"
+            className={inputClass}
+          />
         </label>
       </div>
 
@@ -141,7 +228,8 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
           name="message"
           required
           rows={5}
-          defaultValue={defaultMessage}
+          value={message}
+          onChange={(event) => setMessage(event.currentTarget.value)}
           className="contact-field mt-2 w-full border border-line bg-white px-3 py-2 text-foreground"
         />
       </label>
@@ -170,9 +258,17 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
 
       <p className="mt-4 border-s-4 border-accent ps-4 text-sm leading-6 text-muted">
         Email sending is not configured yet. This form opens an email draft to{" "}
-        <a href={`mailto:${brand.emails.sales}`} className="font-semibold text-brand">
+        <TrackedInquiryLink
+          href={`mailto:${brand.emails.sales}`}
+          channel="email"
+          attribution={{
+            ...attribution,
+            ctaPosition: "form_email_fallback",
+          }}
+          className="font-semibold text-brand"
+        >
           {brand.emails.sales}
-        </a>
+        </TrackedInquiryLink>
         . Attach project files manually before sending, or use WhatsApp.
       </p>
       {status === "mailto" ? (

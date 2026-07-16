@@ -48,6 +48,10 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const page = await pageRepository.getBySlug(locale, "contact");
   const whatsappMessage = `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
   const body = stripHtml(page?.content || "");
+  const contactSource = {
+    sourcePage: `/${locale}/contact/`,
+    contentType: "contact" as const,
+  };
 
   return (
     <main className="contact-page-shell mx-auto max-w-5xl px-5 py-12 sm:px-8 lg:px-12">
@@ -73,18 +77,30 @@ export default async function ContactPage({ params }: ContactPageProps) {
           href={`mailto:${brand.emails.sales}`}
           description={brand.emailPurposes.sales}
           highlight
+          attribution={{
+            ...contactSource,
+            ctaPosition: "sales_email_card",
+          }}
         />
         <ContactCard
           label="General contact"
           value={brand.emails.general}
           href={`mailto:${brand.emails.general}`}
           description={brand.emailPurposes.general}
+          attribution={{
+            ...contactSource,
+            ctaPosition: "general_email_card",
+          }}
         />
         <ContactCard
           label="Technical support"
           value={brand.emails.support}
           href={`mailto:${brand.emails.support}`}
           description={brand.emailPurposes.support}
+          attribution={{
+            ...contactSource,
+            ctaPosition: "support_email_card",
+          }}
         />
         <div className="contact-method-card border border-line bg-surface p-6">
           <p className="text-sm font-semibold uppercase text-brand">WhatsApp</p>
@@ -93,9 +109,44 @@ export default async function ContactPage({ params }: ContactPageProps) {
             Fast quotation support for product lists, hotel projects, and
             OEM/ODM requirements.
           </p>
-          <WhatsAppButton message={whatsappMessage} className="contact-method-action mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white" />
+          <WhatsAppButton
+            message={whatsappMessage}
+            attribution={{
+              ...contactSource,
+              ctaPosition: "whatsapp_card",
+            }}
+            className="contact-method-action mt-5 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+          />
         </div>
       </div>
+      <section className="mt-10 border-y border-line py-8">
+        <p className="text-sm font-semibold uppercase text-brand">
+          Faster project review
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold text-foreground">
+          Include the details that shape product selection
+        </h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          <div>
+            <p className="font-semibold text-foreground">Project scope</p>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Country, hotel type, room count, project stage, and delivery target.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-foreground">Technical fit</p>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Voltage, frequency, protocol, wiring, panel finish, and room functions.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-foreground">Commercial needs</p>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Estimated quantity, OEM/ODM scope, documents, samples, and packaging.
+            </p>
+          </div>
+        </div>
+      </section>
       <section className="contact-details-panel mt-8 border border-line bg-surface p-6">
         <div className="grid gap-8 lg:grid-cols-[1fr_220px] lg:items-start">
           <div>
@@ -153,6 +204,11 @@ export default async function ContactPage({ params }: ContactPageProps) {
           hotel room type, voltage and frequency requirements, protocol
           preference, estimated quantity, and required documents.
         </p>
+        <ol className="mt-6 grid gap-4 border-y border-line py-5 text-sm md:grid-cols-3">
+          <li><strong className="text-brand">1.</strong> Share the project brief and product interest.</li>
+          <li><strong className="text-brand">2.</strong> We review technical fit and document needs.</li>
+          <li><strong className="text-brand">3.</strong> Continue by email or WhatsApp for quotation details.</li>
+        </ol>
         <div className="mt-6">
           <GetQuoteForm />
         </div>

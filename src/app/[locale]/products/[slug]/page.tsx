@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ContactCta } from "@/components/content/contact-cta";
@@ -22,6 +23,7 @@ import {
   createSchemaGraph,
 } from "@/lib/schema";
 import { stripHtml } from "@/lib/text";
+import { buildQuoteHref } from "@/lib/inquiry/attribution";
 import {
   createProductSeoDescription,
   createProductSeoTitle,
@@ -167,6 +169,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const faqsText = cleanPublicProductText(product.faqsText);
   const displayImage = productDisplayImages[product.slug];
   const heroImage = product.images[0];
+  const productTitle = stripHtml(product.title);
+  const productAttribution = {
+    sourcePage: `/${locale}/products/${slug}/`,
+    contentType: "product" as const,
+    contentSlug: slug,
+    sourceTitle: productTitle,
+  };
+  const heroQuoteAttribution = {
+    ...productAttribution,
+    ctaPosition: "product_hero",
+  };
 
   return (
     <>
@@ -215,14 +228,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {stripHtml(product.shortDescription || product.excerpt)}
             </p>
             <div className="product-detail-actions mt-8 flex flex-wrap gap-3">
-              <Link
-                href={`/${locale}/contact/#get-a-quote`}
+              <TrackedInquiryLink
+                href={buildQuoteHref(locale, heroQuoteAttribution)}
+                channel="form"
+                attribution={heroQuoteAttribution}
                 className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
                 Get a Quote
-              </Link>
+              </TrackedInquiryLink>
               <WhatsAppButton
-                message={`Hello DUALCORE LINK, I would like to get a quote for ${stripHtml(product.title)}.`}
+                message={`Hello DUALCORE LINK, I would like to get a quote for ${productTitle}.`}
+                attribution={{
+                  ...productAttribution,
+                  ctaPosition: "product_hero_whatsapp",
+                }}
                 className="inline-flex min-h-11 items-center justify-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
               />
             </div>
@@ -354,7 +373,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
             and files to our sales team.
           </p>
         </section>
-        <ContactCta locale={locale} label="Get a Quote" />
+        <ContactCta
+          locale={locale}
+          label="Get a Quote"
+          attribution={productAttribution}
+        />
       </article>
     </>
   );

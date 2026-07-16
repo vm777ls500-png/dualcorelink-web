@@ -1,9 +1,13 @@
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
+import type { InquiryAttribution } from "@/lib/inquiry/attribution";
+
 type ContactCardProps = {
   label: string;
   value: string;
   href: string;
   description: string;
   highlight?: boolean;
+  attribution: InquiryAttribution;
 };
 
 export function ContactCard({
@@ -12,10 +16,13 @@ export function ContactCard({
   href,
   description,
   highlight = false,
+  attribution,
 }: ContactCardProps) {
   return (
-    <a
+    <TrackedInquiryLink
       href={href}
+      channel="email"
+      attribution={attribution}
       className={
         highlight
           ? "contact-method-card contact-method-card-highlight block border border-brand bg-brand p-6 text-white"
@@ -35,6 +42,6 @@ export function ContactCard({
       <p className={highlight ? "mt-3 leading-7 text-white/75" : "mt-3 leading-7 text-muted"}>
         {description}
       </p>
-    </a>
+    </TrackedInquiryLink>
   );
 }

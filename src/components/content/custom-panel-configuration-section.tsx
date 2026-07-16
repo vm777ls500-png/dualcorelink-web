@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 import { brand } from "@/config/brand";
 import type { Locale } from "@/config/i18n";
+import { buildQuoteHref } from "@/lib/inquiry/attribution";
 import {
   panelConfigurationCopy,
   panelConfigurations,
@@ -19,6 +20,16 @@ export function CustomPanelConfigurationSection({
   const emailUrl = `mailto:${brand.emails.sales}?subject=${encodeURIComponent(
     "OEM/ODM room panel configuration",
   )}`;
+  const baseAttribution = {
+    sourcePage: `/${locale}/solutions/oem-odm-custom-panel-solution/`,
+    contentType: "solution" as const,
+    contentSlug: "oem-odm-custom-panel-solution",
+    sourceTitle: "OEM/ODM Smart Panel Solution",
+  };
+  const quoteAttribution = {
+    ...baseAttribution,
+    ctaPosition: "custom_panel_configuration",
+  };
 
   return (
     <section
@@ -116,21 +127,32 @@ export function CustomPanelConfigurationSection({
           {panelConfigurationCopy.disclaimer}
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
-          <Link
-            href={`/${locale}/contact/#get-a-quote`}
+          <TrackedInquiryLink
+            href={buildQuoteHref(locale, quoteAttribution)}
+            channel="form"
+            attribution={quoteAttribution}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
             {panelConfigurationCopy.primaryCta}
-          </Link>
-          <a
+          </TrackedInquiryLink>
+          <TrackedInquiryLink
             href={emailUrl}
+            channel="email"
+            attribution={{
+              ...baseAttribution,
+              ctaPosition: "custom_panel_email",
+            }}
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
           >
             {panelConfigurationCopy.secondaryCta}
-          </a>
+          </TrackedInquiryLink>
           <WhatsAppButton
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
             message="Hello DUALCORE LINK, I would like to discuss an OEM/ODM room panel configuration."
+            attribution={{
+              ...baseAttribution,
+              ctaPosition: "custom_panel_whatsapp",
+            }}
           />
         </div>
       </div>

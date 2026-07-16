@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { localeNames, visibleLocales, type Locale } from "@/config/i18n";
+import {
+  buildQuoteHref,
+  type InquiryContentType,
+} from "@/lib/inquiry/attribution";
 
 type HeaderProps = {
   locale: Locale;
@@ -10,6 +15,21 @@ type HeaderProps = {
 
 export function Header({ locale }: HeaderProps) {
   const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
+  const section = pathSegments[1];
+  const contentTypeBySection: Record<string, InquiryContentType> = {
+    products: "product",
+    resources: "resource",
+    solutions: "solution",
+    regions: "region",
+    contact: "contact",
+  };
+  const headerAttribution = {
+    sourcePage: pathname,
+    contentType: contentTypeBySection[section] ?? ("site" as const),
+    contentSlug: pathSegments[2],
+    ctaPosition: "global_header",
+  };
   const primaryNavigation = [
     ["Products", "products"],
     ["Series", "product-series"],
@@ -63,7 +83,16 @@ export function Header({ locale }: HeaderProps) {
           </ul>
         </nav>
 
-        <nav aria-label="Language">
+        <TrackedInquiryLink
+          href={buildQuoteHref(locale, headerAttribution)}
+          channel="form"
+          attribution={headerAttribution}
+          className="order-2 inline-flex min-h-10 items-center justify-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white lg:order-none"
+        >
+          Get a Quote
+        </TrackedInquiryLink>
+
+        <nav aria-label="Language" className="order-2 lg:order-none">
           <ul className="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 text-sm">
             {visibleLocales.map((item) => (
               <li key={item}>

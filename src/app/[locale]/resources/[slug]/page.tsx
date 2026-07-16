@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import {
   ResourceConversionSections,
   ResourceMidArticleCta,
@@ -27,6 +28,7 @@ import {
   createBreadcrumbSchema,
   createSchemaGraph,
 } from "@/lib/schema";
+import { buildQuoteHref } from "@/lib/inquiry/attribution";
 
 type ResourcePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -137,6 +139,16 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   if (!resource) notFound();
 
   const whatsappUrl = createWhatsAppUrl(resource.cta.whatsappMessage);
+  const resourceAttribution = {
+    sourcePage: `/en/resources/${resource.slug}/`,
+    contentType: "resource" as const,
+    contentSlug: resource.slug,
+    sourceTitle: resource.h1,
+  };
+  const heroQuoteAttribution = {
+    ...resourceAttribution,
+    ctaPosition: "resource_hero",
+  };
   const continueReading =
     resource.conversion?.continueReadingSlugs
       .map((relatedSlug) => getResourceBySlug(relatedSlug))
@@ -178,18 +190,25 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               {resource.summary}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                href={resource.cta.primaryHref}
+              <TrackedInquiryLink
+                href={buildQuoteHref("en", heroQuoteAttribution)}
+                channel="form"
+                attribution={heroQuoteAttribution}
                 className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
                 {resource.cta.primaryLabel}
-              </Link>
-              <a
+              </TrackedInquiryLink>
+              <TrackedInquiryLink
                 href={whatsappUrl}
+                channel="whatsapp"
+                attribution={{
+                  ...resourceAttribution,
+                  ctaPosition: "resource_hero_whatsapp",
+                }}
                 className="inline-flex min-h-11 items-center justify-center border border-line bg-background px-5 py-3 font-semibold text-brand"
               >
                 {resource.cta.whatsappLabel}
-              </a>
+              </TrackedInquiryLink>
             </div>
           </div>
         </section>
@@ -309,24 +328,37 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                   {resource.cta.body}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Link
-                    href={resource.cta.primaryHref}
+                  <TrackedInquiryLink
+                    href={buildQuoteHref("en", {
+                      ...resourceAttribution,
+                      ctaPosition: "resource_fallback_bottom",
+                    })}
+                    channel="form"
+                    attribution={{
+                      ...resourceAttribution,
+                      ctaPosition: "resource_fallback_bottom",
+                    }}
                     className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
                   >
                     {resource.cta.primaryLabel}
-                  </Link>
+                  </TrackedInquiryLink>
                   <Link
                     href={resource.cta.secondaryHref}
                     className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
                   >
                     {resource.cta.secondaryLabel}
                   </Link>
-                  <a
+                  <TrackedInquiryLink
                     href={whatsappUrl}
+                    channel="whatsapp"
+                    attribution={{
+                      ...resourceAttribution,
+                      ctaPosition: "resource_fallback_whatsapp",
+                    }}
                     className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
                   >
                     {brand.whatsapp.label}
-                  </a>
+                  </TrackedInquiryLink>
                 </div>
               </section>
             )}

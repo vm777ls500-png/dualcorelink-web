@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ContactCta } from "@/components/content/contact-cta";
 import { ContentSection } from "@/components/content/content-section";
@@ -21,6 +22,7 @@ import {
   createServiceSchema,
 } from "@/lib/schema";
 import { stripHtml } from "@/lib/text";
+import { buildQuoteHref } from "@/lib/inquiry/attribution";
 import { solutionRepository } from "@/lib/wordpress/repositories";
 import type { Locale } from "@/config/i18n";
 import type { RelatedContentModel } from "@/types/content";
@@ -331,6 +333,17 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   }
   const path = buildLocalizedPath(locale, `solutions/${slug}`);
   const url = buildSiteUrl(path);
+  const solutionTitle = stripHtml(solution.title);
+  const solutionAttribution = {
+    sourcePage: `/${locale}/solutions/${slug}/`,
+    contentType: "solution" as const,
+    contentSlug: slug,
+    sourceTitle: solutionTitle,
+  };
+  const heroQuoteAttribution = {
+    ...solutionAttribution,
+    ctaPosition: "solution_hero",
+  };
   const pageNodes = [
     createBreadcrumbSchema(`${url}#breadcrumb`, [
       { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
@@ -375,12 +388,22 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 Typical deployment: <strong>{solution.typicalDeploymentTime}</strong>
               </p>
             ) : null}
-            <Link
-              href={`/${locale}/products/`}
-              className="solution-detail-primary-link mt-7 inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
-            >
-              Explore Products
-            </Link>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <TrackedInquiryLink
+                href={buildQuoteHref(locale, heroQuoteAttribution)}
+                channel="form"
+                attribution={heroQuoteAttribution}
+                className="solution-detail-primary-link inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+              >
+                Discuss This Project
+              </TrackedInquiryLink>
+              <Link
+                href={`/${locale}/products/`}
+                className="solution-detail-primary-link inline-flex min-h-11 items-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
+              >
+                Explore Products
+              </Link>
+            </div>
           </header>
           {solution.heroImage ? (
             <div className="solution-detail-media-panel">
@@ -421,6 +444,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           <ContactCta
             locale={locale}
             label={solution.inquiryCtaLabel || "Contact Sales"}
+            attribution={solutionAttribution}
           />
         </div>
       </article>

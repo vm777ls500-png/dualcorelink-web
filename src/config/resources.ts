@@ -524,7 +524,7 @@ export const resources: ResourceGuide[] = [
     topic: "RCU buying",
     listingGroup: "Buying Guides",
     featuredPriority: 1,
-    readingTime: "7 min read",
+    readingTime: "10 min read",
     primaryKeyword: "hotel RCU buying guide",
     secondaryKeywords: [
       "hotel RCU supplier",
@@ -539,14 +539,14 @@ export const resources: ResourceGuide[] = [
       "Hotel owner",
       "OEM/ODM buyer",
     ],
-    lastReviewed: "2026-07-09",
+    lastReviewed: "2026-07-17",
     sections: [
       {
         id: "start-with-room-scope",
         heading: "Start with the Guest Room Control Scope",
         body: [
-          "A hotel RCU buying process should begin with the room functions, not only with a controller model. Buyers should define lighting circuits, curtain control, HVAC control, room status, door status, key card power, sensors, and service functions before comparing product options.",
-          "For contractors and system integrators, this early scope helps create a clearer device list and avoids quoting an RCU without the panels, sensors, and room devices that make the system complete.",
+          "A hotel RCU buying process should begin with the room functions, room types, and installation responsibilities, not only with a controller model. Buyers should define lighting circuits, curtain control, HVAC control, room status, door status, key card power, sensors, and service functions before comparing product options.",
+          "For contractors and system integrators, this early scope creates a clearer device list and prevents an RCU host from being quoted without the panels, sensors, protection devices, field wiring, and room equipment required around it. The objective is a comparable room package, not a shortlist based on model names alone.",
         ],
       },
       {
@@ -566,11 +566,57 @@ export const resources: ResourceGuide[] = [
         ],
       },
       {
+        id: "rcu-io-load-schedule",
+        heading: "Build an RCU I/O and Load Schedule",
+        body: [
+          "Create one schedule for every controlled output and monitored input. Lighting and curtain circuits, fan-coil commands, key card status, door contact, presence sensing, DND/MUR, doorbell, SOS, and spare points should be identified by room type. Record the expected load or signal type and the panel or field device associated with each point.",
+          "The schedule helps the electrical contractor review circuit capacity and protection while the controls team reviews logic and device count. Final load calculations, mains wiring, protection, and installation must be confirmed by qualified project professionals; an RCU model should not be selected from point count alone.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel RCU wiring and system architecture guide",
+            href: "/en/resources/hotel-rcu-wiring-system-architecture-guide/",
+          },
+        ],
+      },
+      {
+        id: "rcu-responsibility-boundaries",
+        heading: "Separate Controller, Cabinet, and Field Device Responsibilities",
+        body: [
+          "Clarify which functions belong to the room controller, which circuits are organized in a cabinet, and which devices remain under the HVAC, curtain, door-lock, or electrical package. This prevents duplicated scope and makes it easier to identify who supplies relays, power supplies, gateways, back boxes, cables, and termination work.",
+          "If PMS, BMS, mobile, or another third-party connection is requested, list the required data points and interface owner separately. The project team should verify the real integration method, gateway, software responsibility, and fallback behavior instead of assuming that every RCU supports every external platform.",
+        ],
+        relatedLinks: [
+          {
+            title: "What an RCU does in a hotel guest room",
+            href: "/en/resources/what-is-hotel-rcu-room-control-system/",
+          },
+          {
+            title: "Smart hotel room control system specification guide",
+            href: "/en/resources/smart-hotel-room-control-system-guide/",
+          },
+        ],
+      },
+      {
         id: "documents-for-buying",
         heading: "Prepare Documents for a Faster Quotation",
         body: [
           "Useful inquiry details include room quantity, room type, product interests, voltage, protocol preference, panel finish, logo requirements, target market, and required documents.",
           "Datasheets, wiring diagrams, available certificate copies, and catalog files can be reviewed by product and project request. A BOQ or room schedule makes quotation discussion more efficient.",
+        ],
+      },
+      {
+        id: "rcu-supplier-response-review",
+        heading: "Evaluate Samples, Documents, and Supplier Responses",
+        body: [
+          "Ask shortlisted suppliers to respond against the same room schedule and BOQ. The response should identify included products, exclusions, required third-party items, drawing responsibilities, available project documents, sample scope, and assumptions that could change the quotation.",
+          "For a sample room, agree which functions will be demonstrated and how issues will be recorded before wider procurement. Compare document completeness and scope clarity alongside the hardware; the lowest device count or shortest product list does not necessarily represent the same room-control package.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel room control system cost factors",
+            href: "/en/resources/hotel-room-control-system-cost-factors/",
+          },
         ],
       },
       {
@@ -677,7 +723,7 @@ export const resources: ResourceGuide[] = [
     topic: "Room control system",
     listingGroup: "Hotel Automation Guides",
     featuredPriority: 2,
-    readingTime: "8 min read",
+    readingTime: "11 min read",
     primaryKeyword: "smart hotel room control system",
     secondaryKeywords: [
       "hotel guest room control system",
@@ -691,14 +737,20 @@ export const resources: ResourceGuide[] = [
       "System integrator",
       "Distributor",
     ],
-    lastReviewed: "2026-07-09",
+    lastReviewed: "2026-07-17",
     sections: [
       {
         id: "system-overview",
         heading: "What a Smart Hotel Room Control System Includes",
         body: [
-          "A smart hotel room control system can coordinate lighting, curtains, HVAC, power, room status, door status, sensing, and selected service functions inside the guest room.",
-          "The system may use an RCU host or cabinet as the coordination layer, with visible smart panels and sensors supporting guest control and hotel operation workflows.",
+          "A smart hotel room control system is the coordinated device and control architecture used to manage lighting, curtains, HVAC, power, room status, door status, sensing, and selected service functions inside the guest room.",
+          "The system may use an RCU host or cabinet as the coordination layer, with smart panels, displays, thermostats, and sensors providing guest and staff interfaces. This guide focuses on specifying the complete system and its responsibilities; detailed guest-operation workflows are covered separately in the hotel guest room automation guide.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel guest room automation workflows",
+            href: "/en/resources/hotel-guest-room-automation-guide/",
+          },
         ],
       },
       {
@@ -718,11 +770,57 @@ export const resources: ResourceGuide[] = [
         ],
       },
       {
+        id: "system-architecture-map",
+        heading: "Translate Room Functions into a System Architecture",
+        body: [
+          "Map each required function to a control interface, a controller input or output, a field device, and a responsible trade. A lighting scene may involve a bedside panel, an RCU output, a protected circuit, and commissioning logic; temperature control may involve a thermostat, the room controller, and equipment supplied under the HVAC package.",
+          "The architecture should show power and signal boundaries without turning an early product list into an unverified integration promise. Record any required PMS, BMS, app, lock, or third-party connection as a separate interface that must be confirmed for the selected products and project design.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel guest room control interfaces guide",
+            href: "/en/resources/hotel-guest-room-control-interfaces-guide/",
+          },
+          {
+            title: "Hotel RCU wiring and system architecture guide",
+            href: "/en/resources/hotel-rcu-wiring-system-architecture-guide/",
+          },
+        ],
+      },
+      {
+        id: "room-function-matrix",
+        heading: "Prepare a Room Function Matrix and Approval Set",
+        body: [
+          "Create a matrix for standard rooms, suites, accessible rooms, and other repeatable types. For each room type, list control functions, panel locations, visible labels, HVAC requirements, sensor positions, room-status behavior, and the drawings or samples required for approval.",
+          "Use the matrix to align the hotel operator, interior designer, MEP consultant, contractor, integrator, and supplier. A controlled revision process helps prevent a finish change, button-label change, or device substitution from silently changing wiring, quantities, or commissioning scope.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel room control system quotation factors",
+            href: "/en/resources/hotel-room-control-system-cost-factors/",
+          },
+        ],
+      },
+      {
         id: "integration-planning",
         heading: "Integration and Wiring Planning",
         body: [
           "Integration planning should confirm how room devices communicate, how the control logic is grouped, and which functions must be reviewed with the contractor or integrator before installation.",
           "Early wiring and protocol review reduces rework when panels, sensors, HVAC control, curtain control, and room status devices are added to the project list.",
+        ],
+      },
+      {
+        id: "commissioning-boundaries",
+        heading: "Define Commissioning and Responsibility Boundaries",
+        body: [
+          "Before procurement, identify who provides room logic, panel configuration, controller addressing, HVAC coordination, third-party interfaces, testing records, and final handover documents. The responsible parties may differ between a complete room package and a device-only purchase.",
+          "Define sample-room acceptance, fault reporting, configuration backup, spare strategy, and the evidence needed before repeating the design across more rooms. These questions make supplier responses easier to compare and reduce gaps between equipment delivery and an operational guest room.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel RCU buying guide",
+            href: "/en/resources/hotel-rcu-buying-guide/",
+          },
         ],
       },
       {
@@ -828,7 +926,7 @@ export const resources: ResourceGuide[] = [
     category: "Guide",
     topic: "Smart panels",
     listingGroup: "Buying Guides",
-    readingTime: "7 min read",
+    readingTime: "10 min read",
     primaryKeyword: "hotel smart switch panel",
     secondaryKeywords: [
       "hotel smart wall switch",
@@ -843,14 +941,14 @@ export const resources: ResourceGuide[] = [
       "OEM/ODM buyer",
       "System integrator",
     ],
-    lastReviewed: "2026-07-09",
+    lastReviewed: "2026-07-17",
     sections: [
       {
         id: "panel-role",
         heading: "The Role of Smart Switch Panels in Hotel Rooms",
         body: [
-          "Smart switch panels are the guest-facing control points for lighting, scenes, curtains, service functions, and selected room automation workflows.",
-          "For B2B projects, panels need to match both the electrical system and the interior design direction, so appearance and wiring should be reviewed together.",
+          "Smart switch panels are guest-facing control points for lighting, scenes, curtains, service functions, and selected room automation workflows. Their value depends on whether guests can find and understand the right control at the entrance, bedside, desk, bathroom, and other room positions.",
+          "For B2B projects, panels must align with the electrical and room-control design as well as the interior direction. Function, location, button hierarchy, wiring, back box, finish, labeling, and sample approval should therefore be reviewed as one panel schedule rather than as separate appearance decisions.",
         ],
       },
       {
@@ -859,6 +957,20 @@ export const resources: ResourceGuide[] = [
         body: [
           "A standard room may need lighting, master control, DND/MUR, curtain, and power functions. Suites or serviced apartments may need more scene control and multi-zone combinations.",
           "The panel function list should be confirmed before selecting button quantity, icons, backlight behavior, finish, and communication method.",
+        ],
+      },
+      {
+        id: "panel-location-schedule",
+        heading: "Create a Panel Schedule by Room Location",
+        body: [
+          "List every entrance, bedside, desk, bathroom, wardrobe, curtain, thermostat, service, and socket position by room type. For each position, record the required function, button count, icon or text, mounting orientation, back box, finish, and the controller or circuit it belongs to.",
+          "A location-based schedule reveals duplicated controls and missing guest actions before samples are ordered. It also helps buyers decide where tactile switches are clearer than a multifunction screen and where a dedicated thermostat or curtain control should remain separate.",
+        ],
+        relatedLinks: [
+          {
+            title: "Compare hotel guest room control interfaces",
+            href: "/en/resources/hotel-guest-room-control-interfaces-guide/",
+          },
         ],
       },
       {
@@ -875,6 +987,34 @@ export const resources: ResourceGuide[] = [
         body: [
           "Before ordering, confirm voltage, load requirements, wiring method, back box size, protocol preference, and whether the panel connects to an RCU or works as part of another control structure.",
           "Compatibility should be checked by project. A panel suitable for one room design may still need review before it is used in another market or installation environment.",
+        ],
+      },
+      {
+        id: "panel-sample-approval",
+        heading: "Review a Panel Sample as Part of Project Approval",
+        body: [
+          "Use a physical sample or sample-room installation to review finish, color, icon legibility, backlight, button feel, alignment, cleaning, mounting depth, and the relationship between adjacent panels. Photos alone may not show how a finish changes under room lighting or how labels read from the guest position.",
+          "Record approved artwork, color reference, layout revision, electrical model, and packaging identification together. If one item changes after approval, confirm whether it affects only appearance or also the product, wiring, software, or tooling scope.",
+        ],
+        relatedLinks: [
+          {
+            title: "Smart panel material and finish selection guide",
+            href: "/en/resources/smart-panel-material-finish-selection-guide/",
+          },
+        ],
+      },
+      {
+        id: "panel-quotation-comparison",
+        heading: "Prepare a Comparable Smart Panel Quotation",
+        body: [
+          "Send the same panel schedule, room quantities, finish references, voltage, mounting requirements, controller relationship, sample needs, artwork status, and required documents to each shortlisted supplier. Separate standard models from custom labels, colors, layouts, packaging, or engineering work.",
+          "Compare inclusions and exclusions as well as unit descriptions. A quotation should make it possible to see which back boxes, accessories, samples, artwork revisions, documents, and project-specific tasks are included before the buyer compares commercial terms.",
+        ],
+        relatedLinks: [
+          {
+            title: "OEM/ODM smart panel customization guide",
+            href: "/en/resources/oem-odm-smart-panel-customization-guide/",
+          },
         ],
       },
       {
@@ -980,7 +1120,7 @@ export const resources: ResourceGuide[] = [
     topic: "OEM/ODM customization",
     listingGroup: "OEM/ODM Guides",
     featuredPriority: 3,
-    readingTime: "7 min read",
+    readingTime: "10 min read",
     primaryKeyword: "OEM ODM smart panel customization",
     secondaryKeywords: [
       "custom smart switch panel",
@@ -989,14 +1129,14 @@ export const resources: ResourceGuide[] = [
       "ODM smart home panel",
     ],
     audience: ["OEM/ODM buyer", "Distributor", "Contractor", "Hotel owner"],
-    lastReviewed: "2026-07-09",
+    lastReviewed: "2026-07-17",
     sections: [
       {
         id: "customization-scope",
         heading: "Define the Customization Scope",
         body: [
-          "OEM/ODM smart panel customization can involve logo, button icons, button layout, color, surface finish, packaging, documentation, and product series selection.",
-          "The available options depend on product series and project requirements, so buyers should confirm whether they need minor branding changes or a deeper product configuration review.",
+          "OEM/ODM smart panel customization can involve logo, button icons, button layout, color, surface finish, packaging, documentation, product selection, and project-specific technical review. These requests do not all require the same development path.",
+          "Buyers should separate a standard model with branding from mechanical changes, electrical changes, firmware or interface work, and a new product concept. Available options, samples, tooling, quantities, fees, and lead time depend on the product series and confirmed scope, so each layer should be quoted explicitly.",
         ],
       },
       {
@@ -1016,11 +1156,53 @@ export const resources: ResourceGuide[] = [
         ],
       },
       {
+        id: "customization-workstreams",
+        heading: "Separate Branding, Mechanical, Electrical, and Firmware Work",
+        body: [
+          "Create separate requirement lists for artwork and branding, panel dimensions and mounting, electrical functions and wiring, and any display or firmware behavior. A logo file or icon sheet does not define circuit loads, controller compatibility, screen pages, language content, or third-party integration.",
+          "Assign an approval owner to each workstream and identify which requests are mandatory for the first sample. This lets the supplier confirm which existing series can be used and which requests require engineering, tooling, software review, or a different product direction.",
+        ],
+        relatedLinks: [
+          {
+            title: "OEM/ODM hotel control panel development process",
+            href: "/en/resources/oem-odm-hotel-control-panel-development-process/",
+          },
+        ],
+      },
+      {
         id: "sample-document-review",
         heading: "Sample and Document Review",
         body: [
           "Samples may be useful for appearance, touch feel, function, wiring, and internal approval. Document needs may include catalogs, datasheets, wiring diagrams, and available certificate copies by product request.",
           "For custom requirements, lead time and sample scope should be confirmed by product series, order quantity, and customization details.",
+        ],
+      },
+      {
+        id: "controlled-sample-approval",
+        heading: "Build a Controlled Sample Approval Package",
+        body: [
+          "Issue a sample brief with the product code, drawing revision, dimensions, finish reference, icon artwork, logo position, button or screen functions, packaging expectation, and test items. Record whether the sample is for appearance only, electrical review, functional review, or a complete sample-room trial.",
+          "Feedback should reference the same revision and distinguish defects from requested design changes. An approved sample package should identify what is frozen for quotation and what remains open, reducing the risk that later artwork or function changes are treated as part of the original scope.",
+        ],
+        relatedLinks: [
+          {
+            title: "Smart panel material and finish selection guide",
+            href: "/en/resources/smart-panel-material-finish-selection-guide/",
+          },
+        ],
+      },
+      {
+        id: "tooling-packaging-assumptions",
+        heading: "Compare Tooling, Packaging, and Production Assumptions",
+        body: [
+          "Ask whether the proposal uses an existing housing and internal platform, a modified component, or new tooling. Confirm who owns approved artwork and tooling, how revisions are controlled, what packaging elements are customized, and which inspection references will be used for the agreed product.",
+          "MOQ, sample cost, tooling cost, production timing, and packaging quantities should be confirmed for the selected series and scope rather than copied from another project. Keep these assumptions visible in the quotation so a standard private-label request is not compared with a deeper ODM development program as if they were equivalent.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel smart switch panel buying guide",
+            href: "/en/resources/hotel-smart-switch-panel-guide/",
+          },
         ],
       },
       {
@@ -1126,7 +1308,7 @@ export const resources: ResourceGuide[] = [
     category: "Guide",
     topic: "Guest room automation",
     listingGroup: "Hotel Automation Guides",
-    readingTime: "8 min read",
+    readingTime: "11 min read",
     primaryKeyword: "hotel guest room automation",
     secondaryKeywords: [
       "hotel room automation system",
@@ -1140,14 +1322,20 @@ export const resources: ResourceGuide[] = [
       "System integrator",
       "Distributor",
     ],
-    lastReviewed: "2026-07-09",
+    lastReviewed: "2026-07-17",
     sections: [
       {
         id: "automation-scope",
         heading: "What Guest Room Automation Can Cover",
         body: [
-          "Hotel guest room automation can include lighting scenes, curtain control, HVAC control, key card power, occupancy sensing, door status, room status indicators, SOS, doorbell, and selected service workflows.",
-          "The right scope depends on the hotel category, guest room type, renovation or new-build status, and how the owner wants to balance guest experience with installation practicality.",
+          "Hotel guest room automation turns defined room events into coordinated actions or status changes across lighting scenes, curtains, HVAC, key card power, occupancy sensing, door status, DND/MUR, SOS, doorbell, and selected service workflows.",
+          "The right scope depends on the hotel category, guest room type, renovation or new-build status, and the operator's preferred guest and housekeeping workflows. This guide focuses on those operating sequences; controller architecture and complete system specification are covered in the smart hotel room control system guide.",
+        ],
+        relatedLinks: [
+          {
+            title: "Smart hotel room control system specification guide",
+            href: "/en/resources/smart-hotel-room-control-system-guide/",
+          },
         ],
       },
       {
@@ -1156,6 +1344,38 @@ export const resources: ResourceGuide[] = [
         body: [
           "Start with the guest journey: entry, welcome lighting, room power, temperature control, curtain control, service status, sleep mode, and checkout or housekeeping status.",
           "Then map the required devices, such as smart panels, RCU host, thermostat panel, curtain panel, sensors, sockets, doorbell, and room status panel.",
+        ],
+      },
+      {
+        id: "arrival-occupancy-workflows",
+        heading: "Map Arrival and Occupancy Workflows",
+        body: [
+          "Document what should happen when a guest approaches or enters the room, inserts a key card, uses an entrance panel, or is detected by an approved occupancy strategy. Define which lights, curtains, HVAC states, and displays may change, which actions remain manual, and how staff or vacant-room states differ.",
+          "Avoid using one sensor event as proof of occupancy without an agreed control strategy. Door contact, key card status, presence sensing, timing, and operator rules may play different roles, and their logic should be reviewed for the actual room type and equipment package.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel occupancy sensor selection guide",
+            href: "/en/resources/hotel-occupancy-sensor-selection-guide/",
+          },
+          {
+            title: "Hotel guest room control interfaces guide",
+            href: "/en/resources/hotel-guest-room-control-interfaces-guide/",
+          },
+        ],
+      },
+      {
+        id: "sleep-service-housekeeping",
+        heading: "Plan Sleep, DND/MUR, and Housekeeping Sequences",
+        body: [
+          "Define the guest actions for reading, night, master-off, curtain control, temperature adjustment, DND, MUR, doorbell, and emergency functions. Bedside controls should keep frequent night-time actions easy to find without forcing every task into a screen or mobile interface.",
+          "For housekeeping and service states, confirm what is displayed inside and outside the room, which signals are local, and whether any wider hotel-system connection is actually in scope. The DND/MUR and doorbell behavior should remain understandable if a network or optional integration is unavailable.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel doorplate and room display buying guide",
+            href: "/en/resources/hotel-doorplate-room-display-buying-guide/",
+          },
         ],
       },
       {
@@ -1172,6 +1392,20 @@ export const resources: ResourceGuide[] = [
         body: [
           "Contractors and integrators should confirm wiring, voltage, protocol preference, device placement, and room control logic before finalizing the product list.",
           "Datasheets, wiring diagrams, catalogs, and available certificate copies can be reviewed by product and project request after the automation scope is clear.",
+        ],
+      },
+      {
+        id: "fallback-operational-boundaries",
+        heading: "Define Fallback and Operational Boundaries",
+        body: [
+          "For every automated sequence, decide which essential room controls remain available locally and what happens after a controller restart, sensor fault, communication loss, or device replacement. Record manual overrides, default states, fault reporting, configuration backup, and the responsible maintenance team.",
+          "Renovation projects may need a narrower automation scope because existing wiring, HVAC equipment, back boxes, and room access constrain the design. Validate one representative room before repeating the sequence and keep unverified PMS, BMS, lock, or mobile integration outside the confirmed scope until the required interface is reviewed.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel renovation smart room upgrade guide",
+            href: "/en/resources/hotel-renovation-smart-room-upgrade-guide/",
+          },
         ],
       },
       {

@@ -803,6 +803,146 @@ test("Phase 2G control interfaces guide is complete, linked, and attribution-saf
   assert.equal(serialized.includes('"href":"#"'), false);
 });
 
+test("Phase 2H priority resources preserve intent, links, and conversion safety", async () => {
+  const priorityExpectations = [
+    {
+      slug: "smart-hotel-room-control-system-guide",
+      requiredSections: [
+        "system-architecture-map",
+        "room-function-matrix",
+        "commissioning-boundaries",
+      ],
+    },
+    {
+      slug: "hotel-guest-room-automation-guide",
+      requiredSections: [
+        "arrival-occupancy-workflows",
+        "sleep-service-housekeeping",
+        "fallback-operational-boundaries",
+      ],
+    },
+    {
+      slug: "hotel-smart-switch-panel-guide",
+      requiredSections: [
+        "panel-location-schedule",
+        "panel-sample-approval",
+        "panel-quotation-comparison",
+      ],
+    },
+    {
+      slug: "oem-odm-smart-panel-customization-guide",
+      requiredSections: [
+        "customization-workstreams",
+        "controlled-sample-approval",
+        "tooling-packaging-assumptions",
+      ],
+    },
+    {
+      slug: "hotel-rcu-buying-guide",
+      requiredSections: [
+        "rcu-io-load-schedule",
+        "rcu-responsibility-boundaries",
+        "rcu-supplier-response-review",
+      ],
+    },
+  ];
+  const resourceSlugs = new Set(resources.map((resource) => resource.slug));
+
+  assert.equal(resources.length, 15);
+  for (const expectation of priorityExpectations) {
+    const resource = resources.find((item) => item.slug === expectation.slug);
+    assert.ok(resource);
+    assert.equal(resource.lastReviewed, "2026-07-17");
+    assert.equal(resource.sections.length, 9);
+    assert.ok(resource.conversion);
+    assert.equal(resource.conversion.continueReadingSlugs.length, 3);
+    assert.equal(resource.relatedProducts.length, 4);
+    assert.ok(resource.relatedSolutions.length >= 2);
+    assert.equal(resource.cta.primaryHref, "/en/contact/#get-a-quote");
+
+    const sectionIds = new Set(resource.sections.map((section) => section.id));
+    for (const requiredSection of expectation.requiredSections) {
+      assert.ok(
+        sectionIds.has(requiredSection),
+        `Missing ${requiredSection} in ${resource.slug}`,
+      );
+    }
+
+    const articleWords = resource.sections
+      .flatMap((section) => [
+        ...section.body,
+        ...(section.subsections?.flatMap((subsection) => subsection.body) ?? []),
+      ])
+      .join(" ")
+      .split(/\s+/)
+      .filter(Boolean).length;
+    assert.ok(articleWords >= 500, `${resource.slug} has only ${articleWords} words`);
+
+    const contextualResourceLinks = resource.sections.flatMap((section) =>
+      (section.relatedLinks ?? []).map((link) => link.href),
+    );
+    assert.ok(contextualResourceLinks.length >= 3);
+    for (const href of contextualResourceLinks) {
+      assert.ok(href.startsWith("/en/resources/"));
+      const targetSlug = href.split("/").filter(Boolean).at(-1);
+      assert.ok(targetSlug && resourceSlugs.has(targetSlug));
+      assert.notEqual(targetSlug, resource.slug);
+    }
+
+    const quoteHref = buildQuoteHref("en", {
+      sourcePage: `/en/resources/${resource.slug}/`,
+      contentType: "resource",
+      contentSlug: resource.slug,
+      sourceTitle: resource.h1,
+      ctaPosition: "resource_final",
+    });
+    const quoteUrl = new URL(quoteHref, "https://dualcorelink.com");
+    assert.equal(quoteUrl.pathname, "/en/contact/");
+    assert.equal(quoteUrl.hash, "#get-a-quote");
+    assert.equal(quoteUrl.searchParams.get("content_type"), "resource");
+    assert.equal(quoteUrl.searchParams.get("content_slug"), resource.slug);
+
+    const event = createInquiryEvent("cta_click", "form", {
+      sourcePage: `/en/resources/${resource.slug}/`,
+      contentType: "resource",
+      contentSlug: resource.slug,
+      sourceTitle: resource.h1,
+      ctaPosition: "resource_final",
+    });
+    assert.deepEqual(Object.keys(event).sort(), [
+      "category",
+      "cta_location",
+      "event",
+      "page_path",
+      "source_slug",
+      "source_type",
+    ]);
+    assert.equal(JSON.stringify(event).includes(resource.h1), false);
+
+    const serialized = JSON.stringify(resource).toLowerCase();
+    assert.equal(
+      /localhost|127\.0\.0\.1|siteground|pages\.dev|cms-aws/.test(serialized),
+      false,
+    );
+    assert.equal(serialized.includes('"href":"#"'), false);
+    const buyerFacingContent = JSON.stringify({
+      title: resource.title,
+      h1: resource.h1,
+      summary: resource.summary,
+      sections: resource.sections,
+      relatedProducts: resource.relatedProducts,
+      relatedSolutions: resource.relatedSolutions,
+      cta: resource.cta,
+    }).toLowerCase();
+    assert.equal(
+      /local stock|guaranteed compliance|fake review|aggregate rating/.test(
+        buyerFacingContent,
+      ),
+      false,
+    );
+  }
+});
+
 test("all published product detail pages can emit safe Product schema", async () => {
   const params = await productRepository.getStaticParams("en");
   assert.equal(params.length, 36);

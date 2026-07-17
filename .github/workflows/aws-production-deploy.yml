@@ -68,7 +68,7 @@ jobs:
           set -euo pipefail
           export NO_COLOR=1
           npm run build 2>&1 | tee build.log
-          grep -Eq 'Generating static pages.*155/155' build.log
+          grep -Eq 'Generating static pages.*156/156' build.log
 
       - name: Deploy atomic release
         id: deploy

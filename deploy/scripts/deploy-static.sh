@@ -21,10 +21,10 @@ release_activator="${RELEASE_ACTIVATOR:-/usr/local/sbin/dualcorelink-activate-re
 local_health_host="${LOCAL_HEALTH_HOST:-aws.dualcorelink.com}"
 local_health_url="${LOCAL_HEALTH_URL:-https://aws.dualcorelink.com/en/}"
 expected_products="${EXPECTED_PRODUCTS:-36}"
-expected_resources="${EXPECTED_RESOURCES:-14}"
-expected_sitemap_urls="${EXPECTED_SITEMAP_URLS:-75}"
-expected_articles="${EXPECTED_ARTICLES:-14}"
-expected_breadcrumbs="${EXPECTED_BREADCRUMBS:-14}"
+expected_resources="${EXPECTED_RESOURCES:-15}"
+expected_sitemap_urls="${EXPECTED_SITEMAP_URLS:-76}"
+expected_articles="${EXPECTED_ARTICLES:-15}"
+expected_breadcrumbs="${EXPECTED_BREADCRUMBS:-15}"
 expected_product_schemas="${EXPECTED_PRODUCT_SCHEMAS:-36}"
 
 if [[ ! "$source_sha" =~ ^[0-9a-fA-F]{7,40}$ ]]; then

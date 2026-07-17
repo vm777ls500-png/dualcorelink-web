@@ -7,9 +7,11 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { ContactCta } from "@/components/content/contact-cta";
 import { ContentSection } from "@/components/content/content-section";
 import { MediaFrame } from "@/components/content/media-frame";
+import { ProductGallery } from "@/components/content/product-gallery";
 import { ProductProjectBuyingGuide } from "@/components/content/product-project-buying-guide";
 import { SpecificationList } from "@/components/content/specification-list";
 import { productDisplayImages } from "@/config/product-display-images";
+import { productGalleries } from "@/config/product-galleries";
 import { getProductConversionProfile } from "@/config/product-conversion";
 import { isLocale, locales } from "@/config/i18n";
 import { ensureStaticExportParams } from "@/lib/routing/static-export";
@@ -170,6 +172,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const technicalSpecsText = cleanPublicProductText(product.technicalSpecsText);
   const faqsText = cleanPublicProductText(product.faqsText);
   const displayImage = productDisplayImages[product.slug];
+  const productGallery = productGalleries[product.slug];
   const heroImage = product.images[0];
   const productTitle = stripHtml(product.title);
   const conversionProfile = getProductConversionProfile(product.categorySlugs);
@@ -190,14 +193,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <article className="product-detail-page">
         <div className="product-detail-hero mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-2 lg:px-12">
           <div className="product-detail-media-panel">
-            <MediaFrame
-              src={displayImage?.src ?? heroImage?.sourceUrl}
-              alt={heroImage?.altText || stripHtml(product.title)}
-              width={displayImage?.width ?? heroImage?.width}
-              height={displayImage?.height ?? heroImage?.height}
-              loading="eager"
-              fetchPriority="high"
-            />
+            {productGallery ? (
+              <ProductGallery
+                productTitle={productTitle}
+                featuredImage={productGallery.featuredImage}
+                gallery={productGallery.gallery}
+              />
+            ) : (
+              <MediaFrame
+                src={displayImage?.src ?? heroImage?.sourceUrl}
+                alt={heroImage?.altText || productTitle}
+                width={displayImage?.width ?? heroImage?.width}
+                height={displayImage?.height ?? heroImage?.height}
+                loading="eager"
+                fetchPriority="high"
+              />
+            )}
           </div>
           <header className="product-detail-summary self-center">
             <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase">

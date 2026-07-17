@@ -9,6 +9,7 @@ import { isLocale, locales } from "@/config/i18n";
 import { applicationScenarios } from "@/config/application-scenarios";
 import { productCategories } from "@/config/product-taxonomy";
 import { productSeries } from "@/config/product-series";
+import { productDisplayImages } from "@/config/product-display-images";
 import { brand } from "@/config/brand";
 import {
   createMetadata,
@@ -290,8 +291,12 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                 product.shortDescription || product.excerpt,
               ),
               reference: product.model || undefined,
-              hasMedia: product.primaryImage !== null,
-              mediaUrl: product.primaryImage?.sourceUrl,
+              hasMedia:
+                productDisplayImages[product.slug] !== undefined ||
+                product.primaryImage !== null,
+              mediaUrl:
+                productDisplayImages[product.slug]?.src ??
+                product.primaryImage?.sourceUrl,
               mediaAlt: stripHtml(product.title),
               categories: product.categoryNames,
               categorySlugs: product.categorySlugs,

@@ -24,6 +24,8 @@ import {
   websiteId,
 } from "../src/lib/schema";
 import { productRepository } from "../src/lib/wordpress/repositories";
+import { buildQuoteHref } from "../src/lib/inquiry/attribution";
+import { createInquiryEvent } from "../src/lib/inquiry/events";
 import type { ProductDetailModel } from "../src/types/content";
 
 const phase2DResourceSlugs = [
@@ -194,9 +196,9 @@ test("Product schema has no Offer or manufacturer by default", () => {
 test("resources are included in the sitemap without non-English or PDF URLs", async () => {
   const urls = (await sitemap()).map((entry) => entry.url);
 
-  assert.equal(resources.length, 14);
+  assert.equal(resources.length, 15);
   assert.equal(urls.length, 61 + resources.length);
-  assert.equal(urls.length, 75);
+  assert.equal(urls.length, 76);
   assert.ok(urls.includes("https://dualcorelink.com/en/resources/"));
   for (const resource of resources) {
     assert.ok(
@@ -325,8 +327,8 @@ test("all resources have safe Article schema inputs", () => {
     assert.equal(serialized.includes("staging2.cms.dualcorelink.com"), false);
   }
 
-  assert.equal(articleCount, 14);
-  assert.equal(breadcrumbCount, 14);
+  assert.equal(articleCount, 15);
+  assert.equal(breadcrumbCount, 15);
   assert.equal(seoTitles.size, resources.length);
   assert.equal(metaDescriptions.size, resources.length);
 });
@@ -617,6 +619,188 @@ test("Phase 2E content keeps FAQ purchasing terms and KNX claims controlled", ()
     ),
     false,
   );
+});
+
+test("Phase 2G control interfaces guide is complete, linked, and attribution-safe", async () => {
+  const slug = "hotel-guest-room-control-interfaces-guide";
+  const resource = resources.find((item) => item.slug === slug);
+  assert.ok(resource);
+  assert.equal(
+    resource.h1,
+    "Hotel Guest Room Control Interfaces: Wall Panels, Touchscreens, Bedside Controls, and Mobile Control",
+  );
+  assert.equal(
+    resource.seoTitle,
+    "Hotel Guest Room Control Interfaces Guide | DualCoreLink",
+  );
+  assert.ok(resource.metaDescription.length >= 140);
+  assert.ok(resource.metaDescription.length <= 160);
+  assert.equal(resource.primaryKeyword, "hotel guest room control interfaces");
+  assert.equal(resource.listingGroup, "Buying Guides");
+  assert.ok(resource.sections.length >= 12);
+  assert.ok(resource.conversion);
+  assert.equal(
+    resource.conversion.midCtaAfterSectionId,
+    "comparing-control-interfaces",
+  );
+  assert.deepEqual(resource.conversion.continueReadingSlugs, [
+    "hotel-smart-switch-panel-guide",
+    "smart-hotel-room-control-system-guide",
+    "hotel-guest-room-automation-guide",
+  ]);
+
+  const comparison = resource.sections.find(
+    (section) => section.id === "comparing-control-interfaces",
+  );
+  assert.ok(comparison);
+  assert.equal(comparison.comparisonItems?.length, 5);
+  assert.deepEqual(
+    comparison.comparisonItems?.map((item) => item.interfaceType),
+    [
+      "Wall panel",
+      "Touchscreen",
+      "Bedside control",
+      "Thermostat",
+      "Mobile control",
+    ],
+  );
+
+  const wordCount = resource.sections
+    .flatMap((section) => [
+      ...section.body,
+      ...(section.subsections?.flatMap((subsection) => subsection.body) ?? []),
+      ...(section.comparisonItems?.flatMap((item) => [
+        item.bestFor,
+        item.mainAdvantage,
+        item.mainConsideration,
+        item.typicalSystemRole,
+      ]) ?? []),
+    ])
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  assert.ok(wordCount >= 1800, `Phase 2G guide has only ${wordCount} words`);
+
+  const sitemapUrls = new Set((await sitemap()).map((entry) => entry.url));
+  const resourceUrl = `https://dualcorelink.com/en/resources/${slug}/`;
+  assert.ok(sitemapUrls.has(resourceUrl));
+
+  const path = buildLocalizedPath("en", `resources/${slug}`);
+  const metadata = createMetadata({
+    locale: "en",
+    path,
+    title: resource.seoTitle,
+    description: resource.metaDescription,
+    hreflang: createContentHreflang({
+      locale: "en",
+      currentPath: path,
+      published: {},
+    }),
+  });
+  assert.equal(metadata.alternates?.canonical, resourceUrl);
+  assert.equal(metadata.openGraph?.title, resource.seoTitle);
+  assert.equal(metadata.openGraph?.description, resource.metaDescription);
+  assert.ok(metadata.twitter);
+
+  const article = createArticleSchema({
+    id: `${resourceUrl}#article`,
+    url: resourceUrl,
+    headline: resource.title,
+    description: resource.metaDescription,
+    datePublished: resource.lastReviewed,
+    dateModified: resource.lastReviewed,
+  });
+  const breadcrumb = createBreadcrumbSchema(`${resourceUrl}#breadcrumb`, [
+    { name: "Home", url: "https://dualcorelink.com/en/" },
+    { name: "Resources", url: "https://dualcorelink.com/en/resources/" },
+    { name: resource.title, url: resourceUrl },
+  ]);
+  assert.equal(article["@type"], "Article");
+  assert.equal(article.mainEntityOfPage, resourceUrl);
+  assert.equal(breadcrumb["@type"], "BreadcrumbList");
+  assert.equal(breadcrumb.itemListElement.length, 3);
+
+  const productSlugs = new Set(
+    (await productRepository.getStaticParams("en")).map((item) => item.slug),
+  );
+  assert.equal(resource.relatedProducts.length, 4);
+  for (const product of resource.relatedProducts) {
+    const productSlug = product.href.split("/").filter(Boolean).at(-1);
+    assert.ok(productSlug && productSlugs.has(productSlug));
+    assert.ok(productSlug && productDisplayImages[productSlug]);
+  }
+  for (const solution of resource.relatedSolutions) {
+    const solutionSlug = solution.href.split("/").filter(Boolean).at(-1);
+    assert.ok(solutionSlug && publishedSolutionSlugs.has(solutionSlug));
+  }
+
+  const requiredBacklinks = [
+    "hotel-smart-switch-panel-guide",
+    "smart-hotel-room-control-system-guide",
+    "hotel-guest-room-automation-guide",
+  ];
+  for (const sourceSlug of requiredBacklinks) {
+    const source = resources.find((item) => item.slug === sourceSlug);
+    assert.ok(source?.conversion);
+    assert.ok(source.conversion.continueReadingSlugs.includes(slug));
+  }
+
+  const bodyHrefs = resource.sections.flatMap((section) =>
+    (section.relatedLinks ?? []).map((link) => link.href),
+  );
+  assert.ok(bodyHrefs.some((href) => href.includes("/products/hotel-smart-room-rcu-host-1/")));
+  assert.ok(bodyHrefs.some((href) => href.includes("/products/86-type-ai-smart-control-display/")));
+  assert.ok(bodyHrefs.some((href) => href.includes("/products/smart-four-key-scene-control-panel/")));
+  assert.ok(bodyHrefs.some((href) => href.includes("/solutions/")));
+  assert.ok(bodyHrefs.filter((href) => href.includes("/resources/")).length >= 2);
+  assert.ok(bodyHrefs.includes("/en/contact/#get-a-quote"));
+
+  const quoteHref = buildQuoteHref("en", {
+    sourcePage: `/en/resources/${slug}/`,
+    contentType: "resource",
+    contentSlug: slug,
+    sourceTitle: resource.h1,
+    ctaPosition: "resource_mid_article",
+  });
+  const quoteUrl = new URL(quoteHref, "https://dualcorelink.com");
+  assert.equal(quoteUrl.pathname, "/en/contact/");
+  assert.equal(quoteUrl.hash, "#get-a-quote");
+  assert.equal(quoteUrl.searchParams.get("content_type"), "resource");
+  assert.equal(quoteUrl.searchParams.get("content_slug"), slug);
+  assert.equal(
+    quoteUrl.searchParams.get("cta_position"),
+    "resource_mid_article",
+  );
+
+  const inquiryEvent = createInquiryEvent("cta_click", "form", {
+    sourcePage: `/en/resources/${slug}/`,
+    contentType: "resource",
+    contentSlug: slug,
+    sourceTitle: resource.h1,
+    ctaPosition: "resource_mid_article",
+  });
+  assert.deepEqual(Object.keys(inquiryEvent).sort(), [
+    "category",
+    "cta_location",
+    "event",
+    "page_path",
+    "source_slug",
+    "source_type",
+  ]);
+  assert.equal(JSON.stringify(inquiryEvent).includes(resource.h1), false);
+  assert.equal(
+    /name|email|phone|company|message|filename|whatsapp_number/i.test(
+      Object.keys(inquiryEvent).join(" "),
+    ),
+    false,
+  );
+
+  const serialized = JSON.stringify(resource).toLowerCase();
+  assert.equal(
+    /localhost|127\.0\.0\.1|siteground|pages\.dev|cms-aws/.test(serialized),
+    false,
+  );
+  assert.equal(serialized.includes('"href":"#"'), false);
 });
 
 test("all published product detail pages can emit safe Product schema", async () => {

@@ -54,7 +54,7 @@ export async function generateMetadata({
   if (!resource) return {};
   const path = buildLocalizedPath(locale, `resources/${resource.slug}`);
 
-  return createMetadata({
+  const metadata = createMetadata({
     locale,
     path,
     title: resource.seoTitle,
@@ -65,6 +65,11 @@ export async function generateMetadata({
       published: {},
     }),
   });
+
+  return {
+    ...metadata,
+    title: { absolute: resource.seoTitle },
+  };
 }
 
 function LinkList({
@@ -272,6 +277,49 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                         </div>
                       </section>
                     ))}
+                    {section.comparisonItems?.length ? (
+                      <div
+                        aria-label="Guest room control interface comparison"
+                        className="grid gap-4 sm:grid-cols-2"
+                      >
+                        {section.comparisonItems.map((item) => (
+                          <article
+                            key={item.interfaceType}
+                            className="min-w-0 border border-line bg-surface p-5"
+                          >
+                            <h3 className="text-xl font-semibold leading-7 text-foreground">
+                              {item.interfaceType}
+                            </h3>
+                            <dl className="mt-4 grid gap-3 text-sm leading-6">
+                              <div>
+                                <dt className="font-semibold text-foreground">
+                                  Best for
+                                </dt>
+                                <dd>{item.bestFor}</dd>
+                              </div>
+                              <div>
+                                <dt className="font-semibold text-foreground">
+                                  Main advantage
+                                </dt>
+                                <dd>{item.mainAdvantage}</dd>
+                              </div>
+                              <div>
+                                <dt className="font-semibold text-foreground">
+                                  Main consideration
+                                </dt>
+                                <dd>{item.mainConsideration}</dd>
+                              </div>
+                              <div>
+                                <dt className="font-semibold text-foreground">
+                                  Typical system role
+                                </dt>
+                                <dd>{item.typicalSystemRole}</dd>
+                              </div>
+                            </dl>
+                          </article>
+                        ))}
+                      </div>
+                    ) : null}
                     {section.relatedLinks?.length ? (
                       <p className="border-l-2 border-brand pl-4 text-sm leading-7">
                         Related planning reference:{" "}

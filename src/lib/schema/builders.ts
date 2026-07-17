@@ -183,6 +183,7 @@ export function createArticleSchema(input: {
     url: input.url,
     headline: input.headline,
     description: input.description,
+    mainEntityOfPage: input.url,
     image: publicUrl(input.image?.sourceUrl),
     datePublished: input.datePublished,
     dateModified: input.dateModified,

@@ -13,6 +13,13 @@ export type ResourceSection = {
     heading: string;
     body: string[];
   }>;
+  comparisonItems?: Array<{
+    interfaceType: string;
+    bestFor: string;
+    mainAdvantage: string;
+    mainConsideration: string;
+    typicalSystemRole: string;
+  }>;
   relatedLinks?: ResourceLink[];
 };
 
@@ -790,9 +797,9 @@ export const resources: ResourceGuide[] = [
     conversion: {
       midCtaAfterSectionId: "key-devices",
       continueReadingSlugs: [
+        "hotel-guest-room-control-interfaces-guide",
         "knx-vs-rcu-hotel-room-control",
         "what-is-hotel-rcu-room-control-system",
-        "hotel-room-control-system-cost-factors",
       ],
     },
     cta: {
@@ -941,9 +948,9 @@ export const resources: ResourceGuide[] = [
     conversion: {
       midCtaAfterSectionId: "appearance-material",
       continueReadingSlugs: [
+        "hotel-guest-room-control-interfaces-guide",
         "smart-panel-material-finish-selection-guide",
         "oem-odm-smart-panel-customization-guide",
-        "hotel-doorplate-room-display-buying-guide",
       ],
     },
     cta: {
@@ -1239,9 +1246,9 @@ export const resources: ResourceGuide[] = [
     conversion: {
       midCtaAfterSectionId: "project-scenarios",
       continueReadingSlugs: [
+        "hotel-guest-room-control-interfaces-guide",
         "hotel-renovation-smart-room-upgrade-guide",
         "hotel-occupancy-sensor-selection-guide",
-        "hotel-doorplate-room-display-buying-guide",
       ],
     },
     cta: {
@@ -3287,6 +3294,449 @@ export const resources: ResourceGuide[] = [
       whatsappLabel: "Contact on WhatsApp",
       whatsappMessage:
         "Hello DUALCORE LINK, I would like to compare KNX and RCU architecture for a hotel room control project.",
+    },
+    safeClaims: commonSafeClaims,
+    forbiddenClaims: commonForbiddenClaims,
+  },
+  {
+    slug: "hotel-guest-room-control-interfaces-guide",
+    title:
+      "Hotel Guest Room Control Interfaces: Wall Panels, Touchscreens, Bedside Controls, and Mobile Control",
+    h1: "Hotel Guest Room Control Interfaces: Wall Panels, Touchscreens, Bedside Controls, and Mobile Control",
+    seoTitle: "Hotel Guest Room Control Interfaces Guide | DualCoreLink",
+    metaDescription:
+      "Compare wall panels, touchscreens, bedside controls, thermostats, and mobile control when selecting guest room interfaces for a hotel project.",
+    summary:
+      "Compare the roles of wall panels, touchscreens, bedside controls, thermostats, and mobile control, then plan how each interface should coordinate with the room control system.",
+    category: "Guide",
+    topic: "Guest room control interfaces",
+    listingGroup: "Buying Guides",
+    readingTime: "17 min read",
+    primaryKeyword: "hotel guest room control interfaces",
+    secondaryKeywords: [
+      "hotel room control panel",
+      "hotel bedside control panel",
+      "hotel touchscreen control",
+      "hotel smart control display",
+      "hotel wall switch panel",
+      "hotel thermostat control panel",
+      "mobile hotel room control",
+      "hotel guest room user interface",
+      "hotel RCU control interface",
+      "hotel room automation interface",
+    ],
+    audience: [
+      "hotel owners",
+      "MEP contractors",
+      "system integrators",
+      "distributors",
+      "OEM/ODM buyers",
+    ],
+    lastReviewed: "2026-07-17",
+    sections: [
+      {
+        id: "what-is-a-guest-room-control-interface",
+        heading: "What Is a Guest Room Control Interface?",
+        body: [
+          "A guest room control interface is the point where a guest or staff member gives a command, reviews a setting, or receives room-status feedback. It can be a familiar wall switch, a bedside panel, a touchscreen, a thermostat, or a mobile interface. The visible device is only one layer of the room design: the command still needs a defined destination, control path, and response.",
+          "Interface planning should start with guest tasks rather than display size or the number of buttons. List what a person must do at the entrance, bedside, desk, bathroom, and climate-control position. Then decide which actions need immediate physical access, which benefit from a visual menu, and which should remain available when a network or mobile service is unavailable.",
+          "This guide focuses on how different hotel guest room control interfaces divide responsibilities. It does not assume that one interface can replace every other device, or that every project includes an app, PMS, BMS, or third-party platform connection.",
+        ],
+      },
+      {
+        id: "main-types-of-hotel-room-control-interfaces",
+        heading: "Main Types of Hotel Room Control Interfaces",
+        body: [
+          "Most projects use a combination of interfaces because different room positions and guest actions have different priorities. A fast lighting action near the door is not the same interaction as reviewing several scenes on a display, changing temperature at night, or operating selected functions from a phone.",
+        ],
+        subsections: [
+          {
+            id: "wall-switch-panels",
+            heading: "Wall Switch Panels",
+            body: [
+              "Wall panels provide direct, visible control at predictable locations. They are well suited to lighting, master-off, curtains, do-not-disturb, make-up-room, and other functions that should be found without navigating a menu. Button count, icon clarity, backlight behavior, mounting format, finish, and the relationship to the selected controller should be reviewed together.",
+              "A project can use focused single-function panels or grouped scene panels. More keys are not automatically better: the layout should reflect the room workflow and avoid labels that are difficult for international guests to understand.",
+            ],
+          },
+          {
+            id: "touchscreens-and-ai-smart-displays",
+            heading: "Touchscreens and AI Smart Displays",
+            body: [
+              "A touchscreen or smart display can organize several approved room functions in one visual interface. It may be useful where the project needs scene selection, status feedback, temperature access, music control, or a clearer hierarchy than a dense bank of physical keys can provide.",
+              "A display does not automatically replace every physical button. Entrance lighting, bedside master control, emergency-related actions, and functions required during a network interruption may still need dedicated controls. Exact functions, communication method, and integration boundaries must be confirmed for the selected product and project.",
+            ],
+          },
+          {
+            id: "bedside-control-interfaces",
+            heading: "Bedside Control Interfaces",
+            body: [
+              "Bedside controls should prioritize actions a guest needs while resting: reading lights, selected scenes, master-off, curtains, and an accessible route to temperature control. Reach distance, tactile recognition, night visibility, and accidental operation matter as much as the number of available functions.",
+              "A bedside interface may be a dedicated panel, part of a coordinated switch family, or a selected screen position. The project should preserve simple, dependable actions instead of moving every command into a layered menu.",
+            ],
+          },
+          {
+            id: "thermostat-and-hvac-control-panels",
+            heading: "Thermostat and HVAC Control Panels",
+            body: [
+              "A thermostat gives guests a focused climate-control interface and can remain separate from lighting or scene controls. Whether it should be independent depends on the fan-coil or HVAC architecture, valve or actuator arrangement, sensing strategy, operating requirements, and maintenance responsibilities.",
+              "Temperature display, fan choices, mode access, occupancy behavior, and the boundary between the room controller and mechanical system must be reviewed with the HVAC designer. A visual match with the wall-panel family does not prove technical interchangeability.",
+            ],
+          },
+          {
+            id: "mobile-and-app-based-control",
+            heading: "Mobile and App-Based Control",
+            body: [
+              "Mobile control can offer an additional interaction path for selected projects, but it should not be described as a default feature of every room-control package. It may depend on a verified app, network design, guest-authentication flow, system integration, cybersecurity policy, support model, and product-specific capability.",
+              "The project should decide what happens when a guest does not install an app, declines permissions, loses connectivity, or checks out. Core room functions should still have an appropriate physical or local control path unless the approved operational brief states otherwise.",
+            ],
+          },
+        ],
+        relatedLinks: [
+          {
+            title: "86 Type AI Smart Control Display",
+            href: "/en/products/86-type-ai-smart-control-display/",
+          },
+          {
+            title: "Smart Four Key Scene Control Panel",
+            href: "/en/products/smart-four-key-scene-control-panel/",
+          },
+          {
+            title: "Thermostat HVAC Control Panel",
+            href: "/en/products/thermostat-hvac-control-panel/",
+          },
+        ],
+      },
+      {
+        id: "how-interfaces-work-with-an-rcu",
+        heading: "How These Interfaces Work with an RCU",
+        body: [
+          "An RCU commonly coordinates room-level inputs, outputs, and control logic. A wall panel, display, thermostat, sensor, or other interface can send a command or provide a status input, while the RCU or related control hardware manages the approved response. The exact architecture depends on the selected products, wiring strategy, room functions, and integration design.",
+          "The interface schedule should state what each command controls, where the logic resides, what feedback is expected, and what happens during a communication failure. It should also distinguish guest controls from sensors and controlled loads. These roles are related, but they are not interchangeable.",
+          "If an app, PMS, BMS, or another platform is required, define the data points, responsibility boundary, gateway or API requirement, commissioning owner, and fallback behavior. Support must be verified for the real products and project; an RCU label alone does not confirm compatibility with an external platform.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel Smart Room RCU Host 1",
+            href: "/en/products/hotel-smart-room-rcu-host-1/",
+          },
+          {
+            title: "Hotel Guest Room Control Solution",
+            href: "/en/solutions/hotel-guest-room-control-solution/",
+          },
+          {
+            title: "Hotel RCU Wiring and System Architecture Guide",
+            href: "/en/resources/hotel-rcu-wiring-system-architecture-guide/",
+          },
+        ],
+      },
+      {
+        id: "comparing-control-interfaces",
+        heading: "Comparing Control Interfaces",
+        body: [
+          "Compare interfaces against the same room workflow, installation constraints, and service model. The matrix below describes typical planning roles rather than fixed product specifications. Cost impact depends on project scope, quantities, wiring, customization, integration, commissioning, and the final device schedule.",
+        ],
+        subsections: [
+          {
+            id: "ease-of-use",
+            heading: "Ease of Use",
+            body: [
+              "Physical panels offer direct access and tactile familiarity. Touchscreens can organize more functions but require a clear information hierarchy. Mobile control adds flexibility for participating guests but cannot be the only usability plan unless the project has explicitly approved that operating model.",
+            ],
+          },
+          {
+            id: "installation-and-wiring",
+            heading: "Installation and Wiring",
+            body: [
+              "Mounting boxes, cable routes, power supplies, network points, controller interfaces, and responsibility for final termination should be documented early. Renovation projects must survey existing wiring, wall boxes, loads, and control infrastructure before replacement products are selected.",
+            ],
+          },
+          {
+            id: "customization",
+            heading: "Customization",
+            body: [
+              "Panels may require project-specific icons, labels, finishes, layouts, or branding, while displays may require an approved interface scope. Customization availability, sample process, tooling, minimum quantities, and lead time depend on the product series and project requirements.",
+            ],
+          },
+          {
+            id: "maintenance",
+            heading: "Maintenance",
+            body: [
+              "Review replacement procedure, configuration backup, model continuity, cleaning, spare strategy, and fault isolation. A consolidated screen can reduce visible devices in one location, while distributed physical controls may make individual functions easier to identify and replace.",
+            ],
+          },
+          {
+            id: "guest-experience",
+            heading: "Guest Experience",
+            body: [
+              "A coherent room uses consistent names, icons, feedback, and scene behavior across every interface. The best experience is not the largest number of control points; it is a predictable path to the actions guests need at each position.",
+            ],
+          },
+          {
+            id: "project-cost-structure",
+            heading: "Project Cost Structure",
+            body: [
+              "Compare complete scopes rather than device labels. Hardware, installation, wiring, software, customization, gateways, commissioning, documentation, spares, and support can all affect the total project structure. No interface type is always the lowest-cost choice.",
+            ],
+          },
+        ],
+        comparisonItems: [
+          {
+            interfaceType: "Wall panel",
+            bestFor: "Direct lighting, scene, curtain, and service actions at fixed room positions.",
+            mainAdvantage: "Immediate physical access with a familiar interaction pattern.",
+            mainConsideration: "Button layout, labeling, mounting, wiring, and controller relationship require coordination.",
+            typicalSystemRole: "Primary local command point for frequently used room functions.",
+          },
+          {
+            interfaceType: "Touchscreen",
+            bestFor: "Projects that need an organized visual interface for several approved functions.",
+            mainAdvantage: "Can present multiple controls and status information in a structured view.",
+            mainConsideration: "Function scope, navigation, power, communication, and fallback controls must be confirmed.",
+            typicalSystemRole: "Consolidated visual interface alongside selected physical controls.",
+          },
+          {
+            interfaceType: "Bedside control",
+            bestFor: "Night-time access to reading lights, scenes, master-off, and curtains.",
+            mainAdvantage: "Places essential actions within comfortable reach of the guest.",
+            mainConsideration: "Tactile clarity, night visibility, reach, and accidental operation need review.",
+            typicalSystemRole: "Focused local control point for rest and sleep workflows.",
+          },
+          {
+            interfaceType: "Thermostat",
+            bestFor: "Dedicated guest access to temperature and approved HVAC functions.",
+            mainAdvantage: "Keeps climate control visible and focused.",
+            mainConsideration: "Compatibility depends on the real HVAC architecture and control method.",
+            typicalSystemRole: "Guest interface between room operation and the specified HVAC controls.",
+          },
+          {
+            interfaceType: "Mobile control",
+            bestFor: "Projects with a verified app, network, authentication, and support model.",
+            mainAdvantage: "Adds a personal interface for selected supported functions.",
+            mainConsideration: "Not universal; privacy, connectivity, onboarding, fallback, and integration require approval.",
+            typicalSystemRole: "Optional supplementary interface rather than an assumed replacement for local controls.",
+          },
+        ],
+      },
+      {
+        id: "recommended-interface-combinations-by-hotel-type",
+        heading: "Recommended Interface Combinations by Hotel Type",
+        body: [
+          "Hotel category can guide the starting brief, but room type, brand standards, guest profile, operations, maintenance capability, and local engineering requirements decide the final combination. Treat these patterns as planning directions, not fixed packages.",
+        ],
+        subsections: [
+          {
+            id: "business-hotels",
+            heading: "Business Hotels",
+            body: [
+              "Prioritize clear entrance, desk, bedside, curtain, and thermostat controls with a short learning curve. A focused scene panel and dedicated climate interface may be more useful than adding a complex screen to every room without a defined guest task.",
+            ],
+          },
+          {
+            id: "luxury-hotels",
+            heading: "Luxury Hotels",
+            body: [
+              "Luxury rooms may combine coordinated wall panels, bedside controls, a visual interface, separate thermostat access, and selected service controls. The interface family should align visually, but every device still needs individual technical and maintenance approval.",
+            ],
+          },
+          {
+            id: "resorts",
+            heading: "Resorts",
+            body: [
+              "Resort layouts can include suites, villas, outdoor transitions, and varied occupancy patterns. Map controls by zone and guest journey, then decide where a central visual interface helps and where direct local controls remain more practical.",
+            ],
+          },
+          {
+            id: "serviced-apartments",
+            heading: "Serviced Apartments",
+            body: [
+              "Longer stays can increase the value of familiar, repeatable control and clear separation between room scenes and HVAC. Any mobile or central-platform connection should be evaluated against resident onboarding, account lifecycle, privacy, and support responsibilities.",
+            ],
+          },
+          {
+            id: "renovation-projects",
+            heading: "Renovation Projects",
+            body: [
+              "Start with an onsite survey of wall boxes, existing wiring, loads, panels, controller hardware, HVAC, network access, and available installation space. A replacement interface must fit the actual infrastructure or be supported by a documented upgrade scope.",
+            ],
+          },
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel Renovation Smart Room Upgrade Guide",
+            href: "/en/resources/hotel-renovation-smart-room-upgrade-guide/",
+          },
+          {
+            title: "Hotel Guest Room Automation Guide",
+            href: "/en/resources/hotel-guest-room-automation-guide/",
+          },
+        ],
+      },
+      {
+        id: "wall-panels-vs-touchscreens",
+        heading: "Wall Panels vs Touchscreens",
+        body: [
+          "Wall panels are strongest when a guest expects an immediate action in a fixed location. Touchscreens are strongest when several approved functions or status views need a clear visual hierarchy. A good design can use both: direct keys for high-frequency actions and a display for functions that benefit from context or grouping.",
+          "Do not decide by appearance alone. Compare required actions, failure behavior, electrical and network needs, mounting, language strategy, accessibility, cleaning, replacement, configuration, and staff support. A touchscreen is not inherently superior, and a physical panel is not inherently too basic.",
+        ],
+        relatedLinks: [
+          {
+            title: "Hotel Smart Switch Panel Guide",
+            href: "/en/resources/hotel-smart-switch-panel-guide/",
+          },
+          {
+            title: "Smart Panel Material and Finish Selection Guide",
+            href: "/en/resources/smart-panel-material-finish-selection-guide/",
+          },
+        ],
+      },
+      {
+        id: "bedside-controls-vs-mobile-control",
+        heading: "Bedside Controls vs Mobile Control",
+        body: [
+          "A bedside panel is available immediately, stays with the room, and can support tactile use in low light. Mobile control can add convenience for a guest who chooses to use it, but it introduces device compatibility, connectivity, authentication, privacy, onboarding, and support considerations.",
+          "Use mobile control as a verified supplementary channel when it solves a defined project need. Keep essential sleep, lighting, curtain, and comfort actions accessible through an approved local interface. Mobile control does not automatically reduce installation or operating cost.",
+        ],
+      },
+      {
+        id: "when-a-thermostat-should-be-separate",
+        heading: "When a Thermostat Should Be Separate",
+        body: [
+          "A separate thermostat can be appropriate when climate control needs constant visibility, a dedicated sensor or operating mode, a clear mechanical-system boundary, or independent maintenance. Combining temperature access into a screen may be appropriate in another design, provided the HVAC interface, fallback behavior, sensing location, and guest workflow are verified.",
+          "Confirm the fan-coil or HVAC type, valve or actuator requirements, fan stages, supply, sensing strategy, setpoint policy, occupancy behavior, and ownership between controls and mechanical contractors. Specific electrical design and field wiring must be confirmed by qualified engineers using approved product documentation.",
+        ],
+      },
+      {
+        id: "oem-odm-customization-considerations",
+        heading: "OEM/ODM Customization Considerations",
+        body: [
+          "A coordinated interface program may cover key layouts, icon language, panel finish, labeling, backlight direction, product-family consistency, packaging, and private-label requirements. The buyer should separate visual customization from electrical or firmware requirements so each request can be reviewed by the right technical owner.",
+          "Provide a room function matrix, marked layouts, finish references, quantities by model, target schedule, voltage, mounting constraints, and required approvals. OEM/ODM availability, tooling, samples, MOQ, fees, and lead time depend on the product series and project requirements; do not assume one rule applies to every device.",
+        ],
+        relatedLinks: [
+          {
+            title: "OEM/ODM Smart Panel Customization Guide",
+            href: "/en/resources/oem-odm-smart-panel-customization-guide/",
+          },
+          {
+            title: "OEM/ODM Custom Panel Solution",
+            href: "/en/solutions/oem-odm-custom-panel-solution/",
+          },
+        ],
+      },
+      {
+        id: "information-before-requesting-a-quote",
+        heading: "Information to Prepare Before Requesting a Quote",
+        body: [
+          "Prepare the project country, hotel type, room count, room variants, construction stage, target delivery timing, room plans, reflected ceiling plans where relevant, wall-box information, voltage and frequency, control-function schedule, panel locations, HVAC description, curtain requirements, and any confirmed integration boundary.",
+          "List the interface required at each room position and identify mandatory functions separately from optional ideas. Include preferred product references only as a starting point. Ask for datasheets, installation drawings, sample options, and wiring diagrams by product and project request rather than assuming every document or function applies to the full range.",
+          "A clear package lets the supplier review display, panel, thermostat, and RCU relationships without inventing scope. Use the project inquiry form when the room schedule and interface priorities are ready for a product-selection discussion.",
+        ],
+        relatedLinks: [
+          {
+            title: "Get a Project Quote",
+            href: "/en/contact/#get-a-quote",
+          },
+          {
+            title: "Download Center",
+            href: "/en/downloads/",
+          },
+        ],
+      },
+      {
+        id: "common-selection-mistakes",
+        heading: "Common Selection Mistakes",
+        body: [
+          "Avoid choosing a touchscreen before defining the functions it must present, filling a bedside panel with rarely used keys, treating a matching finish as proof of electrical compatibility, or assuming mobile control is included without a verified app and integration scope. Do not compare quotes when one includes controller, software, commissioning, and customization while another lists only visible devices.",
+          "Other risks include ignoring low-light use, language and icon clarity, accessible mounting, network failure, replacement procedure, spare strategy, HVAC responsibility, and renovation constraints. Do not use conceptual system diagrams as field wiring instructions. Qualified engineers must confirm electrical design, installation, and compliance for the actual project location.",
+        ],
+      },
+      {
+        id: "guest-room-interface-planning-checklist",
+        heading: "Guest Room Interface Planning Checklist",
+        body: [
+          "Confirm every guest task, room position, interface type, command destination, feedback requirement, controller relationship, HVAC boundary, mobile-control status, network dependency, fallback action, mounting condition, wiring route, finish direction, labeling, sample approval, commissioning owner, document requirement, spare plan, and maintenance procedure.",
+          "Review the complete schedule with the hotel operator, interior designer, MEP team, controls integrator, HVAC contractor, and supplier. The result should explain why each interface exists and how it supports the guest journey, rather than presenting a collection of disconnected devices.",
+        ],
+      },
+      {
+        id: "conclusion-layered-interface-plan",
+        heading: "Conclusion: Build a Layered Interface Plan",
+        body: [
+          "A practical hotel room rarely needs one interface to do everything. Wall and bedside panels can keep frequent actions immediate, touchscreens can organize selected visual functions, thermostats can preserve a clear HVAC role, and mobile control can supplement the room when the project has a verified platform and support model.",
+          "Define the guest tasks first, then coordinate interfaces with the RCU, wiring, HVAC, network, operations, and maintenance plan. Share the room schedule, interface priorities, quantities, drawings, and confirmed integration needs to review suitable products and prepare a project-specific quotation.",
+        ],
+      },
+    ],
+    relatedSolutions: [
+      {
+        title: "Hotel Guest Room Control Solution",
+        href: "/en/solutions/hotel-guest-room-control-solution/",
+        description:
+          "Coordinate guest-facing interfaces with room control, lighting, HVAC, curtains, status, and power functions.",
+      },
+      {
+        title: "Smart Hotel Automation Solution",
+        href: "/en/solutions/smart-hotel-automation-solution/",
+        description:
+          "Review wider room automation workflows and verified system boundaries for a hotel project.",
+      },
+    ],
+    relatedProducts: [
+      {
+        title: "86 Type AI Smart Control Display",
+        href: "/en/products/86-type-ai-smart-control-display/",
+        description:
+          "Visual guest room interface for reviewing selected control functions in an approved project scope.",
+      },
+      {
+        title: "Smart Four Key Scene Control Panel",
+        href: "/en/products/smart-four-key-scene-control-panel/",
+        description:
+          "Physical wall panel for direct access to selected room scenes and control actions.",
+      },
+      {
+        title: "Thermostat HVAC Control Panel",
+        href: "/en/products/thermostat-hvac-control-panel/",
+        description:
+          "Dedicated climate interface for project-specific HVAC control planning and confirmation.",
+      },
+      {
+        title: "Hotel Smart Room RCU Host 1",
+        href: "/en/products/hotel-smart-room-rcu-host-1/",
+        description:
+          "Room control host reference for coordinating approved guest interface and equipment functions.",
+      },
+    ],
+    relatedRegions: [
+      { title: "Middle East", href: "/en/regions/middle-east/" },
+      { title: "Southeast Asia", href: "/en/regions/southeast-asia/" },
+    ],
+    relatedDownloads: [
+      {
+        title: "Download Center",
+        href: "/en/downloads/",
+        description:
+          "Review current panel, display, thermostat, and RCU catalogs before requesting model-specific project documents.",
+      },
+    ],
+    conversion: {
+      midCtaAfterSectionId: "comparing-control-interfaces",
+      continueReadingSlugs: [
+        "hotel-smart-switch-panel-guide",
+        "smart-hotel-room-control-system-guide",
+        "hotel-guest-room-automation-guide",
+      ],
+    },
+    cta: {
+      title: "Plan guest room control interfaces for your hotel project",
+      body: "Share the room types, control functions, interface priorities, HVAC scope, drawings, quantities, and verified integration needs for a project-specific product review.",
+      primaryLabel: "Get a Quote",
+      primaryHref: "/en/contact/#get-a-quote",
+      secondaryLabel: "Request interface and RCU documents",
+      secondaryHref: "/en/downloads/",
+      whatsappLabel: "Contact on WhatsApp",
+      whatsappMessage:
+        "Hello DUALCORE LINK, I would like to plan guest room control interfaces for a hotel project.",
     },
     safeClaims: commonSafeClaims,
     forbiddenClaims: commonForbiddenClaims,

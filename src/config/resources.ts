@@ -197,18 +197,26 @@ export const resources: ResourceGuide[] = [
       {
         title: "RCU Controller Cabinet",
         href: "/en/products/rcu-controller-cabinet/",
+        description:
+          "Centralized cabinet option for coordinating room control circuits and project wiring requirements.",
       },
       {
         title: "Hotel Smart Room RCU Host 1",
         href: "/en/products/hotel-smart-room-rcu-host-1/",
+        description:
+          "Room control host for evaluating lighting, curtain, HVAC, sensing, and service-status functions.",
       },
       {
         title: "Hotel Smart Room RCU Host 2",
         href: "/en/products/hotel-smart-room-rcu-host-2/",
+        description:
+          "Alternative RCU host option for matching room schedules, device scope, and installation requirements.",
       },
       {
         title: "Hotel Smart Room RCU Host 3",
         href: "/en/products/hotel-smart-room-rcu-host-3/",
+        description:
+          "RCU host option for project-specific comparison of room functions, wiring, and quotation inputs.",
       },
     ],
     relatedRegions: [
@@ -229,6 +237,14 @@ export const resources: ResourceGuide[] = [
           "Public catalogs are available for early product selection. Project documents can be requested after product and market confirmation.",
       },
     ],
+    conversion: {
+      midCtaAfterSectionId: "product-selection",
+      continueReadingSlugs: [
+        "hotel-rcu-buying-guide",
+        "hotel-rcu-wiring-system-architecture-guide",
+        "smart-hotel-room-control-system-guide",
+      ],
+    },
     cta: {
       title: "Plan an RCU room control quotation",
       body: "Send your room type, quantity, voltage, protocol preference, product list, and required documents. Our team can review product selection, datasheets, wiring diagram requests, and quotation details by email or WhatsApp.",
@@ -775,7 +791,7 @@ export const resources: ResourceGuide[] = [
       midCtaAfterSectionId: "key-devices",
       continueReadingSlugs: [
         "knx-vs-rcu-hotel-room-control",
-        "hotel-renovation-smart-room-upgrade-guide",
+        "what-is-hotel-rcu-room-control-system",
         "hotel-room-control-system-cost-factors",
       ],
     },

@@ -335,7 +335,7 @@ test("Phase 2C resource conversion maps are complete and internally valid", () =
   const conversionResources = resources.filter((resource) => resource.conversion);
   const resourceSlugs = new Set(resources.map((resource) => resource.slug));
 
-  assert.equal(conversionResources.length, 13);
+  assert.equal(conversionResources.length, resources.length);
 
   for (const resource of conversionResources) {
     const conversion = resource.conversion;

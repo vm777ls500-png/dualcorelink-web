@@ -8,6 +8,7 @@
     "export:clean": "tsx scripts/clean-static-export.ts",
     "lint": "eslint",
     "test:data": "tsx --test tests/*.test.ts",
+    "media:audit": "tsx scripts/audit-product-media.ts",
     "rest:check": "tsx scripts/check-wordpress-rest.ts",
     "pages:build": "npm run build",
     "pages:preview": "npm run pages:build && wrangler pages dev out",

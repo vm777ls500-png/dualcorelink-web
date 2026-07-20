@@ -6,6 +6,22 @@ export type ProductGalleryImageType =
   | "interface"
   | "application";
 
+export type ProductGalleryMediaType =
+  | "front"
+  | "side"
+  | "rear"
+  | "detail"
+  | "interface"
+  | "mounting"
+  | "dimensions"
+  | "application"
+  | "packaging"
+  | "label"
+  | "accessory";
+
+export type ProductGalleryImageSource = "wordpress" | "local-upload" | "legacy";
+export type ProductGalleryReviewStatus = "confirmed" | "pending" | "rejected";
+
 export type ProductGalleryImage = {
   src: string;
   thumbnailSrc: string;
@@ -13,6 +29,9 @@ export type ProductGalleryImage = {
   height: number;
   alt: string;
   type: ProductGalleryImageType;
+  mediaType?: ProductGalleryMediaType;
+  source?: ProductGalleryImageSource;
+  reviewStatus?: ProductGalleryReviewStatus;
 };
 export type ProductGallery = {
   featuredImage: Omit<ProductGalleryImage, "type">;

@@ -32,6 +32,7 @@ export type WordPressClient = {
 const DEFAULT_TIMEOUT_MS = 10_000;
 const MAX_REQUEST_ATTEMPTS = 2;
 const RETRY_DELAY_MS = 250;
+const COLLECTION_PAGE_SIZE = 10;
 const buildCacheBuster =
   process.env.WORDPRESS_CACHE_BUST ??
   process.env.CF_PAGES_COMMIT_SHA ??
@@ -39,6 +40,31 @@ const buildCacheBuster =
 const fetchTraceEnabled = process.env.WORDPRESS_FETCH_TRACE === "1";
 let activeRequests = 0;
 let requestSequence = 0;
+
+function isTransientNetworkError(error: unknown): boolean {
+  return (
+    error instanceof TypeError ||
+    (error instanceof Error && error.name === "AbortError")
+  );
+}
+
+async function waitBeforeRetry(
+  url: string,
+  attempt: number,
+  elapsedMs: number,
+  error: unknown,
+) {
+  const errorName = error instanceof Error ? error.name : "UnknownError";
+  console.warn(
+    `[wordpress-retry] ${JSON.stringify({
+      endpoint: publicEndpoint(url),
+      attempt,
+      elapsedMs,
+      errorName,
+    })}`,
+  );
+  await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+}
 
 function publicEndpoint(url: string): string {
   const endpoint = new URL(url);
@@ -100,7 +126,7 @@ async function requestJson(
   fetcher: typeof fetch,
   url: string,
   timeoutMs: number,
-): Promise<unknown> {
+): Promise<{ data: unknown; headers: Headers }> {
   for (let attempt = 1; attempt <= MAX_REQUEST_ATTEMPTS; attempt += 1) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
@@ -130,18 +156,11 @@ async function requestJson(
           errorName,
         });
 
-        const isNetworkError =
-          errorName === "AbortError" || error instanceof TypeError;
-        if (isNetworkError && attempt < MAX_REQUEST_ATTEMPTS) {
-          console.warn(
-            `[wordpress-retry] ${JSON.stringify({
-              endpoint: publicEndpoint(url),
-              attempt,
-              elapsedMs,
-              errorName,
-            })}`,
-          );
-          await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+        if (
+          isTransientNetworkError(error) &&
+          attempt < MAX_REQUEST_ATTEMPTS
+        ) {
+          await waitBeforeRetry(url, attempt, elapsedMs, error);
           continue;
         }
 
@@ -170,13 +189,29 @@ async function requestJson(
       try {
         data = await response.json();
       } catch (error) {
+        const elapsedMs = Date.now() - startedAt;
+        if (
+          isTransientNetworkError(error) &&
+          attempt < MAX_REQUEST_ATTEMPTS
+        ) {
+          traceRequest(url, {
+            event: "failure",
+            requestId,
+            attempt,
+            elapsedMs,
+            errorName: error instanceof Error ? error.name : "UnknownError",
+          });
+          await waitBeforeRetry(url, attempt, elapsedMs, error);
+          continue;
+        }
+
         throw new WordPressDataError(
           "WORDPRESS_INVALID_JSON",
           "WordPress returned a response that could not be parsed as JSON.",
           {
             endpoint: url,
             attempt,
-            elapsedMs: Date.now() - startedAt,
+            elapsedMs,
           },
           { cause: error },
         );
@@ -188,7 +223,7 @@ async function requestJson(
         attempt,
         elapsedMs: Date.now() - startedAt,
       });
-      return data;
+      return { data, headers: response.headers };
     } finally {
       clearTimeout(timeout);
       activeRequests -= 1;
@@ -219,10 +254,13 @@ export function createWordPressClient(
   const restRoot = normalizeRestRoot(config.restRoot);
   const timeoutMs = config.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   const fetcher = config.fetcher ?? fetch;
-  const requests = new Map<string, Promise<unknown>>();
+  const requests = new Map<
+    string,
+    Promise<{ data: unknown; headers: Headers }>
+  >();
   const mediaRequests = new Map<number, Promise<WordPressMedia | null>>();
 
-  function loadJson(url: string) {
+  function loadJsonResponse(url: string) {
     const existing = requests.get(url);
     if (existing) return existing;
 
@@ -232,6 +270,10 @@ export function createWordPressClient(
     });
     requests.set(url, request);
     return request;
+  }
+
+  async function loadJson(url: string) {
+    return (await loadJsonResponse(url)).data;
   }
 
   return {
@@ -244,9 +286,69 @@ export function createWordPressClient(
 
     async listPosts(endpoint, query = {}) {
       const path = wordpressEndpoints[endpoint];
-      const url = `${restRoot}/${path}?${buildQuery(query)}`;
-      const data = await loadJson(url);
-      return unwrapValidation(validatePostCollection(data), url);
+      const shouldPaginate =
+        query.page === undefined &&
+        query.perPage === undefined &&
+        query.slug === undefined &&
+        query.include === undefined;
+
+      if (!shouldPaginate) {
+        const url = `${restRoot}/${path}?${buildQuery(query)}`;
+        const data = await loadJson(url);
+        return unwrapValidation(validatePostCollection(data), url);
+      }
+
+      const firstUrl = `${restRoot}/${path}?${buildQuery({
+        ...query,
+        page: 1,
+        perPage: COLLECTION_PAGE_SIZE,
+      })}`;
+      const firstResponse = await loadJsonResponse(firstUrl);
+      const firstPage = unwrapValidation(
+        validatePostCollection(firstResponse.data),
+        firstUrl,
+      );
+      const totalPagesHeader = firstResponse.headers.get("x-wp-totalpages");
+      if (!totalPagesHeader && firstPage.length === COLLECTION_PAGE_SIZE) {
+        throw new WordPressDataError(
+          "WORDPRESS_INVALID_RESPONSE",
+          "WordPress omitted the collection page count for a full page.",
+          { endpoint: firstUrl, field: "x-wp-totalpages" },
+        );
+      }
+      const totalPages = totalPagesHeader
+        ? Number.parseInt(totalPagesHeader, 10)
+        : 1;
+
+      const emptyCollection = totalPages === 0 && firstPage.length === 0;
+      if (
+        !Number.isSafeInteger(totalPages) ||
+        totalPages < 0 ||
+        (totalPages === 0 && !emptyCollection)
+      ) {
+        throw new WordPressDataError(
+          "WORDPRESS_INVALID_RESPONSE",
+          "WordPress returned an invalid collection page count.",
+          { endpoint: firstUrl, field: "x-wp-totalpages" },
+        );
+      }
+
+      if (emptyCollection) return [];
+
+      const posts = [...firstPage];
+      for (let page = 2; page <= totalPages; page += 1) {
+        const pageUrl = `${restRoot}/${path}?${buildQuery({
+          ...query,
+          page,
+          perPage: COLLECTION_PAGE_SIZE,
+        })}`;
+        const data = await loadJson(pageUrl);
+        posts.push(
+          ...unwrapValidation(validatePostCollection(data), pageUrl),
+        );
+      }
+
+      return posts;
     },
 
     async getMedia(id) {

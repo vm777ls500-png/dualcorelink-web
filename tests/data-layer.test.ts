@@ -173,9 +173,85 @@ test("client reuses identical collection and media requests", async () => {
   await client.getMedia(44);
 
   assert.equal(calls, 2);
+
+  const pagedUrls: string[] = [];
+  const pagedClient = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher: async (input) => {
+      const url = new URL(String(input));
+      pagedUrls.push(url.toString());
+      const page = Number(url.searchParams.get("page"));
+      const count = page === 1 ? 10 : 2;
+      const offset = page === 1 ? 0 : 10;
+      return Response.json(
+        Array.from({ length: count }, (_, index) => ({
+          id: offset + index + 1,
+          slug: `product-${offset + index + 1}`,
+          status: "publish",
+          type: "product",
+          link: `https://cms.example.com/products/product-${offset + index + 1}/`,
+          title: { rendered: `Product ${offset + index + 1}` },
+          excerpt: { rendered: "Product excerpt" },
+          content: { rendered: "Product content" },
+          featured_media: 0,
+          language: "en",
+          direction: "ltr",
+          translations: {},
+          translation_group: `product-${offset + index + 1}`,
+          hreflang: {},
+          acf: {},
+        })),
+        { headers: { "X-WP-TotalPages": "2" } },
+      );
+    },
+  });
+
+  assert.equal((await pagedClient.listPosts("products")).length, 12);
+  assert.equal(pagedUrls.length, 2);
+  assert.ok(pagedUrls.every((url) => url.includes("per_page=10")));
+  assert.ok(pagedUrls[0].includes("page=1"));
+  assert.ok(pagedUrls[1].includes("page=2"));
+
+  const emptyClient = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher: async () =>
+      Response.json([], { headers: { "X-WP-TotalPages": "0" } }),
+  });
+  assert.deepEqual(await emptyClient.listPosts("regions"), []);
+
+  const missingPageCountClient = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher: async () =>
+      Response.json(
+        Array.from({ length: 10 }, (_, index) => ({
+          id: index + 1,
+          slug: `product-${index + 1}`,
+          status: "publish",
+          type: "product",
+          link: `https://cms.example.com/products/product-${index + 1}/`,
+          title: { rendered: `Product ${index + 1}` },
+          excerpt: { rendered: "Product excerpt" },
+          content: { rendered: "Product content" },
+          featured_media: 0,
+          language: "en",
+          direction: "ltr",
+          translations: {},
+          translation_group: `product-${index + 1}`,
+          hreflang: {},
+          acf: {},
+        })),
+      ),
+  });
+  await assert.rejects(
+    () => missingPageCountClient.listPosts("products"),
+    (error) =>
+      error instanceof WordPressDataError &&
+      error.code === "WORDPRESS_INVALID_RESPONSE" &&
+      error.context.field === "x-wp-totalpages",
+  );
 });
 
-test("client retries one transient network failure and returns validated data", async () => {
+test("client retries transient network failures while fetching or reading a response", async () => {
   let calls = 0;
   const fetcher: typeof fetch = async () => {
     calls += 1;
@@ -189,6 +265,27 @@ test("client retries one transient network failure and returns validated data", 
 
   assert.deepEqual(await client.listPosts("products"), []);
   assert.equal(calls, 2);
+
+  let bodyCalls = 0;
+  const bodyClient = createWordPressClient({
+    restRoot: "https://cms.example.com/wp-json",
+    fetcher: async () => {
+      bodyCalls += 1;
+      if (bodyCalls === 1) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => {
+            throw new TypeError("terminated");
+          },
+        } as Response;
+      }
+      return Response.json([]);
+    },
+  });
+
+  assert.deepEqual(await bodyClient.listPosts("products"), []);
+  assert.equal(bodyCalls, 2);
 });
 
 test("client does not retry HTTP or JSON response errors", async () => {

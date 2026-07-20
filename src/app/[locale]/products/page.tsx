@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
+import { ContentList } from "@/components/content/content-list";
 import { EmptyState } from "@/components/content/empty-state";
 import { ProductFilteredList } from "@/components/content/product-filtered-list";
 import { isLocale, locales } from "@/config/i18n";
@@ -81,6 +82,22 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
   const whatsappUrl = `https://wa.me/${brand.whatsapp.international}?text=${encodeURIComponent(
     "Hello DUALCORE LINK, I would like to discuss smart hotel and smart home automation products.",
   )}`;
+  const productListItems = products.map((product) => ({
+    id: product.id,
+    slug: product.slug,
+    title: stripHtml(product.title),
+    description: stripHtml(product.shortDescription || product.excerpt),
+    reference: product.model || undefined,
+    hasMedia:
+      productDisplayImages[product.slug] !== undefined ||
+      product.primaryImage !== null,
+    mediaUrl:
+      productDisplayImages[product.slug]?.src ?? product.primaryImage?.sourceUrl,
+    mediaAlt: stripHtml(product.title),
+    categories: product.categoryNames,
+    categorySlugs: product.categorySlugs,
+    seriesSlugs: seriesSlugsByProduct.get(product.slug) ?? [],
+  }));
   const graph = createSchemaGraph([
     createCollectionPageSchema({
       id: `${url}#collection`,
@@ -266,9 +283,11 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
       ) : (
         <Suspense
           fallback={
-            <EmptyState
-              title="Loading products"
-              description="Preparing product results."
+            <ContentList
+              locale={locale}
+              route="products"
+              items={productListItems}
+              variant="product"
             />
           }
         >
@@ -283,25 +302,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               slug: item.slug,
               title: item.title,
             }))}
-            items={products.map((product) => ({
-              id: product.id,
-              slug: product.slug,
-              title: stripHtml(product.title),
-              description: stripHtml(
-                product.shortDescription || product.excerpt,
-              ),
-              reference: product.model || undefined,
-              hasMedia:
-                productDisplayImages[product.slug] !== undefined ||
-                product.primaryImage !== null,
-              mediaUrl:
-                productDisplayImages[product.slug]?.src ??
-                product.primaryImage?.sourceUrl,
-              mediaAlt: stripHtml(product.title),
-              categories: product.categoryNames,
-              categorySlugs: product.categorySlugs,
-              seriesSlugs: seriesSlugsByProduct.get(product.slug) ?? [],
-            }))}
+            items={productListItems}
           />
         </Suspense>
       )}

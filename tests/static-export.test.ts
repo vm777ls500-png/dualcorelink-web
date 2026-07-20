@@ -93,3 +93,14 @@ test("AWS export baselines match the Phase 2G public content counts", async () =
   assert.match(deployScript, /EXPECTED_BREADCRUMBS:-15/);
   assert.match(deployScript, /forbidden environment reference found/);
 });
+
+test("products listing prerenders crawlable product links before hydration", async () => {
+  const productsPage = await readFile(
+    path.join(projectRoot, "src", "app", "[locale]", "products", "page.tsx"),
+    "utf8",
+  );
+
+  assert.match(productsPage, /fallback=\{[\s\S]*?<ContentList/);
+  assert.match(productsPage, /items=\{productListItems\}/);
+  assert.doesNotMatch(productsPage, /title="Loading products"/);
+});

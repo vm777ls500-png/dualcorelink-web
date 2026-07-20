@@ -55,9 +55,9 @@ export const productDisplayImages: Record<string, ProductDisplayImage> = {
     height: 800,
   },
   "embedded-human-presence-sensor": {
-    src: "/media/products/embedded-human-presence-sensor/hero.webp",
-    width: 1200,
-    height: 800,
+    src: "/media/products/embedded-human-presence-sensor/detail-01.webp",
+    width: 1600,
+    height: 1066,
   },
   "hotel-ceiling-background-speaker": {
     src: "/media/products/hotel-ceiling-background-speaker/hero.webp",
@@ -65,9 +65,9 @@ export const productDisplayImages: Record<string, ProductDisplayImage> = {
     height: 800,
   },
   "hotel-delivery-robot": {
-    src: "/media/products/hotel-delivery-robot/hero.webp",
-    width: 1200,
-    height: 800,
+    src: "/media/products/hotel-delivery-robot/application-01.webp",
+    width: 1066,
+    height: 1600,
   },
   "hotel-delivery-robot-charging-dock": {
     src: "/media/products/hotel-delivery-robot-charging-dock/hero.webp",

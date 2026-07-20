@@ -32,6 +32,21 @@ test("all products have an optimized featured image and explicit gallery mapping
   assert.equal(galleryCounts.filter((count) => count >= 2).length, 31);
   assert.equal(galleryCounts.filter((count) => count === 1).length, 4);
   assert.equal(galleryCounts.filter((count) => count === 0).length, 1);
+  assert.deepEqual(
+    slugs.filter((slug) => productGalleries[slug].gallery.length === 0),
+    ["rotary-knob-smart-control-display"],
+  );
+});
+
+test("high-value products lead with a clear product-body view", () => {
+  assert.equal(
+    productGalleries["embedded-human-presence-sensor"].featuredImage.src,
+    "/media/products/embedded-human-presence-sensor/detail-01.webp",
+  );
+  assert.equal(
+    productGalleries["hotel-delivery-robot"].featuredImage.src,
+    "/media/products/hotel-delivery-robot/application-01.webp",
+  );
 });
 
 test("optimized gallery files, thumbnails, dimensions, and alt text are valid", () => {
@@ -42,6 +57,7 @@ test("optimized gallery files, thumbnails, dimensions, and alt text are valid", 
   for (const [slug, product] of Object.entries(productGalleries)) {
     const images = [product.featuredImage, ...product.gallery];
     const productSources = new Set<string>();
+    const productAlts = new Set<string>();
 
     assert.equal(productDisplayImages[slug].src, product.featuredImage.src);
     assert.equal(productDisplayImages[slug].width, product.featuredImage.width);
@@ -49,6 +65,8 @@ test("optimized gallery files, thumbnails, dimensions, and alt text are valid", 
 
     for (const image of images) {
       assert.ok(image.alt.trim().length >= 5, `Weak alt text for ${slug}`);
+      assert.equal(productAlts.has(image.alt), false, `Duplicate alt text in ${slug}`);
+      productAlts.add(image.alt);
       assert.ok(image.width > 0 && image.height > 0, `Invalid dimensions for ${slug}`);
       assert.equal(productSources.has(image.src), false, `Duplicate image in ${slug}`);
       productSources.add(image.src);

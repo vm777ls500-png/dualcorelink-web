@@ -2,7 +2,7 @@ import type { InquiryAttribution } from "@/lib/inquiry/attribution";
 import { sendGa4InquiryEvent } from "@/lib/analytics/ga4";
 
 export type InquiryChannel = "form" | "whatsapp" | "email";
-export type InquiryAction = "cta_click" | "form_submit";
+export type InquiryAction = "cta_click" | "form_submit" | "email_draft_open";
 
 export type InquiryEvent = {
   event: `inquiry_${InquiryAction}`;

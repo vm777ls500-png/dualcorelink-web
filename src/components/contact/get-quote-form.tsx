@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import {
   brand,
+  createWhatsAppUrl,
   customerTypeOptions,
   productInterestOptions,
 } from "@/config/brand";
@@ -12,13 +13,17 @@ import {
   parseInquiryAttribution,
   type InquiryAttribution,
 } from "@/lib/inquiry/attribution";
+import {
+  buildInquiryEmailDraft,
+  createInquiryDraftLaunchGate,
+} from "@/lib/inquiry/email-draft";
 import { trackInquiryEvent } from "@/lib/inquiry/events";
 
 type GetQuoteFormProps = {
   productName?: string;
 };
 
-type FormStatus = "idle" | "mailto";
+type FormStatus = "idle" | "preparing" | "draft_ready" | "error";
 
 const defaultAttribution: InquiryAttribution = {
   sourcePage: "/en/contact/",
@@ -37,6 +42,11 @@ const projectStageOptions = [
 
 export function GetQuoteForm({ productName }: GetQuoteFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const launchGate = useRef<ReturnType<typeof createInquiryDraftLaunchGate> | null>(
+    null,
+  );
+  const releaseTimer = useRef<number | undefined>(undefined);
+  launchGate.current ??= createInquiryDraftLaunchGate();
   const [attribution, setAttribution] =
     useState<InquiryAttribution>(defaultAttribution);
   const [message, setMessage] = useState(
@@ -59,6 +69,15 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
     }
   }, [productName]);
 
+  useEffect(
+    () => () => {
+      if (releaseTimer.current !== undefined) {
+        window.clearTimeout(releaseTimer.current);
+      }
+    },
+    [],
+  );
+
   const contextLabel = useMemo(() => {
     if (attribution.sourceTitle) return attribution.sourceTitle;
     if (attribution.contentSlug) {
@@ -78,54 +97,38 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
       event.currentTarget.reportValidity();
       return;
     }
-    const detailLines = [
-      ["Name", data.get("name")],
-      ["Company", data.get("company")],
-      ["Email", data.get("email")],
-      ["WhatsApp / Phone", data.get("phone")],
-      ["Country / Region", data.get("country")],
-      ["Customer Type", data.get("customerType")],
-      ["Project Stage", data.get("projectStage")],
-      ["Product Interest", interests],
-      ["Estimated Quantity", data.get("quantity")],
-      ["Target Delivery Timing", data.get("targetDelivery")],
-    ].flatMap(([label, rawValue]) => {
-      const value = String(rawValue ?? "").trim();
-      return value ? [`${label}: ${value}`] : [];
-    });
-    const sourceLines = [
-      ["Source Page", attribution.sourcePage],
-      ["Content Type", attribution.contentType],
-      ["Content Slug", attribution.contentSlug],
-      ["Source Title", attribution.sourceTitle],
-      ["CTA Position", attribution.ctaPosition],
-    ].flatMap(([label, rawValue]) => {
-      const value = String(rawValue ?? "").trim();
-      return value ? [`${label}: ${value}`] : [];
-    });
-    const lines = [
-      ...detailLines,
-      "",
-      "Message:",
-      `${data.get("message") ?? ""}`,
-      "",
-      "Inquiry source:",
-      ...sourceLines,
-      "",
-      "Project files:",
-      "Please attach project files manually in your email client if needed.",
-    ];
-    const mailto = new URL(`mailto:${brand.emails.sales}`);
-    mailto.searchParams.set(
-      "subject",
-      attribution.sourceTitle
-        ? `Website Inquiry: ${attribution.sourceTitle}`
-        : "New Inquiry from Website",
-    );
-    mailto.searchParams.set("body", lines.join("\n"));
-    trackInquiryEvent("form_submit", "form", attribution);
-    setStatus("mailto");
-    window.location.href = mailto.toString();
+    if (!launchGate.current?.tryStart()) return;
+
+    setStatus("preparing");
+    try {
+      const mailto = buildInquiryEmailDraft(
+        {
+          name: String(data.get("name") ?? ""),
+          company: String(data.get("company") ?? ""),
+          email: String(data.get("email") ?? ""),
+          phone: String(data.get("phone") ?? ""),
+          country: String(data.get("country") ?? ""),
+          customerType: String(data.get("customerType") ?? ""),
+          projectStage: String(data.get("projectStage") ?? ""),
+          productInterests: data
+            .getAll("productInterest")
+            .map((value) => String(value)),
+          quantity: String(data.get("quantity") ?? ""),
+          targetDelivery: String(data.get("targetDelivery") ?? ""),
+          message: String(data.get("message") ?? ""),
+        },
+        attribution,
+      );
+      window.location.assign(mailto);
+      trackInquiryEvent("email_draft_open", "email", attribution);
+      releaseTimer.current = window.setTimeout(() => {
+        launchGate.current?.release();
+        setStatus("draft_ready");
+      }, 1200);
+    } catch {
+      launchGate.current.release();
+      setStatus("error");
+    }
   }
 
   const inputClass =
@@ -246,26 +249,23 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
         />
       </label>
 
-      <label className={`${labelClass} mt-5`}>
-        Upload Project Files
-        <input
-          name="projectFiles"
-          type="file"
-          multiple
-          accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.zip"
-          className={inputClass}
-        />
-      </label>
-      <p className="mt-2 text-sm leading-6 text-muted">
-        Upload drawings, product lists, BOQ, or project requirements to help us
-        prepare a faster quotation.
-      </p>
+      <div className="mt-5 border border-line bg-background px-4 py-3" role="note">
+        <p className={labelClass}>Project Files (optional)</p>
+        <p className="mt-2 text-sm leading-6 text-muted">
+          This website does not upload files. After your email draft opens,
+          attach drawings, product lists, BOQ, or project requirements manually
+          in your email app. File type and size limits are set by your email
+          provider.
+        </p>
+      </div>
 
       <button
         type="submit"
-        className="contact-submit-button mt-6 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
+        disabled={status === "preparing"}
+        aria-disabled={status === "preparing"}
+        className="contact-submit-button mt-6 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white disabled:cursor-wait disabled:opacity-70"
       >
-        Send Inquiry
+        {status === "preparing" ? "Preparing Email Draft..." : "Prepare Email Draft"}
       </button>
 
       <p className="mt-4 border-s-4 border-accent ps-4 text-sm leading-6 text-muted">
@@ -281,16 +281,42 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
         >
           {brand.emails.sales}
         </TrackedInquiryLink>
-        . Attach project files manually before sending, or use WhatsApp.
+        . Review and send the draft yourself, attach project files manually if
+        needed, or use{" "}
+        <TrackedInquiryLink
+          href={createWhatsAppUrl(
+            `Hello ${brand.name}, I would like to discuss a B2B project.`,
+          )}
+          channel="whatsapp"
+          attribution={{
+            ...attribution,
+            ctaPosition: "form_whatsapp_fallback",
+          }}
+          className="font-semibold text-brand"
+        >
+          WhatsApp
+        </TrackedInquiryLink>
+        .
       </p>
-      {status === "mailto" ? (
+      {status === "draft_ready" ? (
         <p
           aria-live="polite"
           className="mt-3 text-sm font-semibold text-brand"
           role="status"
         >
-          Your email client should open with the inquiry details. We will reply
-          within 24 hours on business days.
+          Email draft handoff requested. Review the draft, attach any files, and
+          press Send in your email app. This website has not sent or delivered
+          your inquiry.
+        </p>
+      ) : null}
+      {status === "error" ? (
+        <p
+          aria-live="assertive"
+          className="mt-3 text-sm font-semibold text-red-700"
+          role="alert"
+        >
+          We could not open your email app. Your entries are still here. Use the
+          sales email or WhatsApp link above, or try preparing the draft again.
         </p>
       ) : null}
     </form>

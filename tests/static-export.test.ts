@@ -146,3 +146,30 @@ test("products listing prerenders crawlable product links before hydration", asy
   assert.match(productsPage, /items=\{productListItems\}/);
   assert.doesNotMatch(productsPage, /title="Loading products"/);
 });
+
+test("priority crawl targets have relevant static solution links", async () => {
+  const solutionsPage = await readFile(
+    path.join(projectRoot, "src", "app", "[locale]", "solutions", "page.tsx"),
+    "utf8",
+  );
+
+  for (const [solutionSlug, productSlug] of [
+    ["hotel-delivery-robot-solution", "hotel-delivery-robot-charging-dock"],
+    ["ai-smart-display-solution", "smart-three-key-music-control-panel"],
+    ["oem-odm-custom-panel-solution", "vintage-gold-key-card-energy-saver-panel"],
+  ]) {
+    const solutionStart = solutionsPage.indexOf(`slug: "${solutionSlug}"`);
+    const nextSolution = solutionsPage.indexOf("\n  {\n    slug:", solutionStart + 1);
+    const solutionBlock = solutionsPage.slice(
+      solutionStart,
+      nextSolution === -1 ? undefined : nextSolution,
+    );
+
+    assert.notEqual(solutionStart, -1, `Missing solution ${solutionSlug}`);
+    assert.match(
+      solutionBlock,
+      new RegExp(`"${productSlug}"`),
+      `Expected ${solutionSlug} to link ${productSlug}`,
+    );
+  }
+});

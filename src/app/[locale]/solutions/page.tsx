@@ -86,6 +86,10 @@ const solutionEntries = [
       ],
       ["Thermostat HVAC Control Panel", "thermostat-hvac-control-panel"],
       ["AI Music Control Panel", "ai-music-control-panel"],
+      [
+        "Smart Three-Key Music Control Panel",
+        "smart-three-key-music-control-panel",
+      ],
     ],
   },
   {
@@ -123,6 +127,10 @@ const solutionEntries = [
     categories: ["Hotel Delivery Robot System"],
     products: [
       ["Hotel Delivery Robot", "hotel-delivery-robot"],
+      [
+        "Hotel Delivery Robot Charging Dock",
+        "hotel-delivery-robot-charging-dock",
+      ],
       ["Hotel Smart Delivery Cabinet", "hotel-smart-delivery-cabinet"],
     ],
   },
@@ -143,6 +151,10 @@ const solutionEntries = [
       [
         "Smart Key Card Energy Saver Panel",
         "smart-key-card-energy-saver-panel",
+      ],
+      [
+        "Vintage Gold Key Card Energy Saver Panel",
+        "vintage-gold-key-card-energy-saver-panel",
       ],
       [
         "Smart Four-Key Curtain Control Panel",

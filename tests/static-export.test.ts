@@ -125,6 +125,14 @@ test("Nginx retires only known legacy locales with verified English targets", as
     /return 301 https:\/\/dualcorelink\.com\/en\$legacy_path\//,
   );
   assert.match(nginx, /return 404/);
+  assert.match(
+    nginx,
+    /location \/ \{\s+return 301 https:\/\/dualcorelink\.com\$request_uri;\s+\}/,
+  );
+  assert.doesNotMatch(
+    nginx,
+    /^    return 301 https:\/\/dualcorelink\.com\$request_uri;$/m,
+  );
   assert.doesNotMatch(nginx, /location ~ \^\/\.\*.*return 301/);
 });
 

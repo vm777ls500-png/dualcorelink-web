@@ -284,7 +284,11 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
         . Attach project files manually before sending, or use WhatsApp.
       </p>
       {status === "mailto" ? (
-        <p className="mt-3 text-sm font-semibold text-brand">
+        <p
+          aria-live="polite"
+          className="mt-3 text-sm font-semibold text-brand"
+          role="status"
+        >
           Your email client should open with the inquiry details. We will reply
           within 24 hours on business days.
         </p>

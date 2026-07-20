@@ -111,9 +111,8 @@ export function Ga4Consent({ measurementId: rawMeasurementId }: Ga4ConsentProps)
       {isOpen ? (
         <aside
           aria-labelledby="analytics-consent-title"
-          aria-modal="true"
           className="analytics-consent-panel"
-          role="dialog"
+          role="region"
         >
           <div>
             <h2

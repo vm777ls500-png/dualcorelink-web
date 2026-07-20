@@ -62,6 +62,9 @@ jobs:
       - name: Validate data
         run: npm run test:data
 
+      - name: Audit product media
+        run: npm run media:audit
+
       - name: Build static export
         shell: bash
         run: |

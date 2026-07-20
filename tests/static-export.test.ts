@@ -93,6 +93,15 @@ test("AWS export baselines match the Phase 2G public content counts", async () =
   assert.equal(resources.length, 15);
   assert.match(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
+  assert.match(
+    workflow,
+    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
+  );
+  const mediaAuditStep = workflow.match(
+    /- name: Audit product media\s+run: npm run media:audit/,
+  )?.[0];
+  assert.ok(mediaAuditStep);
+  assert.doesNotMatch(mediaAuditStep, /continue-on-error|\|\| true/);
   assert.match(deployScript, /EXPECTED_RESOURCES:-15/);
   assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-76/);
   assert.match(deployScript, /EXPECTED_ARTICLES:-15/);

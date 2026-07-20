@@ -200,6 +200,25 @@ All four return HTTP 200, are in the sitemap, and expose the existing valid B2B 
 - Exported Products-listing links: 36 unique.
 - `git diff --check`: passed; only non-blocking local line-ending notices were emitted.
 
+## Deployment and Production Verification
+
+- Workflow: AWS static production deploy.
+- Actions run: `29730482389`.
+- Run URL: `https://github.com/vm777ls500-png/dualcorelink-web/actions/runs/29730482389`.
+- Exact source SHA: `a99f8b04a7c8ef6d8f2c2acebed639a9184ff71f`.
+- Result: success on attempt 1.
+- Checkout, environment validation, dependency installation, lint, data validation, static build, atomic release deployment, and test-domain indexing protection: passed.
+- Previous release: `/srv/dualcorelink/frontend/releases/2a4f5fe451b2-20260720-151816`.
+- New and current release: `/srv/dualcorelink/frontend/releases/a99f8b04a7c8-20260720-171320`.
+- Local HTTPS health check: passed on attempt 1.
+- External HTTPS health check: passed on attempt 1.
+- Rollback: not required.
+- Production homepage, Products listing, representative Product, Resources listing, and sitemap: HTTP 200.
+- Production Products listing: 36 unique Product detail links in returned HTML.
+- Production sitemap: 76 URLs.
+- Products-listing `noindex`: absent.
+- Products-listing environment leakage: absent.
+
 ## Recommended Follow-up
 
 1. Recheck Page indexing and the eight formerly unlinked Products on 2026-08-03, allowing approximately 14 days for recrawl.
@@ -217,4 +236,4 @@ All four return HTTP 200, are in the sitemap, and expose the existing valid B2B 
 
 ## Final Status
 
-Phase 4A identified one actionable crawl-discovery defect and applied a focused fix with regression coverage. The current 76-URL English sitemap is technically healthy. Expected exclusions were documented, Product rich-result warnings were handled without fabricated business data, and legacy-locale canonical behavior was isolated as a separate follow-up. Production deployment and post-deployment recrawl monitoring remain the final operational checks after the implementation commit is pushed.
+Phase 4A identified one actionable crawl-discovery defect and applied a focused fix with regression coverage. The implementation was deployed through the AWS workflow, the new release passed internal and external health checks, and the production Products listing now exposes all 36 Product detail links in static HTML. The current 76-URL English sitemap is technically healthy. Expected exclusions were documented, Product rich-result warnings were handled without fabricated business data, and legacy-locale canonical behavior was isolated as a separate follow-up. Phase 4A implementation and production verification are complete; recrawl monitoring remains scheduled for 2026-08-03.

@@ -53,19 +53,19 @@ export default async function LocaleLayout({
   const locale: Locale = localeParam;
 
   return (
-    <html lang={locale} dir={getDirection(locale)}>
-      <body>
-        <div className="flex min-h-screen flex-col">
-          <a className="skip-link" href="#main-content">
-            Skip to main content
-          </a>
-          <Header locale={locale} />
-          <main id="main-content" tabIndex={-1} className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </div>
-      </body>
-    </html>
+    <div
+      lang={locale}
+      dir={getDirection(locale)}
+      className="flex min-h-screen flex-col"
+    >
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
+      <Header locale={locale} />
+      <main id="main-content" tabIndex={-1} className="flex-1">
+        {children}
+      </main>
+      <Footer />
+    </div>
   );
 }

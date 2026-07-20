@@ -26,6 +26,25 @@ test("locale layout provides a keyboard bypass link and focus target", async () 
   assert.match(layout, /<main id="main-content" tabIndex=\{-1\}/);
 });
 
+test("only the root layout owns document elements", async () => {
+  const rootLayout = await read("src/app/layout.tsx");
+  const localeLayout = await read("src/app/[locale]/layout.tsx");
+
+  assert.match(rootLayout, /<html[\s\S]*?<body/);
+  assert.doesNotMatch(localeLayout, /<(?:html|body)\b/);
+  assert.match(localeLayout, /lang=\{locale\}[\s\S]*?dir=\{getDirection\(locale\)\}/);
+});
+
+test("global styles honor reduced motion preferences", async () => {
+  const css = await read("src/app/globals.css");
+
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(css, /animation-duration:\s*0\.01ms\s*!important/);
+  assert.match(css, /animation-iteration-count:\s*1\s*!important/);
+  assert.match(css, /transition-duration:\s*0\.01ms\s*!important/);
+  assert.match(css, /scroll-behavior:\s*auto\s*!important/);
+});
+
 test("analytics choice panel uses non-modal region semantics", async () => {
   const consent = await read("src/components/analytics/ga4-consent.tsx");
 

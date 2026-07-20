@@ -1,10 +1,11 @@
 import { rm, stat } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { legacyLocales } from "../src/config/i18n";
 import { emptyStaticExportSlug } from "../src/lib/routing/static-export";
 
 export async function cleanStaticExport(
-  outputRoot = path.resolve("out", "en"),
+  outputRoot = path.resolve("out"),
 ) {
   const resolvedOutputRoot = path.resolve(outputRoot);
   const outputRootStats = await stat(resolvedOutputRoot);
@@ -13,11 +14,18 @@ export async function cleanStaticExport(
   }
 
   const sentinelDirectories = [
-    path.join(resolvedOutputRoot, "products", emptyStaticExportSlug),
-    path.join(resolvedOutputRoot, "solutions", emptyStaticExportSlug),
+    path.join(resolvedOutputRoot, "en", "products", emptyStaticExportSlug),
+    path.join(resolvedOutputRoot, "en", "solutions", emptyStaticExportSlug),
+  ];
+  const retiredLocaleDirectories = legacyLocales.map((locale) =>
+    path.join(resolvedOutputRoot, locale),
+  );
+  const removableDirectories = [
+    ...sentinelDirectories,
+    ...retiredLocaleDirectories,
   ];
 
-  for (const directory of sentinelDirectories) {
+  for (const directory of removableDirectories) {
     if (!directory.startsWith(`${resolvedOutputRoot}${path.sep}`)) {
       throw new Error(`Refusing to remove unexpected export path: ${directory}`);
     }
@@ -25,12 +33,12 @@ export async function cleanStaticExport(
     await rm(directory, { recursive: true, force: true });
   }
 
-  return sentinelDirectories;
+  return removableDirectories;
 }
 
 const entryPath = process.argv[1] ? path.resolve(process.argv[1]) : null;
 if (entryPath && pathToFileURL(entryPath).href === import.meta.url) {
-  const outputRoot = process.argv[2] ?? path.resolve("out", "en");
+  const outputRoot = process.argv[2] ?? path.resolve("out");
   cleanStaticExport(outputRoot)
     .then((directories) => {
       console.log(

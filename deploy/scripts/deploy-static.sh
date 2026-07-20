@@ -51,6 +51,13 @@ for required in index.html 404.html sitemap.xml en/products/index.html en/resour
   fi
 done
 
+for retired_locale in zh de es ar vi fa; do
+  if [[ -e "$source_dir/$retired_locale" ]]; then
+    echo "Release gate failed: retired locale artifact found: $retired_locale" >&2
+    exit 1
+  fi
+done
+
 count_detail_files_with() {
   local pattern="$1"
   local directory="$2"

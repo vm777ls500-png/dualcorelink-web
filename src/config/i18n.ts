@@ -8,6 +8,10 @@ export const visibleLocales: readonly Locale[] = ["en"];
 
 export const indexableLocales: readonly Locale[] = ["en"];
 
+export const legacyLocales: readonly Locale[] = locales.filter(
+  (locale) => !indexableLocales.includes(locale),
+);
+
 export const rtlLocales: readonly Locale[] = ["ar", "fa"];
 
 export const localeNames: Record<Locale, string> = {

@@ -3,11 +3,23 @@ server {
     listen 80;
     listen [::]:80;
     server_name dualcorelink.com www.dualcorelink.com;
+    root /srv/dualcorelink/frontend/current;
 
     location ^~ /.well-known/acme-challenge/ {
         root /var/www/dualcorelink;
         allow all;
         try_files $uri =404;
+    }
+
+    location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
+        return 301 https://dualcorelink.com/en/;
+    }
+
+    location ~ ^/(?:zh|de|es|ar|vi|fa)(?<legacy_path>/.*?)/?$ {
+        if (-f $document_root/en$legacy_path/index.html) {
+            return 301 https://dualcorelink.com/en$legacy_path/;
+        }
+        return 404;
     }
 
     location / {
@@ -19,11 +31,23 @@ server {
     listen 443 ssl;
     listen [::]:443 ssl;
     server_name www.dualcorelink.com;
+    root /srv/dualcorelink/frontend/current;
 
     ssl_certificate /etc/letsencrypt/live/dualcorelink.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/dualcorelink.com/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
+        return 301 https://dualcorelink.com/en/;
+    }
+
+    location ~ ^/(?:zh|de|es|ar|vi|fa)(?<legacy_path>/.*?)/?$ {
+        if (-f $document_root/en$legacy_path/index.html) {
+            return 301 https://dualcorelink.com/en$legacy_path/;
+        }
+        return 404;
+    }
 
     return 301 https://dualcorelink.com$request_uri;
 }
@@ -48,6 +72,17 @@ server {
     gzip on;
     gzip_vary on;
     gzip_types text/plain text/css application/json application/javascript application/xml image/svg+xml;
+
+    location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
+        return 301 https://dualcorelink.com/en/;
+    }
+
+    location ~ ^/(?:zh|de|es|ar|vi|fa)(?<legacy_path>/.*?)/?$ {
+        if (-f $document_root/en$legacy_path/index.html) {
+            return 301 https://dualcorelink.com/en$legacy_path/;
+        }
+        return 404;
+    }
 
     location ^~ /_next/static/ {
         try_files $uri =404;

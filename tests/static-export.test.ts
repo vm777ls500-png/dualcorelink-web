@@ -4,6 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
+import { legacyLocales } from "../src/config/i18n";
 import { resources } from "../src/config/resources";
 import { emptyStaticExportSlug } from "../src/lib/routing/static-export";
 import { cleanStaticExport } from "../scripts/clean-static-export";
@@ -24,30 +25,35 @@ test("static export cleanup removes only collection sentinels", async () => {
     emptyStaticExportSlug,
   );
   const realProduct = path.join(englishRoot, "products", "real-product");
-  const otherLocale = path.join(
-    temporaryRoot,
-    "de",
-    "products",
-    emptyStaticExportSlug,
+  const retiredLocaleDirectories = legacyLocales.map((locale) =>
+    path.join(temporaryRoot, locale),
   );
+  const unknownLocale = path.join(temporaryRoot, "fr");
 
   try {
     for (const directory of [
       productSentinel,
       solutionSentinel,
       realProduct,
-      otherLocale,
+      ...retiredLocaleDirectories,
+      unknownLocale,
     ]) {
       await mkdir(directory, { recursive: true });
       await writeFile(path.join(directory, "index.html"), "ok");
     }
 
-    await cleanStaticExport(englishRoot);
+    await cleanStaticExport(temporaryRoot);
 
     await assert.rejects(readFile(path.join(productSentinel, "index.html")));
     await assert.rejects(readFile(path.join(solutionSentinel, "index.html")));
     assert.equal(await readFile(path.join(realProduct, "index.html"), "utf8"), "ok");
-    assert.equal(await readFile(path.join(otherLocale, "index.html"), "utf8"), "ok");
+    for (const directory of retiredLocaleDirectories) {
+      await assert.rejects(readFile(path.join(directory, "index.html")));
+    }
+    assert.equal(
+      await readFile(path.join(unknownLocale, "index.html"), "utf8"),
+      "ok",
+    );
   } finally {
     await rm(temporaryRoot, { recursive: true, force: true });
   }
@@ -92,6 +98,34 @@ test("AWS export baselines match the Phase 2G public content counts", async () =
   assert.match(deployScript, /EXPECTED_ARTICLES:-15/);
   assert.match(deployScript, /EXPECTED_BREADCRUMBS:-15/);
   assert.match(deployScript, /forbidden environment reference found/);
+  assert.match(deployScript, /for retired_locale in zh de es ar vi fa/);
+  assert.match(deployScript, /retired locale artifact found/);
+});
+
+test("Nginx retires only known legacy locales with verified English targets", async () => {
+  const nginx = await readFile(
+    path.join(
+      projectRoot,
+      "deploy",
+      "nginx",
+      "dualcorelink.com.conf.template",
+    ),
+    "utf8",
+  );
+  const localePattern = legacyLocales.join("|");
+
+  assert.deepEqual(legacyLocales, ["zh", "de", "es", "ar", "vi", "fa"]);
+  assert.match(nginx, new RegExp(`\\(\\?:${localePattern}\\)`));
+  assert.match(
+    nginx,
+    /if \(-f \$document_root\/en\$legacy_path\/index\.html\)/,
+  );
+  assert.match(
+    nginx,
+    /return 301 https:\/\/dualcorelink\.com\/en\$legacy_path\//,
+  );
+  assert.match(nginx, /return 404/);
+  assert.doesNotMatch(nginx, /location ~ \^\/\.\*.*return 301/);
 });
 
 test("products listing prerenders crawlable product links before hydration", async () => {

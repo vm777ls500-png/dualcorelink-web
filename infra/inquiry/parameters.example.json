@@ -1,0 +1,17 @@
+[
+  { "ParameterKey": "EnvironmentName", "ParameterValue": "production" },
+  { "ParameterKey": "AllowedOrigin", "ParameterValue": "https://dualcorelink.com" },
+  { "ParameterKey": "SesIdentityDomain", "ParameterValue": "dualcorelink.com" },
+  {
+    "ParameterKey": "RecipientAddressParameterName",
+    "ParameterValue": "/dualcorelink/inquiry/recipient-address"
+  },
+  {
+    "ParameterKey": "SenderAddressParameterName",
+    "ParameterValue": "/dualcorelink/inquiry/sender-address"
+  },
+  { "ParameterKey": "IdempotencyTtlSeconds", "ParameterValue": "900" },
+  { "ParameterKey": "LogRetentionDays", "ParameterValue": "14" },
+  { "ParameterKey": "ApiThrottleRate", "ParameterValue": "2" },
+  { "ParameterKey": "ApiThrottleBurst", "ParameterValue": "5" }
+]

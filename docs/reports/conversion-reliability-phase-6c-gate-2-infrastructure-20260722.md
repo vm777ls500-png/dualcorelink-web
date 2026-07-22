@@ -110,7 +110,8 @@ Deployed-policy inspection found zero wildcard actions and zero wildcard resourc
 - TTL: Cloudflare automatic default
 - Same-name conflicts: 0
 - Public recursive DNS: 3/3 CNAMEs resolve to their SES-generated targets
-- Current SES verification: pending AWS detection after successful public DNS publication
+- Identity verification: verified at `2026-07-22 22:32 +08:00`
+- DKIM configuration: successful
 
 Only the three generated DKIM CNAMEs were added. Existing A, AAAA, CNAME, MX, SPF, DMARC, validation, and mail-routing records were not removed, overwritten, or otherwise modified. Full DKIM tokens and targets are intentionally omitted.
 
@@ -158,6 +159,8 @@ Low-volume cost is expected to remain small, but is not represented as guarantee
 - request-body logging: 0
 - PII in test payloads/logs: 0
 - DynamoDB TTL: enabled
+- SES identity verification: passed
+- SES DKIM verification: passed
 - production Nginx changes: 0
 - production Contact changes: 0
 - real SES sends: 0
@@ -179,14 +182,16 @@ No website rollback is required because the production request path was not chan
 
 ## Git Record
 
-- Intended implementation commit: `infra: add inquiry submission backend foundation`
+- Implementation commit: `bcf806bceeb9a2b6ae8a8a3e88e1411f68ac7647`
+- Commit message: `infra: add inquiry submission backend foundation`
+- GitHub Actions: AWS static production deploy Run 29 (`29927947064`) passed for the exact implementation SHA
 - Scope: `infra/inquiry/**`, the infrastructure test command, and this non-sensitive Gate 2 checkpoint
 - Credentials, mailbox values, AWS identifiers, API invoke URL, and deployment outputs: excluded
 
 ## Gate 3 Readiness
 
-The backend foundation, security controls, and synthetic dry-run path are ready. Gate 3 must not connect production traffic until SES identity and DKIM verification report success and the next gate separately reviews activation, monitoring, failure behavior, and rollback.
+The backend foundation, security controls, synthetic dry-run path, SES identity, and DKIM verification are ready. Gate 3 may begin its controlled activation review, but it must separately approve production routing, monitoring, failure behavior, and rollback before connecting traffic.
 
 ## Final Status
 
-Gate 2 infrastructure deployment and DNS publication are complete. SES verification remains pending AWS detection, so Gate 2 is not yet fully closed and production activation remains blocked.
+Gate 2 is complete. Infrastructure deployment, public DNS publication, SES identity verification, DKIM verification, dry-run testing, local validation, push, and the existing AWS deployment workflow all passed. Production Nginx and Contact remain unchanged, and no real email was sent.

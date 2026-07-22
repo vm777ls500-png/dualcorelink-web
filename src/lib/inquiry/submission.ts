@@ -45,7 +45,6 @@ export class InquirySubmissionError extends Error {
     this.name = "InquirySubmissionError";
   }
 }
-
 export function isServerInquirySubmissionEnabled(
   flag: string | undefined,
   endpoint: string | undefined,
@@ -143,4 +142,3 @@ export async function submitInquiry(
     clearTimeout(timeout);
   }
 }
-

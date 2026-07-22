@@ -123,7 +123,7 @@ test("contact form exposes honest, recoverable draft and attachment semantics", 
   assert.match(source, /name="company" className=/);
   assert.match(source, /name="phone" className=/);
   assert.match(source, /name="quantity"/);
-  assert.match(source, /disabled=\{status === "preparing"\}/);
+  assert.match(source, /disabled=\{status === "preparing" \|\| status === "submitting"\}/);
   assert.match(source, /role="status"/);
   assert.match(source, /role="alert"/);
   assert.match(source, /Your entries are still here/);
@@ -131,7 +131,7 @@ test("contact form exposes honest, recoverable draft and attachment semantics", 
   assert.match(source, /This website does not upload files/);
   assert.doesNotMatch(source, /name="projectFiles"/);
   assert.doesNotMatch(source, /trackInquiryEvent\("form_submit"/);
-  assert.doesNotMatch(source, /\.reset\(\)/);
+  assert.equal(source.match(/form\.reset\(\)/g)?.length, 1);
 });
 
 test("WhatsApp fallback uses HTTPS and encodes the message without form PII", () => {

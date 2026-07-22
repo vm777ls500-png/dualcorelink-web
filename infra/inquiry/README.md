@@ -1,7 +1,8 @@
-# DualCoreLink Inquiry Backend Foundation
+# DualCoreLink Inquiry Backend
 
-This directory defines the dry-run AWS foundation for server-side inquiry submission.
-It does not change the production Contact form or Nginx routing.
+This directory defines the dry-run AWS backend for server-side inquiry submission.
+Gate 3 implements the production code path but keeps `DRY_RUN=true`; it does not
+activate the production Contact form or Nginx routing.
 
 ## Resources
 
@@ -12,8 +13,22 @@ It does not change the production Contact form or Nginx routing.
 - Retained Lambda and API access log groups with 14-day retention
 - SES Easy DKIM domain identity
 
-The Lambda remains in `DRY_RUN=true` during Gate 2. It validates controlled payloads,
-uses the idempotency table, and emits metadata-only logs. It does not send email.
+The Lambda remains in `DRY_RUN=true` through Gate 3. It strictly validates controlled
+payloads, rejects unknown or oversized input, uses the idempotency table, and emits
+metadata-only logs. The real SES path is covered by dependency-injected tests, but
+dry-run execution returns before that path and does not send email.
+
+## Request contract
+
+- Same-origin `POST /api/inquiry` only
+- JSON body maximum: 16 KiB
+- Strict top-level and attribution fields; unknown fields fail closed
+- Required valid email, bounded strings, honeypot, and minimum completion time
+- `X-Idempotency-Key` required; conditional conflicts return HTTP 409
+- HTTP 202 means accepted by the service, not delivered to an inbox
+
+DynamoDB stores only a hashed idempotency key, submission ID, status timestamps,
+TTL, and a non-sensitive error category. It never stores inquiry fields or message text.
 
 ## Mail routing parameters
 
@@ -33,6 +48,10 @@ node --test infra/inquiry/test/*.test.mjs
 ```
 
 Run the sync command without `--check` after changing `src/handler.cjs`.
+
+The pending Nginx snippet is maintained at
+`deploy/nginx/inquiry-api.location.conf.template`. It contains an unresolved host
+placeholder and must not be included or activated before Gate 4 approval.
 
 ## Deployment controls
 

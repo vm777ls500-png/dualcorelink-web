@@ -2,7 +2,13 @@ import type { InquiryAttribution } from "@/lib/inquiry/attribution";
 import { sendGa4InquiryEvent } from "@/lib/analytics/ga4";
 
 export type InquiryChannel = "form" | "whatsapp" | "email";
-export type InquiryAction = "cta_click" | "form_submit" | "email_draft_open";
+export type InquiryAction =
+  | "cta_click"
+  | "form_submit"
+  | "form_submit_attempt"
+  | "form_submit_success"
+  | "form_submit_failure"
+  | "email_draft_open";
 
 export type InquiryEvent = {
   event: `inquiry_${InquiryAction}`;
@@ -11,6 +17,7 @@ export type InquiryEvent = {
   cta_location: string;
   category: InquiryChannel;
   page_path: string;
+  error_category?: string;
 };
 
 type AnalyticsWindow = Window & {
@@ -21,6 +28,7 @@ export function trackInquiryEvent(
   action: InquiryAction,
   channel: InquiryChannel,
   attribution: InquiryAttribution,
+  errorCategory?: string,
 ) {
   if (typeof window === "undefined") return;
 
@@ -29,6 +37,7 @@ export function trackInquiryEvent(
     channel,
     attribution,
     window.location.pathname,
+    errorCategory,
   );
   const analyticsWindow = window as AnalyticsWindow;
   analyticsWindow.dataLayer ??= [];
@@ -44,8 +53,9 @@ export function createInquiryEvent(
   channel: InquiryChannel,
   attribution: InquiryAttribution,
   fallbackPagePath = "/en/",
+  errorCategory?: string,
 ): InquiryEvent {
-  return {
+  const event: InquiryEvent = {
     event: `inquiry_${action}`,
     source_type: attribution.contentType,
     source_slug: attribution.contentSlug,
@@ -53,4 +63,6 @@ export function createInquiryEvent(
     category: channel,
     page_path: attribution.sourcePage || fallbackPagePath,
   };
+  if (errorCategory) event.error_category = errorCategory;
+  return event;
 }

@@ -62,6 +62,9 @@ jobs:
       - name: Validate data
         run: npm run test:data
 
+      - name: Validate inquiry infrastructure
+        run: npm run test:inquiry-infra
+
       - name: Audit product media
         run: npm run media:audit
 

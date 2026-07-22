@@ -1,0 +1,27 @@
+# Gate 3 pending snippet. Do not include or activate before Gate 4 approval.
+# Replace the host placeholder from a restricted server-side deployment value.
+location = /api/inquiry {
+    limit_except POST {
+        deny all;
+    }
+
+    client_max_body_size 16k;
+    proxy_connect_timeout 3s;
+    proxy_send_timeout 5s;
+    proxy_read_timeout 10s;
+    proxy_buffering off;
+    proxy_cache off;
+    proxy_no_cache 1;
+    proxy_cache_bypass 1;
+
+    proxy_pass_request_headers off;
+    proxy_set_header Host __INQUIRY_API_HOST__;
+    proxy_set_header Content-Type $content_type;
+    proxy_set_header Origin $http_origin;
+    proxy_set_header X-Idempotency-Key $http_x_idempotency_key;
+    proxy_ssl_server_name on;
+    proxy_ssl_name __INQUIRY_API_HOST__;
+    proxy_pass https://__INQUIRY_API_HOST__/api/inquiry;
+
+    add_header Cache-Control "no-store" always;
+}

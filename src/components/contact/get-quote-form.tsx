@@ -16,14 +16,57 @@ import {
 import {
   buildInquiryEmailDraft,
   createInquiryDraftLaunchGate,
+  type InquiryDraftFields,
 } from "@/lib/inquiry/email-draft";
 import { trackInquiryEvent } from "@/lib/inquiry/events";
+import {
+  createInquirySubmissionPayload,
+  InquirySubmissionError,
+  inquiryEndpointPath,
+  isServerInquirySubmissionEnabled,
+  submitInquiry,
+  type InquirySubmissionErrorCategory,
+} from "@/lib/inquiry/submission";
 
 type GetQuoteFormProps = {
   productName?: string;
 };
 
-type FormStatus = "idle" | "preparing" | "draft_ready" | "error";
+type FormStatus =
+  | "idle"
+  | "preparing"
+  | "submitting"
+  | "accepted"
+  | "draft_ready"
+  | "error";
+
+const serverSubmissionEnabled = isServerInquirySubmissionEnabled(
+  process.env.NEXT_PUBLIC_INQUIRY_SUBMISSION_ENABLED,
+  process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT,
+);
+
+const submissionErrorMessages: Record<InquirySubmissionErrorCategory, string> = {
+  invalid_request:
+    "Review the form fields and try again. Your entries are still here.",
+  origin_rejected:
+    "This submission origin was not accepted. Use the email or WhatsApp fallback below.",
+  duplicate:
+    "This inquiry was already submitted. Your entries remain available for review.",
+  payload_too_large:
+    "The inquiry is too large. Shorten the message and try again, or use email.",
+  rate_limited:
+    "Too many attempts were received. Wait a moment and try again, or use email.",
+  server_error:
+    "The inquiry service is temporarily unavailable. Your entries are still here.",
+  delivery_unavailable:
+    "The delivery service is temporarily unavailable. Your entries are still here.",
+  timeout:
+    "The request timed out. Your entries are still here; retry once or use email.",
+  network_error:
+    "The request could not reach the inquiry service. Your entries are still here.",
+  unexpected_response:
+    "The inquiry service returned an unexpected response. Use email or WhatsApp below.",
+};
 
 const defaultAttribution: InquiryAttribution = {
   sourcePage: "/en/contact/",
@@ -46,6 +89,8 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
     null,
   );
   const releaseTimer = useRef<number | undefined>(undefined);
+  const formStartedAt = useRef(Date.now());
+  const idempotencyKey = useRef<string | undefined>(undefined);
   launchGate.current ??= createInquiryDraftLaunchGate();
   const [attribution, setAttribution] =
     useState<InquiryAttribution>(defaultAttribution);
@@ -54,6 +99,8 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
       ? `I am interested in ${productName}. Please send quotation details.`
       : "",
   );
+  const [submissionError, setSubmissionError] =
+    useState<InquirySubmissionErrorCategory>();
 
   useEffect(() => {
     const nextAttribution = parseInquiryAttribution(
@@ -86,12 +133,13 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
     return "Direct contact inquiry";
   }, [attribution]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const interests = data.getAll("productInterest").join(", ");
     if (!interests) {
-      event.currentTarget
+      form
         .querySelector<HTMLInputElement>('input[name="productInterest"]')
         ?.setCustomValidity("Select at least one product interest.");
       event.currentTarget.reportValidity();
@@ -99,26 +147,65 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
     }
     if (!launchGate.current?.tryStart()) return;
 
+    const fields: InquiryDraftFields = {
+      name: String(data.get("name") ?? ""),
+      company: String(data.get("company") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      country: String(data.get("country") ?? ""),
+      customerType: String(data.get("customerType") ?? ""),
+      projectStage: String(data.get("projectStage") ?? ""),
+      productInterests: data
+        .getAll("productInterest")
+        .map((value) => String(value)),
+      quantity: String(data.get("quantity") ?? ""),
+      targetDelivery: String(data.get("targetDelivery") ?? ""),
+      message: String(data.get("message") ?? ""),
+    };
+    setSubmissionError(undefined);
+
+    if (serverSubmissionEnabled) {
+      setStatus("submitting");
+      trackInquiryEvent("form_submit_attempt", "form", attribution);
+      try {
+        const payload = createInquirySubmissionPayload(
+          fields,
+          attribution,
+          formStartedAt.current,
+          String(data.get("website") ?? ""),
+        );
+        idempotencyKey.current ??= crypto.randomUUID();
+        await submitInquiry(payload, idempotencyKey.current, {
+          endpoint: inquiryEndpointPath,
+        });
+        trackInquiryEvent("form_submit_success", "form", attribution);
+        form.reset();
+        setMessage("");
+        formStartedAt.current = Date.now();
+        idempotencyKey.current = undefined;
+        setStatus("accepted");
+      } catch (error) {
+        const category =
+          error instanceof InquirySubmissionError
+            ? error.category
+            : "unexpected_response";
+        setSubmissionError(category);
+        setStatus("error");
+        trackInquiryEvent(
+          "form_submit_failure",
+          "form",
+          attribution,
+          category,
+        );
+      } finally {
+        launchGate.current.release();
+      }
+      return;
+    }
+
     setStatus("preparing");
     try {
-      const mailto = buildInquiryEmailDraft(
-        {
-          name: String(data.get("name") ?? ""),
-          company: String(data.get("company") ?? ""),
-          email: String(data.get("email") ?? ""),
-          phone: String(data.get("phone") ?? ""),
-          country: String(data.get("country") ?? ""),
-          customerType: String(data.get("customerType") ?? ""),
-          projectStage: String(data.get("projectStage") ?? ""),
-          productInterests: data
-            .getAll("productInterest")
-            .map((value) => String(value)),
-          quantity: String(data.get("quantity") ?? ""),
-          targetDelivery: String(data.get("targetDelivery") ?? ""),
-          message: String(data.get("message") ?? ""),
-        },
-        attribution,
-      );
+      const mailto = buildInquiryEmailDraft(fields, attribution);
       window.location.assign(mailto);
       trackInquiryEvent("email_draft_open", "email", attribution);
       releaseTimer.current = window.setTimeout(() => {
@@ -136,7 +223,7 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
   const labelClass = "block text-sm font-semibold text-foreground";
 
   return (
-    <form onSubmit={handleSubmit} className="contact-inquiry-form border border-line bg-surface p-6">
+    <form onSubmit={(event) => void handleSubmit(event)} className="contact-inquiry-form border border-line bg-surface p-6">
       <div className="mb-6 border-s-4 border-brand bg-background px-4 py-3">
         <p className="text-xs font-semibold uppercase text-brand">
           Inquiry context
@@ -237,6 +324,16 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
         />
       </label>
 
+      <label className="sr-only" aria-hidden="true">
+        Website
+        <input
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          defaultValue=""
+        />
+      </label>
+
       <label className={`${labelClass} mt-5`}>
         Message *
         <textarea
@@ -261,15 +358,23 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
 
       <button
         type="submit"
-        disabled={status === "preparing"}
-        aria-disabled={status === "preparing"}
+        disabled={status === "preparing" || status === "submitting"}
+        aria-disabled={status === "preparing" || status === "submitting"}
         className="contact-submit-button mt-6 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white disabled:cursor-wait disabled:opacity-70"
       >
-        {status === "preparing" ? "Preparing Email Draft..." : "Prepare Email Draft"}
+        {status === "submitting"
+          ? "Submitting Inquiry..."
+          : status === "preparing"
+            ? "Preparing Email Draft..."
+            : serverSubmissionEnabled
+              ? "Submit Project Inquiry"
+              : "Prepare Email Draft"}
       </button>
 
       <p className="mt-4 border-s-4 border-accent ps-4 text-sm leading-6 text-muted">
-        Email sending is not configured yet. This form opens an email draft to{" "}
+        {serverSubmissionEnabled
+          ? "If server submission is unavailable, use "
+          : "Email sending is not configured yet. This form opens an email draft to "}
         <TrackedInquiryLink
           href={`mailto:${brand.emails.sales}`}
           channel="email"
@@ -309,14 +414,26 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
           your inquiry.
         </p>
       ) : null}
+      {status === "accepted" ? (
+        <p
+          aria-live="polite"
+          className="mt-3 text-sm font-semibold text-brand"
+          role="status"
+        >
+          Your inquiry was accepted for delivery. This confirms server
+          acceptance, not inbox delivery. We will follow up through the contact
+          details you provided.
+        </p>
+      ) : null}
       {status === "error" ? (
         <p
           aria-live="assertive"
           className="mt-3 text-sm font-semibold text-red-700"
           role="alert"
         >
-          We could not open your email app. Your entries are still here. Use the
-          sales email or WhatsApp link above, or try preparing the draft again.
+          {submissionError
+            ? submissionErrorMessages[submissionError]
+            : "We could not open your email app. Your entries are still here. Use the sales email or WhatsApp link above, or try preparing the draft again."}
         </p>
       ) : null}
     </form>

@@ -170,13 +170,46 @@ Resources:
           };
           const MAX_BODY_BYTES = 16_384;
           const MAX_FORM_AGE_MS = 86_400_000;
+          const TOP_LEVEL_FIELDS = new Set([
+            "name",
+            "company",
+            "email",
+            "phone",
+            "country",
+            "customerType",
+            "projectStage",
+            "productInterests",
+            "quantity",
+            "targetDelivery",
+            "message",
+            "formStartedAt",
+            "website",
+            "attribution",
+          ]);
+          const ATTRIBUTION_FIELDS = new Set([
+            "sourceType",
+            "sourceSlug",
+            "ctaLocation",
+            "category",
+            "pagePath",
+          ]);
           const SAFE_SOURCE_TYPES = new Set([
             "contact",
             "global",
             "product",
+            "region",
+            "resource",
+            "site",
+            "solution",
+          ]);
+          const SOURCE_TYPES_REQUIRING_SLUG = new Set([
+            "product",
+            "region",
             "resource",
             "solution",
           ]);
+          const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          const CONTROL_CHARACTER_PATTERN = /[\u0000-\u001f\u007f]/;
 
           function normalizeHeaders(headers = {}) {
             return Object.fromEntries(
@@ -198,95 +231,140 @@ Resources:
             };
           }
 
+          function assertKnownFields(value, knownFields, category) {
+            if (
+              !value ||
+              Array.isArray(value) ||
+              typeof value !== "object" ||
+              Object.keys(value).some((key) => !knownFields.has(key))
+            ) {
+              throw new RequestError(400, category);
+            }
+          }
+
           function parseBody(event) {
             const encoded = event?.body ?? "";
             const raw = event?.isBase64Encoded
               ? Buffer.from(encoded, "base64").toString("utf8")
               : encoded;
 
-            if (!raw || Buffer.byteLength(raw, "utf8") > MAX_BODY_BYTES) {
-              throw new ValidationError("invalid_body");
+            if (!raw) throw new RequestError(400, "invalid_body");
+            if (Buffer.byteLength(raw, "utf8") > MAX_BODY_BYTES) {
+              throw new RequestError(413, "payload_too_large");
             }
 
+            let parsed;
             try {
-              const parsed = JSON.parse(raw);
-              if (!parsed || Array.isArray(parsed) || typeof parsed !== "object") {
-                throw new Error("Payload must be an object");
-              }
-              return parsed;
+              parsed = JSON.parse(raw);
             } catch {
-              throw new ValidationError("invalid_json");
+              throw new RequestError(400, "invalid_json");
             }
+            assertKnownFields(parsed, TOP_LEVEL_FIELDS, "unknown_fields");
+            return parsed;
           }
 
-          function cleanText(value, maxLength) {
-            if (typeof value !== "string") return "";
-            return value.trim().slice(0, maxLength);
+          function readText(value, field, maxLength, options = {}) {
+            const { required = false, multiline = false } = options;
+            if (value === undefined && !required) return "";
+            if (typeof value !== "string") {
+              throw new RequestError(400, `invalid_${field}`);
+            }
+            const cleaned = value.trim();
+            if ((required && !cleaned) || cleaned.length > maxLength) {
+              throw new RequestError(400, `invalid_${field}`);
+            }
+            if (!multiline && CONTROL_CHARACTER_PATTERN.test(cleaned)) {
+              throw new RequestError(400, "header_injection");
+            }
+            if (multiline && /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(cleaned)) {
+              throw new RequestError(400, `invalid_${field}`);
+            }
+            return cleaned;
           }
 
           function validatePayload(payload, now, minimumCompletionMs) {
-            const name = cleanText(payload.name, 120);
-            const email = cleanText(payload.email, 254).toLowerCase();
-            const country = cleanText(payload.country, 100);
-            const customerType = cleanText(payload.customerType, 100);
-            const message = cleanText(payload.message, 4_000);
-            const productInterests = Array.isArray(payload.productInterests)
-              ? payload.productInterests
-                  .filter((item) => typeof item === "string")
-                  .slice(0, 12)
-                  .map((item) => cleanText(item, 120))
-                  .filter(Boolean)
-              : [];
+            const website = readText(payload.website, "website", 200);
+            if (website) return { honeypot: true };
+
+            const name = readText(payload.name, "name", 120, { required: true });
+            const email = readText(payload.email, "email", 254, { required: true }).toLowerCase();
+            const country = readText(payload.country, "country", 100, { required: true });
+            const customerType = readText(payload.customerType, "customer_type", 100, {
+              required: true,
+            });
+            const message = readText(payload.message, "message", 4_000, {
+              required: true,
+              multiline: true,
+            });
+
+            if (!EMAIL_PATTERN.test(email)) {
+              throw new RequestError(400, "invalid_email");
+            }
+            if (
+              !Array.isArray(payload.productInterests) ||
+              payload.productInterests.length === 0 ||
+              payload.productInterests.length > 12
+            ) {
+              throw new RequestError(400, "invalid_product_interests");
+            }
+            const productInterests = payload.productInterests.map((value) =>
+              readText(value, "product_interest", 120, { required: true }),
+            );
+
             const formStartedAt = Number(payload.formStartedAt);
             const elapsed = now - formStartedAt;
-
-            if (
-              !name ||
-              !email ||
-              !country ||
-              !customerType ||
-              !message ||
-              productInterests.length === 0 ||
-              !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-            ) {
-              throw new ValidationError("invalid_fields");
-            }
-
             if (
               !Number.isFinite(formStartedAt) ||
               elapsed < minimumCompletionMs ||
               elapsed > MAX_FORM_AGE_MS
             ) {
-              throw new ValidationError("invalid_completion_time");
+              throw new RequestError(400, "invalid_completion_time");
             }
 
-            const sourceType = cleanText(payload.attribution?.sourceType, 32);
-            const sourceSlug = cleanText(payload.attribution?.sourceSlug, 160);
-            const ctaLocation = cleanText(payload.attribution?.ctaLocation, 80);
-            const category = cleanText(payload.attribution?.category, 80);
-            const pagePath = cleanText(payload.attribution?.pagePath, 240);
+            assertKnownFields(payload.attribution, ATTRIBUTION_FIELDS, "invalid_attribution");
+            const sourceType = readText(
+              payload.attribution.sourceType,
+              "source_type",
+              32,
+              { required: true },
+            );
+            const sourceSlug = readText(payload.attribution.sourceSlug, "source_slug", 160);
+            const ctaLocation = readText(
+              payload.attribution.ctaLocation,
+              "cta_location",
+              80,
+              { required: true },
+            );
+            const category = readText(payload.attribution.category, "category", 80);
+            const pagePath = readText(payload.attribution.pagePath, "page_path", 240, {
+              required: true,
+            });
 
             if (
               !SAFE_SOURCE_TYPES.has(sourceType) ||
-              !/^[a-z0-9][a-z0-9-]{0,159}$/.test(sourceSlug) ||
+              (sourceSlug && !/^[a-z0-9][a-z0-9-]{0,159}$/.test(sourceSlug)) ||
+              (SOURCE_TYPES_REQUIRING_SLUG.has(sourceType) && !sourceSlug) ||
               !/^[a-z0-9][a-z0-9_-]{0,79}$/.test(ctaLocation) ||
-              !pagePath.startsWith("/en/")
+              (category && !/^[a-z0-9][a-z0-9_-]{0,79}$/.test(category)) ||
+              !/^\/en(?:\/|$)/.test(pagePath) ||
+              /[?#]/.test(pagePath)
             ) {
-              throw new ValidationError("invalid_attribution");
+              throw new RequestError(400, "invalid_attribution");
             }
 
             return {
+              honeypot: false,
               name,
               email,
               country,
               customerType,
               productInterests,
               message,
-              company: cleanText(payload.company, 160),
-              phone: cleanText(payload.phone, 80),
-              quantity: cleanText(payload.quantity, 80),
-              projectStage: cleanText(payload.projectStage, 100),
-              targetDelivery: cleanText(payload.targetDelivery, 100),
+              company: readText(payload.company, "company", 160),
+              phone: readText(payload.phone, "phone", 80),
+              quantity: readText(payload.quantity, "quantity", 80),
+              projectStage: readText(payload.projectStage, "project_stage", 100),
+              targetDelivery: readText(payload.targetDelivery, "target_delivery", 100),
               attribution: {
                 sourceType,
                 sourceSlug,
@@ -298,13 +376,16 @@ Resources:
           }
 
           async function validateIdempotencyKey(value) {
-            const key = cleanText(value, 128);
-            if (!/^[A-Za-z0-9._:-]{16,128}$/.test(key)) {
-              throw new ValidationError("invalid_idempotency_key");
+            if (
+              typeof value !== "string" ||
+              value.length > 128 ||
+              !/^[A-Za-z0-9._:-]{16,128}$/.test(value)
+            ) {
+              throw new RequestError(400, "invalid_idempotency_key");
             }
             const digest = await crypto.subtle.digest(
               "SHA-256",
-              new TextEncoder().encode(key),
+              new TextEncoder().encode(value),
             );
             return Buffer.from(digest).toString("hex");
           }
@@ -334,14 +415,17 @@ Resources:
               "Project Requirements:",
               payload.message,
               "",
-              `Source: ${payload.attribution.sourceType} / ${payload.attribution.sourceSlug}`,
+              `Source: ${payload.attribution.sourceType} / ${payload.attribution.sourceSlug || "direct"}`,
               `CTA: ${payload.attribution.ctaLocation}`,
               `Page: ${payload.attribution.pagePath}`,
             );
 
             return {
-              subject: `Website inquiry: ${payload.attribution.sourceSlug}`,
+              subject: payload.attribution.sourceSlug
+                ? `Website inquiry: ${payload.attribution.sourceSlug}`
+                : "Website inquiry: direct contact",
               text: lines.join("\n"),
+              replyTo: payload.email,
             };
           }
 
@@ -349,20 +433,30 @@ Resources:
             const entry = {
               submissionId: details.submissionId,
               requestId: details.requestId,
-              sourceType: details.sourceType || "unknown",
-              sourceSlug: details.sourceSlug || "unknown",
-              ctaLocation: details.ctaLocation || "unknown",
               status: details.status,
               durationMs: details.durationMs,
               errorCategory: details.errorCategory || "none",
+              sourceType: details.sourceType || "unknown",
+              sourceSlug: details.sourceSlug || "unknown",
+              ctaLocation: details.ctaLocation || "unknown",
             };
             console[level](JSON.stringify(entry));
           }
 
-          class ValidationError extends Error {
-            constructor(category) {
+          class RequestError extends Error {
+            constructor(statusCode, category) {
               super(category);
-              this.name = "ValidationError";
+              this.name = "RequestError";
+              this.statusCode = statusCode;
+              this.category = category;
+            }
+          }
+
+          class ServiceError extends Error {
+            constructor(statusCode, category) {
+              super(category);
+              this.name = "ServiceError";
+              this.statusCode = statusCode;
               this.category = category;
             }
           }
@@ -390,18 +484,28 @@ Resources:
 
               try {
                 if (event?.requestContext?.http?.method !== "POST") {
-                  return response(405, { error: "method_not_allowed" }, origin, config.allowedOrigin);
+                  throw new RequestError(405, "method_not_allowed");
                 }
                 if (!origin || origin !== config.allowedOrigin) {
-                  return response(403, { error: "origin_not_allowed" }, origin, config.allowedOrigin);
+                  throw new RequestError(403, "origin_not_allowed");
+                }
+                if (!String(headers["content-type"] || "").toLowerCase().startsWith("application/json")) {
+                  throw new RequestError(400, "invalid_content_type");
                 }
 
                 const payload = parseBody(event);
-                if (cleanText(payload.website, 200)) {
+                const validated = validatePayload(payload, Date.now(), config.minimumCompletionMs);
+                if (validated.honeypot) {
+                  safeLog("info", {
+                    submissionId,
+                    requestId,
+                    status: "accepted",
+                    durationMs: Date.now() - started,
+                    errorCategory: "honeypot",
+                  });
                   return response(202, { status: "accepted" }, origin, config.allowedOrigin);
                 }
 
-                const validated = validatePayload(payload, Date.now(), config.minimumCompletionMs);
                 attribution = validated.attribution;
                 claimedKey = await validateIdempotencyKey(headers["x-idempotency-key"]);
                 const nowSeconds = Math.floor(Date.now() / 1_000);
@@ -416,26 +520,24 @@ Resources:
                   });
                 } catch (error) {
                   if (dependencies.isConditionalConflict(error)) {
-                    safeLog("info", {
-                      submissionId,
-                      requestId,
-                      ...attribution,
-                      status: "duplicate",
-                      durationMs: Date.now() - started,
-                    });
-                    return response(202, { status: "accepted" }, origin, config.allowedOrigin);
+                    throw new RequestError(409, "duplicate_submission");
                   }
-                  throw error;
+                  throw new ServiceError(500, "persistence_unavailable");
                 }
 
                 if (config.dryRun) {
-                  await dependencies.setStatus(claimedKey, "dry_run");
+                  try {
+                    await dependencies.setStatus(claimedKey, "accepted");
+                  } catch {
+                    throw new ServiceError(500, "persistence_unavailable");
+                  }
                   safeLog("info", {
                     submissionId,
                     requestId,
                     ...attribution,
-                    status: "dry_run",
+                    status: "accepted",
                     durationMs: Date.now() - started,
+                    errorCategory: "dry_run",
                   });
                   return response(
                     202,
@@ -446,14 +548,28 @@ Resources:
                 }
 
                 const mail = formatEmail(validated);
-                await dependencies.send(mail);
-                await dependencies.setStatus(claimedKey, "sent");
+                try {
+                  await dependencies.send(mail);
+                } catch {
+                  await dependencies
+                    .setStatus(claimedKey, "failed", "delivery_unavailable")
+                    .catch(() => {});
+                  throw new ServiceError(502, "delivery_unavailable");
+                }
+
+                let statusUpdateFailed = false;
+                try {
+                  await dependencies.setStatus(claimedKey, "accepted");
+                } catch {
+                  statusUpdateFailed = true;
+                }
                 safeLog("info", {
                   submissionId,
                   requestId,
                   ...attribution,
-                  status: "sent",
+                  status: "accepted",
                   durationMs: Date.now() - started,
+                  errorCategory: statusUpdateFailed ? "persistence_update_failed" : "none",
                 });
                 return response(
                   202,
@@ -462,27 +578,48 @@ Resources:
                   config.allowedOrigin,
                 );
               } catch (error) {
-                const errorCategory =
-                  error instanceof ValidationError ? error.category : "submission_failed";
-                if (claimedKey) {
-                  await dependencies.setStatus(claimedKey, "failed", errorCategory).catch(() => {});
-                }
+                const knownError =
+                  error instanceof RequestError || error instanceof ServiceError
+                    ? error
+                    : new ServiceError(500, "submission_failed");
                 safeLog("error", {
                   submissionId,
                   requestId,
                   ...attribution,
                   status: "failed",
                   durationMs: Date.now() - started,
-                  errorCategory,
+                  errorCategory: knownError.category,
                 });
-                const statusCode = error instanceof ValidationError ? 400 : 503;
                 return response(
-                  statusCode,
-                  { error: statusCode === 400 ? errorCategory : "temporarily_unavailable" },
+                  knownError.statusCode,
+                  { error: knownError.category },
                   origin,
                   config.allowedOrigin,
                 );
               }
+            };
+          }
+
+          function buildSesMessageInput(mail, from, to) {
+            if (
+              !EMAIL_PATTERN.test(from) ||
+              !EMAIL_PATTERN.test(to) ||
+              !EMAIL_PATTERN.test(mail.replyTo) ||
+              /[\r\n]/.test(mail.subject) ||
+              /[\r\n]/.test(mail.replyTo)
+            ) {
+              throw new Error("mail_configuration_unavailable");
+            }
+            return {
+              FromEmailAddress: from,
+              Destination: { ToAddresses: [to] },
+              ReplyToAddresses: [mail.replyTo],
+              Content: {
+                Simple: {
+                  Subject: { Data: mail.subject, Charset: "UTF-8" },
+                  Body: { Text: { Data: mail.text, Charset: "UTF-8" } },
+                },
+              },
             };
           }
 
@@ -551,18 +688,7 @@ Resources:
                 const to = values.get(process.env.RECIPIENT_ADDRESS_PARAMETER);
                 if (!from || !to) throw new Error("mail_configuration_unavailable");
 
-                await ses.send(
-                  new SendEmailCommand({
-                    FromEmailAddress: from,
-                    Destination: { ToAddresses: [to] },
-                    Content: {
-                      Simple: {
-                        Subject: { Data: mail.subject, Charset: "UTF-8" },
-                        Body: { Text: { Data: mail.text, Charset: "UTF-8" } },
-                      },
-                    },
-                  }),
-                );
+                await ses.send(new SendEmailCommand(buildSesMessageInput(mail, from, to)));
               },
             };
           }
@@ -572,6 +698,7 @@ Resources:
             productionHandler ||= createHandler(await createAwsDependencies());
             return productionHandler(event, context);
           };
+          exports.buildSesMessageInput = buildSesMessageInput;
           exports.createHandler = createHandler;
           exports.formatEmail = formatEmail;
           exports.validatePayload = validatePayload;

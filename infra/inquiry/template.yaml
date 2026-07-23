@@ -2,6 +2,12 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: Minimal dry-run inquiry submission foundation for DualCoreLink.
 
 Parameters:
+  DryRunMode:
+    Type: String
+    Default: "true"
+    AllowedValues:
+      - "true"
+      - "false"
   EnvironmentName:
     Type: String
     Default: production
@@ -153,7 +159,7 @@ Resources:
       Environment:
         Variables:
           ALLOWED_ORIGIN: !Ref AllowedOrigin
-          DRY_RUN: "true"
+          DRY_RUN: !Ref DryRunMode
           IDEMPOTENCY_TABLE: !Ref IdempotencyTable
           IDEMPOTENCY_TTL_SECONDS: !Ref IdempotencyTtlSeconds
           MINIMUM_COMPLETION_MS: "3000"

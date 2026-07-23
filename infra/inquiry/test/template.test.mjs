@@ -6,12 +6,17 @@ import test from "node:test";
 const root = path.resolve(import.meta.dirname, "..");
 const template = await readFile(path.join(root, "template.yaml"), "utf8");
 
-test("template keeps the approved resource names and dry-run mode", () => {
+test("template keeps the approved resource names and parameterized dry-run mode", () => {
   assert.match(template, /FunctionName: dualcorelink-inquiry-submit/);
   assert.match(template, /Name: dualcorelink-inquiry-api/);
   assert.match(template, /TableName: dualcorelink-inquiry-idempotency/);
   assert.match(template, /Runtime: nodejs24\.x/);
-  assert.match(template, /DRY_RUN: "true"/);
+  assert.match(
+    template,
+    /DryRunMode:\n\s+Type: String\n\s+Default: "true"\n\s+AllowedValues:\n\s+- "true"\n\s+- "false"/,
+  );
+  assert.match(template, /DRY_RUN: !Ref DryRunMode/);
+  assert.doesNotMatch(template, /DRY_RUN:\s*["'](?:true|false)["']/);
   assert.match(template, /RouteKey: POST \/api\/inquiry/);
 });
 
@@ -60,6 +65,7 @@ test("API logs exclude body, authorization, and source IP", () => {
 
 test("parameter examples contain names but no mailbox or credential values", async () => {
   const example = await readFile(path.join(root, "parameters.example.json"), "utf8");
+  assert.match(example, /"ParameterKey": "DryRunMode", "ParameterValue": "true"/);
   assert.match(example, /RecipientAddressParameterName/);
   assert.match(example, /SenderAddressParameterName/);
   assert.doesNotMatch(example, /@[A-Za-z0-9.-]+/);

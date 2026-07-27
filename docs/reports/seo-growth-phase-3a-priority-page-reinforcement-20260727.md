@@ -1,7 +1,7 @@
 # SEO Growth Phase 3A — Priority Page SEO & GEO Reinforcement
 
 Date: 2026-07-27
-Status: Final editorial and visual QA complete; awaiting manual review
+Status: Completed, deployed, and production-verified
 Repository: DualCoreLink website
 Branch: `main`
 Baseline HEAD: `d4bc8b4eb79abb5dca476b846379df543dc0ab82`
@@ -381,11 +381,164 @@ crawler behavior required correction.
 | `git diff --check` | Passed |
 | Sitemap | 76 URLs |
 
-## 25. Final recommendation
+## 25. Pre-release recommendation
 
-Recommendation: **retain and commit after manual review**.
+Pre-release recommendation: **retain and commit after manual review**.
 
 The nine-file Phase 3A scope passes editorial, link, responsive, static-HTML,
-schema, canonical, duplicate-content, lint, data, media, and build review. No
-commit, push, or deployment was performed. This recommendation supersedes the
-provisional recommendation and pre-final statistics in Sections 13–15.
+schema, canonical, duplicate-content, lint, data, media, and build review. At
+this pre-release gate, no commit, push, or deployment had yet been performed.
+The production record in Sections 26–33 supersedes this provisional gate and the
+pre-final statistics in Sections 13–15.
+
+## 26. Implementation and push record
+
+- Implementation commit:
+  `6cf8b46cbc3f88f07cb1b1e6d24af92ced9e6516`
+- Commit message: `seo: reinforce priority landing pages`
+- Files committed: the nine approved Phase 3A files only
+- Push result: successful, `main -> main`
+- Remote `origin/main` after the push:
+  `6cf8b46cbc3f88f07cb1b1e6d24af92ced9e6516`
+- No rebase, reset, force push, alternate branch, or deployment bypass was used.
+
+## 27. Production deployment verification
+
+| Field | Result |
+|---|---|
+| Platform | GitHub Actions self-hosted AWS production runner |
+| Workflow | `AWS static production deploy` |
+| Run ID | `30236663640` |
+| Run URL | `https://github.com/vm777ls500-png/dualcorelink-web/actions/runs/30236663640` |
+| Runner | `dualcorelink-production` |
+| Source commit | `6cf8b46cbc3f88f07cb1b1e6d24af92ced9e6516` |
+| CMS source | `https://cms.dualcorelink.com/wp-json` |
+| Deployment health URL | `https://aws.dualcorelink.com/en/` |
+| Official production URL | `https://dualcorelink.com/` |
+| Release path | `/srv/dualcorelink/frontend/releases/6cf8b46cbc3f-20260727-121915` |
+| Deployment status | Success |
+
+The workflow checked out the exact implementation commit, loaded the validated
+production environment, ran `npm ci`, lint, data tests, Inquiry infrastructure
+tests, media audit, and the 156-page build before performing the atomic release.
+The local and external HTTPS health checks passed on their first attempts.
+Test-domain indexing protection also passed.
+
+## 28. Official-domain page verification
+
+| Official production URL | HTTP | Title | Canonical | H1 | Schema | Breadcrumb | Answer and links |
+|---|---:|---:|---:|---:|---|---:|---:|
+| `https://dualcorelink.com/en/resources/hotel-rcu-buying-guide/` | 200 | Pass | Pass | 1 | Article | Pass | Pass |
+| `https://dualcorelink.com/en/resources/smart-hotel-room-control-system-guide/` | 200 | Pass | Pass | 1 | Article | Pass | Pass |
+| `https://dualcorelink.com/en/resources/hotel-guest-room-control-interfaces-guide/` | 200 | Pass | Pass | 1 | Article | Pass | Pass |
+| `https://dualcorelink.com/en/regions/saudi-arabia/` | 200 | Pass | Pass | 1 | CreativeWork | Pass | Pass |
+| `https://dualcorelink.com/en/regions/uae/` | 200 | Pass | Pass | 1 | CreativeWork | Pass | Pass |
+| `https://dualcorelink.com/en/products/hotel-smart-room-rcu-host-1/` | 200 | Pass | Pass | 1 | Product | Pass | Pass |
+| `https://dualcorelink.com/en/products/86-type-ai-smart-control-display/` | 200 | Pass | Pass | 1 | Product | Pass | Pass |
+| `https://dualcorelink.com/en/products/smart-four-key-scene-control-panel/` | 200 | Pass | Pass | 1 | Product | Pass | Pass |
+
+For all eight pages:
+
+- the expected Phase 3A title and direct-answer content are live;
+- meta description is present;
+- canonical is unique and matches the official English URL;
+- the expected internal links are present, and all 12 unique link targets return
+  HTTP 200;
+- no `noindex`, localhost, SiteGround, staging CMS, or `pages.dev` reference is
+  present;
+- Header, sticky navigation, footer, Inquiry CTA, and CTA attribution are present;
+- product galleries and page images render without a failed image request.
+
+No email, form, or WhatsApp submission was sent during production verification.
+
+## 29. Production responsive QA
+
+The official domain was tested at:
+
+- `375×812`
+- `390×844`
+- `768×1024`
+- `1280×900`
+
+Results:
+
+| Check | Result |
+|---|---:|
+| Pages | 8 |
+| Page/viewport combinations | 32 |
+| Horizontal-overflow failures | 0 |
+| Page-render failures | 0 |
+| Visible-image failures | 0 |
+| CTA failures | 0 |
+| Product-gallery failures | 0 |
+| Sticky-header failures | 0 |
+| Missing direct-answer blocks | 0 |
+
+The browser checks covered header and sticky behavior, direct-answer layout,
+answer-link presentation, CTA presence and attribution, image and gallery
+rendering, page spacing, and mobile/tablet/desktop layout. A representative
+desktop Product-page capture also confirmed the live product gallery, header,
+hero layout, and analytics-choice panel.
+
+## 30. Production SEO and attribution baseline
+
+| Production baseline | Result |
+|---|---:|
+| Sitemap URLs | 76 |
+| Sitemap URLs returning HTTP 200 | 76/76 |
+| Exact unique canonical across sitemap URLs | 76/76 |
+| Unique H1 across sitemap URLs | 76/76 |
+| Target URLs present in sitemap | 8/8 |
+| Product detail pages with Product and BreadcrumbList | 36/36 |
+| Resource detail pages with Article | 15/15 |
+| Resource detail pages with BreadcrumbList | 15/15 |
+| Production `noindex` on sitemap pages | 0 |
+| Environment-reference leaks | 0 |
+| Non-English URLs in sitemap | 0 |
+| Historical language redirects sampled | 6/6 return the expected 301 |
+| Target-page image URLs checked | 17 |
+| Image HTTP failures | 0 |
+
+Inquiry attribution passed on all eight target pages: production CTA URLs retain
+`source_page`, `content_type`, `content_slug`, and `cta_position`. The deployment
+workflow's Inquiry infrastructure tests also passed. GA4 source files were not
+changed; the runner accepted the production measurement identifier, and the live
+analytics-choice interface remained visible. This QA did not grant consent or
+send a synthetic production event.
+
+Production `robots.txt` returns HTTP 200 and exactly matches the accepted build
+output. `https://dualcorelink.com/llms.txt` returns HTTP 404. Robots logic,
+canonical generation, hreflang, sitemap generation, Schema builders, GA4
+integration, and Inquiry attribution code remain unchanged by Phase 3A.
+
+## 31. Known warnings
+
+- The existing media warning remains:
+  `rotary-knob-smart-control-display: verified reshoot required`.
+- The deployment `npm ci` audit summary reported seven high-severity dependency
+  findings. Package and lock files were unchanged in Phase 3A, and no dependency
+  remediation was attempted within this SEO scope.
+
+Neither warning caused a Phase 3A target-page, build, or deployment failure.
+
+## 32. Verification boundaries and observation window
+
+This acceptance proves that the approved implementation commit was built from the
+validated production CMS source, deployed through the existing AWS atomic-release
+workflow, and verified on the official domain. It does not prove improved
+rankings, impressions, clicks, indexing, recrawl, or AI-search citations.
+
+Recommended follow-up:
+
+1. perform a technical GSC check after seven days, around 2026-08-03;
+2. use a 14–28 day comparison window, approximately 2026-08-10 through
+   2026-08-24, before evaluating query, impression, click, CTR, and landing-page
+   changes;
+3. separate branded demand, seasonality, and unrelated site releases before
+   attributing any observed change to Phase 3A.
+
+## 33. Production acceptance
+
+Phase 3A is accepted as implemented, deployed, and production-verified, subject
+to the docs-only archival commit that records this final production evidence.
+Phase 3B is not started by this acceptance.

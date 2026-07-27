@@ -268,12 +268,15 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 <li>Samples are available for evaluation.</li>
                 <li>Customers pay the sample cost and shipping cost.</li>
                 <li>
-                  MOQ depends on the product model and customization
-                  requirements.
+                  Regular products do not have a fixed minimum order quantity.
+                  Customized products may involve tooling or customization fees
+                  when a new mold is required. A color-only change using an
+                  existing mold does not require a customization fee.
                 </li>
                 <li>
-                  General lead time is about 7-30 days after order confirmation,
-                  depending on quantity and customization.
+                  Typical lead time is 7–15 days. Actual timing depends on the
+                  product, order quantity, customization scope, and project
+                  requirements.
                 </li>
               </ul>
             </div>

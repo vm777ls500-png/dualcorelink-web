@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "DualcoreLink | Smart Hotel & Smart Home Automation",
+  title: "DualCoreLink | Smart Hotel & Smart Home Automation",
   description:
-    "Continue to DualcoreLink's English site for smart hotel room control and smart home automation products.",
+    "Continue to DualCoreLink's English site for smart hotel room control and smart home automation products.",
   alternates: {
     canonical: "/en/",
   },
@@ -25,7 +25,7 @@ export default function RootRedirectPage() {
       />
       <section className="max-w-xl text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-200">
-          DualcoreLink
+          DualCoreLink
         </p>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
           Smart Hotel & Smart Home Automation

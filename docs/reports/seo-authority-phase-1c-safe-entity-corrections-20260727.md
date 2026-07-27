@@ -188,3 +188,152 @@ This recommendation is based on local source, tests, build, and static-output ch
 ## 17. Phase 1D recommendation
 
 Keep Phase 1D separate from this patch. Prioritize owner-confirmed decisions for samples, warranty, legal identity/address, logo, Article author, and official external accounts. If ContactPoint is reconsidered, authorize and test the shared JSON-LD impact explicitly before changing it. Optional page-type schema should be evaluated only after factual ownership and scope decisions, not added merely to increase node count.
+
+## 18. Implementation commit and push
+
+- Implementation commit: `57d313fcb331f7cb9f81a375a8346cfdb86eaeef`
+- Commit subject: `seo: align brand and purchasing facts`
+- Push: successful, `main -> main`
+- Remote after push: `origin/main` contained the exact implementation commit
+- No force push, rebase, reset, alternate branch, or history rewrite was used.
+
+The implementation commit contains only the six Phase 1C files listed in section 4.
+
+## 19. Production deployment
+
+| Field | Result |
+|---|---|
+| Platform | GitHub Actions self-hosted AWS production runner |
+| Workflow | `AWS static production deploy` |
+| Run ID | `30241629612` |
+| Run URL | `https://github.com/vm777ls500-png/dualcorelink-web/actions/runs/30241629612` |
+| Job ID | `89899919318` |
+| Source SHA | `57d313fcb331f7cb9f81a375a8346cfdb86eaeef` |
+| Deployment health URL | `https://aws.dualcorelink.com/en/` |
+| Official production URL | `https://dualcorelink.com/` |
+| Atomic release directory | `/srv/dualcorelink/frontend/releases/57d313fcb331-20260727-140744` |
+| Status | Success |
+
+The run completed all 13 reported job steps successfully, including exact-SHA checkout, validated production build environment, dependency installation, lint, data validation, Inquiry infrastructure validation, media audit, 156-page build, atomic release activation, and test-domain indexing protection. The official About response is byte-identical to the AWS deployment-domain response, proving that the official domain is serving the deployed release content.
+
+## 20. Root production verification
+
+- `https://dualcorelink.com/`: HTTP 200 static redirect page, unchanged from the established design
+- HTTP `Location` redirect: none; navigation remains the existing meta-refresh plus JavaScript redirect to `/en/`
+- `/en/`: HTTP 200
+- canonical: exactly one `https://dualcorelink.com/en/`
+- `DualCoreLink`: present in production root output
+- `DualcoreLink`: absent from production root output
+- meta refresh: present
+- JavaScript `window.location.replace('/en/')`: present
+- no redirect loop or extra language URL was introduced
+- existing Header/Footer all-cap visual treatment remains unchanged
+
+## 21. About production verification
+
+`https://dualcorelink.com/en/about/` returned HTTP 200 and passed the following checks:
+
+- exactly one title: `About DUALCORE LINK B2B Automation | DUALCORE LINK`
+- one meta description
+- exactly one canonical: `https://dualcorelink.com/en/about/`
+- exactly one H1
+- corrected regular-product MOQ sentence present
+- new-mold tooling/customization fee condition present
+- existing-mold color-only no-fee condition present
+- typical 7–15-day sentence present
+- product, order quantity, customization scope, and project-requirement conditions present
+- `7–30 days` and `7-30 days` absent
+- sample availability and buyer-paid sample/shipping sentences unchanged
+- one-year general warranty sentence and its product/order qualification unchanged
+- Header, sticky navigation, CTA links, internal links, WhatsApp, emails, and Footer present
+- no `noindex`, localhost, test-domain, or staging leak
+
+The official and AWS About HTML responses have the same SHA-256 value:
+`dae05dbcf1caa2d561af8b41470e8516a93d67ba20de1804a08335667a1be4af`.
+
+## 22. About responsive production QA
+
+Four production viewport combinations were checked with browser-rendered DOM measurements:
+
+| Viewport | Horizontal overflow | Header/sticky nav | MOQ/lead-time section | CTA/internal links | Footer | Result |
+|---|---:|---|---|---|---|---|
+| 375 × 812 | No | Visible / sticky | Visible, 286 px content width | Present | Visible | Pass |
+| 390 × 844 | No | Visible / sticky | Visible, 301 px content width | Present | Visible | Pass |
+| 768 × 1024 | No | Visible / sticky | Visible, 639 px content width | Present | Visible | Pass |
+| 1280 × 900 | No | Visible / sticky | Visible, 514.5 px column width | Present | Visible | Pass |
+
+- Total combinations: 4
+- Horizontal-overflow failures: 0
+- Overall responsive failures: 0
+- The H1 wrapped within its container at each breakpoint without overflow.
+- The About page contains no content images, so image layout/broken-image review is not applicable; broken image count was 0.
+- The analytics-choice panel remained usable and did not create horizontal overflow.
+
+## 23. Phase 3A production regression
+
+All eight protected URLs returned HTTP 200. For every URL, the expected Phase 3A direct-answer heading and answer text were present, the title matched the accepted Phase 3A title, canonical was unique and correct, H1 count was one, BreadcrumbList was present, the page-specific Article/CreativeWork/Product schema remained present, and Inquiry attribution parameters remained rendered.
+
+| Group | URLs | HTTP 200 | Answer present | Canonical/H1 | Schema/Breadcrumb | Inquiry attribution |
+|---|---:|---:|---:|---:|---:|---:|
+| Resources | 3 | 3/3 | 3/3 | 3/3 | 3/3 | 3/3 |
+| Regions | 2 | 2/2 | 2/2 | 2/2 | 2/2 | 2/2 |
+| Products | 3 | 3/3 | 3/3 | 3/3 | 3/3 | 3/3 |
+| Total | 8 | 8/8 | 8/8 | 8/8 | 8/8 | 8/8 |
+
+No Phase 3A page/configuration source or shared layout/schema source was changed in the implementation commit. The four Phase 3A focused tests also passed before deployment. No Phase 1C content or layout regression was found on the protected pages.
+
+## 24. ContactPoint production regression
+
+Across the 76 sitemap pages, production HTML contains 74 ContactPoint occurrences with one unique value:
+
+```json
+{
+  "@type": "ContactPoint",
+  "telephone": "+85270390436",
+  "email": "sales@dualcorelink.com",
+  "contactType": "sales"
+}
+```
+
+The count, structure, and value remain at the pre-Phase 1C baseline. The telephone/WhatsApp semantic mismatch was not corrected and remains a separate Phase 1D risk.
+
+## 25. Production sitemap, schema, and crawl baseline
+
+- sitemap: HTTP 200, 76 URLs
+- sitemap accessibility: 76/76 returned HTTP 200
+- non-English sitemap URLs: 0
+- unique canonical: 76/76
+- unique title: 76/76
+- unique H1: 76/76
+- Product + BreadcrumbList: 36/36
+- Article: 15/15 Resource pages
+- Resource BreadcrumbList: 15/15
+- localhost/staging/test-domain leakage: 0 pages
+- historical `/zh/`, `/de/`, `/es/`, `/ar/`, `/vi/`, and `/fa/` About routes: 301 to `/en/about/`
+- `robots.txt`: HTTP 200 and byte-identical to the successful local build
+- `llms.txt`: HTTP 404
+- static build baseline: 156/156 pages in the production workflow
+- production bundles retain one validated GA4 measurement ID, analytics/consent logic, and Inquiry attribution logic; the workflow's production-environment and Inquiry-infrastructure validation steps passed
+
+## 26. Final validation and retained risks
+
+Final local gate before the implementation commit:
+
+- lint: pass
+- `test:data`: 99/99 pass
+- Phase 1C focused tests: 4/4 pass
+- Phase 3A focused tests: 4/4 pass
+- media audit: 0 errors
+- build: 156/156 pass
+- sitemap: 76 URLs
+- `git diff --check`: pass
+
+The only media warning remains the previously accepted `rotary-knob-smart-control-display: verified reshoot required` warning.
+
+Retained factual risks remain unchanged: sample policy, warranty policy, registered-address status, legal-entity and supply-chain relationships, formal logo, Article author policy, external profiles/`sameAs`, and the ContactPoint telephone/WhatsApp mismatch. These items were not modified or resolved in Phase 1C.
+
+This deployment and verification does not demonstrate or claim ranking, impressions, clicks, GEO/AI citation gains, or Google recrawling.
+
+## 27. Phase 1C closure recommendation
+
+Production deployment and all authorized verification gates passed. Phase 1C is recommended for formal archival through one docs-only commit containing only this final report update. Phase 1D must remain a separate, explicitly authorized phase.

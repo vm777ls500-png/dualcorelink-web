@@ -220,6 +220,38 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:px-12">
           <div className="space-y-10">
+            {resource.answerCapsule ? (
+              <section className="border border-line bg-background p-6">
+                <p className="text-sm font-semibold uppercase text-brand">
+                  Direct answer
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold leading-8 text-foreground">
+                  {resource.answerCapsule.heading}
+                </h2>
+                <p className="mt-4 leading-8 text-muted">
+                  {resource.answerCapsule.body}
+                </p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {resource.answerCapsule.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="border-s-2 border-brand ps-4"
+                    >
+                      <span className="font-semibold text-brand">
+                        {link.title}
+                      </span>
+                      {link.description ? (
+                        <span className="mt-1 block text-sm leading-6 text-muted">
+                          {link.description}
+                        </span>
+                      ) : null}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             <section className="border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
                 Overview

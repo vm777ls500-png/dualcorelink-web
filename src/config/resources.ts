@@ -30,6 +30,11 @@ export type ResourceGuide = {
   seoTitle: string;
   metaDescription: string;
   summary: string;
+  answerCapsule?: {
+    heading: string;
+    body: string;
+    links: ResourceLink[];
+  };
   category: "Guide";
   topic: string;
   listingGroup:
@@ -520,6 +525,31 @@ export const resources: ResourceGuide[] = [
       "Compare hotel RCU buying factors for contractors, integrators, and buyers planning guest room control projects, device lists, wiring, and quote requests.",
     summary:
       "A buyer-focused guide to selecting hotel RCU products, preparing room control requirements, and requesting accurate quotations for B2B projects.",
+    answerCapsule: {
+      heading: "What should buyers define before selecting a hotel RCU?",
+      body:
+        "Before selecting a hotel room control unit, define the controlled loads, sensor inputs, guest-facing panels, HVAC and curtain interfaces, room types, wiring architecture, and responsibility boundaries. The RCU should be evaluated as the control core of a complete guest room system rather than as an isolated controller. Model-specific I/O, voltage, protocol, drawings, and installation requirements must then be confirmed before specification or quotation.",
+      links: [
+        {
+          title: "Review a hotel RCU host",
+          href: "/en/products/hotel-smart-room-rcu-host-1/",
+          description:
+            "Use the product page as a starting point for model and project confirmation.",
+        },
+        {
+          title: "Prepare the wiring architecture",
+          href: "/en/resources/hotel-rcu-wiring-system-architecture-guide/",
+          description:
+            "Map room functions, controller points, field devices, and trade boundaries.",
+        },
+        {
+          title: "Plan a Saudi Arabia RCU inquiry",
+          href: "/en/regions/saudi-arabia/",
+          description:
+            "Review the project information requested from Saudi Arabia hotel buyers.",
+        },
+      ],
+    },
     category: "Guide",
     topic: "RCU buying",
     listingGroup: "Buying Guides",
@@ -719,6 +749,37 @@ export const resources: ResourceGuide[] = [
       "Plan smart hotel room control systems with RCU, panels, sensors, HVAC, curtains, room status, and B2B quotation considerations for hotel projects.",
     summary:
       "A practical guide for planning smart hotel room control systems across guest experience, device selection, integration, and quotation preparation.",
+    answerCapsule: {
+      heading: "What is a smart hotel room control system?",
+      body:
+        "A smart hotel room control system coordinates the room controller, wall panels, displays, sensors, lighting, HVAC, curtains, power, and service-status functions around defined guest and operational workflows. It is intended for hotel owners, contractors, and system integrators planning a repeatable room package. The final design should document room functions, device locations, wiring, interfaces, commissioning responsibilities, and model-specific requirements before procurement.",
+      links: [
+        {
+          title: "Review the room control core",
+          href: "/en/products/hotel-smart-room-rcu-host-1/",
+          description:
+            "Start with an RCU host used in guest room control planning.",
+        },
+        {
+          title: "Compare a guest-facing smart display",
+          href: "/en/products/86-type-ai-smart-control-display/",
+          description:
+            "Review a wall-mounted interface for selected room control functions.",
+        },
+        {
+          title: "Prepare a Saudi Arabia project inquiry",
+          href: "/en/regions/saudi-arabia/",
+          description:
+            "See the room, RCU, panel, and document inputs requested for Saudi projects.",
+        },
+        {
+          title: "Prepare a UAE automation inquiry",
+          href: "/en/regions/uae/",
+          description:
+            "See the product, finish, wiring, and document inputs requested for UAE projects.",
+        },
+      ],
+    },
     category: "Guide",
     topic: "Room control system",
     listingGroup: "Hotel Automation Guides",
@@ -3542,6 +3603,31 @@ export const resources: ResourceGuide[] = [
       "Compare wall panels, touchscreens, bedside controls, thermostats, and mobile control when selecting guest room interfaces for a hotel project.",
     summary:
       "Compare the roles of wall panels, touchscreens, bedside controls, thermostats, and mobile control, then plan how each interface should coordinate with the room control system.",
+    answerCapsule: {
+      heading: "How should a hotel choose guest room control interfaces?",
+      body:
+        "Choose each interface by the guest task, room position, frequency of use, mounting condition, control path, and maintenance responsibility. Wall and bedside panels suit immediate actions, while touchscreens can group selected functions that benefit from visual context. A thermostat may retain a dedicated HVAC role. Every interface still needs a verified relationship with the RCU or other control hardware, wiring plan, fallback behavior, and commissioning scope.",
+      links: [
+        {
+          title: "Compare an 86-box smart display",
+          href: "/en/products/86-type-ai-smart-control-display/",
+          description:
+            "Review a compact touchscreen interface for room control planning.",
+        },
+        {
+          title: "Review a four-key scene panel",
+          href: "/en/products/smart-four-key-scene-control-panel/",
+          description:
+            "Review a physical panel for direct guest room actions.",
+        },
+        {
+          title: "Plan OEM/ODM panel customization",
+          href: "/en/resources/oem-odm-smart-panel-customization-guide/",
+          description:
+            "Prepare layout, finish, labeling, sample, and approval inputs.",
+        },
+      ],
+    },
     category: "Guide",
     topic: "Guest room control interfaces",
     listingGroup: "Buying Guides",

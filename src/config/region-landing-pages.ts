@@ -6,6 +6,15 @@ export type RegionLandingPage = {
   h1: string;
   heroTitle: string;
   heroSubtitle: string;
+  answerCapsule?: {
+    heading: string;
+    body: string;
+    links: Array<{
+      title: string;
+      href: string;
+      description: string;
+    }>;
+  };
   primaryCta: string;
   secondaryCta: string;
   catalogNote: string;
@@ -139,6 +148,38 @@ export const regionLandingPages: RegionLandingPage[] = [
     heroTitle: "RCU and guest room control inquiry support for Saudi Arabia",
     heroSubtitle:
       "Plan hotel room control product selection with RCU hosts, smart panels, sensors, sockets, curtain control and room status panels for Saudi Arabia project inquiries.",
+    answerCapsule: {
+      heading:
+        "What should Saudi Arabia hotel buyers prepare for an RCU quotation?",
+      body:
+        "Saudi Arabia hotel buyers should prepare the room types and quantities, controlled functions, RCU and panel scope, voltage and frequency, preferred wiring or protocol direction, finish requirements, and required project documents. Contractors and system integrators should also identify installation and integration responsibilities. This information allows the supplier to review the room control package without assuming that one controller, panel, or interface fits every project.",
+      links: [
+        {
+          title: "RCU Room Control Solution",
+          href: "/en/solutions/rcu-room-control-solution/",
+          description:
+            "Review the controller, cabinet, panels, sensors, and room devices as one package.",
+        },
+        {
+          title: "Hotel Smart Room RCU Host 1",
+          href: "/en/products/hotel-smart-room-rcu-host-1/",
+          description:
+            "Use a real RCU product page to begin model-specific confirmation.",
+        },
+        {
+          title: "Smart Four-Key Scene Control Panel",
+          href: "/en/products/smart-four-key-scene-control-panel/",
+          description:
+            "Review a guest-facing panel for project-defined room actions.",
+        },
+        {
+          title: "Hotel RCU Buying Guide",
+          href: "/en/resources/hotel-rcu-buying-guide/",
+          description:
+            "Prepare loads, devices, documents, and supplier questions before procurement.",
+        },
+      ],
+    },
     primaryCta: "Get a Quote",
     secondaryCta: "View Arabic & English Catalogs",
     catalogNote:
@@ -231,6 +272,38 @@ export const regionLandingPages: RegionLandingPage[] = [
     heroTitle: "Smart panel and automation product selection for UAE projects",
     heroSubtitle:
       "DUALCORE LINK supports UAE hotel, apartment, villa, system integrator and OEM/ODM inquiries with smart panels, AI displays, RCU products and catalog support.",
+    answerCapsule: {
+      heading:
+        "What should UAE buyers compare for hotel and apartment automation?",
+      body:
+        "UAE buyers should compare products against the project type, room functions, interface locations, wall boxes, voltage and wiring requirements, visual finish, branding scope, and required documents. Hotel and apartment projects may need different combinations of RCU hosts, smart displays, physical panels, sensors, and room devices. The quotation should separate standard products from OEM/ODM requests and confirm model-specific integration requirements before selection.",
+      links: [
+        {
+          title: "AI Smart Display Solution",
+          href: "/en/solutions/ai-smart-display-solution/",
+          description:
+            "Review display roles, room functions, and project integration planning.",
+        },
+        {
+          title: "86-Type AI Smart Control Display",
+          href: "/en/products/86-type-ai-smart-control-display/",
+          description:
+            "Review an 86-box display for selected room control functions.",
+        },
+        {
+          title: "Smart Four-Key Scene Control Panel",
+          href: "/en/products/smart-four-key-scene-control-panel/",
+          description:
+            "Compare a physical control panel for frequent guest room actions.",
+        },
+        {
+          title: "Smart Hotel Room Control System Guide",
+          href: "/en/resources/smart-hotel-room-control-system-guide/",
+          description:
+            "Plan controllers, interfaces, devices, and responsibilities as one system.",
+        },
+      ],
+    },
     primaryCta: "Get a Quote",
     secondaryCta: "View Arabic & English Catalogs",
     catalogNote:

@@ -2,7 +2,10 @@ import Link from "next/link";
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 import type { Locale } from "@/config/i18n";
-import type { ProductConversionProfile } from "@/config/product-conversion";
+import {
+  getPriorityProductReinforcement,
+  type ProductConversionProfile,
+} from "@/config/product-conversion";
 import { buildQuoteHref } from "@/lib/inquiry/attribution";
 
 type ProductProjectBuyingGuideProps = {
@@ -28,6 +31,8 @@ export function ProductProjectBuyingGuide({
     ...baseAttribution,
     ctaPosition: "product_buying_guide",
   };
+  const priorityReinforcement =
+    getPriorityProductReinforcement(productSlug);
 
   return (
     <section
@@ -43,6 +48,31 @@ export function ProductProjectBuyingGuide({
         </h2>
         <p className="mt-4 leading-8 text-muted">{profile.summary}</p>
       </header>
+
+      {priorityReinforcement ? (
+        <div className="mt-7 border border-line bg-background p-6">
+          <p className="text-sm font-semibold uppercase text-brand">
+            Direct product answer
+          </p>
+          <h3 className="mt-2 text-xl font-semibold leading-7 text-foreground">
+            {priorityReinforcement.heading}
+          </h3>
+          <p className="mt-4 leading-8 text-muted">
+            {priorityReinforcement.answer}
+          </p>
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+            <GuideList
+              title="Project decision points"
+              items={priorityReinforcement.decisionPoints}
+            />
+            <RelatedLinks
+              locale={locale}
+              title="Continue project planning"
+              links={priorityReinforcement.links}
+            />
+          </div>
+        </div>
+      ) : null}
 
       <div className="product-project-guide-grid mt-7 grid gap-6 lg:grid-cols-3">
         <GuideList title="Typical project fit" items={profile.projectFit} />

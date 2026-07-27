@@ -211,7 +211,41 @@ function StaticRegionPage({
         </section>
 
         <main className="region-detail-content mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-12">
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          {region.answerCapsule ? (
+            <section className="region-market-panel border border-line bg-background p-6">
+              <p className="text-sm font-semibold uppercase text-brand">
+                Project answer
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold leading-8 text-foreground">
+                {region.answerCapsule.heading}
+              </h2>
+              <p className="mt-4 max-w-5xl leading-8 text-muted">
+                {region.answerCapsule.body}
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {region.answerCapsule.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="border-s-2 border-brand ps-4"
+                  >
+                    <span className="font-semibold text-brand">
+                      {link.title}
+                    </span>
+                    <span className="mt-1 block text-sm leading-6 text-muted">
+                      {link.description}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <div
+            className={`grid gap-6 lg:grid-cols-[1.1fr_0.9fr] ${
+              region.answerCapsule ? "mt-8" : ""
+            }`}
+          >
             <RegionTextCard title="Regional project needs">
               <p>{region.regionalNeeds}</p>
             </RegionTextCard>

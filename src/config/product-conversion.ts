@@ -17,6 +17,13 @@ export type ProductConversionProfile = {
   whatsappPrompt: string;
 };
 
+export type PriorityProductReinforcement = {
+  heading: string;
+  answer: string;
+  decisionPoints: string[];
+  links: ProductConversionLink[];
+};
+
 const rcuProfile: ProductConversionProfile = {
   key: "rcu",
   label: "RCU project planning",
@@ -316,4 +323,88 @@ export function getProductConversionProfile(categorySlugs: string[]) {
     if (profile) return profile;
   }
   return null;
+}
+
+export const priorityProductReinforcements: Readonly<
+  Record<string, PriorityProductReinforcement>
+> = {
+  "hotel-smart-room-rcu-host-1": {
+    heading: "What role does this hotel RCU host play in a guest room?",
+    answer:
+      "The Hotel Smart Room RCU Host 1 is a room-level control core for project planning. It can coordinate approved lighting scenes, panels, sensors, HVAC control, curtains, and service workflows within a wider guest room architecture. It is intended for hotel contractors, system integrators, and project buyers who can confirm the room function schedule. Exact I/O, voltage, wiring, protocol, and electrical details remain model- and project-specific.",
+    decisionPoints: [
+      "List controlled loads, sensor inputs, panels, and room-service signals.",
+      "Confirm the controller location and responsibility for the room control box or cabinet.",
+      "Request model-specific I/O, electrical, wiring, and protocol documents before specification.",
+      "Align room logic, third-party interfaces, testing, and handover responsibilities.",
+    ],
+    links: [
+      {
+        title: "Smart Hotel Room Control System Guide",
+        href: "/resources/smart-hotel-room-control-system-guide/",
+        description:
+          "Map the RCU to panels, sensors, room devices, and commissioning responsibilities.",
+      },
+      {
+        title: "Saudi Arabia RCU Project Guidance",
+        href: "/regions/saudi-arabia/",
+        description:
+          "Prepare room quantities, electrical requirements, finish needs, and project documents.",
+      },
+    ],
+  },
+  "86-type-ai-smart-control-display": {
+    heading: "Where does an 86-type smart control display fit in a project?",
+    answer:
+      "The 86-Type AI Smart Control Display is a wall-mounted room interface designed for a standard 86 box. It can present selected controls for lighting, HVAC, curtains, audio, sensors, and scenes in hotel rooms, apartments, and smart spaces. Buyers should treat it as one interface within the approved automation architecture. Final control scope, wiring, communication, language, and integration logic must be confirmed for the exact project.",
+    decisionPoints: [
+      "Define the functions that must be visible and accessible at the display location.",
+      "Confirm the 86-box position, mounting depth, power, and wiring route.",
+      "Review the controller relationship and communication requirements by exact model.",
+      "Separate standard interface needs from OEM/ODM language, logo, finish, or UI requests.",
+    ],
+    links: [
+      {
+        title: "Hotel Guest Room Control Interfaces Guide",
+        href: "/resources/hotel-guest-room-control-interfaces-guide/",
+        description:
+          "Compare touchscreen, wall-panel, bedside, thermostat, and mobile-control roles.",
+      },
+      {
+        title: "UAE Automation Project Guidance",
+        href: "/regions/uae/",
+        description:
+          "Prepare project type, finish, wiring, branding, and document requirements.",
+      },
+    ],
+  },
+  "smart-four-key-scene-control-panel": {
+    heading: "When should a project use a four-key scene control panel?",
+    answer:
+      "The Smart Four-Key Scene Control Panel provides four physical positions for approved lighting, curtain, room-mode, or other project-defined actions. It suits hotel rooms, serviced apartments, and residential automation layouts where frequent controls should remain direct and easy to locate. Buyers should confirm each key function, label, wall position, wiring, protocol relationship, and connection to the room controller before approving the panel schedule or customization scope.",
+    decisionPoints: [
+      "Assign each key to a confirmed guest action or room scene.",
+      "Confirm panel location, wall-box fit, electrical or control relationship, and labels.",
+      "Coordinate finish and layout with the wider guest room panel schedule.",
+      "Approve artwork or samples before project-scale OEM/ODM production.",
+    ],
+    links: [
+      {
+        title: "Hotel Guest Room Control Interfaces Guide",
+        href: "/resources/hotel-guest-room-control-interfaces-guide/",
+        description:
+          "Compare physical panels with touchscreens and other guest room interfaces.",
+      },
+      {
+        title: "UAE Automation Project Guidance",
+        href: "/regions/uae/",
+        description:
+          "Review finish, layout, wiring, branding, and document inputs for UAE inquiries.",
+      },
+    ],
+  },
+};
+
+export function getPriorityProductReinforcement(productSlug: string) {
+  return priorityProductReinforcements[productSlug] ?? null;
 }

@@ -10,6 +10,12 @@ const PRODUCT_SEO_DESCRIPTIONS: Readonly<Record<string, string>> = {
 };
 
 const PRODUCT_SEO_TITLES: Readonly<Record<string, string>> = {
+  "hotel-smart-room-rcu-host-1":
+    "Hotel RCU Host for Guest Room Control Projects",
+  "86-type-ai-smart-control-display":
+    "86-Type AI Smart Control Display for Hotel Rooms",
+  "smart-four-key-scene-control-panel":
+    "Smart Four-Key Scene Control Panel for Hotel Rooms",
   "brushed-aluminum-voice-telephone-information-panel":
     "Brushed Aluminum Voice & Telephone Panel",
   "borui-red-matte-room-status-four-key-switch-panel":

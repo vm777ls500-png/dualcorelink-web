@@ -204,7 +204,7 @@ Result: 13/13 passed。
 - 该字段属于共享实体，未来部署后会同时改变 74 页 JSON-LD；这是预期影响。
 - 搜索引擎何时重新抓取、如何处理或是否改变搜索展示均不可保证。
 - Phone 值仍同时存在于品牌配置、Contact 页面和 Footer 常量中；本次测试验证三处一致，但未扩大范围重构页面。
-- 前一阶段审计报告仍是独立的未提交文件，人工审核时应决定是否与本修复报告分别处理。
+- 前一阶段审计报告已随 implementation commit 一并封存，内容未在 Phase 1D-B 实施中修改。
 
 ## 12. 实施 commit 与 push
 
@@ -357,6 +357,6 @@ AWS test domain：
 - `origin/main`: `8511d7b3a7438c459755fc060f932913cb915279`
 - Working tree: clean
 
-本报告更新将通过独立 docs-only closure commit 封存。部署 workflow 配置了 `paths-ignore: docs/**`，因此 docs-only commit 不会触发第二次生产部署；生产 source SHA 保持为实施 commit。
+本报告更新仅通过 docs-only closure commit 封存。部署 workflow 配置了 `paths-ignore: docs/**`，因此 docs-only commit 不会触发第二次生产部署；生产 source SHA 保持为实施 commit。
 
 本报告不声明排名、点击、曝光、GEO、Google 实体更新或重新抓取结果。

@@ -196,7 +196,7 @@ Result: 13/13 passed。
 - dependencies、package files、Next.js 配置
 - `llms.txt`
 
-未 commit、push 或 deploy。
+实施已在后续人工批准阶段完成 commit、push 和 AWS production deploy；详情见第 12–18 节。
 
 ## 11. 风险说明
 
@@ -206,15 +206,157 @@ Result: 13/13 passed。
 - Phone 值仍同时存在于品牌配置、Contact 页面和 Footer 常量中；本次测试验证三处一致，但未扩大范围重构页面。
 - 前一阶段审计报告仍是独立的未提交文件，人工审核时应决定是否与本修复报告分别处理。
 
-## 12. 是否建议 commit
+## 12. 实施 commit 与 push
 
-建议在人工确认以下内容后保留并 commit：
+- Implementation commit: `8511d7b3a7438c459755fc060f932913cb915279`
+- Commit message: `seo: correct contactpoint schema phone mapping`
+- Commit scope: 6 个批准文件，611 insertions，8 deletions
+- Push: successful
+- Remote result: `2fc7e5a..8511d7b main -> main`
+- Force push / rebase / reset: none
 
-1. Schema telephone 确为 `+8613703333750`。
-2. WhatsApp `+85270390436` 仍只作为 WhatsApp 使用。
-3. 接受现有 74 页共享 Organization 输出范围不变。
-4. commit 范围明确包含本次 5 个实现/测试/报告文件，并单独决定如何处理任务开始前已有的 Phase 1D 审计报告。
+实施 commit 包含：
 
-本阶段不执行 commit、push 或 deploy。
+- `src/config/brand.ts`
+- `src/lib/schema/entities.ts`
+- `tests/seo-authority-phase-1c.test.ts`
+- `tests/seo-authority-phase-1d.test.ts`
+- `docs/reports/seo-authority-phase-1d-contactpoint-audit-20260727.md`
+- `docs/reports/seo-authority-phase-1d-contactpoint-fix-20260727.md`
+
+## 13. AWS production deployment
+
+| Field | Result |
+|---|---|
+| Workflow | `AWS static production deploy` |
+| Run ID | `30259390311` |
+| Run URL | `https://github.com/vm777ls500-png/dualcorelink-web/actions/runs/30259390311` |
+| Job ID | `89955457436` |
+| Runner | `dualcorelink-production` self-hosted Linux x64 |
+| Source SHA | `8511d7b3a7438c459755fc060f932913cb915279` |
+| Deployment URL | `https://aws.dualcorelink.com/en/` |
+| Official URL | `https://dualcorelink.com/` |
+| Previous release | `/srv/dualcorelink/frontend/releases/57d313fcb331-20260727-140744` |
+| Current release | `/srv/dualcorelink/frontend/releases/8511d7b3a743-20260727-184905` |
+| Status | Success |
+
+全部 workflow steps 成功：
+
+1. exact-SHA checkout
+2. validated build environment
+3. dependency installation
+4. lint
+5. data validation
+6. inquiry infrastructure validation
+7. media audit
+8. 156/156 static build
+9. atomic release activation
+10. AWS health checks
+11. test-domain indexing protection
+
+Runner 使用已验证的公开 CMS REST root `https://cms.dualcorelink.com/wp-json`，没有 localhost fallback。Nginx 配置测试、local HTTPS health check 和 external HTTPS health check 均在第一次尝试通过。
+
+## 14. Production ContactPoint verification
+
+生产 76 个 sitemap URL 全部返回 HTTP 200。
+
+| Check | Result |
+|---|---:|
+| Organization nodes | 74 |
+| Pages with Organization | 74 |
+| Duplicate Organization pages | 0 |
+| ContactPoint nodes | 74 |
+| Unique ContactPoint values | 1 |
+| `telephone=+8613703333750` | 74 |
+| `telephone=+85270390436` | 0 |
+| Pages retaining `wa.me/85270390436` | 76 |
+
+唯一生产 ContactPoint：
+
+```json
+{
+  "@type": "ContactPoint",
+  "telephone": "+8613703333750",
+  "email": "sales@dualcorelink.com",
+  "contactType": "sales"
+}
+```
+
+唯一 Organization 身份值保持：
+
+```json
+{
+  "@id": "https://dualcorelink.com/#organization",
+  "name": "DUALCORE LINK LIMITED",
+  "url": "https://dualcorelink.com"
+}
+```
+
+## 15. WhatsApp production verification
+
+- `+852 7039 0436` 继续作为 WhatsApp 可见号码。
+- 76/76 sitemap 页面保留 `https://wa.me/85270390436`。
+- AWS `/en/` 同时包含新 telephone 和既有 WhatsApp link。
+- Contact 页面、Footer 和 WhatsApp CTA 的来源文件未修改。
+- WhatsApp-only 号码不再出现在任何 ContactPoint telephone。
+
+## 16. Phase 3A production regression
+
+以下 8 个页面均通过：
+
+- 3 个 Resources
+- 2 个 Regions
+- 3 个 Products
+
+逐页结果：
+
+- HTTP 200：8/8
+- Title 与成功本地构建一致：8/8
+- 唯一且正确 canonical：8/8
+- 单一 H1：8/8
+- page-specific Product / Article / CreativeWork Schema：8/8
+- BreadcrumbList：8/8
+- CTA attribution：8/8
+- WhatsApp link：8/8
+
+Phase 3A 页面内容、metadata、H1、canonical、CTA 和页面专属 Schema 没有发生非预期变化。唯一预期变化是共享 Organization ContactPoint telephone。
+
+## 17. Production SEO baseline
+
+| Check | Result |
+|---|---:|
+| Sitemap HTTP | 200 |
+| Sitemap URLs | 76 |
+| URL HTTP 200 | 76/76 |
+| Unique correct canonical | 76/76 |
+| Single H1 | 76/76 |
+| Product Schema | 36 |
+| Article Schema | 15 |
+| BreadcrumbList | 72 |
+| localhost / staging / CMS leak | 0 |
+| `robots.txt` | HTTP 200；与成功本地构建 byte-identical |
+| `llms.txt` | HTTP 404 |
+
+AWS test domain：
+
+- `/en/`: HTTP 200
+- `X-Robots-Tag`: `noindex, nofollow, noarchive`
+- AWS 与 official `/en/about/` HTML byte-identical
+- About HTML SHA-256: `6a92a1c0f36e32a141a436b40866afbb930670dbd3b92ba164302de8324e84f7`
+
+`robots.txt` production/local SHA-256：
+
+`20d225d8bfe2d3fb7d52daf5623d7d5756ee8e8eaa6fc5895a8456782e2b98f7`
+
+## 18. Final Git state and closure
+
+生产部署与生产验证完成后、更新本报告前：
+
+- Branch: `main`
+- Local HEAD: `8511d7b3a7438c459755fc060f932913cb915279`
+- `origin/main`: `8511d7b3a7438c459755fc060f932913cb915279`
+- Working tree: clean
+
+本报告更新将通过独立 docs-only closure commit 封存。部署 workflow 配置了 `paths-ignore: docs/**`，因此 docs-only commit 不会触发第二次生产部署；生产 source SHA 保持为实施 commit。
 
 本报告不声明排名、点击、曝光、GEO、Google 实体更新或重新抓取结果。

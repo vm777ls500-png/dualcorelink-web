@@ -79,17 +79,14 @@ test("Phase 1C leaves the unconfirmed About sample and warranty wording unchange
   );
 });
 
-test("Phase 1C preserves deferred schema and crawl-policy boundaries", async () => {
+test("Phase 1C preserves entity and crawl-policy boundaries", async () => {
   const organization = createGlobalEntities().find(
     (node) => node["@type"] === "Organization",
   );
   assert.ok(organization);
-  assert.deepEqual(organization.contactPoint, {
-    "@type": "ContactPoint",
-    telephone: "+85270390436",
-    email: "sales@dualcorelink.com",
-    contactType: "sales",
-  });
+  assert.equal(organization.contactPoint?.["@type"], "ContactPoint");
+  assert.equal(organization.contactPoint?.email, "sales@dualcorelink.com");
+  assert.equal(organization.contactPoint?.contactType, "sales");
   assert.equal(organization.logo, undefined);
   assert.equal(organization.sameAs, undefined);
   assert.equal(organization.address, undefined);

@@ -19,6 +19,10 @@ export const brand = {
     international: "85270390436",
     label: "Get a Quote on WhatsApp",
   },
+  phone: {
+    display: "+86 13703333750",
+    international: "8613703333750",
+  },
   targetMarkets: [
     "Saudi Arabia",
     "United Arab Emirates",

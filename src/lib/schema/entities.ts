@@ -16,7 +16,7 @@ export function createGlobalEntities(): JsonLdNode[] {
       brand: { "@id": brandId },
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: `+${brand.whatsapp.international}`,
+        telephone: `+${brand.phone.international}`,
         email: brand.emails.sales,
         contactType: "sales",
       },

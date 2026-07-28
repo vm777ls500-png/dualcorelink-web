@@ -223,9 +223,11 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
               Smart Hotel Room Control & Automation Solutions
             </h1>
             <p className="mt-4 leading-7 text-muted">
-              Solution directions for hotel owners, contractors, system
-              integrators, distributors, and OEM/ODM buyers planning smart
-              hotel room control and automation projects.
+              Compare system-level paths for hotel room control, automation,
+              RCU planning, smart displays, service workflows, and OEM/ODM
+              programs. Each solution helps hotel owners, contractors, and
+              integrators move from project requirements to an appropriate
+              product mix and inquiry.
             </p>
           </div>
           <div className="solutions-hero-actions flex flex-wrap gap-3">
@@ -309,6 +311,19 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
                   ))}
                 </ul>
               </div>
+
+              {entry.slug === "rcu-room-control-solution" ? (
+                <p className="mt-5 border-s-2 border-brand ps-4 text-sm leading-6 text-muted">
+                  Need the technical basics first? Review{" "}
+                  <Link
+                    href={`/${locale}/resources/what-is-hotel-rcu-room-control-system/`}
+                    className="font-semibold text-brand underline decoration-brand/40 underline-offset-4"
+                  >
+                    hotel RCU room control fundamentals
+                  </Link>{" "}
+                  before defining the product and integration scope.
+                </p>
+              ) : null}
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link

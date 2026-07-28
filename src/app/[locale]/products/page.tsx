@@ -124,9 +124,16 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             Smart Hotel & Smart Home Automation Products
           </h1>
           <p className="mt-4 leading-7 text-muted">
-            Explore smart room control and automation hardware for hotel
-            projects, system integrators, OEM/ODM buyers, distributors, and
-            global project sourcing teams.
+            Browse hotel control panels, RCU hosts, sensors, displays, sockets,
+            thermostats, and related devices by category, series, or
+            application scenario. Use this catalog for device selection;{" "}
+            <Link
+              href={`/${locale}/solutions/`}
+              className="font-semibold text-brand underline decoration-brand/40 underline-offset-4"
+            >
+              compare hotel room automation solutions
+            </Link>{" "}
+            when the project scope extends across multiple systems.
           </p>
         </div>
         <div className="products-hero-actions flex flex-wrap gap-3">

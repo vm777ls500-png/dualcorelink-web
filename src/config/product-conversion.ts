@@ -405,6 +405,34 @@ export const priorityProductReinforcements: Readonly<
   },
 };
 
+export const phase3bProductReinforcements: Readonly<
+  Record<string, PriorityProductReinforcement>
+> = {
+  "rcu-controller-cabinet": {
+    heading: "When should a project evaluate this RCU controller cabinet?",
+    answer:
+      "The RCU Controller Cabinet is a product-level option for hotel guest room control projects, not a complete system specification by itself. Buyers can evaluate it when a room control unit must be matched to a defined point list, cabinet location, and installation scope. Final I/O, voltage, wiring, protocol, load ratings, and connected devices must be confirmed against the exact project before quotation or technical approval.",
+    decisionPoints: [
+      "Confirm the room count, room types, and controlled point list.",
+      "Define the cabinet location, connected devices, and installation responsibility.",
+      "Request model-specific I/O, electrical, wiring, and protocol documents.",
+      "Separate product selection from the wider room control solution and commissioning scope.",
+    ],
+    links: [
+      {
+        title: "Hotel RCU Room Control Fundamentals",
+        href: "/resources/what-is-hotel-rcu-room-control-system/",
+        description:
+          "Review room control unit roles, connected devices, and planning questions.",
+      },
+    ],
+  },
+};
+
 export function getPriorityProductReinforcement(productSlug: string) {
-  return priorityProductReinforcements[productSlug] ?? null;
+  return (
+    priorityProductReinforcements[productSlug] ??
+    phase3bProductReinforcements[productSlug] ??
+    null
+  );
 }

@@ -158,7 +158,7 @@ export const resources: ResourceGuide[] = [
         id: "product-selection",
         heading: "RCU Product Selection for Contractors and Integrators",
         body: [
-          "Contractors usually need a practical product mix that can be quoted, installed, and coordinated with the room design. System integrators may also need to review communication requirements, wiring logic, and how room devices are grouped within the control system.",
+          "Use this guide to define the room functions, device relationships, and technical questions before choosing hardware. Once those requirements are clear, evaluate an RCU controller cabinet as a product decision and an RCU room control solution as the system-level path; the two roles should not be treated as interchangeable.",
           "A useful RCU inquiry should include room quantity, room type, product interests, control functions, voltage and frequency requirements, protocol preference, panel finish needs, and required documents. Drawings, BOQ files, or room schedules can make selection more accurate.",
           "Distributors and OEM/ODM buyers can also use the RCU discussion to define a product line for target markets. In those cases, panel appearance, logo needs, button layout, packaging, and document requirements should be discussed together with the room control hardware.",
         ],
@@ -196,7 +196,7 @@ export const resources: ResourceGuide[] = [
         title: "RCU Room Control Solution",
         href: "/en/solutions/rcu-room-control-solution/",
         description:
-          "RCU host, cabinet, sensor, socket, and panel coordination for hotel room control systems.",
+          "System-level path for coordinating the RCU, panels, sensors, room devices, wiring responsibilities, and integration scope.",
       },
       {
         title: "Hotel Guest Room Control Solution",
@@ -210,7 +210,7 @@ export const resources: ResourceGuide[] = [
         title: "RCU Controller Cabinet",
         href: "/en/products/rcu-controller-cabinet/",
         description:
-          "Centralized cabinet option for coordinating room control circuits and project wiring requirements.",
+          "Product-level path for evaluating a controller cabinet against the point list, installation scope, and project requirements.",
       },
       {
         title: "Hotel Smart Room RCU Host 1",

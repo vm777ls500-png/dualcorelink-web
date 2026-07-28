@@ -145,6 +145,60 @@ test("Nginx retires only known legacy locales with verified English targets", as
   assert.doesNotMatch(nginx, /location ~ \^\/\.\*.*return 301/);
 });
 
+test("Nginx redirects confirmed locale-less GSC URLs to exact English targets", async () => {
+  const nginx = await readFile(
+    path.join(
+      projectRoot,
+      "deploy",
+      "nginx",
+      "dualcorelink.com.conf.template",
+    ),
+    "utf8",
+  );
+  const redirectPairs = [
+    {
+      source: "/solutions/oem-odm-custom-panel-solution/",
+      target: "/en/solutions/oem-odm-custom-panel-solution/",
+    },
+    {
+      source: "/resources/hotel-rcu-wiring-system-architecture-guide/",
+      target:
+        "/en/resources/hotel-rcu-wiring-system-architecture-guide/",
+    },
+  ];
+
+  for (const { source, target } of redirectPairs) {
+    const escapedSource = source.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const escapedTarget = target.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const exactRule = new RegExp(
+      [
+        `location = ${escapedSource} \\{`,
+        `\\s+if \\(-f \\$document_root${escapedTarget}index\\.html\\) \\{`,
+        `\\s+return 301 https:\\/\\/dualcorelink\\.com${escapedTarget};`,
+        "\\s+\\}",
+        "\\s+return 404;",
+        "\\s+\\}",
+      ].join(""),
+      "g",
+    );
+
+    assert.equal(
+      nginx.match(exactRule)?.length,
+      3,
+      `Expected exact redirect coverage in all server contexts for ${source}`,
+    );
+  }
+
+  assert.doesNotMatch(
+    nginx,
+    /return 301 https:\/\/dualcorelink\.com\/en\/solutions\/;/,
+  );
+  assert.doesNotMatch(
+    nginx,
+    /return 301 https:\/\/dualcorelink\.com\/en\/resources\/rcu-wiring-architecture\/;/,
+  );
+});
+
 test("products listing prerenders crawlable product links before hydration", async () => {
   const productsPage = await readFile(
     path.join(projectRoot, "src", "app", "[locale]", "products", "page.tsx"),

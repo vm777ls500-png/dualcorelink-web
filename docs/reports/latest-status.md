@@ -4,12 +4,13 @@ Last updated: 2026-07-28
 
 ## Current Phase
 
-**SEO Growth Phase 3B-3 Committed Locally**
+**SEO Operations GSC 404 Fix Committed Locally**
 
-Status: the approved nine-file Phase 3B-3 scope passed final validation and
-was committed locally in the authorized commit task. It has not been pushed
-or deployed. Earlier GSC/API, analysis, and Project Automation changes remain
-outside the commit.
+Status: two exact, target-verified Nginx 301 rules for confirmed locale-less
+GSC 404 URLs have been implemented, validated, and approved for the isolated
+four-file commit. The current phase commit is local only and has not been
+pushed or deployed; the public source URLs remain 404 until a separately
+approved Nginx activation.
 
 This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
@@ -71,6 +72,37 @@ remains in the phase reports under `docs/reports/`.
   audit with zero errors, a 156/156 static build, and cached diff checks.
 - The Phase 3B-3 commit was created locally with message
   `seo: optimize priority pages from gsc insights`.
+- The Phase 3B-3 commit was pushed to `origin/main`.
+- GitHub Actions run `30326225219` completed successfully using source SHA
+  `5400736006d6054e6b924cac82ff13d6642b532d`.
+- The atomic production release completed at
+  `/srv/dualcorelink/frontend/releases/5400736006d6-20260728-113509`.
+- The deployment health check passed at `https://aws.dualcorelink.com/en/`,
+  and the production site was verified at `https://dualcorelink.com/`.
+- All four Phase 3B-3 pages returned HTTP 200 and passed Title, meta
+  description, canonical, single-H1, expected Schema, BreadcrumbList, new
+  content, new internal-link, and inquiry-attribution checks.
+- Production retained 36/36 Product Schema pages, 15/15 Article Schema pages,
+  76 sitemap URLs, one Organization entity, and the approved ContactPoint
+  telephone `+8613703333750` with contact type `sales`.
+- Production `robots.txt` remained available without localhost leakage,
+  `llms.txt` remained absent, and all eight Phase 3A observation pages passed
+  HTTP, canonical, H1, Schema, breadcrumb, and inquiry-attribution regression
+  checks.
+- The confirmed GSC 404 sources and their exact English targets were audited:
+  - `/solutions/oem-odm-custom-panel-solution/`
+    → `/en/solutions/oem-odm-custom-panel-solution/`
+  - `/resources/hotel-rcu-wiring-system-architecture-guide/`
+    → `/en/resources/hotel-rcu-wiring-system-architecture-guide/`
+- Exact, destination-file-guarded Nginx 301 rules were added for both sources
+  in the HTTP, HTTPS `www`, and HTTPS apex server contexts.
+- Focused redirect tests passed 7/7. Full validation passed with 0 lint errors,
+  117/117 data tests after using the existing public CMS endpoint, media audit
+  with 0 errors, and a 156/156 build.
+- Sitemap, robots, canonical, Schema, English page content, `export:clean`,
+  and Phase 3B-3 files remain unchanged.
+- The redirects have not been activated or deployed. Live HTTP 301 behavior
+  is not claimed.
 - Smart Hotel Guide, AI Display, Saudi Arabia, and UAE remain unchanged under
   observation.
 - Project Automation Phase 1 added a common status file, completion template,
@@ -106,6 +138,19 @@ patch review.
 The final commit task updated only this status document in addition to the
 already approved implementation, test, and report files.
 
+The push and production-verification task updated only this status document
+locally. It did not modify production code or the deployed commit.
+
+Files updated by SEO Operations GSC 404 Fix Implementation:
+
+- `deploy/nginx/dualcorelink.com.conf.template`
+- `tests/static-export.test.ts`
+- `docs/reports/seo-operations-gsc-404-fix-implementation-20260728.md`
+- `docs/reports/latest-status.md`
+
+No page, sitemap, robots, canonical, Schema, `export:clean`, or Phase 3B-3
+production file was modified by the GSC 404 implementation.
+
 Pre-existing uncommitted worktree changes were preserved and were not created
 by this phase:
 
@@ -129,7 +174,7 @@ or deployment file was modified by this phase.
 | tests | `npm run test:data` passed, 116/116 |
 | media audit | Passed; 0 errors and 1 existing warning |
 | build | Passed; 156/156 static pages generated |
-| deployment | Not requested and not performed |
+| deployment | Passed; GitHub Actions run `30326225219`, source SHA `5400736006d6054e6b924cac82ff13d6642b532d` |
 | responsive QA | 4 pages × 4 widths = 16 checks; 0 horizontal-overflow failures |
 | static HTML QA | Four pages passed Title, meta, canonical, H1, Schema, content, link, noindex, localhost, and inquiry-attribution checks |
 | sitewide SEO QA | Product Schema 36, Article Schema 15, sitemap 76, `llms.txt` absent |
@@ -139,18 +184,32 @@ or deployment file was modified by this phase.
 | protected-surface QA | Title, meta, Schema, URL, canonical, robots, sitemap, Phase 3A, ContactPoint, Organization, and inquiry attribution unchanged |
 | final staged scope | Exactly 9 approved files; GSC/API, historical analysis, and Project Automation files excluded |
 | final cached diff | `git diff --cached --check` passed |
+| production target-page QA | 4/4 HTTP 200; Title, meta, canonical, H1, Schema, BreadcrumbList, new content, internal links, and inquiry attribution passed |
+| production sitewide QA | Product Schema 36/36; Article Schema 15/15; sitemap 76; Organization count 1; ContactPoint unchanged |
+| production crawl controls | `robots.txt` HTTP 200 and unchanged by the commit; no localhost leakage; `llms.txt` HTTP 404 |
+| Phase 3A production regression | 8/8 observation pages passed HTTP, canonical, H1, expected Schema, breadcrumb, and inquiry-attribution checks |
+| GSC 404 redirect focused tests | Passed, 7/7; exact rules cover all three Nginx server contexts |
+| GSC 404 implementation lint | Passed; 0 errors and 2 pre-existing GSC warnings |
+| GSC 404 implementation tests | Passed, 117/117 with the existing public CMS endpoint; initial local-endpoint run was 112/117 because `127.0.0.1:8080` was unavailable |
+| GSC 404 implementation media audit | Passed; 0 errors and 1 existing warning |
+| GSC 404 implementation build | Passed; 156/156 static pages, 76 sitemap URLs, both target artifacts present |
+| Protected SEO surfaces | No sitemap, robots, canonical, Schema, page-content, `export:clean`, or Phase 3B-3 diff |
+| Nginx activation | Not performed; local Windows environment has no Nginx executable |
 
 ## Git Status
 
 | Field | Value |
 |---|---|
 | Branch | `main` |
-| HEAD | Local Phase 3B-3 commit created by this task; use `git log -1` for the SHA |
+| HEAD | `5400736006d6054e6b924cac82ff13d6642b532d` |
 | HEAD commit | `seo: optimize priority pages from gsc insights` |
-| Remote committed state | `origin/main` remains at the pre-Phase 3B-3 baseline |
-| Current phase commit | Created locally; not pushed |
-| Push status | Not pushed |
-| Worktree | Dirty only because preserved earlier GSC/API, historical analysis, and Project Automation changes remain uncommitted |
+| Remote committed state | `origin/main` = `5400736006d6054e6b924cac82ff13d6642b532d` |
+| Current phase commit | Created locally by the GSC 404 final-staging task; use `git log -1` for the SHA |
+| Push status | Current GSC 404 implementation not pushed; Phase 3B-3 baseline previously pushed |
+| Deployment | Current GSC 404 implementation not deployed; production remains on successful run `30326225219` |
+| Production source SHA | `5400736006d6054e6b924cac82ff13d6642b532d` |
+| Release directory | `/srv/dualcorelink/frontend/releases/5400736006d6-20260728-113509` |
+| Worktree | After the phase commit, dirty only with preserved earlier GSC/API, historical analysis, dependency, and Project Automation changes |
 
 ## Risks
 
@@ -172,22 +231,32 @@ or deployment file was modified by this phase.
   locale directory; this cleanup must remain part of all release builds.
 - No credentials, tokens, private keys, or service-account files may be placed
   in handoff documents.
+- `npm ci` reported seven high-severity dependency audit findings during the
+  successful deployment. Dependency files were explicitly outside this
+  Phase 3B-3 commit and were not changed.
+- The current Actions static deployment does not automatically install the
+  repository Nginx template. A controlled activation step with backup,
+  `nginx -t`, reload, verification, and rollback must be approved before
+  deployment.
+- The public source URLs remain 404 until Nginx activation; local
+  configuration tests do not constitute production redirect verification.
 
 ## Next Action
 
 Recommended next step:
 
-**Phase 3B-3 Push and Deployment Review**
+**GSC 404 push and activation review**
 
-1. Review the local Phase 3B-3 commit and its nine-file scope.
-2. Confirm that the remaining dirty-worktree files are unrelated and
-   uncommitted.
-3. If approved, authorize a separate push and deployment task.
-4. After deployment, verify the four production pages and update the
-   implementation report with production evidence.
+1. Review the isolated local GSC 404 commit.
+2. Approve or revise the controlled Nginx activation method for the AWS
+   self-hosted runner.
+3. Authorize push only after the activation method is confirmed.
+4. Do not claim HTTP 301 or GSC cleanup until production activation and
+   one-hop verification succeed.
 
 Waiting for user confirmation:
 
-- approval or revision of the local Phase 3B-3 commit;
-- authorization for push and deployment;
+- approval to push the GSC 404 commit and activate the Nginx template;
 - instructions for the preserved GSC/API and historical analysis worktree.
+
+Phase 3B-4 has not been started.

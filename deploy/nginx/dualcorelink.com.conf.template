@@ -11,6 +11,20 @@ server {
         try_files $uri =404;
     }
 
+    location = /solutions/oem-odm-custom-panel-solution/ {
+        if (-f $document_root/en/solutions/oem-odm-custom-panel-solution/index.html) {
+            return 301 https://dualcorelink.com/en/solutions/oem-odm-custom-panel-solution/;
+        }
+        return 404;
+    }
+
+    location = /resources/hotel-rcu-wiring-system-architecture-guide/ {
+        if (-f $document_root/en/resources/hotel-rcu-wiring-system-architecture-guide/index.html) {
+            return 301 https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/;
+        }
+        return 404;
+    }
+
     location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
         return 301 https://dualcorelink.com/en/;
     }
@@ -37,6 +51,20 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/dualcorelink.com/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location = /solutions/oem-odm-custom-panel-solution/ {
+        if (-f $document_root/en/solutions/oem-odm-custom-panel-solution/index.html) {
+            return 301 https://dualcorelink.com/en/solutions/oem-odm-custom-panel-solution/;
+        }
+        return 404;
+    }
+
+    location = /resources/hotel-rcu-wiring-system-architecture-guide/ {
+        if (-f $document_root/en/resources/hotel-rcu-wiring-system-architecture-guide/index.html) {
+            return 301 https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/;
+        }
+        return 404;
+    }
 
     location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
         return 301 https://dualcorelink.com/en/;
@@ -74,6 +102,20 @@ server {
     gzip on;
     gzip_vary on;
     gzip_types text/plain text/css application/json application/javascript application/xml image/svg+xml;
+
+    location = /solutions/oem-odm-custom-panel-solution/ {
+        if (-f $document_root/en/solutions/oem-odm-custom-panel-solution/index.html) {
+            return 301 https://dualcorelink.com/en/solutions/oem-odm-custom-panel-solution/;
+        }
+        return 404;
+    }
+
+    location = /resources/hotel-rcu-wiring-system-architecture-guide/ {
+        if (-f $document_root/en/resources/hotel-rcu-wiring-system-architecture-guide/index.html) {
+            return 301 https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/;
+        }
+        return 404;
+    }
 
     location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
         return 301 https://dualcorelink.com/en/;

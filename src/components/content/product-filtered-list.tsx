@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import type { ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ContentList, type ContentListItem } from "./content-list";
 import { EmptyState } from "./empty-state";
 import type { Locale } from "@/config/i18n";
@@ -25,6 +25,92 @@ type ProductFilteredListProps = {
   variant?: "product";
 };
 
+type ProductFilterState = {
+  categorySlug: string;
+  seriesSlug: string;
+};
+
+type ProductFilterControlProps = {
+  filterType: "category" | "series";
+  slug: string;
+  enabled: boolean;
+  className: string;
+  children: ReactNode;
+};
+
+const productFilterHistoryKey = "dualcorelinkProductFilter";
+const productFilterEventName = "dualcorelink:product-filter";
+const emptyFilterState: ProductFilterState = {
+  categorySlug: "",
+  seriesSlug: "",
+};
+
+function normalizeProductFilterState(
+  value: unknown,
+  categories: readonly ProductFilterOption[],
+  series: readonly ProductFilterOption[],
+): ProductFilterState {
+  if (!value || typeof value !== "object") return emptyFilterState;
+  const candidate = value as Partial<ProductFilterState>;
+  const categorySlug =
+    typeof candidate.categorySlug === "string" &&
+    categories.some((item) => item.slug === candidate.categorySlug)
+      ? candidate.categorySlug
+      : "";
+  const seriesSlug =
+    typeof candidate.seriesSlug === "string" &&
+    series.some((item) => item.slug === candidate.seriesSlug)
+      ? candidate.seriesSlug
+      : "";
+  return { categorySlug, seriesSlug };
+}
+
+function currentHistoryRecord() {
+  return window.history.state && typeof window.history.state === "object"
+    ? (window.history.state as Record<string, unknown>)
+    : {};
+}
+
+export function ProductFilterControl({
+  filterType,
+  slug,
+  enabled,
+  className,
+  children,
+}: ProductFilterControlProps) {
+  function selectFilter() {
+    if (!enabled) return;
+    const filter: ProductFilterState =
+      filterType === "category"
+        ? { categorySlug: slug, seriesSlug: "" }
+        : { categorySlug: "", seriesSlug: slug };
+    window.history.pushState(
+      {
+        ...currentHistoryRecord(),
+        [productFilterHistoryKey]: filter,
+      },
+      "",
+      `${window.location.pathname}#product-results`,
+    );
+    window.dispatchEvent(
+      new CustomEvent<ProductFilterState>(productFilterEventName, {
+        detail: filter,
+      }),
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      disabled={!enabled}
+      onClick={selectFilter}
+      className={`${className} w-full text-start disabled:cursor-default`}
+    >
+      {children}
+    </button>
+  );
+}
+
 export function ProductFilteredList({
   locale,
   items,
@@ -33,9 +119,8 @@ export function ProductFilteredList({
   variant,
 }: ProductFilteredListProps) {
   const resultsRef = useRef<HTMLDivElement>(null);
-  const searchParams = useSearchParams();
-  const categorySlug = searchParams.get("category") || "";
-  const seriesSlug = searchParams.get("series") || "";
+  const [filter, setFilter] = useState<ProductFilterState>(emptyFilterState);
+  const { categorySlug, seriesSlug } = filter;
   const activeCategory = categories.find((item) => item.slug === categorySlug);
   const activeSeries = series.find((item) => item.slug === seriesSlug);
   const filteredItems = items.filter((item) => {
@@ -54,6 +139,68 @@ export function ProductFilteredList({
     activeSeries ? `Series: ${activeSeries.title}` : "",
   ].filter(Boolean);
   const hasFilter = Boolean(activeCategory || activeSeries);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const legacyFilter = normalizeProductFilterState(
+      {
+        categorySlug: searchParams.get("category") ?? "",
+        seriesSlug: searchParams.get("series") ?? "",
+      },
+      categories,
+      series,
+    );
+    const historyFilter = normalizeProductFilterState(
+      currentHistoryRecord()[productFilterHistoryKey],
+      categories,
+      series,
+    );
+    const initialFilter =
+      legacyFilter.categorySlug || legacyFilter.seriesSlug
+        ? legacyFilter
+        : historyFilter;
+    setFilter(initialFilter);
+
+    if (window.location.search) {
+      window.history.replaceState(
+        {
+          ...currentHistoryRecord(),
+          [productFilterHistoryKey]: initialFilter,
+        },
+        "",
+        `${window.location.pathname}${
+          initialFilter.categorySlug || initialFilter.seriesSlug
+            ? "#product-results"
+            : window.location.hash
+        }`,
+      );
+    }
+
+    const handleFilter = (event: Event) => {
+      setFilter(
+        normalizeProductFilterState(
+          (event as CustomEvent<ProductFilterState>).detail,
+          categories,
+          series,
+        ),
+      );
+    };
+    const handlePopState = () => {
+      setFilter(
+        normalizeProductFilterState(
+          currentHistoryRecord()[productFilterHistoryKey],
+          categories,
+          series,
+        ),
+      );
+    };
+    window.addEventListener(productFilterEventName, handleFilter);
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener(productFilterEventName, handleFilter);
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [categories, series]);
 
   useEffect(() => {
     if (!hasFilter) return;

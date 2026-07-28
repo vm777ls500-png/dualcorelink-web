@@ -765,12 +765,7 @@ test("Phase 2G control interfaces guide is complete, linked, and attribution-saf
   const quoteUrl = new URL(quoteHref, "https://dualcorelink.com");
   assert.equal(quoteUrl.pathname, "/en/contact/");
   assert.equal(quoteUrl.hash, "#get-a-quote");
-  assert.equal(quoteUrl.searchParams.get("content_type"), "resource");
-  assert.equal(quoteUrl.searchParams.get("content_slug"), slug);
-  assert.equal(
-    quoteUrl.searchParams.get("cta_position"),
-    "resource_mid_article",
-  );
+  assert.equal(quoteUrl.search, "");
 
   const inquiryEvent = createInquiryEvent("cta_click", "form", {
     sourcePage: `/en/resources/${slug}/`,
@@ -899,8 +894,7 @@ test("Phase 2H priority resources preserve intent, links, and conversion safety"
     const quoteUrl = new URL(quoteHref, "https://dualcorelink.com");
     assert.equal(quoteUrl.pathname, "/en/contact/");
     assert.equal(quoteUrl.hash, "#get-a-quote");
-    assert.equal(quoteUrl.searchParams.get("content_type"), "resource");
-    assert.equal(quoteUrl.searchParams.get("content_slug"), resource.slug);
+    assert.equal(quoteUrl.search, "");
 
     const event = createInquiryEvent("cta_click", "form", {
       sourcePage: `/en/resources/${resource.slug}/`,

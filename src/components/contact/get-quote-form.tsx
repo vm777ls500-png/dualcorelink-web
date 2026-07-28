@@ -10,7 +10,11 @@ import {
   productInterestOptions,
 } from "@/config/brand";
 import {
+  cleanContactHistoryUrl,
   parseInquiryAttribution,
+  parseLegacyInquiryAttribution,
+  readInquiryAttributionFromSession,
+  writeInquiryAttributionToSession,
   type InquiryAttribution,
 } from "@/lib/inquiry/attribution";
 import {
@@ -103,10 +107,28 @@ export function GetQuoteForm({ productName }: GetQuoteFormProps) {
     useState<InquirySubmissionErrorCategory>();
 
   useEffect(() => {
-    const nextAttribution = parseInquiryAttribution(
+    const legacyAttribution = parseLegacyInquiryAttribution(
       window.location.search,
-      window.location.pathname,
     );
+    if (legacyAttribution) {
+      writeInquiryAttributionToSession(legacyAttribution);
+    }
+    const nextAttribution =
+      legacyAttribution ??
+      readInquiryAttributionFromSession() ??
+      parseInquiryAttribution("", window.location.pathname);
+
+    if (window.location.search) {
+      window.history.replaceState(
+        window.history.state,
+        "",
+        cleanContactHistoryUrl(
+          window.location.pathname,
+          window.location.hash,
+        ),
+      );
+    }
+
     setAttribution(nextAttribution);
     if (!productName && nextAttribution.sourceTitle) {
       setMessage((current) =>

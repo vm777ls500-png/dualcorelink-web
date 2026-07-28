@@ -5,7 +5,10 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ContentList } from "@/components/content/content-list";
 import { EmptyState } from "@/components/content/empty-state";
-import { ProductFilteredList } from "@/components/content/product-filtered-list";
+import {
+  ProductFilterControl,
+  ProductFilteredList,
+} from "@/components/content/product-filtered-list";
 import { isLocale, locales } from "@/config/i18n";
 import { applicationScenarios } from "@/config/application-scenarios";
 import { productCategories } from "@/config/product-taxonomy";
@@ -167,8 +170,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                   const hasProducts = count > 0;
 
                   return (
-                <a
-                  href={`/${locale}/products/?category=${category.slug}#product-results`}
+                <ProductFilterControl
+                  filterType="category"
+                  slug={category.slug}
+                  enabled={hasProducts}
                   className={
                     hasProducts
                       ? "products-entry-card block border border-line bg-background p-3 hover:border-brand"
@@ -198,7 +203,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                       ? `${count} ${count === 1 ? "product" : "products"}`
                       : "Coming soon"}
                   </span>
-                </a>
+                </ProductFilterControl>
                   );
                 })()}
               </li>
@@ -220,8 +225,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
               return (
               <li key={series.slug}>
-                <Link
-                  href={`/${locale}/products/?series=${series.slug}#product-results`}
+                <ProductFilterControl
+                  filterType="series"
+                  slug={series.slug}
+                  enabled={hasProducts}
                   className={
                     hasProducts
                       ? "products-entry-card block border border-line bg-background p-3 hover:border-brand"
@@ -251,7 +258,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                       ? `Available now - ${count} ${count === 1 ? "product" : "products"}`
                       : "Upcoming series"}
                   </span>
-                </Link>
+                </ProductFilterControl>
               </li>
               );
             })}

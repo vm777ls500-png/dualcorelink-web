@@ -1,7 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { InquiryAttribution } from "@/lib/inquiry/attribution";
+import {
+  writeInquiryAttributionToSession,
+  type InquiryAttribution,
+} from "@/lib/inquiry/attribution";
 import {
   trackInquiryEvent,
   type InquiryChannel,
@@ -29,7 +32,12 @@ export function TrackedInquiryLink({
       href={href}
       className={className}
       aria-label={ariaLabel}
-      onClick={() => trackInquiryEvent("cta_click", channel, attribution)}
+      onClick={() => {
+        if (channel === "form") {
+          writeInquiryAttributionToSession(attribution);
+        }
+        trackInquiryEvent("cta_click", channel, attribution);
+      }}
     >
       {children}
     </a>

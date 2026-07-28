@@ -4,20 +4,36 @@ Last updated: 2026-07-28
 
 ## Current Phase
 
-**SEO Operations Nginx Redirect Activation Commit Preparation**
+**SEO Operations GSC Query URL Cleanup Release Candidate**
 
-Status: the missing Nginx-template activation path has been implemented
-locally. The workflow now requires a matching root-owned activation helper,
-installs only the committed DualCoreLink site template, validates and reloads
-Nginx with rollback, and verifies both redirects. The five-file infrastructure
-scope is validated for an independent local commit; it is not pushed or
-deployed, and the production source URLs therefore remain HTTP 404.
+Status: a clean worktree based on the latest `origin/main` contains only the
+validated query URL cleanup. Contact CTAs use clean URLs while GA4 and form
+attribution remain session-scoped; Products filters use buttons and browser
+history instead of query links. The English-only build passes at 156/156 with
+76 sitemap URLs, no localized output directories, and zero query URLs across
+internal href, sitemap, canonical, and hreflang scans. No unreviewed
+multilingual content is present. Commit, push, deployment, and GSC requests
+have not yet occurred.
 
 This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
 
 ## Completed
 
+- GSC query URL cleanup was reconstructed in an isolated worktree from
+  `origin/main`, without copying the original worktree's multilingual, GSC/API,
+  dependency, CMS payload, native-review, or historical-report changes.
+- Contact attribution now uses a strict whitelist, field-length limits,
+  session isolation, a two-hour expiry, and safe legacy URL cleanup while
+  preserving the existing GA4 and form attribution fields.
+- Products category and series cards no longer emit query links. Filter state,
+  scrolling, back/forward navigation, and valid legacy queries remain
+  functional with a clean address.
+- Release-candidate validation passed: 121/121 data tests, lint, media audit,
+  156/156 build, 76-URL sitemap, standalone query export audit, browser QA, and
+  diff check.
+- Detailed implementation report:
+  `docs/reports/seo-operations-gsc-query-url-cleanup-20260729.md`.
 - SEO Growth Phase 3A was implemented, deployed, and production-verified.
   Implementation commit: `6cf8b46cbc3f88f07cb1b1e6d24af92ced9e6516`.
 - SEO Authority Phase 1C safe entity corrections were completed.
@@ -255,24 +271,37 @@ or deployment file was modified by this phase.
 | Nginx helper functional test | Passed: activation, hash-match no-op, and automatic rollback after simulated `nginx -t` failure |
 | redirect infrastructure tests | Passed; focused `static-export` and Nginx activation suite 11/11 |
 | production activation | Not run; no push or deployment in this commit-preparation task |
+| query cleanup tests | Passed; 121/121 using the public read-only CMS |
+| query cleanup lint | Passed; no errors |
+| query cleanup media audit | Passed; 0 errors and 1 existing warning |
+| query cleanup build | Passed; 156/156 static generation and 76 sitemap URLs |
+| query cleanup static scan | 0 internal query hrefs and 0 sitemap/canonical/hreflang query URLs |
+| query cleanup browser QA | Passed for tracked CTAs, filters, history, legacy URLs, session behavior, and 375px overflow |
+| multilingual production gate | Passed; no `ar`, `zh`, `de`, `es`, `vi`, or `fa` output directories |
 
 ## Git Status
 
 | Field | Value |
 |---|---|
-| Branch | `main` |
-| HEAD | `30b258105ddf96d47bc680fd8fb2ba76b4e29929` |
-| HEAD commit | `seo: fix gsc discovered 404 redirects` |
-| Remote committed state | `origin/main` = `30b258105ddf96d47bc680fd8fb2ba76b4e29929` |
-| Current phase commit | Created by the current commit task; use `git log -1` for the resulting SHA |
-| Push status | Existing baseline is synchronized; activation implementation not pushed |
-| Deployment | Static release passed in run `30333541308`; Nginx redirect activation incomplete |
-| Production source SHA | `30b258105ddf96d47bc680fd8fb2ba76b4e29929` |
-| Release directory | `/srv/dualcorelink/frontend/releases/30b258105ddf-20260728-140530` |
-| Worktree | Dirty with the activation implementation plus preserved earlier GSC/API, historical analysis, dependency, and Project Automation changes |
+| Branch | `release/gsc-query-url-cleanup-20260729` |
+| HEAD | `6a6514f77040d8aad54478c11adbf5a1af02054b` |
+| HEAD commit | `infra: activate nginx redirect deployment` |
+| Remote committed state | `origin/main` = `6a6514f77040d8aad54478c11adbf5a1af02054b` |
+| Current phase commit | Pending |
+| Push status | Pending; no force push permitted |
+| Deployment | Pending release-candidate commit |
+| Production source SHA | Existing baseline remains `6a6514f77040d8aad54478c11adbf5a1af02054b` |
+| Release directory | Pending |
+| Worktree | Isolated and dirty only with the 11-file query cleanup scope |
 
 ## Risks
 
+- Eighteen of the current 23 alternate-canonical rows cannot be classified
+  without a current URL-level GSC export.
+- Historical query URLs will not disappear immediately; Google must recrawl
+  and refresh the coverage report.
+- The clean `origin/main` baseline has `npm run test:data` but no `npm test`
+  alias. No unrelated package change was added for this release.
 - All six analyzed page exports recorded zero clicks in the evidence window;
   the implementation must not be represented as a ranking, impression, click,
   indexing, or conversion improvement.
@@ -310,14 +339,13 @@ or deployment file was modified by this phase.
 
 Recommended next step:
 
-**Nginx activation push and host-bootstrap review**
+**Commit, push, deploy, and production-verify the isolated query cleanup**
 
-1. Review the isolated infrastructure commit.
-2. Before any deployment, install the reviewed helper as the root-owned fixed
-   production executable and permit only that executable through sudo.
-3. Push only after the host bootstrap boundary is approved.
-4. Deploy and verify both exact one-hop redirects in a separately authorized
-   release task.
+1. Reconfirm `origin/main` is unchanged from the release base.
+2. Stage only the 11 files documented in the implementation report.
+3. Commit with `fix: clean inquiry and product filter urls`.
+4. Push without force, wait for the AWS production workflow, and verify the
+   English-only production artifact.
 
 Waiting for user confirmation:
 

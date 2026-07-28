@@ -2,29 +2,41 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   buildQuoteHref,
+  cleanContactHistoryUrl,
+  inquiryAttributionMaxAgeMs,
+  inquiryAttributionStorageKey,
   parseInquiryAttribution,
+  parseLegacyInquiryAttribution,
+  readInquiryAttribution,
+  writeInquiryAttribution,
 } from "../src/lib/inquiry/attribution";
 import { createInquiryEvent } from "../src/lib/inquiry/events";
 
-test("quote links preserve source context before the contact anchor", () => {
+function memoryStorage() {
+  const values = new Map<string, string>();
+  return {
+    getItem: (key: string) => values.get(key) ?? null,
+    setItem: (key: string, value: string) => values.set(key, value),
+    removeItem: (key: string) => values.delete(key),
+    values,
+  };
+}
+
+const productAttribution = {
+  sourcePage: "/en/products/hotel-smart-room-rcu-host-1/",
+  contentType: "product" as const,
+  contentSlug: "hotel-smart-room-rcu-host-1",
+  sourceTitle: "Hotel Smart Room RCU Host 1",
+  ctaPosition: "product_hero",
+};
+
+test("quote links use a clean Contact URL while attribution remains complete", () => {
   const href = buildQuoteHref("en", {
-    sourcePage: "/en/products/hotel-smart-room-rcu-host-1/",
-    contentType: "product",
-    contentSlug: "hotel-smart-room-rcu-host-1",
-    sourceTitle: "Hotel Smart Room RCU Host 1",
-    ctaPosition: "product_hero",
+    ...productAttribution,
   });
 
-  assert.ok(href.startsWith("/en/contact/?"));
-  assert.ok(href.endsWith("#get-a-quote"));
-  const query = href.slice(href.indexOf("?"), href.indexOf("#"));
-  assert.deepEqual(parseInquiryAttribution(query), {
-    sourcePage: "/en/products/hotel-smart-room-rcu-host-1/",
-    contentType: "product",
-    contentSlug: "hotel-smart-room-rcu-host-1",
-    sourceTitle: "Hotel Smart Room RCU Host 1",
-    ctaPosition: "product_hero",
-  });
+  assert.equal(href, "/en/contact/#get-a-quote");
+  assert.equal(new URL(href, "https://dualcorelink.com").search, "");
 });
 
 test("inquiry attribution rejects unknown content types and control characters", () => {
@@ -63,6 +75,81 @@ test("direct contact visits receive stable fallback attribution", () => {
     sourceTitle: undefined,
     ctaPosition: "contact_page",
   });
+});
+
+test("legacy Contact parameters use a strict whitelist and length limits", () => {
+  const parsed = parseLegacyInquiryAttribution(
+    "?source_page=%2Fen%2Fproducts%2Fhotel-smart-room-rcu-host-1%2F&content_type=product&content_slug=hotel-smart-room-rcu-host-1&source_title=Hotel+Smart+Room+RCU+Host+1&cta_position=product_hero&email=private%40example.com&unknown=value",
+  );
+  assert.deepEqual(parsed, productAttribution);
+  assert.equal(
+    parseLegacyInquiryAttribution(
+      "?source_page=https%3A%2F%2Fevil.example%2F&content_type=site&cta_position=footer",
+    ),
+    undefined,
+  );
+  assert.equal(
+    parseLegacyInquiryAttribution(
+      `?source_page=%2Fen%2Fproducts%2Fhost%2F&content_type=product&content_slug=${"x".repeat(121)}&cta_position=product_hero`,
+    ),
+    undefined,
+  );
+});
+
+test("session attribution survives refresh but expires and is isolated per session", () => {
+  const firstSession = memoryStorage();
+  const secondSession = memoryStorage();
+  const savedAt = 1_000_000;
+
+  assert.equal(
+    writeInquiryAttribution(firstSession, productAttribution, savedAt),
+    true,
+  );
+  assert.deepEqual(
+    readInquiryAttribution(firstSession, savedAt + 60_000),
+    productAttribution,
+  );
+  assert.equal(readInquiryAttribution(secondSession, savedAt + 60_000), undefined);
+  assert.equal(
+    readInquiryAttribution(
+      firstSession,
+      savedAt + inquiryAttributionMaxAgeMs + 1,
+    ),
+    undefined,
+  );
+  assert.equal(firstSession.getItem(inquiryAttributionStorageKey), null);
+});
+
+test("session attribution stores only approved non-PII fields", () => {
+  const storage = memoryStorage();
+  writeInquiryAttribution(storage, productAttribution, 1_000_000);
+  const serialized = storage.getItem(inquiryAttributionStorageKey) ?? "";
+  assert.match(serialized, /hotel-smart-room-rcu-host-1/);
+  assert.doesNotMatch(
+    serialized,
+    /email|phone|company|message|customer|private/i,
+  );
+  assert.deepEqual(
+    Object.keys(JSON.parse(serialized).attribution).sort(),
+    [
+      "contentSlug",
+      "contentType",
+      "ctaPosition",
+      "sourcePage",
+      "sourceTitle",
+    ],
+  );
+});
+
+test("legacy Contact query cleanup preserves only the path and hash", () => {
+  assert.equal(
+    cleanContactHistoryUrl("/en/contact/", "#get-a-quote"),
+    "/en/contact/#get-a-quote",
+  );
+  assert.equal(
+    cleanContactHistoryUrl("https://evil.example/", "#get-a-quote"),
+    "/en/contact/#get-a-quote",
+  );
 });
 
 test("analytics events expose only approved non-PII attribution fields", () => {

@@ -86,6 +86,69 @@ jobs:
             "$GITHUB_SHA" \
             "https://aws.dualcorelink.com/en/"
 
+      - name: Activate versioned Nginx site configuration
+        id: nginx
+        shell: bash
+        run: |
+          set -euo pipefail
+          repository_helper="$GITHUB_WORKSPACE/deploy/scripts/activate-nginx-site-root.sh"
+          installed_helper="/usr/local/sbin/dualcorelink-activate-nginx-site"
+          test -f "$repository_helper"
+          bash -n "$repository_helper"
+          test -x "$installed_helper"
+          installed_helper_metadata="$(stat -c '%U:%G %a' "$installed_helper")"
+          if [[ "$installed_helper_metadata" != "root:root 755" ]]; then
+            echo "Installed Nginx activation helper must be root:root mode 0755" >&2
+            exit 1
+          fi
+          repository_helper_hash="$(sha256sum "$repository_helper" | awk '{print $1}')"
+          installed_helper_hash="$(sha256sum "$installed_helper" | awk '{print $1}')"
+          if [[ "$repository_helper_hash" != "$installed_helper_hash" ]]; then
+            echo "Installed Nginx activation helper does not match the checked-out source" >&2
+            exit 1
+          fi
+          sudo -n "$installed_helper" "$GITHUB_WORKSPACE" "$GITHUB_SHA"
+
+      - name: Verify exact production redirects
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          verify_redirect() {
+            local source_url="$1"
+            local target_url="$2"
+            local headers
+            local status
+            local location
+            local final_result
+
+            headers="$(curl --silent --show-error --dump-header - --output /dev/null --max-redirs 0 "$source_url")"
+            status="$(awk '/^HTTP\// { code=$2 } END { print code }' <<< "$headers")"
+            location="$(awk 'BEGIN { IGNORECASE=1 } /^Location:/ { sub(/\r$/, ""); print substr($0, 11) }' <<< "$headers" | tail -n 1)"
+
+            if [[ "$status" != "301" || "$location" != "$target_url" ]]; then
+              echo "Unexpected redirect: source=$source_url status=$status location=$location" >&2
+              exit 1
+            fi
+
+            final_result="$(curl --silent --show-error --output /dev/null \
+              --write-out '%{http_code} %{url_effective} %{num_redirects}' \
+              --location --max-redirs 1 "$source_url")"
+            if [[ "$final_result" != "200 $target_url 1" ]]; then
+              echo "Redirect target verification failed: source=$source_url result=$final_result" >&2
+              exit 1
+            fi
+
+            echo "Redirect verified: $source_url -> $target_url"
+          }
+
+          verify_redirect \
+            "https://dualcorelink.com/solutions/oem-odm-custom-panel-solution/" \
+            "https://dualcorelink.com/en/solutions/oem-odm-custom-panel-solution/"
+          verify_redirect \
+            "https://dualcorelink.com/resources/hotel-rcu-wiring-system-architecture-guide/" \
+            "https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/"
+
       - name: Verify test-domain indexing protection
         shell: bash
         run: |

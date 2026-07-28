@@ -4,13 +4,14 @@ Last updated: 2026-07-28
 
 ## Current Phase
 
-**SEO Operations GSC 404 Fix Committed Locally**
+**SEO Operations Nginx Redirect Activation Commit Preparation**
 
-Status: two exact, target-verified Nginx 301 rules for confirmed locale-less
-GSC 404 URLs have been implemented, validated, and approved for the isolated
-four-file commit. The current phase commit is local only and has not been
-pushed or deployed; the public source URLs remain 404 until a separately
-approved Nginx activation.
+Status: the missing Nginx-template activation path has been implemented
+locally. The workflow now requires a matching root-owned activation helper,
+installs only the committed DualCoreLink site template, validates and reloads
+Nginx with rollback, and verifies both redirects. The five-file infrastructure
+scope is validated for an independent local commit; it is not pushed or
+deployed, and the production source URLs therefore remain HTTP 404.
 
 This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
@@ -101,8 +102,40 @@ remains in the phase reports under `docs/reports/`.
   with 0 errors, and a 156/156 build.
 - Sitemap, robots, canonical, Schema, English page content, `export:clean`,
   and Phase 3B-3 files remain unchanged.
-- The redirects have not been activated or deployed. Live HTTP 301 behavior
-  is not claimed.
+- The implementation report originally recorded a local-only state. The
+  subsequent static release deployed successfully, but live HTTP 301 behavior
+  remains unverified because Nginx activation did not occur.
+- GSC 404 implementation commit:
+  `30b258105ddf96d47bc680fd8fb2ba76b4e29929`.
+- The commit was pushed to `origin/main`.
+- GitHub Actions run `30333541308` completed successfully from the exact GSC
+  404 source SHA.
+- Static release:
+  `/srv/dualcorelink/frontend/releases/30b258105ddf-20260728-140530`.
+- Deployment URL: `https://aws.dualcorelink.com/en/`.
+- Static production regression passed: sitemap 76, Product Schema 36/36,
+  Article Schema 15/15, Phase 3B-3 pages 4/4, robots unchanged, and
+  ContactPoint unchanged.
+- Redirect activation did not occur. Both locale-less sources still return
+  HTTP 404 while both exact `/en/` targets return HTTP 200.
+- The production deployment is incomplete for the stated GSC 404 objective
+  even though the static Actions job concluded successfully.
+- The Nginx redirect deployment audit confirmed that the static release
+  activator reloads the already-installed Nginx configuration but does not
+  install the repository template.
+- A fixed-scope root activation helper now validates the exact checkout SHA,
+  committed template, active site symlink, and static target artifacts before
+  changing `/etc/nginx/sites-available/dualcorelink.com`.
+- The helper creates a backup, performs an atomic replacement, runs
+  `nginx -t`, reloads Nginx, verifies both redirects over local HTTPS, and
+  restores the previous file on validation, reload, local redirect, or
+  active-hash failure.
+- The AWS workflow now rejects a stale installed helper by SHA-256, invokes
+  only the fixed helper through non-interactive sudo, and performs external
+  exact-301 and one-hop-200 verification.
+- Focused infrastructure tests passed 11/11. A disposable Linux container
+  also passed helper syntax, activation, identical-config no-op, and
+  `nginx -t` failure rollback tests.
 - Smart Hotel Guide, AI Display, Saudi Arabia, and UAE remain unchanged under
   observation.
 - Project Automation Phase 1 added a common status file, completion template,
@@ -151,6 +184,21 @@ Files updated by SEO Operations GSC 404 Fix Implementation:
 No page, sitemap, robots, canonical, Schema, `export:clean`, or Phase 3B-3
 production file was modified by the GSC 404 implementation.
 
+Files updated by SEO Operations Nginx Redirect Activation Implementation:
+
+- `.github/workflows/aws-production-deploy.yml`
+- `deploy/scripts/activate-nginx-site-root.sh`
+- `tests/nginx-activation.test.ts`
+- `docs/reports/seo-operations-nginx-redirect-activation-implementation-20260728.md`
+- `docs/reports/latest-status.md`
+
+The preceding read-only audit also created:
+
+- `docs/reports/seo-operations-nginx-redirect-deployment-audit-20260728.md`
+
+No page, SEO content, Schema, canonical, robots, sitemap, Phase 3B-3, or
+dependency file was modified by the activation implementation.
+
 Pre-existing uncommitted worktree changes were preserved and were not created
 by this phase:
 
@@ -195,21 +243,33 @@ or deployment file was modified by this phase.
 | GSC 404 implementation build | Passed; 156/156 static pages, 76 sitemap URLs, both target artifacts present |
 | Protected SEO surfaces | No sitemap, robots, canonical, Schema, page-content, `export:clean`, or Phase 3B-3 diff |
 | Nginx activation | Not performed; local Windows environment has no Nginx executable |
+| GSC 404 Actions run | `30333541308` passed using source SHA `30b258105ddf96d47bc680fd8fb2ba76b4e29929` |
+| GSC 404 static release | Passed; `/srv/dualcorelink/frontend/releases/30b258105ddf-20260728-140530` |
+| GSC 404 source 1 | Failed production acceptance: HTTP 404, expected 301 |
+| GSC 404 source 2 | Failed production acceptance: HTTP 404, expected 301 |
+| GSC 404 targets | Passed: both exact `/en/` targets return HTTP 200 |
+| Post-release regression | Passed: sitemap 76; Product Schema 36/36; Article Schema 15/15; Phase 3B-3 4/4; robots and ContactPoint unchanged |
+| workflow YAML syntax | Passed with the installed `js-yaml` parser |
+| activation workflow contract | Passed: helper hash gate, restricted sudo invocation, step ordering, and exact redirect checks |
+| Nginx helper syntax | Passed with `bash -n` in a disposable Linux container |
+| Nginx helper functional test | Passed: activation, hash-match no-op, and automatic rollback after simulated `nginx -t` failure |
+| redirect infrastructure tests | Passed; focused `static-export` and Nginx activation suite 11/11 |
+| production activation | Not run; no push or deployment in this commit-preparation task |
 
 ## Git Status
 
 | Field | Value |
 |---|---|
 | Branch | `main` |
-| HEAD | `5400736006d6054e6b924cac82ff13d6642b532d` |
-| HEAD commit | `seo: optimize priority pages from gsc insights` |
-| Remote committed state | `origin/main` = `5400736006d6054e6b924cac82ff13d6642b532d` |
-| Current phase commit | Created locally by the GSC 404 final-staging task; use `git log -1` for the SHA |
-| Push status | Current GSC 404 implementation not pushed; Phase 3B-3 baseline previously pushed |
-| Deployment | Current GSC 404 implementation not deployed; production remains on successful run `30326225219` |
-| Production source SHA | `5400736006d6054e6b924cac82ff13d6642b532d` |
-| Release directory | `/srv/dualcorelink/frontend/releases/5400736006d6-20260728-113509` |
-| Worktree | After the phase commit, dirty only with preserved earlier GSC/API, historical analysis, dependency, and Project Automation changes |
+| HEAD | `30b258105ddf96d47bc680fd8fb2ba76b4e29929` |
+| HEAD commit | `seo: fix gsc discovered 404 redirects` |
+| Remote committed state | `origin/main` = `30b258105ddf96d47bc680fd8fb2ba76b4e29929` |
+| Current phase commit | Created by the current commit task; use `git log -1` for the resulting SHA |
+| Push status | Existing baseline is synchronized; activation implementation not pushed |
+| Deployment | Static release passed in run `30333541308`; Nginx redirect activation incomplete |
+| Production source SHA | `30b258105ddf96d47bc680fd8fb2ba76b4e29929` |
+| Release directory | `/srv/dualcorelink/frontend/releases/30b258105ddf-20260728-140530` |
+| Worktree | Dirty with the activation implementation plus preserved earlier GSC/API, historical analysis, dependency, and Project Automation changes |
 
 ## Risks
 
@@ -238,6 +298,11 @@ or deployment file was modified by this phase.
   repository Nginx template. A controlled activation step with backup,
   `nginx -t`, reload, verification, and rollback must be approved before
   deployment.
+- The new workflow deliberately fails closed until the matching helper is
+  installed as root-owned executable
+  `/usr/local/sbin/dualcorelink-activate-nginx-site` and its narrowly scoped
+  sudo invocation is available to the runner. No broad sudo permission is
+  requested or implemented in the repository.
 - The public source URLs remain 404 until Nginx activation; local
   configuration tests do not constitute production redirect verification.
 
@@ -245,18 +310,18 @@ or deployment file was modified by this phase.
 
 Recommended next step:
 
-**GSC 404 push and activation review**
+**Nginx activation push and host-bootstrap review**
 
-1. Review the isolated local GSC 404 commit.
-2. Approve or revise the controlled Nginx activation method for the AWS
-   self-hosted runner.
-3. Authorize push only after the activation method is confirmed.
-4. Do not claim HTTP 301 or GSC cleanup until production activation and
-   one-hop verification succeed.
+1. Review the isolated infrastructure commit.
+2. Before any deployment, install the reviewed helper as the root-owned fixed
+   production executable and permit only that executable through sudo.
+3. Push only after the host bootstrap boundary is approved.
+4. Deploy and verify both exact one-hop redirects in a separately authorized
+   release task.
 
 Waiting for user confirmation:
 
-- approval to push the GSC 404 commit and activate the Nginx template;
+- approval to push and bootstrap the fixed activation helper;
 - instructions for the preserved GSC/API and historical analysis worktree.
 
 Phase 3B-4 has not been started.

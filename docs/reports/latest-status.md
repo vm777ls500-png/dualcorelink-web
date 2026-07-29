@@ -4,22 +4,36 @@ Last updated: 2026-07-29
 
 ## Current Phase
 
-**SEO Growth Multilingual Integration Baseline Reconstruction**
+**SEO Growth Multilingual Integration Branch Preservation**
 
-Status: the M1–M4C six-language candidate was reconstructed in a clean
-worktree based on production SHA
-`9130c58190a8ded92c06127f48fff682b831ded5`. The deployed GSC Query URL
-Cleanup remains intact. The local candidate contains 414 localized pages and
-a 490-URL candidate sitemap, but all 414 native reviews remain pending and
-`productionReleaseReady` is 0. Production remains English-only with 76
-sitemap URLs and zero public non-English pages. Multilingual deployment is
-prohibited and the release check correctly exits nonzero.
+Status: the audited M1-M4C six-language candidate has been committed and
+pushed only to
+`feature/multilingual-six-language-integration-20260729`. The implementation
+commit is `10877ede3bfbe206f29022e8e980768fccc8a731`, based on unchanged
+`origin/main` SHA `9130c58190a8ded92c06127f48fff682b831ded5`.
+The branch contains 414 localized candidates and a 490-URL candidate sitemap,
+but all 414 native reviews remain pending and `productionReleaseReady` is 0.
+The feature push triggered no Actions run and no production deployment.
+Production remains English-only with 76 sitemap URLs and zero public
+non-English pages.
 
 This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
 
 ## Completed
 
+- Preserved the audited 92-file multilingual integration scope in
+  implementation commit `10877ede3bfbe206f29022e8e980768fccc8a731`.
+- Non-force pushed only
+  `feature/multilingual-six-language-integration-20260729` and established its
+  upstream; `origin/main` remained
+  `9130c58190a8ded92c06127f48fff682b831ded5`.
+- Confirmed the production workflow listens to push only on `main`; the
+  feature-branch Actions query returned zero runs and no deployment occurred.
+- Recorded the preservation evidence in
+  `docs/reports/seo-growth-multilingual-integration-branch-preservation-20260729.md`.
+- Left the original 83-entry dirty worktree and the two-entry GSC release
+  worktree unchanged.
 - Created isolated integration worktree
   `C:\Users\empir\Documents\dualcorelink-multilingual-integration` on branch
   `feature/multilingual-six-language-integration-20260729`.

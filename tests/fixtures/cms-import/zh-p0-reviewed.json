@@ -1,0 +1,801 @@
+[
+  {
+    "contentType": "product",
+    "sourceEnglishContentId": 48,
+    "sourceEnglishSlug": "hotel-smart-room-rcu-host-1",
+    "locale": "zh",
+    "translatedTitle": "酒店智能客房 RCU 控制主机",
+    "translatedDescription": "用于酒店客房自动化项目的 RCU 控制主机，可围绕照明、HVAC、窗帘、传感器和客房控制界面进行系统规划。",
+    "translatedSpecifications": [
+      {
+        "label": "产品类型",
+        "value": "酒店客房 RCU 控制主机"
+      },
+      {
+        "label": "安装位置",
+        "value": "客房控制箱、弱电柜、吊顶或项目指定位置"
+      },
+      {
+        "label": "控制范围",
+        "value": "按房型、I/O 和控制逻辑确认"
+      },
+      {
+        "label": "接口与供电",
+        "value": "按具体型号及项目规格确认"
+      }
+    ],
+    "translatedSeoTitle": "酒店智能客房 RCU 控制主机｜客房自动化项目",
+    "translatedMetaDescription": "面向酒店客房自动化工程的 RCU 控制主机，支持按房型规划照明、HVAC、窗帘、传感器和控制面板关系。",
+    "translatedStructuredContent": {
+      "eyebrow": "RCU 客房控制产品",
+      "h1": "酒店智能客房 RCU 控制主机",
+      "introduction": "这款 RCU 控制主机面向酒店客房自动化项目，用于组织房间内的控制输入、输出和设备联动。采购与集成团队应根据房型、照明回路、HVAC、窗帘、传感器、取电和住客界面定义实际配置；产品名称不代表固定的 I/O、协议或电气参数。",
+      "breadcrumbLabel": "酒店智能客房 RCU 控制主机",
+      "parentBreadcrumb": {
+        "label": "产品",
+        "href": "/zh/products/"
+      },
+      "sections": [
+        {
+          "heading": "产品在客房系统中的作用",
+          "paragraphs": [
+            "RCU 主机可作为客房控制逻辑的核心节点，与开关面板、触控屏、门磁、人体传感器、温控设备或窗帘设备配合。最终可控制的功能取决于已确认型号和项目设计。"
+          ]
+        },
+        {
+          "heading": "适用项目",
+          "paragraphs": [
+            "适用于新建酒店、服务式公寓和客房改造项目，也可用于样板间和系统集成验证。改造项目需要先核对现有控制箱、供电、线缆和设备接口。"
+          ]
+        },
+        {
+          "heading": "安装与集成确认",
+          "paragraphs": [
+            "安装位置可为客房控制箱、弱电柜、吊顶或项目指定区域。下单前需确认尺寸、供电、回路、I/O、通信、端子、散热、接线图和调试责任；未公开参数不得依靠推测。"
+          ]
+        },
+        {
+          "heading": "定制与采购资料",
+          "paragraphs": [
+            "可讨论标签、包装、文件和 OEM/ODM 项目要求。询价时请提供房型、点位表、控制逻辑、设备清单、接口要求、数量和交期，必要时先验证样品或样板间。"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "这款 RCU 主机的 I/O 数量是多少？",
+          "answer": "当前页面不设定统一 I/O 数量，应按具体型号和项目点位表确认。"
+        },
+        {
+          "question": "是否支持 KNX 或 RS485？",
+          "answer": "协议支持不能从产品类别推断，必须依据所选型号和项目技术资料确认。"
+        },
+        {
+          "question": "可以用于酒店改造吗？",
+          "answer": "可以评估，但需要先核对原有布线、控制箱空间、供电、设备接口和施工边界。"
+        }
+      ],
+      "relatedLinks": [
+        {
+          "label": "RCU 客房控制方案",
+          "description": "从系统范围、设备关系和项目责任规划 RCU。",
+          "href": "/zh/solutions/rcu-room-control-solution/"
+        },
+        {
+          "label": "RCU 客房控制箱",
+          "description": "比较集中安装控制设备的控制箱选项。",
+          "href": "/zh/products/rcu-controller-cabinet/"
+        },
+        {
+          "label": "提交 RCU 项目需求",
+          "description": "发送房型、点位、接口、数量和交期。",
+          "href": "/zh/contact/"
+        }
+      ],
+      "cta": {
+        "heading": "确认 RCU 主机配置",
+        "description": "请提供房型、控制点位、接口、安装条件和采购数量。",
+        "label": "提交产品询盘",
+        "href": "/zh/contact/#get-a-quote",
+        "secondaryLabel": "查看 RCU 方案",
+        "secondaryHref": "/zh/solutions/rcu-room-control-solution/"
+      },
+      "imageAlt": "酒店智能客房 RCU 控制主机产品图"
+    },
+    "localizedContentId": null,
+    "importKey": "m2a:zh:product:48",
+    "deliveryMode": "validated-import-payload",
+    "translationStatus": "approved",
+    "reviewStatus": "approved",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-07-29",
+    "nativeReviewNotes": "Human Chinese review approved",
+    "localizedSlug": "hotel-smart-room-rcu-host-1",
+    "batch": "p0",
+    "productionReleaseReady": true
+  },
+  {
+    "contentType": "product",
+    "sourceEnglishContentId": 47,
+    "sourceEnglishSlug": "rcu-controller-cabinet",
+    "locale": "zh",
+    "translatedTitle": "酒店客房 RCU 控制箱",
+    "translatedDescription": "用于集中安装和组织酒店客房 RCU 控制设备的控制箱方案，便于项目规划接线、接口与维护空间。",
+    "translatedSpecifications": [
+      {
+        "label": "产品类型",
+        "value": "RCU 客房控制箱"
+      },
+      {
+        "label": "应用",
+        "value": "酒店客房控制设备集中安装"
+      },
+      {
+        "label": "箱体布局",
+        "value": "按项目设备与空间确认"
+      },
+      {
+        "label": "回路、供电与协议",
+        "value": "按型号和工程图纸确认"
+      }
+    ],
+    "translatedSeoTitle": "酒店客房 RCU 控制箱｜集中控制与工程集成",
+    "translatedMetaDescription": "面向酒店工程的 RCU 客房控制箱，用于集中组织控制设备、端子和接线，支持按项目确认布局与文件。",
+    "translatedStructuredContent": {
+      "eyebrow": "RCU 工程产品",
+      "h1": "酒店客房 RCU 控制箱",
+      "introduction": "RCU 控制箱为酒店客房提供集中安装控制设备、端子和接线的工程选项。它适合需要明确设备布局、接线边界和维护空间的项目。箱内器件、回路、供电、协议、尺寸和接线方式均需依据具体设备清单和工程图纸确认。",
+      "breadcrumbLabel": "RCU 客房控制箱",
+      "parentBreadcrumb": {
+        "label": "产品",
+        "href": "/zh/products/"
+      },
+      "sections": [
+        {
+          "heading": "集中安装与系统关系",
+          "paragraphs": [
+            "控制箱可把 RCU 主机、端子或项目指定配套部件集中在客房弱电位置，帮助工程团队梳理照明、HVAC、窗帘、传感器和操作面板的接线关系。"
+          ]
+        },
+        {
+          "heading": "项目设计输入",
+          "paragraphs": [
+            "需要提供房型、点位表、回路和负载条件、设备清单、安装空间、进出线方向与维护要求。控制箱不是脱离图纸即可通用替换的成品系统。"
+          ]
+        },
+        {
+          "heading": "安装和调试",
+          "paragraphs": [
+            "安装可位于客房弱电柜、设备区、服务区或项目指定位置。施工方应依据确认图纸完成供电、接线、标识、绝缘和调试，并验证与房间面板及受控设备的关系。"
+          ]
+        },
+        {
+          "heading": "定制与文件",
+          "paragraphs": [
+            "可讨论箱体布局、标签、包装、项目文件和集成要求。最终配置须经书面确认，任何未列出的电气性能、协议或认证不得默认包含。"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "控制箱是否包含固定数量的控制回路？",
+          "answer": "没有统一配置。回路和器件数量应按具体型号、设备清单和工程图纸确认。"
+        },
+        {
+          "question": "可以按现有弱电柜尺寸定制吗？",
+          "answer": "可以提交空间和安装要求评估，但能否实施取决于内部设备、散热、接线和生产条件。"
+        },
+        {
+          "question": "控制箱是否等同于完整客控系统？",
+          "answer": "不是。它是集中安装与组织设备的组成部分，完整系统还涉及面板、传感器、受控设备、逻辑和调试。"
+        }
+      ],
+      "relatedLinks": [
+        {
+          "label": "酒店 RCU 控制主机",
+          "description": "了解控制逻辑核心设备的项目用途。",
+          "href": "/zh/products/hotel-smart-room-rcu-host-1/"
+        },
+        {
+          "label": "RCU 客房控制方案",
+          "description": "梳理控制箱、主机、面板和传感器关系。",
+          "href": "/zh/solutions/rcu-room-control-solution/"
+        },
+        {
+          "label": "联系工程团队",
+          "description": "提交图纸、设备清单和安装空间。",
+          "href": "/zh/contact/"
+        }
+      ],
+      "cta": {
+        "heading": "评估 RCU 控制箱配置",
+        "description": "请提供箱体空间、设备清单、接线图、数量和交付要求。",
+        "label": "发送工程资料",
+        "href": "/zh/contact/#get-a-quote"
+      },
+      "imageAlt": "酒店客房 RCU 控制箱产品图"
+    },
+    "localizedContentId": null,
+    "importKey": "m2a:zh:product:47",
+    "deliveryMode": "validated-import-payload",
+    "translationStatus": "approved",
+    "reviewStatus": "approved",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-07-29",
+    "nativeReviewNotes": "Human Chinese review approved",
+    "localizedSlug": "rcu-controller-cabinet",
+    "batch": "p0",
+    "productionReleaseReady": true
+  },
+  {
+    "contentType": "product",
+    "sourceEnglishContentId": 6,
+    "sourceEnglishSlug": "86-type-ai-smart-control-display",
+    "locale": "zh",
+    "translatedTitle": "86 型 AI 智能控制屏",
+    "translatedDescription": "适配标准 86 型墙盒的酒店客房智能触控与语音控制界面，可用于照明、HVAC、窗帘、音频和传感器联动。",
+    "translatedSpecifications": [
+      {
+        "label": "安装规格",
+        "value": "标准 86 型墙盒"
+      },
+      {
+        "label": "交互方式",
+        "value": "触控与语音"
+      },
+      {
+        "label": "应用",
+        "value": "酒店客房、公寓和展示空间"
+      },
+      {
+        "label": "通信与系统接口",
+        "value": "按具体型号及项目确认"
+      }
+    ],
+    "translatedSeoTitle": "86 型 AI 智能控制屏｜酒店客房触控与语音面板",
+    "translatedMetaDescription": "适配标准 86 型墙盒的 AI 智能控制屏，为酒店客房提供触控与语音操作界面，系统接口按项目确认。",
+    "translatedStructuredContent": {
+      "eyebrow": "酒店智能控制界面",
+      "h1": "86 型 AI 智能控制屏",
+      "introduction": "86 型 AI 智能控制屏适配标准 86 型墙盒，可作为酒店客房、公寓或展示空间的集中操作界面。它可按项目用于照明、HVAC、窗帘、音频或传感器相关操作；实际可用功能和通信方式取决于具体型号、软件配置及系统接口。",
+      "breadcrumbLabel": "86 型 AI 智能控制屏",
+      "parentBreadcrumb": {
+        "label": "产品",
+        "href": "/zh/products/"
+      },
+      "sections": [
+        {
+          "heading": "触控与语音操作",
+          "paragraphs": [
+            "屏幕可将多个客房功能集中到同一操作界面，并支持触控与语音交互。界面层级、语言、图标和可控制设备需要结合房型与住客使用流程确认。"
+          ]
+        },
+        {
+          "heading": "86 型墙盒安装",
+          "paragraphs": [
+            "标准 86 型墙盒是该产品的真实安装表达。项目仍需核对墙盒深度、供电、布线、固定方式和墙面完成情况，避免屏幕安装与现场条件不匹配。"
+          ]
+        },
+        {
+          "heading": "系统集成范围",
+          "paragraphs": [
+            "可讨论与 RCU、照明、HVAC、窗帘、音频和传感器的系统关系，但不能默认所有协议均受支持。接口、网关、软件和调试责任须针对所选型号确认。"
+          ]
+        },
+        {
+          "heading": "OEM/ODM 与项目采购",
+          "paragraphs": [
+            "可按项目讨论外观、界面、语言、品牌和集成需求。询价时请提供目标功能、安装环境、系统架构、数量和交期，以便评估样品与批量方案。"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "“86 型”是什么意思？",
+          "answer": "表示产品适配标准 86 型墙盒；仍需核对墙盒深度、供电和布线条件。"
+        },
+        {
+          "question": "是否可以控制酒店房间全部设备？",
+          "answer": "可控范围取决于实际系统、接口和配置，不能仅凭显示屏名称判断。"
+        },
+        {
+          "question": "可以提供中文界面吗？",
+          "answer": "可按项目讨论界面语言与内容，最终以型号能力和确认需求为准。"
+        }
+      ],
+      "relatedLinks": [
+        {
+          "label": "智能酒店自动化方案",
+          "description": "了解显示屏在客房和系统中的应用关系。",
+          "href": "/zh/solutions/smart-hotel-automation-solution/"
+        },
+        {
+          "label": "酒店 RCU 控制主机",
+          "description": "查看客房控制逻辑核心设备。",
+          "href": "/zh/products/hotel-smart-room-rcu-host-1/"
+        },
+        {
+          "label": "咨询智能显示项目",
+          "description": "发送界面、功能、安装和接口要求。",
+          "href": "/zh/contact/"
+        }
+      ],
+      "cta": {
+        "heading": "确认显示屏功能与接口",
+        "description": "请提供房型、操作功能、墙盒条件、系统接口和采购数量。",
+        "label": "提交显示屏询盘",
+        "href": "/zh/contact/#get-a-quote"
+      },
+      "imageAlt": "86 型 AI 酒店智能控制屏产品图"
+    },
+    "localizedContentId": null,
+    "importKey": "m2a:zh:product:6",
+    "deliveryMode": "validated-import-payload",
+    "translationStatus": "approved",
+    "reviewStatus": "approved",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-07-29",
+    "nativeReviewNotes": "Human Chinese review approved",
+    "localizedSlug": "86-type-ai-smart-control-display",
+    "batch": "p0",
+    "productionReleaseReady": true
+  },
+  {
+    "contentType": "product",
+    "sourceEnglishContentId": 222,
+    "sourceEnglishSlug": "smart-four-key-scene-control-panel",
+    "locale": "zh",
+    "translatedTitle": "四键酒店场景控制面板",
+    "translatedDescription": "用于酒店客房照明、窗帘、房间模式或项目指定功能的四键控制面板，按键定义与系统逻辑按项目配置。",
+    "translatedSpecifications": [
+      {
+        "label": "按键数量",
+        "value": "四键"
+      },
+      {
+        "label": "用途",
+        "value": "场景、照明、窗帘、房间模式或项目指定功能"
+      },
+      {
+        "label": "按键文字与图标",
+        "value": "可按项目确认"
+      },
+      {
+        "label": "接口与电气参数",
+        "value": "按具体型号确认"
+      }
+    ],
+    "translatedSeoTitle": "四键酒店场景控制面板｜客房智能开关面板",
+    "translatedMetaDescription": "四键酒店场景控制面板，可按项目配置照明、窗帘、房间模式或其他客房控制功能。",
+    "translatedStructuredContent": {
+      "eyebrow": "酒店智能开关面板",
+      "h1": "四键酒店场景控制面板",
+      "introduction": "这款四键面板可在酒店客房项目中配置为场景、照明、窗帘、房间模式或其他指定控制功能。它不是预设功能完全固定的通用面板；每个按键的用途、图标、文字、反馈和系统接口，都应与 RCU 或客房控制逻辑一起确认。",
+      "breadcrumbLabel": "四键酒店场景控制面板",
+      "parentBreadcrumb": {
+        "label": "产品",
+        "href": "/zh/products/"
+      },
+      "sections": [
+        {
+          "heading": "四键控制用途",
+          "paragraphs": [
+            "四个按键可以按照房间操作流程进行分配，例如照明场景、总控、窗帘或房间模式。实际功能由项目配置决定，不能从面板外观推断。"
+          ]
+        },
+        {
+          "heading": "与 RCU 和系统逻辑配合",
+          "paragraphs": [
+            "面板负责住客操作，控制结果取决于 RCU、执行设备、接线、通信和程序逻辑。采购前应确认按键动作、指示反馈和异常状态处理。"
+          ]
+        },
+        {
+          "heading": "外观与标识定制",
+          "paragraphs": [
+            "可讨论按键文字、图标、颜色、外观、品牌和包装。不同改动受型号、工艺和数量限制，最终以确认样品和书面规格为准。"
+          ]
+        },
+        {
+          "heading": "询价所需信息",
+          "paragraphs": [
+            "请提供四个按键的功能表、系统控制器或 RCU 信息、安装盒条件、接口要求、外观参考、数量和交期。未公开的尺寸、供电、协议与材料应单独确认。"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "四个按键只能控制场景吗？",
+          "answer": "不是。按键也可按项目用于照明、窗帘、房间模式或其他指定功能。"
+        },
+        {
+          "question": "可以更换按键文字和图标吗？",
+          "answer": "可按型号、工艺和数量评估，最终内容需通过样品或书面文件确认。"
+        },
+        {
+          "question": "面板可以直接连接现有系统吗？",
+          "answer": "是否兼容取决于具体型号、接线和接口，需提供现有控制器资料进行确认。"
+        }
+      ],
+      "relatedLinks": [
+        {
+          "label": "酒店 RCU 控制主机",
+          "description": "查看面板可配合的客房控制核心设备。",
+          "href": "/zh/products/hotel-smart-room-rcu-host-1/"
+        },
+        {
+          "label": "RCU 客房控制方案",
+          "description": "了解面板、传感器和控制主机的系统关系。",
+          "href": "/zh/solutions/rcu-room-control-solution/"
+        },
+        {
+          "label": "提交面板定制需求",
+          "description": "发送按键功能、图标、数量和接口要求。",
+          "href": "/zh/contact/"
+        }
+      ],
+      "cta": {
+        "heading": "定义四个按键的实际功能",
+        "description": "请提供按键表、系统接口、外观要求和采购数量。",
+        "label": "咨询四键面板",
+        "href": "/zh/contact/#get-a-quote"
+      },
+      "imageAlt": "四键酒店场景控制面板产品图"
+    },
+    "localizedContentId": null,
+    "importKey": "m2a:zh:product:222",
+    "deliveryMode": "validated-import-payload",
+    "translationStatus": "approved",
+    "reviewStatus": "approved",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-07-29",
+    "nativeReviewNotes": "Human Chinese review approved",
+    "localizedSlug": "smart-four-key-scene-control-panel",
+    "batch": "p0",
+    "productionReleaseReady": true
+  },
+  {
+    "contentType": "solution",
+    "sourceEnglishContentId": 142,
+    "sourceEnglishSlug": "oem-odm-custom-panel-solution",
+    "locale": "zh",
+    "translatedTitle": "酒店智能面板 OEM/ODM 定制方案",
+    "translatedDescription": "面向酒店品牌、工程商和渠道客户的智能面板 OEM/ODM 方案，覆盖外观、文字、图标、品牌、包装与产品组合确认。",
+    "translatedSpecifications": [
+      {
+        "label": "方案类型",
+        "value": "酒店智能面板 OEM/ODM"
+      },
+      {
+        "label": "可讨论范围",
+        "value": "外观、文字、图标、品牌、语言、包装和产品组合"
+      },
+      {
+        "label": "确认方式",
+        "value": "样品与书面规格"
+      },
+      {
+        "label": "技术与合规要求",
+        "value": "批量生产前按项目确认"
+      }
+    ],
+    "translatedSeoTitle": "酒店智能面板 OEM/ODM 定制方案｜工程与渠道采购",
+    "translatedMetaDescription": "为酒店工程、品牌和渠道采购提供智能控制面板 OEM/ODM 规划，明确外观、功能、样品、规格和交付边界。",
+    "translatedStructuredContent": {
+      "eyebrow": "OEM/ODM 解决方案",
+      "h1": "酒店智能控制面板 OEM/ODM 定制方案",
+      "introduction": "本方案面向需要统一酒店面板外观、品牌、文字、图标、语言、包装或产品组合的工程与渠道客户。定制从现有产品和明确需求出发，先评估可行性，再通过样品与书面规格确认；不承诺未经验证的材料、认证、协议或性能。",
+      "breadcrumbLabel": "OEM/ODM 定制面板方案",
+      "parentBreadcrumb": {
+        "label": "解决方案",
+        "href": "/zh/solutions/"
+      },
+      "sections": [
+        {
+          "heading": "可讨论的定制范围",
+          "paragraphs": [
+            "范围可包括面板颜色和表面效果、按键布局、文字图标、品牌标识、界面语言、包装以及多类产品组合。不同型号的结构和工艺限制不同。"
+          ]
+        },
+        {
+          "heading": "样品与设计确认",
+          "paragraphs": [
+            "客户应提供功能表、外观参考、品牌文件、数量和目标时间。样品用于核对外观、安装和功能，样品费用及运输按项目安排。"
+          ]
+        },
+        {
+          "heading": "技术与合规边界",
+          "paragraphs": [
+            "协议、电气、材料和认证要求必须在生产前书面确认。若项目涉及 RCU、KNX、RS485 或其他系统，应明确控制器、接口、调试和第三方责任。"
+          ]
+        },
+        {
+          "heading": "批量交付",
+          "paragraphs": [
+            "确认样品和规格后再安排报价、生产、包装与交付。新结构或新模具可能产生工具费用，交期取决于产品、数量和定制深度。"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "标准产品可以只改颜色吗？",
+          "answer": "可按现有模具和工艺评估；使用现有模具仅改变颜色时，不收取定制费。"
+        },
+        {
+          "question": "可以同时定制多种面板吗？",
+          "answer": "可以提交完整产品清单统一评估外观与包装，但每个型号仍需独立确认功能和技术条件。"
+        },
+        {
+          "question": "是否可以直接承诺目标市场认证？",
+          "answer": "不能。任何认证或合规要求必须针对产品、市场和订单范围核实并书面确认。"
+        }
+      ],
+      "relatedLinks": [
+        {
+          "label": "浏览可选产品",
+          "description": "从现有 RCU 与面板产品开始定义定制范围。",
+          "href": "/zh/products/"
+        },
+        {
+          "label": "四键场景控制面板",
+          "description": "查看可讨论按键文字与图标的面板产品。",
+          "href": "/zh/products/smart-four-key-scene-control-panel/"
+        },
+        {
+          "label": "提交 OEM/ODM 需求",
+          "description": "发送外观文件、功能、数量和交期。",
+          "href": "/zh/contact/"
+        }
+      ],
+      "cta": {
+        "heading": "准备 OEM/ODM 定制清单",
+        "description": "请提供产品类型、功能、外观、品牌文件、数量和目标时间。",
+        "label": "提交定制项目",
+        "href": "/zh/contact/#get-a-quote"
+      }
+    },
+    "localizedContentId": null,
+    "importKey": "m2a:zh:solution:142",
+    "deliveryMode": "validated-import-payload",
+    "translationStatus": "approved",
+    "reviewStatus": "approved",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-07-29",
+    "nativeReviewNotes": "Human Chinese review approved",
+    "localizedSlug": "oem-odm-custom-panel-solution",
+    "batch": "p0",
+    "productionReleaseReady": true
+  },
+  {
+    "contentType": "solution",
+    "sourceEnglishContentId": 140,
+    "sourceEnglishSlug": "rcu-room-control-solution",
+    "locale": "zh",
+    "translatedTitle": "酒店 RCU 客房控制解决方案",
+    "translatedDescription": "围绕 RCU 主机、控制箱、面板、传感器、HVAC 与窗帘规划酒店客房控制系统和工程采购范围。",
+    "translatedSpecifications": [
+      {
+        "label": "方案类型",
+        "value": "酒店 RCU 客房控制"
+      },
+      {
+        "label": "核心组成",
+        "value": "RCU、控制箱、面板、传感器和受控设备"
+      },
+      {
+        "label": "工程输入",
+        "value": "房型、点位、回路、I/O、布线和控制逻辑"
+      },
+      {
+        "label": "协议与电气",
+        "value": "按项目及选定型号确认"
+      }
+    ],
+    "translatedSeoTitle": "酒店 RCU 客房控制解决方案｜系统集成与工程采购",
+    "translatedMetaDescription": "规划酒店 RCU 客房控制系统，明确主机、控制箱、面板、传感器、HVAC、窗帘及项目接口责任。",
+    "translatedStructuredContent": {
+      "eyebrow": "酒店客房控制系统",
+      "h1": "酒店 RCU 客房控制解决方案",
+      "introduction": "RCU 客房控制方案把照明、HVAC、窗帘、取电、服务按键和传感器等功能放入统一的房型逻辑中。方案用于帮助酒店业主、承包商和系统集成商明确设备、接线和责任边界，不以通用描述替代点位表、电气图或调试方案。",
+      "breadcrumbLabel": "RCU 客房控制方案",
+      "parentBreadcrumb": {
+        "label": "解决方案",
+        "href": "/zh/solutions/"
+      },
+      "sections": [
+        {
+          "heading": "系统组成",
+          "paragraphs": [
+            "典型讨论范围包括 RCU 主机或控制箱、开关与触控界面、温控、窗帘、门磁、人体传感器、取电和房态服务面板。实际组成按房型与运营需求确认。"
+          ]
+        },
+        {
+          "heading": "房型与控制逻辑",
+          "paragraphs": [
+            "每类房间应建立控制点位、场景、住客操作和异常状态清单，并说明输入与输出关系。相同产品在不同房型中也可能采用不同配置。"
+          ]
+        },
+        {
+          "heading": "工程集成",
+          "paragraphs": [
+            "需确认回路、I/O、负载、供电、通信、线缆、端子、安装空间和第三方接口。KNX、RS485 或其他协议不能默认存在，应按型号和项目文件核实。"
+          ]
+        },
+        {
+          "heading": "样板间与批量实施",
+          "paragraphs": [
+            "建议先完成样品或样板间测试，验证面板操作、传感器逻辑、HVAC、窗帘和服务功能，再记录修改并冻结批量配置。"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "RCU 方案是否适合酒店改造？",
+          "answer": "可以评估，但必须先核对现有布线、供电、安装空间、设备接口和可施工范围。"
+        },
+        {
+          "question": "方案是否包含固定品牌的 HVAC 或门锁？",
+          "answer": "不默认包含。第三方设备和接口需要根据项目清单与技术资料确认。"
+        },
+        {
+          "question": "为什么需要样板间？",
+          "answer": "样板间可在批量实施前验证房型逻辑、操作体验、接线和系统接口，降低配置偏差。"
+        }
+      ],
+      "relatedLinks": [
+        {
+          "label": "酒店 RCU 控制主机",
+          "description": "查看客房控制核心产品。",
+          "href": "/zh/products/hotel-smart-room-rcu-host-1/"
+        },
+        {
+          "label": "RCU 客房控制箱",
+          "description": "了解设备集中安装和接线组织。",
+          "href": "/zh/products/rcu-controller-cabinet/"
+        },
+        {
+          "label": "提交 RCU 方案资料",
+          "description": "发送房型、点位、图纸和接口要求。",
+          "href": "/zh/contact/"
+        }
+      ],
+      "cta": {
+        "heading": "建立可核对的 RCU 项目范围",
+        "description": "请提供房型、控制点位、设备接口、图纸、数量和项目阶段。",
+        "label": "咨询 RCU 方案",
+        "href": "/zh/contact/#get-a-quote",
+        "secondaryLabel": "查看 RCU 产品",
+        "secondaryHref": "/zh/products/hotel-smart-room-rcu-host-1/"
+      }
+    },
+    "localizedContentId": null,
+    "importKey": "m2a:zh:solution:140",
+    "deliveryMode": "validated-import-payload",
+    "translationStatus": "approved",
+    "reviewStatus": "approved",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-07-29",
+    "nativeReviewNotes": "Human Chinese review approved",
+    "localizedSlug": "rcu-room-control-solution",
+    "batch": "p0",
+    "productionReleaseReady": true
+  },
+  {
+    "contentType": "solution",
+    "sourceEnglishContentId": 138,
+    "sourceEnglishSlug": "smart-hotel-automation-solution",
+    "locale": "zh",
+    "translatedTitle": "智能酒店自动化解决方案",
+    "translatedDescription": "为酒店客房与服务场景规划智能显示、RCU、传感器和相关自动化设备，明确系统接口、工程责任与交付范围。",
+    "translatedSpecifications": [
+      {
+        "label": "方案类型",
+        "value": "智能酒店自动化"
+      },
+      {
+        "label": "可选设备",
+        "value": "智能显示、RCU、传感器及项目相关设备"
+      },
+      {
+        "label": "规划输入",
+        "value": "平面图、设备位置、网络、接口与运营流程"
+      },
+      {
+        "label": "集成范围",
+        "value": "按项目文件确认"
+      }
+    ],
+    "translatedSeoTitle": "智能酒店自动化解决方案｜客房设备与系统集成",
+    "translatedMetaDescription": "面向酒店工程的智能自动化方案，规划显示屏、RCU、传感器和服务设备，并明确接口及交付边界。",
+    "translatedStructuredContent": {
+      "eyebrow": "酒店自动化",
+      "h1": "智能酒店自动化解决方案",
+      "introduction": "智能酒店自动化项目可能同时涉及客房控制界面、RCU、传感器、红外设备以及服务类设备。方案应从酒店运营流程、空间和系统架构出发，明确哪些设备由本项目提供、哪些由第三方提供，以及网络、通信、安装和调试由谁负责。",
+      "breadcrumbLabel": "智能酒店自动化方案",
+      "parentBreadcrumb": {
+        "label": "解决方案",
+        "href": "/zh/solutions/"
+      },
+      "sections": [
+        {
+          "heading": "从场景和运营流程开始",
+          "paragraphs": [
+            "先定义住客入住、离房、睡眠、清洁、勿扰、温控、窗帘和服务流程，再把每项需求对应到操作界面、传感器、控制器或执行设备。"
+          ]
+        },
+        {
+          "heading": "设备与系统边界",
+          "paragraphs": [
+            "可讨论智能显示、RCU、红外设备、配送机器人或智能柜等类别，但并不表示所有设备天然互联。接口、网关、网络和软件责任须按项目确认。"
+          ]
+        },
+        {
+          "heading": "所需工程资料",
+          "paragraphs": [
+            "建议提供平面图、设备点位、网络条件、控制流程、第三方系统列表、数量和项目时间。资料用于判断产品配置和可交付范围。"
+          ]
+        },
+        {
+          "heading": "验证与交付",
+          "paragraphs": [
+            "关键设备和流程应先通过样品、演示或样板区域验证。任何节能比例、效率提升或系统性能均不应在没有实际设计和测试依据时承诺。"
+          ]
+        }
+      ],
+      "faqs": [
+        {
+          "question": "智能酒店方案是否一定包含配送机器人？",
+          "answer": "不一定。设备范围由项目目标和采购清单决定，可只讨论客房控制或指定自动化设备。"
+        },
+        {
+          "question": "可以保证节能比例吗？",
+          "answer": "不能在没有项目设计、基线和测量条件时承诺比例。可讨论控制逻辑，但结果取决于实际运行。"
+        },
+        {
+          "question": "如何避免多系统之间责任不清？",
+          "answer": "应在采购前建立接口表，标明每个设备、协议、网络、软件、安装和调试的负责人。"
+        }
+      ],
+      "relatedLinks": [
+        {
+          "label": "86 型 AI 智能控制屏",
+          "description": "查看酒店客房集中操作界面。",
+          "href": "/zh/products/86-type-ai-smart-control-display/"
+        },
+        {
+          "label": "RCU 客房控制方案",
+          "description": "进一步了解单间客房控制范围。",
+          "href": "/zh/solutions/rcu-room-control-solution/"
+        },
+        {
+          "label": "提交自动化项目",
+          "description": "发送平面图、场景、设备和接口清单。",
+          "href": "/zh/contact/"
+        }
+      ],
+      "cta": {
+        "heading": "定义智能酒店项目的真实边界",
+        "description": "请提供场景、平面图、设备、接口、数量和项目阶段。",
+        "label": "提交自动化需求",
+        "href": "/zh/contact/#get-a-quote"
+      }
+    },
+    "localizedContentId": null,
+    "importKey": "m2a:zh:solution:138",
+    "deliveryMode": "validated-import-payload",
+    "translationStatus": "approved",
+    "reviewStatus": "approved",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-07-29",
+    "nativeReviewNotes": "Human Chinese review approved",
+    "localizedSlug": "smart-hotel-automation-solution",
+    "batch": "p0",
+    "productionReleaseReady": true
+  }
+]

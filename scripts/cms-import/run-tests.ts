@@ -1,0 +1,31 @@
+import { spawnSync } from "node:child_process";
+
+function run(command: string, args: string[]): void {
+  const result = spawnSync(command, args, {
+    cwd: process.cwd(),
+    stdio: "inherit",
+    shell: false,
+  });
+  if (result.status !== 0) {
+    process.exit(result.status ?? 1);
+  }
+}
+
+run(process.execPath, [
+  "--import",
+  "tsx",
+  "--test",
+  "tests/cms-import-safety.test.ts",
+  "tests/cms-import-package.test.ts",
+]);
+run("docker", [
+  "run",
+  "--rm",
+  "-v",
+  `${process.cwd()}:/workspace`,
+  "-w",
+  "/workspace",
+  "php:8.3-cli",
+  "php",
+  "tests/cms-import-php/run.php",
+]);

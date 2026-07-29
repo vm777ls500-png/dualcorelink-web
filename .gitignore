@@ -66,6 +66,7 @@ WORDPRESS_CREDENTIALS.md
 /backups/
 /tmp/
 /wordpress/
+/dist/
 
 # product source assets and generated upload prep
 product-assets/application-scenarios/

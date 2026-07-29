@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DualCoreLink Chinese P0 CMS Import Payload",
+  "type": "array",
+  "minItems": 7,
+  "maxItems": 7,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "contentType",
+      "sourceEnglishContentId",
+      "sourceEnglishSlug",
+      "localizedSlug",
+      "localizedContentId",
+      "importKey",
+      "deliveryMode",
+      "locale",
+      "batch",
+      "translatedTitle",
+      "translatedDescription",
+      "translatedSpecifications",
+      "translatedSeoTitle",
+      "translatedMetaDescription",
+      "translatedStructuredContent",
+      "translationStatus",
+      "reviewStatus",
+      "nativeReviewStatus",
+      "nativeReviewer",
+      "nativeReviewDate",
+      "nativeReviewNotes",
+      "productionReleaseReady"
+    ],
+    "properties": {
+      "contentType": { "enum": ["product", "solution"] },
+      "sourceEnglishContentId": {
+        "enum": [48, 47, 6, 222, 142, 140, 138]
+      },
+      "sourceEnglishSlug": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "localizedSlug": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "localizedContentId": { "type": "null" },
+      "importKey": { "type": "string", "minLength": 1, "maxLength": 200 },
+      "deliveryMode": { "const": "validated-import-payload" },
+      "locale": { "const": "zh" },
+      "batch": { "const": "p0" },
+      "translatedTitle": { "type": "string", "minLength": 1 },
+      "translatedDescription": { "type": "string", "minLength": 1 },
+      "translatedSpecifications": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label", "value"],
+          "properties": {
+            "label": { "type": "string", "minLength": 1 },
+            "value": { "type": "string", "minLength": 1 }
+          }
+        }
+      },
+      "translatedSeoTitle": { "type": "string", "minLength": 1 },
+      "translatedMetaDescription": { "type": "string", "minLength": 1 },
+      "translatedStructuredContent": { "type": "object" },
+      "translationStatus": { "const": "approved" },
+      "reviewStatus": { "const": "approved" },
+      "nativeReviewStatus": { "const": "approved" },
+      "nativeReviewer": { "const": "Allan" },
+      "nativeReviewDate": { "const": "2026-07-29" },
+      "nativeReviewNotes": { "type": "string", "minLength": 1 },
+      "productionReleaseReady": { "const": true }
+    }
+  }
+}

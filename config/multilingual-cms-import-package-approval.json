@@ -1,0 +1,9 @@
+{
+  "packageSchemaVersion": 1,
+  "packageFilename": "dualcorelink-multilingual-import-cli.zip",
+  "zipSha256": "3c9cd4d31de9b8f5a3633b22883780c87dd3302abc48b35e2574194a187e05f0",
+  "manifestSha256": "dfe7bccc96271a853e18f66c2f137a01acea71816c977a52cef2556cdfc3aa7e",
+  "approvedBy": "Allan",
+  "approvedDate": "2026-07-29",
+  "sourceCommit": "027dfcc4c113c6b2c1463177fef541881a7c04f4"
+}

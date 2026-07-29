@@ -209,6 +209,51 @@ function assert_true($condition, string $message = 'Assertion failed.'): void
     }
 }
 
+function stringify_numeric_translation_meta(Mock_Import_Repository $repository): void
+{
+    foreach ($repository->localized as &$record) {
+        foreach ([
+            DualCoreLink_Import_Config::META_SCHEMA_VERSION,
+            DualCoreLink_Import_Config::META_SOURCE_ID,
+        ] as $key) {
+            $record['meta'][$key] = (string) $record['meta'][$key];
+        }
+    }
+    unset($record);
+}
+
+function verify_with_numeric_meta(
+    string $name,
+    string $key,
+    $value
+): DualCoreLink_Import_Exception {
+    $payload = fixture();
+    $repository = new Mock_Import_Repository($payload);
+    $root = temporary_root($name);
+    [$service] = service($repository, $root);
+    $result = $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        $name,
+        $name,
+        false
+    );
+    $id = $result['operations'][0]['localized_id'];
+    $repository->localized[$id]['meta'][$key] = $value;
+    if ($key === DualCoreLink_Import_Config::META_SOURCE_ID) {
+        // Keep preflight's slug-collision guard out of this focused verifier
+        // normalization test so the whitelist error is exercised directly.
+        $repository->localized[$id]['slug'] = 'numeric-meta-test-' . $name;
+    }
+    try {
+        return expect_failure(fn () => $service->verify($name), 60);
+    } finally {
+        remove_tree($root);
+    }
+}
+
 $tests = [];
 $tests['preflight accepts exact 7/7 payload'] = function (): void {
     $payload = fixture();
@@ -270,6 +315,20 @@ $tests['preflight rejects duplicate source ID'] = function (): void {
     $repo = new Mock_Import_Repository($payload);
     [$service] = service($repo, temporary_root('duplicate-id'));
     expect_failure(fn () => $service->preflight($payload, 'zh', 'p0'), 20);
+};
+$tests['preflight rejects string payload source ID'] = function (): void {
+    $payload = fixture();
+    $payload[0]['sourceEnglishContentId'] = '48';
+    $repo = new Mock_Import_Repository(fixture());
+    [$service] = service($repo, temporary_root('string-source-id'));
+    $exception = expect_failure(
+        fn () => $service->preflight($payload, 'zh', 'p0'),
+        20
+    );
+    assert_true(str_contains(
+        $exception->getMessage(),
+        'sourceEnglishContentId must be an integer'
+    ));
 };
 $tests['preflight rejects duplicate localized slug'] = function (): void {
     $payload = fixture();
@@ -369,6 +428,204 @@ $tests['verify detects localized field drift'] = function (): void {
     $id = $result['operations'][0]['localized_id'];
     $repo->localized[$id]['core']['post_title'] = 'drifted';
     expect_failure(fn () => $service->verify('drift-001'), 60);
+    remove_tree($root);
+};
+$tests['verify accepts WordPress schema string one against payload integer'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('schema-string');
+    [$service] = service($repo, $root);
+    $result = $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        'schema-string',
+        'schema-string',
+        false
+    );
+    $id = $result['operations'][0]['localized_id'];
+    $repo->localized[$id]['meta'][DualCoreLink_Import_Config::META_SCHEMA_VERSION] = '1';
+    assert_true($service->verify('schema-string')['records'] === 7);
+    remove_tree($root);
+};
+$tests['verify accepts WordPress source ID string against payload integer'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('source-string');
+    [$service] = service($repo, $root);
+    $result = $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        'source-string',
+        'source-string',
+        false
+    );
+    $id = $result['operations'][0]['localized_id'];
+    $repo->localized[$id]['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] = '48';
+    assert_true($service->verify('source-string')['records'] === 7);
+    remove_tree($root);
+};
+foreach ([
+    'leading zero' => '01',
+    'plus sign' => '+1',
+    'negative' => '-1',
+    'decimal' => '1.0',
+    'exponent' => '1e2',
+    'surrounding spaces' => ' 1 ',
+    'empty string' => '',
+] as $label => $value) {
+    $tests["verify rejects noncanonical numeric meta {$label}"] =
+        function () use ($label, $value): void {
+            $exception = verify_with_numeric_meta(
+                'numeric-' . str_replace(' ', '-', $label),
+                DualCoreLink_Import_Config::META_SCHEMA_VERSION,
+                $value
+            );
+            assert_true(str_contains(
+                $exception->getMessage(),
+                'Invalid WordPress integer translation meta'
+            ));
+        };
+}
+foreach ([
+    'null' => null,
+    'boolean' => true,
+    'array' => ['1'],
+    'object' => (object) ['value' => 1],
+] as $label => $value) {
+    $tests["verify rejects numeric meta {$label}"] =
+        function () use ($label, $value): void {
+            $exception = verify_with_numeric_meta(
+                'numeric-type-' . $label,
+                DualCoreLink_Import_Config::META_SCHEMA_VERSION,
+                $value
+            );
+            assert_true(str_contains(
+                $exception->getMessage(),
+                'Invalid WordPress integer translation meta'
+            ));
+        };
+}
+$tests['verify rejects schema version other than one'] = function (): void {
+    $exception = verify_with_numeric_meta(
+        'schema-version-two',
+        DualCoreLink_Import_Config::META_SCHEMA_VERSION,
+        '2'
+    );
+    assert_true(str_contains(
+        $exception->getMessage(),
+        'Translation schema version must equal 1'
+    ));
+    assert_true(DualCoreLink_Import_Config::SCHEMA_VERSION === 1);
+};
+$tests['verify rejects source ID outside approved whitelist'] = function (): void {
+    $exception = verify_with_numeric_meta(
+        'source-not-approved',
+        DualCoreLink_Import_Config::META_SOURCE_ID,
+        '999'
+    );
+    assert_true(str_contains(
+        $exception->getMessage(),
+        'outside the approved whitelist'
+    ));
+};
+$tests['verify keeps nonnumeric translation meta strict'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('strict-meta');
+    [$service] = service($repo, $root);
+    $result = $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        'strict-meta',
+        'strict-meta',
+        false
+    );
+    $id = $result['operations'][0]['localized_id'];
+    $repo->localized[$id]['meta'][DualCoreLink_Import_Config::META_REVIEWER] = 123;
+    expect_failure(fn () => $service->verify('strict-meta'), 60);
+    remove_tree($root);
+};
+$tests['verify keeps ACF array structure strict'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('strict-acf');
+    [$service] = service($repo, $root);
+    $result = $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        'strict-acf',
+        'strict-acf',
+        false
+    );
+    $id = $result['operations'][0]['localized_id'];
+    $repo->localized[$id]['acf']['product_technical_specs'] = ['drift'];
+    expect_failure(fn () => $service->verify('strict-acf'), 60);
+    remove_tree($root);
+};
+$tests['verify passes all seven fixture records with WordPress numeric strings'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('wp-meta-seven');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        'wp-meta-seven',
+        'wp-meta-seven',
+        false
+    );
+    stringify_numeric_translation_meta($repo);
+    $result = $service->verify('wp-meta-seven');
+    assert_true($result['records'] === 7);
+    assert_true(count($result['localized_ids']) === 7);
+    remove_tree($root);
+};
+$tests['verify rejects English source hash drift'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('source-drift');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        'source-drift',
+        'source-drift',
+        false
+    );
+    $repo->sources[48]['core']['post_title'] = 'Changed English source';
+    expect_failure(fn () => $service->verify('source-drift'), 60);
+    remove_tree($root);
+};
+$tests['verify numeric normalization does not mutate repository records'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('verify-read-only');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'zh',
+        'p0',
+        'draft',
+        'verify-read-only',
+        'verify-read-only',
+        false
+    );
+    stringify_numeric_translation_meta($repo);
+    $before = $repo->localized;
+    $service->verify('verify-read-only');
+    assert_true($repo->localized === $before);
     remove_tree($root);
 };
 $tests['publish changes only seven verified records'] = function (): void {

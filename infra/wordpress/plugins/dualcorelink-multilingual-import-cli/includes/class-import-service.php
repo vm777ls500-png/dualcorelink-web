@@ -109,6 +109,73 @@ final class DualCoreLink_Multilingual_Import_Service
         ];
     }
 
+    private static function verification_integer(
+        $value,
+        string $key,
+        bool $payload_value
+    ): int {
+        if ($payload_value) {
+            if (!is_int($value) || $value < 0) {
+                throw new RuntimeException(
+                    "Invalid payload integer translation meta: {$key}"
+                );
+            }
+            $normalized = $value;
+        } elseif (is_int($value) && $value >= 0) {
+            $normalized = $value;
+        } elseif (is_string($value) &&
+            preg_match('/^(?:0|[1-9][0-9]*)$/D', $value) === 1) {
+            $normalized = (int) $value;
+            if ((string) $normalized !== $value) {
+                throw new RuntimeException(
+                    "Invalid WordPress integer translation meta: {$key}"
+                );
+            }
+        } else {
+            throw new RuntimeException(
+                "Invalid WordPress integer translation meta: {$key}"
+            );
+        }
+
+        if ($key === DualCoreLink_Import_Config::META_SCHEMA_VERSION &&
+            $normalized !== DualCoreLink_Import_Config::SCHEMA_VERSION) {
+            throw new RuntimeException(
+                'Translation schema version must equal ' .
+                DualCoreLink_Import_Config::SCHEMA_VERSION . '.'
+            );
+        }
+        if ($key === DualCoreLink_Import_Config::META_SOURCE_ID &&
+            ($normalized <= 0 ||
+                !array_key_exists($normalized, DualCoreLink_Import_Config::APPROVED))) {
+            throw new RuntimeException(
+                'Translation source ID is outside the approved whitelist.'
+            );
+        }
+        return $normalized;
+    }
+
+    private static function normalize_verification_numeric_meta(
+        array $actual,
+        array $mapped
+    ): array {
+        foreach ([
+            DualCoreLink_Import_Config::META_SCHEMA_VERSION,
+            DualCoreLink_Import_Config::META_SOURCE_ID,
+        ] as $key) {
+            $actual['meta'][$key] = self::verification_integer(
+                $actual['meta'][$key] ?? null,
+                $key,
+                false
+            );
+            $mapped['meta'][$key] = self::verification_integer(
+                $mapped['meta'][$key] ?? null,
+                $key,
+                true
+            );
+        }
+        return [$actual, $mapped];
+    }
+
     private static function flatten($value, string $prefix = ''): array
     {
         if (!is_array($value) || array_is_list($value)) {
@@ -157,7 +224,11 @@ final class DualCoreLink_Multilingual_Import_Service
                 $errors[] = 'payload record must be an object';
                 continue;
             }
-            $id = (int) ($record['sourceEnglishContentId'] ?? 0);
+            $raw_id = $record['sourceEnglishContentId'] ?? null;
+            if (!is_int($raw_id)) {
+                $errors[] = 'payload sourceEnglishContentId must be an integer';
+            }
+            $id = is_int($raw_id) ? $raw_id : 0;
             $ids[] = $id;
             $post_type = (string) ($record['contentType'] ?? '');
             $slug = (string) ($record['localizedSlug'] ?? '');
@@ -461,9 +532,14 @@ final class DualCoreLink_Multilingual_Import_Service
                 if (!$actual || !$mapped) {
                     throw new RuntimeException('Localized record is missing.');
                 }
+                [$comparable_actual, $comparable_mapped] =
+                    self::normalize_verification_numeric_meta(
+                        self::comparable_actual($actual, $mapped),
+                        self::comparable_mapped($mapped)
+                    );
                 $diff = self::field_diff(
-                    self::comparable_actual($actual, $mapped),
-                    self::comparable_mapped($mapped)
+                    $comparable_actual,
+                    $comparable_mapped
                 );
                 if ($diff) {
                     throw new RuntimeException(

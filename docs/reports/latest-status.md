@@ -4,17 +4,17 @@ Last updated: 2026-07-29
 
 ## Current Phase
 
-**SEO Growth Multilingual Integration Branch Preservation**
+**SEO Growth Multilingual Phase M5B — Chinese P0 Approval Application**
 
-Status: the audited M1-M4C six-language candidate has been committed and
-pushed only to
-`feature/multilingual-six-language-integration-20260729`. The implementation
-commit is `10877ede3bfbe206f29022e8e980768fccc8a731`, based on unchanged
-`origin/main` SHA `9130c58190a8ded92c06127f48fff682b831ded5`.
-The branch contains 414 localized candidates and a 490-URL candidate sitemap,
-but all 414 native reviews remain pending and `productionReleaseReady` is 0.
-The feature push triggered no Actions run and no production deployment.
-Production remains English-only with 76 sitemap URLs and zero public
+Status: reviewer Allan approved the exact 12-page Chinese P0 batch on
+2026-07-29. The controlled import applied only those decisions: approved 12,
+pending 402, and `productionReleaseReady` 12. The local production candidate
+contains 12 Chinese pages, 88 sitemap URLs in total, and reciprocal hreflang
+for the 12 matching English/Chinese page pairs. The full six-language release
+check still fails closed on the remaining 402 pending pages.
+
+No commit, push, merge, production CMS write, or deployment occurred. Current
+production remains English-only with 76 sitemap URLs and zero public
 non-English pages.
 
 This status file is the canonical short handoff entry point. Detailed evidence
@@ -22,6 +22,20 @@ remains in the phase reports under `docs/reports/`.
 
 ## Completed
 
+- Applied Allan's 2026-07-29 approval to exactly 12 Chinese P0 URLs.
+- Preserved 57 pending Chinese pages and 345 pending pages across the other
+  five languages.
+- Added a dedicated seven-record Chinese P0 CMS import payload without writing
+  the production CMS.
+- Added the scoped `zh:p0` release check; it passes 12/12 pages and 7/7 CMS
+  records while the full release check continues to block 402 pending pages.
+- Restricted local static export, sitemap, hreflang, Nginx serving exceptions,
+  and deployment artifact baselines to the reviewed Chinese P0 batch.
+- Local validation passed: multilingual audit, 145/145 tests, lint with zero
+  errors, media audit with zero errors, build, 12-page static export audit,
+  and an 88-URL candidate sitemap.
+- Detailed report:
+  `docs/reports/seo-growth-multilingual-m5b-zh-p0-approval-application-20260729.md`.
 - Preserved the audited 92-file multilingual integration scope in
   implementation commit `10877ede3bfbe206f29022e8e980768fccc8a731`.
 - Non-force pushed only
@@ -211,6 +225,11 @@ remains in the phase reports under `docs/reports/`.
 
 ## Modified Files
 
+M5B updates are limited to the approved Chinese P0 decision evidence, scoped
+release controls, seven-record CMS package, static export/Nginx/deployment
+gates, automated tests, and M5A/M5B reports. Existing M5A Chinese wording
+corrections and review materials remain preserved.
+
 Files updated by SEO Growth Phase 3B-3 Implementation:
 
 - `docs/reports/latest-status.md`
@@ -285,6 +304,15 @@ or deployment file was modified by this phase.
 
 | Check | Result |
 |---|---|
+| M5B multilingual audit | Passed; manifest 414, approved 12, pending 402, production ready 12 |
+| M5B Chinese P0 batch gate | Passed; 12/12 pages and 7/7 CMS payloads |
+| M5B full release gate | Failed as designed; 402 pending pages remain blocked |
+| M5B tests | Passed, 145/145 |
+| M5B lint | Passed with zero errors; three warnings came from generated `.wrangler` files |
+| M5B media audit | Passed; 0 errors and 1 existing warning |
+| M5B build | Passed; 163 generated routes before cleanup, 12 final Chinese localized pages |
+| M5B sitemap/hreflang | 88 total sitemap URLs; 12 Chinese additions; 12 reciprocal English/Chinese pairs |
+| M5B static export audit | Passed; zh 12, ar/de/es/vi/fa 0 |
 | lint | Passed; 0 errors and 2 pre-existing GSC unused-variable warnings |
 | focused tests | Passed, 5/5 |
 | tests | `npm run test:data` passed, 116/116 |
@@ -342,18 +370,25 @@ or deployment file was modified by this phase.
 | Field | Value |
 |---|---|
 | Branch | `feature/multilingual-six-language-integration-20260729` |
-| HEAD | `9130c58190a8ded92c06127f48fff682b831ded5` |
-| HEAD commit | `fix: clean inquiry and product filter urls` |
+| HEAD | `67aabdea3851150b7a1091ddb759946f599d3860` |
+| HEAD commit | `docs: archive multilingual integration branch` |
 | Remote committed state | `origin/main` = `9130c58190a8ded92c06127f48fff682b831ded5` |
-| Current phase commit | None; integration remains uncommitted |
-| Push status | No integration push |
-| Deployment | Prohibited; release-check blocks 414 pending pages |
+| Current phase commit | None; M5A/M5B changes remain uncommitted |
+| Push status | No M5A/M5B push |
+| Deployment | Not performed; the full release check blocks 402 pending pages |
 | Production source SHA | `9130c58190a8ded92c06127f48fff682b831ded5` |
 | Release directory | `/srv/dualcorelink/frontend/releases/9130c58190a8-20260729-043302` |
-| Worktree | Isolated multilingual integration candidate; 92 classified changed/untracked paths |
+| Worktree | Isolated multilingual integration branch with preserved M5A changes and current M5B approval changes |
 
 ## Risks
 
+- The 12-page Chinese P0 batch is only a local production candidate. Production
+  remains English-only until a separately approved CMS import, commit, push,
+  and deployment phase completes.
+- The dedicated seven-record Chinese CMS payload has not been written to the
+  production CMS.
+- The other 402 localized pages remain pending and must not be added to
+  production static output, sitemap, hreflang, or Nginx serving exceptions.
 - Eighteen of the current 23 alternate-canonical rows cannot be classified
   without a current URL-level GSC export.
 - Historical query URLs will not disappear immediately; Google must recrawl
@@ -397,18 +432,18 @@ or deployment file was modified by this phase.
 
 Recommended next step:
 
-**Complete real native review before any multilingual release**
+**Review the isolated Chinese P0 release candidate before any production action**
 
-1. Review all 414 locale/page decisions with qualified native reviewers.
-2. Apply documented corrections without fabricating reviewer evidence.
-3. Keep `productionReleaseReady=0` and do not deploy while
-   `multilingual:release-check` returns nonzero.
+1. Review the M5B diff and seven-record CMS import package.
+2. Keep the 402 pending pages excluded from the production batch.
+3. Obtain separate approval before committing, pushing, importing CMS records,
+   or deploying the 12-page Chinese P0 release.
 4. Preserve the deployed GSC Query URL Cleanup during every later merge.
 
 Waiting for user confirmation:
 
-- real native-language reviewer decisions for the 414 candidate pages;
-- separate approval before any integration commit, push, CMS import or
-  deployment.
+- separate approval for the Chinese P0 CMS import;
+- separate approval for the M5A/M5B commit, push, and production deployment;
+- future native-language review decisions for the remaining 402 candidates.
 
 Phase 3B-4 has not been started.

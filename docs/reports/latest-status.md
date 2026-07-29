@@ -1,31 +1,118 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 
 ## Current Phase
 
-**SEO Growth Multilingual Phase M5E-3C — Preserve Approved CMS Tool and Bind
-Source Commit**
+**SEO Growth Multilingual Phase M5E-5A — Numeric Translation Meta
+Verification Fix**
 
-Status: **IMPLEMENTATION_COMMITTED** on the isolated
-`feature/multilingual-cms-import-safety-20260729` branch.
+Status: **READY_FOR_HASH_APPROVAL**.
+
+The local verifier now normalizes only the two declared integer translation
+meta fields. Canonical WordPress decimal strings are converted to integers
+before strict comparison; noncanonical strings and non-scalar types fail
+closed. Translation schema version remains exactly `1`, source IDs remain
+restricted to the approved positive-integer whitelist, and all other fields
+retain strict comparison.
+
+Plugin version `1.0.1` is preserved in implementation commit
+`3ba48384387deb495a42516a303ecbec24bec175`. The new deterministic candidate
+was identical across three builds:
+
+- ZIP:
+  `c419df6e422a72cfdee40b932520fab717ccde01b80529aeeeaabf6e58024f44`
+- manifest:
+  `0fe777ecd1bf401f5f443e47a1ed52e13e61d9b901095e1300a988ac7df7e0c9`
+
+Focused CMS safety tests passed 93/93; project tests passed 184/184 using the
+public read-only CMS; lint, media audit, build, and static-export audit passed.
+The Chinese P0 gate remains 12/12 pages and 7/7 CMS payload records, while the
+full release gate continues to block 402 pending pages.
+
+The old approved hashes remain unchanged, and approved-package verification
+rejects the new candidate as expected. Allan must approve the new ZIP and
+manifest hashes before any production plugin update or verification recovery.
+
+This phase did not access production, write CMS data, run production verify,
+modify drafts `240`–`246`, push `main`, deploy, or touch the frozen M5D
+worktree.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m5e5a-numeric-meta-verification-fix-20260730.md`.
+
+## Previous Phase M5E-5
+
+**SEO Growth Multilingual Phase M5E-5 — Production Chinese P0 Draft Apply and
+Verification**
+
+Status: **BLOCKED**.
+
+Allan's 2026-07-29 authorization was used for exactly one draft-only apply and
+one immediate read-only verify under run ID
+`m5e5-zh-p0-20260729T145320Z`.
+
+The apply completed seven authorized creates: localized IDs `240`–`246`.
+Production CMS state is seven Chinese drafts and zero Chinese published
+records. Posts changed from 194 to 201 and postmeta from 2422 to 2558. All
+eight importer translation metadata keys have exactly seven rows and only
+reference the seven targets.
+
+The formal verify command failed closed on localized record `240` with
+`Localized field drift`. Read-only diagnostics found only scalar type
+differences for translation schema version and source ID: WordPress returned
+postmeta strings while the approved mapped payload contains integers. The
+same two type-only differences occur on all seven records. No verify retry,
+publish, rollback, manual database repair, or second apply occurred.
+
+Independent safety checks passed: seven English post and ACF exports are 7/7
+identical to the pre-write baseline, their modification timestamps are
+unchanged, the original 42 Product/Solution records show no modification at
+or after apply, active plugins are unchanged, and no eighth or other-language
+record exists.
+
+Production remains English-only: sitemap 76, all twelve approved Chinese URLs
+still 301 to English, public Chinese pages 0, and Nginx/PHP-FPM/MariaDB/CMS
+REST/frontend health checks pass.
+
+M5E-6 is not authorized while formal verification is nonzero. Publish remains
+unauthorized.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m5e5-production-draft-apply-20260729.md`.
+
+## Previous Phase M5E-4
+
+**SEO Growth Multilingual Phase M5E-4 — Controlled Plugin Installation and
+Production Read-Only Preflight**
+
+Status: **PASS**.
+
+The approved nine-file WP-CLI-only plugin is installed and active as version
+`1.0.0` on the production WordPress host. A verified database/plugin/source
+backup was created before installation. The production preflight passed for
+exactly seven Chinese P0 records and reported zero writes.
+
+Independent before/after content snapshots were byte-identical: 194 posts,
+2422 postmeta rows, seven English source hashes, zero Chinese P0 CMS records,
+and three active plugins remained unchanged across preflight. The private
+import run directory remains empty.
+
+No `apply`, `verify`, `publish`, or `rollback` command ran. No CMS content,
+frontend, sitemap, hreflang, canonical, robots, schema, English page, native
+review, Git, or deployment change occurred. Production remains English-only
+with 76 sitemap URLs.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m5e4-production-plugin-install-readonly-preflight-20260729.md`.
+
+## Previous Phase M5E-3C
 
 The safe WP-CLI implementation is commit
-`027dfcc4c113c6b2c1463177fef541881a7c04f4`. Allan's approval record now
-binds `sourceCommit` to that exact implementation while preserving the
-approved ZIP hash, manifest hash, reviewer, and review date.
-
-The Chinese P0 release gate remains 12/12 pages and 7/7 CMS payloads. The
-full release gate continues to block the other 402 pending pages.
-
-No plugin upload, installation, activation, production preflight, server or
-CMS write, apply, verify, publish, rollback, merge, main push, or deployment
-occurred.
-
-The implementation and approval/documentation commits are complete locally.
-Feature-branch push remains pending because all GitHub HTTPS port 443 probes
-timed out or reset. No API-based commit recreation was attempted because it
-would invalidate the source-commit binding.
+`027dfcc4c113c6b2c1463177fef541881a7c04f4`, and Allan's approval record binds
+`sourceCommit` to that implementation. The feature branch is preserved at
+`7640225bfad3dfbb5a47c0c403813645bd681dbf`; `origin/main` remains
+`9130c58190a8ded92c06127f48fff682b831ded5`.
 
 ## Previous Phase M5E-3B
 
@@ -96,6 +183,30 @@ This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
 
 ## Completed
+
+- Verified the approved ZIP hash
+  `3c9cd4d31de9b8f5a3633b22883780c87dd3302abc48b35e2574194a187e05f0`
+  and manifest hash
+  `dfe7bccc96271a853e18f66c2f137a01acea71816c977a52cef2556cdfc3aa7e`
+  locally and again on the production host.
+- Created a root-only production backup containing the compressed database,
+  plugin state, current release pointer, content-architecture plugin archive,
+  and all seven English source/ACF exports.
+- Installed and activated only the approved nine-file
+  `dualcorelink-multilingual-import-cli` package.
+- Created the private staging and run roots outside the web root with the
+  approved ownership and permissions.
+- Passed the production read-only preflight for seven records with zero
+  importer writes.
+- Proved no preflight content write with byte-identical before/after database
+  count, source-hash, translation-record, and active-plugin snapshots.
+- Confirmed zero Chinese P0 CMS records, zero import run-root entries, zero
+  import REST routes, healthy WordPress/REST/Nginx/MariaDB, and a 76-URL
+  English-only production sitemap.
+- Removed the temporary server-side deterministic build checkout after the
+  installed package reproduced the approved hash.
+- Recorded complete M5E-4 evidence in
+  `docs/reports/seo-growth-multilingual-m5e4-production-plugin-install-readonly-preflight-20260729.md`.
 
 - Recorded Allan's exact approved ZIP and manifest hashes in an independent
   approval record that packaging commands cannot modify.
@@ -535,40 +646,48 @@ or deployment file was modified by this phase.
 | M5E-3B lint/media | Passed; lint 0 errors; media audit 0 errors and 1 existing warning |
 | M5E-3B build/export | Passed; 163 generated routes before cleanup; 12 localized pages; sitemap 88 |
 | M5E-3B production writes | None |
+| M5E-4 backup | Passed; root-only database, plugin state, plugin archive, release pointer, and seven source/ACF exports |
+| M5E-4 plugin install | Passed; version 1.0.0 active, 9 files, PHP lint passed |
+| M5E-4 production preflight | Passed; 7 records, payload hash `7c453b4ad305771643a99a85ade456f44973bb226c43f032b1115ec81b37dee7`, writes 0 |
+| M5E-4 independent write check | Passed; before/after snapshots byte-identical, 194 posts, 2422 postmeta, 7 source hashes, 0 Chinese P0 records |
+| M5E-4 private run state | 0 run-root entries; no apply/verify/publish/rollback |
+| M5E-4 production health | Nginx/MariaDB active; CMS REST and site HTTP 200; sitemap 76; import REST routes 0 |
 
 ## Git Status
 
 | Field | Value |
 |---|---|
 | Branch | `feature/multilingual-cms-import-safety-20260729` |
-| HEAD | `c5ac34509e27609bd143fbf179d54c028763d4ad` |
-| Baseline | `origin/feature/multilingual-six-language-integration-20260729` at `c5ac34509e27609bd143fbf179d54c028763d4ad` |
+| HEAD | `7640225bfad3dfbb5a47c0c403813645bd681dbf` |
+| Remote feature | `origin/feature/multilingual-cms-import-safety-20260729` at `7640225bfad3dfbb5a47c0c403813645bd681dbf` |
 | Remote committed state | `origin/main` = `9130c58190a8ded92c06127f48fff682b831ded5` |
-| M5E-2 commit | Not performed |
-| Push status | Not performed |
-| Deployment | Not performed |
+| M5E-4 commit | Not performed |
+| M5E-4 push | Not performed |
+| Frontend deployment | Not performed |
 | Production source SHA | `9130c58190a8ded92c06127f48fff682b831ded5` |
 | Release directory | `/srv/dualcorelink/frontend/releases/9130c58190a8-20260729-043302` |
-| Worktree | Contains only uncommitted M5E-2 implementation and documentation |
+| Worktree | Contains only the uncommitted M5E-4 report and status update |
 
 ## Risks
 
-- M5E-3B PASS is not installation, apply, publish, merge, or deployment
-  authorization. It permits only a separately approved M5E-4 controlled
-  installation and production read-only preflight.
-- `/var/lib/dualcorelink/cms-import-runs` does not yet exist. M5E-4 must create
-  it as `www-data:www-data`, mode `0750`, before preflight and must stop if the
-  resulting run logs or lock are not writable by `www-data`.
-- No database or plugin pre-install backup was created in this read-only
-  phase. M5E-4 must create and verify both before installing anything.
-- Only the current WordPress release exists on the host. A symlink rollback is
-  therefore insufficient until M5E-4 preserves the current release/plugin
-  pre-image.
+- M5E-4 PASS does not authorize `apply`, `verify`, `publish`, `rollback`,
+  production CMS content creation, frontend merge, or deployment.
+- The approved plugin is active in production. Any later WordPress core,
+  plugin, or content-architecture change must preserve the CLI-only command
+  boundary and re-run compatibility tests.
+- The private payload and preflight evidence remain on the server. Access
+  controls must remain `root`/`www-data` only; they must never move under a
+  public web directory.
+- The verified database/source/plugin backup must be retained until a
+  separately approved write phase is completed or explicitly abandoned.
+- A future draft apply would intentionally change posts, postmeta, ACF, run
+  logs, and lock state. It requires a new baseline and must not reuse this
+  preflight's zero-write conclusion as write authorization.
 - The Lightsail administrator retains the platform-default broad sudo
   capability. No importer-specific broad sudo or WP-CLI wildcard may be added;
   every importer command must run as `www-data`.
-- The historical `0791410c...bdc` and `4764d9d...28` ZIP hashes are retired and
-  must not be installed.
+- The historical `0791410c...bdc` and `4764d9d...28` ZIP hashes remain retired
+  and must not be installed.
 
 - The 12-page Chinese P0 batch is preserved on a feature branch but is not a
   production release. Production remains English-only until separately
@@ -623,23 +742,24 @@ or deployment file was modified by this phase.
 
 Recommended next step:
 
-**M5E-4 — controlled plugin installation and production read-only preflight**
+**Stop and preserve the M5E-5 failure state.**
 
-Only after a new explicit instruction:
+Do not rerun `apply` or `verify`, do not publish, and do not call rollback.
+Before any further production action:
 
-1. Re-verify the approved ZIP and manifest hashes.
-2. Stop if the candidate plugin path already exists.
-3. Create and verify the database and plugin pre-install backups.
-4. Create the outside-web-root run directory with the approved owner/mode.
-5. Install and activate only the approved nine-file package.
-6. Confirm CLI registration and the public REST read chain.
-7. Execute only the read-only preflight as `www-data`.
-8. Stop and report; do not apply drafts or publish.
+1. review the two scalar-type differences in the verifier;
+2. design and test a normalization fix outside production;
+3. obtain Allan's separate approval for the exact remediation and recovery
+   verification procedure;
+4. preserve the current run directory, seven drafts, pre-image, operations
+   log, checksums, and independent baseline evidence;
+5. continue blocking M5E-6, frontend multilingual merge, sitemap/hreflang
+   exposure, and deployment.
 
 Waiting for user confirmation:
 
-- explicit approval to enter M5E-4;
-- separate approval for draft apply, publish, merge and deployment;
+- separate approval for verifier remediation and recovery verification;
+- separate approval for publish, merge and deployment;
 - future native-language review decisions for the remaining 402 candidates.
 
 Phase 3B-4 has not been started.

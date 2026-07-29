@@ -25,6 +25,10 @@ server {
         return 404;
     }
 
+    location ~ ^/(?:ar|zh|de|es|vi|fa)/(?:about|contact|faqs|products|solutions|resources|regions|(?:products|solutions|resources|regions)/[a-z0-9-]+)/?$ {
+        return 301 https://dualcorelink.com$request_uri;
+    }
+
     location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
         return 301 https://dualcorelink.com/en/;
     }
@@ -64,6 +68,10 @@ server {
             return 301 https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/;
         }
         return 404;
+    }
+
+    location ~ ^/(?:ar|zh|de|es|vi|fa)/(?:about|contact|faqs|products|solutions|resources|regions|(?:products|solutions|resources|regions)/[a-z0-9-]+)/?$ {
+        return 301 https://dualcorelink.com$request_uri;
     }
 
     location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
@@ -115,6 +123,12 @@ server {
             return 301 https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/;
         }
         return 404;
+    }
+
+    location ~ ^/(?:ar|zh|de|es|vi|fa)/(?:about|contact|faqs|products|solutions|resources|regions|(?:products|solutions|resources|regions)/[a-z0-9-]+)/?$ {
+        try_files $uri $uri/ $uri/index.html =404;
+        expires -1;
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
     }
 
     location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {

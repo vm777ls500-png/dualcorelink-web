@@ -6,6 +6,9 @@ import {
   productRepository,
   solutionRepository,
 } from "@/lib/wordpress/repositories";
+import { multilingualPublicationManifest } from "@/lib/multilingual-publication-manifest";
+import { getSitemapEligibleEntries } from "@/lib/multilingual-publication-control";
+import { getPublicationHreflang } from "@/lib/localized-publication";
 
 export const dynamic = "force-static";
 
@@ -70,5 +73,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return [...staticRoutes, ...contentRoutes];
+  const localizedRoutes = getSitemapEligibleEntries(
+    multilingualPublicationManifest,
+  ).map((entry) => {
+    const pathname = new URL(entry.localizedUrl).pathname;
+    const contentPath = pathname
+      .replace(new RegExp(`^/${entry.locale}/|/$`, "g"), "");
+    return {
+      url: entry.localizedUrl,
+      changeFrequency: "monthly" as const,
+      priority: entry.priority === "P0" ? 0.8 : 0.7,
+      alternates: {
+        languages: getPublicationHreflang(contentPath),
+      },
+    };
+  });
+
+  return [...staticRoutes, ...contentRoutes, ...localizedRoutes];
 }

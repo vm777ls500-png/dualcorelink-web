@@ -9,6 +9,7 @@ import {
   locales,
   type Locale,
 } from "@/config/i18n";
+import { getUiMessages } from "@/content/locales/ui";
 import "../globals.css";
 
 type LocaleLayoutProps = {
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
   }
 
   const locale: Locale = localeParam;
+  const messages = getUiMessages(locale);
 
   return (
     <div
@@ -59,13 +61,13 @@ export default async function LocaleLayout({
       className="flex min-h-screen flex-col"
     >
       <a className="skip-link" href="#main-content">
-        Skip to main content
+        {messages.skipLink}
       </a>
       <Header locale={locale} />
       <main id="main-content" tabIndex={-1} className="flex-1">
         {children}
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </div>
   );
 }

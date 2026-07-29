@@ -1,24 +1,62 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-07-28
+Last updated: 2026-07-29
 
 ## Current Phase
 
-**SEO Operations GSC Query URL Cleanup Release Candidate**
+**SEO Growth Multilingual Integration Baseline Reconstruction**
 
-Status: a clean worktree based on the latest `origin/main` contains only the
-validated query URL cleanup. Contact CTAs use clean URLs while GA4 and form
-attribution remain session-scoped; Products filters use buttons and browser
-history instead of query links. The English-only build passes at 156/156 with
-76 sitemap URLs, no localized output directories, and zero query URLs across
-internal href, sitemap, canonical, and hreflang scans. No unreviewed
-multilingual content is present. Commit, push, deployment, and GSC requests
-have not yet occurred.
+Status: the M1–M4C six-language candidate was reconstructed in a clean
+worktree based on production SHA
+`9130c58190a8ded92c06127f48fff682b831ded5`. The deployed GSC Query URL
+Cleanup remains intact. The local candidate contains 414 localized pages and
+a 490-URL candidate sitemap, but all 414 native reviews remain pending and
+`productionReleaseReady` is 0. Production remains English-only with 76
+sitemap URLs and zero public non-English pages. Multilingual deployment is
+prohibited and the release check correctly exits nonzero.
 
 This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
 
 ## Completed
+
+- Created isolated integration worktree
+  `C:\Users\empir\Documents\dualcorelink-multilingual-integration` on branch
+  `feature/multilingual-six-language-integration-20260729`.
+- Reconstructed 69 pages each for `ar`, `zh`, `de`, `es`, `vi`, and `fa`:
+  414/414 local candidates.
+- Preserved 252 deterministic CMS import payloads, 42 per language, without
+  writing the production CMS.
+- Preserved 414 pending native reviews, 0 approvals, blank reviewer/date
+  evidence, and 0 production-ready pages.
+- Semantically merged the multilingual routes, sitemap/hreflang candidates,
+  static export, Nginx/deployment gate, package scripts and tests onto the
+  deployed GSC cleanup base.
+- Combined validation passed: multilingual audit, 144/144 tests, lint, media
+  audit, 528/528 build, 414-page static export audit, 490 candidate sitemap,
+  zero query URLs, and six-language browser QA.
+- `multilingual:release-check` failed as designed and listed all 414 pending
+  pages; AWS deployment remains blocked.
+- Integration report:
+  `docs/reports/seo-growth-multilingual-integration-baseline-20260729.md`.
+
+- GSC Query URL Cleanup release commit:
+  `9130c58190a8ded92c06127f48fff682b831ded5`.
+- Non-force push to `origin/main` succeeded.
+- GitHub Actions run `30396659728` and job `90401164627` completed
+  successfully from the exact release SHA.
+- Production release:
+  `/srv/dualcorelink/frontend/releases/9130c58190a8-20260729-043302`.
+- Production sitemap contains 76/76 reachable English URLs; all six
+  non-English locale roots continue to 301 to English and the public localized
+  page count remains zero.
+- Production crawl counts are zero for tracking/filter query hrefs and for
+  sitemap, canonical, and hreflang query URLs.
+- Live browser QA passed for Product, Solution, Resource, legacy Contact,
+  category/series filtering, filter history, and legacy Products query
+  cleanup. Form attribution remained correct.
+- Production release report:
+  `docs/reports/seo-operations-gsc-query-url-cleanup-production-release-20260729.md`.
 
 - GSC query URL cleanup was reconstructed in an isolated worktree from
   `origin/main`, without copying the original worktree's multilingual, GSC/API,
@@ -278,21 +316,27 @@ or deployment file was modified by this phase.
 | query cleanup static scan | 0 internal query hrefs and 0 sitemap/canonical/hreflang query URLs |
 | query cleanup browser QA | Passed for tracked CTAs, filters, history, legacy URLs, session behavior, and 375px overflow |
 | multilingual production gate | Passed; no `ar`, `zh`, `de`, `es`, `vi`, or `fa` output directories |
+| query cleanup release commit | `9130c58190a8ded92c06127f48fff682b831ded5` |
+| query cleanup Actions run | Passed; run `30396659728`, job `90401164627` |
+| query cleanup production release | `/srv/dualcorelink/frontend/releases/9130c58190a8-20260729-043302` |
+| production query scan | 76 URLs; all tracking/filter href and sitemap/canonical/hreflang query counts are 0 |
+| production language gate | 76 English sitemap URLs; 0 public non-English pages |
+| production browser QA | Product, Solution, Resource, legacy Contact, filters, history, and legacy Products query cleanup passed |
 
 ## Git Status
 
 | Field | Value |
 |---|---|
-| Branch | `release/gsc-query-url-cleanup-20260729` |
-| HEAD | `6a6514f77040d8aad54478c11adbf5a1af02054b` |
-| HEAD commit | `infra: activate nginx redirect deployment` |
-| Remote committed state | `origin/main` = `6a6514f77040d8aad54478c11adbf5a1af02054b` |
-| Current phase commit | Pending |
-| Push status | Pending; no force push permitted |
-| Deployment | Pending release-candidate commit |
-| Production source SHA | Existing baseline remains `6a6514f77040d8aad54478c11adbf5a1af02054b` |
-| Release directory | Pending |
-| Worktree | Isolated and dirty only with the 11-file query cleanup scope |
+| Branch | `feature/multilingual-six-language-integration-20260729` |
+| HEAD | `9130c58190a8ded92c06127f48fff682b831ded5` |
+| HEAD commit | `fix: clean inquiry and product filter urls` |
+| Remote committed state | `origin/main` = `9130c58190a8ded92c06127f48fff682b831ded5` |
+| Current phase commit | None; integration remains uncommitted |
+| Push status | No integration push |
+| Deployment | Prohibited; release-check blocks 414 pending pages |
+| Production source SHA | `9130c58190a8ded92c06127f48fff682b831ded5` |
+| Release directory | `/srv/dualcorelink/frontend/releases/9130c58190a8-20260729-043302` |
+| Worktree | Isolated multilingual integration candidate; 92 classified changed/untracked paths |
 
 ## Risks
 
@@ -339,17 +383,18 @@ or deployment file was modified by this phase.
 
 Recommended next step:
 
-**Commit, push, deploy, and production-verify the isolated query cleanup**
+**Complete real native review before any multilingual release**
 
-1. Reconfirm `origin/main` is unchanged from the release base.
-2. Stage only the 11 files documented in the implementation report.
-3. Commit with `fix: clean inquiry and product filter urls`.
-4. Push without force, wait for the AWS production workflow, and verify the
-   English-only production artifact.
+1. Review all 414 locale/page decisions with qualified native reviewers.
+2. Apply documented corrections without fabricating reviewer evidence.
+3. Keep `productionReleaseReady=0` and do not deploy while
+   `multilingual:release-check` returns nonzero.
+4. Preserve the deployed GSC Query URL Cleanup during every later merge.
 
 Waiting for user confirmation:
 
-- approval to push and bootstrap the fixed activation helper;
-- instructions for the preserved GSC/API and historical analysis worktree.
+- real native-language reviewer decisions for the 414 candidate pages;
+- separate approval before any integration commit, push, CMS import or
+  deployment.
 
 Phase 3B-4 has not been started.

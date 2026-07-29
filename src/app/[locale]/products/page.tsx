@@ -9,7 +9,8 @@ import {
   ProductFilterControl,
   ProductFilteredList,
 } from "@/components/content/product-filtered-list";
-import { isLocale, locales } from "@/config/i18n";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
+import { isLocale } from "@/config/i18n";
 import { applicationScenarios } from "@/config/application-scenarios";
 import { productCategories } from "@/config/product-taxonomy";
 import { productSeries } from "@/config/product-series";
@@ -17,10 +18,14 @@ import { productDisplayImages } from "@/config/product-display-images";
 import { brand } from "@/config/brand";
 import {
   createMetadata,
-  createStaticHreflang,
   buildLocalizedPath,
   buildSiteUrl,
 } from "@/lib/seo";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 import {
   createBreadcrumbSchema,
   createCollectionPageSchema,
@@ -41,13 +46,19 @@ export async function generateMetadata({
 }: ProductsPageProps): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "product-listing",
+    "products",
+  );
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   const path = buildLocalizedPath(locale, "products");
   return createMetadata({
     locale,
     path,
     title: "Smart Hotel Products & OEM/ODM Devices",
     description: productsDescription,
-    hreflang: createStaticHreflang(locales, "products"),
+    hreflang: getPublicationHreflang("products"),
   });
 }
 
@@ -56,6 +67,14 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
   if (!isLocale(locale)) {
     notFound();
+  }
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "product-listing",
+    "products",
+  );
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
   const products = await productRepository.list(locale);

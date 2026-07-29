@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { ContactCta } from "@/components/content/contact-cta";
 import { ContentSection } from "@/components/content/content-section";
 import { MediaFrame } from "@/components/content/media-frame";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { JsonLd } from "@/components/seo/json-ld";
 import { brand, createWhatsAppUrl } from "@/config/brand";
 import { isLocale, locales } from "@/config/i18n";
@@ -17,7 +18,6 @@ import { ensureStaticExportParams } from "@/lib/routing/static-export";
 import {
   buildLocalizedPath,
   buildSiteUrl,
-  createContentHreflang,
   createMetadata,
 } from "@/lib/seo";
 import {
@@ -27,6 +27,12 @@ import {
 } from "@/lib/schema";
 import { stripHtml } from "@/lib/text";
 import { regionRepository } from "@/lib/wordpress/repositories";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+  localizedPublicationPages,
+} from "@/lib/localized-publication";
 
 type RegionPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -47,7 +53,14 @@ export async function generateStaticParams() {
       })),
     ),
   );
-  return ensureStaticExportParams([...staticPaths, ...paths.flat()]);
+  const localizedPaths = localizedPublicationPages
+    .filter((page) => page.pageType === "region")
+    .map((page) => ({ locale: page.locale, slug: page.slug }));
+  return ensureStaticExportParams([
+    ...staticPaths,
+    ...paths.flat(),
+    ...localizedPaths,
+  ]);
 }
 
 export async function generateMetadata({
@@ -55,6 +68,8 @@ export async function generateMetadata({
 }: RegionPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(locale, "region", slug);
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   const staticRegion = locale === "en" ? getRegionLandingPage(slug) : undefined;
   if (staticRegion) {
     const path = buildLocalizedPath(locale, `regions/${slug}`);
@@ -63,11 +78,7 @@ export async function generateMetadata({
       path,
       title: staticRegion.seoTitle,
       description: staticRegion.metaDescription,
-      hreflang: createContentHreflang({
-        locale,
-        currentPath: path,
-        published: {},
-      }),
+      hreflang: getPublicationHreflang(`regions/${slug}`),
     });
   }
   const region = await regionRepository.getBySlug(locale, slug);
@@ -79,11 +90,7 @@ export async function generateMetadata({
     title: stripHtml(region.title),
     description: stripHtml(region.marketSummary || region.excerpt),
     seo: region.seo,
-    hreflang: createContentHreflang({
-      locale,
-      currentPath: path,
-      published: region.hreflang,
-    }),
+    hreflang: getPublicationHreflang(`regions/${slug}`),
     openGraphImage: region.heroImage,
   });
 }
@@ -385,6 +392,10 @@ function StaticRegionPage({
 export default async function RegionPage({ params }: RegionPageProps) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
+  const localizedPage = getLocalizedPublicationPage(locale, "region", slug);
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
+  }
   const staticRegion = locale === "en" ? getRegionLandingPage(slug) : undefined;
   if (staticRegion) {
     return <StaticRegionPage locale="en" region={staticRegion} />;

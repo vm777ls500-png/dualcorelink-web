@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
-import { localeNames, visibleLocales, type Locale } from "@/config/i18n";
+import { localeNames, type Locale } from "@/config/i18n";
+import { getUiMessages } from "@/content/locales/ui";
+import {
+  multilingualLocales,
+  sixLanguageFullCoveragePaths,
+} from "@/lib/multilingual-publication-manifest";
 import {
   buildQuoteHref,
   type InquiryContentType,
@@ -15,6 +20,7 @@ type HeaderProps = {
 
 export function Header({ locale }: HeaderProps) {
   const pathname = usePathname();
+  const messages = getUiMessages(locale);
   const pathSegments = pathname.split("/").filter(Boolean);
   const section = pathSegments[1];
   const contentTypeBySection: Record<string, InquiryContentType> = {
@@ -40,6 +46,22 @@ export function Header({ locale }: HeaderProps) {
     ["FAQ", "faqs"],
     ["About", "about"],
   ] as const;
+  const localizedNavigation = [
+    [messages.navigation.products, "products"],
+    [messages.navigation.solutions, "solutions"],
+    [messages.navigation.regions, "regions"],
+    [messages.navigation.faqs, "faqs"],
+    [messages.navigation.about, "about"],
+  ] as const;
+  const navigation =
+    locale === "en" ? primaryNavigation : localizedNavigation;
+  const contentPath = pathSegments.slice(1).join("/");
+  const languageLocales = [
+    "en",
+    ...multilingualLocales.filter((item) =>
+      sixLanguageFullCoveragePaths[item].includes(contentPath),
+    ),
+  ] as const;
   const isActiveRoute = (href: string) => {
     const normalizedPathname = pathname.replace(/\/$/, "");
     const normalizedHref = href.replace(/\/$/, "");
@@ -54,16 +76,21 @@ export function Header({ locale }: HeaderProps) {
     <header className="site-header site-header-sticky">
       <div className="mx-auto flex min-h-18 max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4 sm:px-8 lg:px-12">
         <Link
-          href={`/${locale}/`}
+          href={
+            locale === "en" ? `/${locale}/` : `/${locale}/about/`
+          }
           className="text-lg font-bold text-foreground"
-          aria-label="DUALCORE LINK home"
+          aria-label={messages.homeLabel}
         >
           DUALCORE LINK
         </Link>
 
-        <nav aria-label="Primary" className="order-3 w-full lg:order-none lg:w-auto">
+        <nav
+          aria-label={messages.primaryNavigationLabel}
+          className="order-3 w-full lg:order-none lg:w-auto"
+        >
           <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
-            {primaryNavigation.map(([label, route]) => (
+            {navigation.map(([label, route]) => (
               <li key={route} className="flex">
                 <Link
                   href={`/${locale}/${route}/`}
@@ -89,15 +116,24 @@ export function Header({ locale }: HeaderProps) {
           attribution={headerAttribution}
           className="order-2 inline-flex min-h-10 items-center justify-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white lg:order-none"
         >
-          Get a Quote
+          {messages.quote}
         </TrackedInquiryLink>
 
-        <nav aria-label="Language" className="order-2 lg:order-none">
+        <nav
+          aria-label={messages.languageNavigationLabel}
+          className="order-2 lg:order-none"
+        >
           <ul className="flex flex-wrap items-center justify-end gap-x-3 gap-y-2 text-sm">
-            {visibleLocales.map((item) => (
+            {languageLocales.map((item) => (
               <li key={item}>
                 <Link
-                  href={`/${item}/`}
+                  href={
+                    contentPath
+                      ? `/${item}/${contentPath}/`
+                      : item === "en"
+                        ? "/en/"
+                        : `/${item}/about/`
+                  }
                   hrefLang={item}
                   aria-current={item === locale ? "page" : undefined}
                   className={

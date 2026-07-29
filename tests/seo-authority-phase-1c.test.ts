@@ -98,7 +98,7 @@ test("Phase 1C preserves entity and crawl-policy boundaries", async () => {
     "about",
     "page.tsx",
   );
-  assert.match(aboutSource, /createStaticHreflang\(locales, "about"\)/);
+  assert.match(aboutSource, /getPublicationHreflang\("about"\)/);
 
   for (const segments of [
     ["src", "app", "[locale]", "contact", "page.tsx"],

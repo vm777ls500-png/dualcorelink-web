@@ -9,6 +9,7 @@ import { ContentSection } from "@/components/content/content-section";
 import { MediaFrame } from "@/components/content/media-frame";
 import { ProductGallery } from "@/components/content/product-gallery";
 import { ProductProjectBuyingGuide } from "@/components/content/product-project-buying-guide";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { SpecificationList } from "@/components/content/specification-list";
 import { productDisplayImages } from "@/config/product-display-images";
 import { productGalleries } from "@/config/product-galleries";
@@ -18,7 +19,6 @@ import { ensureStaticExportParams } from "@/lib/routing/static-export";
 import {
   buildLocalizedPath,
   buildSiteUrl,
-  createContentHreflang,
   createMetadata,
 } from "@/lib/seo";
 import {
@@ -34,6 +34,12 @@ import {
 } from "@/lib/seo/product-metadata";
 import { productRepository } from "@/lib/wordpress/repositories";
 import type { SeoModel } from "@/types/content";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+  localizedPublicationPages,
+} from "@/lib/localized-publication";
 
 type ProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -98,7 +104,11 @@ export async function generateStaticParams() {
     ),
   );
 
-  return ensureStaticExportParams(paths.flat());
+  const localizedPaths = localizedPublicationPages
+    .filter((page) => page.pageType === "product")
+    .map((page) => ({ locale: page.locale, slug: page.slug }));
+
+  return ensureStaticExportParams([...paths.flat(), ...localizedPaths]);
 }
 
 export async function generateMetadata({
@@ -106,6 +116,8 @@ export async function generateMetadata({
 }: ProductPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(locale, "product", slug);
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   const product = await productRepository.getBySlug(locale, slug);
   if (!product) return {};
   const path = buildLocalizedPath(locale, `products/${slug}`);
@@ -130,11 +142,7 @@ export async function generateMetadata({
     title: productTitle,
     description: fallbackDescription,
     seo: metadataSeo,
-    hreflang: createContentHreflang({
-      locale,
-      currentPath: path,
-      published: product.hreflang,
-    }),
+    hreflang: getPublicationHreflang(`products/${slug}`),
     openGraphImage: product.seoOpenGraphImage ?? product.images[0],
     twitterImage:
       product.seoTwitterImage ??
@@ -148,6 +156,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   if (!isLocale(locale)) {
     notFound();
+  }
+  const localizedPage = getLocalizedPublicationPage(locale, "product", slug);
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
   const product = await productRepository.getBySlug(locale, slug);

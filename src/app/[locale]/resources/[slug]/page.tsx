@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import {
   ResourceConversionSections,
   ResourceMidArticleCta,
@@ -20,7 +21,6 @@ import { ensureStaticExportParams } from "@/lib/routing/static-export";
 import {
   buildLocalizedPath,
   buildSiteUrl,
-  createContentHreflang,
   createMetadata,
 } from "@/lib/seo";
 import {
@@ -29,6 +29,12 @@ import {
   createSchemaGraph,
 } from "@/lib/schema";
 import { buildQuoteHref } from "@/lib/inquiry/attribution";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+  localizedPublicationPages,
+} from "@/lib/localized-publication";
 
 type ResourcePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -38,10 +44,18 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return ensureStaticExportParams(
-    resources.map((resource) => ({
-      locale: "en",
-      slug: resource.slug,
-    })),
+    [
+      ...resources.map((resource) => ({
+        locale: "en" as const,
+        slug: resource.slug,
+      })),
+      ...localizedPublicationPages
+        .filter((page) => page.pageType === "resource")
+        .map((page) => ({
+          locale: page.locale,
+          slug: page.slug,
+        })),
+    ],
   );
 }
 
@@ -49,7 +63,10 @@ export async function generateMetadata({
   params,
 }: ResourcePageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  if (!isLocale(locale) || locale !== "en") return {};
+  if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(locale, "resource", slug);
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
+  if (locale !== "en") return {};
   const resource = getResourceBySlug(slug);
   if (!resource) return {};
   const path = buildLocalizedPath(locale, `resources/${resource.slug}`);
@@ -59,11 +76,7 @@ export async function generateMetadata({
     path,
     title: resource.seoTitle,
     description: resource.metaDescription,
-    hreflang: createContentHreflang({
-      locale,
-      currentPath: path,
-      published: {},
-    }),
+    hreflang: getPublicationHreflang(`resources/${resource.slug}`),
   });
 
   return {
@@ -139,7 +152,12 @@ function ResourceJsonLd({
 
 export default async function ResourcePage({ params }: ResourcePageProps) {
   const { locale, slug } = await params;
-  if (!isLocale(locale) || locale !== "en") notFound();
+  if (!isLocale(locale)) notFound();
+  const localizedPage = getLocalizedPublicationPage(locale, "resource", slug);
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
+  }
+  if (locale !== "en") notFound();
   const resource = getResourceBySlug(slug);
   if (!resource) notFound();
 

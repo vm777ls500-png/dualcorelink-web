@@ -4,33 +4,42 @@ Last updated: 2026-07-30
 
 ## Current Phase
 
-**SEO Growth Multilingual Phase M5E-7 — Production Chinese P0 CMS Publish**
+**SEO Growth Multilingual Phase M5E-7A — CMS Publish Closeout**
 
 Status: **BLOCKED**.
 
-Allan authorized one production publish on 2026-07-30 for CMS IDs
-`240`–`246`. The M5E-7 backup and strict pre-publish verify passed, and the
-single publish command returned exit code 0 with status `published` for all
-seven records.
+Allan accepted WordPress revision IDs `247`–`253` on 2026-07-30. Their parents
+are exactly CMS IDs `240`–`246`; all are `revision` / `inherit`, have no
+translation meta, return HTTP 404 as public documents, and are absent from
+Product/Solution REST collections and the sitemap. Posts `201 → 208` is
+therefore accepted as normal WordPress publication history.
 
-The seven target records are now publish, while their Core content, mapped
-ACF, SEO fields, all eight translation-meta values, reviewer, review date,
-payload hash, and English sources remain unchanged. Postmeta remained `2558`,
-the localized batch remains exactly IDs `240`–`246`, and no eighth localized
-record appeared.
+The read-only closeout confirmed Posts `208 → 208`, Postmeta `2558 → 2558`,
+Chinese publish `7`, draft `0`, no eighth localized record, and unchanged
+target, source, revision, count, and active-plugin fingerprints. Production
+services and public English pages are healthy, sitemap remains 76 URLs, all
+12 Chinese frontend paths remain 301, and public non-English pages remain 0.
 
-The phase is blocked because WordPress created seven `revision` / `inherit`
-rows, IDs `247`–`253`, one for each published target. Posts therefore changed
-from `201` to `208`, contrary to the explicitly authorized `201 → 201`
-acceptance boundary. No revision was deleted, and no retry, rollback, apply,
-manual database repair, frontend deployment, `main` push, or GSC request
-followed.
+The phase remains blocked because all seven REST pairs have correct
+languages, translation groups, bidirectional `translations`, direction, and
+Chinese SEO fields, but both sides omit the required `zh` entry from their
+REST `hreflang` objects. No production fix was attempted.
 
-M5F frontend release preparation is not authorized. The production state and
-root-only backup have been preserved for Allan's decision.
+M5F frontend release preparation is not authorized. No CMS write, revision
+deletion, rollback, plugin update, frontend deployment, `main` push, or GSC
+request occurred.
 
 Detailed evidence:
-`docs/reports/seo-growth-multilingual-m5e7-production-cms-publish-20260730.md`.
+`docs/reports/seo-growth-multilingual-m5e7a-cms-publish-closeout-20260730.md`.
+
+## Previous Phase M5E-7
+
+**SEO Growth Multilingual Phase M5E-7 — Production Chinese P0 CMS Publish**
+
+The authorized publish completed for IDs `240`–`246`. Its original BLOCKED
+decision was based on the seven revision rows. M5E-7A records Allan's
+acceptance of those revisions and supersedes that specific blocker; the
+separate REST hreflang blocker is documented above.
 
 ## Previous Phase M5E-6
 

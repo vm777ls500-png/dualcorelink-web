@@ -4,7 +4,39 @@
 
 Date: 2026-07-30
 
-Final status: **BLOCKED**.
+Historical final status: **BLOCKED**.
+
+## M5E-7A Acceptance Addendum
+
+Accepted by: **Allan**
+
+Acceptance date: **2026-07-30**
+
+Allan accepts the seven WordPress revisions created by the authorized publish:
+
+| Revision | Parent |
+|---:|---:|
+| 247 | 240 |
+| 248 | 241 |
+| 249 | 242 |
+| 250 | 243 |
+| 251 | 244 |
+| 252 | 245 |
+| 253 | 246 |
+
+The original Posts change from `201` to `208` is therefore accepted as normal
+WordPress publish history and is no longer treated as an unauthorized database
+change. The only accepted new rows are those seven revisions.
+
+M5E-7A then completed the remaining read-only closeout. The revision boundary,
+content integrity, database boundary, service health, sitemap, redirect, and
+query-URL checks passed. However, all seven REST pairs omit the expected `zh`
+entry from their `hreflang` objects even though their bidirectional
+`translations` objects are correct. M5E-7A is therefore **BLOCKED** and does
+not authorize M5F preparation.
+
+Full closeout evidence:
+`docs/reports/seo-growth-multilingual-m5e7a-cms-publish-closeout-20260730.md`.
 
 The single authorized publish command succeeded for CMS IDs `240`–`246`, but
 WordPress also created seven revision rows. This changed the `wp_posts` count
@@ -246,20 +278,22 @@ No revision was deleted and no database repair or rollback was attempted.
 
 ## 9. REST, Hreflang, and Health Check Status
 
-A targeted read-only REST sample confirmed both a Product pair (`48`/`240`)
-and a Solution pair (`142`/`244`) expose:
+A targeted read-only REST sample originally appeared to confirm both a Product
+pair (`48`/`240`) and a Solution pair (`142`/`244`). M5E-7A replaced that
+incomplete sample with a full seven-pair audit. The full audit confirmed:
 
 - source language `en`;
 - localized language `zh`;
 - the expected `shb2b-<type>-<source-id>` translation group;
 - exact `en` and `zh` translation paths;
-- exact `en` and `zh` hreflang paths;
 - LTR direction for Chinese.
 
-The remaining five REST pairs and the full post-publish service-health suite
-were intentionally not continued after the Posts-count blocker, in accordance
-with the instruction to stop immediately on any unauthorized database
-change.
+It also found that every source and target REST `hreflang` object contains the
+`en` path but omits the expected `zh` path. The earlier statement that the
+sample exposed exact `en` and `zh` hreflang paths is withdrawn.
+
+M5E-7A completed the remaining five REST pairs and the full post-publish
+service-health suite after Allan accepted the revision rows.
 
 Pre-publish evidence retained:
 
@@ -274,7 +308,10 @@ the phase stopped at the database-diff gate.
 
 ## 10. Final Decision
 
-Final decision: **BLOCKED**.
+Historical M5E-7 decision: **BLOCKED**.
+
+M5E-7A accepts the seven revision rows but remains **BLOCKED** on the missing
+REST `zh` hreflang relationships. It does not authorize M5F preparation.
 
 The seven authorized CMS records are currently published, and their approved
 content, ACF, translation metadata, and English sources remain intact.

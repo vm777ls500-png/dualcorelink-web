@@ -4,24 +4,38 @@ Last updated: 2026-07-29
 
 ## Current Phase
 
-**SEO Growth Multilingual Phase M5B — Chinese P0 Approval Application**
+**SEO Growth Multilingual Phase M5C — Chinese P0 Branch Preservation**
 
-Status: reviewer Allan approved the exact 12-page Chinese P0 batch on
-2026-07-29. The controlled import applied only those decisions: approved 12,
-pending 402, and `productionReleaseReady` 12. The local production candidate
-contains 12 Chinese pages, 88 sitemap URLs in total, and reciprocal hreflang
-for the 12 matching English/Chinese page pairs. The full six-language release
-check still fails closed on the remaining 402 pending pages.
+Status: the exact 12-page Chinese P0 approval batch, seven-record CMS import
+package, and partial-release controls were committed and non-force pushed only
+to `feature/multilingual-six-language-integration-20260729`. Approved remains
+12, pending remains 402, and `productionReleaseReady` remains 12.
 
-No commit, push, merge, production CMS write, or deployment occurred. Current
-production remains English-only with 76 sitemap URLs and zero public
-non-English pages.
+`origin/main` remains
+`9130c58190a8ded92c06127f48fff682b831ded5`. The feature push did not trigger
+the main-only production workflow. No merge, deployment, production CMS
+write, or GSC action occurred. Production remains English-only with 76 sitemap
+URLs and zero public non-English pages.
 
 This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
 
 ## Completed
 
+- Created implementation commit `06462b6` with the approved Chinese P0 batch,
+  seven-record CMS package, scoped static/sitemap/hreflang/Nginx controls,
+  deployment gate, scripts, and tests.
+- Created documentation commit `eb52676` with the M5A/M5B reports, final
+  Chinese review pack and decisions, and status handoff.
+- Non-force pushed only
+  `feature/multilingual-six-language-integration-20260729`.
+- Confirmed `origin/main` remained `9130c58190a8ded92c06127f48fff682b831ded5`.
+- Confirmed no feature-branch production Actions run, deployment, CMS write,
+  or GSC action occurred.
+- Confirmed production remains English-only: sitemap 76, localized sitemap
+  URLs 0, and `/zh/about/` still redirects to `/en/about/`.
+- Detailed preservation report:
+  `docs/reports/seo-growth-multilingual-m5c-zh-p0-branch-preservation-20260729.md`.
 - Applied Allan's 2026-07-29 approval to exactly 12 Chinese P0 URLs.
 - Preserved 57 pending Chinese pages and 345 pending pages across the other
   five languages.
@@ -370,21 +384,22 @@ or deployment file was modified by this phase.
 | Field | Value |
 |---|---|
 | Branch | `feature/multilingual-six-language-integration-20260729` |
-| HEAD | `67aabdea3851150b7a1091ddb759946f599d3860` |
-| HEAD commit | `docs: archive multilingual integration branch` |
+| HEAD before final M5C report commit | `eb5267662442edd2a487b99e6f9091ef77445af8` |
+| HEAD commit before final M5C report commit | `docs: archive chinese p0 approval` |
 | Remote committed state | `origin/main` = `9130c58190a8ded92c06127f48fff682b831ded5` |
-| Current phase commit | None; M5A/M5B changes remain uncommitted |
-| Push status | No M5A/M5B push |
-| Deployment | Not performed; the full release check blocks 402 pending pages |
+| Implementation commit | `06462b6` |
+| Documentation commit | `eb52676` |
+| Push status | Feature branch push succeeded; no push to `main` |
+| Deployment | Not performed; production workflow was not triggered |
 | Production source SHA | `9130c58190a8ded92c06127f48fff682b831ded5` |
 | Release directory | `/srv/dualcorelink/frontend/releases/9130c58190a8-20260729-043302` |
-| Worktree | Isolated multilingual integration branch with preserved M5A changes and current M5B approval changes |
+| Worktree | Clean before adding the final M5C preservation report |
 
 ## Risks
 
-- The 12-page Chinese P0 batch is only a local production candidate. Production
-  remains English-only until a separately approved CMS import, commit, push,
-  and deployment phase completes.
+- The 12-page Chinese P0 batch is preserved on a feature branch but is not a
+  production release. Production remains English-only until separately
+  approved CMS import, merge, and deployment phases complete.
 - The dedicated seven-record Chinese CMS payload has not been written to the
   production CMS.
 - The other 402 localized pages remain pending and must not be added to
@@ -432,18 +447,20 @@ or deployment file was modified by this phase.
 
 Recommended next step:
 
-**Review the isolated Chinese P0 release candidate before any production action**
+**Review the preserved feature branch before any production action**
 
-1. Review the M5B diff and seven-record CMS import package.
-2. Keep the 402 pending pages excluded from the production batch.
-3. Obtain separate approval before committing, pushing, importing CMS records,
+1. Review implementation commit `06462b6`, documentation commit `eb52676`,
+   and the M5C preservation report.
+2. Keep all 402 pending pages excluded from static output, sitemap, hreflang,
+   Nginx serving exceptions, and CMS import.
+3. Obtain separate approval before importing the seven CMS records, merging,
    or deploying the 12-page Chinese P0 release.
 4. Preserve the deployed GSC Query URL Cleanup during every later merge.
 
 Waiting for user confirmation:
 
 - separate approval for the Chinese P0 CMS import;
-- separate approval for the M5A/M5B commit, push, and production deployment;
+- separate approval for the Chinese P0 merge and production deployment;
 - future native-language review decisions for the remaining 402 candidates.
 
 Phase 3B-4 has not been started.

@@ -19,6 +19,9 @@ import {
   multilingualPublicationManifest,
   type MultilingualLocale,
 } from "../src/lib/multilingual-publication-manifest";
+import {
+  getMultilingualReleaseBatch,
+} from "../src/lib/multilingual-release-batches";
 
 function requestedLocale(): MultilingualLocale {
   const argument = process.argv.find((value) => value.startsWith("--locale="));
@@ -48,7 +51,35 @@ async function main() {
     "src/content/locales/native-review-decisions.ts",
   );
   const markdown = await readFile(decisionsPath, "utf8");
-  const rows = parseNativeReviewDecisions(markdown);
+  const baseRows = parseNativeReviewDecisions(markdown);
+  let rows = baseRows;
+
+  if (locale === "zh") {
+    const batch = getMultilingualReleaseBatch("zh", "p0");
+    const batchPath = path.resolve(
+      "docs/reviews/multilingual/zh-p0-final-decisions-20260729.md",
+    );
+    const batchRows = parseNativeReviewDecisions(
+      await readFile(batchPath, "utf8"),
+    );
+    const batchErrors = validateNativeReviewDecisions({
+      rows: batchRows,
+      locale,
+      expectedUrls: batch.localizedUrls,
+    });
+    if (batchErrors.length > 0) {
+      throw new Error(
+        `Chinese P0 review batch is invalid:\n${batchErrors.join("\n")}`,
+      );
+    }
+    const batchByUrl = new Map(
+      batchRows.map((row) => [row.localizedUrl, row]),
+    );
+    rows = baseRows.map(
+      (row) => batchByUrl.get(row.localizedUrl) ?? row,
+    );
+  }
+
   const expectedUrls = multilingualPublicationManifest
     .filter((entry) => entry.locale === locale)
     .map((entry) => entry.localizedUrl);

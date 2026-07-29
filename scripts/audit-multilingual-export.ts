@@ -4,6 +4,7 @@ import { localizedPublicationPages } from "../src/lib/localized-publication";
 
 const outputRoot = path.resolve("out");
 const errors: string[] = [];
+const englishSitemapBaseline = 76;
 
 function fail(page: string, message: string) {
   errors.push(`${page}: ${message}`);
@@ -15,7 +16,14 @@ function countMatches(value: string, pattern: RegExp): number {
 
 async function collectIndexPages(directory: string): Promise<string[]> {
   const result: string[] = [];
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
+  let entries;
+  try {
+    entries = await readdir(directory, { withFileTypes: true });
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return result;
+    throw error;
+  }
+  for (const entry of entries) {
     const absolutePath = path.join(directory, entry.name);
     if (entry.isDirectory()) {
       result.push(...(await collectIndexPages(absolutePath)));
@@ -178,8 +186,10 @@ const sitemap = await readFile(path.join(outputRoot, "sitemap.xml"), "utf8");
 if (/<loc>[^<]*\?[^<]*<\/loc>/i.test(sitemap)) {
   fail("sitemap", "contains a query URL");
 }
-if (countMatches(sitemap, /<url>/g) !== 490) {
-  fail("sitemap", "must contain 490 URLs");
+const expectedSitemapCount =
+  englishSitemapBaseline + localizedPublicationPages.length;
+if (countMatches(sitemap, /<url>/g) !== expectedSitemapCount) {
+  fail("sitemap", `must contain ${expectedSitemapCount} URLs`);
 }
 for (const page of localizedPublicationPages) {
   if (!sitemap.includes(`<loc>${page.localizedUrl}</loc>`)) {
@@ -206,7 +216,7 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `[multilingual:export-audit] passed ${localizedPublicationPages.length} localized pages; sitemap=490`,
+    `[multilingual:export-audit] passed ${localizedPublicationPages.length} localized pages; sitemap=${expectedSitemapCount}`,
   );
 }
 }

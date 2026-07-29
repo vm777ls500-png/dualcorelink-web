@@ -8,9 +8,25 @@ import {
 import { localizedFileContent } from "../src/content/locales";
 import { cmsTranslationImportPayload } from "../src/content/locales/cms-import";
 import { checkMultilingualProductionRelease } from "../src/lib/multilingual-release";
+import { getMultilingualReleaseBatch } from "../src/lib/multilingual-release-batches";
 import { multilingualPublicationManifest } from "../src/lib/multilingual-publication-manifest";
 
+function argumentValue(name: string): string | undefined {
+  return process.argv
+    .find((value) => value.startsWith(`--${name}=`))
+    ?.slice(name.length + 3);
+}
+
 async function main() {
+  const locale = argumentValue("locale");
+  const batch = argumentValue("batch");
+  if (Boolean(locale) !== Boolean(batch)) {
+    throw new Error("--locale and --batch must be provided together");
+  }
+  const releaseBatch =
+    locale && batch
+      ? getMultilingualReleaseBatch(locale, batch)
+      : undefined;
   const nginxConfig = await readFile(
     path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
     "utf8",
@@ -23,8 +39,12 @@ async function main() {
     visibleLocales,
     indexableLocales,
     nginxConfig,
+    releaseScopeUrls: releaseBatch?.localizedUrls,
   });
 
+  console.log(
+    `[multilingual:release-check] scope=${releaseBatch ? `${releaseBatch.locale}:${releaseBatch.batch}` : "full"}`,
+  );
   console.log(
     `[multilingual:release-check] candidates=${result.candidateCount} production-ready=${result.productionReleaseReadyCount}`,
   );

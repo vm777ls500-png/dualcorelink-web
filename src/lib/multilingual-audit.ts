@@ -20,6 +20,7 @@ import {
 } from "./multilingual-publication-manifest";
 import {
   findPublicationEvidence,
+  getCandidatePublicationEntries,
   getHreflangEligibleEntries,
   getSitemapEligibleEntries,
   getStaticExportEligibleEntries,
@@ -414,6 +415,10 @@ export function auditMultilingualFoundation(
     }
   }
 
+  const candidateEligible = getCandidatePublicationEntries(
+    input.manifest,
+    evidenceSource,
+  );
   const staticExportEligible = getStaticExportEligibleEntries(
     input.manifest,
     evidenceSource,
@@ -446,20 +451,40 @@ export function auditMultilingualFoundation(
       errors.push(`${locale} approved paths do not match the M4A full-coverage scope`);
     }
   }
+  if (candidateEligible.length !== expectedFullCoverageCount) {
+    errors.push(
+      "candidate eligibility must equal the approved M4A page count",
+    );
+  }
+  const declaredProductionReady = approvedEntries.filter((entry) =>
+    hasProductionReleaseGate(entry, true),
+  );
   if (
-    staticExportEligible.length !== expectedFullCoverageCount ||
-    sitemapEligible.length !== expectedFullCoverageCount ||
-    hreflangEligible.length !== expectedFullCoverageCount
+    staticExportEligible.length !== declaredProductionReady.length ||
+    sitemapEligible.length !== declaredProductionReady.length ||
+    hreflangEligible.length !== declaredProductionReady.length
   ) {
     errors.push(
-      "static export, sitemap, and hreflang eligibility must all equal the approved M4A page count",
+      "static export, sitemap, and hreflang eligibility must equal the production-release-ready page count",
     );
   }
 
   const eligibleUrls = new Set(
     staticExportEligible.map((entry) => new URL(entry.localizedUrl).pathname),
   );
+  const eligibleIdentities = new Set(
+    staticExportEligible.map(
+      (entry) => `${entry.locale}:${entry.pageType}:${entry.slug}`,
+    ),
+  );
   for (const content of input.localContent) {
+    if (
+      !eligibleIdentities.has(
+        `${content.locale}:${content.pageType}:${content.slug}`,
+      )
+    ) {
+      continue;
+    }
     for (const link of content.structuredContent.relatedLinks) {
       if (
         link.href.startsWith("/") &&
@@ -472,6 +497,13 @@ export function auditMultilingualFoundation(
     }
   }
   for (const translation of input.cmsTranslations) {
+    if (
+      !eligibleIdentities.has(
+        `${translation.locale}:${translation.contentType}:${translation.sourceEnglishSlug}`,
+      )
+    ) {
+      continue;
+    }
     for (const link of translation.translatedStructuredContent.relatedLinks) {
       if (
         link.href.startsWith("/") &&
@@ -510,11 +542,13 @@ export function auditMultilingualFoundation(
   }
   for (const marker of [
     "(?:ar|zh|de|es|vi|fa)",
-    "(?:products|solutions|resources|regions)/[a-z0-9-]+",
+    "Native-reviewed multilingual release batch: zh P0 (12 URLs).",
+    "hotel-smart-room-rcu-host-1",
+    "smart-hotel-automation-solution",
     "try_files $uri $uri/ $uri/index.html =404",
   ]) {
     if (!input.nginxConfig.includes(marker)) {
-      errors.push(`M4A Nginx publication exception is missing ${marker}`);
+      errors.push(`Nginx reviewed-batch publication exception is missing ${marker}`);
     }
   }
   const publicationLocation = input.nginxConfig
@@ -522,34 +556,34 @@ export function auditMultilingualFoundation(
     .map((line) => line.trim())
     .find(
       (line) =>
-        line.startsWith("location ~ ^/") &&
-        line.includes("(?:ar|zh|de|es|vi|fa)") &&
-        line.includes("(?:products|solutions|resources|regions)/[a-z0-9-]+"),
+        line.startsWith("location ~ ^/zh/") &&
+        line.includes("hotel-smart-room-rcu-host-1") &&
+        line.includes("smart-hotel-automation-solution"),
     );
   if (!publicationLocation) {
-    errors.push("M4A Nginx approved-family location is missing");
+    errors.push("Nginx Chinese P0 approved-batch location is missing");
   } else {
     const nginxPattern = publicationLocation
       .replace(/^location ~ /, "")
       .replace(/ \{$/, "");
     const approvedPathPattern = new RegExp(nginxPattern);
-    for (const locale of multilingualLocales) {
-      for (const approvedPath of sixLanguageFullCoveragePaths[locale]) {
-        if (!approvedPathPattern.test(`/${locale}/${approvedPath}/`)) {
-          errors.push(
-            `M4A Nginx exception does not cover /${locale}/${approvedPath}/`,
-          );
-        }
+    const readyEntries = input.manifest.filter((entry) =>
+      hasProductionReleaseGate(entry, true),
+    );
+    for (const entry of readyEntries) {
+      if (!approvedPathPattern.test(new URL(entry.localizedUrl).pathname)) {
+        errors.push(
+          `Nginx reviewed-batch exception does not cover ${entry.localizedUrl}`,
+        );
       }
     }
-    for (const blockedPath of [
-      "/ar/case-studies/example/",
-      "/zh/downloads/example/",
-      "/de/case-studies/example/",
-      "/fa/downloads/example/",
-    ]) {
-      if (approvedPathPattern.test(blockedPath)) {
-        errors.push(`M4A Nginx exception over-publishes ${blockedPath}`);
+    for (const entry of input.manifest.filter(
+      (candidate) => !hasProductionReleaseGate(candidate, true),
+    )) {
+      if (approvedPathPattern.test(new URL(entry.localizedUrl).pathname)) {
+        errors.push(
+          `Nginx reviewed-batch exception over-publishes ${entry.localizedUrl}`,
+        );
       }
     }
   }

@@ -16,6 +16,7 @@ import {
 export type MultilingualReleaseCheckInput = MultilingualAuditInput & {
   localContent: readonly LocalizedFileContent[];
   cmsTranslations: readonly CmsTranslationRecord[];
+  releaseScopeUrls?: readonly string[];
 };
 
 export type MultilingualReleaseCheckResult = {
@@ -54,27 +55,49 @@ export function checkMultilingualProductionRelease(
   }
 
   const candidates = input.manifest.filter(hasApprovedPublicationGate);
-  const cmsCandidates = candidates.filter(
-    (entry) => entry.pageType === "product" || entry.pageType === "solution",
-  );
-
-  if (candidates.length !== 414) {
+  const requestedScope = input.releaseScopeUrls
+    ? new Set(input.releaseScopeUrls)
+    : null;
+  const scopedCandidates = requestedScope
+    ? candidates.filter((entry) => requestedScope.has(entry.localizedUrl))
+    : candidates;
+  if (requestedScope) {
+    if (requestedScope.size !== input.releaseScopeUrls?.length) {
+      errors.push("release scope contains duplicate URLs");
+    }
+    for (const localizedUrl of requestedScope) {
+      if (!scopedCandidates.some((entry) => entry.localizedUrl === localizedUrl)) {
+        errors.push(`release scope has no approved manifest entry: ${localizedUrl}`);
+      }
+    }
+  } else if (candidates.length !== 414) {
     errors.push(
       `release scope must contain exactly 414 six-language candidates; found ${candidates.length}`,
     );
   }
+
+  const cmsCandidates = scopedCandidates.filter(
+    (entry) => entry.pageType === "product" || entry.pageType === "solution",
+  );
+  const cmsCandidateUrls = new Set(
+    cmsCandidates.map((entry) => entry.localizedUrl),
+  );
+  const scopedCmsTranslations = input.cmsTranslations.filter((payload) => {
+    const entry = findCmsManifestEntry(input.manifest, payload);
+    return entry ? cmsCandidateUrls.has(entry.localizedUrl) : false;
+  });
   if (
-    input.cmsTranslations.length !== 252 ||
-    cmsCandidates.length !== input.cmsTranslations.length
+    (!requestedScope && input.cmsTranslations.length !== 252) ||
+    cmsCandidates.length !== scopedCmsTranslations.length
   ) {
     errors.push(
-      `CMS payload/manifest mismatch: payloads=${input.cmsTranslations.length} manifest=${cmsCandidates.length}`,
+      `CMS payload/manifest mismatch: payloads=${scopedCmsTranslations.length} manifest=${cmsCandidates.length}`,
     );
   }
 
   let cmsPayloadStructurallyReadyCount = 0;
   let cmsPayloadNativeApprovedCount = 0;
-  for (const payload of input.cmsTranslations) {
+  for (const payload of scopedCmsTranslations) {
     const payloadErrors = validateCmsTranslation(payload);
     if (payloadErrors.length === 0) {
       cmsPayloadStructurallyReadyCount += 1;
@@ -108,7 +131,7 @@ export function checkMultilingualProductionRelease(
   }
 
   let productionReleaseReadyCount = 0;
-  for (const entry of candidates) {
+  for (const entry of scopedCandidates) {
     if (entry.nativeReviewStatus === "pending") {
       pendingUrls.push(entry.localizedUrl);
       errors.push(`native review pending: ${entry.localizedUrl}`);
@@ -129,23 +152,23 @@ export function checkMultilingualProductionRelease(
     }
   }
 
-  if (cmsPayloadNativeApprovedCount !== input.cmsTranslations.length) {
+  if (cmsPayloadNativeApprovedCount !== scopedCmsTranslations.length) {
     errors.push(
-      `CMS native review incomplete: ${cmsPayloadNativeApprovedCount}/${input.cmsTranslations.length} approved`,
+      `CMS native review incomplete: ${cmsPayloadNativeApprovedCount}/${scopedCmsTranslations.length} approved`,
     );
   }
-  if (productionReleaseReadyCount !== candidates.length) {
+  if (productionReleaseReadyCount !== scopedCandidates.length) {
     errors.push(
-      `production release readiness incomplete: ${productionReleaseReadyCount}/${candidates.length} ready`,
+      `production release readiness incomplete: ${productionReleaseReadyCount}/${scopedCandidates.length} ready`,
     );
   }
 
   return {
     errors,
     pendingUrls,
-    candidateCount: candidates.length,
+    candidateCount: scopedCandidates.length,
     productionReleaseReadyCount,
-    cmsPayloadCount: input.cmsTranslations.length,
+    cmsPayloadCount: scopedCmsTranslations.length,
     cmsPayloadStructurallyReadyCount,
     cmsPayloadNativeApprovedCount,
     technicalValidationPassed,

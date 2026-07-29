@@ -10,6 +10,7 @@ import {
 import { cmsTranslationImportPayload } from "@/content/locales/cms-import";
 import {
   hasApprovedPublicationGate,
+  hasProductionReleaseGate,
   type MultilingualPublicationEntry,
 } from "./multilingual-publication-manifest";
 
@@ -151,6 +152,19 @@ export function isPublicationEligible(
 }
 
 export function getStaticExportEligibleEntries(
+  entries: readonly MultilingualPublicationEntry[],
+  source: PublicationEvidenceSource = publicationEvidenceSource,
+): MultilingualPublicationEntry[] {
+  return entries.filter((entry) => {
+    const evidence = findPublicationEvidence(entry, source);
+    return (
+      isPublicationEligible(entry, evidence) &&
+      hasProductionReleaseGate(entry, true)
+    );
+  });
+}
+
+export function getCandidatePublicationEntries(
   entries: readonly MultilingualPublicationEntry[],
   source: PublicationEvidenceSource = publicationEvidenceSource,
 ): MultilingualPublicationEntry[] {

@@ -7,6 +7,7 @@ import {
   m4aCmsImportPayload,
   m4aCmsImportPayloadByLocale,
 } from "./m4a-generated";
+import { zhP0ReviewedCmsImportPayload } from "./zh-p0-reviewed";
 import { zhCmsImportPayload } from "./zh";
 
 export const cmsTranslationImportPayload = [
@@ -21,6 +22,7 @@ export {
   arCmsImportPayload,
   arM3aCmsImportPayload,
   zhCmsImportPayload,
+  zhP0ReviewedCmsImportPayload,
   zhM3aCmsImportPayload,
   m4aCmsImportPayload,
   m4aCmsImportPayloadByLocale,

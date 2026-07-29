@@ -417,7 +417,7 @@ export const zhCmsImportPayload: readonly CmsTranslationRecord[] = [
       faqs: [
         {
           question: "标准产品可以只改颜色吗？",
-          answer: "可按现有模具和工艺评估；若无需新模具，通常不产生新模具费用。",
+          answer: "可按现有模具和工艺评估；使用现有模具仅改变颜色时，不收取定制费。",
         },
         {
           question: "可以同时定制多种面板吗？",

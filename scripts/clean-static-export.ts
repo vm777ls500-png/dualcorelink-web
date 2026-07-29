@@ -7,10 +7,10 @@ import {
 } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { legacyLocales } from "../src/config/i18n";
+import { localizedPublicationPages } from "../src/lib/localized-publication";
 import { emptyStaticExportSlug } from "../src/lib/routing/static-export";
 import {
-  sixLanguageFullCoveragePaths,
+  multilingualLocales,
   type MultilingualLocale,
 } from "../src/lib/multilingual-publication-manifest";
 
@@ -89,8 +89,16 @@ export async function cleanStaticExport(
     path.join(resolvedOutputRoot, "en", "products", emptyStaticExportSlug),
     path.join(resolvedOutputRoot, "en", "solutions", emptyStaticExportSlug),
   ];
-  const fullyRetiredLocales = legacyLocales.filter(
-    (locale) => !sixLanguageFullCoveragePaths[locale as MultilingualLocale],
+  const approvedPathsByLocale = Object.fromEntries(
+    multilingualLocales.map((locale) => [
+      locale,
+      localizedPublicationPages
+        .filter((page) => page.locale === locale)
+        .map((page) => page.path),
+    ]),
+  ) as Record<MultilingualLocale, string[]>;
+  const fullyRetiredLocales = multilingualLocales.filter(
+    (locale) => approvedPathsByLocale[locale].length === 0,
   );
   const retiredLocaleDirectories = fullyRetiredLocales.map((locale) =>
     path.join(resolvedOutputRoot, locale),
@@ -106,9 +114,7 @@ export async function cleanStaticExport(
   }
 
   const removedLocalizedArtifacts: string[] = [];
-  for (const locale of Object.keys(
-    sixLanguageFullCoveragePaths,
-  ) as MultilingualLocale[]) {
+  for (const locale of multilingualLocales) {
     const localeRoot = path.join(resolvedOutputRoot, locale);
     try {
       const localeStats = await stat(localeRoot);
@@ -117,7 +123,7 @@ export async function cleanStaticExport(
         root: localeRoot,
         directory: localeRoot,
         locale,
-        approvedPaths: sixLanguageFullCoveragePaths[locale],
+        approvedPaths: approvedPathsByLocale[locale],
         removed: removedLocalizedArtifacts,
       });
     } catch (error) {

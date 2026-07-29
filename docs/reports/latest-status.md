@@ -4,6 +4,46 @@ Last updated: 2026-07-30
 
 ## Current Phase
 
+**SEO Growth Multilingual Phase M5E-5B — Production Plugin 1.0.1 Update and
+Read-Only Verify Recovery**
+
+Status: **PASS — M5E-6 Draft Content Review may begin**.
+
+Allan's 2026-07-30 approval pins plugin `1.0.1`, ZIP
+`c419df6e422a72cfdee40b932520fab717ccde01b80529aeeeaabf6e58024f44`,
+manifest
+`0fe777ecd1bf401f5f443e47a1ed52e13e61d9b901095e1300a988ac7df7e0c9`,
+and implementation commit
+`3ba48384387deb495a42516a303ecbec24bec175`.
+
+The approval record is commit
+`2d2b34094090aad316f32bdd50f27ee9fc4033b6`. It was pushed only to the
+CMS-safety feature branch; `origin/main` remains unchanged.
+
+The production `1.0.0` plugin was backed up outside the web root and replaced
+atomically with `1.0.1`. The new plugin remains active with 9 files, its
+WP-CLI namespace is registered, and it exposes no import REST or admin write
+surface.
+
+Exactly one read-only verify ran for
+`m5e5-zh-p0-20260729T145320Z`. It returned exit code 0 and passed all 7 drafts,
+IDs `240`–`246`. Before/after posts `201`, postmeta `2558`, draft hashes,
+English source hashes, modification timestamps, active plugins, and all eight
+translation-meta counts were identical.
+
+Production remains English-only: draft 7, publish 0, sitemap 76, twelve
+approved Chinese frontend URLs still 301, and public non-English pages 0.
+Nginx, PHP-FPM, MariaDB, CMS REST, and the public frontend are healthy.
+
+No apply retry, publish, CMS rollback, frontend deployment, `main` push, M5D
+resume, other-language operation, or GSC request occurred. Publish remains
+unauthorized.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m5e5b-production-verifier-recovery-20260730.md`.
+
+## Previous Phase M5E-5A
+
 **SEO Growth Multilingual Phase M5E-5A — Numeric Translation Meta
 Verification Fix**
 

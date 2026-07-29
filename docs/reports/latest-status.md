@@ -4,6 +4,69 @@ Last updated: 2026-07-30
 
 ## Current Phase
 
+**SEO Growth Multilingual Phase M5E-7 — Production Chinese P0 CMS Publish**
+
+Status: **BLOCKED**.
+
+Allan authorized one production publish on 2026-07-30 for CMS IDs
+`240`–`246`. The M5E-7 backup and strict pre-publish verify passed, and the
+single publish command returned exit code 0 with status `published` for all
+seven records.
+
+The seven target records are now publish, while their Core content, mapped
+ACF, SEO fields, all eight translation-meta values, reviewer, review date,
+payload hash, and English sources remain unchanged. Postmeta remained `2558`,
+the localized batch remains exactly IDs `240`–`246`, and no eighth localized
+record appeared.
+
+The phase is blocked because WordPress created seven `revision` / `inherit`
+rows, IDs `247`–`253`, one for each published target. Posts therefore changed
+from `201` to `208`, contrary to the explicitly authorized `201 → 201`
+acceptance boundary. No revision was deleted, and no retry, rollback, apply,
+manual database repair, frontend deployment, `main` push, or GSC request
+followed.
+
+M5F frontend release preparation is not authorized. The production state and
+root-only backup have been preserved for Allan's decision.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m5e7-production-cms-publish-20260730.md`.
+
+## Previous Phase M5E-6
+
+**SEO Growth Multilingual Phase M5E-6 — Production Chinese P0 Draft Content
+Review**
+
+Status: **PASS — eligible to enter M5E-7 Publish Authorization**.
+
+Production Draft IDs `240`–`246` were exported read-only and compared
+field-by-field with
+`src/content/locales/cms-import/zh-p0-reviewed.ts`. All five core fields,
+every allowed Product or Solution ACF field, all SEO and breadcrumb fields,
+all eight translation-meta fields, and the complete deterministic
+`post_content` renderer output matched exactly for all seven records.
+
+All seven drafts are valid UTF-8, have one H1, the expected content structure,
+and only approved Chinese internal links. The complete Chinese review found
+no missing text, mojibake, placeholder, non-technical English residue,
+duplicate thin content, or invented price, inventory, certification, customer,
+case, protocol, electrical parameter, performance, rating, or energy-saving
+claim.
+
+The zero-write audit passed: posts remained `201`, postmeta remained `2558`,
+Draft remained `7`, Publish remained `0`, all eight translation-meta counts
+remained `7`, and the complete draft, English-source, modification-time, and
+metadata-count fingerprints were identical before and after.
+
+No `apply`, `publish`, `rollback`, CMS write, frontend deployment, or `main`
+push occurred. Publish remains unauthorized; explicit M5E-7 authorization is
+required.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m5e6-production-draft-content-review-20260730.md`.
+
+## Previous Phase M5E-5B
+
 **SEO Growth Multilingual Phase M5E-5B — Production Plugin 1.0.1 Update and
 Read-Only Verify Recovery**
 

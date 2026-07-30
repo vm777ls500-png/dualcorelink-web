@@ -4,7 +4,31 @@
 
 Date: 2026-07-30
 
-Decision: **BLOCKED**
+Historical decision: **BLOCKED — superseded by M5E-7B**
+
+## M5E-7B Gate Correction
+
+M5E-7B established that the M5E-7A REST hreflang requirement was applied at
+the wrong publication boundary.
+
+- The production content-architecture plugin's REST field seeds only the
+  English frontend path for a published WordPress object.
+- The importer enriches `language`, `translation_group`, and `translations`;
+  it intentionally does not add a REST hreflang filter.
+- The Next.js frontend does not consume CMS REST hreflang when generating
+  HTML alternates. It derives frontend hreflang from the manifest entries that
+  pass the native-review and production-release gate.
+- Current Chinese frontend paths are still 301 and therefore must not appear
+  in production hreflang.
+- The local 12-page Chinese P0 release candidate has complete reciprocal
+  en/zh/x-default hreflang, sitemap 88, and no pending-locale or query URL.
+
+The REST `zh` omission is expected pre-release behavior rather than a code
+defect. This report's historical BLOCKED decision is superseded by:
+
+**PASS — M5F Frontend Release Preparation may begin.**
+
+This does not authorize frontend deployment.
 
 Accepted by: **Allan**
 
@@ -129,15 +153,20 @@ or database writes.
 
 No frontend deployment occurred.
 
-## 6. Final Decision
+## 6. Historical Decision and Correction
 
-**BLOCKED**
+M5E-7A originally returned **BLOCKED** because the seven REST translation
+pairs did not expose a `zh` hreflang entry.
 
-The accepted revision boundary and all zero-write, content-integrity, database,
-service-health, sitemap, redirect, and query-URL checks pass. However, the
-seven REST translation pairs do not expose the required `zh` hreflang entry.
+M5E-7B replaced that requirement with the correct staged gate:
 
-M5E-7 CMS publish cannot be formally closed, and M5F Chinese P0 frontend
-production release preparation is not authorized. A separately authorized
-read-only diagnosis or code-change phase is required; this closeout did not
-modify production.
+1. before frontend publication, CMS translation relations must be complete and
+   production hreflang must not point to the Chinese URLs that still return
+   301;
+2. the release candidate must contain only the approved 12-page batch with
+   reciprocal en/zh/x-default hreflang;
+3. after deployment, the 12 Chinese URLs, production HTML, and sitemap 88 must
+   be verified on the public frontend.
+
+The corrected outcome is **PASS for M5F preparation only**. No deployment was
+authorized or performed.

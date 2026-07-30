@@ -4,33 +4,40 @@ Last updated: 2026-07-30
 
 ## Current Phase
 
-**SEO Growth Multilingual Phase M5E-7A — CMS Publish Closeout**
+**SEO Growth Multilingual Phase M5E-7B — Hreflang Publication Boundary**
 
-Status: **BLOCKED**.
+Status: **PASS — M5F Frontend Release Preparation may begin**.
 
-Allan accepted WordPress revision IDs `247`–`253` on 2026-07-30. Their parents
-are exactly CMS IDs `240`–`246`; all are `revision` / `inherit`, have no
-translation meta, return HTTP 404 as public documents, and are absent from
-Product/Solution REST collections and the sitemap. Posts `201 → 208` is
-therefore accepted as normal WordPress publication history.
+M5E-7B proved that the M5E-7A REST `zh` hreflang requirement was applied at the
+wrong release stage. The content-architecture plugin seeds REST hreflang with
+the English frontend path, while the importer independently enriches
+language, translation group, and translations. The Next.js frontend does not
+consume CMS REST hreflang; it generates HTML hreflang from native-reviewed,
+production-release-ready manifest entries.
 
-The read-only closeout confirmed Posts `208 → 208`, Postmeta `2558 → 2558`,
-Chinese publish `7`, draft `0`, no eighth localized record, and unchanged
-target, source, revision, count, and active-plugin fingerprints. Production
-services and public English pages are healthy, sitemap remains 76 URLs, all
-12 Chinese frontend paths remain 301, and public non-English pages remain 0.
+Current production is correct: CMS translations are 7/7 complete, Chinese
+frontend pages are 0, all 12 Chinese paths remain 301, sitemap is 76, and the
+English frontend emits no hreflang pointing to the unreleased Chinese URLs.
 
-The phase remains blocked because all seven REST pairs have correct
-languages, translation groups, bidirectional `translations`, direction, and
-Chinese SEO fields, but both sides omit the required `zh` entry from their
-REST `hreflang` objects. No production fix was attempted.
+The local Chinese P0 candidate passed 12/12 static pages, self-canonical,
+lang/dir, reciprocal en/zh/x-default hreflang, 12 English reciprocal links,
+sitemap 88, zero query URL, zero pending Chinese page, and zero ar/de/es/vi/fa
+page. A new test prevents emitted hreflang from pointing to any locale path
+that remains on the legacy redirect.
 
-M5F frontend release preparation is not authorized. No CMS write, revision
-deletion, rollback, plugin update, frontend deployment, `main` push, or GSC
-request occurred.
+M5F preparation is allowed. Frontend deployment remains unauthorized. No CMS
+write, revision deletion, rollback, plugin update, frontend deployment,
+`main` push, or GSC request occurred.
 
 Detailed evidence:
-`docs/reports/seo-growth-multilingual-m5e7a-cms-publish-closeout-20260730.md`.
+`docs/reports/seo-growth-multilingual-m5e7b-hreflang-publication-boundary-20260730.md`.
+
+## Previous Phase M5E-7A
+
+M5E-7A accepted the seven normal WordPress revisions and confirmed a
+zero-write database and content boundary. Its REST hreflang BLOCKED decision
+is superseded by M5E-7B because production must not advertise Chinese paths
+that still return 301.
 
 ## Previous Phase M5E-7
 

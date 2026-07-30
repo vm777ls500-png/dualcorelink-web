@@ -30,10 +30,17 @@ change. The only accepted new rows are those seven revisions.
 
 M5E-7A then completed the remaining read-only closeout. The revision boundary,
 content integrity, database boundary, service health, sitemap, redirect, and
-query-URL checks passed. However, all seven REST pairs omit the expected `zh`
-entry from their `hreflang` objects even though their bidirectional
-`translations` objects are correct. M5E-7A is therefore **BLOCKED** and does
-not authorize M5F preparation.
+query-URL checks passed. It initially treated the absent REST `zh` hreflang
+entry as a blocker.
+
+M5E-7B subsequently proved that this was the wrong pre-release acceptance
+gate. The CMS REST hreflang field and frontend HTML hreflang are independent:
+the current production frontend has no public Chinese page and correctly does
+not advertise a URL that still returns 301. The reviewed 12-page release
+candidate independently generates complete en/zh/x-default hreflang and
+contains no pending or redirected locale. M5E-7B therefore supersedes the
+M5E-7A hreflang blocker with **PASS** and permits M5F preparation, but does not
+authorize deployment.
 
 Full closeout evidence:
 `docs/reports/seo-growth-multilingual-m5e7a-cms-publish-closeout-20260730.md`.
@@ -310,8 +317,11 @@ the phase stopped at the database-diff gate.
 
 Historical M5E-7 decision: **BLOCKED**.
 
-M5E-7A accepts the seven revision rows but remains **BLOCKED** on the missing
-REST `zh` hreflang relationships. It does not authorize M5F preparation.
+M5E-7A accepted the seven revision rows and initially remained **BLOCKED** on
+the missing REST `zh` hreflang relationships. M5E-7B proved that the REST
+field is not the production frontend hreflang source and that omitting an
+unreleased 301 URL is correct. The blocker is superseded; M5F preparation is
+allowed, while deployment remains unauthorized.
 
 The seven authorized CMS records are currently published, and their approved
 content, ACF, translation metadata, and English sources remain intact.

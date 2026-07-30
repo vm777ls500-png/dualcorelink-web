@@ -12,8 +12,9 @@ const [handler, template] = await Promise.all([
   readFile(handlerPath, "utf8"),
   readFile(templatePath, "utf8"),
 ]);
-const start = template.indexOf(startMarker);
-const end = template.indexOf(endMarker);
+const normalizedTemplate = template.replace(/\r\n/g, "\n");
+const start = normalizedTemplate.indexOf(startMarker);
+const end = normalizedTemplate.indexOf(endMarker);
 
 if (start < 0 || end < 0 || end <= start) {
   throw new Error("Generated handler markers are missing or invalid");
@@ -24,10 +25,10 @@ const indentedHandler = handler
   .split(/\r?\n/)
   .map((line) => (line ? `          ${line}` : ""))
   .join("\n");
-const generated = `${template.slice(0, start)}${startMarker}\n${indentedHandler}\n${template.slice(end)}`;
+const generated = `${normalizedTemplate.slice(0, start)}${startMarker}\n${indentedHandler}\n${normalizedTemplate.slice(end)}`;
 
 if (process.argv.includes("--check")) {
-  if (generated !== template) {
+  if (generated !== normalizedTemplate) {
     throw new Error("template.yaml inline Lambda code is out of sync");
   }
   console.log("Inline Lambda code is synchronized.");

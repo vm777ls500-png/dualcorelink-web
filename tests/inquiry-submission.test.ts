@@ -179,7 +179,7 @@ test("Contact integration retains fields on failure and resets only after accept
   assert.match(source, /serverSubmissionEnabled/);
 });
 
-test("pending Nginx snippet is exact-route, POST-only, bounded, and not active", async () => {
+test("production Nginx inquiry route is exact, POST-only, bounded, and included", async () => {
   const template = await readFile(
     path.join(process.cwd(), "deploy/nginx/inquiry-api.location.conf.template"),
     "utf8",
@@ -190,11 +190,18 @@ test("pending Nginx snippet is exact-route, POST-only, bounded, and not active",
   );
 
   assert.match(template, /location = \/api\/inquiry/);
+  assert.match(
+    template,
+    /if \(\$request_method != POST\) \{\s*return 404;\s*\}/,
+  );
   assert.match(template, /limit_except POST/);
   assert.match(template, /client_max_body_size 16k/);
   assert.match(template, /proxy_(?:connect|send|read)_timeout/);
   assert.match(template, /proxy_pass_request_headers off/);
   assert.match(template, /Cache-Control "no-store" always/);
   assert.doesNotMatch(template, /access_log.*request_body|proxy_cache\s+on/);
-  assert.doesNotMatch(productionTemplate, /location = \/api\/inquiry/);
+  assert.match(
+    productionTemplate,
+    /include \/etc\/nginx\/snippets\/dualcorelink-inquiry-api\.conf;/,
+  );
 });

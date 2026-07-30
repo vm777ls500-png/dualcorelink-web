@@ -4,7 +4,9 @@ import path from "node:path";
 import test from "node:test";
 
 const root = path.resolve(import.meta.dirname, "..");
-const template = await readFile(path.join(root, "template.yaml"), "utf8");
+const template = (
+  await readFile(path.join(root, "template.yaml"), "utf8")
+).replace(/\r\n/g, "\n");
 
 test("template keeps the approved resource names and parameterized dry-run mode", () => {
   assert.match(template, /FunctionName: dualcorelink-inquiry-submit/);

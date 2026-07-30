@@ -17,8 +17,9 @@ const helperPath = path.join(
   "activate-nginx-site-root.sh",
 );
 
-test("AWS deployment activates the versioned Nginx site after the static release", async () => {
+test("AWS deployment activates the inquiry route before the static release", async () => {
   const workflow = await readFile(workflowPath, "utf8");
+  const buildStep = workflow.indexOf("- name: Build static export");
   const deployStep = workflow.indexOf("- name: Deploy atomic release");
   const activationStep = workflow.indexOf(
     "- name: Activate versioned Nginx site configuration",
@@ -30,10 +31,23 @@ test("AWS deployment activates the versioned Nginx site after the static release
     "- name: Verify test-domain indexing protection",
   );
 
+  assert.ok(buildStep >= 0);
   assert.ok(deployStep >= 0);
-  assert.ok(activationStep > deployStep);
-  assert.ok(redirectStep > activationStep);
+  assert.ok(activationStep > buildStep);
+  assert.ok(deployStep > activationStep);
+  assert.ok(redirectStep > deployStep);
   assert.ok(finalStep > redirectStep);
+  assert.match(
+    workflow,
+    /NEXT_PUBLIC_INQUIRY_SUBMISSION_ENABLED/,
+  );
+  assert.match(workflow, /NEXT_PUBLIC_INQUIRY_ENDPOINT/);
+  assert.match(workflow, /INQUIRY_API_HOST/);
+  assert.match(
+    workflow,
+    /\^\[a-z0-9-\]\+\\\.execute-api\\\.ap-southeast-1\\\.amazonaws\\\.com\$/,
+  );
+  assert.match(workflow, /GET \/api\/inquiry must remain 404/);
   assert.match(workflow, /bash -n "\$repository_helper"/);
   assert.match(
     workflow,
@@ -97,12 +111,23 @@ test("root helper is restricted to the committed DualCoreLink site configuration
   assert.match(helper, /rev-parse --verify HEAD/);
   assert.match(
     helper,
-    /diff --quiet "\$source_sha" -- "\$relative_candidate"/,
+    /diff --quiet "\$source_sha" --\s*\\\s*"\$relative_candidate" "\$relative_inquiry_template"/,
   );
   assert.match(
     helper,
     /relative_candidate="deploy\/nginx\/dualcorelink\.com\.conf\.template"/,
   );
+  assert.match(
+    helper,
+    /relative_inquiry_template="deploy\/nginx\/inquiry-api\.location\.conf\.template"/,
+  );
+  assert.match(
+    helper,
+    /build_env="\/srv\/dualcorelink\/frontend\/shared\/build\.env"/,
+  );
+  assert.match(helper, /restricted inquiry API host is invalid/);
+  assert.match(helper, /exactly three host placeholders/);
+  assert.match(helper, /rendered inquiry snippet contains an unresolved placeholder/);
   assert.match(
     helper,
     /live_site="\/etc\/nginx\/sites-available\/\$\{site_name\}"/,
@@ -147,6 +172,13 @@ test("root helper backs up, atomically installs, validates, reloads, and restore
     helper,
     /install -o root -g root -m 0644 -- "\$backup" "\$restore_temp"/,
   );
+  assert.match(
+    helper,
+    /install -o root -g root -m 0600 --\s*\\\s*"\$rendered_inquiry" "\$live_inquiry_snippet"/,
+  );
+  assert.match(helper, /verify_local_inquiry_get/);
+  assert.match(helper, /local verification rejected GET \/api\/inquiry/);
+  assert.match(helper, /active inquiry snippet hash does not match/);
   assert.match(helper, /nginx_config_changed=no/);
   assert.match(helper, /nginx_config_changed=yes/);
 });

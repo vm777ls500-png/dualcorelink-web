@@ -103,6 +103,8 @@ server {
     gzip_vary on;
     gzip_types text/plain text/css application/json application/javascript application/xml image/svg+xml;
 
+    include /etc/nginx/snippets/dualcorelink-inquiry-api.conf;
+
     location = /solutions/oem-odm-custom-panel-solution/ {
         if (-f $document_root/en/solutions/oem-odm-custom-panel-solution/index.html) {
             return 301 https://dualcorelink.com/en/solutions/oem-odm-custom-panel-solution/;

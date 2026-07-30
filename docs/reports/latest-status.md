@@ -1,22 +1,59 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-07-28
+Last updated: 2026-07-30
 
 ## Current Phase
 
-**SEO Operations GSC Query URL Cleanup Release Candidate**
+**Conversion Reliability Phase 6C - Final Acceptance and Operations Handover**
 
-Status: a clean worktree based on the latest `origin/main` contains only the
-validated query URL cleanup. Contact CTAs use clean URLs while GA4 and form
-attribution remain session-scoped; Products filters use buttons and browser
-history instead of query links. The English-only build passes at 156/156 with
-76 sitemap URLs, no localized output directories, and zero query URLs across
-internal href, sitemap, canonical, and hreflang scans. No unreviewed
-multilingual content is present. Commit, push, deployment, and GSC requests
-have not yet occurred.
+Status: PASS. Server-side inquiry submission is production active. SES
+production access is `GRANTED`, the controlled production QA passed, and the
+operational handover is complete. The Contact form uses the same-origin
+server-side path while retaining mailto and WhatsApp fallbacks.
 
 This status file is the canonical short handoff entry point. Detailed evidence
 remains in the phase reports under `docs/reports/`.
+
+## Phase 6C Production Handover
+
+- Phase 6C Final Acceptance: PASS
+- Server-Side Inquiry Submission: Production Active
+- SES Production Access: GRANTED
+- Production QA: PASS
+- Operational Handover: Complete
+- CloudFormation stack: `UPDATE_COMPLETE`
+- Lambda state: `Active`
+- Lambda `DRY_RUN`: `false`
+- API route: `POST /api/inquiry`
+- public `GET /api/inquiry`: HTTP 404
+- DynamoDB TTL: enabled
+- CloudWatch retention: 14 days
+- Nginx configuration test: passed
+- failed services: 0
+- GitHub Actions run: `30516771066`
+- exact deployed SHA: `1d3cbb296321e089665b866a6e1dce82efb7c59e`
+- production release:
+  `/srv/dualcorelink/frontend/releases/1d3cbb296321-20260730-133155`
+- pre-handover docs baseline:
+  `4f3d4c301413cc4c8476cd83e3774b5a2ba77187`
+- final handover docs commit: the commit containing this status update
+
+Known nonblocking items:
+
+- Production did not replay an identical idempotency key because Gate 5
+  authorized only one production send; automated duplicate-path coverage and
+  DynamoDB conditional writes remain in place.
+- Custom MAIL FROM is not configured; SES default MAIL FROM is used.
+- The Rotary Knob product still requires a genuine same-model reshoot.
+- Existing dependency audit findings remain tracked separately.
+- The repository has no generic `npm test` alias; the defined data and inquiry
+  infrastructure suites pass when run explicitly.
+
+Current operational reference:
+`docs/runbooks/server-side-inquiry-operations.md`.
+
+Final acceptance report:
+`docs/reports/conversion-reliability-phase-6c-final-acceptance-20260730.md`.
 
 ## Completed
 
@@ -279,7 +316,7 @@ or deployment file was modified by this phase.
 | query cleanup browser QA | Passed for tracked CTAs, filters, history, legacy URLs, session behavior, and 375px overflow |
 | multilingual production gate | Passed; no `ar`, `zh`, `de`, `es`, `vi`, or `fa` output directories |
 
-## Git Status
+## Historical Git Status (2026-07-28)
 
 | Field | Value |
 |---|---|
@@ -335,7 +372,7 @@ or deployment file was modified by this phase.
 - The public source URLs remain 404 until Nginx activation; local
   configuration tests do not constitute production redirect verification.
 
-## Next Action
+## Historical Next Action (2026-07-28)
 
 Recommended next step:
 

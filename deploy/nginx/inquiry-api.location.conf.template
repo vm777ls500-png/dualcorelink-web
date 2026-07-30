@@ -4,10 +4,6 @@ location = /api/inquiry {
         return 404;
     }
 
-    limit_except POST {
-        deny all;
-    }
-
     client_max_body_size 16k;
     proxy_connect_timeout 3s;
     proxy_send_timeout 5s;

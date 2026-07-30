@@ -242,7 +242,10 @@ verify_local_inquiry_get() {
     --write-out '%{http_code}' \
     --resolve dualcorelink.com:443:127.0.0.1 \
     "https://dualcorelink.com/api/inquiry")"
-  [[ "$status" == "404" ]]
+  if [[ "$status" != "404" ]]; then
+    echo "Local GET /api/inquiry returned ${status}, expected 404" >&2
+    return 1
+  fi
 }
 
 if ! "$nginx_bin" -t >/dev/null; then

@@ -194,7 +194,7 @@ test("production Nginx inquiry route is exact, POST-only, bounded, and included"
     template,
     /if \(\$request_method != POST\) \{\s*return 404;\s*\}/,
   );
-  assert.match(template, /limit_except POST/);
+  assert.doesNotMatch(template, /limit_except/);
   assert.match(template, /client_max_body_size 16k/);
   assert.match(template, /proxy_(?:connect|send|read)_timeout/);
   assert.match(template, /proxy_pass_request_headers off/);

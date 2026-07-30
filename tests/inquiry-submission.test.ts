@@ -48,6 +48,25 @@ test("server submission feature flag is closed by default and requires the same-
   assert.equal(isServerInquirySubmissionEnabled("true", inquiryEndpointPath), true);
 });
 
+test("Contact copy describes server submission while retaining the email fallback", async () => {
+  const contactPage = await readFile(
+    path.join(
+      process.cwd(),
+      "src",
+      "app",
+      "[locale]",
+      "contact",
+      "page.tsx",
+    ),
+    "utf8",
+  );
+
+  assert.match(contactPage, /Submit inquiry details securely/);
+  assert.match(contactPage, /If delivery is unavailable/);
+  assert.match(contactPage, /mailto:/);
+  assert.doesNotMatch(contactPage, /Until backend email delivery/);
+});
+
 test("payload maps attribution without source title or other analytics PII", () => {
   assert.deepEqual(payload.attribution, {
     sourceType: "product",

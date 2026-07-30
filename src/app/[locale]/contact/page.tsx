@@ -12,6 +12,7 @@ import {
   createMetadata,
   createStaticHreflang,
 } from "@/lib/seo";
+import { isServerInquirySubmissionEnabled } from "@/lib/inquiry/submission";
 import { stripHtml } from "@/lib/text";
 import { pageRepository } from "@/lib/wordpress/repositories";
 
@@ -22,6 +23,10 @@ const officeAddress =
 const wechatId = "a13703333750";
 const phoneNumber = "+86 13703333750";
 const phoneHref = "tel:+8613703333750";
+const serverSubmissionEnabled = isServerInquirySubmissionEnabled(
+  process.env.NEXT_PUBLIC_INQUIRY_SUBMISSION_ENABLED,
+  process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT,
+);
 
 export async function generateMetadata({
   params,
@@ -192,8 +197,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <section id="get-a-quote" className="contact-quote-section mt-12">
         <h2 className="text-3xl font-semibold text-foreground">Get a Quote</h2>
         <p className="mt-3 max-w-3xl leading-7 text-muted">
-          Send inquiry details to our sales team. Until backend email delivery
-          is configured, this form opens an email draft to{" "}
+          {serverSubmissionEnabled
+            ? "Submit inquiry details securely to our sales team. If delivery is unavailable, use "
+            : "Send inquiry details to our sales team. This form opens an email draft to "}
           <a href={`mailto:${brand.emails.sales}`} className="font-semibold text-brand">
             {brand.emails.sales}
           </a>

@@ -8,12 +8,12 @@ import { ContentSection } from "@/components/content/content-section";
 import { CustomPanelConfigurationSection } from "@/components/content/custom-panel-configuration-section";
 import { MediaFrame } from "@/components/content/media-frame";
 import { RoomDisplayProjectReferencesSection } from "@/components/content/room-display-project-references-section";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { isLocale, locales } from "@/config/i18n";
 import { ensureStaticExportParams } from "@/lib/routing/static-export";
 import {
   buildLocalizedPath,
   buildSiteUrl,
-  createContentHreflang,
   createMetadata,
 } from "@/lib/seo";
 import {
@@ -26,6 +26,12 @@ import { buildQuoteHref } from "@/lib/inquiry/attribution";
 import { solutionRepository } from "@/lib/wordpress/repositories";
 import type { Locale } from "@/config/i18n";
 import type { RelatedContentModel } from "@/types/content";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+  localizedPublicationPages,
+} from "@/lib/localized-publication";
 
 type SolutionPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -280,7 +286,11 @@ export async function generateStaticParams() {
     ),
   );
 
-  return ensureStaticExportParams(paths.flat());
+  const localizedPaths = localizedPublicationPages
+    .filter((page) => page.pageType === "solution")
+    .map((page) => ({ locale: page.locale, slug: page.slug }));
+
+  return ensureStaticExportParams([...paths.flat(), ...localizedPaths]);
 }
 
 export async function generateMetadata({
@@ -288,6 +298,8 @@ export async function generateMetadata({
 }: SolutionPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(locale, "solution", slug);
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   const solution = await solutionRepository.getBySlug(locale, slug);
   if (!solution) return {};
   const path = buildLocalizedPath(locale, `solutions/${slug}`);
@@ -306,11 +318,7 @@ export async function generateMetadata({
     title: stripHtml(solution.title),
     description: stripHtml(solution.summary || solution.excerpt),
     seo,
-    hreflang: createContentHreflang({
-      locale,
-      currentPath: path,
-      published: solution.hreflang,
-    }),
+    hreflang: getPublicationHreflang(`solutions/${slug}`),
     openGraphImage: solution.seoOpenGraphImage ?? solution.heroImage,
     twitterImage:
       solution.seoTwitterImage ??
@@ -324,6 +332,10 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
 
   if (!isLocale(locale)) {
     notFound();
+  }
+  const localizedPage = getLocalizedPublicationPage(locale, "solution", slug);
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
   const solution = await solutionRepository.getBySlug(locale, slug);

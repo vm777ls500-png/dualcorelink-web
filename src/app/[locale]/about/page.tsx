@@ -2,14 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { brand } from "@/config/brand";
-import { isLocale, locales } from "@/config/i18n";
+import { isLocale } from "@/config/i18n";
 import {
   buildLocalizedPath,
   buildSiteUrl,
   createMetadata,
-  createStaticHreflang,
 } from "@/lib/seo";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 import {
   createBreadcrumbSchema,
   createSchemaGraph,
@@ -58,19 +63,25 @@ export async function generateMetadata({
 }: AboutPageProps): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(locale, "static", "about");
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
 
   return createMetadata({
     locale,
     path: buildLocalizedPath(locale, "about"),
     title,
     description,
-    hreflang: createStaticHreflang(locales, "about"),
+    hreflang: getPublicationHreflang("about"),
   });
 }
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const localizedPage = getLocalizedPublicationPage(locale, "static", "about");
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
+  }
 
   const aboutPath = buildLocalizedPath(locale, "about");
   const aboutUrl = buildSiteUrl(aboutPath);

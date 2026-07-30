@@ -22,7 +22,13 @@ local_health_host="${LOCAL_HEALTH_HOST:-aws.dualcorelink.com}"
 local_health_url="${LOCAL_HEALTH_URL:-https://aws.dualcorelink.com/en/}"
 expected_products="${EXPECTED_PRODUCTS:-36}"
 expected_resources="${EXPECTED_RESOURCES:-15}"
-expected_sitemap_urls="${EXPECTED_SITEMAP_URLS:-76}"
+expected_sitemap_urls="${EXPECTED_SITEMAP_URLS:-88}"
+expected_ar_pages="${EXPECTED_AR_PAGES:-0}"
+expected_zh_pages="${EXPECTED_ZH_PAGES:-12}"
+expected_de_pages="${EXPECTED_DE_PAGES:-0}"
+expected_es_pages="${EXPECTED_ES_PAGES:-0}"
+expected_vi_pages="${EXPECTED_VI_PAGES:-0}"
+expected_fa_pages="${EXPECTED_FA_PAGES:-0}"
 expected_articles="${EXPECTED_ARTICLES:-15}"
 expected_breadcrumbs="${EXPECTED_BREADCRUMBS:-15}"
 expected_product_schemas="${EXPECTED_PRODUCT_SCHEMAS:-36}"
@@ -51,12 +57,41 @@ for required in index.html 404.html sitemap.xml en/products/index.html en/resour
   fi
 done
 
-for retired_locale in zh de es ar vi fa; do
-  if [[ -e "$source_dir/$retired_locale" ]]; then
-    echo "Release gate failed: retired locale artifact found: $retired_locale" >&2
+validate_localized_paths() {
+  local locale="$1"
+  local expected_count="$2"
+  local count=0
+  local relative
+  local localized_url
+  if [[ ! -d "$source_dir/$locale" ]]; then
+    if [[ "$expected_count" == "0" ]]; then
+      return
+    fi
+    echo "Release gate failed: published locale is missing: $locale" >&2
     exit 1
   fi
-done
+  while IFS= read -r -d '' file; do
+    relative="${file#"$source_dir/$locale/"}"
+    relative="${relative%/index.html}"
+    localized_url="https://dualcorelink.com/$locale/$relative/"
+    if ! grep -F -q "<loc>$localized_url</loc>" "$source_dir/sitemap.xml"; then
+      echo "Release gate failed: localized page is absent from sitemap: $locale/$relative" >&2
+      exit 1
+    fi
+    count=$((count + 1))
+  done < <(find "$source_dir/$locale" -name index.html -print0)
+  if [[ "$count" != "$expected_count" ]]; then
+    echo "Release gate failed: $locale pages=$count, expected $expected_count" >&2
+    exit 1
+  fi
+}
+
+validate_localized_paths ar "$expected_ar_pages"
+validate_localized_paths zh "$expected_zh_pages"
+validate_localized_paths de "$expected_de_pages"
+validate_localized_paths es "$expected_es_pages"
+validate_localized_paths vi "$expected_vi_pages"
+validate_localized_paths fa "$expected_fa_pages"
 
 count_detail_files_with() {
   local pattern="$1"

@@ -8,14 +8,18 @@ import {
   buildQuoteHref,
   type InquiryContentType,
 } from "@/lib/inquiry/attribution";
+import type { Locale } from "@/config/i18n";
+import { getUiMessages } from "@/content/locales/ui";
+import { buildPublishedNavigationHref } from "@/lib/multilingual-release-batches";
 
 const officeLocation = "Cangzhou, Hebei, China";
 const wechatId = "a13703333750";
 const phoneNumber = "+86 13703333750";
 const phoneHref = "tel:+8613703333750";
 
-export function Footer() {
+export function Footer({ locale }: { locale: Locale }) {
   const pathname = usePathname();
+  const messages = getUiMessages(locale);
   const pathSegments = pathname.split("/").filter(Boolean);
   const contentTypeBySection: Record<string, InquiryContentType> = {
     products: "product",
@@ -29,6 +33,113 @@ export function Footer() {
     contentType: contentTypeBySection[pathSegments[1]] ?? ("site" as const),
     contentSlug: pathSegments[2],
   };
+
+  if (locale !== "en") {
+    const localizedLinks = [
+      [
+        messages.navigation.products,
+        buildPublishedNavigationHref(locale, "products"),
+      ],
+      [
+        messages.navigation.solutions,
+        buildPublishedNavigationHref(locale, "solutions"),
+      ],
+      [
+        messages.navigation.regions,
+        buildPublishedNavigationHref(locale, "regions"),
+      ],
+      [
+        messages.navigation.faqs,
+        buildPublishedNavigationHref(locale, "faqs"),
+      ],
+      [
+        messages.navigation.about,
+        buildPublishedNavigationHref(locale, "about"),
+      ],
+    ] as const;
+
+    return (
+      <footer className="border-t border-line bg-foreground text-white">
+        <div className="mx-auto grid max-w-7xl gap-7 px-5 py-9 text-sm sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:px-12">
+          <div>
+            <p className="font-semibold">{brand.name}</p>
+            <p className="mt-2 text-white/70">{brand.legalEntity}</p>
+            <Link
+              className="mt-3 block text-white/70"
+              href={`/${locale}/about/`}
+            >
+              {messages.navigation.about}
+            </Link>
+          </div>
+          <div>
+            <p className="font-semibold">{messages.footer.navigation}</p>
+            {localizedLinks.map(([label, href]) => (
+              <Link
+                key={href}
+                className="mt-2 block text-white/70"
+                href={href}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+          <div>
+            <p className="font-semibold">{messages.footer.contact}</p>
+            <TrackedInquiryLink
+              className="mt-3 inline-flex min-h-10 items-center border border-white/50 px-4 py-2 font-semibold text-white"
+              href={buildQuoteHref(locale, {
+                ...footerAttribution,
+                ctaPosition: "global_footer",
+              })}
+              channel="form"
+              attribution={{
+                ...footerAttribution,
+                ctaPosition: "global_footer",
+              }}
+            >
+              {messages.footer.projectInquiry}
+            </TrackedInquiryLink>
+            <TrackedInquiryLink
+              className="mt-3 block text-white/70"
+              href={`mailto:${brand.emails.sales}`}
+              channel="email"
+              attribution={{
+                ...footerAttribution,
+                ctaPosition: "footer_sales_email",
+              }}
+            >
+              {brand.emails.sales}
+            </TrackedInquiryLink>
+          </div>
+          <div>
+            <p className="font-semibold">{messages.footer.whatsapp}</p>
+            <TrackedInquiryLink
+              className="mt-2 block text-white/70"
+              href={`https://wa.me/${brand.whatsapp.international}`}
+              channel="whatsapp"
+              attribution={{
+                ...footerAttribution,
+                ctaPosition: "footer_whatsapp_number",
+              }}
+            >
+              {brand.whatsapp.display}
+            </TrackedInquiryLink>
+            <div className="mt-4 space-y-1 text-white/70">
+              <p>
+                {messages.footer.office}: {officeLocation}
+              </p>
+              <p>
+                {messages.footer.wechat}: {wechatId}
+              </p>
+              <a className="block" href={phoneHref}>
+                {messages.footer.phone}: {phoneNumber}
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer className="border-t border-line bg-foreground text-white">

@@ -1,0 +1,75 @@
+# Vietnamese Native Review Decisions
+
+Allowed `Decision` values: `approved`, `changes_required`, `pending`. An `approved` or `changes_required` row must include a real reviewer, a valid ISO date (YYYY-MM-DD) and Notes. A `pending` row must leave Reviewer and Review Date blank.
+
+| Localized URL | Decision | Reviewer | Review Date | Notes |
+|---|---|---|---|---|
+| https://dualcorelink.com/vi/products/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-ceiling-background-speaker/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/brushed-aluminum-voice-telephone-information-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/borui-red-matte-triple-socket-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-series-dual-vertical-socket-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-footlight-night-light-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-four-key-scene-control-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-three-key-music-control-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-single-key-switch-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-smart-room-rcu-host-3/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-voice-telephone-information-socket/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/brushed-aluminum-thermostat-control-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/brushed-aluminum-sos-alarm-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/vintage-gold-four-key-smart-switch-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/vintage-gold-key-card-energy-saver-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/borui-red-matte-room-status-four-key-switch-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/borui-red-matte-usb-five-hole-socket/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-delivery-robot-charging-dock/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-smart-room-rcu-host-2/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-curtain-motor/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/brushed-aluminum-86-base-doorbell-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-four-key-curtain-control-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-key-card-energy-saver-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/smart-usb-five-hole-socket/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-smart-room-rcu-host-1/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/rcu-controller-cabinet/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-guest-room-doorbell/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-room-door-magnetic-sensor/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/infrared-repeater/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/embedded-human-presence-sensor/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-smart-delivery-cabinet/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/hotel-delivery-robot/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/ai-music-control-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/thermostat-hvac-control-panel/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/rotary-knob-smart-control-display/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/ai-large-smart-display/ | pending |  |  |  |
+| https://dualcorelink.com/vi/products/86-type-ai-smart-control-display/ | pending |  |  |  |
+| https://dualcorelink.com/vi/solutions/ | pending |  |  |  |
+| https://dualcorelink.com/vi/solutions/oem-odm-custom-panel-solution/ | pending |  |  |  |
+| https://dualcorelink.com/vi/solutions/hotel-delivery-robot-solution/ | pending |  |  |  |
+| https://dualcorelink.com/vi/solutions/rcu-room-control-solution/ | pending |  |  |  |
+| https://dualcorelink.com/vi/solutions/ai-smart-display-solution/ | pending |  |  |  |
+| https://dualcorelink.com/vi/solutions/smart-hotel-automation-solution/ | pending |  |  |  |
+| https://dualcorelink.com/vi/solutions/hotel-guest-room-control-solution/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/what-is-hotel-rcu-room-control-system/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-rcu-wiring-system-architecture-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-rcu-buying-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/smart-hotel-room-control-system-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-smart-switch-panel-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/oem-odm-smart-panel-customization-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-guest-room-automation-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-room-control-system-cost-factors/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-occupancy-sensor-selection-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-doorplate-room-display-buying-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/oem-odm-hotel-control-panel-development-process/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-renovation-smart-room-upgrade-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/smart-panel-material-finish-selection-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/knx-vs-rcu-hotel-room-control/ | pending |  |  |  |
+| https://dualcorelink.com/vi/resources/hotel-guest-room-control-interfaces-guide/ | pending |  |  |  |
+| https://dualcorelink.com/vi/regions/ | pending |  |  |  |
+| https://dualcorelink.com/vi/regions/middle-east/ | pending |  |  |  |
+| https://dualcorelink.com/vi/regions/saudi-arabia/ | pending |  |  |  |
+| https://dualcorelink.com/vi/regions/uae/ | pending |  |  |  |
+| https://dualcorelink.com/vi/regions/southeast-asia/ | pending |  |  |  |
+| https://dualcorelink.com/vi/regions/vietnam/ | pending |  |  |  |
+| https://dualcorelink.com/vi/about/ | pending |  |  |  |
+| https://dualcorelink.com/vi/faqs/ | pending |  |  |  |
+| https://dualcorelink.com/vi/contact/ | pending |  |  |  |

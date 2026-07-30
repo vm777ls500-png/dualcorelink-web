@@ -85,6 +85,9 @@ jobs:
       - name: Audit product media
         run: npm run media:audit
 
+      - name: Enforce multilingual production release gate
+        run: npm run multilingual:release-check -- --locale=zh --batch=p0
+
       - name: Build static export
         shell: bash
         run: |

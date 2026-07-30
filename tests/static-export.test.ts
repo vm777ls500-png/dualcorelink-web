@@ -59,6 +59,58 @@ test("static export cleanup removes only collection sentinels", async () => {
   }
 });
 
+test("static export keeps only the approved Chinese P0 batch", async () => {
+  const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "dcl-m5b-clean-"));
+  const approvedChineseAbout = path.join(temporaryRoot, "zh", "about");
+  const approvedChinese = path.join(
+    temporaryRoot,
+    "zh",
+    "products",
+    "smart-four-key-scene-control-panel",
+  );
+  const blockedArabic = path.join(temporaryRoot, "ar", "about");
+  const blockedChinese = path.join(
+    temporaryRoot,
+    "zh",
+    "downloads",
+    "unpublished-download",
+  );
+
+  try {
+    for (const directory of [
+      approvedChineseAbout,
+      approvedChinese,
+      blockedArabic,
+      blockedChinese,
+    ]) {
+      await mkdir(directory, { recursive: true });
+      await writeFile(
+        path.join(directory, "index.html"),
+        '<html lang="en" class="test"><body>ok</body></html>',
+      );
+    }
+    await writeFile(path.join(temporaryRoot, "ar.html"), "retired root");
+    await writeFile(path.join(temporaryRoot, "zh.txt"), "retired root");
+
+    await cleanStaticExport(temporaryRoot);
+
+    assert.match(
+      await readFile(path.join(approvedChineseAbout, "index.html"), "utf8"),
+      /<html lang="zh" dir="ltr"/,
+    );
+    assert.match(
+      await readFile(path.join(approvedChinese, "index.html"), "utf8"),
+      /<html lang="zh" dir="ltr"/,
+    );
+    await assert.rejects(readFile(path.join(blockedArabic, "index.html")));
+    await assert.rejects(readFile(path.join(blockedChinese, "index.html")));
+    await assert.rejects(readFile(path.join(temporaryRoot, "ar.html")));
+    await assert.rejects(readFile(path.join(temporaryRoot, "zh.txt")));
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
+});
+
 test("static export cleanup CLI reports real failures with a nonzero exit", async () => {
   const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "dcl-export-error-"));
   const invalidOutputRoot = path.join(temporaryRoot, "not-a-directory");
@@ -80,7 +132,7 @@ test("static export cleanup CLI reports real failures with a nonzero exit", asyn
   }
 });
 
-test("AWS export baselines match the current route and public content counts", async () => {
+test("AWS export baselines include only the approved Chinese P0 batch", async () => {
   const workflow = await readFile(
     path.join(projectRoot, ".github", "workflows", "aws-production-deploy.yml"),
     "utf8",
@@ -96,7 +148,11 @@ test("AWS export baselines match the current route and public content counts", a
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(
     workflow,
-    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
+    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Enforce multilingual production release gate\s+run: npm run multilingual:release-check -- --locale=zh --batch=p0[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
+  );
+  assert.match(
+    workflow,
+    /- name: Validate inquiry infrastructure\s+run: npm run test:inquiry-infra/,
   );
   const mediaAuditStep = workflow.match(
     /- name: Audit product media\s+run: npm run media:audit/,
@@ -104,12 +160,22 @@ test("AWS export baselines match the current route and public content counts", a
   assert.ok(mediaAuditStep);
   assert.doesNotMatch(mediaAuditStep, /continue-on-error|\|\| true/);
   assert.match(deployScript, /EXPECTED_RESOURCES:-15/);
-  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-76/);
+  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-88/);
+  assert.match(deployScript, /EXPECTED_AR_PAGES:-0/);
+  assert.match(deployScript, /EXPECTED_ZH_PAGES:-12/);
+  assert.match(deployScript, /EXPECTED_DE_PAGES:-0/);
+  assert.match(deployScript, /EXPECTED_ES_PAGES:-0/);
+  assert.match(deployScript, /EXPECTED_VI_PAGES:-0/);
+  assert.match(deployScript, /EXPECTED_FA_PAGES:-0/);
   assert.match(deployScript, /EXPECTED_ARTICLES:-15/);
   assert.match(deployScript, /EXPECTED_BREADCRUMBS:-15/);
   assert.match(deployScript, /forbidden environment reference found/);
-  assert.match(deployScript, /for retired_locale in zh de es ar vi fa/);
-  assert.match(deployScript, /retired locale artifact found/);
+  assert.match(deployScript, /validate_localized_paths ar/);
+  assert.match(deployScript, /validate_localized_paths zh/);
+  assert.match(deployScript, /validate_localized_paths de/);
+  assert.match(deployScript, /validate_localized_paths es/);
+  assert.match(deployScript, /validate_localized_paths vi/);
+  assert.match(deployScript, /validate_localized_paths fa/);
 });
 
 test("Nginx retires only known legacy locales with verified English targets", async () => {

@@ -1,0 +1,145 @@
+import { readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import {
+  indexableLocales,
+  locales,
+  visibleLocales,
+} from "../src/config/i18n";
+import { localizedFileContent } from "../src/content/locales";
+import { cmsTranslationImportPayload } from "../src/content/locales/cms-import";
+import { nativeReviewEvidenceOverrides } from "../src/content/locales/native-review-decisions";
+import { auditMultilingualFoundation } from "../src/lib/multilingual-audit";
+import {
+  mergeNativeReviewEvidence,
+  parseNativeReviewDecisions,
+  renderNativeReviewEvidenceModule,
+  validateNativeReviewDecisions,
+} from "../src/lib/native-review-evidence";
+import {
+  multilingualPublicationManifest,
+  type MultilingualLocale,
+} from "../src/lib/multilingual-publication-manifest";
+import {
+  getMultilingualReleaseBatch,
+} from "../src/lib/multilingual-release-batches";
+
+function requestedLocale(): MultilingualLocale {
+  const argument = process.argv.find((value) => value.startsWith("--locale="));
+  const locale = argument?.slice("--locale=".length);
+  const supportedLocales: readonly MultilingualLocale[] = [
+    "ar",
+    "zh",
+    "de",
+    "es",
+    "vi",
+    "fa",
+  ];
+  if (!supportedLocales.includes(locale as MultilingualLocale)) {
+    throw new Error(
+      `Native-review import requires --locale=${supportedLocales.join("|")}`,
+    );
+  }
+  return locale as MultilingualLocale;
+}
+
+async function main() {
+  const locale = requestedLocale();
+  const decisionsPath = path.resolve(
+    `docs/reviews/multilingual/${locale}-native-review-decisions-20260729.md`,
+  );
+  const statePath = path.resolve(
+    "src/content/locales/native-review-decisions.ts",
+  );
+  const markdown = await readFile(decisionsPath, "utf8");
+  const baseRows = parseNativeReviewDecisions(markdown);
+  let rows = baseRows;
+
+  if (locale === "zh") {
+    const batch = getMultilingualReleaseBatch("zh", "p0");
+    const batchPath = path.resolve(
+      "docs/reviews/multilingual/zh-p0-final-decisions-20260729.md",
+    );
+    const batchRows = parseNativeReviewDecisions(
+      await readFile(batchPath, "utf8"),
+    );
+    const batchErrors = validateNativeReviewDecisions({
+      rows: batchRows,
+      locale,
+      expectedUrls: batch.localizedUrls,
+    });
+    if (batchErrors.length > 0) {
+      throw new Error(
+        `Chinese P0 review batch is invalid:\n${batchErrors.join("\n")}`,
+      );
+    }
+    const batchByUrl = new Map(
+      batchRows.map((row) => [row.localizedUrl, row]),
+    );
+    rows = baseRows.map(
+      (row) => batchByUrl.get(row.localizedUrl) ?? row,
+    );
+  }
+
+  const expectedUrls = multilingualPublicationManifest
+    .filter((entry) => entry.locale === locale)
+    .map((entry) => entry.localizedUrl);
+  const decisionErrors = validateNativeReviewDecisions({
+    rows,
+    locale,
+    expectedUrls,
+  });
+  if (decisionErrors.length > 0) {
+    throw new Error(decisionErrors.join("\n"));
+  }
+
+  const nginxConfig = await readFile(
+    path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
+    "utf8",
+  );
+  const audit = auditMultilingualFoundation({
+    manifest: multilingualPublicationManifest,
+    localContent: localizedFileContent,
+    cmsTranslations: cmsTranslationImportPayload,
+    configuredLocales: locales,
+    visibleLocales,
+    indexableLocales,
+    nginxConfig,
+  });
+  if (audit.errors.length > 0) {
+    throw new Error(
+      `Technical multilingual validation failed; review state was not written:\n${audit.errors.join("\n")}`,
+    );
+  }
+
+  const next = mergeNativeReviewEvidence({
+    existing: nativeReviewEvidenceOverrides,
+    locale,
+    rows,
+    technicalValidationPassed: true,
+  });
+  await writeFile(
+    statePath,
+    renderNativeReviewEvidenceModule(next),
+    "utf8",
+  );
+
+  const counts = {
+    pending: rows.filter((row) => row.decision === "pending").length,
+    approved: rows.filter((row) => row.decision === "approved").length,
+    changesRequired: rows.filter(
+      (row) => row.decision === "changes_required",
+    ).length,
+  };
+  console.log(
+    `[multilingual:apply-native-review] ${locale}: pending=${counts.pending} approved=${counts.approved} changes-required=${counts.changesRequired}`,
+  );
+  console.log(
+    `[multilingual:apply-native-review] preserved other-locale overrides=${next.filter((entry) => entry.locale !== locale).length}`,
+  );
+}
+
+main().catch((error: unknown) => {
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(`[multilingual:apply-native-review] blocked: ${message}`);
+  process.exitCode = 1;
+});

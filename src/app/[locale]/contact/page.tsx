@@ -5,16 +5,21 @@ import { ContactCard } from "@/components/contact/contact-card";
 import { GetQuoteForm } from "@/components/contact/get-quote-form";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 import { PageHeading } from "@/components/content/page-heading";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { brand } from "@/config/brand";
-import { isLocale, locales } from "@/config/i18n";
+import { isLocale } from "@/config/i18n";
 import {
   buildLocalizedPath,
   createMetadata,
-  createStaticHreflang,
 } from "@/lib/seo";
 import { isServerInquirySubmissionEnabled } from "@/lib/inquiry/submission";
 import { stripHtml } from "@/lib/text";
 import { pageRepository } from "@/lib/wordpress/repositories";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 
 type ContactPageProps = { params: Promise<{ locale: string }> };
 
@@ -33,6 +38,8 @@ export async function generateMetadata({
 }: ContactPageProps): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(locale, "static", "contact");
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   const page = await pageRepository.getBySlug(locale, "contact");
   return createMetadata({
     locale,
@@ -43,13 +50,17 @@ export async function generateMetadata({
         "Contact DUALCORE LINK for smart home products, OEM projects, distribution, and integration support.",
     ),
     seo: page?.seo,
-    hreflang: createStaticHreflang(locales, "contact"),
+    hreflang: getPublicationHreflang("contact"),
   });
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const localizedPage = getLocalizedPublicationPage(locale, "static", "contact");
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
+  }
   const page = await pageRepository.getBySlug(locale, "contact");
   const whatsappMessage = `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
   const body = stripHtml(page?.content || "");

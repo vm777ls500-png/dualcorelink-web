@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { resources } from "@/config/resources";
-import { isLocale, locales } from "@/config/i18n";
+import { isLocale } from "@/config/i18n";
 import {
   buildLocalizedPath,
   buildSiteUrl,
   createMetadata,
-  createStaticHreflang,
 } from "@/lib/seo";
 import {
   createBreadcrumbSchema,
@@ -16,6 +15,12 @@ import {
   createSchemaGraph,
 } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/json-ld";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 
 type ResourcesPageProps = {
   params: Promise<{ locale: string }>;
@@ -127,6 +132,13 @@ export async function generateMetadata({
 }: ResourcesPageProps): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "resource-listing",
+    "resources",
+  );
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
+  if (locale !== "en") return {};
   const path = buildLocalizedPath(locale, "resources");
 
   return createMetadata({
@@ -134,13 +146,22 @@ export async function generateMetadata({
     path,
     title: "Resources",
     description: resourcesDescription,
-    hreflang: createStaticHreflang(locales, "resources"),
+    hreflang: getPublicationHreflang("resources"),
   });
 }
 
 export default async function ResourcesPage({ params }: ResourcesPageProps) {
   const { locale } = await params;
-  if (!isLocale(locale) || locale !== "en") notFound();
+  if (!isLocale(locale)) notFound();
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "resource-listing",
+    "resources",
+  );
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
+  }
+  if (locale !== "en") notFound();
 
   const path = buildLocalizedPath(locale, "resources");
   const url = buildSiteUrl(path);

@@ -3,15 +3,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EmptyState } from "@/components/content/empty-state";
 import { PageHeading } from "@/components/content/page-heading";
-import { isLocale, locales } from "@/config/i18n";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
+import { isLocale } from "@/config/i18n";
 import { getRegionLandingPage } from "@/config/region-landing-pages";
 import {
   buildLocalizedPath,
   createMetadata,
-  createStaticHreflang,
 } from "@/lib/seo";
 import { stripHtml } from "@/lib/text";
 import { regionRepository } from "@/lib/wordpress/repositories";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 
 type RegionsPageProps = { params: Promise<{ locale: string }> };
 
@@ -31,19 +36,33 @@ export async function generateMetadata({
 }: RegionsPageProps): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "region-listing",
+    "regions",
+  );
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   return createMetadata({
     locale,
     path: buildLocalizedPath(locale, "regions"),
     title: "Regional Smart Home Markets",
     description:
       "Smart home requirements, certifications, and project priorities across the Middle East and Southeast Asia.",
-    hreflang: createStaticHreflang(locales, "regions"),
+    hreflang: getPublicationHreflang("regions"),
   });
 }
 
 export default async function RegionsPage({ params }: RegionsPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "region-listing",
+    "regions",
+  );
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
+  }
   const regions = await regionRepository.list(locale);
 
   return (

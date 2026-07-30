@@ -2,14 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { brand } from "@/config/brand";
-import { isLocale, locales } from "@/config/i18n";
+import { isLocale } from "@/config/i18n";
 import {
   buildLocalizedPath,
   buildSiteUrl,
   createMetadata,
-  createStaticHreflang,
 } from "@/lib/seo";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 import {
   createBreadcrumbSchema,
   createCollectionPageSchema,
@@ -173,6 +178,12 @@ export async function generateMetadata({
 }: SolutionsPageProps): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "solution-listing",
+    "solutions",
+  );
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   const path = buildLocalizedPath(locale, "solutions");
   return createMetadata({
     locale,
@@ -180,7 +191,7 @@ export async function generateMetadata({
     title: "Smart Hotel Room Control & Automation Solutions",
     description:
       "Smart hotel room control, automation, RCU, display, delivery robot, and OEM/ODM solution directions for B2B projects.",
-    hreflang: createStaticHreflang(locales, "solutions"),
+    hreflang: getPublicationHreflang("solutions"),
   });
 }
 
@@ -189,6 +200,14 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
   if (!isLocale(locale)) {
     notFound();
+  }
+  const localizedPage = getLocalizedPublicationPage(
+    locale,
+    "solution-listing",
+    "solutions",
+  );
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
   const path = buildLocalizedPath(locale, "solutions");

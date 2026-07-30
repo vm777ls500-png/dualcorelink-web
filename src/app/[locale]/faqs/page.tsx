@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
+import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { brand } from "@/config/brand";
-import { isLocale, locales } from "@/config/i18n";
+import { isLocale } from "@/config/i18n";
 import { staticFaqCategories, staticFaqItems } from "@/config/static-faqs";
 import {
   buildLocalizedPath,
   buildSiteUrl,
   createMetadata,
-  createStaticHreflang,
 } from "@/lib/seo";
 import { createFaqPageSchema, createSchemaGraph } from "@/lib/schema";
+import {
+  createLocalizedPublicationMetadata,
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 
 type FaqPageProps = { params: Promise<{ locale: string }> };
 
@@ -20,19 +25,25 @@ export async function generateMetadata({
 }: FaqPageProps): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
+  const localizedPage = getLocalizedPublicationPage(locale, "static", "faqs");
+  if (localizedPage) return createLocalizedPublicationMetadata(localizedPage);
   return createMetadata({
     locale,
     path: buildLocalizedPath(locale, "faqs"),
     title: "Smart Hotel & OEM/ODM FAQ",
     description:
       "FAQ for B2B buyers about smart hotel room control, smart home automation, OEM/ODM cooperation, samples, delivery, technical support, and after-sales service.",
-    hreflang: createStaticHreflang(locales, "faqs"),
+    hreflang: getPublicationHreflang("faqs"),
   });
 }
 
 export default async function FaqPage({ params }: FaqPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const localizedPage = getLocalizedPublicationPage(locale, "static", "faqs");
+  if (localizedPage) {
+    return <LocalizedPublicationPageView page={localizedPage} />;
+  }
 
   const path = buildLocalizedPath(locale, "faqs");
   const url = buildSiteUrl(path);

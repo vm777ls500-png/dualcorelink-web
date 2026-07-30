@@ -80,7 +80,7 @@ test("static export cleanup CLI reports real failures with a nonzero exit", asyn
   }
 });
 
-test("AWS export baselines match the Phase 2G public content counts", async () => {
+test("AWS export baselines match the current route and public content counts", async () => {
   const workflow = await readFile(
     path.join(projectRoot, ".github", "workflows", "aws-production-deploy.yml"),
     "utf8",
@@ -91,7 +91,8 @@ test("AWS export baselines match the Phase 2G public content counts", async () =
   );
 
   assert.equal(resources.length, 15);
-  assert.match(workflow, /Generating static pages\.\*156\/156/);
+  assert.match(workflow, /Generating static pages\.\*163\/163/);
+  assert.doesNotMatch(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(
     workflow,

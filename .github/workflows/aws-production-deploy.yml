@@ -91,7 +91,7 @@ jobs:
           set -euo pipefail
           export NO_COLOR=1
           npm run build 2>&1 | tee build.log
-          grep -Eq 'Generating static pages.*156/156' build.log
+          grep -Eq 'Generating static pages.*163/163' build.log
 
       - name: Activate versioned Nginx site configuration
         id: nginx

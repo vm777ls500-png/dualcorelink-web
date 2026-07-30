@@ -715,6 +715,48 @@ test("canonical and hreflang are self-consistent and reference only published pa
   assert.equal(shared.fa, undefined);
 });
 
+test("production hreflang never points to a locale path that remains on the legacy redirect", async () => {
+  const releaseUrls = new Set(zhP0ReleaseUrls);
+  const nginx = await readFile(
+    path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
+    "utf8",
+  );
+  const releaseLocation = nginx.match(
+    /location ~ (\^\/zh\/[^\r\n]+) \{/,
+  );
+  assert.ok(releaseLocation, "the reviewed zh P0 Nginx location must exist");
+  const releasedPathPattern = new RegExp(releaseLocation[1]);
+
+  assert.equal(localizedPublicationPages.length, releaseUrls.size);
+  for (const page of localizedPublicationPages) {
+    const pathname = new URL(page.localizedUrl).pathname;
+    assert.ok(releaseUrls.has(page.localizedUrl), page.localizedUrl);
+    assert.match(pathname, releasedPathPattern);
+
+    const languages = getPublicationHreflang(page.path);
+    assert.deepEqual(Object.keys(languages).sort(), [
+      "en",
+      "x-default",
+      "zh",
+    ]);
+  }
+
+  for (const entry of multilingualPublicationManifest) {
+    if (releaseUrls.has(entry.localizedUrl)) continue;
+    const pathname = new URL(entry.localizedUrl).pathname;
+    assert.doesNotMatch(pathname, releasedPathPattern);
+
+    const languages = getPublicationHreflang(
+      new URL(entry.sourceUrl).pathname.replace(/^\/en\/|\/$/g, ""),
+    );
+    assert.equal(
+      languages[entry.locale],
+      undefined,
+      `redirected or pending locale leaked into hreflang: ${entry.localizedUrl}`,
+    );
+  }
+});
+
 test("localized page lookup does not expose an unapproved path", () => {
   assert.equal(getLocalizedPublicationPage("ar", "region", "uae"), undefined);
   assert.ok(

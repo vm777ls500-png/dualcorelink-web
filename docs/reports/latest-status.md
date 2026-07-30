@@ -6,8 +6,8 @@ Last updated: 2026-07-30
 
 **SEO Growth Multilingual Phase M5G — Chinese P0 Frontend Production Release**
 
-Status: release candidate reconstruction is in progress under Allan's
-2026-07-30 authorization.
+Status: production release completed and verified under Allan's 2026-07-30
+authorization.
 
 ## Authorized Scope
 
@@ -58,20 +58,35 @@ Status: release candidate reconstruction is in progress under Allan's
 ## Git Status
 
 - Branch: `release/zh-p0-frontend-production-20260730`
-- Commit: pending
-- Push: pending
-- Deployment: pending
+- Release commit: `8506bd1c797bd043a94c7ed2058dbcac1850ff6b`
+- Nginx correction: `f920785885d55297211647b5aa6d518513d6560b`
+- Push: `main` updated by non-force push.
+- Deployment: successful, Run `30533653918`.
+- Production release:
+  `/srv/dualcorelink/frontend/releases/f920785885d5-20260730-181248`
+
+## Production QA
+
+- Approved Chinese pages: 12/12 HTTP 200.
+- Pending localized paths: 402/402 exact 301 to English.
+- Sitemap: 88 total, 76 English and 12 Chinese.
+- Reciprocal en/zh hreflang: 12 pairs; `x-default` points to English.
+- Other localized public pages: 0.
+- Product Schema: 36/36; Article Schema: 15/15.
+- Query-bearing internal links, sitemap, canonical, and hreflang URLs: 0.
+- English Contact and inquiry infrastructure remain active.
+- Chinese CMS records remain 7 published and 0 drafts; no CMS write occurred.
 
 ## Risks
 
-- Workflow, Nginx, Contact, and static-export behavior must retain both the
-  current inquiry implementation and the scoped Chinese release controls.
-- The deployment must fail closed if the scoped multilingual release check,
-  static output counts, or Nginx activation validation fails.
-- Rollback must restore the captured pre-M5G frontend release and Nginx
-  configuration without changing CMS records.
+- The first M5G Nginx location served the approved paths as 404 due to index
+  processing entering the legacy locale regex. Commit `f920785` corrected the
+  path resolution, added a regression assertion, and was deployed
+  successfully.
+- The remaining 402 candidates must stay blocked until their own native
+  reviews and explicit release approvals are complete.
 
 ## Next Action
 
-Complete the isolated candidate merge, run all gates, and deploy only after
-the exact 12-page boundary is reproduced.
+Continue monitoring the 12-page Chinese P0 release. Do not start another
+locale batch without separate native-review and production authorization.

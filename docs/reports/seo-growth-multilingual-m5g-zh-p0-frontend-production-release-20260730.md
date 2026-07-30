@@ -103,16 +103,72 @@ Chinese Product/Solution records and zero drafts. No CMS write was performed.
 
 ## Release Record
 
-- Release commit: pending
-- Push to `main`: pending
-- GitHub Actions run: pending
-- Production source SHA: pending
-- Production release directory: pending
-- Deployment result: pending
+- Release commit:
+  `8506bd1c797bd043a94c7ed2058dbcac1850ff6b`
+- Nginx serving correction:
+  `f920785885d55297211647b5aa6d518513d6560b`
+- Push to `main`: successful, non-force.
+- Initial GitHub Actions run: `30533183751`, successful.
+- Corrective GitHub Actions run: `30533653918`, successful.
+- Production source SHA:
+  `f920785885d55297211647b5aa6d518513d6560b`
+- Production release directory:
+  `/srv/dualcorelink/frontend/releases/f920785885d5-20260730-181248`
+- Previous release retained for rollback:
+  `/srv/dualcorelink/frontend/releases/8506bd1c797b-20260730-180545`
+- Deployment result: PASS.
+
+The first post-deployment audit found that the 12 approved Chinese paths
+returned 404 even though the static files and sitemap entries were present.
+The Nginx regular-expression location resolved a directory first, after which
+index processing re-entered the legacy locale rule. The correction uses a
+named approved-path capture and resolves the corresponding `index.html`
+directly. It changed only the Nginx template and its boundary test. The
+corrective test run passed 147/147 before the second deployment.
 
 ## Production Verification
 
-Pending deployment.
+| Production check | Result |
+|---|---|
+| Approved Chinese pages | PASS: 12/12 HTTP 200 |
+| Chinese page language | PASS: `lang="zh"` |
+| Canonical | PASS: 12/12 self-referencing |
+| H1 | PASS: exactly one on all 12 pages |
+| JSON-LD | PASS: present and parseable on all 12 pages |
+| Reciprocal hreflang | PASS: 12 en/zh pairs |
+| `x-default` | PASS: English source on all 12 pairs |
+| Pending localized paths | PASS: 402/402 exact one-hop 301 to English |
+| Sitemap | PASS: 88 URLs |
+| English sitemap URLs | PASS: 76 |
+| Chinese sitemap URLs | PASS: 12 |
+| Other localized sitemap URLs | PASS: 0 |
+| Product Schema | PASS: 36/36 |
+| Article Schema | PASS: 15/15 |
+| Contact page | PASS: HTTP 200, one inquiry form |
+| Inquiry API GET boundary | PASS: HTTP 404 |
+| Contact tracking query hrefs | PASS: 0 |
+| Product category/series query hrefs | PASS: 0 |
+| Internal query hrefs | PASS: 0 |
+| Sitemap query URLs | PASS: 0 |
+| Canonical query URLs | PASS: 0 |
+| Hreflang query URLs | PASS: 0 |
+
+The production CMS was rechecked read-only after deployment. IDs `240`-`246`
+remain the same seven published Chinese records with the expected locale,
+slugs, and translation groups. No CMS write, apply, publish, or rollback was
+performed.
+
+The candidate browser QA covered the same production artifact before
+deployment at 60 page/viewport combinations. Formal-domain HTTP and HTML
+verification then checked all 12 approved pages, all 402 pending redirects,
+and every URL in the 88-entry production sitemap.
+
+## Final Decision
+
+**PASS - the approved Chinese P0 frontend release is active.**
+
+No other locale was opened, no pending page entered sitemap or hreflang, and
+no GSC request was submitted.
 
 ## Rollback
 

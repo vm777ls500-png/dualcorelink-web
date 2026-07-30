@@ -794,7 +794,11 @@ test("only the reviewed Chinese P0 batch is served while other localized paths r
     nginx,
     /Native-reviewed multilingual release batch: zh P0 \(12 URLs\)\./,
   );
-  assert.match(nginx, /\^\/zh\/\(\?:about\|contact\|faqs/);
+  assert.match(nginx, /\^\/zh\/\(\?<zh_p0_path>about\|contact\|faqs/);
+  assert.match(
+    nginx,
+    /try_files \/zh\/\$zh_p0_path\/index\.html =404;/,
+  );
   assert.match(nginx, /hotel-smart-room-rcu-host-1/);
   assert.match(nginx, /smart-hotel-automation-solution/);
   assert.match(nginx, /\^\/\(\?:ar\|zh\|de\|es\|vi\|fa\)\//);

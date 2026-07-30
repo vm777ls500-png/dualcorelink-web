@@ -128,8 +128,8 @@ server {
     }
 
     # Native-reviewed multilingual release batch: zh P0 (12 URLs).
-    location ~ ^/zh/(?:about|contact|faqs|products|solutions|products/(?:hotel-smart-room-rcu-host-1|rcu-controller-cabinet|86-type-ai-smart-control-display|smart-four-key-scene-control-panel)|solutions/(?:oem-odm-custom-panel-solution|rcu-room-control-solution|smart-hotel-automation-solution))/?$ {
-        try_files $uri $uri/ $uri/index.html =404;
+    location ~ ^/zh/(?<zh_p0_path>about|contact|faqs|products|solutions|products/(?:hotel-smart-room-rcu-host-1|rcu-controller-cabinet|86-type-ai-smart-control-display|smart-four-key-scene-control-panel)|solutions/(?:oem-odm-custom-panel-solution|rcu-room-control-solution|smart-hotel-automation-solution))/?$ {
+        try_files /zh/$zh_p0_path/index.html =404;
         expires -1;
         add_header Cache-Control "no-cache, no-store, must-revalidate";
     }

@@ -278,7 +278,10 @@ final class DualCoreLink_Multilingual_Import_Service
                 if (($record['nativeReviewStatus'] ?? null) !== 'approved' ||
                     ($record['nativeReviewer'] ?? null) !== DualCoreLink_Import_Config::REVIEWER ||
                     ($record['nativeReviewDate'] ?? null) !== DualCoreLink_Import_Config::REVIEW_DATE ||
-                    array_key_exists('ownerReviewWaiverStatus', $record)) {
+                    array_intersect(
+                        array_keys($record),
+                        DualCoreLink_Import_Config::OWNER_WAIVER_PAYLOAD_KEYS
+                    )) {
                     $errors[] = "Chinese native review evidence mismatch: {$id}";
                 }
             } elseif (($record['nativeReviewStatus'] ?? null) !== 'pending' ||
@@ -408,6 +411,13 @@ final class DualCoreLink_Multilingual_Import_Service
                     $record['contentType'],
                     (int) $record['sourceEnglishContentId']
                 );
+        }
+        foreach ($mapped as $write_plan) {
+            $this->repository->validate_write_plan(
+                $write_plan,
+                $policy['locale'],
+                $policy['batch']
+            );
         }
         return [
             'status' => 'passed',

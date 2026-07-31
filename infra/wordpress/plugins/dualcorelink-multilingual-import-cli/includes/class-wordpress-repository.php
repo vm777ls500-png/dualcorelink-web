@@ -17,7 +17,24 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
     private function snapshot(WP_Post $post): array
     {
         $meta = [];
-        foreach (DualCoreLink_Import_Config::META_KEYS as $key) {
+        $locale = get_post_meta(
+            $post->ID,
+            DualCoreLink_Import_Config::META_LOCALE,
+            true
+        );
+        $batch = get_post_meta(
+            $post->ID,
+            DualCoreLink_Import_Config::META_BATCH,
+            true
+        );
+        $meta_keys = DualCoreLink_Import_Config::meta_keys_for(
+            is_string($locale) ? $locale : '',
+            is_string($batch) ? $batch : ''
+        );
+        if (!$meta_keys) {
+            $meta_keys = DualCoreLink_Import_Config::META_KEYS;
+        }
+        foreach ($meta_keys as $key) {
             $value = get_post_meta($post->ID, $key, true);
             if ($value !== '') {
                 $meta[$key] = $value;
@@ -184,6 +201,14 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
         return $records;
     }
 
+    public function validate_write_plan(
+        array $mapped,
+        string $locale,
+        string $batch
+    ): void {
+        DualCoreLink_Import_Config::validate_write_plan($mapped, $locale, $batch);
+    }
+
     private function with_duplicate_slug_scope(string $slug, callable $operation)
     {
         $filter = static function ($override, $candidate_slug) use ($slug) {
@@ -215,10 +240,16 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
         }
     }
 
-    private function write_meta(int $post_id, array $meta): void
+    private function write_meta(
+        int $post_id,
+        array $meta,
+        string $locale,
+        string $batch
+    ): void
     {
+        $allowed = DualCoreLink_Import_Config::meta_keys_for($locale, $batch);
         foreach ($meta as $key => $value) {
-            if (!in_array($key, DualCoreLink_Import_Config::META_KEYS, true)) {
+            if (!in_array($key, $allowed, true)) {
                 throw new DualCoreLink_Import_Exception(
                     'Attempted to write an unapproved translation meta key.',
                     DualCoreLink_Import_Config::EXIT_SAFETY
@@ -230,6 +261,9 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
 
     public function create(array $mapped): array
     {
+        $locale = (string) ($mapped['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? '');
+        $batch = (string) ($mapped['meta'][DualCoreLink_Import_Config::META_BATCH] ?? '');
+        $this->validate_write_plan($mapped, $locale, $batch);
         $post_data = $mapped['core'];
         $post_data['post_type'] = $mapped['post_type'];
         $post_data['post_status'] = 'draft';
@@ -242,7 +276,7 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
         }
         $post_id = (int) $post_id;
         $this->write_acf($post_id, $mapped['acf']);
-        $this->write_meta($post_id, $mapped['meta']);
+        $this->write_meta($post_id, $mapped['meta'], $locale, $batch);
         $snapshot = $this->get_localized($post_id);
         if (!$snapshot) {
             throw new RuntimeException('Created post could not be read back.');
@@ -252,6 +286,9 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
 
     public function update(int $post_id, array $mapped): array
     {
+        $locale = (string) ($mapped['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? '');
+        $batch = (string) ($mapped['meta'][DualCoreLink_Import_Config::META_BATCH] ?? '');
+        $this->validate_write_plan($mapped, $locale, $batch);
         $post_data = $mapped['core'];
         $post_data['ID'] = $post_id;
         $post_data['post_type'] = $mapped['post_type'];
@@ -264,7 +301,7 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
             throw new RuntimeException('WordPress update failed: ' . $result->get_error_message());
         }
         $this->write_acf($post_id, $mapped['acf']);
-        $this->write_meta($post_id, $mapped['meta']);
+        $this->write_meta($post_id, $mapped['meta'], $locale, $batch);
         $snapshot = $this->get_localized($post_id);
         if (!$snapshot) {
             throw new RuntimeException('Updated post could not be read back.');
@@ -311,7 +348,7 @@ final class DualCoreLink_WordPress_Import_Repository implements DualCoreLink_Imp
             throw new RuntimeException('Pre-image restore failed: ' . $result->get_error_message());
         }
         $this->write_acf($post_id, $snapshot['acf']);
-        foreach (DualCoreLink_Import_Config::META_KEYS as $key) {
+        foreach (DualCoreLink_Import_Config::all_meta_keys() as $key) {
             if (array_key_exists($key, $snapshot['meta'])) {
                 update_post_meta($post_id, $key, $snapshot['meta'][$key]);
             } else {

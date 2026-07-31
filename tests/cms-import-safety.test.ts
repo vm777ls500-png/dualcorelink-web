@@ -161,6 +161,40 @@ test("WordPress repository uses Core and ACF APIs without direct SQL", async () 
   assert.doesNotMatch(repository, /\$wpdb/);
 });
 
+test("WordPress repository validates a complete write plan before wp_insert_post", async () => {
+  const repository = await readFile(
+    path.join(
+      process.cwd(),
+      "infra/wordpress/plugins/dualcorelink-multilingual-import-cli/includes/class-wordpress-repository.php",
+    ),
+    "utf8",
+  );
+  const createStart = repository.indexOf("public function create");
+  const createEnd = repository.indexOf("public function update", createStart);
+  const createMethod = repository.slice(createStart, createEnd);
+  assert.ok(createMethod.indexOf("validate_write_plan") >= 0);
+  assert.ok(
+    createMethod.indexOf("validate_write_plan") <
+      createMethod.indexOf("wp_insert_post"),
+  );
+  assert.match(repository, /meta_keys_for\(\$locale, \$batch\)/);
+});
+
+test("payload schema requires waiver evidence only for Arabic", async () => {
+  const schema = JSON.parse(
+    await readFile(
+      path.join(
+        process.cwd(),
+        "infra/wordpress/plugins/dualcorelink-multilingual-import-cli/schema/payload.schema.json",
+      ),
+      "utf8",
+    ),
+  ) as { items: { allOf: unknown[] } };
+  assert.equal(schema.items.allOf.length, 1);
+  assert.match(JSON.stringify(schema.items.allOf), /ownerReviewWaiverStatus/);
+  assert.match(JSON.stringify(schema.items.allOf), /nativeReviewStatus/);
+});
+
 test("ordinary build command contains no CMS import side effect", async () => {
   const packageJson = JSON.parse(
     await readFile(path.join(process.cwd(), "package.json"), "utf8"),

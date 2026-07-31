@@ -10,7 +10,7 @@ import path from "node:path";
 
 export const packageSchemaVersion = 1;
 export const pluginName = "dualcorelink-multilingual-import-cli";
-export const pluginVersion = "1.1.0";
+export const pluginVersion = "1.1.1";
 export const translationSchemaVersion = 1;
 export const packageFilename = `${pluginName}.zip`;
 export const manifestFilename = `${pluginName}.manifest.json`;

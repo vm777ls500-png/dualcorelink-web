@@ -158,6 +158,19 @@ final class DualCoreLink_Import_Renderer
                     $record['ownerReviewWaiverReason'],
             ];
         }
+        $expected_meta_keys = DualCoreLink_Import_Config::meta_keys_for(
+            (string) ($record['locale'] ?? ''),
+            (string) ($record['batch'] ?? '')
+        );
+        $actual_meta_keys = array_keys($meta);
+        sort($expected_meta_keys, SORT_STRING);
+        sort($actual_meta_keys, SORT_STRING);
+        if (!$expected_meta_keys || $actual_meta_keys !== $expected_meta_keys) {
+            throw new DualCoreLink_Import_Exception(
+                'Renderer meta fields do not match locale write capability.',
+                DualCoreLink_Import_Config::EXIT_PREFLIGHT
+            );
+        }
         return [
             'source_id' => $source_id,
             'identity' => sprintf(

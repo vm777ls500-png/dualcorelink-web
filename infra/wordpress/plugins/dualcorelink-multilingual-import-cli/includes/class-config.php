@@ -58,6 +58,35 @@ final class DualCoreLink_Import_Config
         self::META_OWNER_WAIVER_REASON,
     ];
 
+    public const OWNER_WAIVER_PAYLOAD_KEYS = [
+        'ownerReviewWaiverSchemaVersion',
+        'ownerReviewWaiverStatus',
+        'ownerReviewWaiverBy',
+        'ownerReviewWaiverDate',
+        'ownerReviewWaiverReason',
+        'ownerReviewWaiverScopeCount',
+        'ownerReviewWaiverScopeSha256',
+    ];
+
+    public const CORE_WRITE_KEYS = [
+        'post_title',
+        'post_name',
+        'post_excerpt',
+        'post_content',
+        'post_status',
+    ];
+
+    public const WRITE_PLAN_KEYS = [
+        'source_id',
+        'identity',
+        'post_type',
+        'slug',
+        'status',
+        'core',
+        'acf',
+        'meta',
+    ];
+
     public const ALLOWED_PAYLOAD_KEYS = [
         'contentType',
         'sourceEnglishContentId',
@@ -166,6 +195,189 @@ final class DualCoreLink_Import_Config
     {
         return array_key_exists($source_id, self::APPROVED) ||
             array_key_exists($source_id, self::ARABIC_APPROVED);
+    }
+
+    public static function meta_keys_for(string $locale, string $batch): array
+    {
+        if ($batch !== self::BATCH) {
+            return [];
+        }
+        if ($locale === 'zh') {
+            return self::META_KEYS;
+        }
+        if ($locale === 'ar') {
+            return array_merge(self::META_KEYS, self::OWNER_WAIVER_META_KEYS);
+        }
+        return [];
+    }
+
+    public static function all_meta_keys(): array
+    {
+        return array_merge(self::META_KEYS, self::OWNER_WAIVER_META_KEYS);
+    }
+
+    public static function acf_keys_for(string $post_type): array
+    {
+        return match ($post_type) {
+            'product' => self::PRODUCT_ACF_KEYS,
+            'solution' => self::SOLUTION_ACF_KEYS,
+            default => [],
+        };
+    }
+
+    private static function exact_keys(array $value, array $expected): bool
+    {
+        $actual = array_keys($value);
+        sort($actual, SORT_STRING);
+        sort($expected, SORT_STRING);
+        return $actual === $expected;
+    }
+
+    private static function required_storage_text($value, bool $allow_empty = false): bool
+    {
+        return is_string($value) &&
+            strlen($value) <= 200000 &&
+            ($allow_empty || trim($value) !== '');
+    }
+
+    public static function validate_write_plan(
+        array $mapped,
+        string $locale,
+        string $batch
+    ): void {
+        if (!self::exact_keys($mapped, self::WRITE_PLAN_KEYS)) {
+            throw new DualCoreLink_Import_Exception(
+                'Repository write plan contains unsupported top-level fields.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+
+        $source_id = $mapped['source_id'] ?? null;
+        $post_type = $mapped['post_type'] ?? null;
+        $slug = $mapped['slug'] ?? null;
+        if (!is_int($source_id) || $source_id <= 0 ||
+            !self::approved_source_id($source_id) ||
+            !is_string($post_type) ||
+            !in_array($post_type, ['product', 'solution'], true) ||
+            !self::required_storage_text($slug) ||
+            ($mapped['status'] ?? null) !== 'draft' ||
+            ($mapped['identity'] ?? null) !==
+                sprintf('%s:%d:%s:%s', $post_type, $source_id, $locale, $slug)) {
+            throw new DualCoreLink_Import_Exception(
+                'Repository write plan identity is invalid.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+
+        $core = $mapped['core'] ?? null;
+        if (!is_array($core) || !self::exact_keys($core, self::CORE_WRITE_KEYS)) {
+            throw new DualCoreLink_Import_Exception(
+                'Repository Core field map is unsupported.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+        foreach (self::CORE_WRITE_KEYS as $key) {
+            if (!self::required_storage_text($core[$key] ?? null)) {
+                throw new DualCoreLink_Import_Exception(
+                    "Repository Core value is invalid: {$key}",
+                    self::EXIT_PREFLIGHT
+                );
+            }
+        }
+        if ($core['post_name'] !== $slug || $core['post_status'] !== 'draft') {
+            throw new DualCoreLink_Import_Exception(
+                'Repository Core identity/status does not match the write plan.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+
+        $acf = $mapped['acf'] ?? null;
+        $acf_allowed = self::acf_keys_for($post_type);
+        if (!is_array($acf) || !$acf_allowed ||
+            array_diff(array_keys($acf), $acf_allowed)) {
+            throw new DualCoreLink_Import_Exception(
+                'Repository ACF field map contains unsupported fields.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+        $acf_required = $post_type === 'product'
+            ? array_values(array_diff($acf_allowed, ['product_image_alt_text']))
+            : $acf_allowed;
+        if (array_diff($acf_required, array_keys($acf))) {
+            throw new DualCoreLink_Import_Exception(
+                'Repository ACF field map is incomplete.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+        foreach ($acf as $key => $value) {
+            if (!self::required_storage_text($value)) {
+                throw new DualCoreLink_Import_Exception(
+                    "Repository ACF value is invalid: {$key}",
+                    self::EXIT_PREFLIGHT
+                );
+            }
+        }
+
+        $meta = $mapped['meta'] ?? null;
+        $meta_expected = self::meta_keys_for($locale, $batch);
+        if (!is_array($meta) || !$meta_expected ||
+            !self::exact_keys($meta, $meta_expected)) {
+            throw new DualCoreLink_Import_Exception(
+                'Repository meta field map does not match locale capability.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+        foreach ($meta as $key => $value) {
+            if (in_array($key, [
+                self::META_SCHEMA_VERSION,
+                self::META_SOURCE_ID,
+                self::META_OWNER_WAIVER_SCHEMA_VERSION,
+            ], true)) {
+                if (!is_int($value) || $value <= 0) {
+                    throw new DualCoreLink_Import_Exception(
+                        "Repository numeric meta is invalid: {$key}",
+                        self::EXIT_PREFLIGHT
+                    );
+                }
+                continue;
+            }
+            $allow_empty = in_array($key, [
+                self::META_REVIEWER,
+                self::META_REVIEW_DATE,
+            ], true) && $locale === 'ar';
+            if (!self::required_storage_text($value, $allow_empty)) {
+                throw new DualCoreLink_Import_Exception(
+                    "Repository text meta is invalid: {$key}",
+                    self::EXIT_PREFLIGHT
+                );
+            }
+        }
+
+        if ($meta[self::META_SCHEMA_VERSION] !== self::SCHEMA_VERSION ||
+            $meta[self::META_LOCALE] !== $locale ||
+            $meta[self::META_SOURCE_ID] !== $source_id ||
+            $meta[self::META_GROUP] !== self::group($post_type, $source_id) ||
+            $meta[self::META_BATCH] !== $batch ||
+            preg_match('/^[a-f0-9]{64}$/D', $meta[self::META_PAYLOAD_HASH]) !== 1) {
+            throw new DualCoreLink_Import_Exception(
+                'Repository translation meta values do not match the write plan.',
+                self::EXIT_PREFLIGHT
+            );
+        }
+
+        if ($locale === 'ar') {
+            if ($meta[self::META_OWNER_WAIVER_SCHEMA_VERSION] !==
+                    self::OWNER_WAIVER_SCHEMA_VERSION ||
+                $meta[self::META_OWNER_WAIVER_STATUS] !== 'approved' ||
+                $meta[self::META_OWNER_WAIVER_BY] !== self::OWNER_WAIVER_BY ||
+                $meta[self::META_OWNER_WAIVER_DATE] !== self::OWNER_WAIVER_DATE ||
+                $meta[self::META_OWNER_WAIVER_REASON] !== self::OWNER_WAIVER_REASON) {
+                throw new DualCoreLink_Import_Exception(
+                    'Repository owner-waiver meta values are invalid.',
+                    self::EXIT_PREFLIGHT
+                );
+            }
+        }
     }
 
     public static function valid_run_id(string $run_id): bool

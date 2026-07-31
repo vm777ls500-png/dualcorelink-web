@@ -15,11 +15,19 @@ function esc_url($value)
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+$GLOBALS['dualcorelink_wp_insert_post_calls'] = 0;
+function wp_insert_post($post_data, $wp_error = false)
+{
+    $GLOBALS['dualcorelink_wp_insert_post_calls']++;
+    return 9999;
+}
+
 $plugin_root = dirname(__DIR__, 2) .
     '/infra/wordpress/plugins/dualcorelink-multilingual-import-cli';
 require_once $plugin_root . '/includes/class-config.php';
 require_once $plugin_root . '/includes/class-renderer.php';
 require_once $plugin_root . '/includes/interface-repository.php';
+require_once $plugin_root . '/includes/class-wordpress-repository.php';
 require_once $plugin_root . '/includes/class-run-store.php';
 require_once $plugin_root . '/includes/class-import-service.php';
 
@@ -28,6 +36,8 @@ final class Mock_Import_Repository implements DualCoreLink_Import_Repository
     public array $sources = [];
     public array $localized = [];
     private int $next_id = 1000;
+    public int $write_plan_validations = 0;
+    public $write_plan_mutator = null;
 
     public function __construct(array $payload)
     {
@@ -101,6 +111,18 @@ final class Mock_Import_Repository implements DualCoreLink_Import_Repository
         ));
     }
 
+    public function validate_write_plan(
+        array $mapped,
+        string $locale,
+        string $batch
+    ): void {
+        $this->write_plan_validations++;
+        if (is_callable($this->write_plan_mutator)) {
+            $mapped = ($this->write_plan_mutator)($mapped);
+        }
+        DualCoreLink_Import_Config::validate_write_plan($mapped, $locale, $batch);
+    }
+
     private function from_mapped(int $id, array $mapped): array
     {
         return [
@@ -116,6 +138,11 @@ final class Mock_Import_Repository implements DualCoreLink_Import_Repository
 
     public function create(array $mapped): array
     {
+        $this->validate_write_plan(
+            $mapped,
+            (string) $mapped['meta'][DualCoreLink_Import_Config::META_LOCALE],
+            (string) $mapped['meta'][DualCoreLink_Import_Config::META_BATCH]
+        );
         $created = $this->from_mapped($this->next_id++, $mapped);
         $this->localized[$created['id']] = $created;
         return $created;
@@ -123,6 +150,11 @@ final class Mock_Import_Repository implements DualCoreLink_Import_Repository
 
     public function update(int $post_id, array $mapped): array
     {
+        $this->validate_write_plan(
+            $mapped,
+            (string) $mapped['meta'][DualCoreLink_Import_Config::META_LOCALE],
+            (string) $mapped['meta'][DualCoreLink_Import_Config::META_BATCH]
+        );
         if (!isset($this->localized[$post_id])) {
             throw new RuntimeException('Missing localized record.');
         }
@@ -854,6 +886,16 @@ $tests['Chinese preflight rejects owner-waiver flag'] = function (): void {
     [$service] = service($repo, temporary_root('zh-waiver'));
     expect_failure(fn () => $service->preflight($payload, 'zh', 'p0', true), 20);
 };
+$tests['Chinese preflight rejects owner-waiver payload fields without flag'] = function (): void {
+    $payload = fixture();
+    $payload[0]['ownerReviewWaiverSchemaVersion'] = 1;
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('zh-waiver-field');
+    [$service] = service($repo, $root);
+    expect_failure(fn () => $service->preflight($payload, 'zh', 'p0'), 20);
+    assert_true($repo->localized === []);
+    assert_true(!file_exists($root));
+};
 $tests['Arabic waiver evidence mismatch fails closed'] = function (): void {
     $payload = arabic_fixture();
     $payload[0]['ownerReviewWaiverBy'] = 'Other';
@@ -877,6 +919,156 @@ $tests['Arabic renderer writes eight translation and five waiver meta fields'] =
     assert_true(
         $mapped['meta'][DualCoreLink_Import_Config::META_REVIEWER] === ''
     );
+};
+$tests['shared capability exposes exactly eight Chinese and thirteen Arabic meta keys'] = function (): void {
+    assert_true(count(DualCoreLink_Import_Config::meta_keys_for('zh', 'p0')) === 8);
+    assert_true(count(DualCoreLink_Import_Config::meta_keys_for('ar', 'p0')) === 13);
+    assert_true(DualCoreLink_Import_Config::meta_keys_for('en', 'p0') === []);
+    assert_true(DualCoreLink_Import_Config::meta_keys_for('ar', 'p1') === []);
+};
+$tests['real WordPress repository dry-validates all thirteen Arabic meta fields'] = function (): void {
+    $payload = arabic_fixture();
+    $mapped = DualCoreLink_Import_Renderer::map(
+        $payload[0],
+        DualCoreLink_Import_Config::payload_hash($payload)
+    );
+    $repository = new DualCoreLink_WordPress_Import_Repository();
+    $before = $GLOBALS['dualcorelink_wp_insert_post_calls'];
+    $repository->validate_write_plan($mapped, 'ar', 'p0');
+    assert_true($GLOBALS['dualcorelink_wp_insert_post_calls'] === $before);
+};
+$tests['real WordPress repository rejects unknown meta before wp_insert_post'] = function (): void {
+    $payload = arabic_fixture();
+    $mapped = DualCoreLink_Import_Renderer::map(
+        $payload[0],
+        DualCoreLink_Import_Config::payload_hash($payload)
+    );
+    $mapped['meta']['_dualcorelink_unknown_fourteenth_meta'] = 'blocked';
+    $repository = new DualCoreLink_WordPress_Import_Repository();
+    $before = $GLOBALS['dualcorelink_wp_insert_post_calls'];
+    expect_failure(fn () => $repository->create($mapped), 20);
+    assert_true($GLOBALS['dualcorelink_wp_insert_post_calls'] === $before);
+};
+$tests['preflight repository capability failure creates no run or record'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $repo->write_plan_mutator = static function (array $mapped): array {
+        if ($mapped['source_id'] === 137) {
+            $mapped['meta']['_dualcorelink_unknown_fourteenth_meta'] = 'blocked';
+        }
+        return $mapped;
+    };
+    $root = temporary_root('ar-capability-failure');
+    [$service] = service($repo, $root);
+    expect_failure(
+        fn () => $service->preflight($payload, 'ar', 'p0', true),
+        20
+    );
+    assert_true($repo->localized === []);
+    assert_true($repo->write_plan_validations === 6);
+    assert_true(!file_exists($root));
+};
+$tests['Arabic write plan rejects every missing waiver meta key'] = function (): void {
+    $payload = arabic_fixture();
+    $mapped = DualCoreLink_Import_Renderer::map(
+        $payload[0],
+        DualCoreLink_Import_Config::payload_hash($payload)
+    );
+    foreach (DualCoreLink_Import_Config::OWNER_WAIVER_META_KEYS as $key) {
+        $candidate = $mapped;
+        unset($candidate['meta'][$key]);
+        expect_failure(
+            fn () => DualCoreLink_Import_Config::validate_write_plan(
+                $candidate,
+                'ar',
+                'p0'
+            ),
+            20
+        );
+    }
+};
+$tests['Arabic write plan rejects waiver value drift'] = function (): void {
+    $payload = arabic_fixture();
+    $mapped = DualCoreLink_Import_Renderer::map(
+        $payload[0],
+        DualCoreLink_Import_Config::payload_hash($payload)
+    );
+    foreach ([
+        DualCoreLink_Import_Config::META_OWNER_WAIVER_SCHEMA_VERSION => 2,
+        DualCoreLink_Import_Config::META_OWNER_WAIVER_STATUS => 'pending',
+        DualCoreLink_Import_Config::META_OWNER_WAIVER_BY => 'Other',
+        DualCoreLink_Import_Config::META_OWNER_WAIVER_DATE => '2026-08-01',
+        DualCoreLink_Import_Config::META_OWNER_WAIVER_REASON => 'Different reason',
+    ] as $key => $value) {
+        $candidate = $mapped;
+        $candidate['meta'][$key] = $value;
+        expect_failure(
+            fn () => DualCoreLink_Import_Config::validate_write_plan(
+                $candidate,
+                'ar',
+                'p0'
+            ),
+            20
+        );
+    }
+};
+$tests['Chinese write plan rejects owner-waiver meta'] = function (): void {
+    $payload = fixture();
+    $mapped = DualCoreLink_Import_Renderer::map(
+        $payload[0],
+        DualCoreLink_Import_Config::payload_hash($payload)
+    );
+    $mapped['meta'][DualCoreLink_Import_Config::META_OWNER_WAIVER_STATUS] = 'approved';
+    expect_failure(
+        fn () => DualCoreLink_Import_Config::validate_write_plan($mapped, 'zh', 'p0'),
+        20
+    );
+};
+$tests['English and unsupported locale write plans reject owner-waiver meta'] = function (): void {
+    $payload = arabic_fixture();
+    $mapped = DualCoreLink_Import_Renderer::map(
+        $payload[0],
+        DualCoreLink_Import_Config::payload_hash($payload)
+    );
+    expect_failure(
+        fn () => DualCoreLink_Import_Config::validate_write_plan($mapped, 'en', 'p0'),
+        20
+    );
+    expect_failure(
+        fn () => DualCoreLink_Import_Config::validate_write_plan($mapped, 'de', 'p0'),
+        20
+    );
+};
+$tests['Arabic apply validates all six plans before and during repository writes'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('ar-write-plan-count');
+    [$service] = service($repo, $root);
+    $result = $service->apply(
+        $payload,
+        'ar',
+        'p0',
+        'draft',
+        'ar-write-plan-count-1',
+        'ar-write-plan-count-1',
+        false,
+        true
+    );
+    assert_true(count($result['operations']) === 6);
+    assert_true($repo->write_plan_validations === 18);
+    assert_true(count($repo->localized) === 6);
+    foreach ($repo->localized as $record) {
+        assert_true(count($record['meta']) === 13);
+        assert_true(count(array_intersect(
+            array_keys($record['meta']),
+            DualCoreLink_Import_Config::META_KEYS
+        )) === 8);
+        assert_true(count(array_intersect(
+            array_keys($record['meta']),
+            DualCoreLink_Import_Config::OWNER_WAIVER_META_KEYS
+        )) === 5);
+    }
+    remove_tree($root);
 };
 $tests['Arabic apply verify publish requires repeated owner-waiver evidence'] = function (): void {
     $payload = arabic_fixture();

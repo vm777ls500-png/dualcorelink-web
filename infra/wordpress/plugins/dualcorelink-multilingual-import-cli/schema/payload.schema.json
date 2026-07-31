@@ -87,6 +87,43 @@
       "ownerReviewWaiverScopeSha256": {
         "const": "92eae81730ac445455385ff5f3811394dbb866d6f333dc6a290f5df60e4dc193"
       }
-    }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": { "locale": { "const": "ar" } },
+          "required": ["locale"]
+        },
+        "then": {
+          "required": [
+            "ownerReviewWaiverSchemaVersion",
+            "ownerReviewWaiverStatus",
+            "ownerReviewWaiverBy",
+            "ownerReviewWaiverDate",
+            "ownerReviewWaiverReason",
+            "ownerReviewWaiverScopeCount",
+            "ownerReviewWaiverScopeSha256"
+          ],
+          "properties": {
+            "nativeReviewStatus": { "const": "pending" },
+            "nativeReviewer": { "type": "null" },
+            "nativeReviewDate": { "type": "null" }
+          }
+        },
+        "else": {
+          "not": {
+            "anyOf": [
+              { "required": ["ownerReviewWaiverSchemaVersion"] },
+              { "required": ["ownerReviewWaiverStatus"] },
+              { "required": ["ownerReviewWaiverBy"] },
+              { "required": ["ownerReviewWaiverDate"] },
+              { "required": ["ownerReviewWaiverReason"] },
+              { "required": ["ownerReviewWaiverScopeCount"] },
+              { "required": ["ownerReviewWaiverScopeSha256"] }
+            ]
+          }
+        }
+      }
+    ]
   }
 }

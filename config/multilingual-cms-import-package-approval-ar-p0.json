@@ -1,0 +1,15 @@
+{
+  "packageSchemaVersion": 1,
+  "packageFilename": "dualcorelink-multilingual-import-cli.zip",
+  "pluginVersion": "1.1.0",
+  "locale": "ar",
+  "batch": "p0",
+  "zipSha256": "d7bd1299f9fb2638cc9cd503e5c1e26fd67e8f514f7bfc8076b5bd228e5a5f93",
+  "manifestSha256": "c77d159a0d7ee604ff635cb6e1d5a3b242e23ef5b98c88b3fe4954c693422675",
+  "payloadCanonicalSha256": "82f8803975f5c6dcf135f45a3f11e15dbf911c39a9da0fae53b97f7ec45ffe0e",
+  "payloadJsonSha256": "68ec8cde60ee376a0ec963c2cf4498dcafcb3be3488702c89dae91977320a5b5",
+  "approvedBy": "Allan",
+  "approvedDate": "2026-07-31",
+  "sourceCommit": "fb3fb2b4b480416351e469de8cca670a96d05966",
+  "reviewBasis": "owner-review-waiver"
+}

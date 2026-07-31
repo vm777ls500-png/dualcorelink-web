@@ -1,8 +1,132 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-07-31
+Last updated: 2026-08-01
 
 ## Current Phase
+
+**Multilingual Phase M6E-1 — Owner-Waiver Repository Whitelist and Pre-Write Safety Fix**
+
+Status: **READY_FOR_HASH_APPROVAL**.
+
+The CMS Import CLI candidate is now version `1.1.1`. A shared locale/batch
+write-capability definition governs renderer output, preflight validation, and
+the real WordPress repository path. Arabic P0 accepts exactly eight
+translation meta keys plus five owner-waiver keys; Chinese P0 remains limited
+to the original eight translation keys. Unknown, missing, misplaced, or
+invalid fields fail before the first WordPress write.
+
+Implementation commit:
+`8d9a4c65c9cf518d0bffe9dddb36cbedf29f5724`.
+
+The new deterministic candidate contains exactly nine runtime files:
+
+- ZIP SHA-256: `a42fc429c46ccb4848fbfb7cbec40938061086dedbb4a2f0d09016e0e05114e2`
+- Manifest SHA-256: `b080969df2ca6ab14d43b459d9d47de4aad61515d0177f26b8dc46f3c56de65a`
+- Arabic payload canonical SHA-256: `82f8803975f5c6dcf135f45a3f11e15dbf911c39a9da0fae53b97f7ec45ffe0e`
+- Arabic payload JSON SHA-256: `68ec8cde60ee376a0ec963c2cf4498dcafcb3be3488702c89dae91977320a5b5`
+
+CMS safety tests passed Node 67/67 and PHP 74/74; project tests passed
+219/219 using the existing local read-only build cache as a temporary fixture.
+Lint and media audit reported zero errors, build generated 163/163 pages, and
+the static export remained 12 approved Chinese pages with sitemap 88. Arabic
+P0 passed 15/15 pages and 6/6 CMS payloads only with the explicit owner-waiver
+flag. The no-waiver Arabic gate and full-site gate failed as designed.
+
+The old `1.1.0` approval record is unchanged and rejects this candidate as
+expected. No production server, CMS, database, plugin, frontend deployment,
+`main` push, or GSC operation was accessed or performed. Production Arabic
+Product/Solution records remain at the established M6E baseline of zero.
+
+Allan must separately approve the new ZIP and manifest hashes before any
+production plugin update or CMS command.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m6e1-ar-waiver-repository-safety-fix-20260801.md`.
+
+## Previous Phase M6E
+
+**Multilingual Phase M6E — Arabic P0 Production Draft Apply**
+
+Status: **BLOCKED**.
+
+Before any M6E CMS write, code review and read-only production inspection
+confirmed that the installed importer `1.1.0` cannot persist the five Arabic
+owner-waiver meta keys safely. The renderer includes the five approved waiver
+keys, but `class-wordpress-repository.php::write_meta()` accepts only the eight
+translation keys and does not include `OWNER_WAIVER_META_KEYS`.
+
+An apply could therefore create a post and write ACF/translation metadata
+before failing on the first waiver key, leaving the partial-success state that
+M6E explicitly forbids. Execution stopped before the M6E final preflight,
+backup, apply, and verify. No retry or rollback occurred.
+
+Production remains unchanged: Users 3, Posts 216, Postmeta 2576, maximum post
+ID 261, Arabic Product/Solution records 0, Chinese CMS 7 publish / 0 draft,
+plugin `1.1.0` active, sitemap 88, and Nginx/PHP-FPM/MariaDB active. The
+proposed M6E run directory does not exist.
+
+M6F is not allowed. The required next action is a narrowly scoped importer
+owner-waiver whitelist fix, WordPress repository-path tests, deterministic new
+package hashes, Allan approval, controlled plugin update, and a fresh Arabic
+draft-apply authorization.
+
+No CMS write, preflight, apply, verify, publish, rollback, frontend deployment,
+`main` push, or GSC request occurred.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m6e-ar-p0-production-draft-apply-20260731.md`.
+
+## Previous Phase M6D
+
+**Multilingual Phase M6D — Production Plugin 1.1.0 Update and Arabic Read-Only
+Preflight**
+
+Status:
+**PASS — 允许请求 M6E Arabic P0 Draft Apply 授权**.
+
+Allan authorized the production importer update and exactly one Arabic P0
+read-only preflight on 2026-07-31. The approved ZIP, manifest, and Arabic
+payload hashes reproduced locally and on the server.
+
+Production plugin `1.0.1` was backed up to
+`/var/backups/dualcorelink-cms/m6d-plugin-1.0.1-20260731T100503Z/`.
+The root-only backup contains 9/9 plugin files, deterministic inventories,
+active-plugin evidence, and English/Chinese fingerprints. Its file-list
+SHA-256 is
+`d3045908db75b128474b1ec7dd0e434e30ed9bc77228d1cef1a732d5b7dd2b74`;
+the backup tar SHA-256 is
+`0810511e00d3f4bd2c96a53115d32396762142019f1f23658fe40e55ca52d364`.
+
+The importer was atomically updated to `1.1.0` and remains active. All five
+WP-CLI subcommands are registered, the active plugin set is unchanged, no REST
+write route or admin write page was added, and PHP fatal count is zero.
+
+The Arabic preflight was invoked exactly once with explicit
+`--allow-owner-waiver`. It returned exit code 0, status `passed`, records 6,
+and writes 0. The six source IDs are `48`, `47`, `6`, `140`, `138`, and `137`.
+Native review remains pending; Allan's owner waiver and date were verified.
+
+Production remained unchanged across the preflight: Users 3, Administrators 1,
+Sessions 0, Posts 216, Postmeta 2576, maximum post ID 261, Chinese CMS 7
+publish / 0 draft, and Arabic Product/Solution records 0. English source
+fingerprints are unchanged 6/6 and Chinese IDs `240–246` are unchanged 7/7.
+
+Production health passed: sitemap 88, all sitemap URLs HTTP 200, 12 Chinese
+pages HTTP 200, 402 pending localized paths one-hop 301, all 15 Arabic P0 URLs
+one-hop 301, Arabic public pages 0, and internal/sitemap/canonical/hreflang
+query URLs 0.
+
+No Arabic apply, draft creation, verify, publish, rollback, frontend
+deployment, `main` push, or GSC request occurred. M6E requires separate Allan
+authorization.
+
+WARNING: Arabic P0 is covered by an owner review waiver and has not been
+approved by an independent native Arabic reviewer.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m6d-production-plugin-update-ar-preflight-20260731.md`.
+
+## Previous Phase M6C-1
 
 **Multilingual Phase M6C-1 — Arabic P0 Approved Package Record and Production
 Compatibility Audit**

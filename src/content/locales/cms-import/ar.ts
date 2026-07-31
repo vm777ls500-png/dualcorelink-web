@@ -7,24 +7,24 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
     sourceEnglishContentId: 48,
     sourceEnglishSlug: "hotel-smart-room-rcu-host-1",
     locale: "ar",
-    translatedTitle: "مضيف RCU ذكي للتحكم في غرفة الفندق",
+    translatedTitle: "وحدة RCU رئيسية للتحكم (RCU Host) في غرفة الفندق",
     translatedDescription:
-      "مضيف RCU لمشروعات أتمتة غرف الفنادق، يُستخدم لتخطيط التحكم في الإضاءة وHVAC والستائر والمستشعرات وواجهات الغرفة.",
+      "وحدة RCU رئيسية للتحكم (RCU Host) لمشروعات أتمتة غرف الفنادق، تُستخدم لتخطيط التحكم في الإضاءة وHVAC والستائر والمستشعرات وواجهات الغرفة.",
     translatedSpecifications: [
-      { label: "نوع المنتج", value: "مضيف RCU للتحكم في غرفة الفندق" },
+      { label: "نوع المنتج", value: "وحدة RCU رئيسية للتحكم في غرفة الفندق" },
       { label: "موضع التركيب", value: "صندوق الغرفة أو خزانة التيار الخفيف أو السقف أو الموضع المحدد للمشروع" },
       { label: "نطاق التحكم", value: "يُؤكَّد حسب نوع الغرفة ونقاط I/O ومنطق التحكم" },
       { label: "الاتصال والطاقة", value: "يُؤكَّدان حسب الطراز ومواصفات المشروع" },
     ],
-    translatedSeoTitle: "مضيف RCU ذكي لغرف الفنادق | مشروعات التحكم والأتمتة",
+    translatedSeoTitle: "وحدة RCU رئيسية للتحكم (RCU Host) في غرف الفنادق",
     translatedMetaDescription:
-      "مضيف RCU لمشروعات أتمتة غرف الفنادق، مع تخطيط الإضاءة وHVAC والستائر والمستشعرات وواجهات التحكم حسب متطلبات الغرفة.",
+      "وحدة RCU رئيسية للتحكم (RCU Host) لمشروعات أتمتة غرف الفنادق، مع تخطيط الإضاءة وHVAC والستائر والمستشعرات وواجهات التحكم حسب متطلبات الغرفة.",
     translatedStructuredContent: {
       eyebrow: "منتج للتحكم في غرف الفنادق",
-      h1: "مضيف RCU ذكي للتحكم في غرفة الفندق",
+      h1: "وحدة RCU رئيسية للتحكم (RCU Host) في غرفة الفندق",
       introduction:
-        "صُمم مضيف RCU لمشروعات أتمتة غرف الفنادق لتنظيم مدخلات النظام ومخرجاته والعلاقة بين أجهزة الغرفة. يجب على فريق الشراء والتكامل تحديد أنواع الغرف ودوائر الإضاءة وHVAC والستائر والمستشعرات والطاقة وواجهات النزيل قبل اعتماد التكوين؛ فاسم المنتج لا يعني عدداً ثابتاً من نقاط I/O أو بروتوكولاً أو مواصفات كهربائية موحدة.",
-      breadcrumbLabel: "مضيف RCU الذكي",
+        "صُممت وحدة RCU رئيسية للتحكم (RCU Host) لمشروعات أتمتة غرف الفنادق لتنظيم مدخلات النظام ومخرجاته والعلاقة بين أجهزة الغرفة. يجب على فريق الشراء والتكامل تحديد أنواع الغرف ودوائر الإضاءة وHVAC والستائر والمستشعرات والطاقة وواجهات النزيل قبل اعتماد التكوين؛ فاسم المنتج لا يعني عدداً ثابتاً من نقاط I/O أو بروتوكولاً أو مواصفات كهربائية موحدة.",
+      breadcrumbLabel: "وحدة RCU رئيسية للتحكم",
       parentBreadcrumb: { label: "المنتجات", href: "/ar/products/" },
       sections: [
         {
@@ -54,7 +54,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       faqs: [
         {
-          question: "كم عدد نقاط I/O في مضيف RCU؟",
+          question: "كم عدد نقاط I/O في وحدة RCU رئيسية للتحكم؟",
           answer: "لا تحدد هذه الصفحة عدداً موحداً؛ يجب تأكيد العدد للطراز المختار وفق جدول نقاط المشروع.",
         },
         {
@@ -84,14 +84,14 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
         },
       ],
       cta: {
-        heading: "حدّد تكوين مضيف RCU للمشروع",
+        heading: "حدّد تكوين وحدة RCU رئيسية للتحكم للمشروع",
         description: "أرسل أنواع الغرف ونقاط التحكم والواجهات وظروف التركيب والكمية.",
         label: "إرسال استفسار المنتج",
         href: "/ar/contact/#get-a-quote",
         secondaryLabel: "عرض حل RCU",
         secondaryHref: "/ar/solutions/rcu-room-control-solution/",
       },
-      imageAlt: "مضيف RCU ذكي للتحكم في غرفة الفندق",
+      imageAlt: "وحدة RCU رئيسية للتحكم في غرفة الفندق",
     },
   }),
   defineCmsImportPayload({
@@ -122,7 +122,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
         {
           heading: "تنظيم أجهزة الغرفة",
           paragraphs: [
-            "يمكن للخزانة أن تجمع مضيف RCU والأطراف أو المكونات المحددة للمشروع داخل منطقة التيار الخفيف، وأن توضّح علاقة الإضاءة وHVAC والستائر والمستشعرات وواجهات التشغيل.",
+            "يمكن للخزانة أن تجمع وحدة RCU رئيسية للتحكم (RCU Host) والأطراف أو المكونات المحددة للمشروع داخل منطقة التيار الخفيف، وأن توضّح علاقة الإضاءة وHVAC والستائر والمستشعرات وواجهات التشغيل.",
           ],
         },
         {
@@ -160,7 +160,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       relatedLinks: [
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم",
           description: "راجع جهاز منطق التحكم الأساسي للغرفة.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },
@@ -255,7 +255,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
           href: "/ar/solutions/smart-hotel-automation-solution/",
         },
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم (RCU Host)",
           description: "راجع جهاز منطق التحكم الذي قد يعمل مع الواجهة.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },
@@ -302,7 +302,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
         {
           heading: "مكونات النظام",
           paragraphs: [
-            "قد يشمل النطاق مضيف RCU أو خزانة التحكم ولوحات المفاتيح والشاشات والتحكم الحراري والستائر ومستشعرات الباب والإشغال والطاقة ولوحات حالة الغرفة. يتحدد التكوين حسب الغرفة والتشغيل.",
+            "قد يشمل النطاق وحدة RCU رئيسية للتحكم (RCU Host) أو خزانة التحكم ولوحات المفاتيح والشاشات والتحكم الحراري والستائر ومستشعرات الباب والإشغال والطاقة ولوحات حالة الغرفة. يتحدد التكوين حسب الغرفة والتشغيل.",
           ],
         },
         {
@@ -340,7 +340,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       relatedLinks: [
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم",
           description: "راجع المنتج المركزي لمنطق التحكم.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },
@@ -518,7 +518,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       relatedLinks: [
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم (RCU Host)",
           description: "راجع وحدة التحكم المركزية الممكنة للغرفة.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },

@@ -27,6 +27,10 @@ import {
   validatePublicationEvidence,
   type PublicationEvidenceSource,
 } from "./multilingual-publication-control";
+import {
+  hasApprovedOwnerReviewWaiver,
+  ownerReviewWaiverStatuses,
+} from "./owner-review-waiver";
 
 export type MultilingualAuditInput = {
   manifest: readonly MultilingualPublicationEntry[];
@@ -47,6 +51,7 @@ export type MultilingualAuditResult = {
   sitemapEligibleCount: number;
   hreflangEligibleCount: number;
   nativeReviewPendingCount: number;
+  ownerReviewWaiverApprovedCount: number;
   productionReleaseReadyCount: number;
 };
 
@@ -302,6 +307,38 @@ export function auditMultilingualFoundation(
     }
     if (!entry.nativeReviewNotes.trim()) {
       errors.push(`${entry.locale}:${entry.slug} requires nativeReviewNotes`);
+    }
+    if (
+      !ownerReviewWaiverStatuses.includes(entry.ownerReviewWaiverStatus)
+    ) {
+      errors.push(
+        `${entry.locale}:${entry.slug} has an invalid ownerReviewWaiverStatus`,
+      );
+    }
+    if (entry.ownerReviewWaiverStatus === "approved") {
+      if (!hasApprovedOwnerReviewWaiver(entry)) {
+        errors.push(
+          `${entry.locale}:${entry.slug} has incomplete owner review waiver evidence`,
+        );
+      }
+      if (
+        entry.nativeReviewStatus !== "pending" ||
+        entry.nativeReviewer !== null ||
+        entry.nativeReviewDate !== null ||
+        entry.productionReleaseReady
+      ) {
+        errors.push(
+          `${entry.locale}:${entry.slug} owner waiver must remain independent from native approval`,
+        );
+      }
+    } else if (
+      entry.ownerReviewWaiverBy !== null ||
+      entry.ownerReviewWaiverDate !== null ||
+      entry.ownerReviewWaiverReason !== ""
+    ) {
+      errors.push(
+        `${entry.locale}:${entry.slug} must not claim owner waiver evidence`,
+      );
     }
     if (entry.nativeReviewStatus !== "pending") {
       if (!entry.nativeReviewer?.trim()) {
@@ -627,6 +664,9 @@ export function auditMultilingualFoundation(
   const nativeReviewPendingCount = approvedEntries.filter(
     (entry) => entry.nativeReviewStatus === "pending",
   ).length;
+  const ownerReviewWaiverApprovedCount = approvedEntries.filter(
+    hasApprovedOwnerReviewWaiver,
+  ).length;
   const productionReleaseReadyCount = approvedEntries.filter((entry) =>
     hasProductionReleaseGate(entry, errors.length === 0),
   ).length;
@@ -645,6 +685,7 @@ export function auditMultilingualFoundation(
     sitemapEligibleCount: sitemapEligible.length,
     hreflangEligibleCount: hreflangEligible.length,
     nativeReviewPendingCount,
+    ownerReviewWaiverApprovedCount,
     productionReleaseReadyCount,
   };
 }

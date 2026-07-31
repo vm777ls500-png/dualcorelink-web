@@ -40,7 +40,7 @@ async function main() {
     `[multilingual:audit] eligible static=${result.staticExportEligibleCount} sitemap=${result.sitemapEligibleCount} hreflang=${result.hreflangEligibleCount}`,
   );
   console.log(
-    `[multilingual:audit] native-review-pending=${result.nativeReviewPendingCount} production-ready=${result.productionReleaseReadyCount}`,
+    `[multilingual:audit] native-review-pending=${result.nativeReviewPendingCount} owner-waiver-approved=${result.ownerReviewWaiverApprovedCount} production-ready=${result.productionReleaseReadyCount}`,
   );
   for (const warning of result.warnings) {
     console.warn(`[multilingual:audit] warning: ${warning}`);

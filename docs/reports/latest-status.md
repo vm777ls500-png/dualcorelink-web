@@ -4,34 +4,42 @@ Last updated: 2026-07-31
 
 ## Current Phase
 
-**SEO Growth Multilingual Phase M6A — Arabic P0 Human Review Preparation**
+**SEO Growth Multilingual Phase M6B — Arabic P0 Owner Review Waiver**
 
-Status: **PASS — Arabic P0 Human Review Package Ready**.
+Status: **Owner waiver recorded and dedicated release gate locally verified**.
 
-An isolated review worktree was created from sealed multilingual baseline
-`c5ac34509e27609bd143fbf179d54c028763d4ad`. The exact historical Arabic P0
-scope is 15 pages: nine file-backed pages and six CMS-backed candidates.
-Complete human-review and decision materials now cover 15/15 URLs.
+Allan explicitly waived independent native Arabic review for the exact 15-page
+Arabic P0 batch on 2026-07-31 and accepted the localization risk. The waiver is
+stored independently from native review:
 
-Seven pages received deterministic Arabic grammar, engineering wording, or
-86-Type terminology corrections. No page was human-approved: Arabic remains
-pending `15`, approved `0`, changes-required `0`, and
-`productionReleaseReady = 0`. The RCU Host page is explicitly reserved for a
-native hotel-engineering terminology decision.
+- Owner waiver approved: `15`
+- Native review approved: `0`
+- Native review pending: `15`
+- Arabic `productionReleaseReady`: `0`
 
-Validation passed: multilingual audit, 145/145 tests, lint, media audit,
-normal build, 12-page production static export audit, and `git diff --check`.
-The full release check continues to block 402 pending pages. Separate local
-review QA passed 15 Arabic pages across five viewports (75/75), with zero
-overflow, console errors, or network failures.
+The dedicated explicit command passes 15/15 pages and 6/6 CMS payloads:
 
-Production was checked with GET/HEAD only: all 15 Arabic P0 paths remain
-one-hop 301 redirects, the sitemap remains 88 URLs (76 English + 12 Chinese),
-and public Arabic pages remain zero. No CMS/database/configuration write,
-commit, push, deployment, or GSC request occurred.
+`npm run multilingual:release-check -- --locale=ar --batch=p0 --allow-owner-waiver`
+
+It always emits:
+
+`WARNING: Arabic P0 was released under owner review waiver and was not approved by an independent native Arabic reviewer.`
+
+Without the explicit waiver flag, Arabic P0 remains blocked. The full release
+check also continues to block all 402 pending pages; the existing 12-page
+Chinese production boundary is unchanged.
+
+The selected RCU Host expression is `وحدة RCU رئيسية للتحكم`, with the first
+occurrence rendered as `وحدة RCU رئيسية للتحكم (RCU Host)`. Product facts,
+model identifiers, specifications, and English content were not changed.
+
+Validation passed: multilingual audit, 6/6 focused tests, 151/151 full tests
+using the public read-only CMS, lint, media audit, build, 12-page static export
+audit with sitemap 88, and `git diff --check`. No CMS write, commit, push,
+deployment, `main` change, or GSC request occurred. Arabic remains unpublished.
 
 Detailed report:
-`docs/reports/seo-growth-multilingual-m6a-ar-p0-human-review-preparation-20260731.md`.
+`docs/reports/seo-growth-multilingual-m6b-ar-p0-owner-review-waiver-20260731.md`.
 
 ## Previous Phase
 

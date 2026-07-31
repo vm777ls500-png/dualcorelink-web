@@ -4,9 +4,9 @@ Last updated: 2026-07-31
 
 ## Current Phase
 
-**SEO Growth Multilingual Phase M6B — Arabic P0 Owner Review Waiver**
+**DualCoreLink Multilingual Phase M6B-1 — Preserve Arabic P0 Owner Waiver**
 
-Status: **Owner waiver recorded and dedicated release gate locally verified**.
+Status: **Implementation committed and preserved on the review branch**.
 
 Allan explicitly waived independent native Arabic review for the exact 15-page
 Arabic P0 batch on 2026-07-31 and accepted the localization risk. The waiver is
@@ -35,11 +35,20 @@ model identifiers, specifications, and English content were not changed.
 
 Validation passed: multilingual audit, 6/6 focused tests, 151/151 full tests
 using the public read-only CMS, lint, media audit, build, 12-page static export
-audit with sitemap 88, and `git diff --check`. No CMS write, commit, push,
-deployment, `main` change, or GSC request occurred. Arabic remains unpublished.
+audit with sitemap 88, and `git diff --check`.
+
+Implementation commit
+`b5c9bb6e05310623e582ab81d856fcd56553220c` was created and non-force pushed
+only to `review/ar-p0-human-review-20260731`. The remote review branch matched
+the local implementation SHA after the push. `origin/main` remained
+`ac10bed6effb94da13395677b46baf31088a86f7`.
+
+The AWS production workflow listens only to pushes on `main`; no workflow
+dispatch or deployment command was issued. No production CMS write, GSC
+request, Arabic publication, or change to another worktree occurred.
 
 Detailed report:
-`docs/reports/seo-growth-multilingual-m6b-ar-p0-owner-review-waiver-20260731.md`.
+`docs/reports/seo-growth-multilingual-m6b1-ar-owner-waiver-branch-preservation-20260731.md`.
 
 ## Previous Phase
 

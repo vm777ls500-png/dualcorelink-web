@@ -1,8 +1,39 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-07-29
+Last updated: 2026-07-31
 
 ## Current Phase
+
+**SEO Growth Multilingual Phase M6A — Arabic P0 Human Review Preparation**
+
+Status: **PASS — Arabic P0 Human Review Package Ready**.
+
+An isolated review worktree was created from sealed multilingual baseline
+`c5ac34509e27609bd143fbf179d54c028763d4ad`. The exact historical Arabic P0
+scope is 15 pages: nine file-backed pages and six CMS-backed candidates.
+Complete human-review and decision materials now cover 15/15 URLs.
+
+Seven pages received deterministic Arabic grammar, engineering wording, or
+86-Type terminology corrections. No page was human-approved: Arabic remains
+pending `15`, approved `0`, changes-required `0`, and
+`productionReleaseReady = 0`. The RCU Host page is explicitly reserved for a
+native hotel-engineering terminology decision.
+
+Validation passed: multilingual audit, 145/145 tests, lint, media audit,
+normal build, 12-page production static export audit, and `git diff --check`.
+The full release check continues to block 402 pending pages. Separate local
+review QA passed 15 Arabic pages across five viewports (75/75), with zero
+overflow, console errors, or network failures.
+
+Production was checked with GET/HEAD only: all 15 Arabic P0 paths remain
+one-hop 301 redirects, the sitemap remains 88 URLs (76 English + 12 Chinese),
+and public Arabic pages remain zero. No CMS/database/configuration write,
+commit, push, deployment, or GSC request occurred.
+
+Detailed report:
+`docs/reports/seo-growth-multilingual-m6a-ar-p0-human-review-preparation-20260731.md`.
+
+## Previous Phase
 
 **SEO Growth Multilingual Phase M5C — Chinese P0 Branch Preservation**
 

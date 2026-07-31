@@ -348,7 +348,7 @@ export const arStaticPages: readonly LocalizedFileContent[] = [
           bullets: [
             "Hotel Smart Room RCU Host 1: جهاز مركزي ضمن تخطيط التحكم في الغرفة.",
             "RCU Controller Cabinet: خيار خزانة مركزية لتنظيم معدات التحكم.",
-            "86-Type AI Smart Control Display: واجهة جدارية لصندوق 86 ضمن النظام المعتمد.",
+            "86-Type AI Smart Control Display: واجهة جدارية لعلبة حائط من نوع 86 ضمن النظام المعتمد.",
           ],
         },
         {
@@ -393,7 +393,7 @@ export const arStaticPages: readonly LocalizedFileContent[] = [
           href: "/ar/products/rcu-controller-cabinet/",
         },
         {
-          label: "شاشة تحكم ذكية 86",
+          label: "شاشة تحكم ذكية من نوع 86",
           description: "راجع الواجهة الجدارية ووظائف التحكم المخططة.",
           href: "/ar/products/86-type-ai-smart-control-display/",
         },
@@ -718,8 +718,8 @@ export const arRegionPages: readonly LocalizedFileContent[] = [
           href: "/ar/solutions/hotel-guest-room-control-solution/",
         },
         {
-          label: "شاشة تحكم ذكية 86",
-          description: "راجع واجهة جدارية لصندوق 86 ضمن النظام المعتمد.",
+          label: "شاشة تحكم ذكية من نوع 86",
+          description: "راجع واجهة جدارية لعلبة حائط من نوع 86 ضمن النظام المعتمد.",
           href: "/ar/products/86-type-ai-smart-control-display/",
         },
         {

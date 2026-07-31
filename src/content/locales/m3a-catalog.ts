@@ -388,7 +388,7 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     kind: "display",
     arTitle: "شاشة تحكم ذكية بالذكاء الاصطناعي من نوع 86",
     zhTitle: "86 型 AI 智能控制屏",
-    arDetail: "واجهة لمس وصوت تناسب علبة الحائط القياسية مقاس 86.",
+    arDetail: "واجهة لمس وصوت تناسب علبة الحائط القياسية من نوع 86.",
     zhDetail: "适配 86 型墙盒的 AI 智能控制屏，可作为酒店客房集中操作界面。",
   },
 ] as const;

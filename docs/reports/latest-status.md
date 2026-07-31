@@ -1,8 +1,49 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-07-30
+Last updated: 2026-07-31
 
 ## Current Phase
+
+**Multilingual Phase M6C — Arabic P0 Owner-Waiver CMS Import Safety
+Extension**
+
+Status: **READY_FOR_HASH_APPROVAL**.
+
+The isolated branch `feature/ar-p0-cms-import-safety-20260731` semantically
+combines the audited CMS CLI with the Arabic owner-waiver model. Implementation
+commit `fb3fb2b4b480416351e469de8cca670a96d05966` upgrades the candidate
+plugin to `1.1.0` while retaining translation schema version `1`.
+
+Arabic CMS scope is exactly source IDs `48`, `47`, `6`, `140`, `138`, and
+`137`. Native review remains pending with no native reviewer/date. Allan's
+exact `2026-07-31` waiver passes only under
+`ar:p0 --allow-owner-waiver`; Chinese P0 rejects owner waiver.
+
+CMS tests passed TypeScript 65/65 and PHP 64/64. Project tests passed 217/217,
+lint and media audit had zero errors, build passed 163/163, and static export
+remains 12 Chinese pages with sitemap 88 and zero Arabic production pages.
+The full-site gate and Arabic gate without the waiver flag fail as designed.
+
+Candidate hashes:
+
+- Arabic payload canonical:
+  `82f8803975f5c6dcf135f45a3f11e15dbf911c39a9da0fae53b97f7ec45ffe0e`
+- Arabic payload JSON:
+  `68ec8cde60ee376a0ec963c2cf4498dcafcb3be3488702c89dae91977320a5b5`
+- plugin ZIP:
+  `d7bd1299f9fb2638cc9cd503e5c1e26fd67e8f514f7bfc8076b5bd228e5a5f93`
+- plugin manifest:
+  `c77d159a0d7ee604ff635cb6e1d5a3b242e23ef5b98c88b3fe4954c693422675`
+
+The old `1.0.1` approval record remains unchanged and rejects this candidate
+as expected. No production server access, CMS operation, plugin update,
+frontend deployment, `main` push, or GSC request occurred. Allan must
+separately approve the new hashes before any production action.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m6c-ar-p0-cms-import-safety-extension-20260731.md`.
+
+## Previous Phase M5E-7B
 
 **SEO Growth Multilingual Phase M5E-7B — Hreflang Publication Boundary**
 

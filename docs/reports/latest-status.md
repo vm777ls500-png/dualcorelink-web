@@ -4,6 +4,45 @@ Last updated: 2026-07-31
 
 ## Current Phase
 
+**Multilingual Phase M6C-1 — Arabic P0 Approved Package Record and Production
+Compatibility Audit**
+
+Status:
+**PASS — 允许请求 M6D 受控插件 1.1.0 更新和生产只读 Arabic Preflight 授权**.
+
+Allan's exact Arabic P0 package approval is preserved in the separate immutable
+record `config/multilingual-cms-import-package-approval-ar-p0.json`, committed
+as `6a7213f7c7ff2f33a31ff01fe71d5e89cccb56cc`. The approved `1.1.0` ZIP,
+manifest, six-record payload, implementation SHA, reviewer, date, and
+owner-waiver basis all reproduce exactly. The Chinese `1.0.1` approval record
+is unchanged.
+
+The production compatibility audit was read-only. WordPress `7.0.2`, core
+checksums, Nginx, PHP-FPM, MariaDB, CMS REST, and the frontend are healthy. The
+active importer remains `1.0.1`; all 9/9 installed files match the approved
+source after applying the deterministic packager's byte normalization.
+
+Production remained unchanged before and after the audit: Posts `216`,
+Postmeta `2576`, maximum ID `261`, seven published Chinese CMS records, zero
+Chinese drafts, and zero Arabic Product/Solution records. The six English
+sources and their required ACF mappings are present. No Arabic run directory
+or owner-waiver meta exists yet.
+
+The next phase requires a separate Allan authorization. Before any update, M6D
+must create a fresh root-owned backup of the installed `1.0.1` plugin, verify
+the exact approved package, replace it atomically, and fail closed with
+rollback. Even after an authorized update, only one separately authorized
+read-only Arabic preflight may run; apply, verify, publish, rollback, frontend
+deployment, and GSC operations remain unauthorized.
+
+WARNING: Arabic P0 is covered by an owner review waiver and has not been
+approved by an independent native Arabic reviewer.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m6c1-ar-approved-package-installation-preflight-20260731.md`.
+
+## Previous Phase M6C
+
 **Multilingual Phase M6C — Arabic P0 Owner-Waiver CMS Import Safety
 Extension**
 

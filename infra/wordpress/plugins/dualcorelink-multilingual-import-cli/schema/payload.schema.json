@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "DualCoreLink Chinese P0 CMS Import Payload",
+  "title": "DualCoreLink Approved P0 CMS Import Payload",
   "type": "array",
-  "minItems": 7,
+  "minItems": 6,
   "maxItems": 7,
   "items": {
     "type": "object",
@@ -34,7 +34,7 @@
     "properties": {
       "contentType": { "enum": ["product", "solution"] },
       "sourceEnglishContentId": {
-        "enum": [48, 47, 6, 222, 142, 140, 138]
+        "enum": [48, 47, 6, 222, 142, 140, 138, 137]
       },
       "sourceEnglishSlug": {
         "type": "string",
@@ -49,7 +49,7 @@
       "localizedContentId": { "type": "null" },
       "importKey": { "type": "string", "minLength": 1, "maxLength": 200 },
       "deliveryMode": { "const": "validated-import-payload" },
-      "locale": { "const": "zh" },
+      "locale": { "enum": ["zh", "ar"] },
       "batch": { "const": "p0" },
       "translatedTitle": { "type": "string", "minLength": 1 },
       "translatedDescription": { "type": "string", "minLength": 1 },
@@ -71,11 +71,22 @@
       "translatedStructuredContent": { "type": "object" },
       "translationStatus": { "const": "approved" },
       "reviewStatus": { "const": "approved" },
-      "nativeReviewStatus": { "const": "approved" },
-      "nativeReviewer": { "const": "Allan" },
-      "nativeReviewDate": { "const": "2026-07-29" },
+      "nativeReviewStatus": { "enum": ["approved", "pending"] },
+      "nativeReviewer": { "type": ["string", "null"] },
+      "nativeReviewDate": { "type": ["string", "null"] },
       "nativeReviewNotes": { "type": "string", "minLength": 1 },
-      "productionReleaseReady": { "const": true }
+      "productionReleaseReady": { "const": true },
+      "ownerReviewWaiverSchemaVersion": { "const": 1 },
+      "ownerReviewWaiverStatus": { "const": "approved" },
+      "ownerReviewWaiverBy": { "const": "Allan" },
+      "ownerReviewWaiverDate": { "const": "2026-07-31" },
+      "ownerReviewWaiverReason": {
+        "const": "Business owner explicitly waived Arabic native-language review and accepted localization risk."
+      },
+      "ownerReviewWaiverScopeCount": { "const": 15 },
+      "ownerReviewWaiverScopeSha256": {
+        "const": "92eae81730ac445455385ff5f3811394dbb866d6f333dc6a290f5df60e4dc193"
+      }
     }
   }
 }

@@ -1,5 +1,10 @@
 import { arCmsImportPayload } from "./ar";
 import {
+  arP0CmsSourceIds,
+  arP0OwnerWaivedCmsImportPayload,
+  arP0OwnerWaiverScopeSha256,
+} from "./ar-p0-owner-waived";
+import {
   arM3aCmsImportPayload,
   zhM3aCmsImportPayload,
 } from "./m3a-generated";
@@ -20,6 +25,9 @@ export const cmsTranslationImportPayload = [
 
 export {
   arCmsImportPayload,
+  arP0CmsSourceIds,
+  arP0OwnerWaivedCmsImportPayload,
+  arP0OwnerWaiverScopeSha256,
   arM3aCmsImportPayload,
   zhCmsImportPayload,
   zhP0ReviewedCmsImportPayload,

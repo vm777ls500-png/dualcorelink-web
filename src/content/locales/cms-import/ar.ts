@@ -7,24 +7,24 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
     sourceEnglishContentId: 48,
     sourceEnglishSlug: "hotel-smart-room-rcu-host-1",
     locale: "ar",
-    translatedTitle: "مضيف RCU ذكي للتحكم في غرفة الفندق",
+    translatedTitle: "وحدة RCU رئيسية للتحكم (RCU Host) في غرفة الفندق",
     translatedDescription:
-      "مضيف RCU لمشروعات أتمتة غرف الفنادق، يُستخدم لتخطيط التحكم في الإضاءة وHVAC والستائر والمستشعرات وواجهات الغرفة.",
+      "وحدة RCU رئيسية للتحكم (RCU Host) لمشروعات أتمتة غرف الفنادق، تُستخدم لتخطيط التحكم في الإضاءة وHVAC والستائر والمستشعرات وواجهات الغرفة.",
     translatedSpecifications: [
-      { label: "نوع المنتج", value: "مضيف RCU للتحكم في غرفة الفندق" },
+      { label: "نوع المنتج", value: "وحدة RCU رئيسية للتحكم في غرفة الفندق" },
       { label: "موضع التركيب", value: "صندوق الغرفة أو خزانة التيار الخفيف أو السقف أو الموضع المحدد للمشروع" },
       { label: "نطاق التحكم", value: "يُؤكَّد حسب نوع الغرفة ونقاط I/O ومنطق التحكم" },
       { label: "الاتصال والطاقة", value: "يُؤكَّدان حسب الطراز ومواصفات المشروع" },
     ],
-    translatedSeoTitle: "مضيف RCU ذكي لغرف الفنادق | مشروعات التحكم والأتمتة",
+    translatedSeoTitle: "وحدة RCU رئيسية للتحكم (RCU Host) في غرف الفنادق",
     translatedMetaDescription:
-      "مضيف RCU لمشروعات أتمتة غرف الفنادق، مع تخطيط الإضاءة وHVAC والستائر والمستشعرات وواجهات التحكم حسب متطلبات الغرفة.",
+      "وحدة RCU رئيسية للتحكم (RCU Host) لمشروعات أتمتة غرف الفنادق، مع تخطيط الإضاءة وHVAC والستائر والمستشعرات وواجهات التحكم حسب متطلبات الغرفة.",
     translatedStructuredContent: {
       eyebrow: "منتج للتحكم في غرف الفنادق",
-      h1: "مضيف RCU ذكي للتحكم في غرفة الفندق",
+      h1: "وحدة RCU رئيسية للتحكم (RCU Host) في غرفة الفندق",
       introduction:
-        "صُمم مضيف RCU لمشروعات أتمتة غرف الفنادق لتنظيم مداخل التحكم ومخارجه والعلاقة بين أجهزة الغرفة. يجب على فريق الشراء والتكامل تحديد أنواع الغرف ودوائر الإضاءة وHVAC والستائر والمستشعرات والطاقة وواجهات النزيل قبل اعتماد التكوين؛ فاسم المنتج لا يعني عدداً ثابتاً من نقاط I/O أو بروتوكولاً أو مواصفات كهربائية موحدة.",
-      breadcrumbLabel: "مضيف RCU الذكي",
+        "صُممت وحدة RCU رئيسية للتحكم (RCU Host) لمشروعات أتمتة غرف الفنادق لتنظيم مدخلات النظام ومخرجاته والعلاقة بين أجهزة الغرفة. يجب على فريق الشراء والتكامل تحديد أنواع الغرف ودوائر الإضاءة وHVAC والستائر والمستشعرات والطاقة وواجهات النزيل قبل اعتماد التكوين؛ فاسم المنتج لا يعني عدداً ثابتاً من نقاط I/O أو بروتوكولاً أو مواصفات كهربائية موحدة.",
+      breadcrumbLabel: "وحدة RCU رئيسية للتحكم",
       parentBreadcrumb: { label: "المنتجات", href: "/ar/products/" },
       sections: [
         {
@@ -54,7 +54,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       faqs: [
         {
-          question: "كم عدد نقاط I/O في مضيف RCU؟",
+          question: "كم عدد نقاط I/O في وحدة RCU رئيسية للتحكم؟",
           answer: "لا تحدد هذه الصفحة عدداً موحداً؛ يجب تأكيد العدد للطراز المختار وفق جدول نقاط المشروع.",
         },
         {
@@ -84,14 +84,14 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
         },
       ],
       cta: {
-        heading: "حدّد تكوين مضيف RCU للمشروع",
+        heading: "حدّد تكوين وحدة RCU رئيسية للتحكم للمشروع",
         description: "أرسل أنواع الغرف ونقاط التحكم والواجهات وظروف التركيب والكمية.",
         label: "إرسال استفسار المنتج",
         href: "/ar/contact/#get-a-quote",
         secondaryLabel: "عرض حل RCU",
         secondaryHref: "/ar/solutions/rcu-room-control-solution/",
       },
-      imageAlt: "مضيف RCU ذكي للتحكم في غرفة الفندق",
+      imageAlt: "وحدة RCU رئيسية للتحكم في غرفة الفندق",
     },
   }),
   defineCmsImportPayload({
@@ -101,7 +101,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
     locale: "ar",
     translatedTitle: "خزانة تحكم RCU لغرف الفنادق",
     translatedDescription:
-      "خيار هندسي لتجميع أجهزة تحكم RCU والأطراف والتوصيلات في غرفة الفندق، مع تخطيط التخطيط الداخلي والواجهات ومساحة الصيانة.",
+      "خيار هندسي لتجميع أجهزة تحكم RCU والأطراف والتوصيلات في غرفة الفندق، مع تخطيط الترتيب الداخلي والواجهات ومساحة الصيانة.",
     translatedSpecifications: [
       { label: "نوع المنتج", value: "خزانة تحكم RCU للغرفة" },
       { label: "الاستخدام", value: "التجميع المركزي لأجهزة التحكم والتوصيلات" },
@@ -122,7 +122,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
         {
           heading: "تنظيم أجهزة الغرفة",
           paragraphs: [
-            "يمكن للخزانة أن تجمع مضيف RCU والأطراف أو المكونات المحددة للمشروع داخل منطقة التيار الخفيف، وأن توضّح علاقة الإضاءة وHVAC والستائر والمستشعرات وواجهات التشغيل.",
+            "يمكن للخزانة أن تجمع وحدة RCU رئيسية للتحكم (RCU Host) والأطراف أو المكونات المحددة للمشروع داخل منطقة التيار الخفيف، وأن توضّح علاقة الإضاءة وHVAC والستائر والمستشعرات وواجهات التشغيل.",
           ],
         },
         {
@@ -160,7 +160,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       relatedLinks: [
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم",
           description: "راجع جهاز منطق التحكم الأساسي للغرفة.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },
@@ -189,24 +189,24 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
     sourceEnglishContentId: 6,
     sourceEnglishSlug: "86-type-ai-smart-control-display",
     locale: "ar",
-    translatedTitle: "شاشة تحكم ذكية بالذكاء الاصطناعي مقاس 86",
+    translatedTitle: "شاشة تحكم ذكية بالذكاء الاصطناعي من نوع 86",
     translatedDescription:
-      "واجهة لمس وصوت ذكية تناسب علبة الحائط القياسية مقاس 86، للاستخدام في غرف الفنادق مع الإضاءة وHVAC والستائر والصوت والمستشعرات.",
+      "واجهة لمس وصوت ذكية تناسب علبة الحائط القياسية من نوع 86، للاستخدام في غرف الفنادق مع الإضاءة وHVAC والستائر والصوت والمستشعرات.",
     translatedSpecifications: [
-      { label: "التركيب", value: "علبة حائط قياسية مقاس 86" },
+      { label: "التركيب", value: "علبة حائط قياسية من نوع 86" },
       { label: "طريقة التفاعل", value: "اللمس والصوت" },
       { label: "الاستخدام", value: "غرف الفنادق والشقق ومساحات العرض" },
       { label: "الاتصال والتكامل", value: "يُؤكَّدان حسب الطراز والمشروع" },
     ],
-    translatedSeoTitle: "شاشة تحكم ذكية مقاس 86 لغرف الفنادق | لمس وصوت",
+    translatedSeoTitle: "شاشة تحكم ذكية من نوع 86 لغرف الفنادق | لمس وصوت",
     translatedMetaDescription:
-      "شاشة ذكية تناسب علبة حائط مقاس 86 وتوفر واجهة لمس وصوت لغرف الفنادق، مع تأكيد وظائف النظام والاتصال حسب المشروع.",
+      "شاشة ذكية تناسب علبة حائط من نوع 86 وتوفر واجهة لمس وصوت لغرف الفنادق، مع تأكيد وظائف النظام والاتصال حسب المشروع.",
     translatedStructuredContent: {
       eyebrow: "واجهة ذكية لغرفة الفندق",
-      h1: "شاشة تحكم ذكية بالذكاء الاصطناعي مقاس 86",
+      h1: "شاشة تحكم ذكية بالذكاء الاصطناعي من نوع 86",
       introduction:
-        "تُركَّب الشاشة الذكية في علبة حائط قياسية مقاس 86 ويمكن استخدامها كواجهة مركزية في غرفة الفندق أو الشقة أو مساحة العرض. يمكن تهيئتها للتعامل مع الإضاءة وHVAC والستائر والصوت أو المستشعرات بحسب المشروع، بينما تعتمد الوظائف الفعلية وطريقة الاتصال على الطراز والبرمجيات وواجهات النظام.",
-      breadcrumbLabel: "شاشة التحكم الذكية مقاس 86",
+        "تُركَّب الشاشة الذكية في علبة حائط قياسية من نوع 86 ويمكن استخدامها كواجهة مركزية في غرفة الفندق أو الشقة أو مساحة العرض. يمكن تهيئتها للتعامل مع الإضاءة وHVAC والستائر والصوت أو المستشعرات بحسب المشروع، بينما تعتمد الوظائف الفعلية وطريقة الاتصال على الطراز والبرمجيات وواجهات النظام.",
+      breadcrumbLabel: "شاشة التحكم الذكية من نوع 86",
       parentBreadcrumb: { label: "المنتجات", href: "/ar/products/" },
       sections: [
         {
@@ -216,9 +216,9 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
           ],
         },
         {
-          heading: "التركيب في علبة مقاس 86",
+          heading: "التركيب في علبة من نوع 86",
           paragraphs: [
-            "التوافق مع العلبة القياسية مقاس 86 هو وصف التركيب الحقيقي. يجب أيضاً فحص عمق العلبة والطاقة والكابلات والتثبيت وتشطيب الجدار.",
+            "التوافق مع العلبة القياسية من نوع 86 هو وصف التركيب الحقيقي. يجب أيضاً فحص عمق العلبة والطاقة والكابلات والتثبيت وتشطيب الجدار.",
           ],
         },
         {
@@ -236,8 +236,8 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       faqs: [
         {
-          question: "ماذا يعني مقاس 86؟",
-          answer: "يعني أن المنتج يناسب علبة حائط قياسية مقاس 86، مع ضرورة مراجعة العمق والطاقة والكابلات.",
+          question: "ماذا يعني النوع 86؟",
+          answer: "يعني أن المنتج يناسب علبة حائط قياسية من نوع 86، مع ضرورة مراجعة العمق والطاقة والكابلات.",
         },
         {
           question: "هل تتحكم الشاشة في جميع أجهزة الغرفة؟",
@@ -255,7 +255,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
           href: "/ar/solutions/smart-hotel-automation-solution/",
         },
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم (RCU Host)",
           description: "راجع جهاز منطق التحكم الذي قد يعمل مع الواجهة.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },
@@ -271,7 +271,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
         label: "إرسال استفسار الشاشة",
         href: "/ar/contact/#get-a-quote",
       },
-      imageAlt: "شاشة تحكم ذكية مقاس 86 لغرفة الفندق",
+      imageAlt: "شاشة تحكم ذكية من نوع 86 لغرفة الفندق",
     },
   }),
   defineCmsImportPayload({
@@ -302,7 +302,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
         {
           heading: "مكونات النظام",
           paragraphs: [
-            "قد يشمل النطاق مضيف RCU أو خزانة التحكم ولوحات المفاتيح والشاشات والتحكم الحراري والستائر ومستشعرات الباب والإشغال والطاقة ولوحات حالة الغرفة. يتحدد التكوين حسب الغرفة والتشغيل.",
+            "قد يشمل النطاق وحدة RCU رئيسية للتحكم (RCU Host) أو خزانة التحكم ولوحات المفاتيح والشاشات والتحكم الحراري والستائر ومستشعرات الباب والإشغال والطاقة ولوحات حالة الغرفة. يتحدد التكوين حسب الغرفة والتشغيل.",
           ],
         },
         {
@@ -340,7 +340,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       relatedLinks: [
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم",
           description: "راجع المنتج المركزي لمنطق التحكم.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },
@@ -429,7 +429,7 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       relatedLinks: [
         {
-          label: "شاشة التحكم الذكية مقاس 86",
+          label: "شاشة التحكم الذكية من نوع 86",
           description: "راجع واجهة مركزية يمكن استخدامها داخل غرفة الفندق.",
           href: "/ar/products/86-type-ai-smart-control-display/",
         },
@@ -518,12 +518,12 @@ export const arCmsImportPayload: readonly CmsTranslationRecord[] = [
       ],
       relatedLinks: [
         {
-          label: "مضيف RCU الذكي",
+          label: "وحدة RCU رئيسية للتحكم (RCU Host)",
           description: "راجع وحدة التحكم المركزية الممكنة للغرفة.",
           href: "/ar/products/hotel-smart-room-rcu-host-1/",
         },
         {
-          label: "شاشة ذكية مقاس 86",
+          label: "شاشة ذكية من نوع 86",
           description: "راجع واجهة لمس وصوت للغرفة.",
           href: "/ar/products/86-type-ai-smart-control-display/",
         },

@@ -45,7 +45,7 @@ final class DualCoreLink_Multilingual_Import_CLI_Command
     }
 
     /**
-     * Read-only validation of the exact Chinese P0 payload.
+     * Read-only validation of an exact approved P0 payload.
      */
     public function preflight(array $args, array $assoc_args): void
     {
@@ -56,7 +56,8 @@ final class DualCoreLink_Multilingual_Import_CLI_Command
             $result = $this->service()->preflight(
                 $payload,
                 $this->value($assoc_args, 'locale'),
-                $this->value($assoc_args, 'batch')
+                $this->value($assoc_args, 'batch'),
+                array_key_exists('allow-owner-waiver', $assoc_args)
             );
             unset($result['mapped'], $result['source_hashes']);
             $this->output($result, $assoc_args);
@@ -81,7 +82,8 @@ final class DualCoreLink_Multilingual_Import_CLI_Command
                 $this->value($assoc_args, 'status'),
                 $this->value($assoc_args, 'run-id'),
                 $this->value($assoc_args, 'confirm-run-id'),
-                array_key_exists('allow-update', $assoc_args)
+                array_key_exists('allow-update', $assoc_args),
+                array_key_exists('allow-owner-waiver', $assoc_args)
             );
             $this->output($result, $assoc_args);
         } catch (Throwable $throwable) {
@@ -103,14 +105,15 @@ final class DualCoreLink_Multilingual_Import_CLI_Command
     }
 
     /**
-     * Publish only the seven verified records owned by a run.
+     * Publish only the exact verified records owned by a run.
      */
     public function publish(array $args, array $assoc_args): void
     {
         try {
             $result = $this->service()->publish(
                 $this->value($assoc_args, 'run-id'),
-                $this->value($assoc_args, 'confirm-run-id')
+                $this->value($assoc_args, 'confirm-run-id'),
+                array_key_exists('allow-owner-waiver', $assoc_args)
             );
             $this->output($result, $assoc_args);
         } catch (Throwable $throwable) {

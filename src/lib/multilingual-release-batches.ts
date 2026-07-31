@@ -1,4 +1,8 @@
 import type { MultilingualLocale } from "./multilingual-publication-manifest";
+import {
+  arabicP0OwnerReviewWaiver,
+  arabicP0OwnerReviewWaiverUrls,
+} from "@/content/locales/owner-review-waivers";
 
 export const zhP0ReleaseUrls = [
   "https://dualcorelink.com/zh/about/",
@@ -19,9 +23,26 @@ export type MultilingualReleaseBatch = {
   locale: MultilingualLocale;
   batch: string;
   localizedUrls: readonly string[];
+  ownerReviewWaiver?: {
+    status: "approved";
+    by: string;
+    date: string;
+    reason: string;
+    warning: string;
+    localizedUrls: readonly string[];
+  };
 };
 
 const releaseBatches: readonly MultilingualReleaseBatch[] = [
+  {
+    locale: "ar",
+    batch: "p0",
+    localizedUrls: arabicP0OwnerReviewWaiverUrls,
+    ownerReviewWaiver: {
+      ...arabicP0OwnerReviewWaiver,
+      localizedUrls: arabicP0OwnerReviewWaiverUrls,
+    },
+  },
   {
     locale: "zh",
     batch: "p0",

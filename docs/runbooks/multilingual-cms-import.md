@@ -1,8 +1,9 @@
 # Multilingual CMS Import Runbook
 
-This runbook governs the exact seven-record Chinese P0 CMS batch. It does not
-authorize a production import. Installation, preflight, draft apply, publish
-and rollback each require a separately approved operations phase.
+This runbook governs the exact seven-record Chinese P0 CMS batch and the exact
+six-record Arabic P0 owner-waiver batch. It does not authorize a production
+import. Installation, preflight, draft apply, publish and rollback each
+require a separately approved operations phase.
 
 ## Safety boundaries
 
@@ -13,8 +14,11 @@ and rollback each require a separately approved operations phase.
   database credential in Git, payloads or run logs.
 - Never skip preflight, draft verification, database backup or run-ID
   confirmation.
-- The importer accepts only locale `zh`, batch `p0`, reviewer `Allan`, review
-  date `2026-07-29` and source IDs `48,47,6,222,142,140,138`.
+- Chinese P0 accepts only reviewer `Allan`, review date `2026-07-29` and
+  source IDs `48,47,6,222,142,140,138`. Owner waiver is forbidden.
+- Arabic P0 accepts only source IDs `48,47,6,140,138,137` and requires the
+  explicit `--allow-owner-waiver` flag plus Allan's exact waiver evidence
+  dated `2026-07-31`.
 - Apply accepts only `--status=draft`. Publish is a separate command.
 - The English source records and all other locales are read-only.
 
@@ -107,6 +111,20 @@ npm run cms-import:fixture-preflight
 
 Copy the approved JSON to a non-public server path. The payload must contain
 no credentials or customer data.
+
+Generate the deterministic Arabic P0 candidate with:
+
+```bash
+npm run cms-import:payload -- --locale=ar --batch=p0
+```
+
+Arabic preflight, apply, and publish must include
+`--allow-owner-waiver`. Verify reuses the immutable run evidence; rollback
+does not accept or require that flag. The six records must remain
+`nativeReviewStatus=pending` with no native reviewer or native-review date.
+
+WARNING: Arabic P0 was released under owner review waiver and was not approved
+by an independent native Arabic reviewer.
 
 ## Database backup
 

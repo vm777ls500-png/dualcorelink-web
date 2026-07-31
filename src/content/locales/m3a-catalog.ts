@@ -266,9 +266,9 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     slug: "hotel-smart-room-rcu-host-1",
     englishTitle: "Hotel Smart Room RCU Host 1",
     kind: "rcu",
-    arTitle: "مضيف RCU ذكي للتحكم في غرفة الفندق",
+    arTitle: "وحدة RCU رئيسية للتحكم (RCU Host) في غرفة الفندق",
     zhTitle: "酒店智能客房 RCU 控制主机 1",
-    arDetail: "مضيف RCU لمشروعات التحكم في الإضاءة وHVAC والستائر والمستشعرات.",
+    arDetail: "وحدة RCU رئيسية للتحكم في مشروعات التحكم في الإضاءة وHVAC والستائر والمستشعرات.",
     zhDetail: "用于酒店客房灯光、HVAC、窗帘和传感器协同控制的 RCU 主机。",
   },
   {
@@ -388,7 +388,7 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     kind: "display",
     arTitle: "شاشة تحكم ذكية بالذكاء الاصطناعي من نوع 86",
     zhTitle: "86 型 AI 智能控制屏",
-    arDetail: "واجهة لمس وصوت تناسب علبة الحائط القياسية مقاس 86.",
+    arDetail: "واجهة لمس وصوت تناسب علبة الحائط القياسية من نوع 86.",
     zhDetail: "适配 86 型墙盒的 AI 智能控制屏，可作为酒店客房集中操作界面。",
   },
 ] as const;

@@ -78,7 +78,7 @@ final class DualCoreLink_Multilingual_Import_Service
             $acf[$key] = $actual['acf'][$key] ?? null;
         }
         $meta = [];
-        foreach (DualCoreLink_Import_Config::META_KEYS as $key) {
+        foreach (array_keys($mapped['meta']) as $key) {
             $meta[$key] = $actual['meta'][$key] ?? null;
         }
         return [
@@ -144,9 +144,16 @@ final class DualCoreLink_Multilingual_Import_Service
                 DualCoreLink_Import_Config::SCHEMA_VERSION . '.'
             );
         }
+        if ($key === DualCoreLink_Import_Config::META_OWNER_WAIVER_SCHEMA_VERSION &&
+            $normalized !== DualCoreLink_Import_Config::OWNER_WAIVER_SCHEMA_VERSION) {
+            throw new RuntimeException(
+                'Owner-waiver schema version must equal ' .
+                DualCoreLink_Import_Config::OWNER_WAIVER_SCHEMA_VERSION . '.'
+            );
+        }
         if ($key === DualCoreLink_Import_Config::META_SOURCE_ID &&
             ($normalized <= 0 ||
-                !array_key_exists($normalized, DualCoreLink_Import_Config::APPROVED))) {
+                !DualCoreLink_Import_Config::approved_source_id($normalized))) {
             throw new RuntimeException(
                 'Translation source ID is outside the approved whitelist.'
             );
@@ -161,7 +168,11 @@ final class DualCoreLink_Multilingual_Import_Service
         foreach ([
             DualCoreLink_Import_Config::META_SCHEMA_VERSION,
             DualCoreLink_Import_Config::META_SOURCE_ID,
+            DualCoreLink_Import_Config::META_OWNER_WAIVER_SCHEMA_VERSION,
         ] as $key) {
+            if (!array_key_exists($key, $mapped['meta'])) {
+                continue;
+            }
             $actual['meta'][$key] = self::verification_integer(
                 $actual['meta'][$key] ?? null,
                 $key,
@@ -207,15 +218,27 @@ final class DualCoreLink_Multilingual_Import_Service
         return $diff;
     }
 
-    public function preflight(array $payload, string $locale, string $batch): array
+    public function preflight(
+        array $payload,
+        string $locale,
+        string $batch,
+        bool $allow_owner_waiver = false
+    ): array
     {
         $errors = [];
-        if ($locale !== DualCoreLink_Import_Config::LOCALE ||
-            $batch !== DualCoreLink_Import_Config::BATCH) {
-            $errors[] = 'locale/batch whitelist mismatch';
+        $policy = DualCoreLink_Import_Config::policy(
+            $locale,
+            $batch,
+            $allow_owner_waiver
+        );
+        if (!$policy) {
+            throw new DualCoreLink_Import_Exception(
+                'locale/batch/owner-waiver whitelist mismatch',
+                DualCoreLink_Import_Config::EXIT_PREFLIGHT
+            );
         }
-        if (count($payload) !== DualCoreLink_Import_Config::RECORD_COUNT) {
-            $errors[] = 'payload must contain exactly seven records';
+        if (count($payload) !== $policy['records']) {
+            $errors[] = 'payload record count mismatch';
         }
         $ids = [];
         $slugs = [];
@@ -237,22 +260,69 @@ final class DualCoreLink_Multilingual_Import_Service
             if ($unknown) {
                 $errors[] = 'unmapped fields: ' . implode(',', $unknown);
             }
-            $approved = DualCoreLink_Import_Config::APPROVED[$id] ?? null;
+            $approved = $policy['approved'][$id] ?? null;
             if (!$approved ||
                 $approved['post_type'] !== $post_type ||
                 $approved['slug'] !== ($record['sourceEnglishSlug'] ?? null) ||
                 $approved['slug'] !== $slug) {
                 $errors[] = "unapproved identity: {$id}";
             }
-            if (($record['locale'] ?? null) !== DualCoreLink_Import_Config::LOCALE ||
-                ($record['batch'] ?? null) !== DualCoreLink_Import_Config::BATCH ||
-                ($record['nativeReviewer'] ?? null) !== DualCoreLink_Import_Config::REVIEWER ||
-                ($record['nativeReviewDate'] ?? null) !== DualCoreLink_Import_Config::REVIEW_DATE ||
+            if (($record['locale'] ?? null) !== $policy['locale'] ||
+                ($record['batch'] ?? null) !== $policy['batch'] ||
                 ($record['translationStatus'] ?? null) !== 'approved' ||
                 ($record['reviewStatus'] ?? null) !== 'approved' ||
-                ($record['nativeReviewStatus'] ?? null) !== 'approved' ||
                 ($record['productionReleaseReady'] ?? null) !== true) {
                 $errors[] = "release evidence mismatch: {$id}";
+            }
+            if ($policy['native_review']) {
+                if (($record['nativeReviewStatus'] ?? null) !== 'approved' ||
+                    ($record['nativeReviewer'] ?? null) !== DualCoreLink_Import_Config::REVIEWER ||
+                    ($record['nativeReviewDate'] ?? null) !== DualCoreLink_Import_Config::REVIEW_DATE ||
+                    array_key_exists('ownerReviewWaiverStatus', $record)) {
+                    $errors[] = "Chinese native review evidence mismatch: {$id}";
+                }
+            } elseif (($record['nativeReviewStatus'] ?? null) !== 'pending' ||
+                !array_key_exists('nativeReviewer', $record) ||
+                $record['nativeReviewer'] !== null ||
+                !array_key_exists('nativeReviewDate', $record) ||
+                $record['nativeReviewDate'] !== null ||
+                ($record['ownerReviewWaiverSchemaVersion'] ?? null) !==
+                    DualCoreLink_Import_Config::OWNER_WAIVER_SCHEMA_VERSION ||
+                ($record['ownerReviewWaiverStatus'] ?? null) !== 'approved' ||
+                ($record['ownerReviewWaiverBy'] ?? null) !==
+                    DualCoreLink_Import_Config::OWNER_WAIVER_BY ||
+                ($record['ownerReviewWaiverDate'] ?? null) !==
+                    DualCoreLink_Import_Config::OWNER_WAIVER_DATE ||
+                ($record['ownerReviewWaiverReason'] ?? null) !==
+                    DualCoreLink_Import_Config::OWNER_WAIVER_REASON ||
+                ($record['ownerReviewWaiverScopeCount'] ?? null) !==
+                    DualCoreLink_Import_Config::OWNER_WAIVER_SCOPE_COUNT ||
+                ($record['ownerReviewWaiverScopeSha256'] ?? null) !==
+                    DualCoreLink_Import_Config::OWNER_WAIVER_SCOPE_SHA256) {
+                $errors[] = "Arabic owner-waiver evidence mismatch: {$id}";
+            }
+            if ($policy['locale'] === 'ar') {
+                $arabic_text = implode("\n", [
+                    (string) ($record['translatedTitle'] ?? ''),
+                    (string) ($record['translatedDescription'] ?? ''),
+                    (string) ($record['translatedSeoTitle'] ?? ''),
+                    (string) ($record['translatedMetaDescription'] ?? ''),
+                    (string) ($record['translatedStructuredContent']['h1'] ?? ''),
+                    (string) ($record['translatedStructuredContent']['introduction'] ?? ''),
+                ]);
+                if (preg_match('/[\x{0600}-\x{06ff}]/u', $arabic_text) !== 1) {
+                    $errors[] = "Arabic content is missing: {$id}";
+                }
+                if (preg_match('/[پچژگک]/u', $arabic_text) === 1) {
+                    $errors[] = "Persian-specific content is not valid for Arabic: {$id}";
+                }
+                if ($id === 48 &&
+                    !str_contains(
+                        (string) ($record['translatedTitle'] ?? ''),
+                        'وحدة RCU رئيسية للتحكم (RCU Host)'
+                    )) {
+                    $errors[] = 'RCU Host first-use terminology mismatch';
+                }
             }
             if (($record['deliveryMode'] ?? null) !== 'validated-import-payload' ||
                 !array_key_exists('localizedContentId', $record) ||
@@ -300,8 +370,11 @@ final class DualCoreLink_Multilingual_Import_Service
                     continue;
                 }
                 if ((int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) !== $id ||
-                    ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? '') !==
-                        DualCoreLink_Import_Config::LOCALE) {
+                    !in_array(
+                        ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? ''),
+                        ['zh', 'ar'],
+                        true
+                    )) {
                     $errors[] = "localized slug conflict: {$slug}";
                 }
             }
@@ -313,7 +386,7 @@ final class DualCoreLink_Multilingual_Import_Service
             $errors[] = 'duplicate localized slug';
         }
         $actual_ids = $ids;
-        $expected_ids = array_keys(DualCoreLink_Import_Config::APPROVED);
+        $expected_ids = array_keys($policy['approved']);
         sort($actual_ids, SORT_NUMERIC);
         sort($expected_ids, SORT_NUMERIC);
         if ($actual_ids !== $expected_ids) {
@@ -353,7 +426,8 @@ final class DualCoreLink_Multilingual_Import_Service
         string $status,
         string $run_id,
         string $confirm_run_id,
-        bool $allow_update
+        bool $allow_update,
+        bool $allow_owner_waiver = false
     ): array {
         if (!DualCoreLink_Import_Config::valid_run_id($run_id)) {
             throw new DualCoreLink_Import_Exception(
@@ -369,7 +443,12 @@ final class DualCoreLink_Multilingual_Import_Service
         }
         // Validate before the run root or lock file can be created. The same
         // payload is validated again after locking to close the race window.
-        $initial_check = $this->preflight($payload, $locale, $batch);
+        $initial_check = $this->preflight(
+            $payload,
+            $locale,
+            $batch,
+            $allow_owner_waiver
+        );
         $this->store->acquire_lock();
         try {
             if ($this->store->exists($run_id)) {
@@ -378,7 +457,12 @@ final class DualCoreLink_Multilingual_Import_Service
                     DualCoreLink_Import_Config::EXIT_CONFLICT
                 );
             }
-            $checked = $this->preflight($payload, $locale, $batch);
+            $checked = $this->preflight(
+                $payload,
+                $locale,
+                $batch,
+                $allow_owner_waiver
+            );
             if ($checked['payload_hash'] !== $initial_check['payload_hash']) {
                 throw new DualCoreLink_Import_Exception(
                     'Payload changed between preflight and lock acquisition.',
@@ -415,7 +499,7 @@ final class DualCoreLink_Multilingual_Import_Service
                 }
             }
             $existing_batch = $this->repository->list_localized($locale, $batch);
-            if (count($existing_batch) > DualCoreLink_Import_Config::RECORD_COUNT) {
+            if (count($existing_batch) > count($payload)) {
                 throw new DualCoreLink_Import_Exception(
                     'An eighth localized batch record already exists.',
                     DualCoreLink_Import_Config::EXIT_CONFLICT
@@ -429,6 +513,7 @@ final class DualCoreLink_Multilingual_Import_Service
                 'batch' => $batch,
                 'status' => 'draft',
                 'allow_update' => $allow_update,
+                'allow_owner_waiver' => $allow_owner_waiver,
                 'timestamp' => $timestamp,
                 'payload' => $payload,
             ]);
@@ -511,7 +596,8 @@ final class DualCoreLink_Multilingual_Import_Service
             $checked = $this->preflight(
                 $payload,
                 (string) ($request['locale'] ?? ''),
-                (string) ($request['batch'] ?? '')
+                (string) ($request['batch'] ?? ''),
+                ($request['allow_owner_waiver'] ?? false) === true
             );
             if (($checksums['payload_sha256'] ?? '') !== $checked['payload_hash']) {
                 throw new RuntimeException('Payload hash changed.');
@@ -549,11 +635,11 @@ final class DualCoreLink_Multilingual_Import_Service
                 $verified[] = (int) $operation['localized_id'];
             }
             $batch_records = $this->repository->list_localized(
-                DualCoreLink_Import_Config::LOCALE,
-                DualCoreLink_Import_Config::BATCH
+                (string) ($request['locale'] ?? ''),
+                (string) ($request['batch'] ?? '')
             );
-            if (count($batch_records) !== DualCoreLink_Import_Config::RECORD_COUNT) {
-                throw new RuntimeException('Localized batch is not exactly seven records.');
+            if (count($batch_records) !== count($payload)) {
+                throw new RuntimeException('Localized batch record count mismatch.');
             }
             $result = [
                 'status' => 'passed',
@@ -575,7 +661,11 @@ final class DualCoreLink_Multilingual_Import_Service
         }
     }
 
-    public function publish(string $run_id, string $confirm_run_id): array
+    public function publish(
+        string $run_id,
+        string $confirm_run_id,
+        bool $allow_owner_waiver = false
+    ): array
     {
         if ($run_id !== $confirm_run_id) {
             throw new DualCoreLink_Import_Exception(
@@ -591,9 +681,17 @@ final class DualCoreLink_Multilingual_Import_Service
             if (!$this->store->has($run_id, 'verify.json')) {
                 throw new RuntimeException('Publish requires a completed verify command.');
             }
+            $request = $this->store->read($run_id, 'request.json');
+            if (($request['allow_owner_waiver'] ?? false) === true &&
+                !$allow_owner_waiver) {
+                throw new RuntimeException(
+                    'Arabic owner-waiver publish requires --allow-owner-waiver.'
+                );
+            }
             $verification = $this->verify($run_id);
-            if (($verification['records'] ?? 0) !== DualCoreLink_Import_Config::RECORD_COUNT) {
-                throw new RuntimeException('Publish requires seven verified drafts.');
+            $record_count = count($request['payload'] ?? []);
+            if (($verification['records'] ?? 0) !== $record_count) {
+                throw new RuntimeException('Publish requires the exact verified batch.');
             }
             $operations = $this->store->read($run_id, 'operations.json');
             foreach ($operations['operations'] as $operation) {
@@ -602,7 +700,7 @@ final class DualCoreLink_Multilingual_Import_Service
             $result = [
                 'status' => 'published',
                 'run_id' => $run_id,
-                'records' => DualCoreLink_Import_Config::RECORD_COUNT,
+                'records' => $record_count,
                 'localized_ids' => array_map(
                     static fn ($operation) => (int) $operation['localized_id'],
                     $operations['operations']

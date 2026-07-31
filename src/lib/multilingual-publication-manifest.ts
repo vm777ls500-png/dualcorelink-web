@@ -1,4 +1,8 @@
 import { getNativeReviewEvidence } from "./native-review-evidence";
+import {
+  getOwnerReviewWaiverEvidence,
+  type OwnerReviewWaiverStatus,
+} from "./owner-review-waiver";
 
 export const multilingualLocales = ["ar", "zh", "de", "es", "vi", "fa"] as const;
 
@@ -54,6 +58,10 @@ export type MultilingualPublicationEntry = {
   nativeReviewer: string | null;
   nativeReviewDate: string | null;
   nativeReviewNotes: string;
+  ownerReviewWaiverStatus: OwnerReviewWaiverStatus;
+  ownerReviewWaiverBy: string | null;
+  ownerReviewWaiverDate: string | null;
+  ownerReviewWaiverReason: string;
   productionReleaseReady: boolean;
   priority: PublicationPriority;
   notes: string;
@@ -189,6 +197,7 @@ export const multilingualPublicationManifest: readonly MultilingualPublicationEn
       const approved = true;
       const localizedUrl = `${siteOrigin}/${locale}/${source.path}/`;
       const nativeReview = getNativeReviewEvidence(localizedUrl);
+      const ownerReviewWaiver = getOwnerReviewWaiverEvidence(localizedUrl);
 
       return {
         locale,
@@ -204,6 +213,12 @@ export const multilingualPublicationManifest: readonly MultilingualPublicationEn
         nativeReviewer: nativeReview.nativeReviewer,
         nativeReviewDate: nativeReview.nativeReviewDate,
         nativeReviewNotes: nativeReview.nativeReviewNotes,
+        ownerReviewWaiverStatus:
+          ownerReviewWaiver.ownerReviewWaiverStatus,
+        ownerReviewWaiverBy: ownerReviewWaiver.ownerReviewWaiverBy,
+        ownerReviewWaiverDate: ownerReviewWaiver.ownerReviewWaiverDate,
+        ownerReviewWaiverReason:
+          ownerReviewWaiver.ownerReviewWaiverReason,
         productionReleaseReady: nativeReview.productionReleaseReady,
         priority: source.priority,
         notes: approved

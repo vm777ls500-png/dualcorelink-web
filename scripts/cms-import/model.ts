@@ -6,6 +6,14 @@ export const approvedBatch = "p0";
 export const approvedReviewer = "Allan";
 export const approvedReviewDate = "2026-07-29";
 export const translationSchemaVersion = 1;
+export const ownerWaiverSchemaVersion = 1;
+export const ownerWaiverReason =
+  "Business owner explicitly waived Arabic native-language review and accepted localization risk.";
+export const ownerWaiverBy = "Allan";
+export const ownerWaiverDate = "2026-07-31";
+export const ownerWaiverScopeCount = 15;
+export const ownerWaiverScopeSha256 =
+  "92eae81730ac445455385ff5f3811394dbb866d6f333dc6a290f5df60e4dc193";
 
 export const exitCodes = {
   success: 0,
@@ -64,11 +72,18 @@ export type ImportPayloadRecord = {
   translatedStructuredContent: StructuredContent;
   translationStatus: "approved";
   reviewStatus: "approved";
-  nativeReviewStatus: "approved";
-  nativeReviewer: string;
-  nativeReviewDate: string;
+  nativeReviewStatus: "approved" | "pending";
+  nativeReviewer: string | null;
+  nativeReviewDate: string | null;
   nativeReviewNotes: string;
   productionReleaseReady: boolean;
+  ownerReviewWaiverSchemaVersion?: 1;
+  ownerReviewWaiverStatus?: "approved";
+  ownerReviewWaiverBy?: string;
+  ownerReviewWaiverDate?: string;
+  ownerReviewWaiverReason?: string;
+  ownerReviewWaiverScopeCount?: number;
+  ownerReviewWaiverScopeSha256?: string;
 };
 
 export type SourceRecord = {
@@ -115,6 +130,9 @@ export type RunRecord = {
   verifyPassed: boolean;
   published: boolean;
   rolledBack: boolean;
+  locale: "zh" | "ar";
+  batch: "p0";
+  allowOwnerWaiver: boolean;
 };
 
 export interface CmsRepository {
@@ -157,6 +175,13 @@ const payloadKeys = new Set([
   "nativeReviewDate",
   "nativeReviewNotes",
   "productionReleaseReady",
+  "ownerReviewWaiverSchemaVersion",
+  "ownerReviewWaiverStatus",
+  "ownerReviewWaiverBy",
+  "ownerReviewWaiverDate",
+  "ownerReviewWaiverReason",
+  "ownerReviewWaiverScopeCount",
+  "ownerReviewWaiverScopeSha256",
 ]);
 
 const expected = new Map<number, { postType: ContentType; slug: string }>([
@@ -168,6 +193,43 @@ const expected = new Map<number, { postType: ContentType; slug: string }>([
   [140, { postType: "solution", slug: "rcu-room-control-solution" }],
   [138, { postType: "solution", slug: "smart-hotel-automation-solution" }],
 ]);
+
+const arabicExpected = new Map<number, { postType: ContentType; slug: string }>([
+  [48, { postType: "product", slug: "hotel-smart-room-rcu-host-1" }],
+  [47, { postType: "product", slug: "rcu-controller-cabinet" }],
+  [6, { postType: "product", slug: "86-type-ai-smart-control-display" }],
+  [140, { postType: "solution", slug: "rcu-room-control-solution" }],
+  [138, { postType: "solution", slug: "smart-hotel-automation-solution" }],
+  [137, { postType: "solution", slug: "hotel-guest-room-control-solution" }],
+]);
+
+type BatchPolicy = {
+  locale: "zh" | "ar";
+  batch: "p0";
+  expected: Map<number, { postType: ContentType; slug: string }>;
+  count: number;
+  allowOwnerWaiver: boolean;
+};
+
+function batchPolicy(
+  locale: string,
+  batch: string,
+  allowOwnerWaiver: boolean,
+): BatchPolicy | undefined {
+  if (locale === "zh" && batch === "p0" && !allowOwnerWaiver) {
+    return { locale, batch, expected, count: 7, allowOwnerWaiver: false };
+  }
+  if (locale === "ar" && batch === "p0" && allowOwnerWaiver) {
+    return {
+      locale,
+      batch,
+      expected: arabicExpected,
+      count: 6,
+      allowOwnerWaiver: true,
+    };
+  }
+  return undefined;
+}
 
 function canonicalize(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(canonicalize);
@@ -198,8 +260,13 @@ function html(value: string): string {
     .replaceAll("'", "&#039;");
 }
 
-function safeHref(value: string): string {
-  if (!/^\/zh\/[a-z0-9/_-]*(?:#[a-z0-9_-]+)?$/i.test(value)) {
+function safeHref(value: string, locale: "zh" | "ar"): string {
+  if (
+    !new RegExp(
+      `^/${locale}/[a-z0-9/_-]*(?:#[a-z0-9_-]+)?$`,
+      "i",
+    ).test(value)
+  ) {
     throw new Error(`unsafe localized href: ${value}`);
   }
   return html(value);
@@ -207,11 +274,23 @@ function safeHref(value: string): string {
 
 export function renderStructuredContent(record: ImportPayloadRecord): string {
   const content = record.translatedStructuredContent;
+  const headings =
+    record.locale === "ar"
+      ? {
+          specifications: "المواصفات ومعلومات الشراء",
+          faq: "الأسئلة الشائعة",
+          related: "صفحات ذات صلة",
+        }
+      : {
+          specifications: "规格与采购信息",
+          faq: "常见问题",
+          related: "相关页面",
+        };
   const output = [
     `<p class="content-eyebrow">${html(content.eyebrow)}</p>`,
     `<h1>${html(content.h1)}</h1>`,
     `<p>${html(content.introduction)}</p>`,
-    `<section><h2>规格与采购信息</h2><dl>`,
+    `<section><h2>${headings.specifications}</h2><dl>`,
     ...record.translatedSpecifications.flatMap((specification) => [
       `<dt>${html(specification.label)}</dt>`,
       `<dd>${html(specification.value)}</dd>`,
@@ -230,25 +309,25 @@ export function renderStructuredContent(record: ImportPayloadRecord): string {
     }
     output.push("</section>");
   }
-  output.push(`<section><h2>常见问题</h2>`);
+  output.push(`<section><h2>${headings.faq}</h2>`);
   for (const faq of content.faqs) {
     output.push(`<h3>${html(faq.question)}</h3>`, `<p>${html(faq.answer)}</p>`);
   }
-  output.push("</section>", `<section><h2>相关页面</h2><ul>`);
+  output.push("</section>", `<section><h2>${headings.related}</h2><ul>`);
   for (const link of content.relatedLinks) {
     output.push(
-      `<li><a href="${safeHref(link.href)}">${html(link.label)}</a><p>${html(link.description)}</p></li>`,
+      `<li><a href="${safeHref(link.href, record.locale as "zh" | "ar")}">${html(link.label)}</a><p>${html(link.description)}</p></li>`,
     );
   }
   output.push(
     "</ul></section>",
     `<section class="content-cta"><h2>${html(content.cta.heading)}</h2>`,
     `<p>${html(content.cta.description)}</p>`,
-    `<p><a href="${safeHref(content.cta.href)}">${html(content.cta.label)}</a></p>`,
+    `<p><a href="${safeHref(content.cta.href, record.locale as "zh" | "ar")}">${html(content.cta.label)}</a></p>`,
   );
   if (content.cta.secondaryLabel && content.cta.secondaryHref) {
     output.push(
-      `<p><a href="${safeHref(content.cta.secondaryHref)}">${html(content.cta.secondaryLabel)}</a></p>`,
+      `<p><a href="${safeHref(content.cta.secondaryHref, record.locale as "zh" | "ar")}">${html(content.cta.secondaryLabel)}</a></p>`,
     );
   }
   output.push("</section>");
@@ -270,6 +349,7 @@ function faqText(record: ImportPayloadRecord): string {
 export function mapPayloadRecord(
   record: ImportPayloadRecord,
   payloadHash: string,
+  allowOwnerWaiver = false,
 ): MappedRecord {
   const group = `shb2b-${record.contentType}-${record.sourceEnglishContentId}`;
   const core: Record<string, unknown> = {
@@ -303,16 +383,27 @@ export function mapPayloadRecord(
           solution_breadcrumb_label:
             record.translatedStructuredContent.breadcrumbLabel,
         };
-  const meta = {
+  const meta: Record<string, string | number> = {
     _dualcorelink_translation_schema_version: translationSchemaVersion,
-    _dualcorelink_translation_locale: approvedLocale,
+    _dualcorelink_translation_locale: record.locale,
     _dualcorelink_translation_source_id: record.sourceEnglishContentId,
     _dualcorelink_translation_group: group,
-    _dualcorelink_translation_batch: approvedBatch,
+    _dualcorelink_translation_batch: record.batch,
     _dualcorelink_translation_payload_hash: payloadHash,
-    _dualcorelink_translation_reviewer: approvedReviewer,
-    _dualcorelink_translation_review_date: approvedReviewDate,
+    _dualcorelink_translation_reviewer: record.nativeReviewer ?? "",
+    _dualcorelink_translation_review_date: record.nativeReviewDate ?? "",
   };
+  if (record.locale === "ar" && allowOwnerWaiver) {
+    Object.assign(meta, {
+      _dualcorelink_owner_review_waiver_schema_version:
+        ownerWaiverSchemaVersion,
+      _dualcorelink_owner_review_waiver_status: record.ownerReviewWaiverStatus!,
+      _dualcorelink_owner_review_waiver_by: record.ownerReviewWaiverBy!,
+      _dualcorelink_owner_review_waiver_date: record.ownerReviewWaiverDate!,
+      _dualcorelink_owner_review_waiver_reason:
+        record.ownerReviewWaiverReason!,
+    });
+  }
   return {
     sourceId: record.sourceEnglishContentId,
     identity: `${record.contentType}:${record.sourceEnglishContentId}:${record.locale}:${record.localizedSlug}`,
@@ -347,10 +438,25 @@ export type PreflightResult = {
 export function preflight(
   payload: ImportPayloadRecord[],
   repository: CmsRepository,
+  options: {
+    locale?: "zh" | "ar";
+    batch?: "p0";
+    allowOwnerWaiver?: boolean;
+  } = {},
 ): PreflightResult {
   const errors: string[] = [];
-  if (!Array.isArray(payload) || payload.length !== 7) {
-    errors.push("payload must contain exactly seven records");
+  const locale = options.locale ?? "zh";
+  const batch = options.batch ?? "p0";
+  const allowOwnerWaiver = options.allowOwnerWaiver ?? false;
+  const policy = batchPolicy(locale, batch, allowOwnerWaiver);
+  if (!policy) {
+    throw new ImportFailure(
+      "locale/batch/owner-waiver whitelist mismatch",
+      exitCodes.preflight,
+    );
+  }
+  if (!Array.isArray(payload) || payload.length !== policy.count) {
+    errors.push(`payload must contain exactly ${policy.count} records`);
   }
   const ids = payload.map((record) => record.sourceEnglishContentId);
   if (new Set(ids).size !== ids.length) errors.push("duplicate source ID");
@@ -359,14 +465,14 @@ export function preflight(
   const sortedIds = [...ids].sort((a, b) => a - b);
   if (
     canonicalJson(sortedIds) !==
-    canonicalJson([...approvedSourceIds].sort((a, b) => a - b))
+    canonicalJson([...policy.expected.keys()].sort((a, b) => a - b))
   ) {
     errors.push("source ID whitelist mismatch");
   }
   for (const record of payload) {
     const unknownKeys = Object.keys(record).filter((key) => !payloadKeys.has(key));
     if (unknownKeys.length) errors.push(`unmapped fields: ${unknownKeys.join(",")}`);
-    const approval = expected.get(record.sourceEnglishContentId);
+    const approval = policy.expected.get(record.sourceEnglishContentId);
     if (
       !approval ||
       approval.postType !== record.contentType ||
@@ -376,16 +482,66 @@ export function preflight(
       errors.push(`unapproved identity: ${record.sourceEnglishContentId}`);
     }
     if (
-      record.locale !== approvedLocale ||
-      record.batch !== approvedBatch ||
-      record.nativeReviewer !== approvedReviewer ||
-      record.nativeReviewDate !== approvedReviewDate ||
+      record.locale !== policy.locale ||
+      record.batch !== policy.batch ||
       record.translationStatus !== "approved" ||
       record.reviewStatus !== "approved" ||
-      record.nativeReviewStatus !== "approved" ||
       record.productionReleaseReady !== true
     ) {
       errors.push(`release evidence mismatch: ${record.sourceEnglishContentId}`);
+    }
+    if (policy.locale === "zh") {
+      if (
+        record.nativeReviewStatus !== "approved" ||
+        record.nativeReviewer !== approvedReviewer ||
+        record.nativeReviewDate !== approvedReviewDate ||
+        record.ownerReviewWaiverStatus !== undefined
+      ) {
+        errors.push(
+          `Chinese native review evidence mismatch: ${record.sourceEnglishContentId}`,
+        );
+      }
+    } else if (
+      record.nativeReviewStatus !== "pending" ||
+      record.nativeReviewer !== null ||
+      record.nativeReviewDate !== null ||
+      record.ownerReviewWaiverSchemaVersion !== ownerWaiverSchemaVersion ||
+      record.ownerReviewWaiverStatus !== "approved" ||
+      record.ownerReviewWaiverBy !== ownerWaiverBy ||
+      record.ownerReviewWaiverDate !== ownerWaiverDate ||
+      record.ownerReviewWaiverReason !== ownerWaiverReason ||
+      record.ownerReviewWaiverScopeCount !== ownerWaiverScopeCount ||
+      record.ownerReviewWaiverScopeSha256 !== ownerWaiverScopeSha256
+    ) {
+      errors.push(
+        `Arabic owner-waiver evidence mismatch: ${record.sourceEnglishContentId}`,
+      );
+    }
+    if (policy.locale === "ar") {
+      const arabicText = [
+        record.translatedTitle,
+        record.translatedDescription,
+        record.translatedSeoTitle,
+        record.translatedMetaDescription,
+        record.translatedStructuredContent?.h1,
+        record.translatedStructuredContent?.introduction,
+      ].join("\n");
+      if (!/[\u0600-\u06ff]/u.test(arabicText)) {
+        errors.push(`Arabic content is missing: ${record.sourceEnglishContentId}`);
+      }
+      if (/[پچژگک]/u.test(arabicText)) {
+        errors.push(
+          `Persian-specific content is not valid for Arabic: ${record.sourceEnglishContentId}`,
+        );
+      }
+      if (
+        record.sourceEnglishContentId === 48 &&
+        !record.translatedTitle.includes(
+          "وحدة RCU رئيسية للتحكم (RCU Host)",
+        )
+      ) {
+        errors.push("RCU Host first-use terminology mismatch");
+      }
     }
     if (
       record.deliveryMode !== "validated-import-payload" ||
@@ -434,7 +590,7 @@ export function preflight(
           : "";
       if (
         relationSource !== record.sourceEnglishContentId ||
-        relationLocale !== approvedLocale
+        !["zh", "ar"].includes(String(relationLocale))
       ) {
         errors.push(`localized slug conflict: ${record.localizedSlug}`);
       }
@@ -444,7 +600,9 @@ export function preflight(
     throw new ImportFailure(errors.join("; "), exitCodes.preflight);
   }
   const payloadHash = sha256(payload);
-  const mapped = payload.map((record) => mapPayloadRecord(record, payloadHash));
+  const mapped = payload.map((record) =>
+    mapPayloadRecord(record, payloadHash, policy.allowOwnerWaiver),
+  );
   const sourceHashes = Object.fromEntries(
     payload.map((record) => [
       String(record.sourceEnglishContentId),
@@ -503,7 +661,13 @@ export class ImportEngine {
   apply(
     payload: ImportPayloadRecord[],
     runId: string,
-    options: { confirmRunId: string; allowUpdate?: boolean },
+    options: {
+      confirmRunId: string;
+      allowUpdate?: boolean;
+      locale?: "zh" | "ar";
+      batch?: "p0";
+      allowOwnerWaiver?: boolean;
+    },
   ): RunRecord {
     if (!/^[a-zA-Z0-9][a-zA-Z0-9._-]{2,63}$/.test(runId)) {
       throw new ImportFailure("invalid run ID", exitCodes.arguments);
@@ -515,7 +679,14 @@ export class ImportEngine {
       if (this.runs.runs.has(runId)) {
         throw new ImportFailure("run ID already exists", exitCodes.conflict);
       }
-      const checked = preflight(payload, this.repository);
+      const locale = options.locale ?? "zh";
+      const batch = options.batch ?? "p0";
+      const allowOwnerWaiver = options.allowOwnerWaiver ?? false;
+      const checked = preflight(payload, this.repository, {
+        locale,
+        batch,
+        allowOwnerWaiver,
+      });
       const run: RunRecord = {
         runId,
         payloadHash: checked.payloadHash,
@@ -528,13 +699,16 @@ export class ImportEngine {
         verifyPassed: false,
         published: false,
         rolledBack: false,
+        locale,
+        batch,
+        allowOwnerWaiver,
       };
       this.runs.runs.set(runId, run);
       for (const mapped of checked.mapped) {
         const existing = this.repository.findLocalized(
           mapped.postType,
           mapped.sourceId,
-          approvedLocale,
+          locale,
           mapped.slug,
         );
         if (!existing) {
@@ -597,7 +771,11 @@ export class ImportEngine {
     if (sha256(run.request) !== run.payloadHash) {
       throw new ImportFailure("payload hash changed", exitCodes.verify);
     }
-    const checked = preflight(run.request, this.repository);
+    const checked = preflight(run.request, this.repository, {
+      locale: run.locale,
+      batch: run.batch,
+      allowOwnerWaiver: run.allowOwnerWaiver,
+    });
     if (checked.payloadHash !== run.payloadHash) {
       throw new ImportFailure("payload drift", exitCodes.verify);
     }
@@ -641,21 +819,41 @@ export class ImportEngine {
         throw new ImportFailure("localized field drift", exitCodes.verify);
       }
     }
-    if (this.repository.listLocalized(approvedLocale, approvedBatch).length !== 7) {
-      throw new ImportFailure("localized batch is not exactly seven", exitCodes.verify);
+    const policy = batchPolicy(run.locale, run.batch, run.allowOwnerWaiver);
+    if (
+      !policy ||
+      this.repository.listLocalized(run.locale, run.batch).length !== policy.count
+    ) {
+      throw new ImportFailure(
+        "localized batch record count mismatch",
+        exitCodes.verify,
+      );
     }
     run.verifyPassed = true;
     return run;
   }
 
-  publish(runId: string, confirmRunId: string): RunRecord {
+  publish(
+    runId: string,
+    confirmRunId: string,
+    options: { allowOwnerWaiver?: boolean } = {},
+  ): RunRecord {
     if (runId !== confirmRunId) {
       throw new ImportFailure("run confirmation mismatch", exitCodes.safety);
     }
     return this.runs.withLock(() => {
       const run = this.requireRun(runId);
-      if (!run.verifyPassed || run.operations.length !== 7) {
-        throw new ImportFailure("verified seven-record run required", exitCodes.publish);
+      const policy = batchPolicy(run.locale, run.batch, run.allowOwnerWaiver);
+      if (
+        !policy ||
+        !run.verifyPassed ||
+        run.operations.length !== policy.count ||
+        (run.allowOwnerWaiver && options.allowOwnerWaiver !== true)
+      ) {
+        throw new ImportFailure(
+          "verified approved-batch run and explicit waiver flag required",
+          exitCodes.publish,
+        );
       }
       this.verify(runId);
       for (const operation of run.operations) {

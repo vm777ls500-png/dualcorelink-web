@@ -15,8 +15,16 @@ run(process.execPath, [
   "--import",
   "tsx",
   "--test",
+  "tests/cms-import-ar-owner-waiver.test.ts",
   "tests/cms-import-safety.test.ts",
   "tests/cms-import-package.test.ts",
+]);
+run(process.execPath, [
+  "--import",
+  "tsx",
+  "scripts/cms-import/generate-payload.ts",
+  "--locale=ar",
+  "--batch=p0",
 ]);
 run("docker", [
   "run",

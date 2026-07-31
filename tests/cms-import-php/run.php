@@ -161,6 +161,16 @@ function fixture(): array
     return $payload;
 }
 
+function arabic_fixture(): array
+{
+    $file = dirname(__DIR__, 2) . '/dist/cms-import/ar-p0-owner-waived.json';
+    $payload = json_decode((string) file_get_contents($file), true);
+    if (!is_array($payload)) {
+        throw new RuntimeException('Arabic fixture is invalid.');
+    }
+    return $payload;
+}
+
 function temporary_root(string $name): string
 {
     return sys_get_temp_dir() . '/dualcorelink-import-' . $name . '-' . bin2hex(random_bytes(4));
@@ -817,6 +827,172 @@ $tests['runtime plugin adds no public REST write endpoint'] = function () use ($
         assert_true(!str_contains($contents, 'register_rest_route'));
         assert_true(!str_contains($contents, 'update_callback'));
     }
+};
+
+$tests['Arabic owner-waiver preflight validates exact six records read-only'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('ar-read-only');
+    [$service] = service($repo, $root);
+    $result = $service->preflight($payload, 'ar', 'p0', true);
+    assert_true($result['records'] === 6);
+    assert_true($result['writes'] === 0);
+    assert_true($repo->localized === []);
+    assert_true(!file_exists($root));
+};
+$tests['Arabic owner-waiver preflight fails without explicit flag'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('ar-no-flag');
+    [$service] = service($repo, $root);
+    expect_failure(fn () => $service->preflight($payload, 'ar', 'p0'), 20);
+    assert_true(!file_exists($root));
+};
+$tests['Chinese preflight rejects owner-waiver flag'] = function (): void {
+    $payload = fixture();
+    $repo = new Mock_Import_Repository($payload);
+    [$service] = service($repo, temporary_root('zh-waiver'));
+    expect_failure(fn () => $service->preflight($payload, 'zh', 'p0', true), 20);
+};
+$tests['Arabic waiver evidence mismatch fails closed'] = function (): void {
+    $payload = arabic_fixture();
+    $payload[0]['ownerReviewWaiverBy'] = 'Other';
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('ar-evidence');
+    [$service] = service($repo, $root);
+    expect_failure(fn () => $service->preflight($payload, 'ar', 'p0', true), 20);
+    assert_true(!file_exists($root));
+};
+$tests['Arabic renderer writes eight translation and five waiver meta fields'] = function (): void {
+    $payload = arabic_fixture();
+    $mapped = DualCoreLink_Import_Renderer::map(
+        $payload[0],
+        DualCoreLink_Import_Config::payload_hash($payload)
+    );
+    assert_true(count($mapped['meta']) === 13);
+    assert_true(
+        $mapped['meta'][DualCoreLink_Import_Config::META_OWNER_WAIVER_STATUS] ===
+        'approved'
+    );
+    assert_true(
+        $mapped['meta'][DualCoreLink_Import_Config::META_REVIEWER] === ''
+    );
+};
+$tests['Arabic apply verify publish requires repeated owner-waiver evidence'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('ar-lifecycle');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'ar',
+        'p0',
+        'draft',
+        'ar-lifecycle-1',
+        'ar-lifecycle-1',
+        false,
+        true
+    );
+    $verified = $service->verify('ar-lifecycle-1');
+    assert_true($verified['records'] === 6);
+    expect_failure(
+        fn () => $service->publish('ar-lifecycle-1', 'ar-lifecycle-1'),
+        70
+    );
+    $published = $service->publish(
+        'ar-lifecycle-1',
+        'ar-lifecycle-1',
+        true
+    );
+    assert_true($published['records'] === 6);
+    remove_tree($root);
+};
+$tests['Arabic rollback does not require owner-waiver flag'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('ar-rollback');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'ar',
+        'p0',
+        'draft',
+        'ar-rollback-1',
+        'ar-rollback-1',
+        false,
+        true
+    );
+    $service->verify('ar-rollback-1');
+    $service->publish('ar-rollback-1', 'ar-rollback-1', true);
+    $rolled_back = $service->rollback('ar-rollback-1', 'ar-rollback-1');
+    assert_true($rolled_back['records'] === 6);
+    assert_true(count(array_filter(
+        $repo->localized,
+        static fn ($record) => $record['status'] === 'draft'
+    )) === 6);
+    remove_tree($root);
+};
+$tests['Arabic verify rejects owner-waiver meta drift'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('ar-meta-drift');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'ar',
+        'p0',
+        'draft',
+        'ar-meta-drift-1',
+        'ar-meta-drift-1',
+        false,
+        true
+    );
+    $record_id = array_key_first($repo->localized);
+    $repo->localized[$record_id]['meta'][
+        DualCoreLink_Import_Config::META_OWNER_WAIVER_STATUS
+    ] = 'pending';
+    expect_failure(fn () => $service->verify('ar-meta-drift-1'), 60);
+    remove_tree($root);
+};
+$tests['Arabic import leaves existing Chinese records unchanged'] = function (): void {
+    $payload = arabic_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $repo->localized[900] = [
+        'id' => 900,
+        'post_type' => 'product',
+        'slug' => 'hotel-smart-room-rcu-host-1',
+        'status' => 'publish',
+        'core' => ['post_status' => 'publish'],
+        'acf' => ['marker' => 'zh-unchanged'],
+        'meta' => [
+            DualCoreLink_Import_Config::META_SOURCE_ID => 48,
+            DualCoreLink_Import_Config::META_LOCALE => 'zh',
+            DualCoreLink_Import_Config::META_BATCH => 'p0',
+        ],
+    ];
+    $before = $repo->localized[900];
+    $root = temporary_root('ar-zh-unchanged');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'ar',
+        'p0',
+        'draft',
+        'ar-zh-unchanged-1',
+        'ar-zh-unchanged-1',
+        false,
+        true
+    );
+    assert_true($repo->localized[900] === $before);
+    remove_tree($root);
+};
+$tests['CLI wires owner-waiver flag only into gated commands'] = function () use ($plugin_root): void {
+    $command = (string) file_get_contents(
+        $plugin_root . '/includes/class-cli-command.php'
+    );
+    assert_true(substr_count($command, "array_key_exists('allow-owner-waiver'") === 3);
+    $rollback = substr($command, strpos($command, 'public function rollback'));
+    assert_true(!str_contains($rollback, 'allow-owner-waiver'));
 };
 
 $passed = 0;

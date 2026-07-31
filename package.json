@@ -18,6 +18,7 @@
     "multilingual:apply-native-review": "tsx scripts/apply-native-review.ts",
     "cms-import:test": "tsx scripts/cms-import/run-tests.ts",
     "cms-import:fixture-preflight": "tsx scripts/cms-import/fixture-preflight.ts",
+    "cms-import:payload": "tsx scripts/cms-import/generate-payload.ts",
     "cms-import:package": "tsx scripts/cms-import/package-plugin.ts",
     "cms-import:verify-package": "tsx scripts/cms-import/verify-package.ts",
     "cms-import:verify-approved-package": "tsx scripts/cms-import/verify-approved-package.ts",

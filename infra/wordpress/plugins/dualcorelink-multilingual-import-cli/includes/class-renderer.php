@@ -13,9 +13,11 @@ final class DualCoreLink_Import_Renderer
         return esc_html($value);
     }
 
-    private static function href($value): string
+    private static function href($value, string $locale): string
     {
-        if (!is_string($value) || preg_match('~^/zh/[a-z0-9/_-]*(?:#[a-z0-9_-]+)?$~iD', $value) !== 1) {
+        if (!in_array($locale, ['zh', 'ar'], true) ||
+            !is_string($value) ||
+            preg_match('~^/' . preg_quote($locale, '~') . '/[a-z0-9/_-]*(?:#[a-z0-9_-]+)?$~iD', $value) !== 1) {
             throw new DualCoreLink_Import_Exception(
                 'Renderer rejected an unsafe localized href.',
                 DualCoreLink_Import_Config::EXIT_PREFLIGHT
@@ -47,11 +49,23 @@ final class DualCoreLink_Import_Renderer
     public static function render(array $record): string
     {
         $content = $record['translatedStructuredContent'];
+        $locale = (string) $record['locale'];
+        $headings = $locale === 'ar'
+            ? [
+                'specifications' => 'المواصفات ومعلومات الشراء',
+                'faq' => 'الأسئلة الشائعة',
+                'related' => 'صفحات ذات صلة',
+            ]
+            : [
+                'specifications' => '规格与采购信息',
+                'faq' => '常见问题',
+                'related' => '相关页面',
+            ];
         $output = [
             '<p class="content-eyebrow">' . self::text($content['eyebrow']) . '</p>',
             '<h1>' . self::text($content['h1']) . '</h1>',
             '<p>' . self::text($content['introduction']) . '</p>',
-            '<section><h2>规格与采购信息</h2><dl>',
+            '<section><h2>' . $headings['specifications'] . '</h2><dl>',
         ];
         foreach ($record['translatedSpecifications'] as $specification) {
             $output[] = '<dt>' . self::text($specification['label']) . '</dt>';
@@ -72,15 +86,15 @@ final class DualCoreLink_Import_Renderer
             }
             $output[] = '</section>';
         }
-        $output[] = '<section><h2>常见问题</h2>';
+        $output[] = '<section><h2>' . $headings['faq'] . '</h2>';
         foreach ($content['faqs'] as $faq) {
             $output[] = '<h3>' . self::text($faq['question']) . '</h3>';
             $output[] = '<p>' . self::text($faq['answer']) . '</p>';
         }
         $output[] = '</section>';
-        $output[] = '<section><h2>相关页面</h2><ul>';
+        $output[] = '<section><h2>' . $headings['related'] . '</h2><ul>';
         foreach ($content['relatedLinks'] as $link) {
-            $output[] = '<li><a href="' . self::href($link['href']) . '">' .
+            $output[] = '<li><a href="' . self::href($link['href'], $locale) . '">' .
                 self::text($link['label']) . '</a><p>' .
                 self::text($link['description']) . '</p></li>';
         }
@@ -88,10 +102,10 @@ final class DualCoreLink_Import_Renderer
         $output[] = '<section class="content-cta"><h2>' .
             self::text($content['cta']['heading']) . '</h2>';
         $output[] = '<p>' . self::text($content['cta']['description']) . '</p>';
-        $output[] = '<p><a href="' . self::href($content['cta']['href']) . '">' .
+        $output[] = '<p><a href="' . self::href($content['cta']['href'], $locale) . '">' .
             self::text($content['cta']['label']) . '</a></p>';
         if (!empty($content['cta']['secondaryLabel']) && !empty($content['cta']['secondaryHref'])) {
-            $output[] = '<p><a href="' . self::href($content['cta']['secondaryHref']) . '">' .
+            $output[] = '<p><a href="' . self::href($content['cta']['secondaryHref'], $locale) . '">' .
                 self::text($content['cta']['secondaryLabel']) . '</a></p>';
         }
         $output[] = '</section>';
@@ -120,6 +134,30 @@ final class DualCoreLink_Import_Renderer
         if ($post_type === 'product' && !empty($record['translatedStructuredContent']['imageAlt'])) {
             $acf['product_image_alt_text'] = $record['translatedStructuredContent']['imageAlt'];
         }
+        $meta = [
+            DualCoreLink_Import_Config::META_SCHEMA_VERSION => DualCoreLink_Import_Config::SCHEMA_VERSION,
+            DualCoreLink_Import_Config::META_LOCALE => $record['locale'],
+            DualCoreLink_Import_Config::META_SOURCE_ID => $source_id,
+            DualCoreLink_Import_Config::META_GROUP => DualCoreLink_Import_Config::group($post_type, $source_id),
+            DualCoreLink_Import_Config::META_BATCH => $record['batch'],
+            DualCoreLink_Import_Config::META_PAYLOAD_HASH => $payload_hash,
+            DualCoreLink_Import_Config::META_REVIEWER => $record['nativeReviewer'] ?? '',
+            DualCoreLink_Import_Config::META_REVIEW_DATE => $record['nativeReviewDate'] ?? '',
+        ];
+        if (($record['locale'] ?? '') === 'ar') {
+            $meta += [
+                DualCoreLink_Import_Config::META_OWNER_WAIVER_SCHEMA_VERSION =>
+                    $record['ownerReviewWaiverSchemaVersion'],
+                DualCoreLink_Import_Config::META_OWNER_WAIVER_STATUS =>
+                    $record['ownerReviewWaiverStatus'],
+                DualCoreLink_Import_Config::META_OWNER_WAIVER_BY =>
+                    $record['ownerReviewWaiverBy'],
+                DualCoreLink_Import_Config::META_OWNER_WAIVER_DATE =>
+                    $record['ownerReviewWaiverDate'],
+                DualCoreLink_Import_Config::META_OWNER_WAIVER_REASON =>
+                    $record['ownerReviewWaiverReason'],
+            ];
+        }
         return [
             'source_id' => $source_id,
             'identity' => sprintf(
@@ -140,16 +178,7 @@ final class DualCoreLink_Import_Renderer
                 'post_status' => 'draft',
             ],
             'acf' => $acf,
-            'meta' => [
-                DualCoreLink_Import_Config::META_SCHEMA_VERSION => DualCoreLink_Import_Config::SCHEMA_VERSION,
-                DualCoreLink_Import_Config::META_LOCALE => DualCoreLink_Import_Config::LOCALE,
-                DualCoreLink_Import_Config::META_SOURCE_ID => $source_id,
-                DualCoreLink_Import_Config::META_GROUP => DualCoreLink_Import_Config::group($post_type, $source_id),
-                DualCoreLink_Import_Config::META_BATCH => DualCoreLink_Import_Config::BATCH,
-                DualCoreLink_Import_Config::META_PAYLOAD_HASH => $payload_hash,
-                DualCoreLink_Import_Config::META_REVIEWER => DualCoreLink_Import_Config::REVIEWER,
-                DualCoreLink_Import_Config::META_REVIEW_DATE => DualCoreLink_Import_Config::REVIEW_DATE,
-            ],
+            'meta' => $meta,
         ];
     }
 }

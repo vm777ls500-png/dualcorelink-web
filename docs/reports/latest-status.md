@@ -4,6 +4,41 @@ Last updated: 2026-08-01
 
 ## Current Phase
 
+**Multilingual Phase M6E-2 — Plugin 1.1.1 Approval and Production Preflight**
+
+Status: **BLOCKED**.
+
+Allan's `1.1.1` approval was recorded in commit
+`10e87b2f170d7711d60c67d3fc6879a966e3e22b` and pushed only to
+`feature/ar-p0-cms-import-safety-20260731`. The approved ZIP, manifest, and
+Arabic payload hashes reproduced locally, and the Arabic approval verifier
+passed without modifying either the historical Chinese approval or the new
+Arabic approval record.
+
+Production work stopped during the mandatory read-only baseline. WordPress
+and database counters matched the M6E baseline: plugin `1.1.0` active, Users
+3, Administrators 1, Sessions 0, Posts 216, Postmeta 2576, maximum post ID
+261, Chinese CMS 7 publish / 0 draft, and Arabic CMS 0. However, Nginx was
+`failed`, both local HTTPS and the production-domain HTTPS check returned
+`000`, and sitemap retrieval could not run.
+
+Read-only diagnostics showed `nginx -t` failing because the hostname for the
+API Gateway upstream in
+`/etc/nginx/snippets/dualcorelink-inquiry-api.conf:23` could not be resolved.
+The Nginx journal recorded the failed configuration test and service stop at
+2026-08-01 06:29:07 +08.
+
+Because the required production baseline was not healthy, no M6E-2 backup,
+upload, staging directory, plugin replacement, or Arabic preflight was
+performed. No apply, verify, publish, rollback, CMS draft, frontend deployment,
+`main` push, or GSC request occurred. Plugin `1.1.0` remains installed and
+Arabic CMS remains at zero records.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m6e2-plugin-111-production-preflight-20260801.md`.
+
+## Previous Phase M6E-1
+
 **Multilingual Phase M6E-1 — Owner-Waiver Repository Whitelist and Pre-Write Safety Fix**
 
 Status: **READY_FOR_HASH_APPROVAL**.

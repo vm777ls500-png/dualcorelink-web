@@ -1,92 +1,71 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-07-30
+Last updated: 2026-08-01
 
 ## Current Phase
 
-**SEO Growth Multilingual Phase M5G — Chinese P0 Frontend Production Release**
+**UX Phase H1 — Products Mega Menu and Language Dropdown Implementation**
 
-Status: production release completed and verified under Allan's 2026-07-30
-authorization.
+Status: BLOCKED — implementation and validation passed, but GitHub HTTPS 443
+prevented the required feature-branch push after three bounded attempts.
 
-## Authorized Scope
+## Completed
 
-- Publish exactly 12 native-reviewed Chinese P0 frontend pages.
-- Preserve the active server-side inquiry flow, GSC Query URL Cleanup, GA4
-  attribution, Nginx redirects, and English production baseline.
-- Keep the remaining 402 localized candidates out of static output, sitemap,
-  hreflang, and Nginx serving exceptions.
-- Keep `ar`, `de`, `es`, `vi`, and `fa` redirected to English.
-- Keep the seven published Chinese CMS records unchanged.
+- Created isolated worktree `dualcorelink-header-dropdown` from current
+  `origin/main` (`ac10bed6effb94da13395677b46baf31088a86f7`).
+- Added the configuration-driven Products mega menu and publication-aware
+  English/Chinese language dropdown.
+- Added responsive mobile drawer and mutually exclusive accordions.
+- Preserved clean inquiry and product-filter URLs, GA4 attribution, sitemap,
+  canonical, hreflang, and pending-language boundaries.
+- Completed 56 page/viewport browser checks with zero failures.
 
-## Release Baseline
+## Modified Files
 
-- Latest `origin/main` at reconstruction:
-  `488e2e8843f7152c89f64233de058b0853e76035`
-- Current production frontend source before M5G:
-  `1d3cbb296321e089665b866a6e1dce82efb7c59e`
-- Current production release:
-  `/srv/dualcorelink/frontend/releases/1d3cbb296321-20260730-133155`
-- Multilingual feature source:
-  `c5ac34509e27609bd143fbf179d54c028763d4ad`
-- GSC Query URL Cleanup merge base:
-  `9130c58190a8ded92c06127f48fff682b831ded5`
-
-## Required Production Result
-
-- Sitemap: 88 URLs
-- English URLs: 76
-- Chinese URLs: 12
-- Reciprocal en/zh hreflang: 12 pairs
-- Public pages in `ar`, `de`, `es`, `vi`, and `fa`: 0
-- Pending localized paths: continue to 301 to English
-- Chinese CMS Product/Solution records: 7 published, 0 drafts
-- Internal tracking/filter query URLs: 0
+- `src/app/globals.css`
+- `src/components/layout/header.tsx`
+- `src/components/layout/header-navigation.tsx`
+- `src/lib/navigation-publication.ts`
+- `tests/header-navigation.test.ts`
+- `docs/reports/ux-header-products-language-dropdown-implementation-20260801.md`
+- `docs/reports/latest-status.md`
 
 ## Validation
 
-- Multilingual audit: PASS, 414 manifest records.
-- Chinese P0 batch release check: PASS, 12/12 pages and 7/7 CMS payloads.
-- Full release check: expected non-zero result, 402 pending pages blocked.
-- Tests: PASS, 147/147.
-- Lint: PASS.
+- Tests: PASS, 152/152.
+- Lint: PASS, 0 errors.
 - Media audit: PASS, 0 errors.
+- Multilingual audit: PASS, 414/414.
 - Build: PASS, 163/163.
 - Static export audit: PASS, 12 Chinese pages and sitemap 88.
-- Candidate browser QA: PASS, 60 page/viewport checks with zero overflow.
+- Browser QA: PASS, 56/56; overflow, broken images, and console errors all 0.
+- Query and pending-link static scans: all 0.
 
 ## Git Status
 
-- Branch: `release/zh-p0-frontend-production-20260730`
-- Release commit: `8506bd1c797bd043a94c7ed2058dbcac1850ff6b`
-- Nginx correction: `f920785885d55297211647b5aa6d518513d6560b`
-- Push: `main` updated by non-force push.
-- Deployment: successful, Run `30533653918`.
-- Production release:
-  `/srv/dualcorelink/frontend/releases/f920785885d5-20260730-181248`
+- Branch: `feature/header-products-language-dropdown-20260801`
+- Base: `ac10bed6effb94da13395677b46baf31088a86f7`
+- Commit: local implementation commit created; use the current branch HEAD.
+- Push: blocked by GitHub HTTPS connection reset/timeout after three attempts;
+  main was not pushed.
 
-## Production QA
+## Production Boundary
 
-- Approved Chinese pages: 12/12 HTTP 200.
-- Pending localized paths: 402/402 exact 301 to English.
-- Sitemap: 88 total, 76 English and 12 Chinese.
-- Reciprocal en/zh hreflang: 12 pairs; `x-default` points to English.
-- Other localized public pages: 0.
-- Product Schema: 36/36; Article Schema: 15/15.
-- Query-bearing internal links, sitemap, canonical, and hreflang URLs: 0.
-- English Contact and inquiry infrastructure remain active.
-- Chinese CMS records remain 7 published and 0 drafts; no CMS write occurred.
+- Deployment: not performed.
+- CMS/database writes: none.
+- GSC requests: none.
+- Sitemap production baseline: unchanged at 88 (76 English + 12 Chinese).
+- Pending localized candidates: 402, still blocked.
 
 ## Risks
 
-- The first M5G Nginx location served the approved paths as 404 due to index
-  processing entering the legacy locale regex. Commit `f920785` corrected the
-  path resolution, added a regression assertion, and was deployed
-  successfully.
-- The remaining 402 candidates must stay blocked until their own native
-  reviews and explicit release approvals are complete.
+- `npm ci` reports seven existing high-severity dependency advisories; no
+  dependency changed in H1.
+- Production release requires a separate explicit authorization and production
+  QA.
 
 ## Next Action
 
-Continue monitoring the 12-page Chinese P0 release. Do not start another
-locale batch without separate native-review and production authorization.
+Retry the existing feature-branch push when GitHub HTTPS connectivity returns.
+After remote preservation, wait for explicit production release authorization.
+Do not deploy or push main in this phase.

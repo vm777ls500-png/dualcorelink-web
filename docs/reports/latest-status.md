@@ -4,75 +4,72 @@ Last updated: 2026-08-02
 
 ## Current Phase
 
-**UX Hotfix — Close Header Dropdown After Navigation**
+**Multilingual Phase M7A — Chinese P1 Human Review Preparation**
 
-Status: BLOCKED — isolated candidate passed every technical validation and was
-committed locally, but GitHub HTTPS 443 remained unavailable and the feature
-branch could not be pushed. It is not authorized for main or production
-deployment.
+Status: **PASS — Chinese P1 Human Review Package Ready**
 
 ## Completed
 
-- Created `hotfix/header-close-after-navigation-20260802` from latest
-  `origin/main` baseline `cae55ccc829e005cdcd97d70ee94c12d9d635039`.
-- Added a unified close path for desktop dropdowns, mobile accordions, the
-  mobile drawer, pending timers, and pointer-open state.
-- Closed Header state from every internal link and from a `usePathname()`
-  route-change fallback without restoring focus to the previous page.
-- Preserved Escape focus restoration, hover/focus opening, the 220 ms close
-  delay, mobile behavior, clean URLs, GA4, and inquiry attribution.
-- Completed automated, static-export, and local browser validation.
+- Created isolated review worktree and branch from latest `origin/main`.
+- Selected the exact 31 Chinese P1 pages from the publication manifest.
+- Reviewed 17 Product/Solution CMS payloads against public English source
+  records using GET-only access.
+- Applied 96 source-verifiable language corrections across 27 P1 pages.
+- Generated the complete 31-page human review workbook and 31-row pending
+  decision template.
+- Completed automated, static-export, production-boundary, and browser QA.
 
 ## Modified Files
 
-- `src/components/layout/header-navigation.tsx`
-- `src/components/contact/tracked-inquiry-link.tsx`
-- `tests/header-navigation.test.ts`
-- `tests/header-navigation-close.test.ts`
-- `docs/reports/ux-header-close-after-navigation-hotfix-20260802.md`
+- `src/content/locales/cms-import/m3a-generated.ts`
+- `src/content/locales/m3a-file-pages.ts`
+- `scripts/generate-zh-p1-review-package.ts`
+- `docs/reviews/multilingual/zh-p1-final-human-review-20260802.md`
+- `docs/reviews/multilingual/zh-p1-final-decisions-20260802.md`
+- `docs/reports/seo-growth-multilingual-m7a-zh-p1-human-review-preparation-20260802.md`
 - `docs/reports/latest-status.md`
 
 ## Validation
 
+- Multilingual audit: PASS, 414/414; production-ready 12; pending 402.
+- Full release check: expected controlled failure, blocking 402 pending pages.
 - Tests: PASS, 170/170 with public read-only CMS.
 - Lint: PASS, 0 errors.
 - Media audit: PASS, 0 errors and 1 existing warning.
-- Multilingual audit: PASS, 414/414; ready 12; pending 402.
-- Build: PASS, 163/163.
+- Build: PASS, 163/163 before cleanup.
 - Static export audit: PASS; sitemap 88 (76 English + 12 Chinese).
-- Browser QA: PASS for required desktop/mobile navigation paths and five
-  viewports; console/hydration errors and horizontal overflow are 0.
+- Browser QA: PASS, 124/124 page/viewport checks plus desktop/mobile navigation.
 - Query URL scans: all 0.
+- Production GET/HEAD boundary: P0 12/12 HTTP 200; P1 31/31 one-hop 301;
+  sitemap 88/88 HTTP 200.
 - `git diff --check`: PASS.
 
 ## Git Status
 
-- Branch: `hotfix/header-close-after-navigation-20260802`.
-- Base: `cae55ccc829e005cdcd97d70ee94c12d9d635039`.
-- Commit: created locally with message
-  `fix: close header menus after navigation`.
-- Feature push: blocked before push because bounded `ls-remote` checks could
-  not reach GitHub over HTTPS; existing SSH authentication was unavailable.
+- Worktree: `C:\Users\empir\Documents\dualcorelink-zh-p1-review-prep`
+- Branch: `review/zh-p1-human-review-20260802`
+- Base: `a19d144c31cf65ea4528e37d6bd25254cc51d32d`
+- Commit: not created.
+- Push: not performed.
 - Main: not modified or pushed.
 
 ## Production Boundary
 
-- Deployment: not performed.
-- CMS/database writes: none.
-- GSC requests: none.
-- Production sitemap/content: unchanged.
-- Pending localized pages: 402, still blocked.
+- Chinese P1: pending 31, approved 0, changes required 0,
+  productionReleaseReady 0.
+- New public Chinese pages: 0.
+- Production sitemap: unchanged at 88.
+- Public Chinese CMS: remains seven published records; no write request made.
+- Deployment, CMS/database writes, GSC requests: none.
 
 ## Risks
 
-- `npm ci` reports seven existing high-severity dependency advisories; no
-  dependency or lockfile changed in this hotfix.
-- Pointer re-entry suppression is intentionally released only by real pointer
-  movement so a stationary pointer cannot reopen a menu after navigation.
-- GitHub DNS resolved, but TCP 443 and IPv4 HTTPS timed out after an initial
-  connection reset. No remote, proxy, SSL, or permanent Git setting changed.
+- Human Chinese review is still required before any P1 approval.
+- Seven existing high-severity dependency advisories remain outside this phase.
+- The local review-only candidate build is not a production release artifact.
 
 ## Next Action
 
-Retry the existing local feature commit push after GitHub connectivity returns.
-Wait for separate authorization before any main push or production deployment.
+A real Chinese reviewer should complete
+`docs/reviews/multilingual/zh-p1-final-decisions-20260802.md`. Wait for a
+separate approval phase before applying review state or preparing a release.

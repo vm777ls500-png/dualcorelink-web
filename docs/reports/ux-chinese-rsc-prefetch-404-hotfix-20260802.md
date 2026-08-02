@@ -8,8 +8,9 @@ Feature branch: `hotfix/chinese-rsc-prefetch-404-20260802`
 
 ## Conclusion
 
-**PASS — the feature candidate fixes the Chinese RSC prefetch boundary without
-expanding multilingual publication scope.** Production was not modified or
+**BLOCKED — the feature candidate fixes the Chinese RSC prefetch boundary and
+all technical validation passed, but GitHub HTTPS 443 remained unavailable and
+the feature branch could not be pushed.** Production was not modified or
 deployed in this phase, so the current production `index.txt` responses remain
 404 until a separately authorized release.
 
@@ -160,9 +161,11 @@ regress.
 - Production Nginx writes: none
 - Frontend deployment: none
 - Main push: none
+- Feature push: blocked by GitHub HTTPS connection reset/timeout after the
+  initial attempt and three bounded non-forced retries
 - GSC requests: none
 - Chinese body copy changes: none
 - Pending page publication: none
 
-The candidate is ready for separate review and production-release
-authorization.
+The local candidate is technically ready. Remote preservation must be retried
+before separate production-release review and authorization.

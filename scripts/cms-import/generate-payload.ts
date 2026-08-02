@@ -1,7 +1,10 @@
 import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { arP0OwnerWaivedCmsImportPayload } from "../../src/content/locales/cms-import";
+import {
+  arP0OwnerWaivedCmsImportPayload,
+  zhP1ReviewedCmsImportPayload,
+} from "../../src/content/locales/cms-import";
 import { canonicalJson, sha256 } from "./model";
 
 function value(name: string): string | undefined {
@@ -15,19 +18,31 @@ function value(name: string): string | undefined {
 async function main(): Promise<void> {
   const locale = value("locale");
   const batch = value("batch");
-  if (locale !== "ar" || batch !== "p0") {
+  const selected =
+    locale === "ar" && batch === "p0"
+      ? {
+          payload: arP0OwnerWaivedCmsImportPayload,
+          filename: "ar-p0-owner-waived.json",
+        }
+      : locale === "zh" && batch === "p1"
+        ? {
+            payload: zhP1ReviewedCmsImportPayload,
+            filename: "zh-p1-reviewed.json",
+          }
+        : undefined;
+  if (!selected) {
     throw new Error(
-      "Only the exact owner-waived Arabic P0 payload is supported: --locale=ar --batch=p0",
+      "Only exact approved payloads are supported: ar/p0 or zh/p1",
     );
   }
-  const payload = arP0OwnerWaivedCmsImportPayload;
+  const payload = selected.payload;
   const canonical = canonicalJson(payload);
   const bytes = Buffer.from(`${canonical}\n`, "utf8");
   const output = path.join(
     process.cwd(),
     "dist",
     "cms-import",
-    "ar-p0-owner-waived.json",
+    selected.filename,
   );
   await mkdir(path.dirname(output), { recursive: true });
   await writeFile(output, bytes);

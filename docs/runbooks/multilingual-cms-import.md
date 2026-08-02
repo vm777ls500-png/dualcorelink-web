@@ -1,7 +1,8 @@
 # Multilingual CMS Import Runbook
 
-This runbook governs the exact seven-record Chinese P0 CMS batch and the exact
-six-record Arabic P0 owner-waiver batch. It does not authorize a production
+This runbook governs the exact seven-record Chinese P0 CMS batch, the exact
+17-record Chinese P1 CMS batch, and the exact six-record Arabic P0 owner-waiver
+batch. It does not authorize a production
 import. Installation, preflight, draft apply, publish and rollback each
 require a separately approved operations phase.
 
@@ -16,6 +17,10 @@ require a separately approved operations phase.
   confirmation.
 - Chinese P0 accepts only reviewer `Allan`, review date `2026-07-29` and
   source IDs `48,47,6,222,142,140,138`. Owner waiver is forbidden.
+- Chinese P1 accepts only reviewer `Allan`, review date `2026-08-02`, exactly
+  15 Products and two Solutions, and source IDs
+  `219,190,189,188,51,50,46,45,43,13,12,11,10,9,8,141,139`. P0, P2,
+  other locales, owner waiver, or any identity drift fail closed.
 - Arabic P0 accepts only source IDs `48,47,6,140,138,137` and requires the
   explicit `--allow-owner-waiver` flag plus Allan's exact waiver evidence
   dated `2026-07-31`.
@@ -117,6 +122,16 @@ Generate the deterministic Arabic P0 candidate with:
 ```bash
 npm run cms-import:payload -- --locale=ar --batch=p0
 ```
+
+Generate the deterministic Chinese P1 candidate with:
+
+```bash
+npm run cms-import:payload -- --locale=zh --batch=p1
+```
+
+The output must be `dist/cms-import/zh-p1-reviewed.json` with exactly 17
+records. Preflight must use `--locale=zh --batch=p1`; do not pass
+`--allow-owner-waiver`.
 
 Arabic preflight, apply, and publish must include
 `--allow-owner-waiver`. Verify reuses the immutable run evidence; rollback

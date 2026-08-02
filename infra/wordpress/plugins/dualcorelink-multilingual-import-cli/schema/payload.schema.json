@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "DualCoreLink Approved P0 CMS Import Payload",
+  "title": "DualCoreLink Exact Approved CMS Import Payload",
   "type": "array",
   "minItems": 6,
-  "maxItems": 7,
+  "maxItems": 17,
   "items": {
     "type": "object",
     "additionalProperties": false,
@@ -34,7 +34,7 @@
     "properties": {
       "contentType": { "enum": ["product", "solution"] },
       "sourceEnglishContentId": {
-        "enum": [48, 47, 6, 222, 142, 140, 138, 137]
+        "enum": [48, 47, 6, 222, 142, 140, 138, 137, 219, 190, 189, 188, 51, 50, 46, 45, 43, 13, 12, 11, 10, 9, 8, 141, 139]
       },
       "sourceEnglishSlug": {
         "type": "string",
@@ -50,7 +50,7 @@
       "importKey": { "type": "string", "minLength": 1, "maxLength": 200 },
       "deliveryMode": { "const": "validated-import-payload" },
       "locale": { "enum": ["zh", "ar"] },
-      "batch": { "const": "p0" },
+      "batch": { "enum": ["p0", "p1"] },
       "translatedTitle": { "type": "string", "minLength": 1 },
       "translatedDescription": { "type": "string", "minLength": 1 },
       "translatedSpecifications": {
@@ -121,6 +121,22 @@
               { "required": ["ownerReviewWaiverScopeCount"] },
               { "required": ["ownerReviewWaiverScopeSha256"] }
             ]
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "locale": { "const": "zh" },
+            "batch": { "const": "p1" }
+          },
+          "required": ["locale", "batch"]
+        },
+        "then": {
+          "properties": {
+            "nativeReviewStatus": { "const": "approved" },
+            "nativeReviewer": { "const": "Allan" },
+            "nativeReviewDate": { "const": "2026-08-02" }
           }
         }
       }

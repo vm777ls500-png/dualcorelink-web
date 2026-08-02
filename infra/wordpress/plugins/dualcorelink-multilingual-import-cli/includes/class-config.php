@@ -8,6 +8,9 @@ final class DualCoreLink_Import_Config
     public const REVIEWER = 'Allan';
     public const REVIEW_DATE = '2026-07-29';
     public const RECORD_COUNT = 7;
+    public const ZH_P1_REVIEWER = 'Allan';
+    public const ZH_P1_REVIEW_DATE = '2026-08-02';
+    public const ZH_P1_RECORD_COUNT = 17;
     public const OWNER_WAIVER_SCHEMA_VERSION = 1;
     public const OWNER_WAIVER_BY = 'Allan';
     public const OWNER_WAIVER_DATE = '2026-07-31';
@@ -138,6 +141,26 @@ final class DualCoreLink_Import_Config
         137 => ['post_type' => 'solution', 'slug' => 'hotel-guest-room-control-solution'],
     ];
 
+    public const ZH_P1_APPROVED = [
+        219 => ['post_type' => 'product', 'slug' => 'hotel-smart-room-rcu-host-3'],
+        190 => ['post_type' => 'product', 'slug' => 'hotel-delivery-robot-charging-dock'],
+        189 => ['post_type' => 'product', 'slug' => 'hotel-smart-room-rcu-host-2'],
+        188 => ['post_type' => 'product', 'slug' => 'smart-curtain-motor'],
+        51 => ['post_type' => 'product', 'slug' => 'smart-four-key-curtain-control-panel'],
+        50 => ['post_type' => 'product', 'slug' => 'smart-key-card-energy-saver-panel'],
+        46 => ['post_type' => 'product', 'slug' => 'hotel-guest-room-doorbell'],
+        45 => ['post_type' => 'product', 'slug' => 'hotel-room-door-magnetic-sensor'],
+        43 => ['post_type' => 'product', 'slug' => 'embedded-human-presence-sensor'],
+        13 => ['post_type' => 'product', 'slug' => 'hotel-smart-delivery-cabinet'],
+        12 => ['post_type' => 'product', 'slug' => 'hotel-delivery-robot'],
+        11 => ['post_type' => 'product', 'slug' => 'ai-music-control-panel'],
+        10 => ['post_type' => 'product', 'slug' => 'thermostat-hvac-control-panel'],
+        9 => ['post_type' => 'product', 'slug' => 'rotary-knob-smart-control-display'],
+        8 => ['post_type' => 'product', 'slug' => 'ai-large-smart-display'],
+        141 => ['post_type' => 'solution', 'slug' => 'hotel-delivery-robot-solution'],
+        139 => ['post_type' => 'solution', 'slug' => 'ai-smart-display-solution'],
+    ];
+
     public const PRODUCT_ACF_KEYS = [
         'product_short_description',
         'product_technical_specs',
@@ -176,6 +199,20 @@ final class DualCoreLink_Import_Config
                 'approved' => self::APPROVED,
                 'native_review' => true,
                 'owner_waiver' => false,
+                'reviewer' => self::REVIEWER,
+                'review_date' => self::REVIEW_DATE,
+            ];
+        }
+        if ($locale === 'zh' && $batch === 'p1' && !$allow_owner_waiver) {
+            return [
+                'locale' => 'zh',
+                'batch' => 'p1',
+                'records' => self::ZH_P1_RECORD_COUNT,
+                'approved' => self::ZH_P1_APPROVED,
+                'native_review' => true,
+                'owner_waiver' => false,
+                'reviewer' => self::ZH_P1_REVIEWER,
+                'review_date' => self::ZH_P1_REVIEW_DATE,
             ];
         }
         if ($locale === 'ar' && $batch === 'p0' && $allow_owner_waiver) {
@@ -186,6 +223,8 @@ final class DualCoreLink_Import_Config
                 'approved' => self::ARABIC_APPROVED,
                 'native_review' => false,
                 'owner_waiver' => true,
+                'reviewer' => null,
+                'review_date' => null,
             ];
         }
         return null;
@@ -194,18 +233,16 @@ final class DualCoreLink_Import_Config
     public static function approved_source_id(int $source_id): bool
     {
         return array_key_exists($source_id, self::APPROVED) ||
-            array_key_exists($source_id, self::ARABIC_APPROVED);
+            array_key_exists($source_id, self::ARABIC_APPROVED) ||
+            array_key_exists($source_id, self::ZH_P1_APPROVED);
     }
 
     public static function meta_keys_for(string $locale, string $batch): array
     {
-        if ($batch !== self::BATCH) {
-            return [];
-        }
-        if ($locale === 'zh') {
+        if ($locale === 'zh' && in_array($batch, ['p0', 'p1'], true)) {
             return self::META_KEYS;
         }
-        if ($locale === 'ar') {
+        if ($locale === 'ar' && $batch === self::BATCH) {
             return array_merge(self::META_KEYS, self::OWNER_WAIVER_META_KEYS);
         }
         return [];

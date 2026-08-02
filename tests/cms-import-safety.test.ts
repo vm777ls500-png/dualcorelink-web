@@ -190,9 +190,11 @@ test("payload schema requires waiver evidence only for Arabic", async () => {
       "utf8",
     ),
   ) as { items: { allOf: unknown[] } };
-  assert.equal(schema.items.allOf.length, 1);
+  assert.equal(schema.items.allOf.length, 2);
   assert.match(JSON.stringify(schema.items.allOf), /ownerReviewWaiverStatus/);
   assert.match(JSON.stringify(schema.items.allOf), /nativeReviewStatus/);
+  assert.match(JSON.stringify(schema.items.allOf), /2026-08-02/);
+  assert.equal(schema.maxItems, 17);
 });
 
 test("ordinary build command contains no CMS import side effect", async () => {

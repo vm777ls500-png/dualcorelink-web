@@ -5,6 +5,8 @@ export const approvedLocale = "zh";
 export const approvedBatch = "p0";
 export const approvedReviewer = "Allan";
 export const approvedReviewDate = "2026-07-29";
+export const zhP1ApprovedReviewer = "Allan";
+export const zhP1ApprovedReviewDate = "2026-08-02";
 export const translationSchemaVersion = 1;
 export const ownerWaiverSchemaVersion = 1;
 export const ownerWaiverReason =
@@ -131,7 +133,7 @@ export type RunRecord = {
   published: boolean;
   rolledBack: boolean;
   locale: "zh" | "ar";
-  batch: "p0";
+  batch: "p0" | "p1";
   allowOwnerWaiver: boolean;
 };
 
@@ -203,12 +205,34 @@ const arabicExpected = new Map<number, { postType: ContentType; slug: string }>(
   [137, { postType: "solution", slug: "hotel-guest-room-control-solution" }],
 ]);
 
+const zhP1Expected = new Map<number, { postType: ContentType; slug: string }>([
+  [219, { postType: "product", slug: "hotel-smart-room-rcu-host-3" }],
+  [190, { postType: "product", slug: "hotel-delivery-robot-charging-dock" }],
+  [189, { postType: "product", slug: "hotel-smart-room-rcu-host-2" }],
+  [188, { postType: "product", slug: "smart-curtain-motor" }],
+  [51, { postType: "product", slug: "smart-four-key-curtain-control-panel" }],
+  [50, { postType: "product", slug: "smart-key-card-energy-saver-panel" }],
+  [46, { postType: "product", slug: "hotel-guest-room-doorbell" }],
+  [45, { postType: "product", slug: "hotel-room-door-magnetic-sensor" }],
+  [43, { postType: "product", slug: "embedded-human-presence-sensor" }],
+  [13, { postType: "product", slug: "hotel-smart-delivery-cabinet" }],
+  [12, { postType: "product", slug: "hotel-delivery-robot" }],
+  [11, { postType: "product", slug: "ai-music-control-panel" }],
+  [10, { postType: "product", slug: "thermostat-hvac-control-panel" }],
+  [9, { postType: "product", slug: "rotary-knob-smart-control-display" }],
+  [8, { postType: "product", slug: "ai-large-smart-display" }],
+  [141, { postType: "solution", slug: "hotel-delivery-robot-solution" }],
+  [139, { postType: "solution", slug: "ai-smart-display-solution" }],
+]);
+
 type BatchPolicy = {
   locale: "zh" | "ar";
-  batch: "p0";
+  batch: "p0" | "p1";
   expected: Map<number, { postType: ContentType; slug: string }>;
   count: number;
   allowOwnerWaiver: boolean;
+  reviewer: string | null;
+  reviewDate: string | null;
 };
 
 function batchPolicy(
@@ -217,7 +241,26 @@ function batchPolicy(
   allowOwnerWaiver: boolean,
 ): BatchPolicy | undefined {
   if (locale === "zh" && batch === "p0" && !allowOwnerWaiver) {
-    return { locale, batch, expected, count: 7, allowOwnerWaiver: false };
+    return {
+      locale,
+      batch,
+      expected,
+      count: 7,
+      allowOwnerWaiver: false,
+      reviewer: approvedReviewer,
+      reviewDate: approvedReviewDate,
+    };
+  }
+  if (locale === "zh" && batch === "p1" && !allowOwnerWaiver) {
+    return {
+      locale,
+      batch,
+      expected: zhP1Expected,
+      count: 17,
+      allowOwnerWaiver: false,
+      reviewer: zhP1ApprovedReviewer,
+      reviewDate: zhP1ApprovedReviewDate,
+    };
   }
   if (locale === "ar" && batch === "p0" && allowOwnerWaiver) {
     return {
@@ -226,6 +269,8 @@ function batchPolicy(
       expected: arabicExpected,
       count: 6,
       allowOwnerWaiver: true,
+      reviewer: null,
+      reviewDate: null,
     };
   }
   return undefined;
@@ -440,7 +485,7 @@ export function preflight(
   repository: CmsRepository,
   options: {
     locale?: "zh" | "ar";
-    batch?: "p0";
+    batch?: "p0" | "p1";
     allowOwnerWaiver?: boolean;
   } = {},
 ): PreflightResult {
@@ -493,8 +538,8 @@ export function preflight(
     if (policy.locale === "zh") {
       if (
         record.nativeReviewStatus !== "approved" ||
-        record.nativeReviewer !== approvedReviewer ||
-        record.nativeReviewDate !== approvedReviewDate ||
+        record.nativeReviewer !== policy.reviewer ||
+        record.nativeReviewDate !== policy.reviewDate ||
         record.ownerReviewWaiverStatus !== undefined
       ) {
         errors.push(
@@ -665,7 +710,7 @@ export class ImportEngine {
       confirmRunId: string;
       allowUpdate?: boolean;
       locale?: "zh" | "ar";
-      batch?: "p0";
+      batch?: "p0" | "p1";
       allowOwnerWaiver?: boolean;
     },
   ): RunRecord {

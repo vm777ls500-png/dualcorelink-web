@@ -276,8 +276,8 @@ final class DualCoreLink_Multilingual_Import_Service
             }
             if ($policy['native_review']) {
                 if (($record['nativeReviewStatus'] ?? null) !== 'approved' ||
-                    ($record['nativeReviewer'] ?? null) !== DualCoreLink_Import_Config::REVIEWER ||
-                    ($record['nativeReviewDate'] ?? null) !== DualCoreLink_Import_Config::REVIEW_DATE ||
+                    ($record['nativeReviewer'] ?? null) !== $policy['reviewer'] ||
+                    ($record['nativeReviewDate'] ?? null) !== $policy['review_date'] ||
                     array_intersect(
                         array_keys($record),
                         DualCoreLink_Import_Config::OWNER_WAIVER_PAYLOAD_KEYS
@@ -511,7 +511,7 @@ final class DualCoreLink_Multilingual_Import_Service
             $existing_batch = $this->repository->list_localized($locale, $batch);
             if (count($existing_batch) > count($payload)) {
                 throw new DualCoreLink_Import_Exception(
-                    'An eighth localized batch record already exists.',
+                    'An extra localized batch record already exists.',
                     DualCoreLink_Import_Config::EXIT_CONFLICT
                 );
             }

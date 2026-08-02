@@ -203,6 +203,16 @@ function arabic_fixture(): array
     return $payload;
 }
 
+function chinese_p1_fixture(): array
+{
+    $file = dirname(__DIR__, 2) . '/dist/cms-import/zh-p1-reviewed.json';
+    $payload = json_decode((string) file_get_contents($file), true);
+    if (!is_array($payload)) {
+        throw new RuntimeException('Chinese P1 fixture is invalid.');
+    }
+    return $payload;
+}
+
 function temporary_root(string $name): string
 {
     return sys_get_temp_dir() . '/dualcorelink-import-' . $name . '-' . bin2hex(random_bytes(4));
@@ -1177,6 +1187,66 @@ $tests['Arabic import leaves existing Chinese records unchanged'] = function ():
     );
     assert_true($repo->localized[900] === $before);
     remove_tree($root);
+};
+$tests['Chinese P1 preflight accepts exact 17/17 payload with zero writes'] = function (): void {
+    $payload = chinese_p1_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $before = serialize($repo);
+    [$service] = service($repo, temporary_root('zh-p1-preflight'));
+    $result = $service->preflight($payload, 'zh', 'p1');
+    assert_true($result['records'] === 17 && $result['writes'] === 0);
+    assert_true(serialize($repo) === $before);
+    assert_true(count(array_filter(
+        $payload,
+        fn ($record) => $record['contentType'] === 'product'
+    )) === 15);
+    assert_true(count(array_filter(
+        $payload,
+        fn ($record) => $record['contentType'] === 'solution'
+    )) === 2);
+};
+$tests['Chinese P1 preflight rejects record count drift'] = function (): void {
+    $payload = chinese_p1_fixture();
+    array_pop($payload);
+    $repo = new Mock_Import_Repository($payload);
+    [$service] = service($repo, temporary_root('zh-p1-short'));
+    expect_failure(fn () => $service->preflight($payload, 'zh', 'p1'), 20);
+};
+$tests['Chinese P1 preflight rejects identity and review drift'] = function (): void {
+    foreach ([
+        'slug' => function (&$record): void { $record['localizedSlug'] = 'wrong-slug'; },
+        'source' => function (&$record): void { $record['sourceEnglishContentId'] = 48; },
+        'type' => function (&$record): void { $record['contentType'] = 'solution'; },
+        'reviewer' => function (&$record): void { $record['nativeReviewer'] = 'Unknown'; },
+        'date' => function (&$record): void { $record['nativeReviewDate'] = '2026-08-01'; },
+        'readiness' => function (&$record): void { $record['productionReleaseReady'] = false; },
+    ] as $label => $mutate) {
+        $payload = chinese_p1_fixture();
+        $mutate($payload[0]);
+        $repo = new Mock_Import_Repository($payload);
+        [$service] = service($repo, temporary_root('zh-p1-' . $label));
+        expect_failure(fn () => $service->preflight($payload, 'zh', 'p1'), 20);
+    }
+};
+$tests['Chinese P1 cannot use owner waiver or contain another batch/locale'] = function (): void {
+    $payload = chinese_p1_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    [$service] = service($repo, temporary_root('zh-p1-waiver'));
+    expect_failure(fn () => $service->preflight($payload, 'zh', 'p1', true), 20);
+
+    foreach ([['batch', 'p0'], ['batch', 'p2'], ['locale', 'de']] as [$key, $value]) {
+        $changed = chinese_p1_fixture();
+        $changed[0][$key] = $value;
+        $changed_repo = new Mock_Import_Repository($changed);
+        [$changed_service] = service(
+            $changed_repo,
+            temporary_root('zh-p1-' . $key . '-' . $value)
+        );
+        expect_failure(
+            fn () => $changed_service->preflight($changed, 'zh', 'p1'),
+            20
+        );
+    }
 };
 $tests['CLI wires owner-waiver flag only into gated commands'] = function () use ($plugin_root): void {
     $command = (string) file_get_contents(

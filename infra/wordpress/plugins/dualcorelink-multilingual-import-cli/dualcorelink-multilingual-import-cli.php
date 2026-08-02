@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: DualCoreLink Multilingual Import CLI
- * Description: Guarded WP-CLI-only importer for approved multilingual P0 CMS batches.
- * Version: 1.1.1
+ * Description: Guarded WP-CLI-only importer for exact approved multilingual CMS batches.
+ * Version: 1.2.0
  */
 
 if (!defined('ABSPATH')) {

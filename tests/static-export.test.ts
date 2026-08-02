@@ -88,6 +88,7 @@ test("static export keeps only the approved Chinese P0 batch", async () => {
         path.join(directory, "index.html"),
         '<html lang="en" class="test"><body>ok</body></html>',
       );
+      await writeFile(path.join(directory, "index.txt"), "rsc payload");
     }
     await writeFile(path.join(temporaryRoot, "ar.html"), "retired root");
     await writeFile(path.join(temporaryRoot, "zh.txt"), "retired root");
@@ -102,8 +103,18 @@ test("static export keeps only the approved Chinese P0 batch", async () => {
       await readFile(path.join(approvedChinese, "index.html"), "utf8"),
       /<html lang="zh" dir="ltr"/,
     );
+    assert.equal(
+      await readFile(path.join(approvedChineseAbout, "index.txt"), "utf8"),
+      "rsc payload",
+    );
+    assert.equal(
+      await readFile(path.join(approvedChinese, "index.txt"), "utf8"),
+      "rsc payload",
+    );
     await assert.rejects(readFile(path.join(blockedArabic, "index.html")));
+    await assert.rejects(readFile(path.join(blockedArabic, "index.txt")));
     await assert.rejects(readFile(path.join(blockedChinese, "index.html")));
+    await assert.rejects(readFile(path.join(blockedChinese, "index.txt")));
     await assert.rejects(readFile(path.join(temporaryRoot, "ar.html")));
     await assert.rejects(readFile(path.join(temporaryRoot, "zh.txt")));
   } finally {
@@ -176,6 +187,10 @@ test("AWS export baselines include only the approved Chinese P0 batch", async ()
   assert.match(deployScript, /validate_localized_paths es/);
   assert.match(deployScript, /validate_localized_paths vi/);
   assert.match(deployScript, /validate_localized_paths fa/);
+  assert.match(
+    deployScript,
+    /rsync -a --delete "\$source_dir\/" "\$temporary_release\/"/,
+  );
 });
 
 test("Nginx retires only known legacy locales with verified English targets", async () => {

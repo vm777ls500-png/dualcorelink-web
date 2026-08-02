@@ -1,57 +1,59 @@
 # DualCoreLink Current Status
 
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 
 ## Current Phase
 
-**UX Phase H1 — Products Mega Menu and Language Dropdown Implementation**
+**UX Hotfix — Chinese RSC Prefetch 404 Audit and Fix**
 
-Status: BLOCKED — implementation and validation passed, but GitHub HTTPS 443
-prevented the required feature-branch push after three bounded attempts.
+Status: PASS — the isolated feature candidate serves approved Chinese RSC
+payloads while preserving all production publication boundaries. No deployment
+was performed.
 
 ## Completed
 
-- Created isolated worktree `dualcorelink-header-dropdown` from current
-  `origin/main` (`ac10bed6effb94da13395677b46baf31088a86f7`).
-- Added the configuration-driven Products mega menu and publication-aware
-  English/Chinese language dropdown.
-- Added responsive mobile drawer and mutually exclusive accordions.
-- Preserved clean inquiry and product-filter URLs, GA4 attribution, sitemap,
-  canonical, hreflang, and pending-language boundaries.
-- Completed 56 page/viewport browser checks with zero failures.
+- Created isolated worktree `dualcorelink-rsc-prefetch-hotfix` from production
+  baseline `7ee2517e85d537b90fed058dc127af0cf6ea420b`.
+- Confirmed 12/12 approved Chinese RSC files exist in the production release
+  but are denied by the Nginx locale publication boundary.
+- Added a precise allowlist for the same 12 Chinese `index.txt` payloads before
+  legacy locale redirects.
+- Extended static export audit and tests to require approved payloads and
+  reject all pending localized payloads.
+- Completed 48 page/viewport browser checks with zero failures.
 
 ## Modified Files
 
-- `src/app/globals.css`
-- `src/components/layout/header.tsx`
-- `src/components/layout/header-navigation.tsx`
-- `src/lib/navigation-publication.ts`
-- `tests/header-navigation.test.ts`
-- `docs/reports/ux-header-products-language-dropdown-implementation-20260801.md`
+- `deploy/nginx/dualcorelink.com.conf.template`
+- `scripts/audit-multilingual-export.ts`
+- `tests/multilingual-foundation.test.ts`
+- `tests/static-export.test.ts`
+- `docs/reports/ux-chinese-rsc-prefetch-404-hotfix-20260802.md`
 - `docs/reports/latest-status.md`
 
 ## Validation
 
-- Tests: PASS, 152/152.
+- Tests: PASS, 153/153 with the public read-only CMS.
 - Lint: PASS, 0 errors.
 - Media audit: PASS, 0 errors.
 - Multilingual audit: PASS, 414/414.
 - Build: PASS, 163/163.
 - Static export audit: PASS, 12 Chinese pages and sitemap 88.
-- Browser QA: PASS, 56/56; overflow, broken images, and console errors all 0.
-- Query and pending-link static scans: all 0.
+- Browser QA: PASS, 48/48; `_rsc` 404, any 404, overflow, broken images,
+  console errors, and interaction failures all 0.
+- Query URL scans: all 0.
 
 ## Git Status
 
-- Branch: `feature/header-products-language-dropdown-20260801`
-- Base: `ac10bed6effb94da13395677b46baf31088a86f7`
-- Commit: local implementation commit created; use the current branch HEAD.
-- Push: blocked by GitHub HTTPS connection reset/timeout after three attempts;
-  main was not pushed.
+- Branch: `hotfix/chinese-rsc-prefetch-404-20260802`
+- Base: `7ee2517e85d537b90fed058dc127af0cf6ea420b`
+- Commit/push: use the current feature branch HEAD after preservation.
+- Main: not modified or pushed.
 
 ## Production Boundary
 
-- Deployment: not performed.
+- Deployment: not performed; live Chinese `.txt` requests remain 404 until a
+  separately authorized release.
 - CMS/database writes: none.
 - GSC requests: none.
 - Sitemap production baseline: unchanged at 88 (76 English + 12 Chinese).
@@ -60,12 +62,11 @@ prevented the required feature-branch push after three bounded attempts.
 ## Risks
 
 - `npm ci` reports seven existing high-severity dependency advisories; no
-  dependency changed in H1.
-- Production release requires a separate explicit authorization and production
-  QA.
+  dependency changed in this hotfix.
+- The candidate changes the Nginx template, so production correction requires
+  a separate reviewed deployment and post-deploy 12/12 verification.
 
 ## Next Action
 
-Retry the existing feature-branch push when GitHub HTTPS connectivity returns.
-After remote preservation, wait for explicit production release authorization.
-Do not deploy or push main in this phase.
+Preserve the validated hotfix on its feature branch, then wait for explicit
+production release authorization. Do not deploy or push main in this phase.

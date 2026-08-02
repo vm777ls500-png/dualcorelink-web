@@ -799,6 +799,37 @@ test("only the reviewed Chinese P0 batch is served while other localized paths r
     nginx,
     /try_files \/zh\/\$zh_p0_path\/index\.html =404;/,
   );
+  assert.match(
+    nginx,
+    /\^\/zh\/\(\?<zh_p0_rsc_path>about\|contact\|faqs/,
+  );
+  assert.match(
+    nginx,
+    /try_files \/zh\/\$zh_p0_rsc_path\/index\.txt =404;/,
+  );
+  assert.ok(
+    nginx.indexOf("?<zh_p0_rsc_path>") <
+      nginx.indexOf("?<legacy_path>", nginx.indexOf("?<zh_p0_rsc_path>")),
+    "approved Chinese RSC payloads must be matched before legacy locale redirects",
+  );
+  assert.doesNotMatch(nginx, /zh_p0_rsc_path[^\n]*_rsc/);
+  const rscLocationLine = nginx
+    .split(/\r?\n/)
+    .find((line) => line.includes("?<zh_p0_rsc_path>"));
+  assert.ok(rscLocationLine, "approved Chinese RSC location must exist");
+  const rscLocationPattern = rscLocationLine
+    .trim()
+    .replace(/^location ~ /, "")
+    .replace(/ \{$/, "");
+  const approvedRscMatcher = new RegExp(rscLocationPattern);
+  for (const localizedUrl of zhP0ReleaseUrls) {
+    assert.match(`${new URL(localizedUrl).pathname}index.txt`, approvedRscMatcher);
+  }
+  assert.doesNotMatch(
+    "/zh/resources/what-is-hotel-rcu-room-control-system/index.txt",
+    approvedRscMatcher,
+  );
+  assert.doesNotMatch("/ar/about/index.txt", approvedRscMatcher);
   assert.match(nginx, /hotel-smart-room-rcu-host-1/);
   assert.match(nginx, /smart-hotel-automation-solution/);
   assert.match(nginx, /\^\/\(\?:ar\|zh\|de\|es\|vi\|fa\)\//);

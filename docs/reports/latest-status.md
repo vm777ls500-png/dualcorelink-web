@@ -4,72 +4,75 @@ Last updated: 2026-08-02
 
 ## Current Phase
 
-**UX Hotfix — Chinese RSC Prefetch 404 Audit and Fix**
+**UX Hotfix — Close Header Dropdown After Navigation**
 
-Status: BLOCKED — the isolated feature candidate serves approved Chinese RSC
-payloads and all validation passed, but GitHub HTTPS 443 prevented the feature
-branch push after bounded retries. No deployment was performed.
+Status: BLOCKED — isolated candidate passed every technical validation and was
+committed locally, but GitHub HTTPS 443 remained unavailable and the feature
+branch could not be pushed. It is not authorized for main or production
+deployment.
 
 ## Completed
 
-- Created isolated worktree `dualcorelink-rsc-prefetch-hotfix` from production
-  baseline `7ee2517e85d537b90fed058dc127af0cf6ea420b`.
-- Confirmed 12/12 approved Chinese RSC files exist in the production release
-  but are denied by the Nginx locale publication boundary.
-- Added a precise allowlist for the same 12 Chinese `index.txt` payloads before
-  legacy locale redirects.
-- Extended static export audit and tests to require approved payloads and
-  reject all pending localized payloads.
-- Completed 48 page/viewport browser checks with zero failures.
+- Created `hotfix/header-close-after-navigation-20260802` from latest
+  `origin/main` baseline `cae55ccc829e005cdcd97d70ee94c12d9d635039`.
+- Added a unified close path for desktop dropdowns, mobile accordions, the
+  mobile drawer, pending timers, and pointer-open state.
+- Closed Header state from every internal link and from a `usePathname()`
+  route-change fallback without restoring focus to the previous page.
+- Preserved Escape focus restoration, hover/focus opening, the 220 ms close
+  delay, mobile behavior, clean URLs, GA4, and inquiry attribution.
+- Completed automated, static-export, and local browser validation.
 
 ## Modified Files
 
-- `deploy/nginx/dualcorelink.com.conf.template`
-- `scripts/audit-multilingual-export.ts`
-- `tests/multilingual-foundation.test.ts`
-- `tests/static-export.test.ts`
-- `docs/reports/ux-chinese-rsc-prefetch-404-hotfix-20260802.md`
+- `src/components/layout/header-navigation.tsx`
+- `src/components/contact/tracked-inquiry-link.tsx`
+- `tests/header-navigation.test.ts`
+- `tests/header-navigation-close.test.ts`
+- `docs/reports/ux-header-close-after-navigation-hotfix-20260802.md`
 - `docs/reports/latest-status.md`
 
 ## Validation
 
-- Tests: PASS, 153/153 with the public read-only CMS.
+- Tests: PASS, 170/170 with public read-only CMS.
 - Lint: PASS, 0 errors.
-- Media audit: PASS, 0 errors.
-- Multilingual audit: PASS, 414/414.
+- Media audit: PASS, 0 errors and 1 existing warning.
+- Multilingual audit: PASS, 414/414; ready 12; pending 402.
 - Build: PASS, 163/163.
-- Static export audit: PASS, 12 Chinese pages and sitemap 88.
-- Browser QA: PASS, 48/48; `_rsc` 404, any 404, overflow, broken images,
-  console errors, and interaction failures all 0.
+- Static export audit: PASS; sitemap 88 (76 English + 12 Chinese).
+- Browser QA: PASS for required desktop/mobile navigation paths and five
+  viewports; console/hydration errors and horizontal overflow are 0.
 - Query URL scans: all 0.
+- `git diff --check`: PASS.
 
 ## Git Status
 
-- Branch: `hotfix/chinese-rsc-prefetch-404-20260802`
-- Base: `7ee2517e85d537b90fed058dc127af0cf6ea420b`
-- Implementation commit: `5b67e41`.
-- Feature push: blocked by GitHub HTTPS connection reset/timeout after the
-  initial attempt and three bounded non-forced retries.
+- Branch: `hotfix/header-close-after-navigation-20260802`.
+- Base: `cae55ccc829e005cdcd97d70ee94c12d9d635039`.
+- Commit: created locally with message
+  `fix: close header menus after navigation`.
+- Feature push: blocked before push because bounded `ls-remote` checks could
+  not reach GitHub over HTTPS; existing SSH authentication was unavailable.
 - Main: not modified or pushed.
 
 ## Production Boundary
 
-- Deployment: not performed; live Chinese `.txt` requests remain 404 until a
-  separately authorized release.
+- Deployment: not performed.
 - CMS/database writes: none.
 - GSC requests: none.
-- Sitemap production baseline: unchanged at 88 (76 English + 12 Chinese).
-- Pending localized candidates: 402, still blocked.
+- Production sitemap/content: unchanged.
+- Pending localized pages: 402, still blocked.
 
 ## Risks
 
 - `npm ci` reports seven existing high-severity dependency advisories; no
-  dependency changed in this hotfix.
-- The candidate changes the Nginx template, so production correction requires
-  a separate reviewed deployment and post-deploy 12/12 verification.
+  dependency or lockfile changed in this hotfix.
+- Pointer re-entry suppression is intentionally released only by real pointer
+  movement so a stationary pointer cannot reopen a menu after navigation.
+- GitHub DNS resolved, but TCP 443 and IPv4 HTTPS timed out after an initial
+  connection reset. No remote, proxy, SSL, or permanent Git setting changed.
 
 ## Next Action
 
-Retry the existing feature-branch push when GitHub HTTPS connectivity returns.
-After remote preservation, wait for explicit production release authorization.
-Do not deploy or push main in this phase.
+Retry the existing local feature commit push after GitHub connectivity returns.
+Wait for separate authorization before any main push or production deployment.

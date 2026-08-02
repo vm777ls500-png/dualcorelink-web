@@ -120,6 +120,7 @@ test("desktop and mobile controls expose the required interaction and a11y hooks
     "onBlurCapture",
     "productsPointerStartedOpen",
     "languagePointerStartedOpen",
+    "navigationHoverSuppressed",
     "handleDesktopToggleKeyDown",
     'event.key !== "Escape"',
     'document.addEventListener("pointerdown"',
@@ -142,7 +143,7 @@ test("Escape focus restoration suppresses only its own focus-open event", () => 
   assert.match(clientSource, /const restoringDropdownFocus = useRef\(false\)/);
   assert.match(
     clientSource,
-    /const handleDesktopFocusCapture = \(id: DropdownId\) => \{\s+if \(restoringDropdownFocus\.current\) return;\s+openDesktopDropdown\(id\);\s+\}/,
+    /const handleDesktopFocusCapture = \([\s\S]*event: FocusEvent<HTMLLIElement>[\s\S]*id: DropdownId[\s\S]*\) => \{[\s\S]*if \(restoringDropdownFocus\.current\) return;[\s\S]*event\.target\.matches\("a\.nav-link"\)[\s\S]*openDesktopDropdown\(id\);[\s\S]*\};/,
   );
   assert.match(
     clientSource,
@@ -150,11 +151,11 @@ test("Escape focus restoration suppresses only its own focus-open event", () => 
   );
   assert.match(
     clientSource,
-    /onFocusCapture=\{\(\) => handleDesktopFocusCapture\("products"\)\}/,
+    /onFocusCapture=\{\(event\) => handleDesktopFocusCapture\(event, "products"\)\}/,
   );
   assert.match(
     clientSource,
-    /onFocusCapture=\{\(\) => handleDesktopFocusCapture\("language"\)\}/,
+    /onFocusCapture=\{\(event\) => handleDesktopFocusCapture\(event, "language"\)\}/,
   );
   assert.doesNotMatch(
     clientSource,

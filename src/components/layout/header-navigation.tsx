@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  useCallback,
   useEffect,
   useRef,
   useState,
   type FocusEvent,
   type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent,
+  type MouseEventHandler,
 } from "react";
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import type { Locale } from "@/config/i18n";
@@ -26,6 +28,11 @@ import {
 
 type DropdownId = "products" | "language";
 type MobileSection = DropdownId | null;
+
+type CloseAllNavigationOptions = {
+  closeMobileDrawer?: boolean;
+  restoreMobileFocus?: boolean;
+};
 
 type HeaderNavigationProps = {
   locale: Locale;
@@ -49,7 +56,7 @@ function ProductLinkList({
   onNavigate,
 }: {
   links: readonly HeaderProductLink[];
-  onNavigate?: () => void;
+  onNavigate?: MouseEventHandler<HTMLAnchorElement>;
 }) {
   return (
     <ul className="header-menu-list">
@@ -73,7 +80,7 @@ function ProductsMenuContent({
   locale: Locale;
   menu: HeaderProductsMenu;
   mobile?: boolean;
-  onNavigate?: () => void;
+  onNavigate?: MouseEventHandler<HTMLAnchorElement>;
 }) {
   return (
     <div className={mobile ? "mobile-products-grid" : "products-mega-grid"}>
@@ -119,6 +126,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
   const mobileButtonRef = useRef<HTMLButtonElement>(null);
   const productsPointerStartedOpen = useRef(false);
   const languagePointerStartedOpen = useRef(false);
+  const navigationHoverSuppressed = useRef(false);
   const restoringDropdownFocus = useRef(false);
   const headerRef = useRef<HTMLElement>(null);
   const pathSegments = pathname.split("/").filter(Boolean);
@@ -146,20 +154,67 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
     return current === target || (target !== "/en" && current.startsWith(`${target}/`));
   };
 
-  const clearCloseTimer = () => {
+  const clearCloseTimer = useCallback(() => {
     if (closeTimer.current) {
       clearTimeout(closeTimer.current);
       closeTimer.current = null;
     }
-  };
+  }, []);
+
+  const closeAllNavigation = useCallback(({
+    closeMobileDrawer = true,
+    restoreMobileFocus = false,
+  }: CloseAllNavigationOptions = {}) => {
+    clearCloseTimer();
+    productsPointerStartedOpen.current = false;
+    languagePointerStartedOpen.current = false;
+    setOpenDropdown(null);
+    setMobileSection(null);
+    if (closeMobileDrawer) {
+      setMobileOpen(false);
+    }
+    if (restoreMobileFocus) {
+      window.requestAnimationFrame(() => mobileButtonRef.current?.focus());
+    }
+  }, [clearCloseTimer]);
+
+  const handleHeaderNavigation = useCallback(() => {
+    navigationHoverSuppressed.current = true;
+    closeAllNavigation();
+  }, [closeAllNavigation]);
 
   const openDesktopDropdown = (id: DropdownId) => {
     clearCloseTimer();
     setOpenDropdown(id);
   };
 
-  const handleDesktopFocusCapture = (id: DropdownId) => {
+  const handleDesktopMouseEnter = (id: DropdownId) => {
+    if (navigationHoverSuppressed.current) return;
+    openDesktopDropdown(id);
+  };
+
+  const handleDesktopPointerMove = (
+    event: MouseEvent<HTMLLIElement>,
+    id: DropdownId,
+  ) => {
+    if (!navigationHoverSuppressed.current) return;
+    if (event.movementX === 0 && event.movementY === 0) return;
+    navigationHoverSuppressed.current = false;
+    openDesktopDropdown(id);
+  };
+
+  const handleDesktopFocusCapture = (
+    event: FocusEvent<HTMLLIElement>,
+    id: DropdownId,
+  ) => {
     if (restoringDropdownFocus.current) return;
+    if (
+      id === "products" &&
+      event.target instanceof HTMLElement &&
+      event.target.matches("a.nav-link")
+    ) {
+      return;
+    }
     openDesktopDropdown(id);
   };
 
@@ -186,13 +241,13 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
     }
   };
 
-  const closeMobile = (restoreFocus = false) => {
-    setMobileOpen(false);
-    setMobileSection(null);
-    if (restoreFocus) {
-      window.requestAnimationFrame(() => mobileButtonRef.current?.focus());
-    }
-  };
+  const closeMobile = useCallback((restoreFocus = false) => {
+    closeAllNavigation({ restoreMobileFocus: restoreFocus });
+  }, [closeAllNavigation]);
+
+  useEffect(() => {
+    closeAllNavigation();
+  }, [pathname, closeAllNavigation]);
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -230,7 +285,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
       document.removeEventListener("keydown", handleKeyDown);
       clearCloseTimer();
     };
-  }, [mobileOpen, openDropdown]);
+  }, [clearCloseTimer, closeMobile, mobileOpen, openDropdown]);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -248,6 +303,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
           href={locale === "zh" ? "/zh/about/" : "/en/"}
           className="header-brand"
           aria-label={messages.homeLabel}
+          onClick={handleHeaderNavigation}
         >
           DUALCORE LINK
         </Link>
@@ -262,6 +318,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                       href={item.href}
                       className={isActiveRoute(item.href) ? "nav-link nav-link-active" : "nav-link"}
                       aria-current={isActiveRoute(item.href) ? "page" : undefined}
+                      onClick={handleHeaderNavigation}
                     >
                       {item.label}
                     </Link>
@@ -273,9 +330,10 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                 <li
                   key={item.key}
                   className="header-dropdown-item header-products-item"
-                  onMouseEnter={() => openDesktopDropdown("products")}
+                  onMouseEnter={() => handleDesktopMouseEnter("products")}
+                  onMouseMove={(event) => handleDesktopPointerMove(event, "products")}
                   onMouseLeave={scheduleDesktopClose}
-                  onFocusCapture={() => handleDesktopFocusCapture("products")}
+                  onFocusCapture={(event) => handleDesktopFocusCapture(event, "products")}
                   onBlurCapture={handleDropdownBlur}
                 >
                   <span className="header-nav-pair">
@@ -283,6 +341,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                       href={item.href}
                       className={isActiveRoute(item.href) ? "nav-link nav-link-active" : "nav-link"}
                       aria-current={isActiveRoute(item.href) ? "page" : undefined}
+                      onClick={handleHeaderNavigation}
                     >
                       {item.label}
                     </Link>
@@ -317,7 +376,11 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                     onMouseEnter={clearCloseTimer}
                     onMouseLeave={scheduleDesktopClose}
                   >
-                    <ProductsMenuContent locale={locale} menu={productsMenu} />
+                    <ProductsMenuContent
+                      locale={locale}
+                      menu={productsMenu}
+                      onNavigate={handleHeaderNavigation}
+                    />
                   </div>
                 </li>
               );
@@ -325,9 +388,10 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
 
             <li
               className="header-dropdown-item header-language-item"
-              onMouseEnter={() => openDesktopDropdown("language")}
+              onMouseEnter={() => handleDesktopMouseEnter("language")}
+              onMouseMove={(event) => handleDesktopPointerMove(event, "language")}
               onMouseLeave={scheduleDesktopClose}
-              onFocusCapture={() => handleDesktopFocusCapture("language")}
+              onFocusCapture={(event) => handleDesktopFocusCapture(event, "language")}
               onBlurCapture={handleDropdownBlur}
             >
               <button
@@ -364,7 +428,11 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                   {languageOptions.map((option) => (
                     <li key={option.locale}>
                       {option.href ? (
-                        <Link href={option.href} hrefLang={option.locale}>
+                        <Link
+                          href={option.href}
+                          hrefLang={option.locale}
+                          onClick={handleHeaderNavigation}
+                        >
                           {option.label}
                         </Link>
                       ) : (
@@ -390,6 +458,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
           channel="form"
           attribution={headerAttribution}
           className="header-quote-link"
+          onClick={handleHeaderNavigation}
         >
           {messages.quote}
         </TrackedInquiryLink>
@@ -424,7 +493,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                 if (item.key !== "products") {
                   return (
                     <li key={item.key}>
-                      <Link href={item.href} onClick={() => closeMobile()} aria-current={isActiveRoute(item.href) ? "page" : undefined}>
+                      <Link href={item.href} onClick={handleHeaderNavigation} aria-current={isActiveRoute(item.href) ? "page" : undefined}>
                         {item.label}
                       </Link>
                     </li>
@@ -433,7 +502,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                 return (
                   <li key={item.key} className="mobile-accordion-item">
                     <div className="mobile-accordion-heading">
-                      <Link href={item.href} onClick={() => closeMobile()}>{item.label}</Link>
+                      <Link href={item.href} onClick={handleHeaderNavigation}>{item.label}</Link>
                       <button
                         type="button"
                         aria-label={locale === "zh" ? "展开产品菜单" : "Toggle Products menu"}
@@ -445,7 +514,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                       </button>
                     </div>
                     <div id="mobile-products-menu" className="mobile-accordion-panel" hidden={mobileSection !== "products"}>
-                      <ProductsMenuContent locale={locale} menu={productsMenu} mobile onNavigate={() => closeMobile()} />
+                      <ProductsMenuContent locale={locale} menu={productsMenu} mobile onNavigate={handleHeaderNavigation} />
                     </div>
                   </li>
                 );
@@ -466,7 +535,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                     {languageOptions.map((option) => (
                       <li key={option.locale}>
                         {option.href ? (
-                          <Link href={option.href} hrefLang={option.locale} onClick={() => closeMobile()}>{option.label}</Link>
+                          <Link href={option.href} hrefLang={option.locale} onClick={handleHeaderNavigation}>{option.label}</Link>
                         ) : (
                           <span className={option.active ? "language-option-active" : "language-option-disabled"} aria-current={option.active ? "page" : undefined} aria-disabled={!option.available || undefined}>
                             <strong>{option.label}</strong>
@@ -485,6 +554,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
             channel="form"
             attribution={headerAttribution}
             className="header-mobile-quote"
+            onClick={handleHeaderNavigation}
           >
             {messages.quote}
           </TrackedInquiryLink>

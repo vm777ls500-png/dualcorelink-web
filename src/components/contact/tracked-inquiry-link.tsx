@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 import {
   writeInquiryAttributionToSession,
   type InquiryAttribution,
@@ -17,6 +17,7 @@ type TrackedInquiryLinkProps = {
   className?: string;
   children: ReactNode;
   ariaLabel?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
 export function TrackedInquiryLink({
@@ -26,17 +27,19 @@ export function TrackedInquiryLink({
   className,
   children,
   ariaLabel,
+  onClick,
 }: TrackedInquiryLinkProps) {
   return (
     <a
       href={href}
       className={className}
       aria-label={ariaLabel}
-      onClick={() => {
+      onClick={(event) => {
         if (channel === "form") {
           writeInquiryAttributionToSession(attribution);
         }
         trackInquiryEvent("cta_click", channel, attribution);
+        onClick?.(event);
       }}
     >
       {children}

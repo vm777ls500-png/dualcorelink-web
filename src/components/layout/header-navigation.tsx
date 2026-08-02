@@ -119,6 +119,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
   const mobileButtonRef = useRef<HTMLButtonElement>(null);
   const productsPointerStartedOpen = useRef(false);
   const languagePointerStartedOpen = useRef(false);
+  const restoringDropdownFocus = useRef(false);
   const headerRef = useRef<HTMLElement>(null);
   const pathSegments = pathname.split("/").filter(Boolean);
   const contentPath = pathSegments.slice(1).join("/");
@@ -155,6 +156,11 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
   const openDesktopDropdown = (id: DropdownId) => {
     clearCloseTimer();
     setOpenDropdown(id);
+  };
+
+  const handleDesktopFocusCapture = (id: DropdownId) => {
+    if (restoringDropdownFocus.current) return;
+    openDesktopDropdown(id);
   };
 
   const scheduleDesktopClose = () => {
@@ -207,7 +213,14 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
             ? productsButtonRef.current
             : languageButtonRef.current;
         setOpenDropdown(null);
-        window.requestAnimationFrame(() => button?.focus());
+        window.requestAnimationFrame(() => {
+          restoringDropdownFocus.current = true;
+          try {
+            button?.focus();
+          } finally {
+            restoringDropdownFocus.current = false;
+          }
+        });
       }
     };
     document.addEventListener("pointerdown", handlePointerDown);
@@ -262,7 +275,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                   className="header-dropdown-item header-products-item"
                   onMouseEnter={() => openDesktopDropdown("products")}
                   onMouseLeave={scheduleDesktopClose}
-                  onFocusCapture={() => openDesktopDropdown("products")}
+                  onFocusCapture={() => handleDesktopFocusCapture("products")}
                   onBlurCapture={handleDropdownBlur}
                 >
                   <span className="header-nav-pair">
@@ -314,7 +327,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
               className="header-dropdown-item header-language-item"
               onMouseEnter={() => openDesktopDropdown("language")}
               onMouseLeave={scheduleDesktopClose}
-              onFocusCapture={() => openDesktopDropdown("language")}
+              onFocusCapture={() => handleDesktopFocusCapture("language")}
               onBlurCapture={handleDropdownBlur}
             >
               <button

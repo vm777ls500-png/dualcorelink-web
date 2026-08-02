@@ -137,3 +137,27 @@ test("desktop and mobile controls expose the required interaction and a11y hooks
   assert.match(clientSource, /mobileButtonRef\.current\?\.focus/);
   assert.doesNotMatch(clientSource, /role="menu"/);
 });
+
+test("Escape focus restoration suppresses only its own focus-open event", () => {
+  assert.match(clientSource, /const restoringDropdownFocus = useRef\(false\)/);
+  assert.match(
+    clientSource,
+    /const handleDesktopFocusCapture = \(id: DropdownId\) => \{\s+if \(restoringDropdownFocus\.current\) return;\s+openDesktopDropdown\(id\);\s+\}/,
+  );
+  assert.match(
+    clientSource,
+    /restoringDropdownFocus\.current = true;\s+try \{\s+button\?\.focus\(\);\s+\} finally \{\s+restoringDropdownFocus\.current = false;\s+\}/,
+  );
+  assert.match(
+    clientSource,
+    /onFocusCapture=\{\(\) => handleDesktopFocusCapture\("products"\)\}/,
+  );
+  assert.match(
+    clientSource,
+    /onFocusCapture=\{\(\) => handleDesktopFocusCapture\("language"\)\}/,
+  );
+  assert.doesNotMatch(
+    clientSource,
+    /onFocusCapture=\{\(\) => openDesktopDropdown\(("products"|"language")\)\}/,
+  );
+});

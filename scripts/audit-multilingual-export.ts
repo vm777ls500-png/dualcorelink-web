@@ -20,7 +20,10 @@ function countMatches(value: string, pattern: RegExp): number {
   return value.match(pattern)?.length ?? 0;
 }
 
-async function collectIndexPages(directory: string): Promise<string[]> {
+async function collectNamedFiles(
+  directory: string,
+  fileName: "index.html" | "index.txt",
+): Promise<string[]> {
   const result: string[] = [];
   let entries;
   try {
@@ -32,8 +35,8 @@ async function collectIndexPages(directory: string): Promise<string[]> {
   for (const entry of entries) {
     const absolutePath = path.join(directory, entry.name);
     if (entry.isDirectory()) {
-      result.push(...(await collectIndexPages(absolutePath)));
-    } else if (entry.name === "index.html") {
+      result.push(...(await collectNamedFiles(absolutePath, fileName)));
+    } else if (entry.name === fileName) {
       result.push(absolutePath);
     }
   }
@@ -41,7 +44,7 @@ async function collectIndexPages(directory: string): Promise<string[]> {
 }
 
 async function main() {
-const allStaticPages = await collectIndexPages(outputRoot);
+const allStaticPages = await collectNamedFiles(outputRoot, "index.html");
 for (const htmlPath of allStaticPages) {
   const html = await readFile(htmlPath, "utf8");
   const label = path.relative(outputRoot, htmlPath);
@@ -96,12 +99,24 @@ for (const page of localizedPublicationPages) {
     ...page.path.split("/"),
     "index.html",
   );
+  const rscPath = path.join(
+    outputRoot,
+    page.locale,
+    ...page.path.split("/"),
+    "index.txt",
+  );
   let html = "";
   try {
     html = await readFile(htmlPath, "utf8");
   } catch {
     fail(label, "static HTML is missing");
     continue;
+  }
+  try {
+    const rscPayload = await readFile(rscPath, "utf8");
+    if (rscPayload.length === 0) fail(label, "RSC prefetch payload is empty");
+  } catch {
+    fail(label, "RSC prefetch payload is missing");
   }
 
   const direction =
@@ -200,12 +215,25 @@ for (const page of localizedPublicationPages) {
 }
 
 for (const locale of ["ar", "zh", "de", "es", "vi", "fa"] as const) {
-  const exportedPages = await collectIndexPages(path.join(outputRoot, locale));
+  const exportedPages = await collectNamedFiles(
+    path.join(outputRoot, locale),
+    "index.html",
+  );
+  const exportedRscPayloads = await collectNamedFiles(
+    path.join(outputRoot, locale),
+    "index.txt",
+  );
   const expected = localizedPublicationPages.filter(
     (page) => page.locale === locale,
   ).length;
   if (exportedPages.length !== expected) {
     fail(locale, `exported ${exportedPages.length} pages; expected ${expected}`);
+  }
+  if (exportedRscPayloads.length !== expected) {
+    fail(
+      locale,
+      `exported ${exportedRscPayloads.length} RSC payloads; expected ${expected}`,
+    );
   }
 }
 

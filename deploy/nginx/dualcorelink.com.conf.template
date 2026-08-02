@@ -134,6 +134,14 @@ server {
         add_header Cache-Control "no-cache, no-store, must-revalidate";
     }
 
+    # Next.js RSC prefetch payloads for the same approved zh P0 batch only.
+    # Nginx location matching ignores the _rsc query value by design.
+    location ~ ^/zh/(?<zh_p0_rsc_path>about|contact|faqs|products|solutions|products/(?:hotel-smart-room-rcu-host-1|rcu-controller-cabinet|86-type-ai-smart-control-display|smart-four-key-scene-control-panel)|solutions/(?:oem-odm-custom-panel-solution|rcu-room-control-solution|smart-hotel-automation-solution))/index\.txt$ {
+        try_files /zh/$zh_p0_rsc_path/index.txt =404;
+        expires -1;
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+
     location ~ ^/(?:zh|de|es|ar|vi|fa)/?$ {
         return 301 https://dualcorelink.com/en/;
     }

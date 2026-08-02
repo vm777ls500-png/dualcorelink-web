@@ -4,6 +4,35 @@ Last updated: 2026-08-02
 
 ## Current Phase
 
+**Multilingual Phase M7C — Chinese P1 CMS Import CLI Safety Upgrade**
+
+Status: **PASS — ready for a separately authorized Chinese P1 draft-apply
+phase**.
+
+The CMS Import CLI is now version `1.2.0` and active in production. Its exact
+Chinese P1 policy accepts only 17 approved records: 15 Products and 2
+Solutions, reviewer Allan, review date 2026-08-02, and
+`productionReleaseReady=true`. Chinese P0 remains 7 records, Arabic P0 remains
+6 records under the explicit owner-waiver flag, and every other locale/batch
+combination fails closed.
+
+The production baseline found the installed plugin at `1.1.0`, not `1.1.1`.
+The new candidate was built from the approved 1.1.1 source baseline, passed
+73/73 Node safety tests and 78/78 production-PHP safety tests, and was backed
+up and installed atomically. The rollback archive is retained under
+`/var/backups/dualcorelink-cms-import/m7c-zh-p1-cli-20260802T121442Z`.
+
+Exactly one Chinese P1 production preflight ran. It passed 17/17 with
+`writes: 0`. Users 3, Posts 216, Postmeta 2576, Chinese 7 publish / 0 draft,
+and Arabic 0 were unchanged. No `apply`, `verify`, `publish`, or `rollback`
+ran; no frontend, Nginx, Cloudflare, MariaDB, `main`, deployment, or GSC
+operation occurred.
+
+Detailed evidence:
+`docs/reports/seo-growth-multilingual-m7c-zh-p1-cms-import-cli-safety-upgrade-20260802.md`.
+
+## Previous Phase M7B
+
 **Multilingual Phase M7B — Apply Chinese P1 Human Approval**
 
 Status: **PASS — Chinese P1 approval state and isolated release batch are ready on the review branch**

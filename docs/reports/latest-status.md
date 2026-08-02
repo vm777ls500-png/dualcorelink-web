@@ -6,9 +6,9 @@ Last updated: 2026-08-02
 
 **UX Hotfix — Chinese RSC Prefetch 404 Audit and Fix**
 
-Status: PASS — the isolated feature candidate serves approved Chinese RSC
-payloads while preserving all production publication boundaries. No deployment
-was performed.
+Status: BLOCKED — the isolated feature candidate serves approved Chinese RSC
+payloads and all validation passed, but GitHub HTTPS 443 prevented the feature
+branch push after bounded retries. No deployment was performed.
 
 ## Completed
 
@@ -47,7 +47,9 @@ was performed.
 
 - Branch: `hotfix/chinese-rsc-prefetch-404-20260802`
 - Base: `7ee2517e85d537b90fed058dc127af0cf6ea420b`
-- Commit/push: use the current feature branch HEAD after preservation.
+- Implementation commit: `5b67e41`.
+- Feature push: blocked by GitHub HTTPS connection reset/timeout after the
+  initial attempt and three bounded non-forced retries.
 - Main: not modified or pushed.
 
 ## Production Boundary
@@ -68,5 +70,6 @@ was performed.
 
 ## Next Action
 
-Preserve the validated hotfix on its feature branch, then wait for explicit
-production release authorization. Do not deploy or push main in this phase.
+Retry the existing feature-branch push when GitHub HTTPS connectivity returns.
+After remote preservation, wait for explicit production release authorization.
+Do not deploy or push main in this phase.

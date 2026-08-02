@@ -28,7 +28,7 @@ test("primary navigation matches the approved English and Chinese catalogs", () 
   );
   assert.equal(english.some((item) => item.label === "Case Studies"), false);
   assert.equal(chinese.find((item) => item.key === "products")?.href, "/zh/products/");
-  assert.equal(chinese.find((item) => item.key === "resources")?.href, "/en/resources/");
+  assert.equal(chinese.find((item) => item.key === "resources")?.href, "/zh/resources/");
 });
 
 test("Products mega menu is derived from the real category and series configs", () => {

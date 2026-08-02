@@ -127,17 +127,17 @@ server {
         return 404;
     }
 
-    # Native-reviewed multilingual release batch: zh P0 (12 URLs).
-    location ~ ^/zh/(?<zh_p0_path>about|contact|faqs|products|solutions|products/(?:hotel-smart-room-rcu-host-1|rcu-controller-cabinet|86-type-ai-smart-control-display|smart-four-key-scene-control-panel)|solutions/(?:oem-odm-custom-panel-solution|rcu-room-control-solution|smart-hotel-automation-solution))/?$ {
-        try_files /zh/$zh_p0_path/index.html =404;
+    # Native-reviewed multilingual release batches: zh P0 + P1 (43 URLs).
+    location ~ ^/zh/(?<zh_reviewed_path>about|contact|faqs|products|solutions|resources|regions|products/(?:hotel-smart-room-rcu-host-1|rcu-controller-cabinet|86-type-ai-smart-control-display|smart-four-key-scene-control-panel|hotel-smart-room-rcu-host-3|hotel-delivery-robot-charging-dock|hotel-smart-room-rcu-host-2|smart-curtain-motor|smart-four-key-curtain-control-panel|smart-key-card-energy-saver-panel|hotel-guest-room-doorbell|hotel-room-door-magnetic-sensor|embedded-human-presence-sensor|hotel-smart-delivery-cabinet|hotel-delivery-robot|ai-music-control-panel|thermostat-hvac-control-panel|rotary-knob-smart-control-display|ai-large-smart-display)|solutions/(?:oem-odm-custom-panel-solution|rcu-room-control-solution|smart-hotel-automation-solution|hotel-delivery-robot-solution|ai-smart-display-solution)|resources/(?:hotel-rcu-wiring-system-architecture-guide|hotel-smart-switch-panel-guide|oem-odm-smart-panel-customization-guide|hotel-guest-room-automation-guide|hotel-room-control-system-cost-factors|hotel-occupancy-sensor-selection-guide|oem-odm-hotel-control-panel-development-process|hotel-renovation-smart-room-upgrade-guide|knx-vs-rcu-hotel-room-control|hotel-guest-room-control-interfaces-guide)|regions/(?:southeast-asia|vietnam))/?$ {
+        try_files /zh/$zh_reviewed_path/index.html =404;
         expires -1;
         add_header Cache-Control "no-cache, no-store, must-revalidate";
     }
 
-    # Next.js RSC prefetch payloads for the same approved zh P0 batch only.
+    # Next.js RSC prefetch payloads for the same approved zh P0 + P1 batches only.
     # Nginx location matching ignores the _rsc query value by design.
-    location ~ ^/zh/(?<zh_p0_rsc_path>about|contact|faqs|products|solutions|products/(?:hotel-smart-room-rcu-host-1|rcu-controller-cabinet|86-type-ai-smart-control-display|smart-four-key-scene-control-panel)|solutions/(?:oem-odm-custom-panel-solution|rcu-room-control-solution|smart-hotel-automation-solution))/index\.txt$ {
-        try_files /zh/$zh_p0_rsc_path/index.txt =404;
+    location ~ ^/zh/(?<zh_reviewed_rsc_path>about|contact|faqs|products|solutions|resources|regions|products/(?:hotel-smart-room-rcu-host-1|rcu-controller-cabinet|86-type-ai-smart-control-display|smart-four-key-scene-control-panel|hotel-smart-room-rcu-host-3|hotel-delivery-robot-charging-dock|hotel-smart-room-rcu-host-2|smart-curtain-motor|smart-four-key-curtain-control-panel|smart-key-card-energy-saver-panel|hotel-guest-room-doorbell|hotel-room-door-magnetic-sensor|embedded-human-presence-sensor|hotel-smart-delivery-cabinet|hotel-delivery-robot|ai-music-control-panel|thermostat-hvac-control-panel|rotary-knob-smart-control-display|ai-large-smart-display)|solutions/(?:oem-odm-custom-panel-solution|rcu-room-control-solution|smart-hotel-automation-solution|hotel-delivery-robot-solution|ai-smart-display-solution)|resources/(?:hotel-rcu-wiring-system-architecture-guide|hotel-smart-switch-panel-guide|oem-odm-smart-panel-customization-guide|hotel-guest-room-automation-guide|hotel-room-control-system-cost-factors|hotel-occupancy-sensor-selection-guide|oem-odm-hotel-control-panel-development-process|hotel-renovation-smart-room-upgrade-guide|knx-vs-rcu-hotel-room-control|hotel-guest-room-control-interfaces-guide)|regions/(?:southeast-asia|vietnam))/index\.txt$ {
+        try_files /zh/$zh_reviewed_rsc_path/index.txt =404;
         expires -1;
         add_header Cache-Control "no-cache, no-store, must-revalidate";
     }

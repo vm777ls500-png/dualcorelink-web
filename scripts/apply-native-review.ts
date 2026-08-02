@@ -16,6 +16,10 @@ import {
   validateNativeReviewDecisions,
 } from "../src/lib/native-review-evidence";
 import {
+  mergeNativeReviewBatchRows,
+  validateNativeReviewBatchDecisions,
+} from "../src/lib/multilingual-review-batches";
+import {
   multilingualPublicationManifest,
   type MultilingualLocale,
 } from "../src/lib/multilingual-publication-manifest";
@@ -42,8 +46,18 @@ function requestedLocale(): MultilingualLocale {
   return locale as MultilingualLocale;
 }
 
+function requestedBatch(): string | undefined {
+  return process.argv
+    .find((value) => value.startsWith("--batch="))
+    ?.slice("--batch=".length);
+}
+
 async function main() {
   const locale = requestedLocale();
+  const batchName = requestedBatch();
+  if (batchName && locale !== "zh") {
+    throw new Error("Review batches are currently supported only for zh");
+  }
   const decisionsPath = path.resolve(
     `docs/reviews/multilingual/${locale}-native-review-decisions-20260729.md`,
   );
@@ -55,29 +69,29 @@ async function main() {
   let rows = baseRows;
 
   if (locale === "zh") {
-    const batch = getMultilingualReleaseBatch("zh", "p0");
-    const batchPath = path.resolve(
-      "docs/reviews/multilingual/zh-p0-final-decisions-20260729.md",
-    );
-    const batchRows = parseNativeReviewDecisions(
-      await readFile(batchPath, "utf8"),
-    );
-    const batchErrors = validateNativeReviewDecisions({
-      rows: batchRows,
-      locale,
-      expectedUrls: batch.localizedUrls,
-    });
-    if (batchErrors.length > 0) {
-      throw new Error(
-        `Chinese P0 review batch is invalid:\n${batchErrors.join("\n")}`,
+    const batchNames = batchName ? [batchName] : ["p0", "p1"];
+    for (const currentBatchName of batchNames) {
+      const batch = getMultilingualReleaseBatch("zh", currentBatchName);
+      const batchRows = parseNativeReviewDecisions(
+        await readFile(path.resolve(batch.decisionFile), "utf8"),
       );
+      const batchErrors = validateNativeReviewBatchDecisions({
+        rows: batchRows,
+        batch,
+        manifest: multilingualPublicationManifest,
+      });
+      if (batchErrors.length > 0) {
+        throw new Error(
+          `Chinese ${currentBatchName.toUpperCase()} review batch is invalid:\n${batchErrors.join("\n")}`,
+        );
+      }
+      rows = mergeNativeReviewBatchRows({
+        baseRows: rows,
+        existing: nativeReviewEvidenceOverrides,
+        locale,
+        batchRows,
+      });
     }
-    const batchByUrl = new Map(
-      batchRows.map((row) => [row.localizedUrl, row]),
-    );
-    rows = baseRows.map(
-      (row) => batchByUrl.get(row.localizedUrl) ?? row,
-    );
   }
 
   const expectedUrls = multilingualPublicationManifest
@@ -131,7 +145,7 @@ async function main() {
     ).length,
   };
   console.log(
-    `[multilingual:apply-native-review] ${locale}: pending=${counts.pending} approved=${counts.approved} changes-required=${counts.changesRequired}`,
+    `[multilingual:apply-native-review] ${locale}${batchName ? `:${batchName}` : ""}: pending=${counts.pending} approved=${counts.approved} changes-required=${counts.changesRequired}`,
   );
   console.log(
     `[multilingual:apply-native-review] preserved other-locale overrides=${next.filter((entry) => entry.locale !== locale).length}`,

@@ -59,7 +59,7 @@ test("static export cleanup removes only collection sentinels", async () => {
   }
 });
 
-test("static export keeps only the approved Chinese P0 batch", async () => {
+test("static export keeps only the approved Chinese P0 and P1 batches", async () => {
   const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "dcl-m5b-clean-"));
   const approvedChineseAbout = path.join(temporaryRoot, "zh", "about");
   const approvedChinese = path.join(
@@ -143,7 +143,7 @@ test("static export cleanup CLI reports real failures with a nonzero exit", asyn
   }
 });
 
-test("AWS export baselines include only the approved Chinese P0 batch", async () => {
+test("AWS export baselines include the approved Chinese P0 and P1 batches", async () => {
   const workflow = await readFile(
     path.join(projectRoot, ".github", "workflows", "aws-production-deploy.yml"),
     "utf8",
@@ -154,12 +154,12 @@ test("AWS export baselines include only the approved Chinese P0 batch", async ()
   );
 
   assert.equal(resources.length, 15);
-  assert.match(workflow, /Generating static pages\.\*163\/163/);
+  assert.match(workflow, /Generating static pages\.\*192\/192/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(
     workflow,
-    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Enforce multilingual production release gate\s+run: npm run multilingual:release-check -- --locale=zh --batch=p0[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
+    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Enforce multilingual production release gates[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p0[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p1[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
   );
   assert.match(
     workflow,
@@ -171,9 +171,9 @@ test("AWS export baselines include only the approved Chinese P0 batch", async ()
   assert.ok(mediaAuditStep);
   assert.doesNotMatch(mediaAuditStep, /continue-on-error|\|\| true/);
   assert.match(deployScript, /EXPECTED_RESOURCES:-15/);
-  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-88/);
+  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-119/);
   assert.match(deployScript, /EXPECTED_AR_PAGES:-0/);
-  assert.match(deployScript, /EXPECTED_ZH_PAGES:-12/);
+  assert.match(deployScript, /EXPECTED_ZH_PAGES:-43/);
   assert.match(deployScript, /EXPECTED_DE_PAGES:-0/);
   assert.match(deployScript, /EXPECTED_ES_PAGES:-0/);
   assert.match(deployScript, /EXPECTED_VI_PAGES:-0/);

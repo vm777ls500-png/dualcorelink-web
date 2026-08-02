@@ -1191,11 +1191,15 @@ $tests['Arabic import leaves existing Chinese records unchanged'] = function ():
 $tests['Chinese P1 preflight accepts exact 17/17 payload with zero writes'] = function (): void {
     $payload = chinese_p1_fixture();
     $repo = new Mock_Import_Repository($payload);
-    $before = serialize($repo);
-    [$service] = service($repo, temporary_root('zh-p1-preflight'));
+    $insert_calls_before = $GLOBALS['dualcorelink_wp_insert_post_calls'];
+    $root = temporary_root('zh-p1-preflight');
+    [$service] = service($repo, $root);
     $result = $service->preflight($payload, 'zh', 'p1');
     assert_true($result['records'] === 17 && $result['writes'] === 0);
-    assert_true(serialize($repo) === $before);
+    assert_true($repo->localized === []);
+    assert_true($repo->write_plan_validations === 17);
+    assert_true($GLOBALS['dualcorelink_wp_insert_post_calls'] === $insert_calls_before);
+    assert_true(!file_exists($root));
     assert_true(count(array_filter(
         $payload,
         fn ($record) => $record['contentType'] === 'product'

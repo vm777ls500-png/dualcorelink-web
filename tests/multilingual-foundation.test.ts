@@ -14,6 +14,7 @@ import { localizedFileContent } from "../src/content/locales";
 import {
   cmsTranslationImportPayload,
   zhP0ReviewedCmsImportPayload,
+  zhP1ReviewedCmsImportPayload,
 } from "../src/content/locales/cms-import";
 import {
   m3aProductCatalog,
@@ -36,6 +37,8 @@ import {
   getReleasedLocalesForPath,
   isReleasedLocalizedPath,
   zhP0ReleaseUrls,
+  zhP1ReleaseUrls,
+  zhReviewedReleaseUrls,
 } from "../src/lib/multilingual-release-batches";
 import {
   findPublicationEvidence,
@@ -155,7 +158,7 @@ test("M4A completes 69 paths for every localized language", () => {
   }
 });
 
-test("M5B approves only the 12 reviewed Chinese P0 pages", () => {
+test("M7B approves exactly the 12 P0 and 31 P1 Chinese pages", () => {
   const candidates = multilingualPublicationManifest.filter(
     (entry) => entry.publishReady,
   );
@@ -166,15 +169,20 @@ test("M5B approves only the 12 reviewed Chinese P0 pages", () => {
   const pending = candidates.filter(
     (entry) => entry.nativeReviewStatus === "pending",
   );
-  assert.equal(approved.length, 12);
-  assert.equal(pending.length, 402);
+  assert.equal(approved.length, 43);
+  assert.equal(pending.length, 371);
   assert.deepEqual(
     new Set(approved.map((entry) => entry.localizedUrl)),
-    new Set(zhP0ReleaseUrls),
+    new Set(zhReviewedReleaseUrls),
   );
   for (const entry of approved) {
     assert.equal(entry.nativeReviewer, "Allan");
-    assert.equal(entry.nativeReviewDate, "2026-07-29");
+    assert.equal(
+      entry.nativeReviewDate,
+      zhP0ReleaseUrls.includes(entry.localizedUrl as (typeof zhP0ReleaseUrls)[number])
+        ? "2026-07-29"
+        : "2026-08-02",
+    );
     assert.equal(entry.nativeReviewNotes, "Human Chinese review approved");
     assert.equal(entry.productionReleaseReady, true);
     assert.equal(hasProductionReleaseGate(entry, true), true);
@@ -245,22 +253,22 @@ test("all candidates retain evidence while only reviewed pages enter production 
     getCandidatePublicationEntries(multilingualPublicationManifest).length,
     414,
   );
-  assert.equal(localizedPublicationPages.length, 12);
+  assert.equal(localizedPublicationPages.length, 43);
   assert.equal(
     getStaticExportEligibleEntries(multilingualPublicationManifest).length,
-    12,
+    43,
   );
   assert.equal(
     getSitemapEligibleEntries(multilingualPublicationManifest).length,
-    12,
+    43,
   );
   assert.equal(
     getHreflangEligibleEntries(multilingualPublicationManifest).length,
-    12,
+    43,
   );
   assert.deepEqual(
     new Set(localizedPublicationPages.map((page) => page.localizedUrl)),
-    new Set(zhP0ReleaseUrls),
+    new Set(zhReviewedReleaseUrls),
   );
 });
 
@@ -286,10 +294,15 @@ test("CMS import payload uses verified source IDs without invented localized IDs
       /^m2a:(?:ar|zh|de|es|vi|fa):(product|solution):\d+$/,
     );
     const localizedUrl = `https://dualcorelink.com/${payload.locale}/${payload.contentType}s/${payload.sourceEnglishSlug}/`;
-    if (zhP0ReleaseUrls.includes(localizedUrl as (typeof zhP0ReleaseUrls)[number])) {
+    if (zhReviewedReleaseUrls.includes(localizedUrl as (typeof zhReviewedReleaseUrls)[number])) {
       assert.equal(payload.nativeReviewStatus, "approved");
       assert.equal(payload.nativeReviewer, "Allan");
-      assert.equal(payload.nativeReviewDate, "2026-07-29");
+      assert.equal(
+        payload.nativeReviewDate,
+        zhP0ReleaseUrls.includes(localizedUrl as (typeof zhP0ReleaseUrls)[number])
+          ? "2026-07-29"
+          : "2026-08-02",
+      );
     } else {
       assert.equal(payload.nativeReviewStatus, "pending");
       assert.equal(payload.nativeReviewer, null);
@@ -298,7 +311,7 @@ test("CMS import payload uses verified source IDs without invented localized IDs
   }
 });
 
-test("M5B full release check blocks the 402 pages outside the approved batch", async () => {
+test("M7B full release check blocks the 371 pages outside the approved batches", async () => {
   const nginxConfig = await readFile(
     path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
     "utf8",
@@ -314,12 +327,12 @@ test("M5B full release check blocks the 402 pages outside the approved batch", a
   });
   assert.equal(result.technicalValidationPassed, true);
   assert.equal(result.candidateCount, 414);
-  assert.equal(result.pendingUrls.length, 402);
-  assert.equal(result.productionReleaseReadyCount, 12);
+  assert.equal(result.pendingUrls.length, 371);
+  assert.equal(result.productionReleaseReadyCount, 43);
   assert.equal(result.cmsPayloadCount, 252);
   assert.equal(result.cmsPayloadStructurallyReadyCount, 252);
-  assert.equal(result.cmsPayloadNativeApprovedCount, 7);
-  assert.ok(result.errors.some((error) => error.includes("12/414")));
+  assert.equal(result.cmsPayloadNativeApprovedCount, 24);
+  assert.ok(result.errors.some((error) => error.includes("43/414")));
 });
 
 test("M5B Chinese P0 batch release check passes exactly 12 pages and 7 CMS records", async () => {
@@ -358,7 +371,54 @@ test("M5B Chinese P0 batch release check passes exactly 12 pages and 7 CMS recor
   }
 });
 
-test("AWS production deployment enforces the approved Chinese P0 batch gate", async () => {
+test("M7B Chinese P1 batch release check passes exactly 31 pages and 17 CMS records", async () => {
+  const nginxConfig = await readFile(
+    path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
+    "utf8",
+  );
+  const result = checkMultilingualProductionRelease({
+    manifest: multilingualPublicationManifest,
+    localContent: localizedFileContent,
+    cmsTranslations: cmsTranslationImportPayload,
+    configuredLocales: locales,
+    visibleLocales,
+    indexableLocales,
+    nginxConfig,
+    releaseScopeUrls: zhP1ReleaseUrls,
+  });
+  assert.equal(result.technicalValidationPassed, true);
+  assert.equal(result.candidateCount, 31);
+  assert.equal(result.pendingUrls.length, 0);
+  assert.equal(result.productionReleaseReadyCount, 31);
+  assert.equal(result.cmsPayloadCount, 17);
+  assert.equal(result.cmsPayloadStructurallyReadyCount, 17);
+  assert.equal(result.cmsPayloadNativeApprovedCount, 17);
+  assert.deepEqual(result.errors, []);
+  assert.equal(zhP1ReviewedCmsImportPayload.length, 17);
+  assert.equal(
+    new Set(
+      zhP1ReviewedCmsImportPayload.map(
+        (payload) => payload.sourceEnglishContentId,
+      ),
+    ).size,
+    17,
+  );
+  for (const payload of zhP1ReviewedCmsImportPayload) {
+    assert.equal(payload.locale, "zh");
+    assert.equal(payload.batch, "p1");
+    assert.equal(payload.priority, "P1");
+    assert.equal(payload.nativeReviewStatus, "approved");
+    assert.equal(payload.nativeReviewer, "Allan");
+    assert.equal(payload.nativeReviewDate, "2026-08-02");
+    assert.equal(payload.productionReleaseReady, true);
+    assert.equal(
+      payload.translationGroup,
+      `shb2b-${payload.contentType}-${payload.sourceEnglishContentId}`,
+    );
+  }
+});
+
+test("AWS production deployment enforces both approved Chinese release gates", async () => {
   const workflow = await readFile(
     path.resolve(".github/workflows/aws-production-deploy.yml"),
     "utf8",
@@ -373,6 +433,16 @@ test("AWS production deployment enforces the approved Chinese P0 batch gate", as
     ) <
       workflow.indexOf("npm run build"),
   );
+  assert.match(
+    workflow,
+    /npm run multilingual:release-check -- --locale=zh --batch=p1/,
+  );
+  assert.ok(
+    workflow.indexOf(
+      "npm run multilingual:release-check -- --locale=zh --batch=p1",
+    ) < workflow.indexOf("npm run build"),
+  );
+  assert.match(workflow, /Generating static pages\.\*192\/192/);
 });
 
 test("native review packs cover all 414 M4A URLs without claiming reviewers", async () => {
@@ -629,8 +699,11 @@ test("M4C apply command supports each manifest locale and stays decision-file sc
   );
   assert.match(
     importer,
-    /docs\/reviews\/multilingual\/zh-p0-final-decisions-20260729\.md/,
+    /const batchNames = batchName \? \[batchName\] : \["p0", "p1"\]/,
   );
+  assert.match(importer, /path\.resolve\(batch\.decisionFile\)/);
+  assert.match(importer, /validateNativeReviewBatchDecisions/);
+  assert.match(importer, /mergeNativeReviewBatchRows/);
   assert.match(importer, /preserved other-locale overrides/);
 });
 
@@ -721,7 +794,7 @@ test("canonical and hreflang are self-consistent and reference only published pa
 });
 
 test("navigation exposes only released localized paths", () => {
-  for (const localizedUrl of zhP0ReleaseUrls) {
+  for (const localizedUrl of zhReviewedReleaseUrls) {
     const pathname = new URL(localizedUrl).pathname;
     const contentPath = pathname.replace(/^\/zh\/|\/$/g, "");
     assert.equal(isReleasedLocalizedPath("zh", contentPath), true);
@@ -739,10 +812,21 @@ test("navigation exposes only released localized paths", () => {
     }
   }
 
-  assert.deepEqual(getReleasedLocalesForPath("regions"), []);
+  assert.deepEqual(getReleasedLocalesForPath("regions"), ["zh"]);
   assert.equal(
     buildPublishedNavigationHref("zh", "regions"),
-    "/en/regions/",
+    "/zh/regions/",
+  );
+  assert.deepEqual(
+    getReleasedLocalesForPath("products/hotel-ceiling-background-speaker"),
+    [],
+  );
+  assert.equal(
+    buildPublishedNavigationHref(
+      "zh",
+      "products/hotel-ceiling-background-speaker",
+    ),
+    "/en/products/hotel-ceiling-background-speaker/",
   );
 });
 
@@ -779,7 +863,7 @@ test("localized page lookup does not expose an unapproved path", () => {
   );
 });
 
-test("only the reviewed Chinese P0 batch is served while other localized paths retain redirects", async () => {
+test("only the reviewed Chinese P0 and P1 batches are served while pending paths retain redirects", async () => {
   const nginx = await readFile(
     path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
     "utf8",
@@ -792,37 +876,40 @@ test("only the reviewed Chinese P0 batch is served while other localized paths r
   );
   assert.match(
     nginx,
-    /Native-reviewed multilingual release batch: zh P0 \(12 URLs\)\./,
+    /Native-reviewed multilingual release batches: zh P0 \+ P1 \(43 URLs\)\./,
   );
-  assert.match(nginx, /\^\/zh\/\(\?<zh_p0_path>about\|contact\|faqs/);
+  assert.match(nginx, /\^\/zh\/\(\?<zh_reviewed_path>about\|contact\|faqs/);
   assert.match(
     nginx,
-    /try_files \/zh\/\$zh_p0_path\/index\.html =404;/,
-  );
-  assert.match(
-    nginx,
-    /\^\/zh\/\(\?<zh_p0_rsc_path>about\|contact\|faqs/,
+    /try_files \/zh\/\$zh_reviewed_path\/index\.html =404;/,
   );
   assert.match(
     nginx,
-    /try_files \/zh\/\$zh_p0_rsc_path\/index\.txt =404;/,
+    /\^\/zh\/\(\?<zh_reviewed_rsc_path>about\|contact\|faqs/,
+  );
+  assert.match(
+    nginx,
+    /try_files \/zh\/\$zh_reviewed_rsc_path\/index\.txt =404;/,
   );
   assert.ok(
-    nginx.indexOf("?<zh_p0_rsc_path>") <
-      nginx.indexOf("?<legacy_path>", nginx.indexOf("?<zh_p0_rsc_path>")),
+    nginx.indexOf("?<zh_reviewed_rsc_path>") <
+      nginx.indexOf(
+        "?<legacy_path>",
+        nginx.indexOf("?<zh_reviewed_rsc_path>"),
+      ),
     "approved Chinese RSC payloads must be matched before legacy locale redirects",
   );
-  assert.doesNotMatch(nginx, /zh_p0_rsc_path[^\n]*_rsc/);
+  assert.doesNotMatch(nginx, /zh_reviewed_rsc_path[^\n]*_rsc/);
   const rscLocationLine = nginx
     .split(/\r?\n/)
-    .find((line) => line.includes("?<zh_p0_rsc_path>"));
+    .find((line) => line.includes("?<zh_reviewed_rsc_path>"));
   assert.ok(rscLocationLine, "approved Chinese RSC location must exist");
   const rscLocationPattern = rscLocationLine
     .trim()
     .replace(/^location ~ /, "")
     .replace(/ \{$/, "");
   const approvedRscMatcher = new RegExp(rscLocationPattern);
-  for (const localizedUrl of zhP0ReleaseUrls) {
+  for (const localizedUrl of zhReviewedReleaseUrls) {
     assert.match(`${new URL(localizedUrl).pathname}index.txt`, approvedRscMatcher);
   }
   assert.doesNotMatch(

@@ -542,9 +542,11 @@ export function auditMultilingualFoundation(
   }
   for (const marker of [
     "(?:ar|zh|de|es|vi|fa)",
-    "Native-reviewed multilingual release batch: zh P0 (12 URLs).",
+    "Native-reviewed multilingual release batches: zh P0 + P1 (43 URLs).",
     "hotel-smart-room-rcu-host-1",
+    "hotel-smart-room-rcu-host-3",
     "smart-hotel-automation-solution",
+    "hotel-guest-room-control-interfaces-guide",
     "try_files $uri $uri/ $uri/index.html =404",
   ]) {
     if (!input.nginxConfig.includes(marker)) {
@@ -557,11 +559,13 @@ export function auditMultilingualFoundation(
     .find(
       (line) =>
         line.startsWith("location ~ ^/zh/") &&
+        line.includes("?<zh_reviewed_path>") &&
         line.includes("hotel-smart-room-rcu-host-1") &&
-        line.includes("smart-hotel-automation-solution"),
+        line.includes("smart-hotel-automation-solution") &&
+        line.includes("hotel-guest-room-control-interfaces-guide"),
     );
   if (!publicationLocation) {
-    errors.push("Nginx Chinese P0 approved-batch location is missing");
+    errors.push("Nginx Chinese reviewed-batch location is missing");
   } else {
     const nginxPattern = publicationLocation
       .replace(/^location ~ /, "")

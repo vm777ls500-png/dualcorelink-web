@@ -202,6 +202,19 @@ function resourceListing(locale: SupportedLocale): LocalizedFileContent {
   });
 }
 
+const zhP1ResourceSlugs = new Set([
+  "hotel-rcu-wiring-system-architecture-guide",
+  "hotel-smart-switch-panel-guide",
+  "oem-odm-smart-panel-customization-guide",
+  "hotel-guest-room-automation-guide",
+  "hotel-room-control-system-cost-factors",
+  "hotel-occupancy-sensor-selection-guide",
+  "oem-odm-hotel-control-panel-development-process",
+  "hotel-renovation-smart-room-upgrade-guide",
+  "knx-vs-rcu-hotel-room-control",
+  "hotel-guest-room-control-interfaces-guide",
+]);
+
 function resourcePage(
   locale: SupportedLocale,
   resource: (typeof m3aResourceCatalog)[number],
@@ -213,6 +226,9 @@ function resourcePage(
   const productsHref = `/${locale}/products/`;
   const solutionsHref = `/${locale}/solutions/`;
   const contactHref = `/${locale}/contact/`;
+  const isZhP1 = locale === "zh" && zhP1ResourceSlugs.has(resource.slug);
+  const zhInlineFocus = (value: string) =>
+    /^[A-Za-z0-9]/.test(value) ? ` ${value}` : value;
 
   if (locale === "ar") {
     return filePage(locale, {
@@ -321,13 +337,17 @@ function resourcePage(
         {
           heading: "采购前需要形成的决策",
           paragraphs: [
-            `把${focus[0]}和${focus[1]}写成与房型或空间对应的需求，再补充数量、电压、图纸、接口和资料要求，使不同供应范围可以比较。`,
+            isZhP1
+              ? `将${zhInlineFocus(focus[0])}和${focus[1]}写成与房型或空间对应的需求，再补充数量、电压、图纸、接口和资料要求，使不同供应范围可以比较。`
+              : `把${focus[0]}和${focus[1]}写成与房型或空间对应的需求，再补充数量、电压、图纸、接口和资料要求，使不同供应范围可以比较。`,
           ],
         },
         {
           heading: "工程与系统边界",
           paragraphs: [
-            `由承包商、系统集成商和相关专业共同审核${focus[2]}及${focus[3]}。不能假设协议、负载、兼容性或性能比例，每个结论都应来自具体型号资料和真实设计。`,
+            isZhP1
+              ? `由承包商、系统集成商和相关专业共同审核${zhInlineFocus(focus[2])}及${focus[3]}。不能假设协议、负载、兼容性或性能比例，每个结论都应来自具体型号资料和真实设计。`
+              : `由承包商、系统集成商和相关专业共同审核${focus[2]}及${focus[3]}。不能假设协议、负载、兼容性或性能比例，每个结论都应来自具体型号资料和真实设计。`,
           ],
         },
         {
@@ -339,7 +359,7 @@ function resourcePage(
       ],
       faqs: [
         {
-          question: `${title} 适合哪些读者？`,
+          question: isZhP1 ? `${title}适合哪些读者？` : `${title} 适合哪些读者？`,
           answer: "适合需要在采购前形成明确决策的酒店业主、承包商、系统集成商、渠道和项目采购人员。",
         },
         {
@@ -348,7 +368,9 @@ function resourcePage(
         },
         {
           question: "阅读后应准备哪些资料？",
-          answer: `请准备项目类型、图纸、数量，并记录${focus.join("、")}。`,
+          answer: isZhP1
+            ? `请准备项目类型、图纸、数量，并记录${zhInlineFocus(focus.join("、"))}。`
+            : `请准备项目类型、图纸、数量，并记录${focus.join("、")}。`,
         },
       ],
       relatedLinks: [
@@ -376,7 +398,7 @@ function resourcePage(
         secondaryLabel: "查看产品",
         secondaryHref: productsHref,
       },
-      imageAlt: `${title}酒店工程指南`,
+      imageAlt: isZhP1 ? `${title}：酒店工程指南` : `${title}酒店工程指南`,
     },
   });
 }

@@ -246,6 +246,29 @@ const zhKindCopy: Readonly<Record<M3aProductKind, ProductKindCopy>> = {
   },
 };
 
+const zhP1ProductSlugs = new Set([
+  "hotel-smart-room-rcu-host-3",
+  "hotel-delivery-robot-charging-dock",
+  "hotel-smart-room-rcu-host-2",
+  "smart-curtain-motor",
+  "smart-four-key-curtain-control-panel",
+  "smart-key-card-energy-saver-panel",
+  "hotel-guest-room-doorbell",
+  "hotel-room-door-magnetic-sensor",
+  "embedded-human-presence-sensor",
+  "hotel-smart-delivery-cabinet",
+  "hotel-delivery-robot",
+  "ai-music-control-panel",
+  "thermostat-hvac-control-panel",
+  "rotary-knob-smart-control-display",
+  "ai-large-smart-display",
+]);
+
+const zhP1SolutionSlugs = new Set([
+  "hotel-delivery-robot-solution",
+  "ai-smart-display-solution",
+]);
+
 function productPayload(
   locale: "ar" | "zh",
   product: (typeof m3aProductCatalog)[number],
@@ -256,6 +279,10 @@ function productPayload(
   const productsHref = `/${locale}/products/`;
   const solutionsHref = `/${locale}/solutions/`;
   const contactHref = `/${locale}/contact/`;
+  const isZhP1 = locale === "zh" && zhP1ProductSlugs.has(product.slug);
+  const zhProductKindLabel = /^[A-Za-z0-9]/.test(copy.label)
+    ? ` ${copy.label}`
+    : copy.label;
 
   if (locale === "ar") {
     return defineCmsImportPayload({
@@ -374,7 +401,9 @@ function productPayload(
         {
           heading: "产品在项目中的职责",
           paragraphs: [
-            `${title} 属于${copy.label}，主要面向${copy.application}。应在客房功能表或设备清单中写明其职责，便于业主、承包商和系统集成商确认供货、安装和测试边界。`,
+            isZhP1
+              ? `本产品属于${zhProductKindLabel}，主要面向${copy.application}。应在客房功能表或设备清单中写明其职责，便于业主、承包商和系统集成商确认供货、安装和测试边界。`
+              : `${title} 属于${copy.label}，主要面向${copy.application}。应在客房功能表或设备清单中写明其职责，便于业主、承包商和系统集成商确认供货、安装和测试边界。`,
           ],
         },
         {
@@ -398,7 +427,7 @@ function productPayload(
       ],
       faqs: [
         {
-          question: `${title} 的主要用途是什么？`,
+          question: isZhP1 ? "这款产品的主要用途是什么？" : `${title} 的主要用途是什么？`,
           answer: detail,
         },
         {
@@ -428,14 +457,14 @@ function productPayload(
         },
       ],
       cta: {
-        heading: `核对${title}的项目条件`,
+        heading: isZhP1 ? "核对本产品的项目条件" : `核对${title}的项目条件`,
         description: "请提供功能、位置、数量、电压、接口、表面和交期，以便进行产品审核。",
         label: "咨询产品选型与采购",
         href: `${contactHref}#get-a-quote`,
         secondaryLabel: "查看解决方案",
         secondaryHref: solutionsHref,
       },
-      imageAlt: `酒店工程用${title}`,
+      imageAlt: isZhP1 ? `用于酒店工程的${title}` : `酒店工程用${title}`,
     },
   });
 }
@@ -449,6 +478,7 @@ function solutionPayload(
   const solutionsHref = `/${locale}/solutions/`;
   const productsHref = `/${locale}/products/`;
   const contactHref = `/${locale}/contact/`;
+  const isZhP1 = locale === "zh" && zhP1SolutionSlugs.has(solution.slug);
 
   if (locale === "ar") {
     return defineCmsImportPayload({
@@ -578,7 +608,7 @@ function solutionPayload(
       ],
       faqs: [
         {
-          question: `${title} 包含哪些内容？`,
+          question: isZhP1 ? `${title}包含哪些内容？` : `${title} 包含哪些内容？`,
           answer: "仅包含在审核需求和图纸后由项目范围明确批准的设备、接口和服务。",
         },
         {
@@ -596,7 +626,7 @@ function solutionPayload(
         { label: "提交项目资料", description: "发送图纸、需求和数量。", href: contactHref },
       ],
       cta: {
-        heading: `明确${title}的项目范围`,
+        heading: isZhP1 ? "明确该解决方案的项目范围" : `明确${title}的项目范围`,
         description: "提供场景、图纸、设备、接口和数量，形成可验证的方案审核。",
         label: "咨询解决方案",
         href: `${contactHref}#get-a-quote`,

@@ -265,7 +265,6 @@ for (const page of localizedPublicationPages) {
     fail(page.sourceUrl, `missing reciprocal ${page.locale} hreflang`);
   }
 }
-
 if (errors.length > 0) {
   for (const error of errors) console.error(`[multilingual:export-audit] ${error}`);
   process.exitCode = 1;

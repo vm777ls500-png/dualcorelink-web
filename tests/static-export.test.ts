@@ -59,7 +59,7 @@ test("static export cleanup removes only collection sentinels", async () => {
   }
 });
 
-test("static export keeps only the approved Chinese P0 and P1 batches", async () => {
+test("static export keeps all approved Chinese pages and blocks other locales", async () => {
   const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "dcl-m5b-clean-"));
   const approvedChineseAbout = path.join(temporaryRoot, "zh", "about");
   const approvedChinese = path.join(
@@ -143,7 +143,7 @@ test("static export cleanup CLI reports real failures with a nonzero exit", asyn
   }
 });
 
-test("AWS export baselines include the approved Chinese P0 and P1 batches", async () => {
+test("AWS export baselines include all 69 approved Chinese pages", async () => {
   const workflow = await readFile(
     path.join(projectRoot, ".github", "workflows", "aws-production-deploy.yml"),
     "utf8",
@@ -154,7 +154,7 @@ test("AWS export baselines include the approved Chinese P0 and P1 batches", asyn
   );
 
   assert.equal(resources.length, 15);
-  assert.match(workflow, /Generating static pages\.\*192\/192/);
+  assert.match(workflow, /Generating static pages\.\*218\/218/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(
@@ -171,9 +171,9 @@ test("AWS export baselines include the approved Chinese P0 and P1 batches", asyn
   assert.ok(mediaAuditStep);
   assert.doesNotMatch(mediaAuditStep, /continue-on-error|\|\| true/);
   assert.match(deployScript, /EXPECTED_RESOURCES:-15/);
-  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-119/);
+  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-145/);
   assert.match(deployScript, /EXPECTED_AR_PAGES:-0/);
-  assert.match(deployScript, /EXPECTED_ZH_PAGES:-43/);
+  assert.match(deployScript, /EXPECTED_ZH_PAGES:-69/);
   assert.match(deployScript, /EXPECTED_DE_PAGES:-0/);
   assert.match(deployScript, /EXPECTED_ES_PAGES:-0/);
   assert.match(deployScript, /EXPECTED_VI_PAGES:-0/);

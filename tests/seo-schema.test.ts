@@ -193,12 +193,12 @@ test("Product schema has no Offer or manufacturer by default", () => {
   assert.equal(serialized.includes("attachment"), false);
 });
 
-test("sitemap includes English content and the reviewed Chinese P0 and P1 batches", async () => {
+test("sitemap includes English content and all 69 reviewed Chinese pages", async () => {
   const urls = (await sitemap()).map((entry) => entry.url);
 
   assert.equal(resources.length, 15);
-  assert.equal(urls.length, 61 + resources.length + 43);
-  assert.equal(urls.length, 119);
+  assert.equal(urls.length, 61 + resources.length + 69);
+  assert.equal(urls.length, 145);
   assert.ok(urls.includes("https://dualcorelink.com/en/resources/"));
   for (const resource of resources) {
     assert.ok(
@@ -208,11 +208,11 @@ test("sitemap includes English content and the reviewed Chinese P0 and P1 batche
   }
   assert.equal(
     urls.filter((url) => /\/(zh|ar|de|es|vi|fa)\//.test(url)).length,
-    43,
+    69,
   );
   assert.equal(
     urls.filter((url) => /\/zh\//.test(url)).length,
-    43,
+    69,
   );
   assert.equal(
     urls.some((url) => /\/(ar|de|es|vi|fa)\//.test(url)),

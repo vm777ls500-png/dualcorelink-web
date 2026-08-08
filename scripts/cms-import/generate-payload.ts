@@ -1,0 +1,69 @@
+import { createHash } from "node:crypto";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import {
+  arP0OwnerWaivedCmsImportPayload,
+  zhP1ReviewedCmsImportPayload,
+  zhRemainingFinalReviewedCmsImportPayload,
+} from "../../src/content/locales/cms-import";
+import { canonicalJson, sha256 } from "./model";
+
+function value(name: string): string | undefined {
+  const prefix = `--${name}=`;
+  const inline = process.argv.find((argument) => argument.startsWith(prefix));
+  if (inline) return inline.slice(prefix.length);
+  const index = process.argv.indexOf(`--${name}`);
+  return index >= 0 ? process.argv[index + 1] : undefined;
+}
+
+async function main(): Promise<void> {
+  const locale = value("locale");
+  const batch = value("batch");
+  const selected =
+    locale === "ar" && batch === "p0"
+      ? {
+          payload: arP0OwnerWaivedCmsImportPayload,
+          filename: "ar-p0-owner-waived.json",
+        }
+      : locale === "zh" && batch === "p1"
+        ? {
+            payload: zhP1ReviewedCmsImportPayload,
+            filename: "zh-p1-reviewed.json",
+          }
+        : locale === "zh" && batch === "remaining-final"
+          ? {
+              payload: zhRemainingFinalReviewedCmsImportPayload,
+              filename: "zh-remaining-final-reviewed.json",
+            }
+        : undefined;
+  if (!selected) {
+    throw new Error(
+      "Only exact approved payloads are supported: ar/p0, zh/p1, or zh/remaining-final",
+    );
+  }
+  const payload = selected.payload;
+  const canonical = canonicalJson(payload);
+  const bytes = Buffer.from(`${canonical}\n`, "utf8");
+  const output = path.join(
+    process.cwd(),
+    "dist",
+    "cms-import",
+    selected.filename,
+  );
+  await mkdir(path.dirname(output), { recursive: true });
+  await writeFile(output, bytes);
+  console.log(
+    JSON.stringify({
+      status: "generated",
+      locale,
+      batch,
+      records: payload.length,
+      file: path.relative(process.cwd(), output).replaceAll("\\", "/"),
+      canonicalSha256: sha256(payload),
+      fileSha256: createHash("sha256").update(bytes).digest("hex"),
+      bytes: bytes.length,
+    }),
+  );
+}
+
+void main();

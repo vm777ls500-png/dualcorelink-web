@@ -20,12 +20,18 @@ function argumentValue(name: string): string | undefined {
 async function main() {
   const locale = argumentValue("locale");
   const batch = argumentValue("batch");
-  if (Boolean(locale) !== Boolean(batch)) {
-    throw new Error("--locale and --batch must be provided together");
+  if (batch && !locale) {
+    throw new Error("--batch requires --locale");
   }
   const releaseBatch =
     locale && batch
       ? getMultilingualReleaseBatch(locale, batch)
+      : undefined;
+  const localeScopeUrls =
+    locale && !batch
+      ? multilingualPublicationManifest
+          .filter((entry) => entry.locale === locale)
+          .map((entry) => entry.localizedUrl)
       : undefined;
   const nginxConfig = await readFile(
     path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
@@ -39,11 +45,11 @@ async function main() {
     visibleLocales,
     indexableLocales,
     nginxConfig,
-    releaseScopeUrls: releaseBatch?.localizedUrls,
+    releaseScopeUrls: releaseBatch?.localizedUrls ?? localeScopeUrls,
   });
 
   console.log(
-    `[multilingual:release-check] scope=${releaseBatch ? `${releaseBatch.locale}:${releaseBatch.batch}` : "full"}`,
+    `[multilingual:release-check] scope=${releaseBatch ? `${releaseBatch.locale}:${releaseBatch.batch}` : locale ?? "full"}`,
   );
   console.log(
     `[multilingual:release-check] candidates=${result.candidateCount} production-ready=${result.productionReleaseReadyCount}`,

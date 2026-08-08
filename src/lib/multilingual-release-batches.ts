@@ -52,15 +52,46 @@ export const zhP1ReleaseUrls = [
   "https://dualcorelink.com/zh/regions/vietnam/",
 ] as const;
 
+export const zhRemainingFinalReleaseUrls = [
+  "https://dualcorelink.com/zh/products/hotel-ceiling-background-speaker/",
+  "https://dualcorelink.com/zh/products/brushed-aluminum-voice-telephone-information-panel/",
+  "https://dualcorelink.com/zh/products/borui-red-matte-triple-socket-panel/",
+  "https://dualcorelink.com/zh/products/smart-series-dual-vertical-socket-panel/",
+  "https://dualcorelink.com/zh/products/smart-footlight-night-light-panel/",
+  "https://dualcorelink.com/zh/products/smart-three-key-music-control-panel/",
+  "https://dualcorelink.com/zh/products/smart-single-key-switch-panel/",
+  "https://dualcorelink.com/zh/products/smart-voice-telephone-information-socket/",
+  "https://dualcorelink.com/zh/products/brushed-aluminum-thermostat-control-panel/",
+  "https://dualcorelink.com/zh/products/brushed-aluminum-sos-alarm-panel/",
+  "https://dualcorelink.com/zh/products/vintage-gold-four-key-smart-switch-panel/",
+  "https://dualcorelink.com/zh/products/vintage-gold-key-card-energy-saver-panel/",
+  "https://dualcorelink.com/zh/products/borui-red-matte-room-status-four-key-switch-panel/",
+  "https://dualcorelink.com/zh/products/borui-red-matte-usb-five-hole-socket/",
+  "https://dualcorelink.com/zh/products/brushed-aluminum-86-base-doorbell-panel/",
+  "https://dualcorelink.com/zh/products/smart-usb-five-hole-socket/",
+  "https://dualcorelink.com/zh/products/infrared-repeater/",
+  "https://dualcorelink.com/zh/solutions/hotel-guest-room-control-solution/",
+  "https://dualcorelink.com/zh/resources/what-is-hotel-rcu-room-control-system/",
+  "https://dualcorelink.com/zh/resources/hotel-rcu-buying-guide/",
+  "https://dualcorelink.com/zh/resources/smart-hotel-room-control-system-guide/",
+  "https://dualcorelink.com/zh/resources/hotel-doorplate-room-display-buying-guide/",
+  "https://dualcorelink.com/zh/resources/smart-panel-material-finish-selection-guide/",
+  "https://dualcorelink.com/zh/regions/middle-east/",
+  "https://dualcorelink.com/zh/regions/saudi-arabia/",
+  "https://dualcorelink.com/zh/regions/uae/",
+] as const;
+
 export const zhReviewedReleaseUrls = [
   ...zhP0ReleaseUrls,
   ...zhP1ReleaseUrls,
+  ...zhRemainingFinalReleaseUrls,
 ] as const;
 
 export type MultilingualReleaseBatch = {
   locale: MultilingualLocale;
   batch: string;
-  priority: PublicationPriority;
+  priority: PublicationPriority | "mixed";
+  priorityCounts?: Partial<Record<PublicationPriority, number>>;
   reviewer: string;
   reviewDate: string;
   decisionFile: string;
@@ -90,6 +121,18 @@ const releaseBatches: readonly MultilingualReleaseBatch[] = [
       "docs/reviews/multilingual/zh-p1-final-decisions-20260802.md",
     cmsPayloadCount: 17,
     localizedUrls: zhP1ReleaseUrls,
+  },
+  {
+    locale: "zh",
+    batch: "remaining-final",
+    priority: "mixed",
+    priorityCounts: { P2: 19, P0: 7 },
+    reviewer: "Allan",
+    reviewDate: "2026-08-03",
+    decisionFile:
+      "docs/reviews/multilingual/zh-remaining-26-final-decisions-20260803.md",
+    cmsPayloadCount: 18,
+    localizedUrls: zhRemainingFinalReleaseUrls,
   },
 ];
 

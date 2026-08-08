@@ -152,7 +152,7 @@ test("applying P1 preserves the original P0 reviewer history", async () => {
   }
 });
 
-test("all 26 remaining Chinese pages and every other locale remain pending", () => {
+test("the final release approves remaining Chinese pages while other locales remain pending", () => {
   const p2 = multilingualPublicationManifest.filter(
     (entry) => entry.locale === "zh" && entry.priority === "P2",
   );
@@ -163,10 +163,10 @@ test("all 26 remaining Chinese pages and every other locale remain pending", () 
     (entry) => entry.locale === "zh" && entry.nativeReviewStatus === "pending",
   );
   assert.equal(p2.length, 19);
-  assert.equal(remainingChinese.length, 26);
+  assert.equal(remainingChinese.length, 0);
   assert.equal(otherLocales.length, 345);
   assert.ok(
-    [...remainingChinese, ...otherLocales].every(
+    otherLocales.every(
       (entry) =>
         entry.nativeReviewStatus === "pending" &&
         entry.productionReleaseReady === false,

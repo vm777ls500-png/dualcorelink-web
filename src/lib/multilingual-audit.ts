@@ -542,7 +542,7 @@ export function auditMultilingualFoundation(
   }
   for (const marker of [
     "(?:ar|zh|de|es|vi|fa)",
-    "Native-reviewed multilingual release batches: zh P0 + P1 (43 URLs).",
+    "Native-reviewed multilingual release batches: all 69 Chinese content URLs.",
     "hotel-smart-room-rcu-host-1",
     "hotel-smart-room-rcu-host-3",
     "smart-hotel-automation-solution",

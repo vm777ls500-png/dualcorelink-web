@@ -31,10 +31,30 @@ export function validateNativeReviewBatchDecisions(input: {
     if (entry.locale !== input.batch.locale) {
       errors.push(`batch URL has wrong locale: ${localizedUrl}`);
     }
-    if (entry.priority !== input.batch.priority) {
+    if (
+      input.batch.priority !== "mixed" &&
+      entry.priority !== input.batch.priority
+    ) {
       errors.push(
         `batch URL has wrong priority ${entry.priority}; expected ${input.batch.priority}: ${localizedUrl}`,
       );
+    }
+  }
+
+  if (input.batch.priority === "mixed") {
+    for (const priority of ["P0", "P1", "P2"] as const) {
+      const expectedCount = input.batch.priorityCounts?.[priority] ?? 0;
+      const actualCount = input.batch.localizedUrls.filter((localizedUrl) =>
+        input.manifest.some(
+          (entry) =>
+            entry.localizedUrl === localizedUrl && entry.priority === priority,
+        ),
+      ).length;
+      if (actualCount !== expectedCount) {
+        errors.push(
+          `batch priority ${priority} count must be ${expectedCount}; found ${actualCount}`,
+        );
+      }
     }
   }
 

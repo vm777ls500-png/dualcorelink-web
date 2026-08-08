@@ -1,0 +1,63 @@
+{
+  "packageSchemaVersion": 1,
+  "pluginVersion": "1.3.1",
+  "translationSchemaVersion": 1,
+  "packageFilename": "dualcorelink-multilingual-import-cli.zip",
+  "files": [
+    {
+      "relativePath": "dualcorelink-multilingual-import-cli.php",
+      "normalizedByteSize": 3195,
+      "sha256": "b7c36627b906e8fe059536bb8c1ddecc8bbdb72ade9738d38b8b94a1e3185a38",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "includes/class-cli-command.php",
+      "normalizedByteSize": 4715,
+      "sha256": "988df627f8a2ca038297012497f48ce87cf800e94c004e3e0a6f2be2c05cdf06",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "includes/class-config.php",
+      "normalizedByteSize": 21144,
+      "sha256": "509fbda3af891a29d49a3d18441d8542ff3e11b3f4bc245ff44b3b0ebdc499b5",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "includes/class-import-service.php",
+      "normalizedByteSize": 34450,
+      "sha256": "f2f8a5554decaa4927cdf94e2c5efe92c069334ba6bd7de4a6770e19a2c4c5a3",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "includes/class-renderer.php",
+      "normalizedByteSize": 9001,
+      "sha256": "095b32db1e1cec6e2907ce9c1d3df8e57b48114e59024de5115555e1eff8eda0",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "includes/class-run-store.php",
+      "normalizedByteSize": 5075,
+      "sha256": "78c4ab46736c9bbd64a76aab9b89b85855ae24fd8c06f911dc7e4221c4142136",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "includes/class-wordpress-repository.php",
+      "normalizedByteSize": 13276,
+      "sha256": "1a2ebc6b66ea45f13e45ceeffd05671bc9e62f2fc894214412a22f6735b3b014",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "includes/interface-repository.php",
+      "normalizedByteSize": 844,
+      "sha256": "979f1d09cd2e6c43f0e18fe6290d9e01a8e3246db52618b84f9b37a6aea4c8b0",
+      "mode": "0644"
+    },
+    {
+      "relativePath": "schema/payload.schema.json",
+      "normalizedByteSize": 5764,
+      "sha256": "37cae38c5b10d388c37eb59826e6ffd68efc761011de5fee9b9cbe14626292b0",
+      "mode": "0644"
+    }
+  ],
+  "manifestSha256": "e204da248d358173faf9162dcf7cc42bf3b820df280e8294afe924c571d40172"
+}

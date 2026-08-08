@@ -215,6 +215,20 @@ const zhP1ResourceSlugs = new Set([
   "hotel-guest-room-control-interfaces-guide",
 ]);
 
+const zhRemainingResourceSlugs = new Set([
+  "what-is-hotel-rcu-room-control-system",
+  "hotel-rcu-buying-guide",
+  "smart-hotel-room-control-system-guide",
+  "hotel-doorplate-room-display-buying-guide",
+  "smart-panel-material-finish-selection-guide",
+]);
+
+const zhRemainingRegionSlugs = new Set([
+  "middle-east",
+  "saudi-arabia",
+  "uae",
+]);
+
 function resourcePage(
   locale: SupportedLocale,
   resource: (typeof m3aResourceCatalog)[number],
@@ -226,7 +240,10 @@ function resourcePage(
   const productsHref = `/${locale}/products/`;
   const solutionsHref = `/${locale}/solutions/`;
   const contactHref = `/${locale}/contact/`;
-  const isZhP1 = locale === "zh" && zhP1ResourceSlugs.has(resource.slug);
+  const usesZhReviewedCopy =
+    locale === "zh" &&
+    (zhP1ResourceSlugs.has(resource.slug) ||
+      zhRemainingResourceSlugs.has(resource.slug));
   const zhInlineFocus = (value: string) =>
     /^[A-Za-z0-9]/.test(value) ? ` ${value}` : value;
 
@@ -337,7 +354,7 @@ function resourcePage(
         {
           heading: "采购前需要形成的决策",
           paragraphs: [
-            isZhP1
+            usesZhReviewedCopy
               ? `将${zhInlineFocus(focus[0])}和${focus[1]}写成与房型或空间对应的需求，再补充数量、电压、图纸、接口和资料要求，使不同供应范围可以比较。`
               : `把${focus[0]}和${focus[1]}写成与房型或空间对应的需求，再补充数量、电压、图纸、接口和资料要求，使不同供应范围可以比较。`,
           ],
@@ -345,7 +362,7 @@ function resourcePage(
         {
           heading: "工程与系统边界",
           paragraphs: [
-            isZhP1
+            usesZhReviewedCopy
               ? `由承包商、系统集成商和相关专业共同审核${zhInlineFocus(focus[2])}及${focus[3]}。不能假设协议、负载、兼容性或性能比例，每个结论都应来自具体型号资料和真实设计。`
               : `由承包商、系统集成商和相关专业共同审核${focus[2]}及${focus[3]}。不能假设协议、负载、兼容性或性能比例，每个结论都应来自具体型号资料和真实设计。`,
           ],
@@ -359,7 +376,9 @@ function resourcePage(
       ],
       faqs: [
         {
-          question: isZhP1 ? `${title}适合哪些读者？` : `${title} 适合哪些读者？`,
+          question: usesZhReviewedCopy
+            ? `${title}适合哪些读者？`
+            : `${title} 适合哪些读者？`,
           answer: "适合需要在采购前形成明确决策的酒店业主、承包商、系统集成商、渠道和项目采购人员。",
         },
         {
@@ -368,7 +387,7 @@ function resourcePage(
         },
         {
           question: "阅读后应准备哪些资料？",
-          answer: isZhP1
+          answer: usesZhReviewedCopy
             ? `请准备项目类型、图纸、数量，并记录${zhInlineFocus(focus.join("、"))}。`
             : `请准备项目类型、图纸、数量，并记录${focus.join("、")}。`,
         },
@@ -398,7 +417,9 @@ function resourcePage(
         secondaryLabel: "查看产品",
         secondaryHref: productsHref,
       },
-      imageAlt: isZhP1 ? `${title}：酒店工程指南` : `${title}酒店工程指南`,
+      imageAlt: usesZhReviewedCopy
+        ? `${title}：酒店工程指南`
+        : `${title}酒店工程指南`,
     },
   });
 }
@@ -488,6 +509,10 @@ function regionPage(
   const productsHref = `/${locale}/products/`;
   const solutionsHref = `/${locale}/solutions/`;
   const contactHref = `/${locale}/contact/`;
+  const usesZhReviewedCopy =
+    locale === "zh" && zhRemainingRegionSlugs.has(region.slug);
+  const zhInlineFocus = (value: string) =>
+    /^[A-Za-z0-9]/.test(value) ? ` ${value}` : value;
 
   if (locale === "ar") {
     return filePage(locale, {
@@ -576,19 +601,25 @@ function regionPage(
         {
           heading: "项目与采购重点",
           paragraphs: [
-            `先确认${focus[0]}，再明确必需功能、数量、项目阶段、预算和各方供货范围。`,
+            usesZhReviewedCopy
+              ? `先确认${zhInlineFocus(focus[0])}，再明确必需功能、数量、项目阶段、预算和各方供货范围。`
+              : `先确认${focus[0]}，再明确必需功能、数量、项目阶段、预算和各方供货范围。`,
           ],
         },
         {
           heading: "工程与系统接口",
           paragraphs: [
-            `由承包商和系统集成商共同审核${focus[1]}，并按项目确认电压、频率、底盒、布线、HVAC、协议和第三方接口。`,
+            usesZhReviewedCopy
+              ? `由承包商和系统集成商共同审核${zhInlineFocus(focus[1])}，并按项目确认电压、频率、底盒、布线、HVAC、协议和第三方接口。`
+              : `由承包商和系统集成商共同审核${focus[1]}，并按项目确认电压、频率、底盒、布线、HVAC、协议和第三方接口。`,
           ],
         },
         {
           heading: "定制与技术资料",
           paragraphs: [
-            `把${focus[2]}与面板功能、图标、语言、表面、品牌、包装、图纸和所需文件一并规划。`,
+            usesZhReviewedCopy
+              ? `将${zhInlineFocus(focus[2])}与面板功能、图标、语言、表面、品牌、包装、图纸和所需文件一并规划。`
+              : `把${focus[2]}与面板功能、图标、语言、表面、品牌、包装、图纸和所需文件一并规划。`,
           ],
         },
         {
@@ -609,7 +640,9 @@ function regionPage(
         },
         {
           question: "区域项目审核需要哪些资料？",
-          answer: `请提供地点、图纸、数量，并说明${focus.join("、")}。`,
+          answer: usesZhReviewedCopy
+            ? `请提供地点、图纸、数量，并说明${zhInlineFocus(focus.join("、"))}。`
+            : `请提供地点、图纸、数量，并说明${focus.join("、")}。`,
         },
       ],
       relatedLinks: [
@@ -618,12 +651,14 @@ function regionPage(
         { label: "解决方案", description: "明确系统和集成范围。", href: solutionsHref },
       ],
       cta: {
-        heading: `讨论${title}`,
+        heading: usesZhReviewedCopy ? "讨论该区域项目" : `讨论${title}`,
         description: "请提供地点、房型、功能、产品、数量、定制和时间。",
         label: "提交区域项目询盘",
         href: `${contactHref}#get-a-quote`,
       },
-      imageAlt: `${title}酒店工程`,
+      imageAlt: usesZhReviewedCopy
+        ? `${title}：酒店工程项目`
+        : `${title}酒店工程`,
     },
   });
 }

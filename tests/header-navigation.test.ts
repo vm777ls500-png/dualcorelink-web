@@ -94,7 +94,7 @@ test("language availability comes from the release batch", () => {
   );
   const unavailable = buildHeaderLanguageOptions(
     "en",
-    "resources/what-is-hotel-rcu-room-control-system",
+    "downloads",
   );
   const chinese = buildHeaderLanguageOptions(
     "zh",

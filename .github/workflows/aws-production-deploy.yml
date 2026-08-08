@@ -89,6 +89,7 @@ jobs:
         run: |
           npm run multilingual:release-check -- --locale=zh --batch=p0
           npm run multilingual:release-check -- --locale=zh --batch=p1
+          npm run multilingual:release-check -- --locale=zh
 
       - name: Build static export
         shell: bash
@@ -96,7 +97,7 @@ jobs:
           set -euo pipefail
           export NO_COLOR=1
           npm run build 2>&1 | tee build.log
-          grep -Eq 'Generating static pages.*192/192' build.log
+          grep -Eq 'Generating static pages.*218/218' build.log
 
       - name: Activate versioned Nginx site configuration
         id: nginx

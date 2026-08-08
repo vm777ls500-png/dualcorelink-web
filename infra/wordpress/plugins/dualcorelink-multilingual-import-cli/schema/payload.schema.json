@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DualCoreLink Exact Approved CMS Import Payload",
+  "type": "array",
+  "minItems": 6,
+  "maxItems": 18,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "contentType",
+      "sourceEnglishContentId",
+      "sourceEnglishSlug",
+      "localizedSlug",
+      "localizedContentId",
+      "importKey",
+      "deliveryMode",
+      "locale",
+      "batch",
+      "translatedTitle",
+      "translatedDescription",
+      "translatedSpecifications",
+      "translatedSeoTitle",
+      "translatedMetaDescription",
+      "translatedStructuredContent",
+      "translationStatus",
+      "reviewStatus",
+      "nativeReviewStatus",
+      "nativeReviewer",
+      "nativeReviewDate",
+      "nativeReviewNotes",
+      "productionReleaseReady"
+    ],
+    "properties": {
+      "contentType": { "enum": ["product", "solution"] },
+      "sourceEnglishContentId": {
+        "enum": [48, 47, 6, 222, 142, 140, 138, 137, 219, 190, 189, 188, 51, 50, 46, 45, 43, 13, 12, 11, 10, 9, 8, 141, 139, 238, 226, 225, 224, 223, 221, 220, 197, 196, 195, 194, 193, 192, 191, 52, 49, 44]
+      },
+      "sourceEnglishSlug": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "localizedSlug": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "localizedContentId": { "type": "null" },
+      "importKey": { "type": "string", "minLength": 1, "maxLength": 200 },
+      "deliveryMode": { "const": "validated-import-payload" },
+      "locale": { "enum": ["zh", "ar"] },
+      "batch": { "enum": ["p0", "p1", "remaining-final"] },
+      "priority": { "enum": ["P0", "P1", "P2"] },
+      "translationGroup": {
+        "type": "string",
+        "pattern": "^shb2b-(product|solution)-[1-9][0-9]*$"
+      },
+      "translatedTitle": { "type": "string", "minLength": 1 },
+      "translatedDescription": { "type": "string", "minLength": 1 },
+      "translatedSpecifications": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label", "value"],
+          "properties": {
+            "label": { "type": "string", "minLength": 1 },
+            "value": { "type": "string", "minLength": 1 }
+          }
+        }
+      },
+      "translatedSeoTitle": { "type": "string", "minLength": 1 },
+      "translatedMetaDescription": { "type": "string", "minLength": 1 },
+      "translatedStructuredContent": { "type": "object" },
+      "translationStatus": { "const": "approved" },
+      "reviewStatus": { "const": "approved" },
+      "nativeReviewStatus": { "enum": ["approved", "pending"] },
+      "nativeReviewer": { "type": ["string", "null"] },
+      "nativeReviewDate": { "type": ["string", "null"] },
+      "nativeReviewNotes": { "type": "string", "minLength": 1 },
+      "productionReleaseReady": { "const": true },
+      "ownerReviewWaiverSchemaVersion": { "const": 1 },
+      "ownerReviewWaiverStatus": { "const": "approved" },
+      "ownerReviewWaiverBy": { "const": "Allan" },
+      "ownerReviewWaiverDate": { "const": "2026-07-31" },
+      "ownerReviewWaiverReason": {
+        "const": "Business owner explicitly waived Arabic native-language review and accepted localization risk."
+      },
+      "ownerReviewWaiverScopeCount": { "const": 15 },
+      "ownerReviewWaiverScopeSha256": {
+        "const": "92eae81730ac445455385ff5f3811394dbb866d6f333dc6a290f5df60e4dc193"
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": { "locale": { "const": "ar" } },
+          "required": ["locale"]
+        },
+        "then": {
+          "required": [
+            "ownerReviewWaiverSchemaVersion",
+            "ownerReviewWaiverStatus",
+            "ownerReviewWaiverBy",
+            "ownerReviewWaiverDate",
+            "ownerReviewWaiverReason",
+            "ownerReviewWaiverScopeCount",
+            "ownerReviewWaiverScopeSha256"
+          ],
+          "properties": {
+            "nativeReviewStatus": { "const": "pending" },
+            "nativeReviewer": { "type": "null" },
+            "nativeReviewDate": { "type": "null" }
+          }
+        },
+        "else": {
+          "not": {
+            "anyOf": [
+              { "required": ["ownerReviewWaiverSchemaVersion"] },
+              { "required": ["ownerReviewWaiverStatus"] },
+              { "required": ["ownerReviewWaiverBy"] },
+              { "required": ["ownerReviewWaiverDate"] },
+              { "required": ["ownerReviewWaiverReason"] },
+              { "required": ["ownerReviewWaiverScopeCount"] },
+              { "required": ["ownerReviewWaiverScopeSha256"] }
+            ]
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "locale": { "const": "zh" },
+            "batch": { "const": "p1" }
+          },
+          "required": ["locale", "batch"]
+        },
+        "then": {
+          "required": ["translationGroup"],
+          "properties": {
+            "nativeReviewStatus": { "const": "approved" },
+            "nativeReviewer": { "const": "Allan" },
+            "nativeReviewDate": { "const": "2026-08-02" }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "locale": { "const": "zh" },
+            "batch": { "const": "remaining-final" }
+          },
+          "required": ["locale", "batch"]
+        },
+        "then": {
+          "required": ["priority", "translationGroup"],
+          "properties": {
+            "nativeReviewStatus": { "const": "approved" },
+            "nativeReviewer": { "const": "Allan" },
+            "nativeReviewDate": { "const": "2026-08-03" }
+          }
+        }
+      }
+    ]
+  }
+}

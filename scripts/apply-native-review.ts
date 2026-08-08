@@ -69,7 +69,7 @@ async function main() {
   let rows = baseRows;
 
   if (locale === "zh") {
-    const batchNames = batchName ? [batchName] : ["p0", "p1"];
+    const batchNames = batchName ? [batchName] : ["p0", "p1", "remaining-final"];
     for (const currentBatchName of batchNames) {
       const batch = getMultilingualReleaseBatch("zh", currentBatchName);
       const batchRows = parseNativeReviewDecisions(

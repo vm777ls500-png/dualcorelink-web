@@ -27,6 +27,10 @@ import {
   getPublicationHreflang,
 } from "@/lib/localized-publication";
 import {
+  getProductListingSourceLocale,
+  localizeProductListingProducts,
+} from "@/lib/product-listing";
+import {
   createBreadcrumbSchema,
   createCollectionPageSchema,
   createSchemaGraph,
@@ -73,11 +77,15 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
     "product-listing",
     "products",
   );
-  if (localizedPage) {
+  const rendersLocalizedCatalog = locale === "zh" && Boolean(localizedPage);
+  if (localizedPage && !rendersLocalizedCatalog) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
-  const products = await productRepository.list(locale);
+  const sourceProducts = await productRepository.list(
+    getProductListingSourceLocale(locale),
+  );
+  const products = localizeProductListingProducts(locale, sourceProducts);
   const productCountsByCategory = new Map<string, number>();
   const publishedSlugs = new Set(products.map((product) => product.slug));
   const seriesSlugsByProduct = new Map<string, string[]>();
@@ -124,12 +132,12 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
     createCollectionPageSchema({
       id: `${url}#collection`,
       url,
-      name: "DUALCORE LINK Products",
-      description: productsDescription,
+      name: localizedPage?.title ?? "DUALCORE LINK Products",
+      description: localizedPage?.metaDescription ?? productsDescription,
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
       { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
-      { name: "Products", url },
+      { name: localizedPage?.content.breadcrumbLabel ?? "Products", url },
     ]),
   ]);
 
@@ -140,22 +148,29 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
       <header className="products-catalog-hero mb-8 flex flex-col justify-between gap-5 p-6 lg:flex-row lg:items-end lg:p-8">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase text-brand">
-            B2B product catalog
+            {localizedPage?.content.eyebrow ?? "B2B product catalog"}
           </p>
           <h1 className="mt-3 text-4xl font-semibold text-foreground">
-            Smart Hotel & Smart Home Automation Products
+            {localizedPage?.content.h1 ??
+              "Smart Hotel & Smart Home Automation Products"}
           </h1>
           <p className="mt-4 leading-7 text-muted">
-            Browse hotel control panels, RCU hosts, sensors, displays, sockets,
-            thermostats, and related devices by category, series, or
-            application scenario. Use this catalog for device selection;{" "}
-            <Link
-              href={`/${locale}/solutions/`}
-              className="font-semibold text-brand underline decoration-brand/40 underline-offset-4"
-            >
-              compare hotel room automation solutions
-            </Link>{" "}
-            when the project scope extends across multiple systems.
+            {localizedPage ? (
+              localizedPage.content.introduction
+            ) : (
+              <>
+                Browse hotel control panels, RCU hosts, sensors, displays,
+                sockets, thermostats, and related devices by category, series,
+                or application scenario. Use this catalog for device selection;{" "}
+                <Link
+                  href={`/${locale}/solutions/`}
+                  className="font-semibold text-brand underline decoration-brand/40 underline-offset-4"
+                >
+                  compare hotel room automation solutions
+                </Link>{" "}
+                when the project scope extends across multiple systems.
+              </>
+            )}
           </p>
         </div>
         <div className="products-hero-actions flex flex-wrap gap-3">
@@ -174,7 +189,11 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         </div>
       </header>
 
-      <div className="products-browse-grid mb-10 grid gap-6 lg:grid-cols-3">
+      <div
+        className={`products-browse-grid mb-10 grid gap-6 ${
+          locale === "zh" ? "lg:grid-cols-2" : "lg:grid-cols-3"
+        }`}
+      >
         <section className="products-browse-panel border border-line bg-surface p-5">
           <h2 className="text-lg font-semibold">Browse by Category</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
@@ -284,28 +303,34 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           </ul>
         </section>
 
-        <section className="products-browse-panel border border-line bg-surface p-5">
-          <h2 className="text-lg font-semibold">Browse by Application Scenario</h2>
-          <p className="mt-2 text-sm leading-6 text-muted">
-            Application scenarios are independent scene materials, not product
-            categories.
-          </p>
-          <ul className="mt-5 space-y-3">
-            {applicationScenarios.map((scenario) => (
-              <li key={scenario.slug}>
-                <Link
-                  href={`/${locale}/application-scenarios/#${scenario.slug}`}
-                  className="products-entry-card block border border-line bg-background p-3 hover:border-brand"
-                >
-                  <span className="block font-semibold">{scenario.title}</span>
-                  <span className="mt-1 block text-sm text-muted">
-                    {scenario.description}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {locale === "en" ? (
+          <section className="products-browse-panel border border-line bg-surface p-5">
+            <h2 className="text-lg font-semibold">
+              Browse by Application Scenario
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-muted">
+              Application scenarios are independent scene materials, not
+              product categories.
+            </p>
+            <ul className="mt-5 space-y-3">
+              {applicationScenarios.map((scenario) => (
+                <li key={scenario.slug}>
+                  <Link
+                    href={`/${locale}/application-scenarios/#${scenario.slug}`}
+                    className="products-entry-card block border border-line bg-background p-3 hover:border-brand"
+                  >
+                    <span className="block font-semibold">
+                      {scenario.title}
+                    </span>
+                    <span className="mt-1 block text-sm text-muted">
+                      {scenario.description}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
       </div>
 
       {products.length === 0 ? (

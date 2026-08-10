@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { ContentList, type ContentListItem } from "./content-list";
@@ -25,7 +24,7 @@ type ProductFilteredListProps = {
   variant?: "product";
 };
 
-type ProductFilterState = {
+export type ProductFilterState = {
   categorySlug: string;
   seriesSlug: string;
 };
@@ -44,6 +43,26 @@ const emptyFilterState: ProductFilterState = {
   categorySlug: "",
   seriesSlug: "",
 };
+
+export function filterProductListingItems(
+  items: readonly ProductFilteredListItem[],
+  filter: ProductFilterState,
+): ProductFilteredListItem[] {
+  return items.filter((item) => {
+    if (
+      filter.categorySlug &&
+      !item.categorySlugs.includes(filter.categorySlug)
+    ) {
+      return false;
+    }
+
+    if (filter.seriesSlug && !item.seriesSlugs.includes(filter.seriesSlug)) {
+      return false;
+    }
+
+    return true;
+  });
+}
 
 function normalizeProductFilterState(
   value: unknown,
@@ -123,22 +142,27 @@ export function ProductFilteredList({
   const { categorySlug, seriesSlug } = filter;
   const activeCategory = categories.find((item) => item.slug === categorySlug);
   const activeSeries = series.find((item) => item.slug === seriesSlug);
-  const filteredItems = items.filter((item) => {
-    if (activeCategory && !item.categorySlugs.includes(activeCategory.slug)) {
-      return false;
-    }
-
-    if (activeSeries && !item.seriesSlugs.includes(activeSeries.slug)) {
-      return false;
-    }
-
-    return true;
+  const filteredItems = filterProductListingItems(items, {
+    categorySlug: activeCategory?.slug ?? "",
+    seriesSlug: activeSeries?.slug ?? "",
   });
   const filterLabels = [
     activeCategory ? `Category: ${activeCategory.title}` : "",
     activeSeries ? `Series: ${activeSeries.title}` : "",
   ].filter(Boolean);
   const hasFilter = Boolean(activeCategory || activeSeries);
+
+  function clearFilter() {
+    window.history.pushState(
+      {
+        ...currentHistoryRecord(),
+        [productFilterHistoryKey]: emptyFilterState,
+      },
+      "",
+      window.location.pathname,
+    );
+    setFilter(emptyFilterState);
+  }
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -227,12 +251,13 @@ export function ProductFilteredList({
           <p className="mt-2 leading-7 text-muted">
             Showing {filteredItems.length} of {items.length} products.
           </p>
-          <Link
-            href={`/${locale}/products/`}
+          <button
+            type="button"
+            onClick={clearFilter}
             className="mt-4 inline-flex min-h-10 items-center border border-brand px-4 py-2 text-sm font-semibold text-brand"
           >
             View all products
-          </Link>
+          </button>
         </div>
       ) : null}
 

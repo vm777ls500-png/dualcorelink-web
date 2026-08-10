@@ -11,7 +11,6 @@ import {
 } from "@/config/region-landing-pages";
 import {
   buildLocalizedPath,
-  buildSiteUrl,
   createMetadata,
 } from "@/lib/seo";
 import { stripHtml } from "@/lib/text";
@@ -22,12 +21,6 @@ import {
   getPublicationHreflang,
 } from "@/lib/localized-publication";
 import { localizeReleasedHref } from "@/lib/localized-nonproduct";
-import { JsonLd } from "@/components/seo/json-ld";
-import {
-  createBreadcrumbSchema,
-  createCollectionPageSchema,
-  createSchemaGraph,
-} from "@/lib/schema";
 
 type RegionsPageProps = { params: Promise<{ locale: string }> };
 
@@ -93,27 +86,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
         };
       })
     : await regionRepository.list(locale);
-  const path = buildLocalizedPath(locale, "regions");
-  const url = buildSiteUrl(path);
-  const graph = createSchemaGraph([
-    createCollectionPageSchema({
-      id: `${url}#collection`,
-      url,
-      name: localizedPage?.title ?? "DUALCORE LINK Regional Markets",
-      description:
-        localizedPage?.metaDescription ??
-        "Smart home requirements, certifications, and project priorities across the Middle East and Southeast Asia.",
-    }),
-    createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
-      { name: localizedPage?.content.breadcrumbLabel ?? "Regions", url },
-    ]),
-  ]);
-
   return (
-    <>
-      <JsonLd graph={graph} />
-      <main className="regions-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
+    <main className="regions-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
       <div className="region-market-hero border border-line p-6">
         <PageHeading
           eyebrow={localizedPage?.content.eyebrow ?? "Markets"}
@@ -207,7 +181,6 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
           </Link>
         </div>
       </section>
-      </main>
-    </>
+    </main>
   );
 }

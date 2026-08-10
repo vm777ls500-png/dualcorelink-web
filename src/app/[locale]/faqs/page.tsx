@@ -5,13 +5,17 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { brand } from "@/config/brand";
 import { isLocale } from "@/config/i18n";
-import { staticFaqCategories, staticFaqItems } from "@/config/static-faqs";
+import { getStaticFaqCategories } from "@/config/static-faqs";
 import {
   buildLocalizedPath,
   buildSiteUrl,
   createMetadata,
 } from "@/lib/seo";
-import { createFaqPageSchema, createSchemaGraph } from "@/lib/schema";
+import {
+  createBreadcrumbSchema,
+  createFaqPageSchema,
+  createSchemaGraph,
+} from "@/lib/schema";
 import {
   createLocalizedPublicationMetadata,
   getLocalizedPublicationPage,
@@ -41,13 +45,16 @@ export default async function FaqPage({ params }: FaqPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const localizedPage = getLocalizedPublicationPage(locale, "static", "faqs");
-  if (localizedPage) {
+  if (localizedPage && locale !== "zh") {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
+  const isChinese = locale === "zh" && Boolean(localizedPage);
+  const faqCategories = getStaticFaqCategories(locale);
+  const faqItems = faqCategories.flatMap((category) => category.items);
   const path = buildLocalizedPath(locale, "faqs");
   const url = buildSiteUrl(path);
-  const schemaQuestions = staticFaqItems.map((faq) => ({
+  const schemaQuestions = faqItems.map((faq) => ({
     question: faq.question,
     answer: faq.answer,
   }));
@@ -57,6 +64,16 @@ export default async function FaqPage({ params }: FaqPageProps) {
       <JsonLd
         graph={createSchemaGraph([
           createFaqPageSchema(`${url}#faq`, url, schemaQuestions),
+          createBreadcrumbSchema(`${url}#breadcrumb`, [
+            {
+              name: isChinese ? "首页" : "Home",
+              url: buildSiteUrl(buildLocalizedPath(locale)),
+            },
+            {
+              name: localizedPage?.content.breadcrumbLabel ?? "FAQ",
+              url,
+            },
+          ]),
         ])}
       />
       <main className="faq-page-shell">
@@ -64,44 +81,43 @@ export default async function FaqPage({ params }: FaqPageProps) {
           <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1.3fr_0.7fr] lg:px-12">
             <div className="faq-help-hero border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                FAQ
+                {isChinese ? "常见问题" : "FAQ"}
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-normal text-foreground sm:text-5xl">
-                Frequently Asked Questions
+                {localizedPage?.content.h1 ?? "Frequently Asked Questions"}
               </h1>
               <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
-                Common questions about smart hotel room control solutions,
-                OEM/ODM cooperation, samples, delivery, technical support, and
-                after-sales service.
+                {localizedPage?.content.introduction ??
+                  "Common questions about smart hotel room control solutions, OEM/ODM cooperation, samples, delivery, technical support, and after-sales service."}
               </p>
             </div>
             <div className="faq-support-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold text-foreground">
-                B2B inquiry support
+                {isChinese ? "B2B 询盘支持" : "B2B inquiry support"}
               </p>
               <p className="mt-3 text-sm leading-7 text-muted">
-                For product selection, hotel project matching, distributor
-                cooperation, or OEM/ODM quotation, contact our team with your
-                product type, quantity, target market, and project needs.
+                {isChinese
+                  ? "如需产品选型、酒店项目匹配、分销合作或 OEM/ODM 报价，请提供产品类型、数量、目标市场和项目需求。"
+                  : "For product selection, hotel project matching, distributor cooperation, or OEM/ODM quotation, contact our team with your product type, quantity, target market, and project needs."}
               </p>
               <div className="faq-support-actions mt-5 flex flex-wrap gap-3">
                 <Link
                   href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-2 text-sm font-semibold text-white"
                 >
-                  Send Inquiry
+                  {isChinese ? "提交询盘" : "Send Inquiry"}
                 </Link>
                 <Link
-                  href={`/${locale}/downloads/`}
+                  href={isChinese ? "/en/downloads/" : `/${locale}/downloads/`}
                   className="inline-flex min-h-11 items-center border border-line px-5 py-2 text-sm font-semibold text-foreground"
                 >
-                  View Catalogs
+                  {isChinese ? "查看目录" : "View Catalogs"}
                 </Link>
                 <a
                   href={`https://wa.me/${brand.whatsapp.international}`}
                   className="inline-flex min-h-11 items-center border border-line px-5 py-2 text-sm font-semibold text-foreground"
                 >
-                  Get a Quote on WhatsApp
+                  {isChinese ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
                 </a>
               </div>
             </div>
@@ -113,7 +129,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
             aria-label="FAQ categories"
             className="flex flex-wrap gap-3 border-b border-line pb-8"
           >
-            {staticFaqCategories.map((category) => (
+            {faqCategories.map((category) => (
               <a
                 key={category.slug}
                 href={`#${category.slug}`}
@@ -125,12 +141,12 @@ export default async function FaqPage({ params }: FaqPageProps) {
           </nav>
 
           <div className="mt-10 space-y-12">
-            {staticFaqCategories.map((category) => (
+            {faqCategories.map((category) => (
               <section key={category.slug} id={category.slug} className="faq-group-panel">
                 <div className="mb-5 flex items-end justify-between gap-4 border-b border-line pb-3">
                   <div>
                     <p className="text-sm font-semibold uppercase text-brand">
-                      {category.items.length} questions
+                      {category.items.length} {isChinese ? "个问题" : "questions"}
                     </p>
                     <h2 className="mt-1 text-2xl font-semibold text-foreground">
                       {category.title}
@@ -166,11 +182,12 @@ export default async function FaqPage({ params }: FaqPageProps) {
             <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <h2 className="text-2xl font-semibold">
-                  Still have questions?
+                  {isChinese ? "还有其他问题？" : "Still have questions?"}
                 </h2>
                 <p className="mt-3 max-w-3xl leading-8 text-white/75">
-                  Contact our team for product selection, OEM/ODM cooperation,
-                  and hotel project solutions.
+                  {isChinese
+                    ? "联系我们，讨论产品选型、OEM/ODM 合作和酒店项目解决方案。"
+                    : "Contact our team for product selection, OEM/ODM cooperation, and hotel project solutions."}
                 </p>
               </div>
               <div className="faq-support-actions flex flex-wrap gap-3">
@@ -178,19 +195,19 @@ export default async function FaqPage({ params }: FaqPageProps) {
                   href={`/${locale}/contact/#get-a-quote`}
                   className="cta-button-light inline-flex min-h-11 items-center px-5 py-2 text-sm font-semibold"
                 >
-                  Send Inquiry
+                  {isChinese ? "提交询盘" : "Send Inquiry"}
                 </Link>
                 <Link
                   href={`/${locale}/products/`}
                   className="inline-flex min-h-11 items-center border border-white/50 px-5 py-2 text-sm font-semibold text-white"
                 >
-                  View Products
+                  {isChinese ? "查看产品" : "View Products"}
                 </Link>
                 <a
                   href={`https://wa.me/${brand.whatsapp.international}`}
                   className="inline-flex min-h-11 items-center border border-white/50 px-5 py-2 text-sm font-semibold text-white"
                 >
-                  Get a Quote on WhatsApp
+                  {isChinese ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
                 </a>
               </div>
             </div>

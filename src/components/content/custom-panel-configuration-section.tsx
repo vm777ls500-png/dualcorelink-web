@@ -17,6 +17,19 @@ type CustomPanelConfigurationSectionProps = {
 export function CustomPanelConfigurationSection({
   locale,
 }: CustomPanelConfigurationSectionProps) {
+  const isChinese = locale === "zh";
+  const copy = isChinese
+    ? {
+        eyebrow: "OEM/ODM 配置",
+        title: "客房控制面板定制配置选项",
+        subtitle: "面向酒店客房与 OEM/ODM 项目协调面板饰面和可选功能模块。",
+        intro: "以下布局用于讨论照明、窗帘、房态、插卡取电、温控、插座、USB 与低压功能组合；每张图片都是项目配置示例，并非固定库存型号。",
+        cardNote: "配置示例。最终模块选择与生产范围需按项目书面确认。",
+        disclaimer: "图片展示 OEM/ODM 配置示例，不代表标准库存型号。模块、颜色、布局、功能与数量可按项目讨论；最终兼容性、起订量、交期和报价以书面确认为准。",
+        primaryCta: "提交 OEM/ODM 配置需求",
+        secondaryCta: "发送客房布局",
+      }
+    : panelConfigurationCopy;
   const emailUrl = `mailto:${brand.emails.sales}?subject=${encodeURIComponent(
     "OEM/ODM room panel configuration",
   )}`;
@@ -38,16 +51,16 @@ export function CustomPanelConfigurationSection({
     >
       <header className="max-w-4xl">
         <p className="text-sm font-semibold uppercase text-brand">
-          {panelConfigurationCopy.eyebrow}
+          {copy.eyebrow}
         </p>
         <h2 className="mt-2 text-3xl font-semibold leading-tight text-foreground">
-          {panelConfigurationCopy.title}
+          {copy.title}
         </h2>
         <p className="mt-3 text-lg leading-8 text-foreground">
-          {panelConfigurationCopy.subtitle}
+          {copy.subtitle}
         </p>
         <p className="mt-3 leading-7 text-muted">
-          {panelConfigurationCopy.intro}
+          {copy.intro}
         </p>
       </header>
 
@@ -70,13 +83,16 @@ export function CustomPanelConfigurationSection({
                   {series}
                 </h3>
                 <p className="text-sm text-muted">
-                  {configurations.length} configuration
-                  {configurations.length === 1 ? "" : "s"}
+                  {isChinese
+                    ? `${configurations.length} 个配置示例`
+                    : `${configurations.length} configuration${
+                        configurations.length === 1 ? "" : "s"
+                      }`}
                 </p>
               </div>
 
               <ul className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {configurations.map((configuration) => (
+                {configurations.map((configuration, index) => (
                   <li
                     key={configuration.id}
                     className="border border-line bg-surface"
@@ -84,7 +100,11 @@ export function CustomPanelConfigurationSection({
                     <div className="relative aspect-[4/3] overflow-hidden border-b border-line bg-background">
                       <Image
                         src={configuration.image}
-                        alt={configuration.alt}
+                        alt={
+                          isChinese
+                            ? `${series}酒店客房面板配置示例 ${index + 1}`
+                            : configuration.alt
+                        }
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-contain p-4"
@@ -92,13 +112,17 @@ export function CustomPanelConfigurationSection({
                     </div>
                     <div className="p-5">
                       <p className="text-xs font-semibold uppercase text-brand">
-                        Configuration example
+                        {isChinese ? "配置示例" : "Configuration example"}
                       </p>
                       <h4 className="mt-2 text-lg font-semibold leading-7 text-foreground">
-                        {configuration.title}
+                        {isChinese
+                          ? `${series}配置方案 ${index + 1}`
+                          : configuration.title}
                       </h4>
                       <p className="mt-2 text-sm leading-6 text-muted">
-                        {configuration.useCase}
+                        {isChinese
+                          ? "用于酒店客房控制与供电面板的项目规划"
+                          : configuration.useCase}
                       </p>
                       <ul className="mt-4 flex flex-wrap gap-2">
                         {configuration.modules.map((module) => (
@@ -106,12 +130,12 @@ export function CustomPanelConfigurationSection({
                             key={module}
                             className="border border-line bg-background px-3 py-2 text-xs font-medium text-foreground"
                           >
-                            {module}
+                            {isChinese ? "可选功能模块" : module}
                           </li>
                         ))}
                       </ul>
                       <p className="mt-4 border-t border-line pt-4 text-xs leading-5 text-muted">
-                        {panelConfigurationCopy.cardNote}
+                        {copy.cardNote}
                       </p>
                     </div>
                   </li>
@@ -124,7 +148,7 @@ export function CustomPanelConfigurationSection({
 
       <div className="mt-10 border-y border-line bg-background px-5 py-6 sm:px-6">
         <p className="max-w-5xl text-sm leading-6 text-muted">
-          {panelConfigurationCopy.disclaimer}
+          {copy.disclaimer}
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <TrackedInquiryLink
@@ -133,7 +157,7 @@ export function CustomPanelConfigurationSection({
             attribution={quoteAttribution}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            {panelConfigurationCopy.primaryCta}
+            {copy.primaryCta}
           </TrackedInquiryLink>
           <TrackedInquiryLink
             href={emailUrl}
@@ -144,7 +168,7 @@ export function CustomPanelConfigurationSection({
             }}
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
           >
-            {panelConfigurationCopy.secondaryCta}
+            {copy.secondaryCta}
           </TrackedInquiryLink>
           <WhatsAppButton
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"

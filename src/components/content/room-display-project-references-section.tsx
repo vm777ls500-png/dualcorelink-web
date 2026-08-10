@@ -17,6 +17,19 @@ type RoomDisplayProjectReferencesSectionProps = {
 export function RoomDisplayProjectReferencesSection({
   locale,
 }: RoomDisplayProjectReferencesSectionProps) {
+  const isChinese = locale === "zh";
+  const copy = isChinese
+    ? {
+        eyebrow: "项目展示参考",
+        title: "客房门牌与房态显示项目参考",
+        subtitle: "用于酒店房号、门铃、服务状态与宾客界面规划的参考形式。",
+        intro: "以下图片展示深色玻璃、拉丝银与拉丝铝等酒店门牌形式，用于讨论外观与界面配置，不代表固定型号或客户背书。",
+        cardLabel: "项目展示参考",
+        disclaimer: "图片仅用于说明酒店门牌与房态显示的项目配置形式。实际文字、图标、功能、材质、尺寸、联网方式、起订量、交期和兼容性均需按项目书面确认。",
+        primaryCta: "讨论客房门牌需求",
+        secondaryCta: "提交门牌定制需求",
+      }
+    : roomDisplayProjectCopy;
   const emailUrl = `mailto:${brand.emails.sales}?subject=${encodeURIComponent(
     "Hotel room signage customization",
   )}`;
@@ -38,16 +51,16 @@ export function RoomDisplayProjectReferencesSection({
     >
       <header className="max-w-4xl">
         <p className="text-sm font-semibold uppercase text-brand">
-          {roomDisplayProjectCopy.eyebrow}
+          {copy.eyebrow}
         </p>
         <h2 className="mt-2 text-3xl font-semibold leading-tight text-foreground">
-          {roomDisplayProjectCopy.title}
+          {copy.title}
         </h2>
         <p className="mt-3 text-lg leading-8 text-foreground">
-          {roomDisplayProjectCopy.subtitle}
+          {copy.subtitle}
         </p>
         <p className="mt-3 leading-7 text-muted">
-          {roomDisplayProjectCopy.intro}
+          {copy.intro}
         </p>
       </header>
 
@@ -68,12 +81,14 @@ export function RoomDisplayProjectReferencesSection({
                   {group.title}
                 </h3>
                 <p className="shrink-0 text-sm text-muted">
-                  {references.length} references
+                  {isChinese
+                    ? `${references.length} 个参考`
+                    : `${references.length} references`}
                 </p>
               </div>
 
               <ul className="mt-5 grid gap-5 sm:grid-cols-2">
-                {references.map((reference) => (
+                {references.map((reference, index) => (
                   <li
                     key={reference.id}
                     className="border border-line bg-surface"
@@ -81,7 +96,11 @@ export function RoomDisplayProjectReferencesSection({
                     <div className="relative aspect-video overflow-hidden border-b border-line bg-background">
                       <Image
                         src={reference.image}
-                        alt={reference.alt}
+                        alt={
+                          isChinese
+                            ? `${group.title}酒店门牌项目参考 ${index + 1}`
+                            : reference.alt
+                        }
                         fill
                         sizes="(max-width: 640px) 100vw, 50vw"
                         className="object-contain p-4"
@@ -89,16 +108,22 @@ export function RoomDisplayProjectReferencesSection({
                     </div>
                     <div className="p-5">
                       <p className="text-xs font-semibold uppercase text-brand">
-                        {roomDisplayProjectCopy.cardLabel}
+                        {copy.cardLabel}
                       </p>
                       <h4 className="mt-2 text-lg font-semibold leading-7 text-foreground">
-                        {reference.title}
+                        {isChinese
+                          ? `酒店客房门牌参考 ${index + 1}`
+                          : reference.title}
                       </h4>
                       <p className="mt-2 text-sm leading-6 text-muted">
-                        {reference.displayType}
+                        {isChinese
+                          ? "房号、门铃与服务状态显示界面"
+                          : reference.displayType}
                       </p>
                       <p className="mt-4 border-t border-line pt-4 text-xs leading-5 text-muted">
-                        {reference.visibleContext}
+                        {isChinese
+                          ? "酒店客房门口显示的项目配置参考"
+                          : reference.visibleContext}
                       </p>
                     </div>
                   </li>
@@ -111,7 +136,7 @@ export function RoomDisplayProjectReferencesSection({
 
       <div className="mt-10 border-y border-line bg-background px-5 py-6 sm:px-6">
         <p className="max-w-5xl text-sm leading-6 text-muted">
-          {roomDisplayProjectCopy.disclaimer}
+          {copy.disclaimer}
         </p>
         <div className="mt-5 flex flex-wrap gap-3">
           <TrackedInquiryLink
@@ -120,7 +145,7 @@ export function RoomDisplayProjectReferencesSection({
             attribution={quoteAttribution}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            {roomDisplayProjectCopy.primaryCta}
+            {copy.primaryCta}
           </TrackedInquiryLink>
           <TrackedInquiryLink
             href={emailUrl}
@@ -131,7 +156,7 @@ export function RoomDisplayProjectReferencesSection({
             }}
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
           >
-            {roomDisplayProjectCopy.secondaryCta}
+            {copy.secondaryCta}
           </TrackedInquiryLink>
           <WhatsAppButton
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"

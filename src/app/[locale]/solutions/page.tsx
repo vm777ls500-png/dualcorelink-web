@@ -16,6 +16,11 @@ import {
   getPublicationHreflang,
 } from "@/lib/localized-publication";
 import {
+  getLocalizedContentTitle,
+  localizeProductCategoryName,
+  localizeReleasedHref,
+} from "@/lib/localized-nonproduct";
+import {
   createBreadcrumbSchema,
   createCollectionPageSchema,
   createSchemaGraph,
@@ -206,9 +211,30 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
     "solution-listing",
     "solutions",
   );
-  if (localizedPage) {
+  if (localizedPage && locale !== "zh") {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
+
+  const isChinese = locale === "zh" && Boolean(localizedPage);
+  const listingEntries = solutionEntries.map((entry) => ({
+    ...entry,
+    title: getLocalizedContentTitle(
+      locale,
+      "solution",
+      entry.slug,
+      entry.title,
+    ),
+    description:
+      getLocalizedPublicationPage(locale, "solution", entry.slug)?.description ??
+      entry.description,
+    categories: entry.categories.map((category) =>
+      localizeProductCategoryName(category, locale),
+    ),
+    products: entry.products.map(([name, slug]) => [
+      getLocalizedContentTitle(locale, "product", slug, name),
+      slug,
+    ] as const),
+  }));
 
   const path = buildLocalizedPath(locale, "solutions");
   const url = buildSiteUrl(path);
@@ -219,13 +245,14 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
     createCollectionPageSchema({
       id: `${url}#collection`,
       url,
-      name: "DUALCORE LINK Smart Hotel Solutions",
+      name: localizedPage?.title ?? "DUALCORE LINK Smart Hotel Solutions",
       description:
+        localizedPage?.metaDescription ??
         "Smart hotel room control, automation, RCU, display, delivery robot, and OEM/ODM solution directions for B2B projects.",
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
       { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
-      { name: "Solutions", url },
+      { name: localizedPage?.content.breadcrumbLabel ?? "Solutions", url },
     ]),
   ]);
 
@@ -236,17 +263,15 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
         <header className="solutions-system-hero mb-10 flex flex-col justify-between gap-5 border border-line p-6 lg:flex-row lg:items-end">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase text-brand">
-              B2B solution planning
+              {localizedPage?.content.eyebrow ?? "B2B solution planning"}
             </p>
             <h1 className="mt-3 text-4xl font-semibold leading-tight text-foreground">
-              Smart Hotel Room Control & Automation Solutions
+              {localizedPage?.content.h1 ??
+                "Smart Hotel Room Control & Automation Solutions"}
             </h1>
             <p className="mt-4 leading-7 text-muted">
-              Compare system-level paths for hotel room control, automation,
-              RCU planning, smart displays, service workflows, and OEM/ODM
-              programs. Each solution helps hotel owners, contractors, and
-              integrators move from project requirements to an appropriate
-              product mix and inquiry.
+              {localizedPage?.content.introduction ??
+                "Compare system-level paths for hotel room control, automation, RCU planning, smart displays, service workflows, and OEM/ODM programs. Each solution helps hotel owners, contractors, and integrators move from project requirements to an appropriate product mix and inquiry."}
             </p>
           </div>
           <div className="solutions-hero-actions flex flex-wrap gap-3">
@@ -254,7 +279,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
               href={`/${locale}/contact/#get-a-quote`}
               className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
-              Send Inquiry
+              {isChinese ? "提交项目询盘" : "Send Inquiry"}
             </Link>
             <a
               href={whatsappUrl}
@@ -266,22 +291,22 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
         </header>
 
         <div className="solutions-audience-strip mb-10 grid gap-3 border-y border-line py-5 text-sm font-semibold text-muted sm:grid-cols-2 lg:grid-cols-5">
-          <p>Hotel owners</p>
-          <p>Contractors</p>
-          <p>System integrators</p>
-          <p>Distributors</p>
-          <p>OEM/ODM buyers</p>
+          <p>{isChinese ? "酒店业主" : "Hotel owners"}</p>
+          <p>{isChinese ? "承包商" : "Contractors"}</p>
+          <p>{isChinese ? "系统集成商" : "System integrators"}</p>
+          <p>{isChinese ? "分销商" : "Distributors"}</p>
+          <p>{isChinese ? "OEM/ODM 买家" : "OEM/ODM buyers"}</p>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
-          {solutionEntries.map((entry) => (
+          {listingEntries.map((entry) => (
             <section
               key={entry.slug}
               id={entry.slug}
               className="solution-list-card border border-line bg-surface p-6"
             >
               <p className="text-xs font-semibold uppercase text-brand">
-                Solution
+                {isChinese ? "解决方案" : "Solution"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-foreground">
                 {entry.title}
@@ -290,7 +315,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               <div className="mt-5 border-t border-line pt-5">
                 <p className="text-sm font-semibold text-foreground">
-                  Suitable project type
+                  {isChinese ? "适用项目类型" : "Suitable project type"}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-muted">
                   {entry.projectType}
@@ -299,7 +324,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               <div className="mt-5">
                 <p className="text-sm font-semibold text-foreground">
-                  Recommended product categories
+                  {isChinese ? "推荐产品类别" : "Recommended product categories"}
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {entry.categories.map((category) => (
@@ -315,7 +340,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               <div className="mt-5">
                 <p className="text-sm font-semibold text-foreground">
-                  Recommended products
+                  {isChinese ? "推荐产品" : "Recommended products"}
                 </p>
                 <ul className="mt-3 grid gap-2 text-sm text-muted">
                   {entry.products.map(([name, slug]) => (
@@ -333,14 +358,14 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               {entry.slug === "rcu-room-control-solution" ? (
                 <p className="mt-5 border-s-2 border-brand ps-4 text-sm leading-6 text-muted">
-                  Need the technical basics first? Review{" "}
+                  {isChinese ? "需要先了解技术基础？请阅读" : "Need the technical basics first? Review"}{" "}
                   <Link
                     href={`/${locale}/resources/what-is-hotel-rcu-room-control-system/`}
                     className="font-semibold text-brand underline decoration-brand/40 underline-offset-4"
                   >
-                    hotel RCU room control fundamentals
+                    {isChinese ? "酒店 RCU 客房控制基础指南" : "hotel RCU room control fundamentals"}
                   </Link>{" "}
-                  before defining the product and integration scope.
+                  {isChinese ? "，再确定产品和集成范围。" : "before defining the product and integration scope."}
                 </p>
               ) : null}
 
@@ -349,13 +374,13 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
                   href={`/${locale}/solutions/${entry.slug}/`}
                   className="solution-card-link inline-flex min-h-10 items-center justify-center border border-line px-4 py-2 text-sm font-semibold text-brand"
                 >
-                  View Solution
+                  {isChinese ? "查看解决方案" : "View Solution"}
                 </Link>
                 <Link
                   href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-10 items-center justify-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white"
                 >
-                  Get a Quote
+                  {isChinese ? "获取报价" : "Get a Quote"}
                 </Link>
               </div>
             </section>
@@ -366,21 +391,22 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-brand">
-                Application scenarios
+                {isChinese ? "应用场景" : "Application scenarios"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                Match solution planning with real project spaces
+                {isChinese ? "让解决方案规划对应真实项目空间" : "Match solution planning with real project spaces"}
               </h2>
               <p className="mt-3 leading-7 text-muted">
-                Explore hotel guest room automation, smart apartment control,
-                hotel public area automation, and system integration scenarios.
+                {isChinese
+                  ? "查看酒店客房自动化、智能公寓控制、酒店公共区域自动化和系统集成场景。"
+                  : "Explore hotel guest room automation, smart apartment control, hotel public area automation, and system integration scenarios."}
               </p>
             </div>
             <Link
-              href={`/${locale}/application-scenarios/`}
+              href={localizeReleasedHref("/en/application-scenarios/", locale)}
               className="inline-flex min-h-11 shrink-0 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
             >
-              View Application Scenarios
+              {isChinese ? "查看应用场景" : "View Application Scenarios"}
             </Link>
           </div>
         </section>
@@ -389,29 +415,29 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-brand">
-                Case studies
+                {isChinese ? "案例参考" : "Case studies"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                See Anonymous Project References
+                {isChinese ? "查看匿名项目参考" : "See Anonymous Project References"}
               </h2>
               <p className="mt-3 leading-7 text-muted">
-                Review practical project examples for hotel room control,
-                serviced apartment automation, and OEM/ODM smart panel
-                customization.
+                {isChinese
+                  ? "查看酒店客房控制、服务式公寓自动化和 OEM/ODM 智能面板定制的项目参考。"
+                  : "Review practical project examples for hotel room control, serviced apartment automation, and OEM/ODM smart panel customization."}
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Link
-                href={`/${locale}/case-studies/`}
+                href={localizeReleasedHref("/en/case-studies/", locale)}
                 className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
-                View Case Studies
+                {isChinese ? "查看案例" : "View Case Studies"}
               </Link>
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
                 className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
               >
-                Discuss Your Project
+                {isChinese ? "讨论项目" : "Discuss Your Project"}
               </Link>
             </div>
           </div>
@@ -421,10 +447,10 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-white/70">
-                Project consultation
+                {isChinese ? "项目咨询" : "Project consultation"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold">
-                Build a product mix for your hotel automation project.
+                {isChinese ? "为酒店自动化项目规划产品组合。" : "Build a product mix for your hotel automation project."}
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -432,13 +458,13 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
                 href={`/${locale}/products/`}
                 className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
               >
-                Explore Products
+                {isChinese ? "浏览产品" : "Explore Products"}
               </Link>
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
                 className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
               >
-                Send Inquiry
+                {isChinese ? "提交询盘" : "Send Inquiry"}
               </Link>
               <a
                 href={whatsappUrl}

@@ -5,9 +5,13 @@ import { EmptyState } from "@/components/content/empty-state";
 import { PageHeading } from "@/components/content/page-heading";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { isLocale } from "@/config/i18n";
-import { getRegionLandingPage } from "@/config/region-landing-pages";
+import {
+  getRegionLandingPage,
+  regionLandingPages,
+} from "@/config/region-landing-pages";
 import {
   buildLocalizedPath,
+  buildSiteUrl,
   createMetadata,
 } from "@/lib/seo";
 import { stripHtml } from "@/lib/text";
@@ -17,6 +21,13 @@ import {
   getLocalizedPublicationPage,
   getPublicationHreflang,
 } from "@/lib/localized-publication";
+import { localizeReleasedHref } from "@/lib/localized-nonproduct";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  createBreadcrumbSchema,
+  createCollectionPageSchema,
+  createSchemaGraph,
+} from "@/lib/schema";
 
 type RegionsPageProps = { params: Promise<{ locale: string }> };
 
@@ -60,18 +71,57 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
     "region-listing",
     "regions",
   );
-  if (localizedPage) {
+  if (localizedPage && locale !== "zh") {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
-  const regions = await regionRepository.list(locale);
+  const isChinese = locale === "zh" && Boolean(localizedPage);
+  const regions = isChinese
+    ? regionLandingPages.map((region, index) => {
+        const page = getLocalizedPublicationPage(
+          locale,
+          "region",
+          region.slug,
+        );
+        return {
+          id: -(index + 1),
+          slug: region.slug,
+          regionType: "区域",
+          marketMaturity: "项目市场",
+          title: page?.title ?? region.h1,
+          marketSummary: page?.description ?? region.metaDescription,
+          excerpt: page?.description ?? region.metaDescription,
+        };
+      })
+    : await regionRepository.list(locale);
+  const path = buildLocalizedPath(locale, "regions");
+  const url = buildSiteUrl(path);
+  const graph = createSchemaGraph([
+    createCollectionPageSchema({
+      id: `${url}#collection`,
+      url,
+      name: localizedPage?.title ?? "DUALCORE LINK Regional Markets",
+      description:
+        localizedPage?.metaDescription ??
+        "Smart home requirements, certifications, and project priorities across the Middle East and Southeast Asia.",
+    }),
+    createBreadcrumbSchema(`${url}#breadcrumb`, [
+      { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
+      { name: localizedPage?.content.breadcrumbLabel ?? "Regions", url },
+    ]),
+  ]);
 
   return (
-    <main className="regions-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
+    <>
+      <JsonLd graph={graph} />
+      <main className="regions-page-shell mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
       <div className="region-market-hero border border-line p-6">
         <PageHeading
-          eyebrow="Markets"
-          title="Regional smart home intelligence"
-          description="Local demand, technical conditions, certification context, and recommended product strategies."
+          eyebrow={localizedPage?.content.eyebrow ?? "Markets"}
+          title={localizedPage?.content.h1 ?? "Regional smart home intelligence"}
+          description={
+            localizedPage?.content.introduction ??
+            "Local demand, technical conditions, certification context, and recommended product strategies."
+          }
         />
       </div>
       {regions.length === 0 ? (
@@ -108,15 +158,15 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
       )}
       <section className="region-market-quote mt-10 border border-line bg-surface p-6">
         <p className="text-sm font-semibold uppercase text-brand">
-          Target markets
+          {isChinese ? "目标市场" : "Target markets"}
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-foreground">
-          Regional Project Inquiry Support
+          {isChinese ? "区域项目询盘支持" : "Regional Project Inquiry Support"}
         </h2>
         <p className="mt-3 max-w-4xl leading-7 text-muted">
-          We support smart hotel and OEM/ODM project inquiries from the Middle
-          East and Southeast Asia, including product selection, panel
-          customization, catalog sharing, and controlled document requests.
+          {isChinese
+            ? "我们支持来自中东和东南亚的智能酒店及 OEM/ODM 项目询盘，包括产品选型、面板定制、目录共享与受控资料申请。"
+            : "We support smart hotel and OEM/ODM project inquiries from the Middle East and Southeast Asia, including product selection, panel customization, catalog sharing, and controlled document requests."}
         </p>
         <ul className="mt-5 flex flex-wrap gap-2">
           {plannedMarkets.map((market) => (
@@ -126,7 +176,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
                   href={`/${locale}/regions/${market.slug}/`}
                   className="region-entry-card inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-brand hover:border-brand"
                 >
-                  {market.title}
+                  {getLocalizedPublicationPage(locale, "region", market.slug)
+                    ?.title ?? market.title}
                 </Link>
               ) : (
                 <span className="region-entry-card region-entry-card-muted inline-flex min-h-10 items-center border border-line bg-background px-3 py-2 text-sm font-semibold text-muted">
@@ -137,26 +188,26 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
           ))}
         </ul>
         <p className="mt-5 max-w-4xl text-sm leading-6 text-muted">
-          For regional projects, share your country, hotel room type, voltage
-          and frequency requirements, protocol preference, estimated quantity,
-          and required documents so our team can prepare the right product
-          direction.
+          {isChinese
+            ? "区域项目请提供国家、酒店房型、电压与频率、协议偏好、预计数量和所需资料，以便团队准备合适的产品方向。"
+            : "For regional projects, share your country, hotel room type, voltage and frequency requirements, protocol preference, estimated quantity, and required documents so our team can prepare the right product direction."}
         </p>
         <div className="region-market-actions mt-6 flex flex-wrap gap-3">
           <Link
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            Discuss Regional Project
+            {isChinese ? "讨论区域项目" : "Discuss Regional Project"}
           </Link>
           <Link
-            href={`/${locale}/downloads/`}
+            href={localizeReleasedHref("/en/downloads/", locale)}
             className="inline-flex min-h-11 items-center justify-center border border-line bg-background px-5 py-3 font-semibold text-brand"
           >
-            View Catalogs
+            {isChinese ? "查看产品目录" : "View Catalogs"}
           </Link>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

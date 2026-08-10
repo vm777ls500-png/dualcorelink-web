@@ -10,7 +10,7 @@ import {
 } from "@/components/content/resource-conversion-sections";
 import { JsonLd } from "@/components/seo/json-ld";
 import { brand, createWhatsAppUrl } from "@/config/brand";
-import { isLocale } from "@/config/i18n";
+import { isLocale, type Locale } from "@/config/i18n";
 import {
   getResourceBySlug,
   resources,
@@ -35,6 +35,7 @@ import {
   getPublicationHreflang,
   localizedPublicationPages,
 } from "@/lib/localized-publication";
+import { localizeResourceGuide } from "@/lib/localized-nonproduct";
 
 type ResourcePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -120,7 +121,7 @@ function ResourceJsonLd({
   locale,
   resource,
 }: {
-  locale: "en";
+  locale: Locale;
   resource: ResourceGuide;
 }) {
   const path = buildLocalizedPath(locale, `resources/${resource.slug}`);
@@ -154,16 +155,20 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
   const localizedPage = getLocalizedPublicationPage(locale, "resource", slug);
-  if (localizedPage) {
+  if (localizedPage && locale !== "zh") {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
-  if (locale !== "en") notFound();
-  const resource = getResourceBySlug(slug);
-  if (!resource) notFound();
+  if (locale !== "en" && locale !== "zh") notFound();
+  const sourceResource = getResourceBySlug(slug);
+  if (!sourceResource) notFound();
+  const resource = localizedPage
+    ? localizeResourceGuide(sourceResource, localizedPage)
+    : sourceResource;
+  const isChinese = locale === "zh" && Boolean(localizedPage);
 
   const whatsappUrl = createWhatsAppUrl(resource.cta.whatsappMessage);
   const resourceAttribution = {
-    sourcePage: `/en/resources/${resource.slug}/`,
+    sourcePage: `/${locale}/resources/${resource.slug}/`,
     contentType: "resource" as const,
     contentSlug: resource.slug,
     sourceTitle: resource.h1,
@@ -174,7 +179,17 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   };
   const continueReading =
     resource.conversion?.continueReadingSlugs
-      .map((relatedSlug) => getResourceBySlug(relatedSlug))
+      .map((relatedSlug) => {
+        const related = getResourceBySlug(relatedSlug);
+        const relatedPage = getLocalizedPublicationPage(
+          locale,
+          "resource",
+          relatedSlug,
+        );
+        return related && relatedPage
+          ? localizeResourceGuide(related, relatedPage)
+          : related;
+      })
       .filter(
         (relatedResource): relatedResource is ResourceGuide =>
           relatedResource !== undefined && relatedResource.slug !== resource.slug,
@@ -182,15 +197,15 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
   return (
     <>
-      <ResourceJsonLd locale="en" resource={resource} />
+      <ResourceJsonLd locale={locale} resource={resource} />
       <article className="resource-detail-page">
         <section className="border-b border-line bg-surface">
           <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-12">
             <Link
-              href="/en/resources/"
+              href={`/${locale}/resources/`}
               className="text-sm font-semibold text-brand hover:text-foreground"
             >
-              Back to Resources
+              {isChinese ? "返回资源中心" : "Back to Resources"}
             </Link>
             <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold uppercase text-brand">
               <span className="border border-line bg-background px-2 py-1">
@@ -203,7 +218,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                 {resource.readingTime}
               </span>
               <span className="border border-line bg-background px-2 py-1">
-                Last reviewed {resource.lastReviewed}
+                {isChinese ? "最近审核" : "Last reviewed"} {resource.lastReviewed}
               </span>
             </div>
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
@@ -214,7 +229,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <TrackedInquiryLink
-                href={buildQuoteHref("en", heroQuoteAttribution)}
+                href={buildQuoteHref(locale, heroQuoteAttribution)}
                 channel="form"
                 attribution={heroQuoteAttribution}
                 className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
@@ -241,7 +256,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
             {resource.answerCapsule ? (
               <section className="border border-line bg-background p-6">
                 <p className="text-sm font-semibold uppercase text-brand">
-                  Direct answer
+                  {isChinese ? "直接回答" : "Direct answer"}
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold leading-8 text-foreground">
                   {resource.answerCapsule.heading}
@@ -272,21 +287,21 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
 
             <section className="border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                Overview
+                {isChinese ? "指南概览" : "Overview"}
               </p>
               <p className="mt-3 leading-8 text-muted">
-                This guide is designed for {resource.audience.join(", ")} teams
-                preparing early product selection, project quotation, and
-                document review for hotel room control and automation projects.
+                {isChinese
+                  ? `本指南面向${resource.audience.join("、")}，用于酒店客控与自动化项目的前期选型、报价准备和资料核对。`
+                  : `This guide is designed for ${resource.audience.join(", ")} teams preparing early product selection, project quotation, and document review for hotel room control and automation projects.`}
               </p>
             </section>
 
             <nav
-              aria-label="Table of contents"
+              aria-label={isChinese ? "目录" : "Table of contents"}
               className="border border-line bg-background p-6"
             >
               <p className="text-sm font-semibold uppercase text-brand">
-                Table of contents
+                {isChinese ? "目录" : "Table of contents"}
               </p>
               <ol className="mt-4 grid gap-2 text-sm leading-6">
                 {resource.sections.map((section, index) => (
@@ -393,14 +408,33 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                   <ResourceMidArticleCta
                     resource={resource}
                     continueReading={continueReading}
+                    locale={locale}
                   />
                 ) : null}
               </Fragment>
             ))}
 
+            {localizedPage ? (
+              <section className="resource-localized-faq border-t border-line pt-8">
+                <h2 className="text-2xl font-semibold text-foreground">
+                  常见问题
+                </h2>
+                <div className="mt-5 space-y-3">
+                  {localizedPage.content.faqs.map((faq) => (
+                    <details key={faq.question} className="border border-line bg-surface p-5">
+                      <summary className="cursor-pointer font-semibold text-foreground">
+                        {faq.question}
+                      </summary>
+                      <p className="mt-4 leading-7 text-muted">{faq.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
             <section className="border border-line bg-surface p-6">
               <h2 className="text-2xl font-semibold text-foreground">
-                Safe B2B scope
+                {isChinese ? "安全的 B2B 信息边界" : "Safe B2B scope"}
               </h2>
               <ul className="mt-4 grid gap-2 text-sm leading-6 text-muted sm:grid-cols-2">
                 {resource.safeClaims.map((claim) => (
@@ -413,6 +447,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               <ResourceConversionSections
                 resource={resource}
                 continueReading={continueReading}
+                locale={locale}
               />
             ) : (
               <section className="border border-line bg-foreground p-7 text-white sm:p-8">
@@ -427,7 +462,7 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <TrackedInquiryLink
-                    href={buildQuoteHref("en", {
+                    href={buildQuoteHref(locale, {
                       ...resourceAttribution,
                       ctaPosition: "resource_fallback_bottom",
                     })}
@@ -465,27 +500,35 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
           <aside className="space-y-5">
             <section className="border border-line bg-surface p-5">
               <h2 className="text-xl font-semibold text-foreground">
-                Guide focus
+                {isChinese ? "指南重点" : "Guide focus"}
               </h2>
               <dl className="mt-4 space-y-4 text-sm">
                 <div>
-                  <dt className="font-semibold text-muted">Topic</dt>
+                  <dt className="font-semibold text-muted">
+                    {isChinese ? "主题" : "Topic"}
+                  </dt>
                   <dd className="mt-1 text-foreground">{resource.topic}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-muted">Reading time</dt>
+                  <dt className="font-semibold text-muted">
+                    {isChinese ? "阅读时间" : "Reading time"}
+                  </dt>
                   <dd className="mt-1 text-foreground">
                     {resource.readingTime}
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-muted">Primary keyword</dt>
+                  <dt className="font-semibold text-muted">
+                    {isChinese ? "主要关键词" : "Primary keyword"}
+                  </dt>
                   <dd className="mt-1 text-foreground">
                     {resource.primaryKeyword}
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-muted">Secondary topics</dt>
+                  <dt className="font-semibold text-muted">
+                    {isChinese ? "相关主题" : "Secondary topics"}
+                  </dt>
                   <dd className="mt-2 flex flex-wrap gap-2">
                     {resource.secondaryKeywords.map((keyword) => (
                       <span
@@ -513,11 +556,11 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
               </>
             ) : null}
             <LinkList
-              title="Related regions"
+              title={isChinese ? "相关区域" : "Related regions"}
               links={resource.relatedRegions}
             />
             <LinkList
-              title="Downloads and documents"
+              title={isChinese ? "下载与资料" : "Downloads and documents"}
               links={resource.relatedDownloads}
             />
           </aside>

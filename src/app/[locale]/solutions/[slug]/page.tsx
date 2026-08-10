@@ -32,6 +32,8 @@ import {
   getPublicationHreflang,
   localizedPublicationPages,
 } from "@/lib/localized-publication";
+import type { LocalizedPublicationPage } from "@/lib/localized-publication";
+import { localizeSolutionDetail } from "@/lib/localized-nonproduct";
 
 type SolutionPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -189,23 +191,24 @@ function RecommendedProducts({
   products: RelatedContentModel[];
 }) {
   if (!products.length) return null;
+  const isChinese = locale === "zh";
 
   return (
     <section className="solution-recommended-panel border-t border-line pt-8">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="text-sm font-semibold uppercase text-brand">
-            Product mix
+            {isChinese ? "产品组合" : "Product mix"}
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-foreground">
-            Recommended Products
+            {isChinese ? "推荐产品" : "Recommended Products"}
           </h2>
         </div>
         <Link
           href={`/${locale}/products/`}
           className="solution-card-link inline-flex min-h-10 w-fit items-center border border-line px-4 py-2 text-sm font-semibold text-brand"
         >
-          Explore Products
+          {isChinese ? "浏览产品" : "Explore Products"}
         </Link>
       </div>
       <ul className="mt-5 grid gap-4 md:grid-cols-2">
@@ -223,7 +226,7 @@ function RecommendedProducts({
               href={`/${locale}/products/${product.slug}/`}
               className="solution-card-link mt-5 inline-flex min-h-10 items-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white"
             >
-              View Product
+              {isChinese ? "查看产品" : "View Product"}
             </Link>
           </li>
         ))}
@@ -235,44 +238,91 @@ function RecommendedProducts({
 function SolutionSnapshot({
   productCount,
   summary,
+  locale,
 }: {
   productCount: number;
   summary: string;
+  locale: Locale;
 }) {
+  const isChinese = locale === "zh";
   const suitableFor =
     summary.split(/[.;]/)[0]?.trim() || "B2B hotel projects";
 
   return (
     <aside className="solution-snapshot-panel border border-line bg-surface p-6">
       <p className="text-sm font-semibold uppercase text-brand">
-        Solution snapshot
+        {isChinese ? "方案概览" : "Solution snapshot"}
       </p>
       <dl className="mt-5 grid gap-4">
         <div>
           <dt className="text-xs font-semibold uppercase text-muted">
-            Suitable for
+            {isChinese ? "适用范围" : "Suitable for"}
           </dt>
           <dd className="mt-1 leading-7 text-foreground">{suitableFor}</dd>
         </div>
         <div>
           <dt className="text-xs font-semibold uppercase text-muted">
-            Product mix
+            {isChinese ? "产品组合" : "Product mix"}
           </dt>
           <dd className="mt-1 leading-7 text-foreground">
-            {productCount} recommended products for solution planning
+            {isChinese
+              ? `${productCount} 项推荐产品用于方案规划`
+              : `${productCount} recommended products for solution planning`}
           </dd>
         </div>
         <div>
           <dt className="text-xs font-semibold uppercase text-muted">
-            Inquiry focus
+            {isChinese ? "询盘重点" : "Inquiry focus"}
           </dt>
           <dd className="mt-1 leading-7 text-foreground">
-            Room type, target market, quantity, integration needs, and OEM/ODM
-            options
+            {isChinese
+              ? "房型、目标市场、数量、集成需求与 OEM/ODM 选项"
+              : "Room type, target market, quantity, integration needs, and OEM/ODM options"}
           </dd>
         </div>
       </dl>
     </aside>
+  );
+}
+
+function LocalizedSolutionEvidence({
+  page,
+}: {
+  page: LocalizedPublicationPage;
+}) {
+  return (
+    <>
+      {page.specifications.length > 0 ? (
+        <section className="solution-localized-specifications border-t border-line pt-8">
+          <h2 className="text-2xl font-semibold text-foreground">
+            项目规格说明
+          </h2>
+          <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+            {page.specifications.map((item) => (
+              <div key={item.label} className="border border-line bg-surface p-5">
+                <dt className="text-sm font-semibold text-brand">
+                  {item.label}
+                </dt>
+                <dd className="mt-2 leading-7 text-muted">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ) : null}
+      <section className="solution-localized-faq border-t border-line pt-8">
+        <h2 className="text-2xl font-semibold text-foreground">常见问题</h2>
+        <div className="mt-5 space-y-3">
+          {page.content.faqs.map((faq) => (
+            <details key={faq.question} className="border border-line bg-surface p-5">
+              <summary className="cursor-pointer font-semibold text-foreground">
+                {faq.question}
+              </summary>
+              <p className="mt-4 leading-7 text-muted">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -334,15 +384,22 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
     notFound();
   }
   const localizedPage = getLocalizedPublicationPage(locale, "solution", slug);
-  if (localizedPage) {
+  if (localizedPage && locale !== "zh") {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
-  const solution = await solutionRepository.getBySlug(locale, slug);
+  const sourceSolution = await solutionRepository.getBySlug(
+    localizedPage ? "en" : locale,
+    slug,
+  );
 
-  if (!solution) {
+  if (!sourceSolution) {
     notFound();
   }
+  const solution = localizedPage
+    ? localizeSolutionDetail(sourceSolution, localizedPage)
+    : sourceSolution;
+  const isChinese = locale === "zh" && Boolean(localizedPage);
   const path = buildLocalizedPath(locale, `solutions/${slug}`);
   const url = buildSiteUrl(path);
   const solutionTitle = stripHtml(solution.title);
@@ -386,9 +443,11 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               href={`/${locale}/solutions/`}
               className="solution-back-link text-sm font-semibold text-brand"
             >
-              Back to Solutions
+                {isChinese ? "返回解决方案" : "Back to Solutions"}
             </Link>
-            <p className="text-sm font-semibold uppercase text-brand">Solution</p>
+            <p className="text-sm font-semibold uppercase text-brand">
+              {isChinese ? "解决方案" : "Solution"}
+            </p>
             <h1 className="mt-3 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
               {stripHtml(solution.title)}
             </h1>
@@ -407,13 +466,13 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 attribution={heroQuoteAttribution}
                 className="solution-detail-primary-link inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
-                Discuss This Project
+                {isChinese ? "讨论该项目" : "Discuss This Project"}
               </TrackedInquiryLink>
               <Link
                 href={`/${locale}/products/`}
                 className="solution-detail-primary-link inline-flex min-h-11 items-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
               >
-                Explore Products
+                {isChinese ? "浏览产品" : "Explore Products"}
               </Link>
             </div>
           </header>
@@ -428,29 +487,34 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             <SolutionSnapshot
               productCount={solution.relatedProducts.length}
               summary={stripHtml(solution.summary || solution.excerpt)}
+              locale={locale}
             />
           )}
         </div>
         <div className="solution-detail-content mx-auto max-w-7xl space-y-10 px-5 pb-14 sm:px-8 lg:px-12">
-          <ContentSection title="Customer challenges" content={solution.customerChallenges} />
-          <ContentSection title="Solution architecture" content={solution.architecture} />
-          <ContentSection title="Key benefits" content={solution.keyBenefitsText} />
-          <ContentSection title="Deployment process" content={solution.deploymentProcess} />
-          <ContentSection title="Supported protocols" content={solution.supportedProtocolsSummary} />
-          <ContentSection title="Integration notes" content={solution.integrationNotes} />
-          <ContentSection title="Compatibility" content={solution.compatibilityNotes} />
-          <ContentSection title="Known limitations" content={solution.knownLimitations} />
+          <ContentSection title={isChinese ? "客户挑战" : "Customer challenges"} content={solution.customerChallenges} />
+          <ContentSection title={isChinese ? "解决方案架构" : "Solution architecture"} content={solution.architecture} />
+          <ContentSection title={isChinese ? "核心能力与价值" : "Key benefits"} content={solution.keyBenefitsText} />
+          <ContentSection title={isChinese ? "实施流程" : "Deployment process"} content={solution.deploymentProcess} />
+          <ContentSection title={isChinese ? "协议与项目条件" : "Supported protocols"} content={solution.supportedProtocolsSummary} />
+          <ContentSection title={isChinese ? "集成说明" : "Integration notes"} content={solution.integrationNotes} />
+          <ContentSection title={isChinese ? "兼容与验证" : "Compatibility"} content={solution.compatibilityNotes} />
+          <ContentSection title={isChinese ? "已知边界" : "Known limitations"} content={solution.knownLimitations} />
           <RecommendedProducts
             locale={locale}
             products={solution.relatedProducts}
           />
-          {locale === "en" && slug === "hotel-guest-room-control-solution" ? (
+          {slug === "hotel-guest-room-control-solution" ? (
             <RoomDisplayProjectReferencesSection locale={locale} />
           ) : null}
-          {locale === "en" && slug === "oem-odm-custom-panel-solution" ? (
+          {slug === "oem-odm-custom-panel-solution" ? (
             <CustomPanelConfigurationSection locale={locale} />
           ) : null}
-          <FallbackContent content={solution.content} />
+          {localizedPage ? (
+            <LocalizedSolutionEvidence page={localizedPage} />
+          ) : (
+            <FallbackContent content={solution.content} />
+          )}
         </div>
         <div className="solution-detail-quote">
           <ContactCta

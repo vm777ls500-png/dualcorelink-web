@@ -8,7 +8,7 @@ import { MediaFrame } from "@/components/content/media-frame";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import { JsonLd } from "@/components/seo/json-ld";
 import { brand, createWhatsAppUrl } from "@/config/brand";
-import { isLocale, locales } from "@/config/i18n";
+import { isLocale, locales, type Locale } from "@/config/i18n";
 import {
   getRegionLandingPage,
   regionLandingPages,
@@ -22,6 +22,7 @@ import {
 } from "@/lib/seo";
 import {
   createBreadcrumbSchema,
+  createCollectionPageSchema,
   createCreativeWorkSchema,
   createSchemaGraph,
 } from "@/lib/schema";
@@ -32,7 +33,12 @@ import {
   getLocalizedPublicationPage,
   getPublicationHreflang,
   localizedPublicationPages,
+  type LocalizedPublicationPage,
 } from "@/lib/localized-publication";
+import {
+  localizeRegionLandingPage,
+  localizeReleasedHref,
+} from "@/lib/localized-nonproduct";
 
 type RegionPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -135,16 +141,25 @@ function RegionListCard({
 function StaticRegionPage({
   locale,
   region,
+  localizedPage,
 }: {
-  locale: "en";
+  locale: Locale;
   region: RegionLandingPage;
+  localizedPage?: LocalizedPublicationPage;
 }) {
+  const isChinese = locale === "zh";
   const path = buildLocalizedPath(locale, `regions/${region.slug}`);
   const url = buildSiteUrl(path);
   const whatsappUrl = createWhatsAppUrl(
     `Hello ${brand.name}, I would like to discuss a ${region.market} regional project inquiry.`,
   );
   const graph = createSchemaGraph([
+    createCollectionPageSchema({
+      id: `${url}#collection`,
+      url,
+      name: region.h1,
+      description: region.metaDescription,
+    }),
     createCreativeWorkSchema({
       id: `${url}#region`,
       url,
@@ -172,10 +187,10 @@ function StaticRegionPage({
                 href={`/${locale}/regions/`}
                 className="text-sm font-semibold text-white/70 hover:text-white"
               >
-                Back to Regions
+                {isChinese ? "返回区域页面" : "Back to Regions"}
               </Link>
               <p className="mt-6 text-sm font-semibold uppercase text-brand">
-                Regional inquiry support
+                {isChinese ? "区域项目支持" : "Regional inquiry support"}
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-tight sm:text-5xl">
                 {region.h1}
@@ -191,7 +206,7 @@ function StaticRegionPage({
                   {region.primaryCta}
                 </Link>
                 <Link
-                  href={`/${locale}/downloads/`}
+                  href={localizeReleasedHref("/en/downloads/", locale)}
                   className="inline-flex min-h-11 items-center justify-center border border-white/50 px-5 py-3 font-semibold text-white"
                 >
                   {region.secondaryCta}
@@ -206,7 +221,7 @@ function StaticRegionPage({
             </header>
             <aside className="region-market-snapshot border border-white/15 bg-white/5 p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                Target buyers
+                {isChinese ? "目标买家" : "Target buyers"}
               </p>
               <ul className="mt-5 grid gap-3 text-sm leading-6 text-white/75">
                 {region.buyerTypes.map((buyer) => (
@@ -221,7 +236,7 @@ function StaticRegionPage({
           {region.answerCapsule ? (
             <section className="region-market-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                Project answer
+                {isChinese ? "项目要点" : "Project answer"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold leading-8 text-foreground">
                 {region.answerCapsule.heading}
@@ -253,14 +268,14 @@ function StaticRegionPage({
               region.answerCapsule ? "mt-8" : ""
             }`}
           >
-            <RegionTextCard title="Regional project needs">
+            <RegionTextCard title={isChinese ? "区域项目需求" : "Regional project needs"}>
               <p>{region.regionalNeeds}</p>
             </RegionTextCard>
-            <RegionTextCard title="Catalog and document support">
+            <RegionTextCard title={isChinese ? "目录与资料支持" : "Catalog and document support"}>
               <p>{region.catalogNote}</p>
               <p className="mt-4">{region.documentSupport}</p>
               <Link
-                href={`/${locale}/downloads/`}
+                href={localizeReleasedHref("/en/downloads/", locale)}
                 className="mt-5 inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 text-sm font-semibold text-white"
               >
                 {region.secondaryCta}
@@ -270,52 +285,76 @@ function StaticRegionPage({
 
           <section className="mt-8 grid gap-6 lg:grid-cols-3">
             <RegionListCard
-              title="Recommended product categories"
+              title={isChinese ? "推荐产品类别" : "Recommended product categories"}
               items={region.recommendedCategories}
             />
             <RegionListCard
-              title="Recommended solutions"
+              title={isChinese ? "推荐解决方案" : "Recommended solutions"}
               items={region.recommendedSolutions}
             />
             <RegionListCard
-              title="Inquiry checklist"
+              title={isChinese ? "询盘信息清单" : "Inquiry checklist"}
               items={region.inquiryChecklist}
             />
           </section>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <RegionTextCard title="Product selection for regional buyers">
+            <RegionTextCard title={isChinese ? "区域买家产品选型" : "Product selection for regional buyers"}>
               <p>{region.productSelection}</p>
             </RegionTextCard>
-            <RegionTextCard title="Hotel room and automation planning">
+            <RegionTextCard title={isChinese ? "酒店客房与自动化规划" : "Hotel room and automation planning"}>
               <p>{region.solutionPlanning}</p>
             </RegionTextCard>
           </div>
 
           <section className="region-market-panel mt-8 border border-line bg-background p-6">
             <h2 className="text-2xl font-semibold text-foreground">
-              OEM/ODM customization
+              {isChinese ? "OEM/ODM 定制" : "OEM/ODM customization"}
             </h2>
             <p className="mt-4 max-w-4xl leading-8 text-muted">
               {region.customization}
             </p>
           </section>
 
+          {localizedPage?.content.relatedLinks.length ? (
+            <section className="region-related-links mt-8 border border-line bg-surface p-6">
+              <h2 className="text-2xl font-semibold text-foreground">
+                相关产品与解决方案
+              </h2>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {localizedPage.content.relatedLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="border border-line bg-background p-5 hover:border-brand"
+                  >
+                    <h3 className="font-semibold text-foreground">
+                      {link.label}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-muted">
+                      {link.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
           <section className="region-market-panel region-faq-panel mt-8 border border-line bg-surface p-6">
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
                 <p className="text-sm font-semibold uppercase text-brand">
-                  Regional FAQ
+                  {isChinese ? "区域项目常见问题" : "Regional FAQ"}
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                  Questions for {region.market} project inquiries
+                  {isChinese ? "区域项目询盘常见问题" : `Questions for ${region.market} project inquiries`}
                 </h2>
               </div>
               <Link
                 href={`/${locale}/faqs/`}
                 className="region-card-link inline-flex min-h-10 w-fit items-center border border-line px-4 py-2 text-sm font-semibold text-brand"
               >
-                View Full FAQ
+                {isChinese ? "查看全部常见问题" : "View Full FAQ"}
               </Link>
             </div>
             <div className="mt-5 space-y-3">
@@ -343,7 +382,7 @@ function StaticRegionPage({
             <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="text-sm font-semibold uppercase text-white/70">
-                  Regional quotation
+                  {isChinese ? "区域项目报价" : "Regional quotation"}
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold">
                   {region.finalCtaTitle}
@@ -371,7 +410,7 @@ function StaticRegionPage({
 
           <section className="region-market-panel mt-8 border border-line bg-surface p-6">
             <p className="text-sm font-semibold uppercase text-brand">
-              Safe B2B scope
+              {isChinese ? "安全的 B2B 信息边界" : "Safe B2B scope"}
             </p>
             <ul className="mt-4 grid gap-2 text-sm leading-6 text-muted md:grid-cols-2">
               {region.safeClaims.map((claim) => (
@@ -393,12 +432,23 @@ export default async function RegionPage({ params }: RegionPageProps) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
   const localizedPage = getLocalizedPublicationPage(locale, "region", slug);
-  if (localizedPage) {
+  if (localizedPage && locale !== "zh") {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
-  const staticRegion = locale === "en" ? getRegionLandingPage(slug) : undefined;
+  const sourceStaticRegion =
+    locale === "en" || localizedPage ? getRegionLandingPage(slug) : undefined;
+  const staticRegion =
+    sourceStaticRegion && localizedPage
+      ? localizeRegionLandingPage(sourceStaticRegion, localizedPage)
+      : sourceStaticRegion;
   if (staticRegion) {
-    return <StaticRegionPage locale="en" region={staticRegion} />;
+    return (
+      <StaticRegionPage
+        locale={locale}
+        region={staticRegion}
+        localizedPage={localizedPage}
+      />
+    );
   }
   const region = await regionRepository.getBySlug(locale, slug);
   if (!region) notFound();

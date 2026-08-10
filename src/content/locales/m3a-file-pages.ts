@@ -511,6 +511,9 @@ function regionPage(
   const contactHref = `/${locale}/contact/`;
   const usesZhReviewedCopy =
     locale === "zh" && zhRemainingRegionSlugs.has(region.slug);
+  const usesArFinalReviewCopy =
+    locale === "ar" &&
+    (region.slug === "southeast-asia" || region.slug === "vietnam");
   const zhInlineFocus = (value: string) =>
     /^[A-Za-z0-9]/.test(value) ? ` ${value}` : value;
 
@@ -532,7 +535,9 @@ function regionPage(
           {
             heading: "أولوية المشروع والشراء",
             paragraphs: [
-              `ابدأ بـ${focus[0]}، ثم حدد الوظائف الإلزامية والكمية والمرحلة والميزانية والنطاق الذي سيورده كل طرف.`,
+              usesArFinalReviewCopy
+                ? `ابدأ بمراجعة ${focus[0]}، ثم حدد الوظائف الإلزامية والكمية والمرحلة والميزانية والنطاق الذي سيورده كل طرف.`
+                : `ابدأ بـ${focus[0]}، ثم حدد الوظائف الإلزامية والكمية والمرحلة والميزانية والنطاق الذي سيورده كل طرف.`,
             ],
           },
           {

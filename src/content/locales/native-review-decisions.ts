@@ -331,6 +331,303 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "productionReleaseReady": false
   },
   {
+    "localizedUrl": "https://dualcorelink.com/ar/products/borui-red-matte-room-status-four-key-switch-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/borui-red-matte-triple-socket-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/borui-red-matte-usb-five-hole-socket/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/brushed-aluminum-86-base-doorbell-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/brushed-aluminum-sos-alarm-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/brushed-aluminum-thermostat-control-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/brushed-aluminum-voice-telephone-information-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-ceiling-background-speaker/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/infrared-repeater/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-footlight-night-light-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-series-dual-vertical-socket-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-single-key-switch-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-three-key-music-control-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-usb-five-hole-socket/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-voice-telephone-information-socket/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/vintage-gold-four-key-smart-switch-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/vintage-gold-key-card-energy-saver-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/regions/southeast-asia/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/regions/vietnam/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-doorplate-room-display-buying-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-guest-room-automation-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-guest-room-control-interfaces-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-occupancy-sensor-selection-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-rcu-wiring-system-architecture-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-renovation-smart-room-upgrade-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-room-control-system-cost-factors/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-smart-switch-panel-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/knx-vs-rcu-hotel-room-control/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/oem-odm-hotel-control-panel-development-process/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/oem-odm-smart-panel-customization-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/smart-panel-material-finish-selection-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/solutions/ai-smart-display-solution/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/solutions/hotel-delivery-robot-solution/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the FINAL-33 batch",
+    "productionReleaseReady": false
+  },
+  {
     "localizedUrl": "https://dualcorelink.com/zh/about/",
     "locale": "zh",
     "nativeReviewStatus": "approved",

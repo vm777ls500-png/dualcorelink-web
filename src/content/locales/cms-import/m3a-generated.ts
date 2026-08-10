@@ -311,6 +311,26 @@ const arP1ProductReviewSlugs = new Set([
   "ai-large-smart-display",
 ]);
 
+const arFinal33ProductReviewSlugs = new Set([
+  "hotel-ceiling-background-speaker",
+  "brushed-aluminum-voice-telephone-information-panel",
+  "borui-red-matte-triple-socket-panel",
+  "smart-series-dual-vertical-socket-panel",
+  "smart-footlight-night-light-panel",
+  "smart-three-key-music-control-panel",
+  "smart-single-key-switch-panel",
+  "smart-voice-telephone-information-socket",
+  "brushed-aluminum-thermostat-control-panel",
+  "brushed-aluminum-sos-alarm-panel",
+  "vintage-gold-four-key-smart-switch-panel",
+  "vintage-gold-key-card-energy-saver-panel",
+  "borui-red-matte-room-status-four-key-switch-panel",
+  "borui-red-matte-usb-five-hole-socket",
+  "brushed-aluminum-86-base-doorbell-panel",
+  "smart-usb-five-hole-socket",
+  "infrared-repeater",
+]);
+
 function productPayload(
   locale: "ar" | "zh",
   product: (typeof m3aProductCatalog)[number],
@@ -335,8 +355,10 @@ function productPayload(
   const usesZhReviewedCopy =
     locale === "zh" &&
     (zhP1ProductSlugs.has(product.slug) || usesZhRemainingReviewCopy);
-  const usesArP1ReviewCopy =
-    locale === "ar" && arP1ProductReviewSlugs.has(product.slug);
+  const usesArReviewedCopy =
+    locale === "ar" &&
+    (arP1ProductReviewSlugs.has(product.slug) ||
+      arFinal33ProductReviewSlugs.has(product.slug));
   const zhProductKindLabel = /^[A-Za-z0-9]/.test(copy.label)
     ? ` ${copy.label}`
     : copy.label;
@@ -370,7 +392,7 @@ function productPayload(
           {
             heading: "دور المنتج في المشروع",
             paragraphs: [
-              usesArP1ReviewCopy
+              usesArReviewedCopy
                 ? `يندرج هذا المنتج ضمن فئة ${copy.label}، ويُستخدم في ${copy.application}. يجب تحديد دوره في جدول الغرفة أو قائمة الأجهزة حتى تتضح للمقاول ومتكامل الأنظمة حدود التوريد والتركيب والاختبار.`
                 : `${title} هو ${copy.label} يخدم ${copy.application}. يجب تعريف وظيفته في جدول الغرفة أو قائمة الأجهزة حتى يعرف المقاول ومتكامل الأنظمة حدود التوريد والتركيب والاختبار.`,
             ],
@@ -398,7 +420,7 @@ function productPayload(
           {
             question:
               product.arFaqQuestion ??
-              (usesArP1ReviewCopy
+              (usesArReviewedCopy
                 ? "ما الاستخدام الأساسي لهذا المنتج؟"
                 : `ما الاستخدام الأساسي لـ${title}؟`),
             answer: detail,

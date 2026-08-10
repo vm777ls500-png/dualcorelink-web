@@ -17,6 +17,7 @@ export function ContactCta({
   label = "Contact Sales",
   attribution,
 }: ContactCtaProps) {
+  const isChinese = locale === "zh";
   const baseAttribution = attribution ?? {
     sourcePage: `/${locale}/`,
     contentType: "site",
@@ -32,10 +33,12 @@ export function ContactCta({
       <div className="relative mx-auto flex max-w-7xl flex-col justify-between gap-5 lg:flex-row lg:items-center">
         <div>
           <p className="text-sm font-semibold uppercase text-white/70">
-            B2B project support
+            {isChinese ? "B2B 项目支持" : "B2B project support"}
           </p>
           <p className="mt-2 text-2xl font-semibold">
-            Technical fit, OEM options, and supply planning.
+            {isChinese
+              ? "技术适配、OEM 选项与供货规划。"
+              : "Technical fit, OEM options, and supply planning."}
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
@@ -49,7 +52,12 @@ export function ContactCta({
           </TrackedInquiryLink>
           <WhatsAppButton
             className="inline-flex min-h-11 shrink-0 items-center justify-center border border-white/55 bg-white/10 px-5 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/15"
-            message="Hello DUALCORE LINK, I would like to get a quote."
+            message={
+              isChinese
+                ? "您好，DUALCORE LINK。我想咨询项目报价。"
+                : "Hello DUALCORE LINK, I would like to get a quote."
+            }
+            label={isChinese ? "通过 WhatsApp 咨询" : undefined}
             attribution={{
               ...baseAttribution,
               ctaPosition: "bottom_whatsapp_cta",

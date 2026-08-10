@@ -40,6 +40,12 @@ import {
   getPublicationHreflang,
   localizedPublicationPages,
 } from "@/lib/localized-publication";
+import {
+  createLocalizedProductDetailCopy,
+  localizeProductConversionProfile,
+  localizeProductDetailModel,
+  localizeProductGallery,
+} from "@/lib/localized-product-detail";
 
 type ProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -158,22 +164,93 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
   const localizedPage = getLocalizedPublicationPage(locale, "product", slug);
-  if (localizedPage) {
+  if (localizedPage && locale !== "zh") {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
-  const product = await productRepository.getBySlug(locale, slug);
+  const sourceProduct = await productRepository.getBySlug(
+    localizedPage ? "en" : locale,
+    slug,
+  );
 
-  if (!product) {
+  if (!sourceProduct) {
     notFound();
   }
+  const product = localizedPage
+    ? localizeProductDetailModel(sourceProduct, localizedPage)
+    : sourceProduct;
+  const localizedCopy = localizedPage
+    ? createLocalizedProductDetailCopy(localizedPage)
+    : undefined;
+  const isChinese = locale === "zh";
+  const labels = isChinese
+    ? {
+        home: "首页",
+        products: "产品",
+        new: "新品",
+        product: "产品",
+        getQuote: "获取报价",
+        quoteHint:
+          "为便于快速报价，请提供项目国家或地区、预计数量、电压、协议或布线要求、面板表面、标识或包装要求以及目标交付时间。",
+        leadTime: "交付周期",
+        onRequest: "按需确认",
+        available: "可提供",
+        askTeam: "请咨询团队",
+        overview: "产品概述",
+        coreFunctions: "核心功能",
+        features: "产品特点",
+        applications: "应用场景",
+        installation: "安装位置",
+        customization: "可定制选项",
+        specifications: "技术规格",
+        relatedProducts: "相关产品",
+        faq: "常见问题",
+        commercialOptions: "商务选项",
+        moq: "最小起订量",
+        units: "件",
+        warranty: "质保",
+        privateLabel: "自有品牌",
+        sample: "样品",
+        quoteDescription:
+          "请通过联系页面提交项目要求、数量和相关资料，我们的销售团队将进行审核。",
+      }
+    : {
+        home: "Home",
+        products: "Products",
+        new: "New",
+        product: "Product",
+        getQuote: "Get a Quote",
+        quoteHint:
+          "For faster quotation, include project country, estimated quantity, voltage, protocol or wiring needs, panel finish, logo or packaging requests, and target delivery time.",
+        leadTime: "Lead time",
+        onRequest: "On request",
+        available: "Available",
+        askTeam: "Ask our team",
+        overview: "Product overview",
+        coreFunctions: "Core functions",
+        features: "Product features",
+        applications: "Application scenarios",
+        installation: "Installation position",
+        customization: "Customizable options",
+        specifications: "Technical specifications",
+        relatedProducts: "Related products",
+        faq: "FAQ",
+        commercialOptions: "Commercial options",
+        moq: "MOQ",
+        units: "units",
+        warranty: "Warranty",
+        privateLabel: "Private label",
+        sample: "Sample",
+        quoteDescription:
+          "Use the contact page form to send project requirements, quantities, and files to our sales team.",
+      };
   const path = buildLocalizedPath(locale, `products/${slug}`);
   const url = buildSiteUrl(path);
   const pageNodes = [
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
+      { name: labels.home, url: buildSiteUrl(buildLocalizedPath(locale)) },
       {
-        name: "Products",
+        name: labels.products,
         url: buildSiteUrl(buildLocalizedPath(locale, "products")),
       },
       { name: product.seo.breadcrumbLabel || stripHtml(product.title), url },
@@ -184,10 +261,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const technicalSpecsText = cleanPublicProductText(product.technicalSpecsText);
   const faqsText = cleanPublicProductText(product.faqsText);
   const displayImage = productDisplayImages[product.slug];
-  const productGallery = productGalleries[product.slug];
+  const sourceGallery = productGalleries[product.slug];
+  const productGallery =
+    sourceGallery && localizedPage
+      ? localizeProductGallery(sourceGallery, localizedPage)
+      : sourceGallery;
   const heroImage = product.images[0];
   const productTitle = stripHtml(product.title);
-  const conversionProfile = getProductConversionProfile(product.categorySlugs);
+  const sourceConversionProfile = getProductConversionProfile(
+    product.categorySlugs,
+  );
+  const conversionProfile = localizedPage
+    ? localizeProductConversionProfile(sourceConversionProfile, localizedPage)
+    : sourceConversionProfile;
   const productAttribution = {
     sourcePage: `/${locale}/products/${slug}/`,
     contentType: "product" as const,
@@ -210,6 +296,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 productTitle={productTitle}
                 featuredImage={productGallery.featuredImage}
                 gallery={productGallery.gallery}
+                locale={locale}
               />
             ) : (
               <MediaFrame
@@ -225,7 +312,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <header className="product-detail-summary self-center">
             <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase">
               {product.isNew ? (
-                <span className="border border-accent bg-accent px-2 py-1">New</span>
+                <span className="border border-accent bg-accent px-2 py-1">{labels.new}</span>
               ) : null}
               {product.categoryNames.map((category) => (
                 <span
@@ -236,7 +323,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </span>
               ))}
               <span className="border border-line bg-surface px-2 py-1 text-brand">
-                {product.status?.replaceAll("_", " ") || "Product"}
+                {isChinese
+                  ? labels.product
+                  : product.status?.replaceAll("_", " ") || labels.product}
               </span>
             </div>
             <p className="mt-6 text-sm font-semibold uppercase text-brand">
@@ -279,33 +368,36 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 attribution={heroQuoteAttribution}
                 className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
-                Get a Quote
+                {labels.getQuote}
               </TrackedInquiryLink>
               <WhatsAppButton
-                message={`Hello DUALCORE LINK, I would like to get a quote for ${productTitle}.`}
+                message={
+                  isChinese
+                    ? `您好，DUALCORE LINK。我想获取${productTitle}的报价。`
+                    : `Hello DUALCORE LINK, I would like to get a quote for ${productTitle}.`
+                }
                 attribution={{
                   ...productAttribution,
                   ctaPosition: "product_hero_whatsapp",
                 }}
+                label={isChinese ? "通过 WhatsApp 获取报价" : undefined}
                 className="inline-flex min-h-11 items-center justify-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
               />
             </div>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-muted">
-              For faster quotation, include project country, estimated
-              quantity, voltage, protocol or wiring needs, panel finish, logo
-              or packaging requests, and target delivery time.
+              {labels.quoteHint}
             </p>
             <div className="product-detail-commerce mt-8 grid grid-cols-2 gap-4 border-t border-line pt-6 text-sm">
               <div>
-                <p className="text-muted">Lead time</p>
-                <p className="mt-1 font-semibold">{product.commerce.leadTime || "On request"}</p>
+                <p className="text-muted">{labels.leadTime}</p>
+                <p className="mt-1 font-semibold">{product.commerce.leadTime || labels.onRequest}</p>
               </div>
               <div>
                 <p className="text-muted">OEM / ODM</p>
                 <p className="mt-1 font-semibold">
                   {product.commerce.oemAvailable || product.commerce.odmAvailable
-                    ? "Available"
-                    : "Ask our team"}
+                    ? labels.available
+                    : labels.askTeam}
                 </p>
               </div>
             </div>
@@ -315,19 +407,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="product-detail-content mx-auto grid max-w-7xl gap-10 px-5 pb-14 sm:px-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:px-12">
           <div className="space-y-10">
             <ContentSection
-              title="Product overview"
+              title={labels.overview}
               content={cleanPublicProductText(product.content)}
             />
             <ContentSection
-              title="Core functions"
+              title={labels.coreFunctions}
               content={cleanPublicProductText(product.coreFunctions)}
             />
             <ContentSection
-              title="Product features"
+              title={labels.features}
               content={cleanPublicProductText(product.productFeatures)}
             />
             <ContentSection
-              title="Application scenarios"
+              title={labels.applications}
               content={cleanPublicProductText(product.applicationScenarios)}
             />
             {conversionProfile ? (
@@ -339,11 +431,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
               />
             ) : null}
             <ContentSection
-              title="Installation position"
+              title={labels.installation}
               content={cleanPublicProductText(product.installationPosition)}
             />
             <ContentSection
-              title="Customizable options"
+              title={labels.customization}
               content={cleanPublicProductText(
                 product.customizationOptions ||
                   product.commerce.packagingOptions,
@@ -352,20 +444,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {specifications.length > 0 ? (
               <section className="product-detail-spec-panel">
                 <h2 className="mb-5 text-2xl font-semibold">
-                  Technical specifications
+                  {labels.specifications}
                 </h2>
                 <SpecificationList items={specifications} />
               </section>
             ) : (
               <ContentSection
-                title="Technical specifications"
+                title={labels.specifications}
                 content={technicalSpecsText}
               />
             )}
             {product.relatedProducts.length > 0 ? (
               <section className="product-detail-related border-t border-line pt-8">
                 <h2 className="text-2xl font-semibold text-foreground">
-                  Related products
+                  {labels.relatedProducts}
                 </h2>
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
                   {product.relatedProducts.map((item) => (
@@ -385,9 +477,30 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
               </section>
             ) : null}
-            {product.relatedFaqs.length > 0 ? (
+            {localizedCopy?.faqs.length ? (
               <section className="product-detail-related border-t border-line pt-8">
-                <h2 className="text-2xl font-semibold text-foreground">FAQ</h2>
+                <h2 className="text-2xl font-semibold text-foreground">
+                  {labels.faq}
+                </h2>
+                <div className="mt-5 space-y-3">
+                  {localizedCopy.faqs.map((item) => (
+                    <details
+                      key={item.question}
+                      className="product-detail-related-card border border-line bg-surface p-5"
+                    >
+                      <summary className="cursor-pointer font-semibold">
+                        {item.question}
+                      </summary>
+                      <p className="mt-3 text-sm leading-6 text-muted">
+                        {item.answer}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            ) : product.relatedFaqs.length > 0 ? (
+              <section className="product-detail-related border-t border-line pt-8">
+                <h2 className="text-2xl font-semibold text-foreground">{labels.faq}</h2>
                 <div className="mt-5 space-y-3">
                   {product.relatedFaqs.map((item) => (
                     <Link
@@ -406,29 +519,28 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
               </section>
             ) : (
-              <ContentSection title="FAQ" content={faqsText} />
+              <ContentSection title={labels.faq} content={faqsText} />
             )}
           </div>
           <aside className="product-detail-aside border border-line bg-surface p-6">
-            <h2 className="text-lg font-semibold">Commercial options</h2>
+            <h2 className="text-lg font-semibold">{labels.commercialOptions}</h2>
             <dl className="mt-5 space-y-4 text-sm">
-              <div><dt className="text-muted">MOQ</dt><dd className="mt-1 font-semibold">{product.commerce.minimumOrderQuantity ? `${product.commerce.minimumOrderQuantity} ${product.commerce.moqUnit || "units"}` : "On request"}</dd></div>
-              <div><dt className="text-muted">Warranty</dt><dd className="mt-1 font-semibold">{product.commerce.warranty || "On request"}</dd></div>
-              <div><dt className="text-muted">Private label</dt><dd className="mt-1 font-semibold">{product.commerce.privateLabelAvailable ? "Available" : "Ask our team"}</dd></div>
-              <div><dt className="text-muted">Sample</dt><dd className="mt-1 font-semibold">{product.commerce.sampleAvailable ? "Available" : "Ask our team"}</dd></div>
+              <div><dt className="text-muted">{labels.moq}</dt><dd className="mt-1 font-semibold">{product.commerce.minimumOrderQuantity ? `${product.commerce.minimumOrderQuantity} ${product.commerce.moqUnit || labels.units}` : labels.onRequest}</dd></div>
+              <div><dt className="text-muted">{labels.warranty}</dt><dd className="mt-1 font-semibold">{product.commerce.warranty || labels.onRequest}</dd></div>
+              <div><dt className="text-muted">{labels.privateLabel}</dt><dd className="mt-1 font-semibold">{product.commerce.privateLabelAvailable ? labels.available : labels.askTeam}</dd></div>
+              <div><dt className="text-muted">{labels.sample}</dt><dd className="mt-1 font-semibold">{product.commerce.sampleAvailable ? labels.available : labels.askTeam}</dd></div>
             </dl>
           </aside>
         </div>
         <section id="get-a-quote" className="product-detail-quote mx-auto max-w-7xl px-5 pb-14 sm:px-8 lg:px-12">
-          <h2 className="text-3xl font-semibold">Get a Quote</h2>
+          <h2 className="text-3xl font-semibold">{labels.getQuote}</h2>
           <p className="mt-3 max-w-3xl leading-7 text-muted">
-            Use the contact page form to send project requirements, quantities,
-            and files to our sales team.
+            {labels.quoteDescription}
           </p>
         </section>
         <ContactCta
           locale={locale}
-          label="Get a Quote"
+          label={labels.getQuote}
           attribution={productAttribution}
         />
       </article>

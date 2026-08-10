@@ -6,12 +6,14 @@ import type { InquiryAttribution } from "@/lib/inquiry/attribution";
 
 type WhatsAppButtonProps = {
   message?: string;
+  label?: string;
   className?: string;
   attribution?: InquiryAttribution;
 };
 
 export function WhatsAppButton({
   message,
+  label,
   className,
   attribution,
 }: WhatsAppButtonProps) {
@@ -31,7 +33,7 @@ export function WhatsAppButton({
         "inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
       }
     >
-      {brand.whatsapp.label}
+      {label ?? brand.whatsapp.label}
     </TrackedInquiryLink>
   );
 }

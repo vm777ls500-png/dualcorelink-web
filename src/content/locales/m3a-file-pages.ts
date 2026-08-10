@@ -289,7 +289,7 @@ function resourcePage(
         ],
         faqs: [
           {
-            question: `لمن يناسب ${title}؟`,
+            question: resource.arAudienceQuestion ?? `لمن يناسب ${title}؟`,
             answer: "يناسب مالك الفندق والمقاول ومتكامل الأنظمة والموزع والمشتري الذي يحتاج إلى قرار موثق قبل الشراء.",
           },
           {

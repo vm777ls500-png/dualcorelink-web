@@ -123,6 +123,9 @@ export function localizeReleasedHref(href: string, locale: Locale): string {
   }
   const [pathname, hash = ""] = href.split("#", 2);
   const normalized = pathname.replace(/^\/en\//, "").replace(/^\/+|\/+$/g, "");
+  if (locale === "ar" && normalized === "downloads") {
+    return "/ar/resources/";
+  }
   const localizedUrl = getPublicationHreflang(normalized)[locale];
   if (!localizedUrl) return href;
   return `${new URL(localizedUrl).pathname}${hash ? `#${hash}` : ""}`;
@@ -133,6 +136,14 @@ export function localizeResourceLink(
   locale: Locale,
 ): ResourceLink {
   if (locale !== "zh" && locale !== "ar") return { ...link };
+  if (locale === "ar" && /^\/en\/downloads\/?(?:#.*)?$/.test(link.href)) {
+    return {
+      ...link,
+      title: "مركز الأدلة الفنية",
+      description: "راجع أدلة الاختيار والتخطيط الفني المتاحة باللغة العربية.",
+      href: "/ar/resources/",
+    };
+  }
   const localizedPage = localizedPageForHref(link.href, locale);
   return {
     ...link,
@@ -312,8 +323,9 @@ export function localizeRegionLandingPage(
     faqs: page.content.faqs.map((faq) => ({ ...faq })),
     primaryCta: page.content.cta.label,
     secondaryCta:
-      page.content.cta.secondaryLabel ??
-      (page.locale === "ar" ? "عرض وثائق المنتج" : "查看产品资料"),
+      page.locale === "ar"
+        ? "مراجعة الأدلة الفنية"
+        : page.content.cta.secondaryLabel ?? "查看产品资料",
     finalCtaTitle: page.content.cta.heading,
     finalCtaText: page.content.cta.description,
     safeClaims: page.locale === "ar" ? arabicSafeClaims : chineseSafeClaims,

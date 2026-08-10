@@ -32,15 +32,15 @@ if (
   arP0OwnerWaivedCmsImportPayload.some(
     (record) =>
       record.locale !== "ar" ||
-      record.nativeReviewStatus !== "pending" ||
-      record.nativeReviewer !== null ||
-      record.nativeReviewDate !== null ||
+      record.nativeReviewStatus !== "approved" ||
+      record.nativeReviewer !== "Allan" ||
+      record.nativeReviewDate !== "2026-08-11" ||
       record.ownerReviewWaiverStatus !== "approved" ||
       record.ownerReviewWaiverBy !== "Allan" ||
       record.ownerReviewWaiverDate !== "2026-07-31",
   )
 ) {
   throw new Error(
-    "Arabic P0 owner-waived CMS payload must contain six pending-native-review records with exact owner-waiver evidence.",
+    "Arabic P0 owner-waived CMS payload must contain six human-approved records with exact owner-waiver evidence.",
   );
 }

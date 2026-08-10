@@ -365,7 +365,8 @@ function productPayload(
         ],
         faqs: [
           {
-            question: `ما الاستخدام الأساسي لـ${title}؟`,
+            question:
+              product.arFaqQuestion ?? `ما الاستخدام الأساسي لـ${title}؟`,
             answer: detail,
           },
           {

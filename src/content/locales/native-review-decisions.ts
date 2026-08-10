@@ -7,6 +7,132 @@ import type { NativeReviewEvidenceOverride } from "@/lib/native-review-evidence"
  */
 export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverride[] = [
   {
+    "localizedUrl": "https://dualcorelink.com/ar/products/86-type-ai-smart-control-display/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-smart-room-rcu-host-1/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/rcu-controller-cabinet/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-four-key-scene-control-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/regions/middle-east/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/regions/saudi-arabia/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/regions/uae/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/hotel-rcu-buying-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/smart-hotel-room-control-system-guide/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/what-is-hotel-rcu-room-control-system/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/solutions/hotel-guest-room-control-solution/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/solutions/oem-odm-custom-panel-solution/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/solutions/rcu-room-control-solution/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/solutions/smart-hotel-automation-solution/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-2 P0 detail batch",
+    "productionReleaseReady": false
+  },
+  {
     "localizedUrl": "https://dualcorelink.com/ar/about/",
     "locale": "ar",
     "nativeReviewStatus": "approved",

@@ -25,6 +25,7 @@ export type M3aProductCatalogEntry = {
   englishTitle: string;
   kind: M3aProductKind;
   arTitle: string;
+  arFaqQuestion?: string;
   zhTitle: string;
   arDetail: string;
   zhDetail: string;
@@ -87,6 +88,7 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     englishTitle: "Smart Four-Key Scene Control Panel",
     kind: "scene-panel",
     arTitle: "لوحة ذكية بأربعة مفاتيح للتحكم في المشاهد",
+    arFaqQuestion: "ما الاستخدام الأساسي للوحة الذكية ذات المفاتيح الأربعة للتحكم في المشاهد؟",
     zhTitle: "智能四键场景控制面板",
     arDetail: "لوحة بأربعة مفاتيح مخصصة لأوامر المشاهد التي يعتمدها مشروع الغرفة.",
     zhDetail: "四键场景控制面板，用于执行项目确认的客房灯光或综合场景。",
@@ -464,6 +466,7 @@ export type M3aResourceCatalogEntry = {
   slug: string;
   englishTitle: string;
   arTitle: string;
+  arAudienceQuestion?: string;
   zhTitle: string;
   arSummary: string;
   zhSummary: string;
@@ -476,6 +479,7 @@ export const m3aResourceCatalog: readonly M3aResourceCatalogEntry[] = [
     slug: "what-is-hotel-rcu-room-control-system",
     englishTitle: "What Is a Hotel RCU Room Control System?",
     arTitle: "ما نظام RCU للتحكم في غرف الفنادق؟",
+    arAudienceQuestion: "لمن يناسب هذا الدليل عن نظام RCU للتحكم في غرف الفنادق؟",
     zhTitle: "什么是酒店 RCU 客房控制系统？",
     arSummary: "دليل يشرح دور RCU والأجهزة والأسلاك وحدود الشراء في مشروع غرفة الفندق.",
     zhSummary: "解释酒店 RCU 客控系统的设备关系、布线边界和采购准备。",

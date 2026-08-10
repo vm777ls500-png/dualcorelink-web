@@ -2,13 +2,13 @@
 
 Prepared: 2026-07-29
 
-Scope: 69/69 Arabic localized candidate pages. Seven AR-1 foundation pages were approved by Allan on 2026-08-11; approval does not enable production release.
+Scope: 69/69 Arabic localized candidate pages. Allan approved seven AR-1 foundation pages and the exact 14-page AR-2 P0 detail batch on 2026-08-11; approval does not enable production release.
 
-Automated review covered 69 pages and applied unambiguous language or repetition corrections to 2 pages. The remaining 62 pages still require a real reviewer, decision and date.
+Automated review covered 69 pages and applied scoped corrections during the AR-1 and AR-2 preparation phases. The remaining 48 pages still require a real reviewer, decision and date.
 
 The reviewer must verify natural language, hotel-engineering terminology, source fidelity, localized metadata, CTA, breadcrumbs, image alt, FAQ, schema text and bidirectional rendering where applicable.
 
-AR-T0 technical preparation adds the same specialized-composition and RTL checklist to every page below. Automated evidence means that the review candidate can be rendered for inspection; it is not a native-language approval. Reviewer fields are populated only for the exact seven-page AR-1 approval scope; all other candidates remain blank and pending.
+AR-T0 technical preparation adds the same specialized-composition and RTL checklist to every page below. Automated evidence means that the review candidate can be rendered for inspection; it is not a native-language approval. Reviewer fields are populated only for the exact AR-1 and AR-2 approval scopes; all other candidates remain blank and pending.
 
 ## 1. https://dualcorelink.com/ar/products/
 
@@ -270,10 +270,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 8. https://dualcorelink.com/ar/products/smart-three-key-music-control-panel/
 
@@ -954,10 +954,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 26. https://dualcorelink.com/ar/products/rcu-controller-cabinet/
 
@@ -992,10 +992,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 27. https://dualcorelink.com/ar/products/hotel-guest-room-doorbell/
 
@@ -1410,10 +1410,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 38. https://dualcorelink.com/ar/solutions/
 
@@ -1486,10 +1486,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 40. https://dualcorelink.com/ar/solutions/hotel-delivery-robot-solution/
 
@@ -1562,10 +1562,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 42. https://dualcorelink.com/ar/solutions/ai-smart-display-solution/
 
@@ -1638,10 +1638,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 44. https://dualcorelink.com/ar/solutions/hotel-guest-room-control-solution/
 
@@ -1676,10 +1676,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 45. https://dualcorelink.com/ar/resources/
 
@@ -1752,10 +1752,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 47. https://dualcorelink.com/ar/resources/hotel-rcu-wiring-system-architecture-guide/
 
@@ -1828,10 +1828,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 49. https://dualcorelink.com/ar/resources/smart-hotel-room-control-system-guide/
 
@@ -1866,10 +1866,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 50. https://dualcorelink.com/ar/resources/hotel-smart-switch-panel-guide/
 
@@ -2360,10 +2360,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 63. https://dualcorelink.com/ar/regions/saudi-arabia/
 
@@ -2398,10 +2398,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 64. https://dualcorelink.com/ar/regions/uae/
 
@@ -2436,10 +2436,10 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Header/navigation RTL | Pending human review |
 | CTA | Pending human review |
 | Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 65. https://dualcorelink.com/ar/regions/southeast-asia/
 

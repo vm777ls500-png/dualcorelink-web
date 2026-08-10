@@ -23,6 +23,10 @@ type ContentListProps = {
 
 export function ContentList({ locale, route, items, variant }: ContentListProps) {
   const isProductList = variant === "product";
+  const mediaReadyLabel = locale === "ar" ? "الوسائط متاحة" : "Media ready";
+  const mediaUnavailableLabel =
+    locale === "ar" ? "معاينة الوسائط غير متاحة" : "Media preview unavailable";
+  const detailsLabel = locale === "ar" ? "عرض التفاصيل" : "View Details";
 
   return (
     <ul
@@ -52,7 +56,7 @@ export function ContentList({ locale, route, items, variant }: ContentListProps)
               />
             ) : (
               <div className="relative z-10 grid h-full min-h-32 place-items-center text-xs font-semibold uppercase text-muted">
-                {item.hasMedia ? "Media ready" : "Media preview unavailable"}
+                {item.hasMedia ? mediaReadyLabel : mediaUnavailableLabel}
               </div>
             )}
           </div>
@@ -83,7 +87,7 @@ export function ContentList({ locale, route, items, variant }: ContentListProps)
                   : "brand-button mt-5 w-fit px-4 py-2 text-sm"
               }
             >
-              View Details
+              {detailsLabel}
             </Link>
           </div>
         </li>

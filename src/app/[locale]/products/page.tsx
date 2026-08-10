@@ -50,6 +50,12 @@ type ProductsPageProps = {
 const productsDescription =
   "Explore smart hotel panels, RCU hosts, sensors, sockets, thermostats, robots, and OEM/ODM automation devices for B2B projects.";
 
+function arabicProductCount(count: number): string {
+  if (count === 1) return "منتج واحد";
+  if (count === 2) return "منتجان";
+  return `${count} منتجات`;
+}
+
 export async function generateMetadata({
   params,
 }: ProductsPageProps): Promise<Metadata> {
@@ -251,7 +257,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                   >
                     {hasProducts
                       ? isArabic
-                        ? `${count} منتجات`
+                        ? arabicProductCount(count)
                         : `${count} ${count === 1 ? "product" : "products"}`
                       : isArabic ? "قريباً" : "Coming soon"}
                   </span>
@@ -314,7 +320,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                   >
                     {hasProducts
                       ? isArabic
-                        ? `متاح الآن - ${count} منتجات`
+                        ? `متاح الآن - ${arabicProductCount(count)}`
                         : `Available now - ${count} ${count === 1 ? "product" : "products"}`
                       : isArabic ? "سلسلة قادمة" : "Upcoming series"}
                   </span>

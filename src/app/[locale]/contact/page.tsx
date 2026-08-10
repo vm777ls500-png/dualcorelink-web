@@ -41,6 +41,8 @@ type ContactPageProps = { params: Promise<{ locale: string }> };
 
 const officeAddress =
   "Unit 1-2202, Building 19, Yuhe Xincheng East District, Yuhe Road, Yunhe District, Cangzhou City, Hebei Province, China";
+const arabicOfficeAddress =
+  "الوحدة 1-2202، المبنى 19، حي يوخه شينتشنغ الشرقي، طريق يوخه، منطقة يونخه، مدينة تسانغتشو، مقاطعة خبي، الصين";
 const wechatId = "a13703333750";
 const phoneNumber = "+86 13703333750";
 const phoneHref = "tel:+8613703333750";
@@ -256,7 +258,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
                 <dt className="font-semibold text-foreground">
                   {contactCopy?.officeLabel ?? "Office Address"}
                 </dt>
-                <dd className="mt-2 leading-7 text-muted">{officeAddress}</dd>
+                <dd className="mt-2 leading-7 text-muted">
+                  {isArabic ? arabicOfficeAddress : officeAddress}
+                </dd>
               </div>
               <div>
                 <dt className="font-semibold text-foreground">

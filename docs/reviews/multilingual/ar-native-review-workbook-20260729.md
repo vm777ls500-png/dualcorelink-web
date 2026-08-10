@@ -2,13 +2,13 @@
 
 Prepared: 2026-07-29
 
-Scope: 69/69 Arabic localized candidate pages. This workbook supports genuine native review; it does not indicate that any page has received human approval.
+Scope: 69/69 Arabic localized candidate pages. Seven AR-1 foundation pages were approved by Allan on 2026-08-11; approval does not enable production release.
 
-Automated review covered 69 pages and applied unambiguous language or repetition corrections to 2 pages. All 69 pages still require a real reviewer, decision and date.
+Automated review covered 69 pages and applied unambiguous language or repetition corrections to 2 pages. The remaining 62 pages still require a real reviewer, decision and date.
 
 The reviewer must verify natural language, hotel-engineering terminology, source fidelity, localized metadata, CTA, breadcrumbs, image alt, FAQ, schema text and bidirectional rendering where applicable.
 
-AR-T0 technical preparation adds the same specialized-composition and RTL checklist to every page below. Automated evidence means that the review candidate can be rendered for inspection; it is not a native-language approval. Every reviewer decision, reviewer name, and review date remains blank until a qualified human completes the review.
+AR-T0 technical preparation adds the same specialized-composition and RTL checklist to every page below. Automated evidence means that the review candidate can be rendered for inspection; it is not a native-language approval. Reviewer fields are populated only for the exact seven-page AR-1 approval scope; all other candidates remain blank and pending.
 
 ## 1. https://dualcorelink.com/ar/products/
 
@@ -30,23 +30,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | معلومات الشراء المطلوبة / للمراجعة التجارية والفنية أرسل نوع المشروع، وعدد الغرف، وقائمة النقاط، وموقع التركيب، ومتطلبات الجهد والتوصيل، والبروتوكول المطلوب إن وُجد، والكمية، ونطاق OEM/ODM. لا تُعتمد المواصفات النهائية قبل مراجعة النموذج والمسؤوليات الهندسية. / من المنتج إلى الحل / إذا كان نطاق المشروع يربط عدة أجهزة ووظائف، انتقل إلى صفحة الحلول لمقارنة حل RCU والتحكم في غرفة النزيل والأتمتة الفندقية الأوسع. صفحات المنتجات مخصصة للاختيار والتحويل، بينما صفحات الحلول تنظم العلاقة بين الأجهزة. |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers |
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-1 found scoped Arabic fluency, terminology, visible UI-label, count-agreement and localized-navigation issues; details are in the AR-1 packet. |
+| Automatic revision | Applied only clear Arabic/content-composition corrections; facts and release gates are unchanged. |
+| Specialized renderer parity | PASS - specialized renderer retained |
+| Semantic sections parity | PASS - required page modules complete |
+| Media parity | PASS - source parity retained; broken images 0 |
+| Relationship parity | PASS - Arabic destinations and CTA relationships retained |
+| Schema parity | PASS - page schema and BreadcrumbList parsed |
+| RTL layout | PASS at 390 and 1280 |
+| Bidi model/abbreviation check | PASS - controlled Latin tokens and model numbers preserved |
+| Mobile RTL | PASS - horizontal overflow 0 |
+| Header/navigation RTL | PASS - Arabic landing target correct; drawer closes after navigation |
+| CTA | PASS - expected Contact, WhatsApp and mailto paths retained; no submission performed |
+| Internal links | PASS - English detail fallback 0; internal query URLs 0 |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 ## 2. https://dualcorelink.com/ar/products/hotel-ceiling-background-speaker/
 
 | Review field | Page evidence |
@@ -1435,23 +1435,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | المعلومات المطلوبة من فريق المشروع / تحتاج المراجعة إلى مخططات الغرف وقائمة النقاط ومسؤولية الأعمال الكهربائية والتيار الضعيف ومنطق التحكم ونطاق التكامل والكمية والبرنامج الزمني. أي ذكر لـ KNX أو RS485 أو غيرهما يجب أن يستند إلى اختيار تقني مؤكد. / حدود صفحات الحلول / هذه الصفحات توضح اتجاه التخطيط والمنتجات الموصى بمراجعتها؛ ولا تمثل رسومات تنفيذية أو ضماناً للتوافق بين أي أجهزة من دون اعتماد النموذج والتكوين. يجب أن يراجع المقاول ومتكامل الأنظمة التوصيلات والأحمال والتكامل الفعلي. |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers |
 | Controlled technical terms | OEM, ODM, RCU, KNX, HVAC, RS485 |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-1 found scoped Arabic fluency, terminology, visible UI-label, count-agreement and localized-navigation issues; details are in the AR-1 packet. |
+| Automatic revision | Applied only clear Arabic/content-composition corrections; facts and release gates are unchanged. |
+| Specialized renderer parity | PASS - specialized renderer retained |
+| Semantic sections parity | PASS - required page modules complete |
+| Media parity | PASS - source parity retained; broken images 0 |
+| Relationship parity | PASS - Arabic destinations and CTA relationships retained |
+| Schema parity | PASS - page schema and BreadcrumbList parsed |
+| RTL layout | PASS at 390 and 1280 |
+| Bidi model/abbreviation check | PASS - controlled Latin tokens and model numbers preserved |
+| Mobile RTL | PASS - horizontal overflow 0 |
+| Header/navigation RTL | PASS - Arabic landing target correct; drawer closes after navigation |
+| CTA | PASS - expected Contact, WhatsApp and mailto paths retained; no submission performed |
+| Internal links | PASS - English detail fallback 0; internal query URLs 0 |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 39. https://dualcorelink.com/ar/solutions/oem-odm-custom-panel-solution/
 
@@ -1701,23 +1701,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | أدلة الشراء والتكلفة والتجديد / توضح الأدلة مدخلات طلب العرض وعوامل التكلفة ومسح الموقع والعينة والوثائق من دون عرض أسعار أو نسب توفير أو شهادات غير مؤكدة. / استخدم الدليل مع وثائق المشروع / حوّل الاستنتاجات إلى قائمة تحقق للرسومات والكمية والجهد والواجهات والوظائف والمسؤوليات، ثم ناقش المنتج أو الحل المناسب مع الفريق. |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-1 found scoped Arabic fluency, terminology, visible UI-label, count-agreement and localized-navigation issues; details are in the AR-1 packet. |
+| Automatic revision | Applied only clear Arabic/content-composition corrections; facts and release gates are unchanged. |
+| Specialized renderer parity | PASS - specialized renderer retained |
+| Semantic sections parity | PASS - required page modules complete |
+| Media parity | PASS - source parity retained; broken images 0 |
+| Relationship parity | PASS - Arabic destinations and CTA relationships retained |
+| Schema parity | PASS - page schema and BreadcrumbList parsed |
+| RTL layout | PASS at 390 and 1280 |
+| Bidi model/abbreviation check | PASS - controlled Latin tokens and model numbers preserved |
+| Mobile RTL | PASS - horizontal overflow 0 |
+| Header/navigation RTL | PASS - Arabic landing target correct; drawer closes after navigation |
+| CTA | PASS - expected Contact, WhatsApp and mailto paths retained; no submission performed |
+| Internal links | PASS - English detail fallback 0; internal query URLs 0 |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 46. https://dualcorelink.com/ar/resources/what-is-hotel-rcu-room-control-system/
 
@@ -2309,23 +2309,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | ما الذي يجب على المشتري تقديمه؟ / أرسل الدولة والمدينة ونوع الفندق وعدد الغرف وقائمة الأجهزة والجهد والتردد وطريقة التوصيل والبروتوكول المطلوب والوثائق اللازمة والكمية والجدول الزمني. يجب على فريق المشروع المحلي تأكيد المتطلبات التنظيمية والتنفيذية. / التخصيص والتسليم / يمكن مناقشة اللغة والرموز والتشطيب والشعار والتغليف ومجموعة المنتجات. تُراجع العينات والاعتمادات والوثائق قبل الإنتاج، ولا تُستخدم صور المنتجات وحدها كمرجع نهائي للتشطيب أو الأداء. |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers |
 | Controlled technical terms | OEM, ODM, RCU |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-1 found scoped Arabic fluency, terminology, visible UI-label, count-agreement and localized-navigation issues; details are in the AR-1 packet. |
+| Automatic revision | Applied only clear Arabic/content-composition corrections; facts and release gates are unchanged. |
+| Specialized renderer parity | PASS - specialized renderer retained |
+| Semantic sections parity | PASS - required page modules complete |
+| Media parity | PASS - source parity retained; broken images 0 |
+| Relationship parity | PASS - Arabic destinations and CTA relationships retained |
+| Schema parity | PASS - page schema and BreadcrumbList parsed |
+| RTL layout | PASS at 390 and 1280 |
+| Bidi model/abbreviation check | PASS - controlled Latin tokens and model numbers preserved |
+| Mobile RTL | PASS - horizontal overflow 0 |
+| Header/navigation RTL | PASS - Arabic landing target correct; drawer closes after navigation |
+| CTA | PASS - expected Contact, WhatsApp and mailto paths retained; no submission performed |
+| Internal links | PASS - English detail fallback 0; internal query URLs 0 |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 62. https://dualcorelink.com/ar/regions/middle-east/
 
@@ -2537,23 +2537,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | دعم OEM/ODM والشروط التجارية / قد يشمل التخصيص المظهر، وتشطيب اللوحة، وتوزيع المفاتيح، والرموز، والشعار، والتغليف، وتجميع المنتجات. يعتمد النطاق النهائي على نوع المنتج والكمية والمتطلبات المؤكدة، ولا يعني طلب التخصيص أن كل تغيير متاح لكل نموذج. / تتوفر عينات للتقييم ويتحمل العميل تكلفة العينة والشحن. لا يوجد حد أدنى ثابت للمنتجات القياسية، بينما قد تتطلب المنتجات المخصصة رسوماً للأدوات أو القالب عند الحاجة إلى قالب جديد. تغيير اللون باستخدام قالب قائم لا يتطلب رسم تخصيص. المدة المعتادة 7–15 يوماً، وتبقى المدة الفعلية مرتبطة بالمنتج والكمية ونطاق التخصيص. / الدعم الفني والضمان / يمكن أن يشمل الدعم إرشادات التركيب ومراجع التوصيل ومعلومات المنتج والتواصل الفني ومطابقة الحل. فترة الضمان العامة سنة واحدة، مع بقاء الشروط النهائية مرتبطة بالمنتج ومتطلبات الطلب المكتوبة. |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers |
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-1 found scoped Arabic fluency, terminology, visible UI-label, count-agreement and localized-navigation issues; details are in the AR-1 packet. |
+| Automatic revision | Applied only clear Arabic/content-composition corrections; facts and release gates are unchanged. |
+| Specialized renderer parity | PASS - specialized renderer retained |
+| Semantic sections parity | PASS - required page modules complete |
+| Media parity | PASS - source parity retained; broken images 0 |
+| Relationship parity | PASS - Arabic destinations and CTA relationships retained |
+| Schema parity | PASS - page schema and BreadcrumbList parsed |
+| RTL layout | PASS at 390 and 1280 |
+| Bidi model/abbreviation check | PASS - controlled Latin tokens and model numbers preserved |
+| Mobile RTL | PASS - horizontal overflow 0 |
+| Header/navigation RTL | PASS - Arabic landing target correct; drawer closes after navigation |
+| CTA | PASS - expected Contact, WhatsApp and mailto paths retained; no submission performed |
+| Internal links | PASS - English detail fallback 0; internal query URLs 0 |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 68. https://dualcorelink.com/ar/faqs/
 
@@ -2575,23 +2575,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | المواصفات والتوافق / لا تعتمد على اسم المنتج وحده لتأكيد البروتوكول أو الجهد أو عدد الدوائر أو الحمل. يجب تثبيت النموذج وتحديد مسؤولية التكامل ومراجعة الرسم وقائمة النقاط قبل إصدار المواصفات النهائية أو تعليمات التركيب. / التخصيص والعينة والطلب / يمكن مناقشة التشطيب والرموز والشعار واللغة والتغليف وتجميع المنتجات ضمن OEM/ODM. تتوفر عينات للتقييم ويتحمل العميل تكلفة العينة والشحن. لا يوجد حد أدنى ثابت للمنتجات القياسية، بينما قد ترتبط المنتجات المخصصة برسوم أدوات أو قالب عند الحاجة إلى قالب جديد. |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers |
 | Controlled technical terms | OEM, ODM, RCU, GRMS, KNX, HVAC, RS485 |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-1 found scoped Arabic fluency, terminology, visible UI-label, count-agreement and localized-navigation issues; details are in the AR-1 packet. |
+| Automatic revision | Applied only clear Arabic/content-composition corrections; facts and release gates are unchanged. |
+| Specialized renderer parity | PASS - specialized renderer retained |
+| Semantic sections parity | PASS - required page modules complete |
+| Media parity | PASS - source parity retained; broken images 0 |
+| Relationship parity | PASS - Arabic destinations and CTA relationships retained |
+| Schema parity | PASS - page schema and BreadcrumbList parsed |
+| RTL layout | PASS at 390 and 1280 |
+| Bidi model/abbreviation check | PASS - controlled Latin tokens and model numbers preserved |
+| Mobile RTL | PASS - horizontal overflow 0 |
+| Header/navigation RTL | PASS - Arabic landing target correct; drawer closes after navigation |
+| CTA | PASS - expected Contact, WhatsApp and mailto paths retained; no submission performed |
+| Internal links | PASS - English detail fallback 0; internal query URLs 0 |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 69. https://dualcorelink.com/ar/contact/
 
@@ -2613,20 +2613,20 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | معلومات الشركة وقنوات التواصل / البريد العام هو hello@dualcorelink.com. معرّف WeChat هو a13703333750. يقع مكتب سلسلة التوريد في الوحدة 1-2202، المبنى 19، حي Yuhe Xincheng الشرقي، طريق Yuhe، منطقة Yunhe، مدينة Cangzhou، مقاطعة Hebei، الصين. / قائمة معلومات الاستفسار / كلما كانت بيانات المشروع أوضح، كان من الأسهل مراجعة مجموعة المنتجات والقيود التي تحتاج إلى تأكيد قبل عرض السعر. / الدولة والمدينة ونوع الفندق أو العقار. / عدد الغرف وأنواعها والكمية التقديرية. / الوظائف المطلوبة للإضاءة وHVAC والستائر والخدمات. / نطاق RCU أو GRMS ومسؤولية متكامل الأنظمة. / المقاسات أو صندوق التركيب أو متطلبات التشطيب. / متطلبات OEM/ODM والشعار والتغليف واللغة. |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers |
 | Controlled technical terms | OEM, ODM, RCU, GRMS, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-1 found scoped Arabic fluency, terminology, visible UI-label, count-agreement and localized-navigation issues; details are in the AR-1 packet. |
+| Automatic revision | Applied only clear Arabic/content-composition corrections; facts and release gates are unchanged. |
+| Specialized renderer parity | PASS - specialized renderer retained |
+| Semantic sections parity | PASS - required page modules complete |
+| Media parity | PASS - source parity retained; broken images 0 |
+| Relationship parity | PASS - Arabic destinations and CTA relationships retained |
+| Schema parity | PASS - page schema and BreadcrumbList parsed |
+| RTL layout | PASS at 390 and 1280 |
+| Bidi model/abbreviation check | PASS - controlled Latin tokens and model numbers preserved |
+| Mobile RTL | PASS - horizontal overflow 0 |
+| Header/navigation RTL | PASS - Arabic landing target correct; drawer closes after navigation |
+| CTA | PASS - expected Contact, WhatsApp and mailto paths retained; no submission performed |
+| Internal links | PASS - English detail fallback 0; internal query URLs 0 |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |

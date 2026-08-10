@@ -92,7 +92,11 @@ function localizedPath(locale: "en" | "zh" | "ar", contentPath: string): string 
 
 function releasedHref(locale: Locale, contentPath: string): string {
   const normalized = normalizedContentPath(contentPath);
-  if (!normalized) return locale === "zh" ? "/zh/about/" : "/en/";
+  if (!normalized) {
+    if (locale === "zh") return "/zh/about/";
+    if (locale === "ar") return "/ar/about/";
+    return "/en/";
+  }
   if (locale === "ar") return localizedPath("ar", normalized);
   return buildPublishedNavigationHref(locale, normalized);
 }
@@ -171,7 +175,7 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
           ? ({
               "smart-panels-switches": "اللوحات والمفاتيح الذكية",
               "ai-smart-displays": "شاشات التحكم الذكية",
-              "rcu-room-control-host": "مضيفات RCU",
+              "rcu-room-control-host": "وحدات تحكم RCU",
               sensors: "المستشعرات",
               "smart-sockets-power-modules": "المقابس ووحدات الطاقة",
               "hvac-thermostat-control": "HVAC والثرموستات",

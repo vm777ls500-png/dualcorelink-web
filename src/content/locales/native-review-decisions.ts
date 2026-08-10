@@ -7,6 +7,69 @@ import type { NativeReviewEvidenceOverride } from "@/lib/native-review-evidence"
  */
 export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverride[] = [
   {
+    "localizedUrl": "https://dualcorelink.com/ar/about/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-1 foundation batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/contact/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-1 foundation batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/faqs/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-1 foundation batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-1 foundation batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/regions/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-1 foundation batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/resources/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-1 foundation batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/solutions/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-1 foundation batch",
+    "productionReleaseReady": false
+  },
+  {
     "localizedUrl": "https://dualcorelink.com/zh/about/",
     "locale": "zh",
     "nativeReviewStatus": "approved",

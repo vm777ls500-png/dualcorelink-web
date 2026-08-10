@@ -13,6 +13,7 @@ import { getUiMessages } from "@/content/locales/ui";
 import { buildPublishedNavigationHref } from "@/lib/multilingual-release-batches";
 
 const officeLocation = "Cangzhou, Hebei, China";
+const arabicOfficeLocation = "تسانغتشو، خبي، الصين";
 const wechatId = "a13703333750";
 const phoneNumber = "+86 13703333750";
 const phoneHref = "tel:+8613703333750";
@@ -130,7 +131,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </TrackedInquiryLink>
             <div className="mt-4 space-y-1 text-white/70">
               <p>
-                {messages.footer.office}: {officeLocation}
+                {messages.footer.office}: {locale === "ar" ? arabicOfficeLocation : officeLocation}
               </p>
               <p>
                 {messages.footer.wechat}: {wechatId}

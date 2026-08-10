@@ -167,8 +167,12 @@ export function ProductFilteredList({
     seriesSlug: activeSeries?.slug ?? "",
   });
   const filterLabels = [
-    activeCategory ? `Category: ${activeCategory.title}` : "",
-    activeSeries ? `Series: ${activeSeries.title}` : "",
+    activeCategory
+      ? `${locale === "ar" ? "الفئة" : "Category"}: ${activeCategory.title}`
+      : "",
+    activeSeries
+      ? `${locale === "ar" ? "السلسلة" : "Series"}: ${activeSeries.title}`
+      : "",
   ].filter(Boolean);
   const hasFilter = Boolean(activeCategory || activeSeries);
 

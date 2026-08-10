@@ -103,11 +103,20 @@ test("Phase 1C preserves entity and crawl-policy boundaries", async () => {
   for (const segments of [
     ["src", "app", "[locale]", "contact", "page.tsx"],
     ["src", "app", "[locale]", "downloads", "page.tsx"],
-    ["src", "app", "[locale]", "regions", "page.tsx"],
   ]) {
     const source = await readProjectFile(...segments);
     assert.doesNotMatch(source, /<JsonLd|createSchemaGraph/);
   }
+
+  const regionsSource = await readProjectFile(
+    "src",
+    "app",
+    "[locale]",
+    "regions",
+    "page.tsx",
+  );
+  assert.match(regionsSource, /createCollectionPageSchema/);
+  assert.match(regionsSource, /createBreadcrumbSchema/);
 
   await assert.rejects(
     access(path.join(projectRoot, "public", "llms.txt")),

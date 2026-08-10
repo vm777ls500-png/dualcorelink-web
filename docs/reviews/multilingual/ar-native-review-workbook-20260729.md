@@ -371,23 +371,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: جهاز RCU للتحكم في الغرفة / الاستخدام المقصود: تنظيم منطق الإضاءة وHVAC والستائر والمستشعرات والواجهات / بيانات التحقق: أنواع الغرف وجدول I/O والدوائر والطاقة والاتصال ومكان التركيب / التكامل: تُعتمد البروتوكولات والأطراف والبرمجة وفق وثائق الطراز والمشروع |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 11. https://dualcorelink.com/ar/products/smart-voice-telephone-information-socket/
 
@@ -675,23 +675,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: ملحق روبوت خدمة فندقي / الاستخدام المقصود: دعم تشغيل وشحن روبوت التوصيل في منطقة الخدمة / بيانات التحقق: طراز الروبوت والطاقة والموقع ومساحة الحركة ومسؤولية التشغيل / التكامل: يجب تأكيد التوافق مع الروبوت ولا يُستخدم الملحق كمنتج مستقل عام |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 19. https://dualcorelink.com/ar/products/hotel-smart-room-rcu-host-2/
 
@@ -713,23 +713,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: جهاز RCU للتحكم في الغرفة / الاستخدام المقصود: تنظيم منطق الإضاءة وHVAC والستائر والمستشعرات والواجهات / بيانات التحقق: أنواع الغرف وجدول I/O والدوائر والطاقة والاتصال ومكان التركيب / التكامل: تُعتمد البروتوكولات والأطراف والبرمجة وفق وثائق الطراز والمشروع |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 20. https://dualcorelink.com/ar/products/smart-curtain-motor/
 
@@ -751,23 +751,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: جهاز تحكم في الستائر / الاستخدام المقصود: تشغيل الستائر الآلية داخل الغرفة / بيانات التحقق: الستارة والمسار والمحرك والطاقة والاتجاه والمفاتيح وحدود الحركة / التكامل: تُعتمد العلاقة مع RCU أو لوحة التحكم وفق النظام المختار |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 21. https://dualcorelink.com/ar/products/brushed-aluminum-86-base-doorbell-panel/
 
@@ -827,23 +827,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: جهاز تحكم في الستائر / الاستخدام المقصود: تشغيل الستائر الآلية داخل الغرفة / بيانات التحقق: الستارة والمسار والمحرك والطاقة والاتجاه والمفاتيح وحدود الحركة / التكامل: تُعتمد العلاقة مع RCU أو لوحة التحكم وفق النظام المختار |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 23. https://dualcorelink.com/ar/products/smart-key-card-energy-saver-panel/
 
@@ -865,23 +865,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: لوحة منطق طاقة ببطاقة / الاستخدام المقصود: تشغيل دوائر مختارة وفق سياسة إشغال الغرفة / بيانات التحقق: نوع البطاقة والدوائر المؤخرة والطاقة والأسلاك ومنطق RCU / التكامل: تُراجع الأحمال والحماية ومنطق التشغيل مع التصميم الكهربائي |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 24. https://dualcorelink.com/ar/products/smart-usb-five-hole-socket/
 
@@ -1017,23 +1017,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: واجهة مدخل غرفة الفندق / الاستخدام المقصود: خدمة الجرس أو الاتصال عند باب الغرفة / بيانات التحقق: العلبة والجهد والأسلاك ولوحة الباب وحالة الغرفة والتشطيب / التكامل: تُحدد علاقة الجرس أو الإشارة مع RCU ونظام الخدمة حسب المشروع |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 28. https://dualcorelink.com/ar/products/hotel-room-door-magnetic-sensor/
 
@@ -1055,23 +1055,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: مستشعر لغرفة الفندق / الاستخدام المقصود: توفير حالة باب أو وجود لمنطق الغرفة المعتمد / بيانات التحقق: هدف الكشف والموقع والتغطية والطاقة والأسلاك ومنطق الاستجابة / التكامل: يجب اختبار الإشارة مع RCU ولا تُفترض تقنية أو دقة غير موثقة |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 29. https://dualcorelink.com/ar/products/infrared-repeater/
 
@@ -1131,23 +1131,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: مستشعر لغرفة الفندق / الاستخدام المقصود: توفير حالة باب أو وجود لمنطق الغرفة المعتمد / بيانات التحقق: هدف الكشف والموقع والتغطية والطاقة والأسلاك ومنطق الاستجابة / التكامل: يجب اختبار الإشارة مع RCU ولا تُفترض تقنية أو دقة غير موثقة |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 31. https://dualcorelink.com/ar/products/hotel-smart-delivery-cabinet/
 
@@ -1169,23 +1169,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: معدات خدمة وأتمتة فندقية / الاستخدام المقصود: دعم سير عمل التوصيل أو تسليم المواد داخل الفندق / بيانات التحقق: مسار التشغيل والموقع والطاقة والشبكة والسلامة ومسؤولية الموظفين / التكامل: أي اتصال بالمصاعد أو الأبواب أو المنصة يحتاج إلى نطاق مؤكد |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 32. https://dualcorelink.com/ar/products/hotel-delivery-robot/
 
@@ -1207,23 +1207,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: معدات خدمة وأتمتة فندقية / الاستخدام المقصود: دعم سير عمل التوصيل أو تسليم المواد داخل الفندق / بيانات التحقق: مسار التشغيل والموقع والطاقة والشبكة والسلامة ومسؤولية الموظفين / التكامل: أي اتصال بالمصاعد أو الأبواب أو المنصة يحتاج إلى نطاق مؤكد |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 33. https://dualcorelink.com/ar/products/ai-music-control-panel/
 
@@ -1245,23 +1245,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: لوحة تحكم موسيقية / الاستخدام المقصود: الوصول إلى وظائف الصوت أو الموسيقى المعتمدة / بيانات التحقق: وظائف المفاتيح ونظام الصوت والطاقة والاتصال وموقع الاستخدام / التكامل: يلزم تأكيد واجهة النظام الصوتي ولا يُفترض التوافق من اسم المنتج |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 34. https://dualcorelink.com/ar/products/thermostat-hvac-control-panel/
 
@@ -1283,23 +1283,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: واجهة منظّم حرارة HVAC / الاستخدام المقصود: تحكم النزيل في وظائف المناخ المعتمدة / بيانات التحقق: نوع HVAC والصمامات والمراوح والطاقة والحساس والأسلاك ومكان التركيب / التكامل: لا يُعتمد توافق HVAC أو البروتوكول إلا بعد مراجعة النظام الحقيقي |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 35. https://dualcorelink.com/ar/products/rotary-knob-smart-control-display/
 
@@ -1321,23 +1321,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: شاشة تحكم ذكية / الاستخدام المقصود: عرض وتشغيل وظائف الغرفة أو المساحة الذكية المعتمدة / بيانات التحقق: الواجهة واللغة والطاقة والعلبة والاتصال والأجهزة المتحكم بها / التكامل: تُراجع العلاقة مع RCU وHVAC والصوت والستائر وفق الطراز والمشروع |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 36. https://dualcorelink.com/ar/products/ai-large-smart-display/
 
@@ -1359,23 +1359,23 @@ AR-T0 technical preparation adds the same specialized-composition and RTL checkl
 | Specifications or procurement content | نوع المنتج: شاشة تحكم ذكية / الاستخدام المقصود: عرض وتشغيل وظائف الغرفة أو المساحة الذكية المعتمدة / بيانات التحقق: الواجهة واللغة والطاقة والعلبة والاتصال والأجهزة المتحكم بها / التكامل: تُراجع العلاقة مع RCU وHVAC والصوت والستائر وفق الطراز والمشروع |
 | Translatable schema fields | name/title, description, Breadcrumb labels, FAQ questions and answers, image/alt name |
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
-| Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
-| Automatic revision | No automatic content rewrite was made. |
-| Specialized renderer parity | Automated candidate ready; human review pending |
-| Semantic sections parity | Automated candidate ready; human review pending |
-| Media parity | Automated candidate ready; human review pending |
-| Relationship parity | Automated candidate ready; human review pending |
-| Schema parity | Automated candidate ready; human review pending |
-| RTL layout | Pending human review |
-| Bidi model/abbreviation check | Pending human review |
-| Mobile RTL | Pending human review |
-| Header/navigation RTL | Pending human review |
-| CTA | Pending human review |
-| Internal links | Pending human review |
-| Notes |  |
-| Human review decision |  |
-| Reviewer |  |
-| Review date |  |
+| Automatically discovered issue | AR-3 review resolved scoped Arabic grammar, terminology, Bidi, and RTL presentation findings without changing product facts. |
+| Automatic revision | Scoped AR-3 revisions are recorded in the final review packet and preparation report. |
+| Specialized renderer parity | PASS |
+| Semantic sections parity | PASS |
+| Media parity | PASS |
+| Relationship parity | PASS |
+| Schema parity | PASS |
+| RTL layout | PASS |
+| Bidi model/abbreviation check | PASS |
+| Mobile RTL | PASS |
+| Header/navigation RTL | PASS |
+| CTA | PASS |
+| Internal links | PASS |
+| Notes | Human Arabic review approved; production release remains disabled. |
+| Human review decision | approved |
+| Reviewer | Allan |
+| Review date | 2026-08-11 |
 
 ## 37. https://dualcorelink.com/ar/products/86-type-ai-smart-control-display/
 

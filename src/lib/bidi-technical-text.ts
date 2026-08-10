@@ -4,7 +4,7 @@ export type BidiTextSegment = {
 };
 
 const technicalTokenPattern =
-  /(?:https?:\/\/[^\s]+|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\+?\d[\d\s()+./-]{4,}\d|\b[A-Z]{1,6}[-/]?\d[A-Z0-9./-]*\b|\b(?:RCU|KNX|HVAC|RS485|OEM\s*\/\s*ODM|I\s*\/\s*O|USB)\b|\b\d+(?:[.,]\d+)?\s*(?:V|A|W|kW|Hz|mm|cm|m|kg|MB|GB|ms|s)\b)/gi;
+  /(?:https?:\/\/[^\s]+|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|\+?\d[\d\s()+./-]{4,}\d|\b[A-Z]{1,6}[-/]?\d[A-Z0-9./-]*\b|\b(?:RCU|KNX|HVAC|RS485|OEM\s*\/\s*ODM|I\s*\/\s*O|AC\s*\/\s*DC|USB)\b|\b\d+(?:[.,]\d+)?\s*(?:V|A|W|kW|Hz|mm|cm|m|kg|MB|GB|ms|s)\b)/gi;
 
 export function splitBidiTechnicalText(value: string): BidiTextSegment[] {
   const result: BidiTextSegment[] = [];

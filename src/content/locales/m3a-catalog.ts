@@ -26,6 +26,8 @@ export type M3aProductCatalogEntry = {
   kind: M3aProductKind;
   arTitle: string;
   arFaqQuestion?: string;
+  arKindLabel?: string;
+  arApplication?: string;
   zhTitle: string;
   arDetail: string;
   zhDetail: string;
@@ -219,6 +221,7 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     englishTitle: "Smart Curtain Motor",
     kind: "curtain",
     arTitle: "محرك ستائر ذكي",
+    arKindLabel: "محرك للستائر الآلية",
     zhTitle: "智能窗帘电机",
     arDetail: "محرك للستائر الآلية يجب تنسيقه مع مسار الستارة والطاقة وواجهة التحكم.",
     zhDetail: "用于酒店电动窗帘的智能电机，需与轨道、供电及控制接口协同确认。",
@@ -299,6 +302,7 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     englishTitle: "Hotel Room Door Magnetic Sensor",
     kind: "sensor",
     arTitle: "مستشعر مغناطيسي لباب غرفة الفندق",
+    arApplication: "توفير حالة فتح وإغلاق الباب لمنطق الغرفة المعتمد",
     zhTitle: "酒店客房门磁传感器",
     arDetail: "مستشعر لحالة فتح وإغلاق الباب ضمن منطق RCU المعتمد للمشروع.",
     zhDetail: "用于检测客房门开合状态，并接入项目确认的 RCU 控制逻辑。",
@@ -319,6 +323,8 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     englishTitle: "Embedded Human Presence Sensor",
     kind: "sensor",
     arTitle: "مستشعر وجود بشري مدمج",
+    arKindLabel: "مستشعر وجود لغرفة الفندق",
+    arApplication: "استشعار وجود الأشخاص لدعم منطق إشغال الغرفة المعتمد",
     zhTitle: "嵌入式人体存在传感器",
     arDetail: "مستشعر مدمج لدعم منطق إشغال الغرفة بعد اعتماد موقعه ونطاقه.",
     zhDetail: "嵌入安装的人体存在传感器，用于项目确认的客房占用逻辑。",
@@ -329,6 +335,7 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     englishTitle: "Hotel Smart Delivery Cabinet",
     kind: "service-equipment",
     arTitle: "خزانة توصيل ذكية للفنادق",
+    arKindLabel: "خزانة تسليم ذكية للفنادق",
     zhTitle: "酒店智能配送柜",
     arDetail: "معدات خدمة لتسليم المواد في نقطة تشغيل يحددها الفندق والمشروع.",
     zhDetail: "用于酒店物品交接流程的智能配送柜，需结合运营位置和服务责任规划。",
@@ -339,6 +346,7 @@ export const m3aProductCatalog: readonly M3aProductCatalogEntry[] = [
     englishTitle: "Hotel Delivery Robot",
     kind: "service-equipment",
     arTitle: "روبوت توصيل للفنادق",
+    arKindLabel: "روبوت خدمة فندقي",
     zhTitle: "酒店配送机器人",
     arDetail: "معدات أتمتة لخدمة التوصيل داخل الفندق وفق مسار وتشغيل وتكامل معتمد.",
     zhDetail: "用于酒店内部物品配送流程的服务机器人，需确认路线、运营和接口条件。",

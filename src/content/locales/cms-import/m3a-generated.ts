@@ -293,11 +293,38 @@ const zhRemainingSolutionSlugs = new Set([
   "hotel-guest-room-control-solution",
 ]);
 
+const arP1ProductReviewSlugs = new Set([
+  "hotel-smart-room-rcu-host-3",
+  "hotel-delivery-robot-charging-dock",
+  "hotel-smart-room-rcu-host-2",
+  "smart-curtain-motor",
+  "smart-four-key-curtain-control-panel",
+  "smart-key-card-energy-saver-panel",
+  "hotel-guest-room-doorbell",
+  "hotel-room-door-magnetic-sensor",
+  "embedded-human-presence-sensor",
+  "hotel-smart-delivery-cabinet",
+  "hotel-delivery-robot",
+  "ai-music-control-panel",
+  "thermostat-hvac-control-panel",
+  "rotary-knob-smart-control-display",
+  "ai-large-smart-display",
+]);
+
 function productPayload(
   locale: "ar" | "zh",
   product: (typeof m3aProductCatalog)[number],
 ) {
-  const copy = locale === "ar" ? arKindCopy[product.kind] : zhKindCopy[product.kind];
+  const baseCopy =
+    locale === "ar" ? arKindCopy[product.kind] : zhKindCopy[product.kind];
+  const copy =
+    locale === "ar"
+      ? {
+          ...baseCopy,
+          label: product.arKindLabel ?? baseCopy.label,
+          application: product.arApplication ?? baseCopy.application,
+        }
+      : baseCopy;
   const title = locale === "ar" ? product.arTitle : product.zhTitle;
   const detail = locale === "ar" ? product.arDetail : product.zhDetail;
   const productsHref = `/${locale}/products/`;
@@ -308,6 +335,8 @@ function productPayload(
   const usesZhReviewedCopy =
     locale === "zh" &&
     (zhP1ProductSlugs.has(product.slug) || usesZhRemainingReviewCopy);
+  const usesArP1ReviewCopy =
+    locale === "ar" && arP1ProductReviewSlugs.has(product.slug);
   const zhProductKindLabel = /^[A-Za-z0-9]/.test(copy.label)
     ? ` ${copy.label}`
     : copy.label;
@@ -341,7 +370,9 @@ function productPayload(
           {
             heading: "دور المنتج في المشروع",
             paragraphs: [
-              `${title} هو ${copy.label} يخدم ${copy.application}. يجب تعريف وظيفته في جدول الغرفة أو قائمة الأجهزة حتى يعرف المقاول ومتكامل الأنظمة حدود التوريد والتركيب والاختبار.`,
+              usesArP1ReviewCopy
+                ? `يندرج هذا المنتج ضمن فئة ${copy.label}، ويُستخدم في ${copy.application}. يجب تحديد دوره في جدول الغرفة أو قائمة الأجهزة حتى تتضح للمقاول ومتكامل الأنظمة حدود التوريد والتركيب والاختبار.`
+                : `${title} هو ${copy.label} يخدم ${copy.application}. يجب تعريف وظيفته في جدول الغرفة أو قائمة الأجهزة حتى يعرف المقاول ومتكامل الأنظمة حدود التوريد والتركيب والاختبار.`,
             ],
           },
           {
@@ -366,7 +397,10 @@ function productPayload(
         faqs: [
           {
             question:
-              product.arFaqQuestion ?? `ما الاستخدام الأساسي لـ${title}؟`,
+              product.arFaqQuestion ??
+              (usesArP1ReviewCopy
+                ? "ما الاستخدام الأساسي لهذا المنتج؟"
+                : `ما الاستخدام الأساسي لـ${title}؟`),
             answer: detail,
           },
           {

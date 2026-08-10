@@ -7,6 +7,141 @@ import type { NativeReviewEvidenceOverride } from "@/lib/native-review-evidence"
  */
 export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverride[] = [
   {
+    "localizedUrl": "https://dualcorelink.com/ar/products/ai-large-smart-display/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/ai-music-control-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/embedded-human-presence-sensor/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-delivery-robot-charging-dock/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-delivery-robot/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-guest-room-doorbell/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-room-door-magnetic-sensor/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-smart-delivery-cabinet/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-smart-room-rcu-host-2/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/hotel-smart-room-rcu-host-3/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/rotary-knob-smart-control-display/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-curtain-motor/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-four-key-curtain-control-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/smart-key-card-energy-saver-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
+    "localizedUrl": "https://dualcorelink.com/ar/products/thermostat-hvac-control-panel/",
+    "locale": "ar",
+    "nativeReviewStatus": "approved",
+    "nativeReviewer": "Allan",
+    "nativeReviewDate": "2026-08-11",
+    "nativeReviewNotes": "Human Arabic review approved for the AR-3 P1 product detail batch",
+    "productionReleaseReady": false
+  },
+  {
     "localizedUrl": "https://dualcorelink.com/ar/products/86-type-ai-smart-control-display/",
     "locale": "ar",
     "nativeReviewStatus": "approved",

@@ -979,6 +979,10 @@ a.brand-button-outline:focus-visible {
   z-index: 1;
 }
 
+[dir="rtl"] .product-detail-hero > * {
+  min-width: 0;
+}
+
 .product-detail-media-panel {
   border: 1px solid transparent;
   background:

@@ -27,7 +27,12 @@ import {
   getPublicationHreflang,
 } from "@/lib/localized-publication";
 import {
+  getLocalizedCompositionHomePath,
+  supportsSpecializedLocalizedComposition,
+} from "@/lib/multilingual-review-preview";
+import {
   getProductListingSourceLocale,
+  getProductListingCategoryLabel,
   localizeProductListingProducts,
 } from "@/lib/product-listing";
 import {
@@ -77,7 +82,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
     "product-listing",
     "products",
   );
-  const rendersLocalizedCatalog = locale === "zh" && Boolean(localizedPage);
+  const rendersLocalizedCatalog =
+    supportsSpecializedLocalizedComposition(locale) && Boolean(localizedPage);
   if (localizedPage && !rendersLocalizedCatalog) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
@@ -86,6 +92,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
     getProductListingSourceLocale(locale),
   );
   const products = localizeProductListingProducts(locale, sourceProducts);
+  const isArabic = locale === "ar";
   const productCountsByCategory = new Map<string, number>();
   const publishedSlugs = new Set(products.map((product) => product.slug));
   const seriesSlugsByProduct = new Map<string, string[]>();
@@ -136,7 +143,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
       description: localizedPage?.metaDescription ?? productsDescription,
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
+      { name: "Home", url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
       { name: localizedPage?.content.breadcrumbLabel ?? "Products", url },
     ]),
   ]);
@@ -178,27 +185,30 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            Send Inquiry
+            {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : "Send Inquiry"}
           </Link>
           <a
             href={whatsappUrl}
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
           >
-            Get a Quote on WhatsApp
+            {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
           </a>
         </div>
       </header>
 
       <div
         className={`products-browse-grid mb-10 grid gap-6 ${
-          locale === "zh" ? "lg:grid-cols-2" : "lg:grid-cols-3"
+          locale === "en" ? "lg:grid-cols-3" : "lg:grid-cols-2"
         }`}
       >
         <section className="products-browse-panel border border-line bg-surface p-5">
-          <h2 className="text-lg font-semibold">Browse by Category</h2>
+          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب الفئة" : locale === "zh" ? "按类别浏览" : "Browse by Category"}</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
-            Choose product groups for hotel rooms, public areas, integration
-            packages, and project supply.
+            {isArabic
+              ? "اختر مجموعات المنتجات لغرف الفنادق والمناطق العامة وحزم التكامل وتوريد المشروع."
+              : locale === "zh"
+                ? "按酒店客房、公共区域、集成套件和项目供货选择产品组。"
+                : "Choose product groups for hotel rooms, public areas, integration packages, and project supply."}
           </p>
           <ul className="mt-4 space-y-2">
             {productCategories.map((category) => (
@@ -225,11 +235,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                         : "block font-semibold text-muted"
                     }
                   >
-                    {category.title}
+                    {getProductListingCategoryLabel(locale, category)}
                   </span>
-                  <span className="mt-1 block text-sm text-muted">
-                    {category.chineseTitle}
-                  </span>
+                  {locale === "zh" ? (
+                    <span className="mt-1 block text-sm text-muted">
+                      {category.title}
+                    </span>
+                  ) : null}
                   <span
                     className={
                       hasProducts
@@ -238,8 +250,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                     }
                   >
                     {hasProducts
-                      ? `${count} ${count === 1 ? "product" : "products"}`
-                      : "Coming soon"}
+                      ? isArabic
+                        ? `${count} منتجات`
+                        : `${count} ${count === 1 ? "product" : "products"}`
+                      : isArabic ? "قريباً" : "Coming soon"}
                   </span>
                 </ProductFilterControl>
                   );
@@ -250,9 +264,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         </section>
 
         <section className="products-browse-panel border border-line bg-surface p-5">
-          <h2 className="text-lg font-semibold">Browse by Series</h2>
+          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب السلسلة" : locale === "zh" ? "按系列浏览" : "Browse by Series"}</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
-            Compare product finishes, panel styles, and project positioning.
+            {isArabic
+              ? "قارن تشطيبات المنتجات وأنماط اللوحات وملاءمتها للمشروع."
+              : locale === "zh"
+                ? "比较产品饰面、面板风格和项目定位。"
+                : "Compare product finishes, panel styles, and project positioning."}
           </p>
           <ul className="mt-4 space-y-2">
             {productSeries.map((series) => {
@@ -282,9 +300,11 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                   >
                     {series.title}
                   </span>
-                  <span className="mt-1 block text-sm text-muted">
-                    {series.chineseTitle}
-                  </span>
+                  {locale === "zh" ? (
+                    <span className="mt-1 block text-sm text-muted">
+                      {series.chineseTitle}
+                    </span>
+                  ) : null}
                   <span
                     className={
                       hasProducts
@@ -293,8 +313,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                     }
                   >
                     {hasProducts
-                      ? `Available now - ${count} ${count === 1 ? "product" : "products"}`
-                      : "Upcoming series"}
+                      ? isArabic
+                        ? `متاح الآن - ${count} منتجات`
+                        : `Available now - ${count} ${count === 1 ? "product" : "products"}`
+                      : isArabic ? "سلسلة قادمة" : "Upcoming series"}
                   </span>
                 </ProductFilterControl>
               </li>
@@ -335,8 +357,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
       {products.length === 0 ? (
         <EmptyState
-          title="No products published"
-          description="Product content will appear here after it is published in WordPress."
+          title={isArabic ? "لا توجد منتجات منشورة" : "No products published"}
+          description={isArabic ? "ستظهر المنتجات هنا بعد نشرها." : "Product content will appear here after it is published in WordPress."}
         />
       ) : (
         <Suspense
@@ -354,7 +376,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             variant="product"
             categories={productCategories.map((category) => ({
               slug: category.slug,
-              title: category.title,
+              title: getProductListingCategoryLabel(locale, category),
             }))}
             series={productSeries.map((item) => ({
               slug: item.slug,
@@ -368,12 +390,14 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
             <h2 className="text-2xl font-semibold text-foreground">
-              Need a project product mix?
+              {isArabic ? "هل تحتاج مزيج منتجات للمشروع؟" : locale === "zh" ? "需要项目产品组合？" : "Need a project product mix?"}
             </h2>
             <p className="mt-2 max-w-3xl leading-7 text-muted">
-              Share your room type, target market, quantity, and required
-              product categories. Our B2B team can help prepare a focused
-              quotation list.
+              {isArabic
+                ? "شارك نوع الغرفة والسوق المستهدف والكمية وفئات المنتجات المطلوبة ليعد فريق B2B قائمة عرض مركزة."
+                : locale === "zh"
+                  ? "请提供房型、目标市场、数量和所需产品类别，我们的 B2B 团队可协助准备重点报价清单。"
+                  : "Share your room type, target market, quantity, and required product categories. Our B2B team can help prepare a focused quotation list."}
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -381,13 +405,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               href={`/${locale}/contact/#get-a-quote`}
               className="inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
-              Send Inquiry
+              {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : "Send Inquiry"}
             </Link>
             <a
               href={whatsappUrl}
               className="inline-flex min-h-11 items-center border border-line px-5 py-3 font-semibold text-brand"
             >
-              Get a Quote on WhatsApp
+              {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
             </a>
           </div>
         </div>

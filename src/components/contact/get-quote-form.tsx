@@ -8,6 +8,7 @@ import {
   createWhatsAppUrl,
 } from "@/config/brand";
 import {
+  arabicContactFormCopy,
   chineseContactFormCopy,
   contactFormOptions,
 } from "@/config/contact-form-copy";
@@ -92,8 +93,30 @@ const chineseSubmissionErrorMessages: Record<
   unexpected_response: "询盘服务返回异常响应，请使用下方电子邮件或 WhatsApp。",
 };
 
+const arabicSubmissionErrorMessages: Record<
+  InquirySubmissionErrorCategory,
+  string
+> = {
+  invalid_request: "راجع حقول النموذج ثم حاول مرة أخرى؛ ما زالت البيانات محفوظة.",
+  origin_rejected: "لم يُقبل مصدر الإرسال؛ استخدم البريد أو WhatsApp أدناه.",
+  duplicate: "أُرسل هذا الاستفسار من قبل، وما زالت البيانات متاحة للمراجعة.",
+  payload_too_large: "الاستفسار طويل جداً؛ اختصر الرسالة أو استخدم البريد.",
+  rate_limited: "حدثت محاولات كثيرة؛ انتظر قليلاً أو استخدم البريد.",
+  server_error: "خدمة الاستفسار غير متاحة مؤقتاً؛ ما زالت البيانات محفوظة.",
+  delivery_unavailable: "خدمة التسليم غير متاحة مؤقتاً؛ ما زالت البيانات محفوظة.",
+  timeout: "انتهت مهلة الطلب؛ حاول مرة واحدة أو استخدم البريد.",
+  network_error: "تعذر الوصول إلى خدمة الاستفسار؛ ما زالت البيانات محفوظة.",
+  unexpected_response: "أعادت الخدمة استجابة غير متوقعة؛ استخدم البريد أو WhatsApp.",
+};
+
 export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) {
   const isChinese = locale === "zh";
+  const isArabic = locale === "ar";
+  const localizedCopy = isArabic
+    ? arabicContactFormCopy
+    : isChinese
+      ? chineseContactFormCopy
+      : null;
   const defaultAttribution: InquiryAttribution = {
     sourcePage: `/${locale}/contact/`,
     contentType: "contact",
@@ -111,8 +134,8 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
     useState<InquiryAttribution>(defaultAttribution);
   const [message, setMessage] = useState(
     productName
-      ? isChinese
-        ? chineseContactFormCopy.productMessage(productName)
+      ? localizedCopy
+        ? localizedCopy.productMessage(productName)
         : `I am interested in ${productName}. Please send quotation details.`
       : "",
   );
@@ -147,12 +170,12 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
       const sourceTitle = nextAttribution.sourceTitle;
       setMessage((current) =>
         current ||
-        (isChinese
-          ? chineseContactFormCopy.attributedMessage(sourceTitle)
+        (localizedCopy
+          ? localizedCopy.attributedMessage(sourceTitle)
           : `I would like to discuss a project related to ${sourceTitle}.`),
       );
     }
-  }, [isChinese, productName]);
+  }, [localizedCopy, productName]);
 
   useEffect(
     () => () => {
@@ -168,10 +191,10 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
     if (attribution.contentSlug) {
       return attribution.contentSlug.replaceAll("-", " ");
     }
-    return isChinese
-      ? chineseContactFormCopy.directContext
+    return localizedCopy
+      ? localizedCopy.directContext
       : "Direct contact inquiry";
-  }, [attribution, isChinese]);
+  }, [attribution, localizedCopy]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -182,8 +205,8 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
       form
         .querySelector<HTMLInputElement>('input[name="productInterest"]')
         ?.setCustomValidity(
-          isChinese
-            ? chineseContactFormCopy.selectProductInterest
+          localizedCopy
+            ? localizedCopy.selectProductInterest
             : "Select at least one product interest.",
         );
       event.currentTarget.reportValidity();
@@ -270,74 +293,72 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
     <form onSubmit={(event) => void handleSubmit(event)} className="contact-inquiry-form border border-line bg-surface p-6">
       <div className="mb-6 border-s-4 border-brand bg-background px-4 py-3">
         <p className="text-xs font-semibold uppercase text-brand">
-          {isChinese ? chineseContactFormCopy.contextEyebrow : "Inquiry context"}
+          {localizedCopy?.contextEyebrow ?? "Inquiry context"}
         </p>
         <p className="mt-1 font-semibold text-foreground">{contextLabel}</p>
         <p className="mt-1 text-sm leading-6 text-muted">
-          {isChinese ? chineseContactFormCopy.sourceLabel : "Source"}: {attribution.contentType.replaceAll("_", " ")} /{" "}
+          {localizedCopy?.sourceLabel ?? "Source"}: {attribution.contentType.replaceAll("_", " ")} /{" "}
           {attribution.ctaPosition.replaceAll("_", " ")}
         </p>
       </div>
       <div className="grid gap-5 md:grid-cols-2">
         <label className={labelClass}>
-          {isChinese ? chineseContactFormCopy.name : "Name *"}
+          {localizedCopy?.name ?? "Name *"}
           <input name="name" required className={inputClass} />
         </label>
         <label className={labelClass}>
-          {isChinese ? chineseContactFormCopy.company : "Company"}
+          {localizedCopy?.company ?? "Company"}
           <input name="company" className={inputClass} />
         </label>
         <label className={labelClass}>
-          {isChinese ? chineseContactFormCopy.email : "Email *"}
+          {localizedCopy?.email ?? "Email *"}
           <input name="email" type="email" required className={inputClass} />
         </label>
         <label className={labelClass}>
-          {isChinese ? chineseContactFormCopy.phone : "WhatsApp / Phone"}
+          {localizedCopy?.phone ?? "WhatsApp / Phone"}
           <input name="phone" className={inputClass} />
         </label>
         <label className={labelClass}>
-          {isChinese ? chineseContactFormCopy.country : "Country / Region *"}
+          {localizedCopy?.country ?? "Country / Region *"}
           <input name="country" required className={inputClass} />
         </label>
         <label className={labelClass}>
-          {isChinese ? chineseContactFormCopy.customerType : "Customer Type *"}
+          {localizedCopy?.customerType ?? "Customer Type *"}
           <select name="customerType" required className={inputClass} defaultValue="">
             <option value="" disabled>
-              {isChinese
-                ? chineseContactFormCopy.selectCustomerType
+              {localizedCopy
+                ? localizedCopy.selectCustomerType
                 : "Select customer type"}
             </option>
             {contactFormOptions.customerTypes.map((option) => (
               <option key={option.value} value={option.value}>
-                {isChinese ? option.zhLabel : option.value}
+                {isArabic ? option.arLabel : isChinese ? option.zhLabel : option.value}
               </option>
             ))}
           </select>
         </label>
         <label className={labelClass}>
-          {isChinese ? chineseContactFormCopy.projectStage : "Project Stage"}
+          {localizedCopy?.projectStage ?? "Project Stage"}
           <select name="projectStage" className={inputClass} defaultValue="">
             <option value="">
-              {isChinese
-                ? chineseContactFormCopy.selectProjectStage
+              {localizedCopy
+                ? localizedCopy.selectProjectStage
                 : "Select project stage"}
             </option>
             {contactFormOptions.projectStages.map((option) => (
               <option key={option.value} value={option.value}>
-                {isChinese ? option.zhLabel : option.value}
+                {isArabic ? option.arLabel : isChinese ? option.zhLabel : option.value}
               </option>
             ))}
           </select>
         </label>
         <label className={labelClass}>
-          {isChinese
-            ? chineseContactFormCopy.targetDelivery
-            : "Target Delivery Timing"}
+          {localizedCopy?.targetDelivery ?? "Target Delivery Timing"}
           <input
             name="targetDelivery"
             placeholder={
-              isChinese
-                ? chineseContactFormCopy.targetDeliveryPlaceholder
+              localizedCopy
+                ? localizedCopy.targetDeliveryPlaceholder
                 : "Example: October 2026"
             }
             className={inputClass}
@@ -347,9 +368,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
 
       <fieldset className="mt-5">
         <legend className="text-sm font-semibold text-foreground">
-          {isChinese
-            ? chineseContactFormCopy.productInterest
-            : "Product Interest *"}
+          {localizedCopy?.productInterest ?? "Product Interest *"}
         </legend>
         <div className="mt-3 grid gap-2 md:grid-cols-2">
           {contactFormOptions.productInterests.map((option) => (
@@ -367,19 +386,19 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
                 }
                 className="mt-1"
               />
-              <span>{isChinese ? option.zhLabel : option.value}</span>
+              <span>{isArabic ? option.arLabel : isChinese ? option.zhLabel : option.value}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
       <label className={`${labelClass} mt-5`}>
-        {isChinese ? chineseContactFormCopy.quantity : "Estimated Quantity"}
+        {localizedCopy?.quantity ?? "Estimated Quantity"}
         <input
           name="quantity"
           placeholder={
-            isChinese
-              ? chineseContactFormCopy.quantityPlaceholder
+            localizedCopy
+              ? localizedCopy.quantityPlaceholder
               : "Example: 100 sets / 300 rooms / 1 hotel project"
           }
           className={inputClass}
@@ -387,7 +406,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
       </label>
 
       <label className="sr-only" aria-hidden="true">
-        {isChinese ? chineseContactFormCopy.website : "Website"}
+        {localizedCopy?.website ?? "Website"}
         <input
           name="website"
           tabIndex={-1}
@@ -397,7 +416,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
       </label>
 
       <label className={`${labelClass} mt-5`}>
-        {isChinese ? chineseContactFormCopy.message : "Message *"}
+        {localizedCopy?.message ?? "Message *"}
         <textarea
           name="message"
           required
@@ -410,13 +429,11 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
 
       <div className="mt-5 border border-line bg-background px-4 py-3" role="note">
         <p className={labelClass}>
-          {isChinese
-            ? chineseContactFormCopy.filesTitle
-            : "Project Files (optional)"}
+          {localizedCopy?.filesTitle ?? "Project Files (optional)"}
         </p>
         <p className="mt-2 text-sm leading-6 text-muted">
-          {isChinese
-            ? chineseContactFormCopy.filesHelp
+          {localizedCopy
+            ? localizedCopy.filesHelp
             : "This website does not upload files. After your email draft opens, attach drawings, product lists, BOQ, or project requirements manually in your email app. File type and size limits are set by your email provider."}
         </p>
       </div>
@@ -428,29 +445,29 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
         className="contact-submit-button mt-6 inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white disabled:cursor-wait disabled:opacity-70"
       >
         {status === "submitting"
-          ? isChinese
-            ? chineseContactFormCopy.submitting
+          ? localizedCopy
+            ? localizedCopy.submitting
             : "Submitting Inquiry..."
           : status === "preparing"
-            ? isChinese
-              ? chineseContactFormCopy.preparing
+            ? localizedCopy
+              ? localizedCopy.preparing
               : "Preparing Email Draft..."
             : serverSubmissionEnabled
-              ? isChinese
-                ? chineseContactFormCopy.submit
+              ? localizedCopy
+                ? localizedCopy.submit
                 : "Submit Project Inquiry"
-              : isChinese
-                ? chineseContactFormCopy.prepare
+              : localizedCopy
+                ? localizedCopy.prepare
                 : "Prepare Email Draft"}
       </button>
 
       <p className="mt-4 border-s-4 border-accent ps-4 text-sm leading-6 text-muted">
         {serverSubmissionEnabled
-          ? isChinese
-            ? `${chineseContactFormCopy.fallbackServer} `
+          ? localizedCopy
+            ? `${localizedCopy.fallbackServer} `
             : "If server submission is unavailable, use "
-          : isChinese
-            ? `${chineseContactFormCopy.fallbackMailto} `
+          : localizedCopy
+            ? `${localizedCopy.fallbackMailto} `
             : "Email sending is not configured yet. This form opens an email draft to "}
         <TrackedInquiryLink
           href={`mailto:${brand.emails.sales}`}
@@ -463,13 +480,13 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
         >
           {brand.emails.sales}
         </TrackedInquiryLink>
-        {isChinese
-          ? chineseContactFormCopy.fallbackReview
+        {localizedCopy
+          ? localizedCopy.fallbackReview
           : ". Review and send the draft yourself, attach project files manually if needed, or use "}
         <TrackedInquiryLink
           href={createWhatsAppUrl(
-            isChinese
-              ? chineseContactFormCopy.whatsappMessage
+            localizedCopy
+              ? localizedCopy.whatsappMessage
               : `Hello ${brand.name}, I would like to discuss a B2B project.`,
           )}
           channel="whatsapp"
@@ -479,7 +496,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
           }}
           className="font-semibold text-brand"
         >
-          {isChinese ? chineseContactFormCopy.whatsappLabel : "WhatsApp"}
+          {localizedCopy?.whatsappLabel ?? "WhatsApp"}
         </TrackedInquiryLink>
         .
       </p>
@@ -489,8 +506,8 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
           className="mt-3 text-sm font-semibold text-brand"
           role="status"
         >
-          {isChinese
-            ? chineseContactFormCopy.draftReady
+          {localizedCopy
+            ? localizedCopy.draftReady
             : "Email draft handoff requested. Review the draft, attach any files, and press Send in your email app. This website has not sent or delivered your inquiry."}
         </p>
       ) : null}
@@ -500,8 +517,8 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
           className="mt-3 text-sm font-semibold text-brand"
           role="status"
         >
-          {isChinese
-            ? chineseContactFormCopy.accepted
+          {localizedCopy
+            ? localizedCopy.accepted
             : "Your inquiry was accepted for delivery. This confirms server acceptance, not inbox delivery. We will follow up through the contact details you provided."}
         </p>
       ) : null}
@@ -512,11 +529,13 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
           role="alert"
         >
           {submissionError
-            ? isChinese
-              ? chineseSubmissionErrorMessages[submissionError]
+            ? isArabic
+              ? arabicSubmissionErrorMessages[submissionError]
+              : isChinese
+                ? chineseSubmissionErrorMessages[submissionError]
               : submissionErrorMessages[submissionError]
-            : isChinese
-              ? chineseContactFormCopy.genericError
+            : localizedCopy
+              ? localizedCopy.genericError
               : "We could not open your email app. Your entries are still here. Use the sales email or WhatsApp link above, or try preparing the draft again."}
         </p>
       ) : null}

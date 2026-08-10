@@ -6,10 +6,17 @@ import { GetQuoteForm } from "@/components/contact/get-quote-form";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 import { PageHeading } from "@/components/content/page-heading";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
+import {
+  getLocalizedCompositionHomePath,
+  supportsSpecializedLocalizedComposition,
+} from "@/lib/multilingual-review-preview";
 import { JsonLd } from "@/components/seo/json-ld";
 import { brand } from "@/config/brand";
 import { isLocale } from "@/config/i18n";
-import { chineseContactCopy } from "@/config/static-page-localization";
+import {
+  arabicContactCopy,
+  chineseContactCopy,
+} from "@/config/static-page-localization";
 import {
   buildLocalizedPath,
   buildSiteUrl,
@@ -67,16 +74,27 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const localizedPage = getLocalizedPublicationPage(locale, "static", "contact");
-  if (localizedPage && locale !== "zh") {
+  if (
+    localizedPage &&
+    !supportsSpecializedLocalizedComposition(locale)
+  ) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
   const isChinese = locale === "zh" && Boolean(localizedPage);
+  const isArabic = locale === "ar" && Boolean(localizedPage);
+  const contactCopy = isArabic
+    ? arabicContactCopy
+    : isChinese
+      ? chineseContactCopy
+      : null;
   const page = localizedPage
     ? undefined
     : await pageRepository.getBySlug(locale, "contact");
-  const whatsappMessage = isChinese
-    ? `您好 ${brand.name}，我想咨询智能酒店或智能家居 B2B 项目。`
-    : `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
+  const whatsappMessage = isArabic
+    ? `مرحباً ${brand.name}، أود مناقشة مشروع فندق أو منزل ذكي B2B.`
+    : isChinese
+      ? `您好 ${brand.name}，我想咨询智能酒店或智能家居 B2B 项目。`
+      : `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
   const body = stripHtml(page?.content || "");
   const contactSource = {
     sourcePage: `/${locale}/contact/`,
@@ -109,8 +127,8 @@ export default async function ContactPage({ params }: ContactPageProps) {
           },
           createBreadcrumbSchema(`${contactUrl}#breadcrumb`, [
             {
-              name: isChinese ? "首页" : "Home",
-              url: buildSiteUrl(buildLocalizedPath(locale)),
+              name: isArabic ? "الرئيسية" : isChinese ? "首页" : "Home",
+              url: buildSiteUrl(getLocalizedCompositionHomePath(locale)),
             },
             {
               name: localizedPage?.content.breadcrumbLabel ?? "Contact",
@@ -122,7 +140,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <main className="contact-page-shell mx-auto max-w-5xl px-5 py-12 sm:px-8 lg:px-12">
       <section className="contact-conversion-hero border border-line bg-surface p-6">
         <PageHeading
-          eyebrow={isChinese ? chineseContactCopy.eyebrow : "Project contact"}
+          eyebrow={contactCopy?.eyebrow ?? "Project contact"}
           title={contactTitle}
           description={contactDescription}
         />
@@ -134,12 +152,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
       ) : null}
       <div className="mt-10 grid gap-4 lg:grid-cols-2">
         <ContactCard
-          label={isChinese ? chineseContactCopy.salesLabel : "Sales & quotations"}
+          label={contactCopy?.salesLabel ?? "Sales & quotations"}
           value={brand.emails.sales}
           href={`mailto:${brand.emails.sales}`}
           description={
-            isChinese
-              ? chineseContactCopy.salesDescription
+            contactCopy
+              ? contactCopy.salesDescription
               : brand.emailPurposes.sales
           }
           highlight
@@ -149,12 +167,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
           }}
         />
         <ContactCard
-          label={isChinese ? chineseContactCopy.generalLabel : "General contact"}
+          label={contactCopy?.generalLabel ?? "General contact"}
           value={brand.emails.general}
           href={`mailto:${brand.emails.general}`}
           description={
-            isChinese
-              ? chineseContactCopy.generalDescription
+            contactCopy
+              ? contactCopy.generalDescription
               : brand.emailPurposes.general
           }
           attribution={{
@@ -163,12 +181,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
           }}
         />
         <ContactCard
-          label={isChinese ? chineseContactCopy.supportLabel : "Technical support"}
+          label={contactCopy?.supportLabel ?? "Technical support"}
           value={brand.emails.support}
           href={`mailto:${brand.emails.support}`}
           description={
-            isChinese
-              ? chineseContactCopy.supportDescription
+            contactCopy
+              ? contactCopy.supportDescription
               : brand.emailPurposes.support
           }
           attribution={{
@@ -178,16 +196,16 @@ export default async function ContactPage({ params }: ContactPageProps) {
         />
         <div className="contact-method-card border border-line bg-surface p-6">
           <p className="text-sm font-semibold uppercase text-brand">WhatsApp</p>
-          <p className="mt-3 text-xl font-semibold">{brand.whatsapp.display}</p>
+          <p className="mt-3 text-xl font-semibold"><bdi dir="ltr">{brand.whatsapp.display}</bdi></p>
           <p className="mt-3 leading-7 text-muted">
-            {isChinese
-              ? chineseContactCopy.whatsappDescription
+            {contactCopy
+              ? contactCopy.whatsappDescription
               : "Fast quotation support for product lists, hotel projects, and OEM/ODM requirements."}
           </p>
           <WhatsAppButton
             message={whatsappMessage}
             label={
-              isChinese ? chineseContactCopy.whatsappLabel : undefined
+              contactCopy?.whatsappLabel
             }
             attribution={{
               ...contactSource,
@@ -199,16 +217,16 @@ export default async function ContactPage({ params }: ContactPageProps) {
       </div>
       <section className="mt-10 border-y border-line py-8">
         <p className="text-sm font-semibold uppercase text-brand">
-          {isChinese ? chineseContactCopy.reviewEyebrow : "Faster project review"}
+          {contactCopy?.reviewEyebrow ?? "Faster project review"}
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-foreground">
-          {isChinese
-            ? chineseContactCopy.reviewTitle
+          {contactCopy
+            ? contactCopy.reviewTitle
             : "Include the details that shape product selection"}
         </h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {(isChinese
-            ? chineseContactCopy.reviewItems
+          {(contactCopy
+            ? contactCopy.reviewItems
             : [
                 ["Project scope", "Country, hotel type, room count, project stage, and delivery target."],
                 ["Technical fit", "Voltage, frequency, protocol, wiring, panel finish, and room functions."],
@@ -226,33 +244,33 @@ export default async function ContactPage({ params }: ContactPageProps) {
         <div className="grid gap-8 lg:grid-cols-[1fr_220px] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase text-brand">
-              {isChinese ? chineseContactCopy.detailsEyebrow : "Contact Details"}
+              {contactCopy?.detailsEyebrow ?? "Contact Details"}
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-foreground">
-              {isChinese
-                ? chineseContactCopy.detailsTitle
+              {contactCopy
+                ? contactCopy.detailsTitle
                 : "Office Address, WeChat and Phone"}
             </h2>
             <dl className="mt-6 space-y-5 text-sm">
               <div>
                 <dt className="font-semibold text-foreground">
-                  {isChinese ? chineseContactCopy.officeLabel : "Office Address"}
+                  {contactCopy?.officeLabel ?? "Office Address"}
                 </dt>
                 <dd className="mt-2 leading-7 text-muted">{officeAddress}</dd>
               </div>
               <div>
                 <dt className="font-semibold text-foreground">
-                  {isChinese ? chineseContactCopy.wechatLabel : "WeChat ID"}
+                  {contactCopy?.wechatLabel ?? "WeChat ID"}
                 </dt>
-                <dd className="mt-2 text-muted">{wechatId}</dd>
+                <dd className="mt-2 text-muted"><bdi dir="ltr">{wechatId}</bdi></dd>
               </div>
               <div>
                 <dt className="font-semibold text-foreground">
-                  {isChinese ? chineseContactCopy.phoneLabel : "Phone"}
+                  {contactCopy?.phoneLabel ?? "Phone"}
                 </dt>
                 <dd className="mt-2">
                   <a className="font-semibold text-brand" href={phoneHref}>
-                    {phoneNumber}
+                    <bdi dir="ltr">{phoneNumber}</bdi>
                   </a>
                 </dd>
               </div>
@@ -262,8 +280,8 @@ export default async function ContactPage({ params }: ContactPageProps) {
             <Image
               src="/media/contact/wechat-allan-qr.png"
               alt={
-                isChinese
-                  ? chineseContactCopy.qrAlt
+                contactCopy
+                  ? contactCopy.qrAlt
                   : "WeChat QR code for DualCoreLink contact"
               }
               width={220}
@@ -271,8 +289,8 @@ export default async function ContactPage({ params }: ContactPageProps) {
               className="h-auto w-full border border-line bg-white p-2"
             />
             <p className="mt-3 text-sm leading-6 text-muted">
-              {isChinese
-                ? chineseContactCopy.qrHelp
+              {contactCopy
+                ? contactCopy.qrHelp
                 : "Scan to add WeChat contact."}
             </p>
           </div>
@@ -280,29 +298,29 @@ export default async function ContactPage({ params }: ContactPageProps) {
       </section>
       <section id="get-a-quote" className="contact-quote-section mt-12">
         <h2 className="text-3xl font-semibold text-foreground">
-          {isChinese ? chineseContactCopy.quoteTitle : "Get a Quote"}
+          {contactCopy?.quoteTitle ?? "Get a Quote"}
         </h2>
         <p className="mt-3 max-w-3xl leading-7 text-muted">
           {serverSubmissionEnabled
-            ? isChinese
-              ? `${chineseContactCopy.quoteServerIntro} `
+            ? contactCopy
+              ? `${contactCopy.quoteServerIntro} `
               : "Submit inquiry details securely to our sales team. If delivery is unavailable, use "
-            : isChinese
-              ? `${chineseContactCopy.quoteMailtoIntro} `
+            : contactCopy
+              ? `${contactCopy.quoteMailtoIntro} `
               : "Send inquiry details to our sales team. This form opens an email draft to "}
           <a href={`mailto:${brand.emails.sales}`} className="font-semibold text-brand">
-            {brand.emails.sales}
+            <bdi dir="ltr">{brand.emails.sales}</bdi>
           </a>
           .
         </p>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
-          {isChinese
-            ? chineseContactCopy.quoteHelp
+          {contactCopy
+            ? contactCopy.quoteHelp
             : "For Middle East and Southeast Asia projects, include your country, hotel room type, voltage and frequency requirements, protocol preference, estimated quantity, and required documents."}
         </p>
         <ol className="mt-6 grid gap-4 border-y border-line py-5 text-sm md:grid-cols-3">
-          {(isChinese
-            ? chineseContactCopy.quoteSteps
+          {(contactCopy
+            ? contactCopy.quoteSteps
             : [
                 "Share the project brief and product interest.",
                 "We review technical fit and document needs.",

@@ -17,6 +17,10 @@ import {
 import { JsonLd } from "@/components/seo/json-ld";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import {
+  getLocalizedCompositionHomePath,
+  supportsSpecializedLocalizedComposition,
+} from "@/lib/multilingual-review-preview";
+import {
   createLocalizedPublicationMetadata,
   getLocalizedPublicationPage,
   getPublicationHreflang,
@@ -50,6 +54,7 @@ function ResourceCard({
   compact?: boolean;
 }) {
   const isChinese = locale === "zh";
+  const isArabic = locale === "ar";
   const primarySolution = resource.relatedSolutions[0];
   const primaryProduct = resource.relatedProducts[0];
 
@@ -88,7 +93,7 @@ function ResourceCard({
         {primarySolution ? (
           <p>
             <span className="font-semibold text-foreground">
-              {isChinese ? "解决方案：" : "Solution: "}
+              {isArabic ? "الحل: " : isChinese ? "解决方案：" : "Solution: "}
             </span>
             <Link href={primarySolution.href} className="text-brand">
               {primarySolution.title}
@@ -98,7 +103,7 @@ function ResourceCard({
         {primaryProduct ? (
           <p>
             <span className="font-semibold text-foreground">
-              {isChinese ? "产品：" : "Product: "}
+              {isArabic ? "المنتج: " : isChinese ? "产品：" : "Product: "}
             </span>
             <Link href={primaryProduct.href} className="text-brand">
               {primaryProduct.title}
@@ -123,13 +128,13 @@ function ResourceCard({
           href={`/${locale}/resources/${resource.slug}/`}
           className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 text-sm font-semibold text-white"
         >
-          {isChinese ? "阅读指南" : "Read Guide"}
+          {isArabic ? "قراءة الدليل" : isChinese ? "阅读指南" : "Read Guide"}
         </Link>
         <Link
           href={`/${locale}/contact/#get-a-quote`}
           className="inline-flex min-h-11 items-center justify-center border border-line bg-background px-5 py-3 text-sm font-semibold text-brand"
         >
-          {isChinese ? "获取报价" : "Request a Quote"}
+          {isArabic ? "طلب عرض سعر" : isChinese ? "获取报价" : "Request a Quote"}
         </Link>
       </div>
     </article>
@@ -167,11 +172,15 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
     "resource-listing",
     "resources",
   );
-  if (localizedPage && locale !== "zh") {
+  if (
+    localizedPage &&
+    !supportsSpecializedLocalizedComposition(locale)
+  ) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
-  if (locale !== "en" && locale !== "zh") notFound();
+  if (locale !== "en" && locale !== "zh" && locale !== "ar") notFound();
   const isChinese = locale === "zh" && Boolean(localizedPage);
+  const isArabic = locale === "ar" && Boolean(localizedPage);
   const listingResources = resources.map((resource) => {
     const page = getLocalizedPublicationPage(locale, "resource", resource.slug);
     return page ? localizeResourceGuide(resource, page) : resource;
@@ -200,7 +209,7 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
       })),
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
+      { name: "Home", url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
       { name: localizedPage?.content.breadcrumbLabel ?? "Resources", url },
     ]),
   ]);
@@ -223,9 +232,11 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
                   "Compare hotel RCU systems, smart room control devices, OEM/ODM smart panels, and guest room automation planning before preparing a quotation request."}
               </p>
             </div>
-            <div className="border-l-0 border-line pt-0 text-sm leading-7 text-muted lg:border-l lg:pl-6">
+            <div className="border-s-0 border-line pt-0 text-sm leading-7 text-muted lg:border-s lg:ps-6">
               <p>
-                {isChinese
+                {isArabic
+                  ? "كُتبت هذه الأدلة لمشتري B2B الذين يحتاجون اتجاهاً عملياً للمنتج ومسار طلب الوثائق وروابط داخلية قبل مناقشة مشروع أتمتة الفندق."
+                  : isChinese
                   ? "这些指南面向需要在酒店自动化项目讨论前明确产品方向、资料路径和采购要点的 B2B 买家。"
                   : "These guides are written for overseas B2B buyers who need a practical product direction, document request path, and internal link map before discussing a hotel automation project."}
               </p>
@@ -234,13 +245,13 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
                   href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
                 >
-                  {isChinese ? "获取报价" : "Get a Quote"}
+                  {isArabic ? "طلب عرض سعر" : isChinese ? "获取报价" : "Get a Quote"}
                 </Link>
                 <Link
                   href={`/${locale}/faqs/`}
                   className="inline-flex min-h-11 items-center justify-center border border-line bg-background px-5 py-3 font-semibold text-brand"
                 >
-                  {isChinese ? "采购常见问题" : "Buyer FAQs"}
+                  {isArabic ? "أسئلة المشترين الشائعة" : isChinese ? "采购常见问题" : "Buyer FAQs"}
                 </Link>
               </div>
             </div>
@@ -251,13 +262,15 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
           <div className="flex flex-col justify-between gap-4 border-b border-line pb-5 sm:flex-row sm:items-end">
             <div>
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? "重点指南" : "Featured guides"}
+                {isArabic ? "أدلة مميزة" : isChinese ? "重点指南" : "Featured guides"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                {isChinese ? "从高意向 B2B 项目主题开始" : "Start with high-intent B2B project topics"}
+                {isArabic ? "ابدأ بموضوعات مشروعات B2B ذات النية العالية" : isChinese ? "从高意向 B2B 项目主题开始" : "Start with high-intent B2B project topics"}
               </h2>
               <p className="mt-2 max-w-3xl leading-7 text-muted">
-                {isChinese
+                {isArabic
+                  ? "ابدأ بهذه الأدلة عند مقارنة RCU للفنادق أو أتمتة الغرف الكاملة أو تخصيص لوحات OEM/ODM."
+                  : isChinese
                   ? "适合正在比较酒店 RCU、完整客房自动化或 OEM/ODM 智能面板定制的买家优先阅读。"
                   : "These guides are the best first reads for buyers comparing hotel RCU control, complete room automation, or OEM/ODM smart panel customization."}
               </p>
@@ -266,7 +279,7 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
               href={localizeReleasedHref("/en/downloads/", locale)}
               className="inline-flex min-h-11 w-fit items-center justify-center border border-line px-5 py-3 text-sm font-semibold text-brand"
             >
-              {isChinese ? "索取资料" : "Request Datasheets"}
+              {isArabic ? "طلب أوراق البيانات" : isChinese ? "索取资料" : "Request Datasheets"}
             </Link>
           </div>
 
@@ -280,12 +293,14 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
         <section className="mt-12">
           <div className="border-b border-line pb-5">
             <p className="text-sm font-semibold uppercase text-brand">
-              {isChinese ? "按项目需求浏览" : "Browse by project need"}
+              {isArabic ? "التصفح حسب احتياج المشروع" : isChinese ? "按项目需求浏览" : "Browse by project need"}
             </p>
             <h2 className="mt-2 text-2xl font-semibold text-foreground">
-              {isChinese
-                ? "采购、自动化、OEM/ODM 与技术规划资源分类"
-                : "Resource groups for buying, automation, OEM/ODM, and technical planning"}
+              {isArabic
+                ? "مجموعات موارد للشراء والأتمتة وOEM/ODM والتخطيط التقني"
+                : isChinese
+                  ? "采购、自动化、OEM/ODM 与技术规划资源分类"
+                  : "Resource groups for buying, automation, OEM/ODM, and technical planning"}
             </h2>
           </div>
 
@@ -301,8 +316,15 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
                   <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
                     <div>
                       <h2 className="text-2xl font-semibold text-foreground">
-                        {isChinese
+                        {isArabic
                           ? {
+                              "Buying Guides": "أدلة الشراء",
+                              "Hotel Automation Guides": "أدلة أتمتة الفنادق",
+                              "OEM/ODM Guides": "أدلة OEM/ODM",
+                              "Technical Resources": "موارد تقنية",
+                            }[group]
+                          : isChinese
+                            ? {
                               "Buying Guides": "采购指南",
                               "Hotel Automation Guides": "酒店自动化指南",
                               "OEM/ODM Guides": "OEM/ODM 指南",
@@ -311,8 +333,15 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
                           : group}
                       </h2>
                       <p className="mt-2 text-sm leading-6 text-muted">
-                        {isChinese
+                        {isArabic
                           ? {
+                              "Buying Guides": "قارن عوامل اختيار المنتج قبل حصر الأجهزة وبنود عرض السعر.",
+                              "Hotel Automation Guides": "خطط لتدفقات غرف الفندق وأنظمة التحكم ومجموعات الأجهزة.",
+                              "OEM/ODM Guides": "راجع نطاق التخصيص والعينات والوثائق ومدخلات عرض السعر.",
+                              "Technical Resources": "افهم مفاهيم التحكم بالغرف والتوصيلات ووثائق المنتج والمراجعة الهندسية المبكرة.",
+                            }[group]
+                          : isChinese
+                            ? {
                               "Buying Guides": "在筛选设备和报价项前比较产品选型因素。",
                               "Hotel Automation Guides": "规划酒店客房流程、控制系统与设备组合。",
                               "OEM/ODM Guides": "核对智能面板定制范围、样品、资料和报价输入。",
@@ -330,7 +359,7 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
                       href={`/${locale}/contact/#get-a-quote`}
                       className="inline-flex min-h-10 w-fit items-center justify-center border border-line px-4 py-2 text-sm font-semibold text-brand"
                     >
-                      {isChinese ? "讨论该主题" : "Discuss This Topic"}
+                      {isArabic ? "ناقش هذا الموضوع" : isChinese ? "讨论该主题" : "Discuss This Topic"}
                     </Link>
                   </div>
 
@@ -354,17 +383,21 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase text-white/70">
-                {isChinese ? "项目支持" : "Project support"}
+                {isArabic ? "دعم المشروع" : isChinese ? "项目支持" : "Project support"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold">
-                {isChinese
-                  ? "需要协助把指南对应到产品和解决方案？"
-                  : "Need help matching guides to products and solutions?"}
+                {isArabic
+                  ? "هل تحتاج مساعدة لربط الأدلة بالمنتجات والحلول؟"
+                  : isChinese
+                    ? "需要协助把指南对应到产品和解决方案？"
+                    : "Need help matching guides to products and solutions?"}
               </h2>
               <p className="mt-3 leading-8 text-white/75">
-                {isChinese
-                  ? "请提供房型、目标市场、关注设备、电压、协议偏好、数量与资料需求，团队可按项目核对相关产品、解决方案和报价输入。"
-                  : "Send your room type, target market, device interests, voltage, protocol preference, quantity, and document needs. The team can review relevant products, solutions, catalogs, and quote inputs by project request."}
+                {isArabic
+                  ? "أرسل نوع الغرفة والسوق المستهدف والأجهزة والجهد والبروتوكول والكمية والوثائق المطلوبة لمراجعة المنتجات والحلول ومدخلات عرض السعر."
+                  : isChinese
+                    ? "请提供房型、目标市场、关注设备、电压、协议偏好、数量与资料需求，团队可按项目核对相关产品、解决方案和报价输入。"
+                    : "Send your room type, target market, device interests, voltage, protocol preference, quantity, and document needs. The team can review relevant products, solutions, catalogs, and quote inputs by project request."}
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -372,19 +405,19 @@ export default async function ResourcesPage({ params }: ResourcesPageProps) {
                 href={`/${locale}/products/`}
                 className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
               >
-                {isChinese ? "浏览产品" : "Explore Products"}
+                {isArabic ? "استكشاف المنتجات" : isChinese ? "浏览产品" : "Explore Products"}
               </Link>
               <Link
                 href={`/${locale}/solutions/`}
                 className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
               >
-                {isChinese ? "查看解决方案" : "View Solutions"}
+                {isArabic ? "عرض الحلول" : isChinese ? "查看解决方案" : "View Solutions"}
               </Link>
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
                 className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
               >
-                {isChinese ? "提交询盘" : "Send Inquiry"}
+                {isArabic ? "إرسال استفسار" : isChinese ? "提交询盘" : "Send Inquiry"}
               </Link>
             </div>
           </div>

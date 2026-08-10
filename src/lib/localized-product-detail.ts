@@ -1,3 +1,4 @@
+import { getDirection } from "@/config/i18n";
 import { productCategories } from "@/config/product-taxonomy";
 import type { ProductGallery } from "@/config/product-galleries";
 import type { ProductConversionProfile } from "@/config/product-conversion";
@@ -61,8 +62,8 @@ export function createLocalizedProductDetailCopy(
   page: LocalizedPublicationPage,
 ): LocalizedProductDetailCopy {
   const applications =
-    matchingSectionText(page, /适用|应用|场景/) ||
-    matchingSpecificationValue(page, /适用|应用|场景/) ||
+    matchingSectionText(page, /适用|应用|场景|مشروع|تطبيق|استخدام/) ||
+    matchingSpecificationValue(page, /适用|应用|场景|مشروع|تطبيق|استخدام/) ||
     sectionText(page, 0);
 
   return {
@@ -84,14 +85,27 @@ export function localizeProductDetailModel(
   const localizedCategoryNames = new Map(
     productCategories.map((category) => [
       category.slug,
-      category.chineseTitle,
+      page.locale === "ar"
+        ? ({
+            "smart-panels-switches": "اللوحات والمفاتيح الذكية",
+            "ai-smart-displays": "شاشات التحكم الذكية",
+            "rcu-room-control-host": "مضيف التحكم بالغرفة RCU",
+            sensors: "المستشعرات",
+            "smart-sockets-power-modules": "المقابس الذكية ووحدات الطاقة",
+            "hvac-thermostat-control": "التحكم في HVAC والثرموستات",
+            "curtain-control-panels": "لوحات التحكم في الستائر",
+            "room-status-hotel-service-panels": "لوحات حالة الغرفة وخدمات الفندق",
+            "hotel-audio-communication-devices": "أجهزة الصوت والاتصال الفندقية",
+            "hotel-delivery-robot-system": "نظام روبوت التوصيل الفندقي",
+          } as Record<string, string>)[category.slug] ?? category.title
+        : category.chineseTitle,
     ]),
   );
 
   return {
     ...source,
     language: page.locale,
-    direction: "ltr",
+    direction: getDirection(page.locale),
     title: page.title,
     excerpt: page.description,
     shortDescription: page.description,
@@ -117,7 +131,7 @@ export function localizeProductDetailModel(
         ? {
             ...item,
             language: page.locale,
-            direction: "ltr" as const,
+            direction: getDirection(page.locale),
             title: localized.title,
             excerpt: localized.description,
           }
@@ -145,11 +159,18 @@ export function localizeProductGallery(
   return {
     featuredImage: {
       ...gallery.featuredImage,
-      alt: page.content.imageAlt || `${page.title}产品主图`,
+      alt:
+        page.content.imageAlt ||
+        (page.locale === "ar"
+          ? `الصورة الرئيسية لمنتج ${page.title}`
+          : `${page.title}产品主图`),
     },
     gallery: gallery.gallery.map((image, index) => ({
       ...image,
-      alt: `${page.title}产品图 ${index + 2}`,
+      alt:
+        page.locale === "ar"
+          ? `صورة المنتج ${page.title} ${index + 2}`
+          : `${page.title}产品图 ${index + 2}`,
     })),
   };
 }
@@ -159,6 +180,26 @@ export function localizeProductConversionProfile(
   page: LocalizedPublicationPage,
 ): ProductConversionProfile | undefined {
   if (!profile) return undefined;
+
+  if (page.locale === "ar") {
+    return {
+      ...profile,
+      label: "تخطيط مشتريات المشروع",
+      summary: page.content.introduction,
+      highlights: [
+        { label: "دور المشروع", value: page.content.eyebrow },
+        {
+          label: "المشترون المناسبون",
+          value: "مالكو الفنادق والمقاولون ومتكاملو الأنظمة",
+        },
+        {
+          label: "ما يجب تأكيده",
+          value: "التركيب والواجهات والكمية وشروط التسليم",
+        },
+      ],
+      whatsappPrompt: `مرحباً DUALCORE LINK، أود مناقشة اختيار ${page.title} لمشروع فندقي.`,
+    };
+  }
 
   return {
     ...profile,

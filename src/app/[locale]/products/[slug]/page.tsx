@@ -38,8 +38,12 @@ import {
   createLocalizedPublicationMetadata,
   getLocalizedPublicationPage,
   getPublicationHreflang,
-  localizedPublicationPages,
+  localizedRenderablePublicationPages,
 } from "@/lib/localized-publication";
+import {
+  getLocalizedCompositionHomePath,
+  supportsSpecializedLocalizedComposition,
+} from "@/lib/multilingual-review-preview";
 import {
   createLocalizedProductDetailCopy,
   localizeProductConversionProfile,
@@ -110,7 +114,7 @@ export async function generateStaticParams() {
     ),
   );
 
-  const localizedPaths = localizedPublicationPages
+  const localizedPaths = localizedRenderablePublicationPages
     .filter((page) => page.pageType === "product")
     .map((page) => ({ locale: page.locale, slug: page.slug }));
 
@@ -164,7 +168,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
   const localizedPage = getLocalizedPublicationPage(locale, "product", slug);
-  if (localizedPage && locale !== "zh") {
+  if (
+    localizedPage &&
+    !supportsSpecializedLocalizedComposition(locale)
+  ) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
@@ -183,8 +190,38 @@ export default async function ProductPage({ params }: ProductPageProps) {
     ? createLocalizedProductDetailCopy(localizedPage)
     : undefined;
   const isChinese = locale === "zh";
-  const labels = isChinese
+  const isArabic = locale === "ar";
+  const labels = isArabic
     ? {
+        home: "الرئيسية",
+        products: "المنتجات",
+        new: "جديد",
+        product: "منتج",
+        getQuote: "اطلب عرض سعر",
+        quoteHint: "للحصول على عرض أسرع، اذكر الدولة والكمية والجهد والبروتوكول أو الأسلاك وتشطيب اللوحة والتغليف وموعد التسليم.",
+        leadTime: "مدة التسليم",
+        onRequest: "حسب الطلب",
+        available: "متاح",
+        askTeam: "اسأل فريقنا",
+        overview: "نظرة عامة على المنتج",
+        coreFunctions: "الوظائف الأساسية",
+        features: "ميزات المنتج",
+        applications: "سيناريوهات الاستخدام",
+        installation: "موضع التركيب",
+        customization: "خيارات التخصيص",
+        specifications: "المواصفات الفنية",
+        relatedProducts: "منتجات ذات صلة",
+        faq: "الأسئلة الشائعة",
+        commercialOptions: "الخيارات التجارية",
+        moq: "MOQ",
+        units: "وحدة",
+        warranty: "الضمان",
+        privateLabel: "علامة خاصة",
+        sample: "عينة",
+        quoteDescription: "استخدم نموذج الاتصال لإرسال متطلبات المشروع والكمية والوثائق إلى فريق المبيعات.",
+      }
+    : isChinese
+      ? {
         home: "首页",
         products: "产品",
         new: "新品",
@@ -214,7 +251,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         quoteDescription:
           "请通过联系页面提交项目要求、数量和相关资料，我们的销售团队将进行审核。",
       }
-    : {
+      : {
         home: "Home",
         products: "Products",
         new: "New",
@@ -248,7 +285,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const url = buildSiteUrl(path);
   const pageNodes = [
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: labels.home, url: buildSiteUrl(buildLocalizedPath(locale)) },
+      { name: labels.home, url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
       {
         name: labels.products,
         url: buildSiteUrl(buildLocalizedPath(locale, "products")),

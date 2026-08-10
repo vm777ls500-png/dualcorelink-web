@@ -181,7 +181,7 @@ test("Chinese routes retain specialized listing/detail renderers and schema buil
     region: readFileSync("src/app/[locale]/regions/[slug]/page.tsx", "utf8"),
   };
   for (const route of Object.values(routes)) {
-    assert.match(route, /localizedPage && locale !== "zh"/);
+    assert.match(route, /supportsSpecializedLocalizedComposition/);
   }
   assert.match(routes.solution, /localizeSolutionDetail/);
   assert.match(routes.solution, /createServiceSchema/);

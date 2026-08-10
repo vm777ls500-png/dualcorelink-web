@@ -26,7 +26,7 @@ export type HeaderProductsMenu = {
 };
 
 export type HeaderLanguageOption = {
-  locale: "en" | "zh";
+  locale: "en" | "zh" | "ar";
   label: string;
   active: boolean;
   available: boolean;
@@ -59,21 +59,25 @@ const featuredProducts = [
     slug: "hotel-smart-room-rcu-host-1",
     en: "Hotel Smart Room RCU Host",
     zh: "酒店智能客房 RCU 控制主机",
+    ar: "مضيف RCU ذكي لغرفة الفندق",
   },
   {
     slug: "rcu-controller-cabinet",
     en: "RCU Controller Cabinet",
     zh: "酒店客房 RCU 控制箱",
+    ar: "خزانة تحكم RCU لغرفة الفندق",
   },
   {
     slug: "86-type-ai-smart-control-display",
     en: "86-Type AI Smart Control Display",
     zh: "86 型 AI 智能控制屏",
+    ar: "شاشة تحكم ذكية AI من نوع 86",
   },
   {
     slug: "smart-four-key-scene-control-panel",
     en: "Smart Four-Key Scene Control Panel",
     zh: "四键酒店场景控制面板",
+    ar: "لوحة تحكم ذكية بأربعة مفاتيح للمشاهد",
   },
 ] as const;
 
@@ -81,7 +85,7 @@ function normalizedContentPath(pathname: string): string {
   return pathname.replace(/^\/+|\/+$/g, "");
 }
 
-function localizedPath(locale: "en" | "zh", contentPath: string): string {
+function localizedPath(locale: "en" | "zh" | "ar", contentPath: string): string {
   const normalized = normalizedContentPath(contentPath);
   return normalized ? `/${locale}/${normalized}/` : `/${locale}/`;
 }
@@ -89,6 +93,7 @@ function localizedPath(locale: "en" | "zh", contentPath: string): string {
 function releasedHref(locale: Locale, contentPath: string): string {
   const normalized = normalizedContentPath(contentPath);
   if (!normalized) return locale === "zh" ? "/zh/about/" : "/en/";
+  if (locale === "ar") return localizedPath("ar", normalized);
   return buildPublishedNavigationHref(locale, normalized);
 }
 
@@ -96,6 +101,7 @@ export function buildHeaderPrimaryNavigation(
   locale: Locale,
 ): HeaderNavigationLink[] {
   const chinese = locale === "zh";
+  const arabic = locale === "ar";
   const items = chinese
     ? [
         ["home", "首页", ""],
@@ -106,7 +112,17 @@ export function buildHeaderPrimaryNavigation(
         ["about", "关于我们", "about"],
         ["contact", "联系我们", "contact"],
       ]
-    : [
+    : arabic
+      ? [
+          ["home", "الرئيسية", ""],
+          ["products", "المنتجات", "products"],
+          ["solutions", "الحلول", "solutions"],
+          ["resources", "الموارد", "resources"],
+          ["regions", "المناطق", "regions"],
+          ["about", "من نحن", "about"],
+          ["contact", "اتصل بنا", "contact"],
+        ]
+      : [
         ["home", "Home", ""],
         ["products", "Products", "products"],
         ["solutions", "Solutions", "solutions"],
@@ -125,7 +141,12 @@ export function buildHeaderPrimaryNavigation(
 
 export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
   const chinese = locale === "zh";
-  const targetLocale: "en" | "zh" = chinese ? "zh" : "en";
+  const arabic = locale === "ar";
+  const targetLocale: "en" | "zh" | "ar" = chinese
+    ? "zh"
+    : arabic
+      ? "ar"
+      : "en";
   const productsHref = localizedPath(targetLocale, "products");
   const productHref = (slug: string) =>
     releasedHref(locale, `products/${slug}`);
@@ -144,8 +165,23 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
     )
     .map((category) => ({
       key: category.slug,
-      label: chinese ? category.chineseTitle : category.title,
-      href: chinese
+      label: chinese
+        ? category.chineseTitle
+        : arabic
+          ? ({
+              "smart-panels-switches": "اللوحات والمفاتيح الذكية",
+              "ai-smart-displays": "شاشات التحكم الذكية",
+              "rcu-room-control-host": "مضيفات RCU",
+              sensors: "المستشعرات",
+              "smart-sockets-power-modules": "المقابس ووحدات الطاقة",
+              "hvac-thermostat-control": "HVAC والثرموستات",
+              "curtain-control-panels": "لوحات الستائر",
+              "room-status-hotel-service-panels": "حالة الغرفة وخدمات الفندق",
+              "hotel-audio-communication-devices": "الصوت والاتصال الفندقي",
+              "hotel-delivery-robot-system": "روبوتات التوصيل الفندقية",
+            } as Record<string, string>)[category.slug] ?? category.title
+          : category.title,
+      href: chinese || arabic
         ? productsHref
         : `${productsHref}#category-${category.slug}`,
       description: category.description,
@@ -160,7 +196,7 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
     .map((seriesItem) => ({
       key: seriesItem.slug,
       label: chinese ? seriesItem.chineseTitle : seriesItem.title,
-      href: chinese
+      href: chinese || arabic
         ? productsHref
         : `/en/product-series/#${seriesItem.slug}`,
       description: seriesItem.description,
@@ -170,17 +206,17 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
     quickLinks: [
       {
         key: "all-products",
-        label: chinese ? "全部产品" : "All Products",
+        label: arabic ? "كل المنتجات" : chinese ? "全部产品" : "All Products",
         href: productsHref,
       },
       {
         key: "new-products",
-        label: chinese ? "新产品" : "New Products",
+        label: arabic ? "منتجات جديدة" : chinese ? "新产品" : "New Products",
         href: productHref("86-type-ai-smart-control-display"),
       },
       {
         key: "oem-odm-products",
-        label: chinese ? "OEM / ODM 产品" : "OEM / ODM Products",
+        label: arabic ? "منتجات OEM / ODM" : chinese ? "OEM / ODM 产品" : "OEM / ODM Products",
         href: solutionHref("oem-odm-custom-panel-solution"),
       },
     ],
@@ -188,17 +224,17 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
     series,
     featured: featuredProducts.map((product) => ({
       key: product.slug,
-      label: chinese ? product.zh : product.en,
+      label: arabic ? product.ar : chinese ? product.zh : product.en,
       href: productHref(product.slug),
     })),
     viewAllCategories: {
       key: "view-all-categories",
-      label: chinese ? "查看全部分类" : "View All Categories",
+      label: arabic ? "عرض كل الفئات" : chinese ? "查看全部分类" : "View All Categories",
       href: productsHref,
     },
     viewAllProducts: {
       key: "view-all-products",
-      label: chinese ? "查看全部产品" : "View All Products",
+      label: arabic ? "عرض كل المنتجات" : chinese ? "查看全部产品" : "View All Products",
       href: productsHref,
     },
   };
@@ -213,7 +249,7 @@ export function buildHeaderLanguageOptions(
   const englishHref = localizedPath("en", normalized);
   const chineseHref = localizedPath("zh", normalized);
 
-  return [
+  const options: HeaderLanguageOption[] = [
     {
       locale: "en",
       label: "English",
@@ -233,4 +269,13 @@ export function buildHeaderLanguageOptions(
         : "当前页面暂未提供",
     },
   ];
+  if (locale === "ar") {
+    options.push({
+      locale: "ar",
+      label: "العربية",
+      active: true,
+      available: true,
+    });
+  }
+  return options;
 }

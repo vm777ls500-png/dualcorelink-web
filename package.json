@@ -13,6 +13,7 @@
     "multilingual:audit": "tsx scripts/audit-multilingual-publication.ts",
     "multilingual:export-audit": "tsx scripts/audit-multilingual-export.ts",
     "multilingual:static-export-audit": "tsx scripts/audit-multilingual-export.ts",
+    "multilingual:review-preview": "node scripts/build-multilingual-review-preview.mjs ar",
     "multilingual:release-check": "tsx scripts/check-multilingual-release.ts",
     "multilingual:review-pack": "tsx scripts/generate-multilingual-review-packs.ts",
     "multilingual:apply-native-review": "tsx scripts/apply-native-review.ts",

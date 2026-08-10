@@ -1,4 +1,4 @@
-import type { Locale } from "@/config/i18n";
+import { getDirection, type Locale } from "@/config/i18n";
 import { productCategories } from "@/config/product-taxonomy";
 import type { RegionLandingPage } from "@/config/region-landing-pages";
 import type {
@@ -41,13 +41,44 @@ const chineseAudience = [
   "OEM/ODM 买家",
 ];
 
+const arabicSafeClaims = [
+  "ندعم استفسارات مشروعات الفنادق B2B.",
+  "يمكن دعم المالك والمقاول ومتكامل الأنظمة والموزع ومشتري OEM/ODM في اختيار المنتجات.",
+  "تتوفر وثائق المنتج وفق الطراز ومتطلبات المشروع.",
+  "يجب تأكيد الجهد والبروتوكول والواجهات كتابةً لكل مشروع.",
+  "يعتمد نطاق OEM/ODM على سلسلة المنتج ومتطلبات المشروع.",
+  "لا يوجد حد أدنى موحد للمنتجات القياسية؛ ويُعتمد الشرط من العرض المكتوب.",
+  "تكون مدة التسليم المعتادة 7 إلى 15 يوماً، وفق المنتج والكمية ونطاق التخصيص.",
+];
+
+const arabicAudience = [
+  "مالكو الفنادق",
+  "المقاولون",
+  "متكاملو الأنظمة",
+  "الموزعون",
+  "مشترو OEM/ODM",
+];
+
+const arabicCategoryNames = new Map<string, string>([
+  ["Smart Panels & Switches", "اللوحات والمفاتيح الذكية"],
+  ["AI Smart Displays", "شاشات التحكم الذكية"],
+  ["RCU Room Control Host", "مضيف التحكم بالغرفة RCU"],
+  ["Sensors", "المستشعرات"],
+  ["Smart Sockets & Power Modules", "المقابس الذكية ووحدات الطاقة"],
+  ["HVAC & Thermostat Control", "التحكم في HVAC والثرموستات"],
+  ["Curtain Control Panels", "لوحات التحكم في الستائر"],
+  ["Room Status & Hotel Service Panels", "لوحات حالة الغرفة وخدمات الفندق"],
+  ["Hotel Audio & Communication Devices", "أجهزة الصوت والاتصال الفندقية"],
+  ["Hotel Delivery Robot System", "نظام روبوت التوصيل الفندقي"],
+]);
+
 export function localizeProductCategoryName(
   category: string,
   locale: Locale,
 ): string {
-  return locale === "zh"
-    ? chineseCategoryNames.get(category) ?? category
-    : category;
+  if (locale === "zh") return chineseCategoryNames.get(category) ?? category;
+  if (locale === "ar") return arabicCategoryNames.get(category) ?? category;
+  return category;
 }
 
 export function getLocalizedContentTitle(
@@ -56,7 +87,7 @@ export function getLocalizedContentTitle(
   slug: string,
   fallback: string,
 ): string {
-  return locale === "zh"
+  return locale === "zh" || locale === "ar"
     ? getLocalizedPublicationPage(locale, pageType, slug)?.title ?? fallback
     : fallback;
 }
@@ -77,7 +108,7 @@ function localizedPageForHref(
   const match = href.match(
     /^\/en\/(products|solutions|resources|regions)\/([^/?#]+)\/?/,
   );
-  if (!match || locale !== "zh") return undefined;
+  if (!match || (locale !== "zh" && locale !== "ar")) return undefined;
   const pageType = match[1].slice(0, -1) as
     | "product"
     | "solution"
@@ -87,10 +118,12 @@ function localizedPageForHref(
 }
 
 export function localizeReleasedHref(href: string, locale: Locale): string {
-  if (locale !== "zh" || !href.startsWith("/en/")) return href;
+  if ((locale !== "zh" && locale !== "ar") || !href.startsWith("/en/")) {
+    return href;
+  }
   const [pathname, hash = ""] = href.split("#", 2);
   const normalized = pathname.replace(/^\/en\//, "").replace(/^\/+|\/+$/g, "");
-  const localizedUrl = getPublicationHreflang(normalized).zh;
+  const localizedUrl = getPublicationHreflang(normalized)[locale];
   if (!localizedUrl) return href;
   return `${new URL(localizedUrl).pathname}${hash ? `#${hash}` : ""}`;
 }
@@ -99,7 +132,7 @@ export function localizeResourceLink(
   link: ResourceLink,
   locale: Locale,
 ): ResourceLink {
-  if (locale !== "zh") return { ...link };
+  if (locale !== "zh" && locale !== "ar") return { ...link };
   const localizedPage = localizedPageForHref(link.href, locale);
   return {
     ...link,
@@ -113,7 +146,7 @@ function localizedResourceSections(
   page: LocalizedPublicationPage,
 ): ResourceSection[] {
   return page.content.sections.map((section, index) => ({
-    id: `zh-section-${index + 1}`,
+    id: `${page.locale}-section-${index + 1}`,
     heading: section.heading,
     body: [...section.paragraphs, ...(section.bullets ?? [])],
   }));
@@ -141,13 +174,16 @@ export function localizeResourceGuide(
     },
     topic: page.content.eyebrow,
     listingGroup: source.listingGroup,
-    readingTime: source.readingTime.replace("min read", "分钟阅读"),
-    audience: chineseAudience,
+    readingTime:
+      page.locale === "ar"
+        ? source.readingTime.replace("min read", "دقائق قراءة")
+        : source.readingTime.replace("min read", "分钟阅读"),
+    audience: page.locale === "ar" ? arabicAudience : chineseAudience,
     sections: localizedResourceSections(page),
     conversion: source.conversion
       ? {
           ...source.conversion,
-          midCtaAfterSectionId: "zh-section-2",
+          midCtaAfterSectionId: `${page.locale}-section-2`,
         }
       : undefined,
     relatedSolutions: source.relatedSolutions.map((link) =>
@@ -168,13 +204,19 @@ export function localizeResourceGuide(
       body: page.content.cta.description,
       primaryLabel: page.content.cta.label,
       primaryHref: page.content.cta.href,
-      secondaryLabel: page.content.cta.secondaryLabel ?? "查看相关解决方案",
+      secondaryLabel:
+        page.content.cta.secondaryLabel ??
+        (page.locale === "ar" ? "عرض الحلول ذات الصلة" : "查看相关解决方案"),
       secondaryHref:
-        page.content.cta.secondaryHref ?? "/zh/solutions/",
-      whatsappLabel: "WhatsApp 咨询",
-      whatsappMessage: `您好，DUALCORE LINK。我想咨询《${page.content.h1}》相关的酒店项目。`,
+        page.content.cta.secondaryHref ?? `/${page.locale}/solutions/`,
+      whatsappLabel:
+        page.locale === "ar" ? "الاستفسار عبر WhatsApp" : "WhatsApp 咨询",
+      whatsappMessage:
+        page.locale === "ar"
+          ? `مرحباً DUALCORE LINK، أود مناقشة مشروع فندقي متعلق بـ ${page.content.h1}.`
+          : `您好，DUALCORE LINK。我想咨询《${page.content.h1}》相关的酒店项目。`,
     },
-    safeClaims: chineseSafeClaims,
+    safeClaims: page.locale === "ar" ? arabicSafeClaims : chineseSafeClaims,
   };
 }
 
@@ -187,7 +229,7 @@ function localizeRelatedProduct(
   return {
     ...product,
     language: locale,
-    direction: "ltr",
+    direction: getDirection(locale),
     title: page.title,
     excerpt: page.description,
   };
@@ -204,7 +246,7 @@ export function localizeSolutionDetail(
   return {
     ...source,
     language: page.locale,
-    direction: "ltr",
+    direction: getDirection(page.locale),
     title: page.title,
     excerpt: page.description,
     summary: page.content.introduction,
@@ -255,12 +297,12 @@ export function localizeRegionLandingPage(
     metaDescription: page.metaDescription,
     h1: page.content.h1,
     heroSubtitle: page.content.introduction,
-    buyerTypes: chineseAudience,
+    buyerTypes: page.locale === "ar" ? arabicAudience : chineseAudience,
     regionalNeeds: sectionText(page, 0),
     catalogNote: sectionText(page, 2),
     documentSupport: sectionText(page, 2),
     recommendedCategories: source.recommendedCategories.map(
-      (category) => chineseCategoryNames.get(category) ?? category,
+      (category) => localizeProductCategoryName(category, page.locale),
     ),
     recommendedSolutions: localizedSolutions,
     inquiryChecklist: bullets.length > 0 ? bullets.slice(0, 6) : source.inquiryChecklist,
@@ -269,10 +311,12 @@ export function localizeRegionLandingPage(
     customization: sectionText(page, 2),
     faqs: page.content.faqs.map((faq) => ({ ...faq })),
     primaryCta: page.content.cta.label,
-    secondaryCta: page.content.cta.secondaryLabel ?? "查看产品资料",
+    secondaryCta:
+      page.content.cta.secondaryLabel ??
+      (page.locale === "ar" ? "عرض وثائق المنتج" : "查看产品资料"),
     finalCtaTitle: page.content.cta.heading,
     finalCtaText: page.content.cta.description,
-    safeClaims: chineseSafeClaims,
+    safeClaims: page.locale === "ar" ? arabicSafeClaims : chineseSafeClaims,
     answerCapsule: source.answerCapsule
       ? {
           ...source.answerCapsule,

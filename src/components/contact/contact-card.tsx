@@ -38,7 +38,9 @@ export function ContactCard({
       >
         {label}
       </p>
-      <p className="mt-3 break-all text-xl font-semibold">{value}</p>
+      <p className="mt-3 break-all text-xl font-semibold">
+        <bdi dir="ltr">{value}</bdi>
+      </p>
       <p className={highlight ? "mt-3 leading-7 text-white/75" : "mt-3 leading-7 text-muted"}>
         {description}
       </p>

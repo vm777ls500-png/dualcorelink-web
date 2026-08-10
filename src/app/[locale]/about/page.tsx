@@ -3,9 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
+import {
+  getLocalizedCompositionHomePath,
+  supportsSpecializedLocalizedComposition,
+} from "@/lib/multilingual-review-preview";
 import { brand } from "@/config/brand";
 import { isLocale } from "@/config/i18n";
-import { chineseAboutCopy } from "@/config/static-page-localization";
+import {
+  arabicAboutCopy,
+  chineseAboutCopy,
+} from "@/config/static-page-localization";
 import {
   buildLocalizedPath,
   buildSiteUrl,
@@ -80,33 +87,43 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const localizedPage = getLocalizedPublicationPage(locale, "static", "about");
-  if (localizedPage && locale !== "zh") {
+  if (
+    localizedPage &&
+    !supportsSpecializedLocalizedComposition(locale)
+  ) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
   const isChinese = locale === "zh" && Boolean(localizedPage);
+  const isArabic = locale === "ar" && Boolean(localizedPage);
+  const isLocalized = isChinese || isArabic;
+  const aboutCopy = isArabic
+    ? arabicAboutCopy
+    : isChinese
+      ? chineseAboutCopy
+      : null;
   const localizedSections = localizedPage?.content.sections ?? [];
-  const profileParagraphs = isChinese
+  const profileParagraphs = isLocalized
     ? localizedSections[0]?.paragraphs ?? []
     : [
         "DualCoreLink focuses on product design, solution planning, system matching, and project communication for smart hotel and smart home automation projects. We help B2B buyers organize a practical product mix around room functions, project goals, installation needs, and commercial requirements.",
         "Our products are manufactured by qualified OEM partners according to our design requirements and confirmed project needs. DualCoreLink coordinates product selection, samples, order requirements, and project support with customers and qualified production partners.",
       ];
-  const deliveryParagraphs = isChinese
+  const deliveryParagraphs = isLocalized
     ? localizedSections[1]?.paragraphs ?? []
     : [
         "Each project starts with confirmed functional, appearance, and integration requirements. Product choices and customization scope are reviewed before samples, quotation, and production coordination move forward.",
       ];
-  const workflowSteps = isChinese
+  const workflowSteps = isLocalized
     ? localizedSections[1]?.bullets ?? []
     : deliverySteps;
-  const customizationParagraphs = isChinese
+  const customizationParagraphs = isLocalized
     ? localizedSections[2]?.paragraphs ?? []
     : [
         "Project discussions can cover appearance customization, panel layout, button function configuration, logo and packaging, product combination planning, and project-specific matching.",
         "The final customization scope depends on product type, order quantity, and confirmed project requirements.",
       ];
-  const supportParagraphs = isChinese
+  const supportParagraphs = isLocalized
     ? localizedSections[3]?.paragraphs ?? []
     : [
         "Support can include installation guidance, wiring references, product information, technical communication, and solution matching. The general warranty period is one year, with final terms depending on the product and order requirements.",
@@ -130,11 +147,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
           },
           createBreadcrumbSchema(`${aboutUrl}#breadcrumb`, [
             {
-              name: isChinese ? chineseAboutCopy.breadcrumbHome : "Home",
-              url: buildSiteUrl(buildLocalizedPath(locale)),
+              name: aboutCopy?.breadcrumbHome ?? "Home",
+              url: buildSiteUrl(getLocalizedCompositionHomePath(locale)),
             },
             {
-              name: isChinese ? chineseAboutCopy.breadcrumbAbout : "About",
+              name: aboutCopy?.breadcrumbAbout ?? "About",
               url: aboutUrl,
             },
           ]),
@@ -145,7 +162,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <section className="about-company-hero border-b border-line bg-foreground text-white">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
             <p className="text-sm font-semibold uppercase text-accent">
-              {isChinese ? chineseAboutCopy.heroEyebrow : "Company profile"}
+              {aboutCopy?.heroEyebrow ?? "Company profile"}
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight sm:text-5xl">
               {localizedPage?.content.h1 ??
@@ -162,10 +179,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
             <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? chineseAboutCopy.profileEyebrow : "Company profile"}
+                {aboutCopy?.profileEyebrow ?? "Company profile"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-foreground">
-                {isChinese ? chineseAboutCopy.profileTitle : "Who We Are"}
+                {aboutCopy?.profileTitle ?? "Who We Are"}
               </h2>
               {profileParagraphs.map((paragraph, index) => (
                 <p
@@ -178,11 +195,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </div>
             <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? chineseAboutCopy.deliveryEyebrow : "Delivery model"}
+                {aboutCopy?.deliveryEyebrow ?? "Delivery model"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-foreground">
-                {isChinese
-                  ? chineseAboutCopy.deliveryTitle
+                {aboutCopy
+                  ? aboutCopy.deliveryTitle
                   : "From Product Design to Qualified Production"}
               </h2>
               {deliveryParagraphs.map((paragraph) => (
@@ -197,11 +214,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <section className="border-b border-line bg-surface">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <p className="text-sm font-semibold uppercase text-brand">
-              {isChinese ? chineseAboutCopy.workflowEyebrow : "Project workflow"}
+              {aboutCopy?.workflowEyebrow ?? "Project workflow"}
             </p>
             <h2 className="mt-2 text-3xl font-semibold text-foreground">
-              {isChinese
-                ? chineseAboutCopy.workflowTitle
+              {aboutCopy
+                ? aboutCopy.workflowTitle
                 : "A Clear Path from Requirement to Project Support"}
             </h2>
             <ol className="mt-8 grid gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
@@ -220,20 +237,20 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <section className="border-b border-line bg-background">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <p className="text-sm font-semibold uppercase text-brand">
-              {isChinese ? chineseAboutCopy.capabilityEyebrow : "Solution capability"}
+              {aboutCopy?.capabilityEyebrow ?? "Solution capability"}
             </p>
             <h2 className="mt-2 text-3xl font-semibold text-foreground">
-              {isChinese
-                ? chineseAboutCopy.capabilityTitle
+              {aboutCopy
+                ? aboutCopy.capabilityTitle
                 : "Smart Hotel Room Control Capabilities"}
             </h2>
             <p className="mt-4 max-w-4xl leading-8 text-muted">
-              {isChinese
-                ? chineseAboutCopy.capabilityDescription
+              {aboutCopy
+                ? aboutCopy.capabilityDescription
                 : "We plan product combinations for complete hotel guest room control solutions and connected smart home projects."}
             </p>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {(isChinese ? chineseAboutCopy.capabilities : capabilities).map((capability) => (
+              {(aboutCopy ? aboutCopy.capabilities : capabilities).map((capability) => (
                 <li
                   key={capability}
                   className="about-capability-card border border-line bg-surface p-5 font-semibold text-foreground"
@@ -249,11 +266,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
             <div className="about-info-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? chineseAboutCopy.customizationEyebrow : "Customization"}
+                {aboutCopy?.customizationEyebrow ?? "Customization"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-foreground">
-                {isChinese
-                  ? chineseAboutCopy.customizationTitle
+                {aboutCopy
+                  ? aboutCopy.customizationTitle
                   : "OEM/ODM Project Support"}
               </h2>
               {customizationParagraphs.map((paragraph, index) => (
@@ -271,13 +288,13 @@ export default async function AboutPage({ params }: AboutPageProps) {
             </div>
             <div className="about-info-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? chineseAboutCopy.customersEyebrow : "Customers"}
+                {aboutCopy?.customersEyebrow ?? "Customers"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-foreground">
-                {isChinese ? chineseAboutCopy.customersTitle : "Who We Work With"}
+                {aboutCopy?.customersTitle ?? "Who We Work With"}
               </h2>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {(isChinese ? chineseAboutCopy.customerTypes : customerTypes).map((customerType) => (
+                {(aboutCopy ? aboutCopy.customerTypes : customerTypes).map((customerType) => (
                   <li
                     key={customerType}
                     className="border-b border-line pb-3 font-semibold text-foreground"
@@ -294,31 +311,31 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2 lg:px-12">
             <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? chineseAboutCopy.marketsEyebrow : "Target markets"}
+                {aboutCopy?.marketsEyebrow ?? "Target markets"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-foreground">
-                {isChinese
-                  ? chineseAboutCopy.marketsTitle
+                {aboutCopy
+                  ? aboutCopy.marketsTitle
                   : "Middle East & Southeast Asia"}
               </h2>
               <p className="mt-5 leading-8 text-muted">
-                {isChinese
-                  ? chineseAboutCopy.marketsDescription
+                {aboutCopy
+                  ? aboutCopy.marketsDescription
                   : "Our main focus markets are the Middle East and Southeast Asia. We also support overseas B2B smart hotel and smart home projects in other regions where product and project requirements can be clearly reviewed."}
               </p>
             </div>
             <div className="about-info-panel border border-line bg-surface p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? chineseAboutCopy.commercialEyebrow : "Commercial terms"}
+                {aboutCopy?.commercialEyebrow ?? "Commercial terms"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-foreground">
-                {isChinese
-                  ? chineseAboutCopy.commercialTitle
+                {aboutCopy
+                  ? aboutCopy.commercialTitle
                   : "Samples, MOQ & Lead Time"}
               </h2>
               <ul className="mt-5 space-y-3 leading-7 text-muted">
-                {(isChinese
-                  ? chineseAboutCopy.commercialItems
+                {(aboutCopy
+                  ? aboutCopy.commercialItems
                   : [
                       "Samples are available for evaluation.",
                       "Customers pay the sample cost and shipping cost.",
@@ -334,11 +351,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <section className="border-b border-line bg-surface">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <p className="text-sm font-semibold uppercase text-brand">
-              {isChinese ? chineseAboutCopy.supportEyebrow : "Technical support"}
+              {aboutCopy?.supportEyebrow ?? "Technical support"}
             </p>
             <h2 className="mt-2 text-3xl font-semibold text-foreground">
-              {isChinese
-                ? chineseAboutCopy.supportTitle
+              {aboutCopy
+                ? aboutCopy.supportTitle
                 : "Project & Technical Support"}
             </h2>
             {supportParagraphs.map((paragraph) => (
@@ -352,14 +369,14 @@ export default async function AboutPage({ params }: AboutPageProps) {
         <section className="about-final-cta bg-brand text-white">
           <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-12">
             <p className="text-sm font-semibold uppercase text-white/65">
-              {isChinese ? chineseAboutCopy.inquiryEyebrow : "Project inquiry"}
+              {aboutCopy?.inquiryEyebrow ?? "Project inquiry"}
             </p>
             <h2 className="mt-2 text-3xl font-semibold">
-              {isChinese ? chineseAboutCopy.inquiryTitle : "Discuss Your Project"}
+              {aboutCopy?.inquiryTitle ?? "Discuss Your Project"}
             </h2>
             <p className="mt-4 max-w-3xl leading-7 text-white/75">
-              {isChinese
-                ? chineseAboutCopy.inquiryDescription
+              {aboutCopy
+                ? aboutCopy.inquiryDescription
                 : "Share your room types, product interests, quantity range, customization needs, and delivery plan with our B2B team."}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -367,20 +384,20 @@ export default async function AboutPage({ params }: AboutPageProps) {
                 href={`/${locale}/contact/`}
                 className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
               >
-                {isChinese ? chineseAboutCopy.contactLabel : "Contact Us"}
+                {aboutCopy?.contactLabel ?? "Contact Us"}
               </Link>
               <Link
                 href={`/${locale}/solutions/`}
                 className="inline-flex min-h-11 items-center justify-center border border-white/50 px-5 py-3 font-semibold text-white"
               >
-                {isChinese ? chineseAboutCopy.solutionsLabel : "Explore Solutions"}
+                {aboutCopy?.solutionsLabel ?? "Explore Solutions"}
               </Link>
               <a
                 href={whatsappUrl}
                 className="inline-flex min-h-11 items-center justify-center border border-white/50 px-5 py-3 font-semibold text-white"
               >
-                {isChinese
-                  ? chineseAboutCopy.whatsappLabel
+                {aboutCopy
+                  ? aboutCopy.whatsappLabel
                   : "Get a Quote on WhatsApp"}
               </a>
             </div>

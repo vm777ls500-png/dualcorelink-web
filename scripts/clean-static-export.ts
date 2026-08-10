@@ -7,7 +7,7 @@ import {
 } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { localizedPublicationPages } from "../src/lib/localized-publication";
+import { localizedRenderablePublicationPages } from "../src/lib/localized-publication";
 import { emptyStaticExportSlug } from "../src/lib/routing/static-export";
 import {
   multilingualLocales,
@@ -92,7 +92,7 @@ export async function cleanStaticExport(
   const approvedPathsByLocale = Object.fromEntries(
     multilingualLocales.map((locale) => [
       locale,
-      localizedPublicationPages
+      localizedRenderablePublicationPages
         .filter((page) => page.locale === locale)
         .map((page) => page.path),
     ]),

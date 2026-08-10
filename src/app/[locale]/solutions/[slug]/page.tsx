@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
+import { BidiTechnicalText } from "@/components/i18n/bidi-technical-text";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ContactCta } from "@/components/content/contact-cta";
 import { ContentSection } from "@/components/content/content-section";
@@ -30,8 +31,12 @@ import {
   createLocalizedPublicationMetadata,
   getLocalizedPublicationPage,
   getPublicationHreflang,
-  localizedPublicationPages,
+  localizedRenderablePublicationPages,
 } from "@/lib/localized-publication";
+import {
+  getLocalizedCompositionHomePath,
+  supportsSpecializedLocalizedComposition,
+} from "@/lib/multilingual-review-preview";
 import type { LocalizedPublicationPage } from "@/lib/localized-publication";
 import { localizeSolutionDetail } from "@/lib/localized-nonproduct";
 
@@ -71,6 +76,12 @@ const solutionMetaOverrides: Record<
 };
 
 export const dynamicParams = false;
+
+function solutionLabel(locale: Locale, english: string, chinese: string, arabic: string) {
+  if (locale === "ar") return arabic;
+  if (locale === "zh") return chinese;
+  return english;
+}
 
 function cleanDisplayText(value?: string) {
   return stripHtml(value ?? "")
@@ -191,24 +202,22 @@ function RecommendedProducts({
   products: RelatedContentModel[];
 }) {
   if (!products.length) return null;
-  const isChinese = locale === "zh";
-
   return (
     <section className="solution-recommended-panel border-t border-line pt-8">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="text-sm font-semibold uppercase text-brand">
-            {isChinese ? "产品组合" : "Product mix"}
+            {solutionLabel(locale, "Product mix", "产品组合", "مزيج المنتجات")}
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-foreground">
-            {isChinese ? "推荐产品" : "Recommended Products"}
+            {solutionLabel(locale, "Recommended Products", "推荐产品", "المنتجات الموصى بها")}
           </h2>
         </div>
         <Link
           href={`/${locale}/products/`}
           className="solution-card-link inline-flex min-h-10 w-fit items-center border border-line px-4 py-2 text-sm font-semibold text-brand"
         >
-          {isChinese ? "浏览产品" : "Explore Products"}
+          {solutionLabel(locale, "Explore Products", "浏览产品", "استكشاف المنتجات")}
         </Link>
       </div>
       <ul className="mt-5 grid gap-4 md:grid-cols-2">
@@ -219,14 +228,14 @@ function RecommendedProducts({
             </h3>
             {cleanDisplayText(product.excerpt) ? (
               <p className="mt-3 line-clamp-3 leading-7 text-muted">
-                {cleanDisplayText(product.excerpt)}
+                <BidiTechnicalText text={cleanDisplayText(product.excerpt)} />
               </p>
             ) : null}
             <Link
               href={`/${locale}/products/${product.slug}/`}
               className="solution-card-link mt-5 inline-flex min-h-10 items-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white"
             >
-              {isChinese ? "查看产品" : "View Product"}
+              {solutionLabel(locale, "View Product", "查看产品", "عرض المنتج")}
             </Link>
           </li>
         ))}
@@ -244,40 +253,44 @@ function SolutionSnapshot({
   summary: string;
   locale: Locale;
 }) {
-  const isChinese = locale === "zh";
   const suitableFor =
     summary.split(/[.;]/)[0]?.trim() || "B2B hotel projects";
 
   return (
     <aside className="solution-snapshot-panel border border-line bg-surface p-6">
       <p className="text-sm font-semibold uppercase text-brand">
-        {isChinese ? "方案概览" : "Solution snapshot"}
+        {solutionLabel(locale, "Solution snapshot", "方案概览", "ملخص الحل")}
       </p>
       <dl className="mt-5 grid gap-4">
         <div>
           <dt className="text-xs font-semibold uppercase text-muted">
-            {isChinese ? "适用范围" : "Suitable for"}
+            {solutionLabel(locale, "Suitable for", "适用范围", "مناسب لـ")}
           </dt>
-          <dd className="mt-1 leading-7 text-foreground">{suitableFor}</dd>
+          <dd className="mt-1 leading-7 text-foreground"><BidiTechnicalText text={suitableFor} /></dd>
         </div>
         <div>
           <dt className="text-xs font-semibold uppercase text-muted">
-            {isChinese ? "产品组合" : "Product mix"}
+            {solutionLabel(locale, "Product mix", "产品组合", "مزيج المنتجات")}
           </dt>
           <dd className="mt-1 leading-7 text-foreground">
-            {isChinese
-              ? `${productCount} 项推荐产品用于方案规划`
-              : `${productCount} recommended products for solution planning`}
+            {locale === "ar"
+              ? `${productCount} منتجات موصى بها لتخطيط الحل`
+              : locale === "zh"
+                ? `${productCount} 项推荐产品用于方案规划`
+                : `${productCount} recommended products for solution planning`}
           </dd>
         </div>
         <div>
           <dt className="text-xs font-semibold uppercase text-muted">
-            {isChinese ? "询盘重点" : "Inquiry focus"}
+            {solutionLabel(locale, "Inquiry focus", "询盘重点", "محور الاستفسار")}
           </dt>
           <dd className="mt-1 leading-7 text-foreground">
-            {isChinese
-              ? "房型、目标市场、数量、集成需求与 OEM/ODM 选项"
-              : "Room type, target market, quantity, integration needs, and OEM/ODM options"}
+            {solutionLabel(
+              locale,
+              "Room type, target market, quantity, integration needs, and OEM/ODM options",
+              "房型、目标市场、数量、集成需求与 OEM/ODM 选项",
+              "نوع الغرفة والسوق المستهدف والكمية واحتياجات التكامل وخيارات OEM/ODM",
+            )}
           </dd>
         </div>
       </dl>
@@ -287,37 +300,41 @@ function SolutionSnapshot({
 
 function LocalizedSolutionEvidence({
   page,
+  locale,
 }: {
   page: LocalizedPublicationPage;
+  locale: Locale;
 }) {
   return (
     <>
       {page.specifications.length > 0 ? (
         <section className="solution-localized-specifications border-t border-line pt-8">
           <h2 className="text-2xl font-semibold text-foreground">
-            项目规格说明
+            {solutionLabel(locale, "Project specifications", "项目规格说明", "مواصفات المشروع")}
           </h2>
           <dl className="mt-5 grid gap-4 sm:grid-cols-2">
             {page.specifications.map((item) => (
               <div key={item.label} className="border border-line bg-surface p-5">
                 <dt className="text-sm font-semibold text-brand">
-                  {item.label}
+                  <BidiTechnicalText text={item.label} />
                 </dt>
-                <dd className="mt-2 leading-7 text-muted">{item.value}</dd>
+                <dd className="mt-2 leading-7 text-muted"><BidiTechnicalText text={item.value} /></dd>
               </div>
             ))}
           </dl>
         </section>
       ) : null}
       <section className="solution-localized-faq border-t border-line pt-8">
-        <h2 className="text-2xl font-semibold text-foreground">常见问题</h2>
+        <h2 className="text-2xl font-semibold text-foreground">
+          {solutionLabel(locale, "Frequently asked questions", "常见问题", "الأسئلة الشائعة")}
+        </h2>
         <div className="mt-5 space-y-3">
           {page.content.faqs.map((faq) => (
             <details key={faq.question} className="border border-line bg-surface p-5">
               <summary className="cursor-pointer font-semibold text-foreground">
                 {faq.question}
               </summary>
-              <p className="mt-4 leading-7 text-muted">{faq.answer}</p>
+              <p className="mt-4 leading-7 text-muted"><BidiTechnicalText text={faq.answer} /></p>
             </details>
           ))}
         </div>
@@ -336,7 +353,7 @@ export async function generateStaticParams() {
     ),
   );
 
-  const localizedPaths = localizedPublicationPages
+  const localizedPaths = localizedRenderablePublicationPages
     .filter((page) => page.pageType === "solution")
     .map((page) => ({ locale: page.locale, slug: page.slug }));
 
@@ -384,7 +401,10 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
     notFound();
   }
   const localizedPage = getLocalizedPublicationPage(locale, "solution", slug);
-  if (localizedPage && locale !== "zh") {
+  if (
+    localizedPage &&
+    !supportsSpecializedLocalizedComposition(locale)
+  ) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
@@ -399,7 +419,6 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   const solution = localizedPage
     ? localizeSolutionDetail(sourceSolution, localizedPage)
     : sourceSolution;
-  const isChinese = locale === "zh" && Boolean(localizedPage);
   const path = buildLocalizedPath(locale, `solutions/${slug}`);
   const url = buildSiteUrl(path);
   const solutionTitle = stripHtml(solution.title);
@@ -415,9 +434,9 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   };
   const pageNodes = [
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(buildLocalizedPath(locale)) },
+      { name: solutionLabel(locale, "Home", "首页", "الرئيسية"), url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
       {
-        name: "Solutions",
+        name: solutionLabel(locale, "Solutions", "解决方案", "الحلول"),
         url: buildSiteUrl(buildLocalizedPath(locale, "solutions")),
       },
       { name: solution.seo.breadcrumbLabel || stripHtml(solution.title), url },
@@ -443,10 +462,10 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
               href={`/${locale}/solutions/`}
               className="solution-back-link text-sm font-semibold text-brand"
             >
-                {isChinese ? "返回解决方案" : "Back to Solutions"}
+                {solutionLabel(locale, "Back to Solutions", "返回解决方案", "العودة إلى الحلول")}
             </Link>
             <p className="text-sm font-semibold uppercase text-brand">
-              {isChinese ? "解决方案" : "Solution"}
+              {solutionLabel(locale, "Solution", "解决方案", "الحل")}
             </p>
             <h1 className="mt-3 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
               {stripHtml(solution.title)}
@@ -456,7 +475,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             </p>
             {solution.typicalDeploymentTime ? (
               <p className="mt-6 border-s-4 border-accent ps-4 text-sm">
-                Typical deployment: <strong>{solution.typicalDeploymentTime}</strong>
+                {solutionLabel(locale, "Typical deployment", "典型部署", "مدة التنفيذ المعتادة")}: <strong><BidiTechnicalText text={solution.typicalDeploymentTime} /></strong>
               </p>
             ) : null}
             <div className="mt-7 flex flex-wrap gap-3">
@@ -466,13 +485,13 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
                 attribution={heroQuoteAttribution}
                 className="solution-detail-primary-link inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
-                {isChinese ? "讨论该项目" : "Discuss This Project"}
+                {solutionLabel(locale, "Discuss This Project", "讨论该项目", "ناقش هذا المشروع")}
               </TrackedInquiryLink>
               <Link
                 href={`/${locale}/products/`}
                 className="solution-detail-primary-link inline-flex min-h-11 items-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
               >
-                {isChinese ? "浏览产品" : "Explore Products"}
+                {solutionLabel(locale, "Explore Products", "浏览产品", "استكشاف المنتجات")}
               </Link>
             </div>
           </header>
@@ -492,14 +511,14 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           )}
         </div>
         <div className="solution-detail-content mx-auto max-w-7xl space-y-10 px-5 pb-14 sm:px-8 lg:px-12">
-          <ContentSection title={isChinese ? "客户挑战" : "Customer challenges"} content={solution.customerChallenges} />
-          <ContentSection title={isChinese ? "解决方案架构" : "Solution architecture"} content={solution.architecture} />
-          <ContentSection title={isChinese ? "核心能力与价值" : "Key benefits"} content={solution.keyBenefitsText} />
-          <ContentSection title={isChinese ? "实施流程" : "Deployment process"} content={solution.deploymentProcess} />
-          <ContentSection title={isChinese ? "协议与项目条件" : "Supported protocols"} content={solution.supportedProtocolsSummary} />
-          <ContentSection title={isChinese ? "集成说明" : "Integration notes"} content={solution.integrationNotes} />
-          <ContentSection title={isChinese ? "兼容与验证" : "Compatibility"} content={solution.compatibilityNotes} />
-          <ContentSection title={isChinese ? "已知边界" : "Known limitations"} content={solution.knownLimitations} />
+          <ContentSection title={solutionLabel(locale, "Customer challenges", "客户挑战", "تحديات العميل")} content={solution.customerChallenges} />
+          <ContentSection title={solutionLabel(locale, "Solution architecture", "解决方案架构", "بنية الحل")} content={solution.architecture} />
+          <ContentSection title={solutionLabel(locale, "Key benefits", "核心能力与价值", "الفوائد الرئيسية")} content={solution.keyBenefitsText} />
+          <ContentSection title={solutionLabel(locale, "Deployment process", "实施流程", "عملية التنفيذ")} content={solution.deploymentProcess} />
+          <ContentSection title={solutionLabel(locale, "Supported protocols", "协议与项目条件", "البروتوكولات المدعومة")} content={solution.supportedProtocolsSummary} />
+          <ContentSection title={solutionLabel(locale, "Integration notes", "集成说明", "ملاحظات التكامل")} content={solution.integrationNotes} />
+          <ContentSection title={solutionLabel(locale, "Compatibility", "兼容与验证", "التوافق والتحقق")} content={solution.compatibilityNotes} />
+          <ContentSection title={solutionLabel(locale, "Known limitations", "已知边界", "الحدود المعروفة")} content={solution.knownLimitations} />
           <RecommendedProducts
             locale={locale}
             products={solution.relatedProducts}
@@ -511,7 +530,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
             <CustomPanelConfigurationSection locale={locale} />
           ) : null}
           {localizedPage ? (
-            <LocalizedSolutionEvidence page={localizedPage} />
+            <LocalizedSolutionEvidence page={localizedPage} locale={locale} />
           ) : (
             <FallbackContent content={solution.content} />
           )}

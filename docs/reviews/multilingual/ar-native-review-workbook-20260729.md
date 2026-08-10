@@ -8,6 +8,8 @@ Automated review covered 69 pages and applied unambiguous language or repetition
 
 The reviewer must verify natural language, hotel-engineering terminology, source fidelity, localized metadata, CTA, breadcrumbs, image alt, FAQ, schema text and bidirectional rendering where applicable.
 
+AR-T0 technical preparation adds the same specialized-composition and RTL checklist to every page below. Automated evidence means that the review candidate can be rendered for inspection; it is not a native-language approval. Every reviewer decision, reviewer name, and review date remains blank until a qualified human completes the review.
+
 ## 1. https://dualcorelink.com/ar/products/
 
 | Review field | Page evidence |
@@ -30,6 +32,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -55,6 +69,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -81,6 +107,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -107,6 +145,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -133,6 +183,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -159,6 +221,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -185,6 +259,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -211,6 +297,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -237,6 +335,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -263,6 +373,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -289,6 +411,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -315,6 +449,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -341,6 +487,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -367,6 +525,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -393,6 +563,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -419,6 +601,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -445,6 +639,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -471,6 +677,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -497,6 +715,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -523,6 +753,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -549,6 +791,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | The localized title used a literal or ambiguous construction for a verified English source term. |
 | Automatic revision | Replaced the literal title wording with a natural target-language expression that preserves the English source meaning and model designation. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -575,6 +829,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -601,6 +867,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -627,6 +905,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -653,6 +943,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, KNX, HVAC, RS485 |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -679,6 +981,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -705,6 +1019,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -731,6 +1057,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -757,6 +1095,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -783,6 +1133,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -809,6 +1171,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -835,6 +1209,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -861,6 +1247,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -887,6 +1285,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -913,6 +1323,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -939,6 +1361,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -965,6 +1399,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | The localized title used a literal or ambiguous construction for a verified English source term. |
 | Automatic revision | Replaced the literal title wording with a natural target-language expression that preserves the English source meaning and model designation. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -991,6 +1437,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, KNX, HVAC, RS485 |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1017,6 +1475,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1043,6 +1513,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | No controlled English abbreviation required on this page |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1069,6 +1551,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU, KNX, HVAC, RS485 |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1095,6 +1589,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1121,6 +1627,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1147,6 +1665,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1173,6 +1703,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1199,6 +1741,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1225,6 +1779,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1251,6 +1817,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1277,6 +1855,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1303,6 +1893,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1329,6 +1931,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1355,6 +1969,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1381,6 +2007,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1407,6 +2045,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1433,6 +2083,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1459,6 +2121,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1485,6 +2159,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1511,6 +2197,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1537,6 +2235,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU, KNX |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1563,6 +2273,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1589,6 +2311,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1615,6 +2349,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1641,6 +2387,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, KNX, HVAC, RS485 |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1667,6 +2425,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1693,6 +2463,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1719,6 +2501,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1745,6 +2539,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1771,6 +2577,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, GRMS, KNX, HVAC, RS485 |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |
@@ -1797,6 +2615,18 @@ The reviewer must verify natural language, hotel-engineering terminology, source
 | Controlled technical terms | OEM, ODM, RCU, GRMS, HVAC |
 | Automatically discovered issue | Automated checks found no unambiguous correction. Native fluency, terminology and factual fidelity still require human review. |
 | Automatic revision | No automatic content rewrite was made. |
+| Specialized renderer parity | Automated candidate ready; human review pending |
+| Semantic sections parity | Automated candidate ready; human review pending |
+| Media parity | Automated candidate ready; human review pending |
+| Relationship parity | Automated candidate ready; human review pending |
+| Schema parity | Automated candidate ready; human review pending |
+| RTL layout | Pending human review |
+| Bidi model/abbreviation check | Pending human review |
+| Mobile RTL | Pending human review |
+| Header/navigation RTL | Pending human review |
+| CTA | Pending human review |
+| Internal links | Pending human review |
+| Notes |  |
 | Human review decision |  |
 | Reviewer |  |
 | Review date |  |

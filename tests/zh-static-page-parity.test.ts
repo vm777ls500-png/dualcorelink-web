@@ -29,7 +29,7 @@ const routeSources = {
 };
 
 test("Chinese About retains the specialized company renderer and all core modules", () => {
-  assert.match(routeSources.about, /localizedPage && locale !== "zh"/);
+  assert.match(routeSources.about, /supportsSpecializedLocalizedComposition\(locale\)/);
   assert.match(routeSources.about, /about-company-hero/);
   assert.match(routeSources.about, /about-step-card/);
   assert.match(routeSources.about, /about-capability-card/);
@@ -42,7 +42,7 @@ test("Chinese About retains the specialized company renderer and all core module
 });
 
 test("Chinese Contact uses the complete inquiry form without changing submission values", () => {
-  assert.match(routeSources.contact, /localizedPage && locale !== "zh"/);
+  assert.match(routeSources.contact, /supportsSpecializedLocalizedComposition\(locale\)/);
   assert.match(routeSources.contact, /<GetQuoteForm locale=\{locale\}/);
   assert.match(routeSources.contact, /wechat-allan-qr\.png/);
   assert.match(routeSources.form, /contact-inquiry-form/);
@@ -97,11 +97,11 @@ test("Chinese FAQ supplies the complete 30-question purchasing set and schema", 
   assert.equal(chineseStaticFaqCategories.length, 6);
   assert.equal(staticFaqItems.length, 30);
   assert.equal(chineseStaticFaqItems.length, 30);
-  assert.match(routeSources.faqs, /localizedPage && locale !== "zh"/);
+  assert.match(routeSources.faqs, /supportsSpecializedLocalizedComposition\(locale\)/);
   assert.match(routeSources.faqs, /getStaticFaqCategories\(locale\)/);
   assert.match(routeSources.faqs, /createFaqPageSchema/);
   assert.match(routeSources.faqs, /createBreadcrumbSchema/);
-  assert.match(routeSources.faqs, /isChinese \? "\/en\/downloads\/"/);
+  assert.match(routeSources.faqs, /href="\/en\/downloads\/"/);
 
   const serialized = JSON.stringify(chineseStaticFaqItems);
   for (const required of [
@@ -121,7 +121,7 @@ test("Chinese FAQ supplies the complete 30-question purchasing set and schema", 
 
 test("only released Chinese static pages use specialized composition", () => {
   for (const route of [routeSources.about, routeSources.contact, routeSources.faqs]) {
-    assert.match(route, /localizedPage && locale !== "zh"/);
+    assert.match(route, /supportsSpecializedLocalizedComposition\(locale\)/);
   }
   for (const locale of ["de", "es", "ar", "vi", "fa"] as const) {
     assert.equal(

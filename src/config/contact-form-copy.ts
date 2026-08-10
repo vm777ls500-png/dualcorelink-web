@@ -45,18 +45,54 @@ const chineseProjectStageLabels = [
   "改造或更换",
 ] as const;
 
+const arabicCustomerTypeLabels = [
+  "مالك فندق / مطور",
+  "مقاول",
+  "متكامل أنظمة",
+  "موزع / تاجر جملة",
+  "مشتري OEM / ODM",
+  "فني منزل ذكي",
+  "أخرى",
+] as const;
+
+const arabicProductInterestLabels = [
+  "اللوحات والمفاتيح الذكية",
+  "شاشات التحكم الذكية",
+  "مضيفات التحكم بالغرفة RCU",
+  "المستشعرات",
+  "المقابس الذكية ووحدات الطاقة",
+  "HVAC والثرموستات",
+  "لوحات التحكم في الستائر",
+  "لوحات حالة الغرفة وخدمات الفندق",
+  "نظام روبوت التوصيل الفندقي",
+  "منتجات OEM / ODM المخصصة",
+  "أخرى",
+] as const;
+
+const arabicProjectStageLabels = [
+  "بحث أولي",
+  "المواصفات والتصميم",
+  "عرض السعر واختيار المورد",
+  "تقييم العينة",
+  "الشراء",
+  "التجديد أو الاستبدال",
+] as const;
+
 export const contactFormOptions = {
   customerTypes: customerTypeOptions.map((value, index) => ({
     value,
     zhLabel: chineseCustomerTypeLabels[index],
+    arLabel: arabicCustomerTypeLabels[index],
   })),
   productInterests: productInterestOptions.map((value, index) => ({
     value,
     zhLabel: chineseProductInterestLabels[index],
+    arLabel: arabicProductInterestLabels[index],
   })),
   projectStages: projectStageOptions.map((value, index) => ({
     value,
     zhLabel: chineseProjectStageLabels[index],
+    arLabel: arabicProjectStageLabels[index],
   })),
 } as const;
 
@@ -103,6 +139,45 @@ export const chineseContactFormCopy = {
   attributedMessage: (sourceTitle: string) =>
     `我想咨询与 ${sourceTitle} 相关的项目。`,
   whatsappMessage: "您好 DUALCORE LINK，我想讨论一个 B2B 项目。",
+  whatsappLabel: "WhatsApp",
+} as const;
+
+export const arabicContactFormCopy = {
+  contextEyebrow: "سياق الاستفسار",
+  directContext: "استفسار اتصال مباشر",
+  sourceLabel: "المصدر",
+  name: "الاسم *",
+  company: "الشركة",
+  email: "البريد الإلكتروني *",
+  phone: "WhatsApp / الهاتف",
+  country: "الدولة / المنطقة *",
+  customerType: "نوع العميل *",
+  selectCustomerType: "اختر نوع العميل",
+  projectStage: "مرحلة المشروع",
+  selectProjectStage: "اختر مرحلة المشروع",
+  targetDelivery: "موعد التسليم المستهدف",
+  targetDeliveryPlaceholder: "مثال: أكتوبر 2026",
+  productInterest: "المنتجات المطلوبة *",
+  selectProductInterest: "اختر منتجاً واحداً على الأقل.",
+  quantity: "الكمية التقديرية",
+  quantityPlaceholder: "مثال: 100 مجموعة / 300 غرفة / مشروع فندق واحد",
+  website: "الموقع",
+  message: "الرسالة *",
+  filesTitle: "ملفات المشروع (اختياري)",
+  filesHelp: "لا يرفع الموقع الملفات. بعد فتح مسودة البريد، أرفق الرسومات أو قائمة المنتجات أو BOM يدوياً في تطبيق البريد.",
+  submitting: "جارٍ إرسال الاستفسار...",
+  preparing: "جارٍ تجهيز مسودة البريد...",
+  submit: "إرسال استفسار المشروع",
+  prepare: "تجهيز مسودة البريد",
+  fallbackServer: "إذا تعذر الإرسال عبر الخادم، استخدم",
+  fallbackMailto: "يفتح هذا النموذج مسودة بريد إلى",
+  fallbackReview: ". راجع المسودة وأرسلها بنفسك أو استخدم",
+  draftReady: "طُلب فتح مسودة البريد. راجعها وأرفق الملفات ثم اضغط إرسال؛ لم يرسل الموقع الاستفسار بعد.",
+  accepted: "قَبِل الخادم الاستفسار للتسليم، وهذا لا يضمن وصوله إلى صندوق الوارد.",
+  genericError: "تعذر فتح تطبيق البريد. بقيت البيانات في النموذج؛ استخدم البريد أو WhatsApp أو حاول مرة أخرى.",
+  productMessage: (productName: string) => `أرغب في الحصول على عرض سعر للمنتج ${productName}.`,
+  attributedMessage: (sourceTitle: string) => `أود مناقشة مشروع متعلق بـ ${sourceTitle}.`,
+  whatsappMessage: "مرحباً DUALCORE LINK، أود مناقشة مشروع B2B.",
   whatsappLabel: "WhatsApp",
 } as const;
 

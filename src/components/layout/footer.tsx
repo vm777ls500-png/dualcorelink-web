@@ -35,26 +35,30 @@ export function Footer({ locale }: { locale: Locale }) {
   };
 
   if (locale !== "en") {
+    const localizedHref = (path: string) =>
+      locale === "ar"
+        ? `/${locale}/${path.replace(/^\/+|\/+$/g, "")}/`
+        : buildPublishedNavigationHref(locale, path);
     const localizedLinks = [
       [
         messages.navigation.products,
-        buildPublishedNavigationHref(locale, "products"),
+        localizedHref("products"),
       ],
       [
         messages.navigation.solutions,
-        buildPublishedNavigationHref(locale, "solutions"),
+        localizedHref("solutions"),
       ],
       [
         messages.navigation.regions,
-        buildPublishedNavigationHref(locale, "regions"),
+        localizedHref("regions"),
       ],
       [
         messages.navigation.faqs,
-        buildPublishedNavigationHref(locale, "faqs"),
+        localizedHref("faqs"),
       ],
       [
         messages.navigation.about,
-        buildPublishedNavigationHref(locale, "about"),
+        localizedHref("about"),
       ],
     ] as const;
 

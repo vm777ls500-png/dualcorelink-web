@@ -129,7 +129,7 @@ test("Chinese products page renders the catalog instead of returning the editori
     "utf8",
   );
 
-  assert.match(source, /locale === "zh" && Boolean\(localizedPage\)/);
+  assert.match(source, /supportsSpecializedLocalizedComposition\(locale\)/);
   assert.match(source, /localizeProductListingProducts\(locale, sourceProducts\)/);
   assert.match(source, /<ProductFilteredList/);
   assert.match(source, /items=\{productListItems\}/);

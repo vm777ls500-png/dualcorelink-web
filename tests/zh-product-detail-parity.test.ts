@@ -109,7 +109,7 @@ test("Chinese product route composes localized text with the English source mode
     "src/app/[locale]/products/[slug]/page.tsx",
     "utf8",
   );
-  assert.match(route, /localizedPage && locale !== "zh"/);
+  assert.match(route, /supportsSpecializedLocalizedComposition/);
   assert.match(route, /localizedPage \? "en" : locale/);
   assert.match(route, /localizeProductDetailModel\(sourceProduct, localizedPage\)/);
   assert.match(route, /localizeProductGallery\(sourceGallery, localizedPage\)/);

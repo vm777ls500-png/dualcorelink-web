@@ -1,13 +1,17 @@
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
-import { localizedPublicationPages } from "../src/lib/localized-publication";
+import {
+  localizedPublicationPages,
+  localizedRenderablePublicationPages,
+} from "../src/lib/localized-publication";
 import { multilingualLocales } from "../src/lib/multilingual-publication-manifest";
 
 const outputRoot = path.resolve("out");
 const errors: string[] = [];
 const englishSitemapBaseline = 76;
+const auditedPublicationPages = localizedRenderablePublicationPages;
 const publishedLocalizedPaths = new Set(
-  localizedPublicationPages.map(
+  auditedPublicationPages.map(
     (page) => new URL(page.localizedUrl).pathname,
   ),
 );
@@ -91,7 +95,7 @@ for (const htmlPath of allStaticPages) {
   }
 }
 
-for (const page of localizedPublicationPages) {
+for (const page of auditedPublicationPages) {
   const label = `${page.locale}/${page.path}`;
   const htmlPath = path.join(
     outputRoot,
@@ -223,7 +227,7 @@ for (const locale of ["ar", "zh", "de", "es", "vi", "fa"] as const) {
     path.join(outputRoot, locale),
     "index.txt",
   );
-  const expected = localizedPublicationPages.filter(
+  const expected = auditedPublicationPages.filter(
     (page) => page.locale === locale,
   ).length;
   if (exportedPages.length !== expected) {
@@ -250,6 +254,8 @@ for (const page of localizedPublicationPages) {
   if (!sitemap.includes(`<loc>${page.localizedUrl}</loc>`)) {
     fail("sitemap", `missing ${page.localizedUrl}`);
   }
+}
+for (const page of auditedPublicationPages) {
   const englishHtmlPath = path.join(
     outputRoot,
     "en",
@@ -265,12 +271,22 @@ for (const page of localizedPublicationPages) {
     fail(page.sourceUrl, `missing reciprocal ${page.locale} hreflang`);
   }
 }
+for (const page of auditedPublicationPages) {
+  if (
+    !localizedPublicationPages.some(
+      (published) => published.localizedUrl === page.localizedUrl,
+    ) &&
+    sitemap.includes(`<loc>${page.localizedUrl}</loc>`)
+  ) {
+    fail("sitemap", `review-only URL must not be published: ${page.localizedUrl}`);
+  }
+}
 if (errors.length > 0) {
   for (const error of errors) console.error(`[multilingual:export-audit] ${error}`);
   process.exitCode = 1;
 } else {
   console.log(
-    `[multilingual:export-audit] passed ${localizedPublicationPages.length} localized pages; sitemap=${expectedSitemapCount}`,
+    `[multilingual:export-audit] passed ${auditedPublicationPages.length} renderable localized pages; sitemap=${expectedSitemapCount}`,
   );
 }
 }

@@ -3,6 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
+import {
+  getLocalizedCompositionHomePath,
+  supportsSpecializedLocalizedComposition,
+} from "@/lib/multilingual-review-preview";
 import { brand } from "@/config/brand";
 import { isLocale } from "@/config/i18n";
 import { getStaticFaqCategories } from "@/config/static-faqs";
@@ -45,11 +49,15 @@ export default async function FaqPage({ params }: FaqPageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const localizedPage = getLocalizedPublicationPage(locale, "static", "faqs");
-  if (localizedPage && locale !== "zh") {
+  if (
+    localizedPage &&
+    !supportsSpecializedLocalizedComposition(locale)
+  ) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
 
   const isChinese = locale === "zh" && Boolean(localizedPage);
+  const isArabic = locale === "ar" && Boolean(localizedPage);
   const faqCategories = getStaticFaqCategories(locale);
   const faqItems = faqCategories.flatMap((category) => category.items);
   const path = buildLocalizedPath(locale, "faqs");
@@ -66,8 +74,8 @@ export default async function FaqPage({ params }: FaqPageProps) {
           createFaqPageSchema(`${url}#faq`, url, schemaQuestions),
           createBreadcrumbSchema(`${url}#breadcrumb`, [
             {
-              name: isChinese ? "首页" : "Home",
-              url: buildSiteUrl(buildLocalizedPath(locale)),
+              name: isArabic ? "الرئيسية" : isChinese ? "首页" : "Home",
+              url: buildSiteUrl(getLocalizedCompositionHomePath(locale)),
             },
             {
               name: localizedPage?.content.breadcrumbLabel ?? "FAQ",
@@ -81,7 +89,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
           <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1.3fr_0.7fr] lg:px-12">
             <div className="faq-help-hero border border-line bg-background p-6">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isChinese ? "常见问题" : "FAQ"}
+                {isArabic ? "الأسئلة الشائعة" : isChinese ? "常见问题" : "FAQ"}
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-normal text-foreground sm:text-5xl">
                 {localizedPage?.content.h1 ?? "Frequently Asked Questions"}
@@ -93,10 +101,12 @@ export default async function FaqPage({ params }: FaqPageProps) {
             </div>
             <div className="faq-support-panel border border-line bg-background p-6">
               <p className="text-sm font-semibold text-foreground">
-                {isChinese ? "B2B 询盘支持" : "B2B inquiry support"}
+                {isArabic ? "دعم استفسارات B2B" : isChinese ? "B2B 询盘支持" : "B2B inquiry support"}
               </p>
               <p className="mt-3 text-sm leading-7 text-muted">
-                {isChinese
+                {isArabic
+                  ? "لاختيار المنتجات أو مطابقة مشروع فندق أو عرض OEM/ODM، أرسل نوع المنتج والكمية والسوق ومتطلبات المشروع."
+                  : isChinese
                   ? "如需产品选型、酒店项目匹配、分销合作或 OEM/ODM 报价，请提供产品类型、数量、目标市场和项目需求。"
                   : "For product selection, hotel project matching, distributor cooperation, or OEM/ODM quotation, contact our team with your product type, quantity, target market, and project needs."}
               </p>
@@ -105,19 +115,19 @@ export default async function FaqPage({ params }: FaqPageProps) {
                   href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-2 text-sm font-semibold text-white"
                 >
-                  {isChinese ? "提交询盘" : "Send Inquiry"}
+                  {isArabic ? "إرسال استفسار" : isChinese ? "提交询盘" : "Send Inquiry"}
                 </Link>
                 <Link
-                  href={isChinese ? "/en/downloads/" : `/${locale}/downloads/`}
+                  href="/en/downloads/"
                   className="inline-flex min-h-11 items-center border border-line px-5 py-2 text-sm font-semibold text-foreground"
                 >
-                  {isChinese ? "查看目录" : "View Catalogs"}
+                  {isArabic ? "عرض الكتالوجات" : isChinese ? "查看目录" : "View Catalogs"}
                 </Link>
                 <a
                   href={`https://wa.me/${brand.whatsapp.international}`}
                   className="inline-flex min-h-11 items-center border border-line px-5 py-2 text-sm font-semibold text-foreground"
                 >
-                  {isChinese ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
+                  {isArabic ? "عرض سعر عبر WhatsApp" : isChinese ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
                 </a>
               </div>
             </div>
@@ -126,7 +136,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
 
         <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-12">
           <nav
-            aria-label="FAQ categories"
+            aria-label={isArabic ? "فئات الأسئلة الشائعة" : "FAQ categories"}
             className="flex flex-wrap gap-3 border-b border-line pb-8"
           >
             {faqCategories.map((category) => (
@@ -146,7 +156,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
                 <div className="mb-5 flex items-end justify-between gap-4 border-b border-line pb-3">
                   <div>
                     <p className="text-sm font-semibold uppercase text-brand">
-                      {category.items.length} {isChinese ? "个问题" : "questions"}
+                      {category.items.length} {isArabic ? "أسئلة" : isChinese ? "个问题" : "questions"}
                     </p>
                     <h2 className="mt-1 text-2xl font-semibold text-foreground">
                       {category.title}
@@ -182,10 +192,12 @@ export default async function FaqPage({ params }: FaqPageProps) {
             <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <h2 className="text-2xl font-semibold">
-                  {isChinese ? "还有其他问题？" : "Still have questions?"}
+                  {isArabic ? "هل لديك أسئلة أخرى؟" : isChinese ? "还有其他问题？" : "Still have questions?"}
                 </h2>
                 <p className="mt-3 max-w-3xl leading-8 text-white/75">
-                  {isChinese
+                  {isArabic
+                    ? "تواصل معنا لاختيار المنتجات وتعاون OEM/ODM وحلول مشروعات الفنادق."
+                    : isChinese
                     ? "联系我们，讨论产品选型、OEM/ODM 合作和酒店项目解决方案。"
                     : "Contact our team for product selection, OEM/ODM cooperation, and hotel project solutions."}
                 </p>
@@ -195,19 +207,19 @@ export default async function FaqPage({ params }: FaqPageProps) {
                   href={`/${locale}/contact/#get-a-quote`}
                   className="cta-button-light inline-flex min-h-11 items-center px-5 py-2 text-sm font-semibold"
                 >
-                  {isChinese ? "提交询盘" : "Send Inquiry"}
+                  {isArabic ? "إرسال استفسار" : isChinese ? "提交询盘" : "Send Inquiry"}
                 </Link>
                 <Link
                   href={`/${locale}/products/`}
                   className="inline-flex min-h-11 items-center border border-white/50 px-5 py-2 text-sm font-semibold text-white"
                 >
-                  {isChinese ? "查看产品" : "View Products"}
+                  {isArabic ? "عرض المنتجات" : isChinese ? "查看产品" : "View Products"}
                 </Link>
                 <a
                   href={`https://wa.me/${brand.whatsapp.international}`}
                   className="inline-flex min-h-11 items-center border border-white/50 px-5 py-2 text-sm font-semibold text-white"
                 >
-                  {isChinese ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
+                  {isArabic ? "عرض سعر عبر WhatsApp" : isChinese ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
                 </a>
               </div>
             </div>

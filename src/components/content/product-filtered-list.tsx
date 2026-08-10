@@ -137,6 +137,26 @@ export function ProductFilteredList({
   series,
   variant,
 }: ProductFilteredListProps) {
+  const copy =
+    locale === "ar"
+      ? {
+          eyebrow: "نتائج المنتجات المصفاة",
+          showing: (shown: number, total: number) =>
+            `عرض ${shown} من أصل ${total} منتجاً.`,
+          all: "عرض كل المنتجات",
+          empty: "لم يتم العثور على منتجات",
+          emptyDescription:
+            "لا توجد منتجات منشورة تطابق هذا المرشح. اعرض كل المنتجات أو تواصل معنا لمطابقة المشروع.",
+        }
+      : {
+          eyebrow: "Filtered product results",
+          showing: (shown: number, total: number) =>
+            `Showing ${shown} of ${total} products.`,
+          all: "View all products",
+          empty: "No products found",
+          emptyDescription:
+            "No published products match this filter. View all products or contact our team for project matching.",
+        };
   const resultsRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<ProductFilterState>(emptyFilterState);
   const { categorySlug, seriesSlug } = filter;
@@ -243,28 +263,28 @@ export function ProductFilteredList({
       {filterLabels.length > 0 ? (
         <div className="product-filter-panel mb-6 border border-line bg-surface p-5">
           <p className="text-sm font-semibold uppercase text-brand">
-            Filtered product results
+            {copy.eyebrow}
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-foreground">
             {filterLabels.join(" / ")}
           </h2>
           <p className="mt-2 leading-7 text-muted">
-            Showing {filteredItems.length} of {items.length} products.
+            {copy.showing(filteredItems.length, items.length)}
           </p>
           <button
             type="button"
             onClick={clearFilter}
             className="mt-4 inline-flex min-h-10 items-center border border-brand px-4 py-2 text-sm font-semibold text-brand"
           >
-            View all products
+            {copy.all}
           </button>
         </div>
       ) : null}
 
       {filteredItems.length === 0 ? (
         <EmptyState
-          title="No products found"
-          description="No published products match this filter. View all products or contact our team for project matching."
+          title={copy.empty}
+          description={copy.emptyDescription}
         />
       ) : (
         <ContentList

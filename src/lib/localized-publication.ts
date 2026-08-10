@@ -9,9 +9,14 @@ import type {
 } from "./multilingual-cms";
 import {
   multilingualPublicationManifest,
+  type MultilingualPublicationEntry,
   type MultilingualPageType,
 } from "./multilingual-publication-manifest";
-import { getHreflangEligibleEntries } from "./multilingual-publication-control";
+import {
+  getCandidatePublicationEntries,
+  getHreflangEligibleEntries,
+} from "./multilingual-publication-control";
+import { getReviewPreviewLocale } from "./multilingual-review-preview";
 import type { Locale } from "@/config/i18n";
 import {
   buildLocalizedPath,
@@ -40,6 +45,21 @@ export type LocalizedPublicationPage = {
 const eligibleEntries = getHreflangEligibleEntries(
   multilingualPublicationManifest,
 );
+const reviewPreviewLocale = getReviewPreviewLocale();
+const reviewPreviewEntries = reviewPreviewLocale
+  ? getCandidatePublicationEntries(multilingualPublicationManifest).filter(
+      (entry) => entry.locale === reviewPreviewLocale,
+    )
+  : [];
+const renderableEntries = [...eligibleEntries, ...reviewPreviewEntries].filter(
+  (entry, index, entries) =>
+    entries.findIndex(
+      (candidate) =>
+        candidate.locale === entry.locale &&
+        candidate.pageType === entry.pageType &&
+        candidate.slug === entry.slug,
+    ) === index,
+);
 
 function entryPath(entry: { localizedUrl: string; locale: string }): string {
   const pathname = new URL(entry.localizedUrl).pathname;
@@ -52,7 +72,7 @@ export function getPublicationHreflang(path: string): HreflangMap {
     en: buildSiteUrl(buildLocalizedPath("en", normalizedPath)),
   };
 
-  for (const entry of eligibleEntries) {
+  for (const entry of renderableEntries) {
     if (entryPath(entry) === normalizedPath) {
       result[entry.locale as Locale] = entry.localizedUrl;
     }
@@ -70,13 +90,20 @@ export function getLocalizedPublicationPage(
     return undefined;
   }
 
-  const manifestEntry = eligibleEntries.find(
+  const manifestEntry = renderableEntries.find(
     (entry) =>
       entry.locale === locale &&
       entry.pageType === pageType &&
       entry.slug === slug,
   );
   if (!manifestEntry) return undefined;
+  return createLocalizedPageFromEntry(manifestEntry);
+}
+
+function createLocalizedPageFromEntry(
+  manifestEntry: MultilingualPublicationEntry,
+): LocalizedPublicationPage | undefined {
+  const { locale, pageType, slug } = manifestEntry;
 
   const path = entryPath(manifestEntry);
   if (pageType === "product" || pageType === "solution") {
@@ -131,6 +158,15 @@ export function getLocalizedPublicationPage(
   };
 }
 
+export function getReviewPreviewPublicationPages(
+  locale: "ar",
+): LocalizedPublicationPage[] {
+  return getCandidatePublicationEntries(multilingualPublicationManifest)
+    .filter((entry) => entry.locale === locale)
+    .map(createLocalizedPageFromEntry)
+    .filter((page): page is LocalizedPublicationPage => Boolean(page));
+}
+
 export function createLocalizedPublicationMetadata(
   page: LocalizedPublicationPage,
 ): Metadata {
@@ -144,6 +180,12 @@ export function createLocalizedPublicationMetadata(
 }
 
 export const localizedPublicationPages = eligibleEntries
+  .map((entry) =>
+    getLocalizedPublicationPage(entry.locale, entry.pageType, entry.slug),
+  )
+  .filter((page): page is LocalizedPublicationPage => Boolean(page));
+
+export const localizedRenderablePublicationPages = renderableEntries
   .map((entry) =>
     getLocalizedPublicationPage(entry.locale, entry.pageType, entry.slug),
   )

@@ -63,7 +63,9 @@ export const arFinalCmsApprovedIdentities = [
   priority: PublicationPriority;
 }[];
 
-const identityBySourceId = new Map(
+type ArFinalCmsApprovedIdentity = (typeof arFinalCmsApprovedIdentities)[number];
+
+const identityBySourceId = new Map<number, ArFinalCmsApprovedIdentity>(
   arFinalCmsApprovedIdentities.map((identity) => [identity.sourceId, identity]),
 );
 

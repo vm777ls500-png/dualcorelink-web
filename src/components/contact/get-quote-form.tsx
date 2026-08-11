@@ -11,6 +11,7 @@ import {
   arabicContactFormCopy,
   chineseContactFormCopy,
   contactFormOptions,
+  vietnameseContactFormCopy,
 } from "@/config/contact-form-copy";
 import type { Locale } from "@/config/i18n";
 import {
@@ -109,14 +110,33 @@ const arabicSubmissionErrorMessages: Record<
   unexpected_response: "أعادت الخدمة استجابة غير متوقعة؛ استخدم البريد أو WhatsApp.",
 };
 
+const vietnameseSubmissionErrorMessages: Record<
+  InquirySubmissionErrorCategory,
+  string
+> = {
+  invalid_request: "Kiểm tra các trường trong biểu mẫu rồi thử lại; nội dung đã nhập vẫn được giữ lại.",
+  origin_rejected: "Nguồn gửi không được chấp nhận; hãy dùng email hoặc WhatsApp bên dưới.",
+  duplicate: "Yêu cầu này đã được gửi; nội dung vẫn được giữ lại để bạn kiểm tra.",
+  payload_too_large: "Nội dung yêu cầu quá dài; hãy rút gọn hoặc dùng email.",
+  rate_limited: "Có quá nhiều lần gửi; hãy chờ một lúc hoặc dùng email.",
+  server_error: "Dịch vụ tiếp nhận yêu cầu tạm thời không khả dụng; nội dung vẫn được giữ lại.",
+  delivery_unavailable: "Dịch vụ chuyển tiếp tạm thời không khả dụng; nội dung vẫn được giữ lại.",
+  timeout: "Yêu cầu đã hết thời gian chờ; chỉ thử lại một lần hoặc dùng email.",
+  network_error: "Không thể kết nối dịch vụ tiếp nhận; nội dung vẫn được giữ lại.",
+  unexpected_response: "Dịch vụ trả về phản hồi không mong đợi; hãy dùng email hoặc WhatsApp.",
+};
+
 export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) {
   const isChinese = locale === "zh";
   const isArabic = locale === "ar";
+  const isVietnamese = locale === "vi";
   const localizedCopy = isArabic
     ? arabicContactFormCopy
     : isChinese
       ? chineseContactFormCopy
-      : null;
+      : isVietnamese
+        ? vietnameseContactFormCopy
+        : null;
   const defaultAttribution: InquiryAttribution = {
     sourcePage: `/${locale}/contact/`,
     contentType: "contact",
@@ -332,7 +352,13 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
             </option>
             {contactFormOptions.customerTypes.map((option) => (
               <option key={option.value} value={option.value}>
-                {isArabic ? option.arLabel : isChinese ? option.zhLabel : option.value}
+                {isArabic
+                  ? option.arLabel
+                  : isChinese
+                    ? option.zhLabel
+                    : isVietnamese
+                      ? option.viLabel
+                      : option.value}
               </option>
             ))}
           </select>
@@ -347,7 +373,13 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
             </option>
             {contactFormOptions.projectStages.map((option) => (
               <option key={option.value} value={option.value}>
-                {isArabic ? option.arLabel : isChinese ? option.zhLabel : option.value}
+                {isArabic
+                  ? option.arLabel
+                  : isChinese
+                    ? option.zhLabel
+                    : isVietnamese
+                      ? option.viLabel
+                      : option.value}
               </option>
             ))}
           </select>
@@ -386,7 +418,15 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
                 }
                 className="mt-1"
               />
-              <span>{isArabic ? option.arLabel : isChinese ? option.zhLabel : option.value}</span>
+              <span>
+                {isArabic
+                  ? option.arLabel
+                  : isChinese
+                    ? option.zhLabel
+                    : isVietnamese
+                      ? option.viLabel
+                      : option.value}
+              </span>
             </label>
           ))}
         </div>
@@ -533,7 +573,9 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
               ? arabicSubmissionErrorMessages[submissionError]
               : isChinese
                 ? chineseSubmissionErrorMessages[submissionError]
-              : submissionErrorMessages[submissionError]
+                : isVietnamese
+                  ? vietnameseSubmissionErrorMessages[submissionError]
+                  : submissionErrorMessages[submissionError]
             : localizedCopy
               ? localizedCopy.genericError
               : "We could not open your email app. Your entries are still here. Use the sales email or WhatsApp link above, or try preparing the draft again."}

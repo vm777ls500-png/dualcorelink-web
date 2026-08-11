@@ -23,10 +23,10 @@ type ContentListProps = {
 
 export function ContentList({ locale, route, items, variant }: ContentListProps) {
   const isProductList = variant === "product";
-  const mediaReadyLabel = locale === "ar" ? "الوسائط متاحة" : "Media ready";
+  const mediaReadyLabel = locale === "ar" ? "الوسائط متاحة" : locale === "vi" ? "Có hình ảnh" : "Media ready";
   const mediaUnavailableLabel =
-    locale === "ar" ? "معاينة الوسائط غير متاحة" : "Media preview unavailable";
-  const detailsLabel = locale === "ar" ? "عرض التفاصيل" : "View Details";
+    locale === "ar" ? "معاينة الوسائط غير متاحة" : locale === "vi" ? "Không có bản xem trước hình ảnh" : "Media preview unavailable";
+  const detailsLabel = locale === "ar" ? "عرض التفاصيل" : locale === "vi" ? "Xem chi tiết" : "View Details";
 
   return (
     <ul

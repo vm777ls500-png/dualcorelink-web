@@ -36,11 +36,14 @@ export function ProductProjectBuyingGuide({
   const priorityReinforcement =
     getPriorityProductReinforcement(productSlug);
   const localizedPage =
-    locale === "zh" || locale === "ar"
+    locale === "zh" || locale === "ar" || locale === "vi"
       ? getLocalizedPublicationPage(locale, "product", productSlug)
       : undefined;
   const isLocalized = Boolean(localizedPage);
   const isArabic = locale === "ar" && isLocalized;
+  const isVietnamese = locale === "vi" && isLocalized;
+  const label = (english: string, chinese: string, arabic: string, vietnamese: string) =>
+    isArabic ? arabic : isVietnamese ? vietnamese : isLocalized ? chinese : english;
   const localizedSections = localizedPage?.content.sections ?? [];
   const projectFit = isLocalized
     ? localizedSections[0]?.paragraphs ?? []
@@ -66,10 +69,10 @@ export function ProductProjectBuyingGuide({
     >
       <header className="max-w-4xl">
         <p className="text-sm font-semibold uppercase text-brand">
-          {isArabic ? "إرشادات شراء B2B" : isLocalized ? "B2B 采购指引" : "B2B buying guidance"}
+          {label("B2B buying guidance", "B2B 采购指引", "إرشادات شراء B2B", "Hướng dẫn mua hàng B2B")}
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-foreground">
-          {isArabic ? "خطط المنتج وفق ظروف المشروع الفعلية" : isLocalized ? "按真实项目条件规划本产品" : "Plan this product for a real project"}
+          {label("Plan this product for a real project", "按真实项目条件规划本产品", "خطط المنتج وفق ظروف المشروع الفعلية", "Lập kế hoạch sản phẩm theo điều kiện dự án thực tế")}
         </h2>
         <p className="mt-4 leading-8 text-muted">
           {localizedPage?.content.introduction ?? profile.summary}
@@ -79,11 +82,13 @@ export function ProductProjectBuyingGuide({
       {priorityReinforcement ? (
         <div className="mt-7 border border-line bg-background p-6">
           <p className="text-sm font-semibold uppercase text-brand">
-            {isArabic ? "نقاط اختيار المنتج" : isLocalized ? "产品选型要点" : "Direct product answer"}
+            {label("Direct product answer", "产品选型要点", "نقاط اختيار المنتج", "Điểm chính khi lựa chọn sản phẩm")}
           </p>
           <h3 className="mt-2 text-xl font-semibold leading-7 text-foreground">
             {isArabic
               ? `نقاط اختيار ${productTitle} للمشروع`
+              : isVietnamese
+                ? `Điểm lựa chọn ${productTitle} cho dự án`
               : isLocalized
                 ? `${productTitle}项目选型要点`
               : priorityReinforcement.heading}
@@ -95,7 +100,7 @@ export function ProductProjectBuyingGuide({
           </p>
           <div className="mt-6 grid gap-6 lg:grid-cols-2">
             <GuideList
-              title={isArabic ? "نقاط قرار المشروع" : isLocalized ? "项目决策要点" : "Project decision points"}
+              title={label("Project decision points", "项目决策要点", "نقاط قرار المشروع", "Các điểm quyết định của dự án")}
               items={
                 isLocalized
                   ? selectionChecks
@@ -104,7 +109,7 @@ export function ProductProjectBuyingGuide({
             />
             <RelatedLinks
               locale={locale}
-              title={isArabic ? "متابعة تخطيط المشروع" : isLocalized ? "继续规划项目" : "Continue project planning"}
+              title={label("Continue project planning", "继续规划项目", "متابعة تخطيط المشروع", "Tiếp tục lập kế hoạch dự án")}
               links={localizeLinks(locale, priorityReinforcement.links)}
             />
           </div>
@@ -113,15 +118,15 @@ export function ProductProjectBuyingGuide({
 
       <div className="product-project-guide-grid mt-7 grid gap-6 lg:grid-cols-3">
         <GuideList
-          title={isArabic ? "ملاءمة المشروع المعتادة" : isLocalized ? "典型项目适用范围" : "Typical project fit"}
+          title={label("Typical project fit", "典型项目适用范围", "ملاءمة المشروع المعتادة", "Phạm vi dự án phù hợp")}
           items={projectFit}
         />
         <GuideList
-          title={isArabic ? "ما يجب تأكيده قبل الاختيار" : isLocalized ? "选型前确认" : "Confirm before selection"}
+          title={label("Confirm before selection", "选型前确认", "ما يجب تأكيده قبل الاختيار", "Xác nhận trước khi lựa chọn")}
           items={selectionChecks}
         />
         <GuideList
-          title={isArabic ? "التحضير لطلب السعر" : isLocalized ? "询价资料准备" : "Prepare for quotation"}
+          title={label("Prepare for quotation", "询价资料准备", "التحضير لطلب السعر", "Chuẩn bị yêu cầu báo giá")}
           items={quoteChecklist}
         />
       </div>
@@ -129,12 +134,12 @@ export function ProductProjectBuyingGuide({
       <div className="product-project-guide-links mt-8 grid gap-7 border-t border-line pt-7 lg:grid-cols-2">
         <RelatedLinks
           locale={locale}
-          title={isArabic ? "حلول ذات صلة" : isLocalized ? "相关解决方案" : "Relevant solutions"}
+          title={label("Relevant solutions", "相关解决方案", "حلول ذات صلة", "Giải pháp liên quan")}
           links={solutions}
         />
         <RelatedLinks
           locale={locale}
-          title={isArabic ? "أدلة الشراء" : isLocalized ? "采购指南" : "Buyer guides"}
+          title={label("Buyer guides", "采购指南", "أدلة الشراء", "Hướng dẫn mua hàng")}
           links={resources}
         />
       </div>
@@ -143,11 +148,13 @@ export function ProductProjectBuyingGuide({
         <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
           <div className="max-w-2xl">
             <p className="font-semibold text-foreground">
-              {isArabic ? "اطلب مراجعة الطراز والمشروع" : isLocalized ? "申请型号与项目审核" : "Request a model and project review"}
+              {label("Request a model and project review", "申请型号与项目审核", "اطلب مراجعة الطراز والمشروع", "Yêu cầu rà soát model và dự án")}
             </p>
             <p className="mt-2 text-sm leading-6 text-muted">
               {isArabic
                 ? "أرسل الكمية والدولة ونوع الغرفة والمتطلبات الفنية والوثائق والتخصيص وموعد التسليم."
+                : isVietnamese
+                  ? "Cung cấp số lượng, quốc gia hoặc khu vực dự án, loại phòng, yêu cầu kỹ thuật, tài liệu, phạm vi tùy chỉnh và thời gian giao hàng dự kiến."
                 : isLocalized
                   ? "请提供数量、项目国家或地区、房型、技术要求、资料、定制范围和目标交付时间。"
                 : "Share quantity, project country, room type, technical requirements, documents, customization scope, and target delivery timing."}
@@ -160,12 +167,14 @@ export function ProductProjectBuyingGuide({
               attribution={guideAttribution}
               className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
-              {isArabic ? "طلب مراجعة المشروع" : isLocalized ? "申请项目审核" : "Request Project Review"}
+              {label("Request Project Review", "申请项目审核", "طلب مراجعة المشروع", "Yêu cầu rà soát dự án")}
             </TrackedInquiryLink>
             <WhatsAppButton
               message={
                 isArabic
                   ? `مرحباً DUALCORE LINK، أود مناقشة اختيار ${productTitle} لمشروع فندقي.`
+                  : isVietnamese
+                    ? `Xin chào DUALCORE LINK, tôi muốn trao đổi về việc lựa chọn ${productTitle} cho một dự án khách sạn.`
                   : isLocalized
                     ? `您好，DUALCORE LINK。我想咨询${productTitle}的酒店项目选型。`
                   : `${profile.whatsappPrompt} Product: ${productTitle}.`
@@ -174,7 +183,7 @@ export function ProductProjectBuyingGuide({
                 ...baseAttribution,
                 ctaPosition: "product_buying_guide_whatsapp",
               }}
-              label={isArabic ? "استفسار عبر WhatsApp" : isLocalized ? "通过 WhatsApp 咨询" : undefined}
+              label={isArabic ? "استفسار عبر WhatsApp" : isVietnamese ? "Trao đổi qua WhatsApp" : isLocalized ? "通过 WhatsApp 咨询" : undefined}
               className="inline-flex min-h-11 items-center justify-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
             />
           </div>
@@ -188,7 +197,7 @@ function localizeLinks(
   locale: Locale,
   links: ProductConversionLink[],
 ): ProductConversionLink[] {
-  if (locale !== "zh" && locale !== "ar") return links;
+  if (locale !== "zh" && locale !== "ar" && locale !== "vi") return links;
 
   return links.map((link) => {
     const match = link.href.match(/^\/(solutions|resources)\/([^/]+)\/$/);

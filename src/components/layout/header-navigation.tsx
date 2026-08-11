@@ -13,7 +13,7 @@ import {
   type MouseEventHandler,
 } from "react";
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
-import type { Locale } from "@/config/i18n";
+import { getDirection, type Locale } from "@/config/i18n";
 import { getUiMessages } from "@/content/locales/ui";
 import {
   buildQuoteHref,
@@ -86,17 +86,17 @@ function ProductsMenuContent({
     <div className={mobile ? "mobile-products-grid" : "products-mega-grid"}>
       <div className="products-mega-column">
         <section>
-          <h2>{locale === "ar" ? "وصول سريع" : locale === "zh" ? "快速入口" : "Quick Access"}</h2>
+          <h2>{locale === "ar" ? "وصول سريع" : locale === "zh" ? "快速入口" : locale === "vi" ? "Truy cập nhanh" : "Quick Access"}</h2>
           <ProductLinkList links={menu.quickLinks} onNavigate={onNavigate} />
         </section>
         <section className="products-mega-section-spaced">
-          <h2>{locale === "ar" ? "سلاسل المنتجات" : locale === "zh" ? "产品系列" : "Product Series"}</h2>
+          <h2>{locale === "ar" ? "سلاسل المنتجات" : locale === "zh" ? "产品系列" : locale === "vi" ? "Dòng sản phẩm" : "Product Series"}</h2>
           <ProductLinkList links={menu.series} onNavigate={onNavigate} />
         </section>
       </div>
 
       <section className="products-mega-column products-mega-categories">
-        <h2>{locale === "ar" ? "فئات المنتجات" : locale === "zh" ? "产品分类" : "Product Categories"}</h2>
+        <h2>{locale === "ar" ? "فئات المنتجات" : locale === "zh" ? "产品分类" : locale === "vi" ? "Danh mục sản phẩm" : "Product Categories"}</h2>
         <ProductLinkList links={menu.categories} onNavigate={onNavigate} />
         <Link className="header-menu-view-all" href={menu.viewAllCategories.href} onClick={onNavigate}>
           {menu.viewAllCategories.label}
@@ -104,7 +104,7 @@ function ProductsMenuContent({
       </section>
 
       <section className="products-mega-column products-mega-featured">
-        <h2>{locale === "ar" ? "منتجات مختارة" : locale === "zh" ? "推荐产品" : "Featured Products"}</h2>
+        <h2>{locale === "ar" ? "منتجات مختارة" : locale === "zh" ? "推荐产品" : locale === "vi" ? "Sản phẩm nổi bật" : "Featured Products"}</h2>
         <ProductLinkList links={menu.featured} onNavigate={onNavigate} />
         <Link className="header-menu-view-all" href={menu.viewAllProducts.href} onClick={onNavigate}>
           {menu.viewAllProducts.label}
@@ -117,6 +117,14 @@ function ProductsMenuContent({
 export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps) {
   const pathname = usePathname();
   const messages = getUiMessages(locale);
+  const mobileNavigationLabels =
+    locale === "ar"
+      ? { open: "فتح التنقل", close: "إغلاق التنقل", nav: "التنقل الرئيسي للجوال" }
+      : locale === "zh"
+        ? { open: "打开导航", close: "关闭导航", nav: "移动端主导航" }
+        : locale === "vi"
+          ? { open: "Mở điều hướng", close: "Đóng điều hướng", nav: "Điều hướng chính trên thiết bị di động" }
+          : { open: "Open navigation", close: "Close navigation", nav: "Mobile primary" };
   const [openDropdown, setOpenDropdown] = useState<DropdownId | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<MobileSection>(null);
@@ -246,6 +254,11 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
   }, [closeAllNavigation]);
 
   useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = getDirection(locale);
+  }, [locale]);
+
+  useEffect(() => {
     closeAllNavigation();
   }, [pathname, closeAllNavigation]);
 
@@ -300,7 +313,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
     <header ref={headerRef} className="site-header site-header-sticky">
       <div className="header-shell">
         <Link
-          href={locale === "ar" ? "/ar/about/" : locale === "zh" ? "/zh/about/" : "/en/"}
+          href={locale === "ar" ? "/ar/about/" : locale === "zh" ? "/zh/about/" : locale === "vi" ? "/vi/about/" : "/en/"}
           className="header-brand"
           aria-label={messages.homeLabel}
           onClick={handleHeaderNavigation}
@@ -349,7 +362,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                       ref={productsButtonRef}
                       type="button"
                       className="header-dropdown-toggle"
-                      aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : "Toggle Products menu"}
+                      aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : locale === "vi" ? "Mở menu sản phẩm" : "Toggle Products menu"}
                       aria-expanded={openDropdown === "products"}
                       aria-controls="desktop-products-menu"
                       aria-haspopup="true"
@@ -414,7 +427,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                   setOpenDropdown((current) => current === "language" ? null : "language");
                 }}
               >
-                      <span>{locale === "ar" ? "اللغة" : locale === "zh" ? "语言" : "Language"}</span>
+                      <span>{locale === "ar" ? "اللغة" : locale === "zh" ? "语言" : locale === "vi" ? "Ngôn ngữ" : "Language"}</span>
                 <Chevron open={openDropdown === "language"} />
               </button>
               <div
@@ -467,7 +480,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
           ref={mobileButtonRef}
           type="button"
           className="header-mobile-toggle"
-          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+          aria-label={mobileOpen ? mobileNavigationLabels.close : mobileNavigationLabels.open}
           aria-expanded={mobileOpen}
           aria-controls="mobile-site-navigation"
           onClick={() => {
@@ -481,13 +494,13 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
       </div>
 
       <div id="mobile-site-navigation" className="header-mobile-layer" hidden={!mobileOpen}>
-        <button className="header-mobile-overlay" type="button" aria-label="Close navigation" onClick={() => closeMobile(true)} />
+        <button className="header-mobile-overlay" type="button" aria-label={mobileNavigationLabels.close} onClick={() => closeMobile(true)} />
         <div className="header-mobile-drawer">
           <div className="header-mobile-drawer-heading">
             <strong>DUALCORE LINK</strong>
-            <button type="button" onClick={() => closeMobile(true)} aria-label="Close navigation">×</button>
+            <button type="button" onClick={() => closeMobile(true)} aria-label={mobileNavigationLabels.close}>×</button>
           </div>
-          <nav aria-label="Mobile primary">
+          <nav aria-label={mobileNavigationLabels.nav}>
             <ul className="header-mobile-list">
               {navigation.map((item) => {
                 if (item.key !== "products") {
@@ -505,7 +518,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                       <Link href={item.href} onClick={handleHeaderNavigation}>{item.label}</Link>
                       <button
                         type="button"
-              aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : "Toggle Products menu"}
+              aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : locale === "vi" ? "Mở menu sản phẩm" : "Toggle Products menu"}
                         aria-expanded={mobileSection === "products"}
                         aria-controls="mobile-products-menu"
                         onClick={() => setMobileSection((current) => current === "products" ? null : "products")}
@@ -527,7 +540,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                   aria-controls="mobile-language-menu"
                   onClick={() => setMobileSection((current) => current === "language" ? null : "language")}
                 >
-              <span>{locale === "ar" ? "اللغة" : locale === "zh" ? "语言" : "Language"}</span>
+              <span>{locale === "ar" ? "اللغة" : locale === "zh" ? "语言" : locale === "vi" ? "Ngôn ngữ" : "Language"}</span>
                   <Chevron open={mobileSection === "language"} />
                 </button>
                 <div id="mobile-language-menu" className="mobile-accordion-panel" hidden={mobileSection !== "language"}>

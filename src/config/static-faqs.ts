@@ -468,8 +468,202 @@ export const arabicStaticFaqItems = arabicStaticFaqCategories.flatMap(
   (category) => category.items,
 );
 
+export const vietnameseStaticFaqCategories: StaticFaqCategory[] = [
+  {
+    title: "Doanh nghiệp và hoạt động kinh doanh",
+    slug: "company-business",
+    items: [
+      {
+        question: "DUALCORE LINK là doanh nghiệp như thế nào?",
+        answer:
+          "DUALCORE LINK cung cấp giải pháp khách sạn và nhà thông minh. Chúng tôi lập kế hoạch sản phẩm, hệ thống và dự án, đồng thời phối hợp với các đối tác sản xuất đủ năng lực theo yêu cầu kỹ thuật và thiết kế đã xác nhận.",
+      },
+      {
+        question: "Các bạn là nhà sản xuất hay công ty thương mại?",
+        answer:
+          "Vai trò của chúng tôi không chỉ là thương mại. DUALCORE LINK tập trung vào thiết kế giải pháp, lập kế hoạch sản phẩm, lựa chọn theo dự án và hỗ trợ tích hợp; hoạt động sản xuất do các đối tác OEM được chọn thực hiện.",
+      },
+      {
+        question: "DUALCORE LINK phục vụ những thị trường nào?",
+        answer:
+          "Chúng tôi tập trung vào Trung Đông và Đông Nam Á, đồng thời hỗ trợ dự án khách sạn, nhà phân phối và đơn vị tích hợp hệ thống tại các thị trường khác.",
+      },
+      {
+        question: "Khách hàng điển hình của các bạn là ai?",
+        answer:
+          "Khách hàng gồm chủ đầu tư khách sạn, nhà thầu, đơn vị tích hợp hệ thống, nhà phân phối, công ty kỹ thuật và đối tác OEM/ODM.",
+      },
+    ],
+  },
+  {
+    title: "Sản phẩm và giải pháp",
+    slug: "products-solutions",
+    items: [
+      {
+        question: "DUALCORE LINK cung cấp những sản phẩm nào?",
+        answer:
+          "Danh mục gồm màn hình điều khiển thông minh, bộ điều khiển RCU, bảng điều khiển thông minh, cảm biến, bảng điều khiển rèm, ổ cắm, bảng dịch vụ khách sạn và giải pháp robot giao hàng.",
+      },
+      {
+        question: "Các bạn có cung cấp giải pháp điều khiển phòng khách sạn hoàn chỉnh không?",
+        answer:
+          "Có. Phạm vi có thể gồm RCU, bảng điều khiển, cảm biến, chiếu sáng, rèm, HVAC và trạng thái phòng, tùy theo yêu cầu dự án đã xác nhận.",
+      },
+      {
+        question: "Sản phẩm có phù hợp với dự án khách sạn không?",
+        answer:
+          "Sản phẩm có thể được đánh giá cho phòng khách sạn, căn hộ dịch vụ, biệt thự, nhà thông minh và dự án tự động hóa thương mại.",
+      },
+      {
+        question: "Các bạn có hỗ trợ lựa chọn sản phẩm cho dự án cụ thể không?",
+        answer:
+          "Có. Hãy gửi yêu cầu dự án, loại phòng, chức năng, số lượng và thị trường để chúng tôi đề xuất danh mục sản phẩm và giải pháp phù hợp.",
+      },
+    ],
+  },
+  {
+    title: "Tùy chỉnh OEM/ODM",
+    slug: "oem-odm-customization",
+    items: [
+      {
+        question: "Các bạn có hỗ trợ OEM/ODM không?",
+        answer:
+          "Có. Có thể trao đổi yêu cầu OEM/ODM cho bảng điều khiển thông minh, sản phẩm điều khiển phòng khách sạn và thiết bị tự động hóa liên quan.",
+      },
+      {
+        question: "Có thể tùy chỉnh màu sắc, logo và bố trí phím không?",
+        answer:
+          "Có thể, tùy dòng sản phẩm, khuôn hiện có và yêu cầu dự án. Hãy gửi bản vẽ hoặc hình ảnh tham khảo để đánh giá.",
+      },
+      {
+        question: "Có thể phát triển sản phẩm theo yêu cầu riêng không?",
+        answer:
+          "Chúng tôi có thể hỗ trợ lập kế hoạch ý tưởng sản phẩm và giải pháp theo yêu cầu dự án, thị trường và tình huống sử dụng; phạm vi cuối cùng phải được xác nhận bằng văn bản.",
+      },
+      {
+        question: "Có hỗ trợ nhãn hiệu riêng không?",
+        answer:
+          "Có thể hỗ trợ nhãn hiệu riêng tùy sản phẩm, số lượng và phạm vi tùy chỉnh.",
+      },
+    ],
+  },
+  {
+    title: "Đặt hàng và giao hàng",
+    slug: "ordering-delivery",
+    items: [
+      {
+        question: "Làm thế nào để nhận báo giá?",
+        answer:
+          "Hãy liên hệ qua email hoặc WhatsApp và cung cấp danh mục sản phẩm, quốc gia, số lượng, điện áp, yêu cầu giao thức hoặc dây dẫn, phạm vi tùy chỉnh và thời gian giao hàng mục tiêu.",
+      },
+      {
+        question: "Số lượng đặt hàng tối thiểu MOQ là bao nhiêu?",
+        answer:
+          "Sản phẩm tiêu chuẩn không có MOQ cố định. Sản phẩm tùy chỉnh có thể phát sinh phí khi cần khuôn mới; đổi màu trên khuôn hiện có không tính phí tùy chỉnh.",
+      },
+      {
+        question: "Có thể đặt mẫu trước khi mua số lượng lớn không?",
+        answer:
+          "Có. Tình trạng mẫu, chi phí, vận chuyển và thời gian chuẩn bị được xác nhận theo loại sản phẩm và yêu cầu dự án.",
+      },
+      {
+        question: "Thời gian giao hàng thông thường là bao lâu?",
+        answer:
+          "Thời gian giao hàng thông thường là 7–15 ngày và có thể thay đổi theo sản phẩm, số lượng và phạm vi tùy chỉnh. Hãy cung cấp thời gian mục tiêu khi yêu cầu báo giá.",
+      },
+      {
+        question: "Có thể gửi bản vẽ, BOM hoặc danh mục sản phẩm không?",
+        answer:
+          "Có. Sau khi bản nháp email mở, bạn có thể đính kèm thủ công bản vẽ, BOM, danh mục thiết bị hoặc yêu cầu dự án; website không trực tiếp tải tệp lên.",
+      },
+      {
+        question: "Các bạn có giao hàng đến Trung Đông và Đông Nam Á không?",
+        answer:
+          "Có. Chúng tôi cũng hỗ trợ các thị trường khác tùy điểm đến và yêu cầu đơn hàng.",
+      },
+    ],
+  },
+  {
+    title: "Hỗ trợ kỹ thuật và hậu mãi",
+    slug: "technical-support-after-sales",
+    items: [
+      {
+        question: "Cần xác nhận thông tin giao thức và dây dẫn nào trước khi đặt hàng?",
+        answer:
+          "Cần xác nhận điện áp, tần số, phương thức dây dẫn, chức năng, giao thức, yêu cầu RCU hoặc gateway và mọi tích hợp khách sạn trước khi lựa chọn cuối cùng.",
+      },
+      {
+        question: "Các bạn có hỗ trợ lắp đặt và đấu nối không?",
+        answer:
+          "Có thể cung cấp hướng dẫn lắp đặt, tài liệu đấu nối, thông tin sản phẩm và hỗ trợ kỹ thuật theo phạm vi dự án.",
+      },
+      {
+        question: "Các bạn có hỗ trợ triển khai dự án khách sạn không?",
+        answer:
+          "Có thể hỗ trợ phối hợp dự án, lựa chọn sản phẩm và hướng dẫn đấu nối; hình thức hỗ trợ được xác định theo phạm vi công việc.",
+      },
+      {
+        question: "Các bạn có hỗ trợ yêu cầu RCU cho khách sạn không?",
+        answer:
+          "Có. Phạm vi có thể gồm bộ điều khiển RCU, bảng điều khiển, cảm biến, bộ điều nhiệt, rèm và bảng dịch vụ khách sạn.",
+      },
+      {
+        question: "Thời hạn bảo hành là bao lâu?",
+        answer:
+          "Điều kiện bảo hành và hậu mãi phụ thuộc vào sản phẩm, điều khoản đơn hàng và yêu cầu dự án; cần xác nhận theo đúng mẫu và phạm vi cụ thể.",
+      },
+      {
+        question: "Khách hàng có thể liên hệ bằng cách nào?",
+        answer:
+          "Khách hàng có thể dùng biểu mẫu yêu cầu, email hoặc WhatsApp cho báo giá sản phẩm, hợp tác OEM/ODM và giải pháp dự án.",
+      },
+    ],
+  },
+  {
+    title: "Danh mục, tài liệu và dự án theo khu vực",
+    slug: "catalogs-documents-regional-projects",
+    items: [
+      {
+        question: "Có thể tải danh mục sản phẩm ở đâu?",
+        answer:
+          "Các danh mục đa ngôn ngữ công khai có trên trang tải xuống để hỗ trợ bước lựa chọn ban đầu.",
+      },
+      {
+        question: "Các bạn có cung cấp datasheet, chứng nhận hoặc sơ đồ dây không?",
+        answer:
+          "Có thể cung cấp. Một số tài liệu cần xác nhận sản phẩm, thị trường hoặc dự án trước khi chia sẻ.",
+      },
+      {
+        question: "Bản sao chứng nhận hoặc báo cáo thử nghiệm có được tải công khai không?",
+        answer:
+          "Không phải mọi tài liệu đều công khai. Bản sao đã xác minh và phù hợp với sản phẩm hoặc thị trường sẽ được cung cấp sau khi xác nhận yêu cầu.",
+      },
+      {
+        question: "Sản phẩm có phù hợp với dự án tại Trung Đông và Đông Nam Á không?",
+        answer:
+          "Sản phẩm có thể được đánh giá sau khi xác định quốc gia, điện áp, tần số, giao thức, số lượng và tài liệu cần thiết.",
+      },
+      {
+        question: "Các bạn có làm việc với nhà phân phối, nhà thầu và đơn vị tích hợp hệ thống không?",
+        answer:
+          "Có. Chúng tôi hỗ trợ yêu cầu cho dự án khách sạn và nhà thông minh theo thị trường, sản phẩm và tài liệu cần thiết.",
+      },
+      {
+        question: "Các bạn có thể hỗ trợ đối chiếu BOM hoặc bảng loại phòng khách sạn không?",
+        answer:
+          "Có. Hãy gửi bảng loại phòng, BOM, danh mục thiết bị hoặc chức năng để rà soát bảng điều khiển, RCU, cảm biến, ổ cắm, bộ điều nhiệt và thiết bị liên quan.",
+      },
+    ],
+  },
+];
+
+export const vietnameseStaticFaqItems = vietnameseStaticFaqCategories.flatMap(
+  (category) => category.items,
+);
+
 export function getStaticFaqCategories(locale: string) {
   if (locale === "zh") return chineseStaticFaqCategories;
   if (locale === "ar") return arabicStaticFaqCategories;
+  if (locale === "vi") return vietnameseStaticFaqCategories;
   return staticFaqCategories;
 }

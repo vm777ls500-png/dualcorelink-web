@@ -11,6 +11,7 @@ import {
 import type { Locale } from "@/config/i18n";
 import { getUiMessages } from "@/content/locales/ui";
 import { buildPublishedNavigationHref } from "@/lib/multilingual-release-batches";
+import { isReviewPreviewLocale } from "@/lib/multilingual-review-preview";
 
 const officeLocation = "Cangzhou, Hebei, China";
 const arabicOfficeLocation = "تسانغتشو، خبي، الصين";
@@ -39,6 +40,8 @@ export function Footer({ locale }: { locale: Locale }) {
     const localizedHref = (path: string) =>
       locale === "ar"
         ? `/${locale}/${path.replace(/^\/+|\/+$/g, "")}/`
+        : isReviewPreviewLocale(locale)
+          ? `/${locale}/${path.replace(/^\/+|\/+$/g, "")}/`
         : buildPublishedNavigationHref(locale, path);
     const localizedLinks = [
       [

@@ -191,6 +191,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     : undefined;
   const isChinese = locale === "zh";
   const isArabic = locale === "ar";
+  const isVietnamese = locale === "vi";
   const labels = isArabic
     ? {
         home: "الرئيسية",
@@ -251,6 +252,37 @@ export default async function ProductPage({ params }: ProductPageProps) {
         quoteDescription:
           "请通过联系页面提交项目要求、数量和相关资料，我们的销售团队将进行审核。",
       }
+      : isVietnamese
+        ? {
+            home: "Trang chủ",
+            products: "Sản phẩm",
+            new: "Mới",
+            product: "Sản phẩm",
+            getQuote: "Yêu cầu báo giá",
+            quoteHint:
+              "Để nhận báo giá nhanh hơn, hãy cung cấp quốc gia dự án, số lượng dự kiến, điện áp, giao thức hoặc yêu cầu dây dẫn, bề mặt bảng điều khiển, logo hoặc bao bì và thời gian giao hàng mục tiêu.",
+            leadTime: "Thời gian giao hàng",
+            onRequest: "Xác nhận theo yêu cầu",
+            available: "Có thể cung cấp",
+            askTeam: "Liên hệ đội ngũ",
+            overview: "Tổng quan sản phẩm",
+            coreFunctions: "Chức năng chính",
+            features: "Đặc điểm sản phẩm",
+            applications: "Tình huống ứng dụng",
+            installation: "Vị trí lắp đặt",
+            customization: "Tùy chọn tùy chỉnh",
+            specifications: "Thông số kỹ thuật",
+            relatedProducts: "Sản phẩm liên quan",
+            faq: "Câu hỏi thường gặp",
+            commercialOptions: "Tùy chọn thương mại",
+            moq: "MOQ",
+            units: "sản phẩm",
+            warranty: "Bảo hành",
+            privateLabel: "Nhãn hiệu riêng",
+            sample: "Mẫu",
+            quoteDescription:
+              "Sử dụng biểu mẫu liên hệ để gửi yêu cầu dự án, số lượng và tài liệu cho đội ngũ kinh doanh.",
+          }
       : {
         home: "Home",
         products: "Products",
@@ -360,7 +392,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </span>
               ))}
               <span className="border border-line bg-surface px-2 py-1 text-brand">
-                {isChinese
+                {localizedPage
                   ? labels.product
                   : product.status?.replaceAll("_", " ") || labels.product}
               </span>
@@ -411,13 +443,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 message={
                   isChinese
                     ? `您好，DUALCORE LINK。我想获取${productTitle}的报价。`
-                    : `Hello DUALCORE LINK, I would like to get a quote for ${productTitle}.`
+                    : isVietnamese
+                      ? `Xin chào DUALCORE LINK, tôi muốn nhận báo giá cho ${productTitle}.`
+                      : `Hello DUALCORE LINK, I would like to get a quote for ${productTitle}.`
                 }
                 attribution={{
                   ...productAttribution,
                   ctaPosition: "product_hero_whatsapp",
                 }}
-                label={isChinese ? "通过 WhatsApp 获取报价" : undefined}
+                label={
+                  isChinese
+                    ? "通过 WhatsApp 获取报价"
+                    : isVietnamese
+                      ? "Yêu cầu báo giá qua WhatsApp"
+                      : undefined
+                }
                 className="inline-flex min-h-11 items-center justify-center border border-line bg-surface px-5 py-3 font-semibold text-brand"
               />
             </div>

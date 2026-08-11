@@ -56,6 +56,17 @@ function arabicProductCount(count: number): string {
   return `${count} منتجات`;
 }
 
+function vietnameseProductCount(count: number): string {
+  return `${count} sản phẩm`;
+}
+
+const vietnameseSeriesNames: Record<string, string> = {
+  "smart-series": "Dòng Smart",
+  "borui-series": "Dòng Borui",
+  "vintage-series": "Dòng Vintage",
+  "brushed-aluminum-series": "Dòng nhôm xước",
+};
+
 export async function generateMetadata({
   params,
 }: ProductsPageProps): Promise<Metadata> {
@@ -99,6 +110,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
   );
   const products = localizeProductListingProducts(locale, sourceProducts);
   const isArabic = locale === "ar";
+  const isVietnamese = locale === "vi";
   const productCountsByCategory = new Map<string, number>();
   const publishedSlugs = new Set(products.map((product) => product.slug));
   const seriesSlugsByProduct = new Map<string, string[]>();
@@ -123,7 +135,9 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
   const path = buildLocalizedPath(locale, "products");
   const url = buildSiteUrl(path);
   const whatsappUrl = `https://wa.me/${brand.whatsapp.international}?text=${encodeURIComponent(
-    "Hello DUALCORE LINK, I would like to discuss smart hotel and smart home automation products.",
+    isVietnamese
+      ? "Xin chào DUALCORE LINK, tôi muốn trao đổi về sản phẩm tự động hóa khách sạn và nhà thông minh."
+      : "Hello DUALCORE LINK, I would like to discuss smart hotel and smart home automation products.",
   )}`;
   const productListItems = products.map((product) => ({
     id: product.id,
@@ -191,13 +205,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : "Send Inquiry"}
+            {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : "Send Inquiry"}
           </Link>
           <a
             href={whatsappUrl}
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
           >
-            {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
+            {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : isVietnamese ? "Yêu cầu báo giá qua WhatsApp" : "Get a Quote on WhatsApp"}
           </a>
         </div>
       </header>
@@ -208,13 +222,15 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         }`}
       >
         <section className="products-browse-panel border border-line bg-surface p-5">
-          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب الفئة" : locale === "zh" ? "按类别浏览" : "Browse by Category"}</h2>
+          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب الفئة" : locale === "zh" ? "按类别浏览" : isVietnamese ? "Duyệt theo danh mục" : "Browse by Category"}</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             {isArabic
-              ? "اختر مجموعات المنتجات لغرف الفنادق والمناطق العامة وحزم التكامل وتوريد المشروع."
-              : locale === "zh"
+                ? "اختر مجموعات المنتجات لغرف الفنادق والمناطق العامة وحزم التكامل وتوريد المشروع."
+                : locale === "zh"
                 ? "按酒店客房、公共区域、集成套件和项目供货选择产品组。"
-                : "Choose product groups for hotel rooms, public areas, integration packages, and project supply."}
+                : isVietnamese
+                  ? "Chọn nhóm sản phẩm cho phòng khách sạn, khu vực công cộng, gói tích hợp và cung ứng dự án."
+                  : "Choose product groups for hotel rooms, public areas, integration packages, and project supply."}
           </p>
           <ul className="mt-4 space-y-2">
             {productCategories.map((category) => (
@@ -258,8 +274,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                     {hasProducts
                       ? isArabic
                         ? arabicProductCount(count)
-                        : `${count} ${count === 1 ? "product" : "products"}`
-                      : isArabic ? "قريباً" : "Coming soon"}
+                        : isVietnamese
+                          ? vietnameseProductCount(count)
+                          : `${count} ${count === 1 ? "product" : "products"}`
+                      : isArabic ? "قريباً" : isVietnamese ? "Sắp có" : "Coming soon"}
                   </span>
                 </ProductFilterControl>
                   );
@@ -270,13 +288,15 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         </section>
 
         <section className="products-browse-panel border border-line bg-surface p-5">
-          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب السلسلة" : locale === "zh" ? "按系列浏览" : "Browse by Series"}</h2>
+          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب السلسلة" : locale === "zh" ? "按系列浏览" : isVietnamese ? "Duyệt theo dòng sản phẩm" : "Browse by Series"}</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             {isArabic
-              ? "قارن تشطيبات المنتجات وأنماط اللوحات وملاءمتها للمشروع."
-              : locale === "zh"
+                ? "قارن تشطيبات المنتجات وأنماط اللوحات وملاءمتها للمشروع."
+                : locale === "zh"
                 ? "比较产品饰面、面板风格和项目定位。"
-                : "Compare product finishes, panel styles, and project positioning."}
+                : isVietnamese
+                  ? "So sánh bề mặt, kiểu bảng điều khiển và mức độ phù hợp với dự án."
+                  : "Compare product finishes, panel styles, and project positioning."}
           </p>
           <ul className="mt-4 space-y-2">
             {productSeries.map((series) => {
@@ -304,7 +324,9 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                         : "block font-semibold text-muted"
                     }
                   >
-                    {series.title}
+                    {isVietnamese
+                      ? vietnameseSeriesNames[series.slug] ?? series.title
+                      : series.title}
                   </span>
                   {locale === "zh" ? (
                     <span className="mt-1 block text-sm text-muted">
@@ -321,8 +343,10 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
                     {hasProducts
                       ? isArabic
                         ? `متاح الآن - ${arabicProductCount(count)}`
-                        : `Available now - ${count} ${count === 1 ? "product" : "products"}`
-                      : isArabic ? "سلسلة قادمة" : "Upcoming series"}
+                        : isVietnamese
+                          ? `Đang có - ${vietnameseProductCount(count)}`
+                          : `Available now - ${count} ${count === 1 ? "product" : "products"}`
+                      : isArabic ? "سلسلة قادمة" : isVietnamese ? "Dòng sản phẩm sắp có" : "Upcoming series"}
                   </span>
                 </ProductFilterControl>
               </li>
@@ -363,8 +387,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
       {products.length === 0 ? (
         <EmptyState
-          title={isArabic ? "لا توجد منتجات منشورة" : "No products published"}
-          description={isArabic ? "ستظهر المنتجات هنا بعد نشرها." : "Product content will appear here after it is published in WordPress."}
+          title={isArabic ? "لا توجد منتجات منشورة" : isVietnamese ? "Chưa có sản phẩm được xuất bản" : "No products published"}
+          description={isArabic ? "ستظهر المنتجات هنا بعد نشرها." : isVietnamese ? "Sản phẩm sẽ xuất hiện tại đây sau khi được xuất bản." : "Product content will appear here after it is published in WordPress."}
         />
       ) : (
         <Suspense
@@ -396,14 +420,16 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
             <h2 className="text-2xl font-semibold text-foreground">
-              {isArabic ? "هل تحتاج مزيج منتجات للمشروع؟" : locale === "zh" ? "需要项目产品组合？" : "Need a project product mix?"}
+              {isArabic ? "هل تحتاج مزيج منتجات للمشروع؟" : locale === "zh" ? "需要项目产品组合？" : isVietnamese ? "Bạn cần danh mục sản phẩm cho dự án?" : "Need a project product mix?"}
             </h2>
             <p className="mt-2 max-w-3xl leading-7 text-muted">
               {isArabic
                 ? "شارك نوع الغرفة والسوق المستهدف والكمية وفئات المنتجات المطلوبة ليعد فريق B2B قائمة عرض مركزة."
                 : locale === "zh"
                   ? "请提供房型、目标市场、数量和所需产品类别，我们的 B2B 团队可协助准备重点报价清单。"
-                  : "Share your room type, target market, quantity, and required product categories. Our B2B team can help prepare a focused quotation list."}
+                  : isVietnamese
+                    ? "Hãy cung cấp loại phòng, thị trường mục tiêu, số lượng và nhóm sản phẩm cần thiết. Đội ngũ B2B có thể hỗ trợ chuẩn bị danh mục báo giá tập trung."
+                    : "Share your room type, target market, quantity, and required product categories. Our B2B team can help prepare a focused quotation list."}
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -411,13 +437,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               href={`/${locale}/contact/#get-a-quote`}
               className="inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
-              {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : "Send Inquiry"}
+              {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : "Send Inquiry"}
             </Link>
             <a
               href={whatsappUrl}
               className="inline-flex min-h-11 items-center border border-line px-5 py-3 font-semibold text-brand"
             >
-              {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : "Get a Quote on WhatsApp"}
+              {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : isVietnamese ? "Yêu cầu báo giá qua WhatsApp" : "Get a Quote on WhatsApp"}
             </a>
           </div>
         </div>

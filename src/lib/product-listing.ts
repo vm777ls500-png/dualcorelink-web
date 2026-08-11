@@ -22,12 +22,30 @@ const arabicCategoryNames: Record<string, string> = {
   "hotel-delivery-robot-system": "نظام روبوت التوصيل الفندقي",
 };
 
+const vietnameseCategoryNames: Record<string, string> = {
+  "smart-panels-switches": "Bảng điều khiển và công tắc thông minh",
+  "ai-smart-displays": "Màn hình điều khiển thông minh AI",
+  "rcu-room-control-host": "Bộ điều khiển phòng RCU",
+  sensors: "Cảm biến",
+  "smart-sockets-power-modules": "Ổ cắm thông minh và mô-đun nguồn",
+  "hvac-thermostat-control": "Điều khiển HVAC và bộ điều nhiệt",
+  "curtain-control-panels": "Bảng điều khiển rèm",
+  "room-status-hotel-service-panels":
+    "Bảng trạng thái phòng và dịch vụ khách sạn",
+  "hotel-audio-communication-devices":
+    "Thiết bị âm thanh và liên lạc khách sạn",
+  "hotel-delivery-robot-system": "Hệ thống robot giao hàng khách sạn",
+};
+
 export function getProductListingCategoryLabel(
   locale: Locale,
   category: (typeof productCategories)[number],
 ): string {
   if (locale === "zh") return category.chineseTitle;
   if (locale === "ar") return arabicCategoryNames[category.slug] ?? category.title;
+  if (locale === "vi") {
+    return vietnameseCategoryNames[category.slug] ?? category.title;
+  }
   return category.title;
 }
 

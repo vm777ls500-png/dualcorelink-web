@@ -18,6 +18,7 @@ export function RoomDisplayProjectReferencesSection({
   locale,
 }: RoomDisplayProjectReferencesSectionProps) {
   const isChinese = locale === "zh";
+  const isVietnamese = locale === "vi";
   const copy = isChinese
     ? {
         eyebrow: "项目展示参考",
@@ -29,7 +30,19 @@ export function RoomDisplayProjectReferencesSection({
         primaryCta: "讨论客房门牌需求",
         secondaryCta: "提交门牌定制需求",
       }
-    : roomDisplayProjectCopy;
+    : isVietnamese
+      ? {
+          ...roomDisplayProjectCopy,
+          eyebrow: "Tham khảo dự án",
+          title: "Tham khảo biển phòng và màn hình trạng thái phòng khách sạn",
+          subtitle: "Các hình thức tham khảo để lập kế hoạch số phòng, chuông cửa, trạng thái dịch vụ và giao diện khách.",
+          intro: "Các hình ảnh sau minh họa biển phòng bằng kính tối màu, bạc xước và nhôm xước để trao đổi về hình thức và cấu hình giao diện; không đại diện cho model cố định hoặc xác nhận của khách hàng.",
+          cardLabel: "Tham khảo dự án",
+          disclaimer: "Hình ảnh chỉ minh họa cấu hình dự án cho biển phòng và màn hình trạng thái. Văn bản, biểu tượng, chức năng, vật liệu, kích thước, phương thức kết nối, MOQ, thời gian giao hàng và khả năng tương thích phải được xác nhận bằng văn bản theo dự án.",
+          primaryCta: "Trao đổi về yêu cầu biển phòng",
+          secondaryCta: "Gửi yêu cầu tùy chỉnh biển phòng",
+        }
+      : roomDisplayProjectCopy;
   const emailUrl = `mailto:${brand.emails.sales}?subject=${encodeURIComponent(
     "Hotel room signage customization",
   )}`;
@@ -83,6 +96,8 @@ export function RoomDisplayProjectReferencesSection({
                 <p className="shrink-0 text-sm text-muted">
                   {isChinese
                     ? `${references.length} 个参考`
+                    : isVietnamese
+                      ? `${references.length} tham khảo`
                     : `${references.length} references`}
                 </p>
               </div>
@@ -99,6 +114,8 @@ export function RoomDisplayProjectReferencesSection({
                         alt={
                           isChinese
                             ? `${group.title}酒店门牌项目参考 ${index + 1}`
+                            : isVietnamese
+                              ? `Tham khảo dự án biển phòng khách sạn ${group.title} ${index + 1}`
                             : reference.alt
                         }
                         fill
@@ -113,16 +130,22 @@ export function RoomDisplayProjectReferencesSection({
                       <h4 className="mt-2 text-lg font-semibold leading-7 text-foreground">
                         {isChinese
                           ? `酒店客房门牌参考 ${index + 1}`
+                          : isVietnamese
+                            ? `Tham khảo biển phòng khách sạn ${index + 1}`
                           : reference.title}
                       </h4>
                       <p className="mt-2 text-sm leading-6 text-muted">
                         {isChinese
                           ? "房号、门铃与服务状态显示界面"
+                          : isVietnamese
+                            ? "Giao diện hiển thị số phòng, chuông cửa và trạng thái dịch vụ"
                           : reference.displayType}
                       </p>
                       <p className="mt-4 border-t border-line pt-4 text-xs leading-5 text-muted">
                         {isChinese
                           ? "酒店客房门口显示的项目配置参考"
+                          : isVietnamese
+                            ? "Tham khảo cấu hình màn hình tại cửa phòng khách sạn"
                           : reference.visibleContext}
                       </p>
                     </div>

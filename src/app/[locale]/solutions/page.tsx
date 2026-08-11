@@ -224,6 +224,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
   const isChinese = locale === "zh" && Boolean(localizedPage);
   const isArabic = locale === "ar" && Boolean(localizedPage);
+  const isVietnamese = locale === "vi" && Boolean(localizedPage);
   const listingEntries = solutionEntries.map((entry) => ({
     ...entry,
     title: getLocalizedContentTitle(
@@ -247,7 +248,9 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
   const path = buildLocalizedPath(locale, "solutions");
   const url = buildSiteUrl(path);
   const whatsappUrl = `https://wa.me/${brand.whatsapp.international}?text=${encodeURIComponent(
-    "Hello DUALCORE LINK, I would like to discuss a smart hotel automation solution.",
+    isVietnamese
+      ? "Xin chào DUALCORE LINK, tôi muốn trao đổi về giải pháp tự động hóa khách sạn thông minh."
+      : "Hello DUALCORE LINK, I would like to discuss a smart hotel automation solution.",
   )}`;
   const graph = createSchemaGraph([
     createCollectionPageSchema({
@@ -259,7 +262,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
         "Smart hotel room control, automation, RCU, display, delivery robot, and OEM/ODM solution directions for B2B projects.",
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
+      { name: isVietnamese ? "Trang chủ" : "Home", url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
       { name: localizedPage?.content.breadcrumbLabel ?? "Solutions", url },
     ]),
   ]);
@@ -287,7 +290,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
               href={`/${locale}/contact/#get-a-quote`}
               className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
-              {isArabic ? "إرسال استفسار المشروع" : isChinese ? "提交项目询盘" : "Send Inquiry"}
+              {isArabic ? "إرسال استفسار المشروع" : isChinese ? "提交项目询盘" : isVietnamese ? "Gửi yêu cầu dự án" : "Send Inquiry"}
             </Link>
             <a
               href={whatsappUrl}
@@ -299,11 +302,11 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
         </header>
 
         <div className="solutions-audience-strip mb-10 grid gap-3 border-y border-line py-5 text-sm font-semibold text-muted sm:grid-cols-2 lg:grid-cols-5">
-          <p>{isArabic ? "مالكو الفنادق" : isChinese ? "酒店业主" : "Hotel owners"}</p>
-          <p>{isArabic ? "المقاولون" : isChinese ? "承包商" : "Contractors"}</p>
-          <p>{isArabic ? "متكاملو الأنظمة" : isChinese ? "系统集成商" : "System integrators"}</p>
-          <p>{isArabic ? "الموزعون" : isChinese ? "分销商" : "Distributors"}</p>
-          <p>{isArabic ? "مشترو OEM/ODM" : isChinese ? "OEM/ODM 买家" : "OEM/ODM buyers"}</p>
+          <p>{isArabic ? "مالكو الفنادق" : isChinese ? "酒店业主" : isVietnamese ? "Chủ đầu tư khách sạn" : "Hotel owners"}</p>
+          <p>{isArabic ? "المقاولون" : isChinese ? "承包商" : isVietnamese ? "Nhà thầu" : "Contractors"}</p>
+          <p>{isArabic ? "متكاملو الأنظمة" : isChinese ? "系统集成商" : isVietnamese ? "Đơn vị tích hợp hệ thống" : "System integrators"}</p>
+          <p>{isArabic ? "الموزعون" : isChinese ? "分销商" : isVietnamese ? "Nhà phân phối" : "Distributors"}</p>
+          <p>{isArabic ? "مشترو OEM/ODM" : isChinese ? "OEM/ODM 买家" : isVietnamese ? "Bên mua OEM/ODM" : "OEM/ODM buyers"}</p>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
@@ -314,7 +317,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
               className="solution-list-card border border-line bg-surface p-6"
             >
               <p className="text-xs font-semibold uppercase text-brand">
-                {isArabic ? "الحل" : isChinese ? "解决方案" : "Solution"}
+                {isArabic ? "الحل" : isChinese ? "解决方案" : isVietnamese ? "Giải pháp" : "Solution"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-foreground">
                 {entry.title}
@@ -323,7 +326,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               <div className="mt-5 border-t border-line pt-5">
                 <p className="text-sm font-semibold text-foreground">
-                  {isArabic ? "نوع المشروع المناسب" : isChinese ? "适用项目类型" : "Suitable project type"}
+                  {isArabic ? "نوع المشروع المناسب" : isChinese ? "适用项目类型" : isVietnamese ? "Loại dự án phù hợp" : "Suitable project type"}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-muted">
                   {entry.projectType}
@@ -332,7 +335,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               <div className="mt-5">
                 <p className="text-sm font-semibold text-foreground">
-                  {isArabic ? "فئات المنتجات الموصى بها" : isChinese ? "推荐产品类别" : "Recommended product categories"}
+                  {isArabic ? "فئات المنتجات الموصى بها" : isChinese ? "推荐产品类别" : isVietnamese ? "Nhóm sản phẩm đề xuất" : "Recommended product categories"}
                 </p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {entry.categories.map((category) => (
@@ -348,7 +351,7 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               <div className="mt-5">
                 <p className="text-sm font-semibold text-foreground">
-                  {isArabic ? "المنتجات الموصى بها" : isChinese ? "推荐产品" : "Recommended products"}
+                  {isArabic ? "المنتجات الموصى بها" : isChinese ? "推荐产品" : isVietnamese ? "Sản phẩm đề xuất" : "Recommended products"}
                 </p>
                 <ul className="mt-3 grid gap-2 text-sm text-muted">
                   {entry.products.map(([name, slug]) => (
@@ -366,14 +369,14 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
 
               {entry.slug === "rcu-room-control-solution" ? (
                 <p className="mt-5 border-s-2 border-brand ps-4 text-sm leading-6 text-muted">
-                  {isArabic ? "هل تحتاج الأساسيات التقنية أولاً؟ اقرأ" : isChinese ? "需要先了解技术基础？请阅读" : "Need the technical basics first? Review"}{" "}
+                  {isArabic ? "هل تحتاج الأساسيات التقنية أولاً؟ اقرأ" : isChinese ? "需要先了解技术基础？请阅读" : isVietnamese ? "Cần nắm kiến thức kỹ thuật trước? Xem" : "Need the technical basics first? Review"}{" "}
                   <Link
                     href={`/${locale}/resources/what-is-hotel-rcu-room-control-system/`}
                     className="font-semibold text-brand underline decoration-brand/40 underline-offset-4"
                   >
-                    {isArabic ? "أساسيات التحكم في غرف الفنادق عبر RCU" : isChinese ? "酒店 RCU 客房控制基础指南" : "hotel RCU room control fundamentals"}
+                    {isArabic ? "أساسيات التحكم في غرف الفنادق عبر RCU" : isChinese ? "酒店 RCU 客房控制基础指南" : isVietnamese ? "kiến thức cơ bản về điều khiển phòng khách sạn bằng RCU" : "hotel RCU room control fundamentals"}
                   </Link>{" "}
-                  {isArabic ? " قبل تحديد نطاق المنتجات والتكامل." : isChinese ? "，再确定产品和集成范围。" : "before defining the product and integration scope."}
+                  {isArabic ? " قبل تحديد نطاق المنتجات والتكامل." : isChinese ? "，再确定产品和集成范围。" : isVietnamese ? " trước khi xác định phạm vi sản phẩm và tích hợp." : "before defining the product and integration scope."}
                 </p>
               ) : null}
 
@@ -382,13 +385,13 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
                   href={`/${locale}/solutions/${entry.slug}/`}
                   className="solution-card-link inline-flex min-h-10 items-center justify-center border border-line px-4 py-2 text-sm font-semibold text-brand"
                 >
-                  {isArabic ? "عرض الحل" : isChinese ? "查看解决方案" : "View Solution"}
+                  {isArabic ? "عرض الحل" : isChinese ? "查看解决方案" : isVietnamese ? "Xem giải pháp" : "View Solution"}
                 </Link>
                 <Link
                   href={`/${locale}/contact/#get-a-quote`}
                   className="inline-flex min-h-10 items-center justify-center border border-brand bg-brand px-4 py-2 text-sm font-semibold text-white"
                 >
-                  {isArabic ? "طلب عرض سعر" : isChinese ? "获取报价" : "Get a Quote"}
+                  {isArabic ? "طلب عرض سعر" : isChinese ? "获取报价" : isVietnamese ? "Yêu cầu báo giá" : "Get a Quote"}
                 </Link>
               </div>
             </section>
@@ -399,22 +402,24 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isArabic ? "سيناريوهات الاستخدام" : isChinese ? "应用场景" : "Application scenarios"}
+                {isArabic ? "سيناريوهات الاستخدام" : isChinese ? "应用场景" : isVietnamese ? "Tình huống ứng dụng" : "Application scenarios"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                {isArabic ? "اربط تخطيط الحل بمساحات المشروع الفعلية" : isChinese ? "让解决方案规划对应真实项目空间" : "Match solution planning with real project spaces"}
+                {isArabic ? "اربط تخطيط الحل بمساحات المشروع الفعلية" : isChinese ? "让解决方案规划对应真实项目空间" : isVietnamese ? "Gắn kế hoạch giải pháp với không gian dự án thực tế" : "Match solution planning with real project spaces"}
               </h2>
               <p className="mt-3 leading-7 text-muted">
                 {isChinese
                   ? "查看酒店客房自动化、智能公寓控制、酒店公共区域自动化和系统集成场景。"
-                  : "Explore hotel guest room automation, smart apartment control, hotel public area automation, and system integration scenarios."}
+                  : isVietnamese
+                    ? "Xem các tình huống tự động hóa phòng khách sạn, điều khiển căn hộ thông minh, khu vực công cộng và tích hợp hệ thống."
+                    : "Explore hotel guest room automation, smart apartment control, hotel public area automation, and system integration scenarios."}
               </p>
             </div>
             <Link
-              href={localizeReleasedHref("/en/application-scenarios/", locale)}
+              href={isVietnamese ? "/vi/resources/hotel-guest-room-automation-guide/" : localizeReleasedHref("/en/application-scenarios/", locale)}
               className="inline-flex min-h-11 shrink-0 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
             >
-              {isArabic ? "عرض سيناريوهات الاستخدام" : isChinese ? "查看应用场景" : "View Application Scenarios"}
+              {isArabic ? "عرض سيناريوهات الاستخدام" : isChinese ? "查看应用场景" : isVietnamese ? "Xem hướng dẫn tự động hóa phòng" : "View Application Scenarios"}
             </Link>
           </div>
         </section>
@@ -423,29 +428,31 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-brand">
-                {isArabic ? "مراجع المشروعات" : isChinese ? "案例参考" : "Case studies"}
+                {isArabic ? "مراجع المشروعات" : isChinese ? "案例参考" : isVietnamese ? "Tham khảo dự án" : "Case studies"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                {isArabic ? "عرض مراجع مشروعات مجهولة الهوية" : isChinese ? "查看匿名项目参考" : "See Anonymous Project References"}
+                {isArabic ? "عرض مراجع مشروعات مجهولة الهوية" : isChinese ? "查看匿名项目参考" : isVietnamese ? "Xem bối cảnh dự án theo khu vực" : "See Anonymous Project References"}
               </h2>
               <p className="mt-3 leading-7 text-muted">
                 {isChinese
                   ? "查看酒店客房控制、服务式公寓自动化和 OEM/ODM 智能面板定制的项目参考。"
-                  : "Review practical project examples for hotel room control, serviced apartment automation, and OEM/ODM smart panel customization."}
+                  : isVietnamese
+                    ? "Tham khảo yêu cầu điều khiển phòng, tự động hóa căn hộ dịch vụ và tùy chỉnh bảng điều khiển OEM/ODM theo thị trường."
+                    : "Review practical project examples for hotel room control, serviced apartment automation, and OEM/ODM smart panel customization."}
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Link
-                href={localizeReleasedHref("/en/case-studies/", locale)}
+                href={isVietnamese ? "/vi/regions/" : localizeReleasedHref("/en/case-studies/", locale)}
                 className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
               >
-                {isArabic ? "عرض دراسات الحالة" : isChinese ? "查看案例" : "View Case Studies"}
+                {isArabic ? "عرض دراسات الحالة" : isChinese ? "查看案例" : isVietnamese ? "Xem khu vực dự án" : "View Case Studies"}
               </Link>
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
                 className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
               >
-                {isArabic ? "ناقش مشروعك" : isChinese ? "讨论项目" : "Discuss Your Project"}
+                {isArabic ? "ناقش مشروعك" : isChinese ? "讨论项目" : isVietnamese ? "Trao đổi về dự án" : "Discuss Your Project"}
               </Link>
             </div>
           </div>
@@ -455,10 +462,10 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
           <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase text-white/70">
-                {isArabic ? "استشارة المشروع" : isChinese ? "项目咨询" : "Project consultation"}
+                {isArabic ? "استشارة المشروع" : isChinese ? "项目咨询" : isVietnamese ? "Tư vấn dự án" : "Project consultation"}
               </p>
               <h2 className="mt-2 text-2xl font-semibold">
-                {isArabic ? "خطط لمزيج المنتجات المناسب لمشروع أتمتة الفندق." : isChinese ? "为酒店自动化项目规划产品组合。" : "Build a product mix for your hotel automation project."}
+                {isArabic ? "خطط لمزيج المنتجات المناسب لمشروع أتمتة الفندق." : isChinese ? "为酒店自动化项目规划产品组合。" : isVietnamese ? "Lập danh mục sản phẩm phù hợp cho dự án tự động hóa khách sạn." : "Build a product mix for your hotel automation project."}
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -466,13 +473,13 @@ export default async function SolutionsPage({ params }: SolutionsPageProps) {
                 href={`/${locale}/products/`}
                 className="cta-button-light inline-flex min-h-11 items-center justify-center px-5 py-3 font-semibold"
               >
-                {isArabic ? "استكشاف المنتجات" : isChinese ? "浏览产品" : "Explore Products"}
+                {isArabic ? "استكشاف المنتجات" : isChinese ? "浏览产品" : isVietnamese ? "Xem sản phẩm" : "Explore Products"}
               </Link>
               <Link
                 href={`/${locale}/contact/#get-a-quote`}
                 className="inline-flex min-h-11 items-center justify-center border border-white/60 px-5 py-3 font-semibold text-white"
               >
-                {isArabic ? "إرسال استفسار" : isChinese ? "提交询盘" : "Send Inquiry"}
+                {isArabic ? "إرسال استفسار" : isChinese ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : "Send Inquiry"}
               </Link>
               <a
                 href={whatsappUrl}

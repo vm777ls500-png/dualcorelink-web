@@ -77,9 +77,38 @@ const solutionMetaOverrides: Record<
 
 export const dynamicParams = false;
 
+const vietnameseSolutionLabels: Record<string, string> = {
+  Home: "Trang chủ",
+  Solutions: "Giải pháp",
+  "Back to Solutions": "Quay lại Giải pháp",
+  Solution: "Giải pháp",
+  "Typical deployment": "Thời gian triển khai điển hình",
+  "Discuss This Project": "Trao đổi về dự án này",
+  "Explore Products": "Xem sản phẩm",
+  "Customer challenges": "Thách thức của khách hàng",
+  "Solution architecture": "Kiến trúc giải pháp",
+  "Key benefits": "Lợi ích chính",
+  "Deployment process": "Quy trình triển khai",
+  "Supported protocols": "Giao thức và điều kiện dự án",
+  "Integration notes": "Lưu ý tích hợp",
+  Compatibility: "Khả năng tương thích",
+  "Known limitations": "Giới hạn đã biết",
+  "Product mix": "Danh mục sản phẩm",
+  "Recommended Products": "Sản phẩm đề xuất",
+  "View Product": "Xem sản phẩm",
+  "Solution snapshot": "Tóm tắt giải pháp",
+  "Suitable for": "Phù hợp với",
+  "Inquiry focus": "Thông tin cần cung cấp",
+  "Room type, target market, quantity, integration needs, and OEM/ODM options":
+    "Loại phòng, thị trường mục tiêu, số lượng, nhu cầu tích hợp và tùy chọn OEM/ODM",
+  "Project specifications": "Thông số dự án",
+  "Frequently asked questions": "Câu hỏi thường gặp",
+};
+
 function solutionLabel(locale: Locale, english: string, chinese: string, arabic: string) {
   if (locale === "ar") return arabic;
   if (locale === "zh") return chinese;
+  if (locale === "vi") return vietnameseSolutionLabels[english] ?? english;
   return english;
 }
 
@@ -277,7 +306,9 @@ function SolutionSnapshot({
               ? `${productCount} منتجات موصى بها لتخطيط الحل`
               : locale === "zh"
                 ? `${productCount} 项推荐产品用于方案规划`
-                : `${productCount} recommended products for solution planning`}
+                : locale === "vi"
+                  ? `${productCount} sản phẩm đề xuất để lập kế hoạch giải pháp`
+                  : `${productCount} recommended products for solution planning`}
           </dd>
         </div>
         <div>

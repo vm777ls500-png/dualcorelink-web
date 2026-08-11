@@ -50,9 +50,31 @@ type RegionPageProps = {
 
 export const dynamicParams = false;
 
+const vietnameseRegionLabels: Record<string, string> = {
+  "Back to Regions": "Quay lại khu vực",
+  "Regional inquiry support": "Hỗ trợ yêu cầu dự án theo khu vực",
+  "Target buyers": "Nhóm khách hàng mục tiêu",
+  "Project answer": "Thông tin dự án trọng tâm",
+  "Regional project needs": "Nhu cầu dự án theo khu vực",
+  "Catalog and document support": "Hỗ trợ danh mục và tài liệu",
+  "Recommended product categories": "Danh mục sản phẩm đề xuất",
+  "Recommended solutions": "Giải pháp đề xuất",
+  "Inquiry checklist": "Danh sách thông tin yêu cầu",
+  "Product selection for regional buyers": "Lựa chọn sản phẩm cho bên mua theo khu vực",
+  "Hotel room and automation planning": "Lập kế hoạch phòng khách sạn và tự động hóa",
+  "OEM/ODM customization": "Tùy chỉnh OEM/ODM",
+  "Regional FAQ": "Câu hỏi thường gặp về dự án khu vực",
+  "View Full FAQ": "Xem toàn bộ câu hỏi thường gặp",
+  "Regional quotation": "Báo giá dự án khu vực",
+  "Safe B2B scope": "Phạm vi thông tin B2B an toàn",
+  "Discuss Regional Project": "Trao đổi về dự án khu vực",
+  "Questions for": "Câu hỏi cho",
+};
+
 function regionLabel(locale: Locale, english: string, chinese: string, arabic: string) {
   if (locale === "ar") return arabic;
   if (locale === "zh") return chinese;
+  if (locale === "vi") return vietnameseRegionLabels[english] ?? english;
   return english;
 }
 
@@ -158,6 +180,7 @@ function StaticRegionPage({
   localizedPage?: LocalizedPublicationPage;
 }) {
   const isChinese = locale === "zh";
+  const isVietnamese = locale === "vi";
   const path = buildLocalizedPath(locale, `regions/${region.slug}`);
   const url = buildSiteUrl(path);
   const whatsappUrl = createWhatsAppUrl(
@@ -362,7 +385,7 @@ function StaticRegionPage({
                   {regionLabel(locale, "Regional FAQ", "区域项目常见问题", "الأسئلة الشائعة للمشروعات الإقليمية")}
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                  {locale === "ar" ? `أسئلة استفسارات المشروعات في ${region.market}` : isChinese ? "区域项目询盘常见问题" : `Questions for ${region.market} project inquiries`}
+                  {locale === "ar" ? `أسئلة استفسارات المشروعات في ${region.market}` : isChinese ? "区域项目询盘常见问题" : isVietnamese ? `Câu hỏi về yêu cầu dự án tại ${region.market}` : `Questions for ${region.market} project inquiries`}
                 </h2>
               </div>
               <Link

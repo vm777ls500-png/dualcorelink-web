@@ -48,9 +48,26 @@ type ResourcePageProps = {
 
 export const dynamicParams = false;
 
+const vietnameseResourceLabels: Record<string, string> = {
+  "Back to Resources": "Quay lại tài nguyên",
+  "Last reviewed": "Cập nhật gần nhất",
+  "Direct answer": "Trả lời trực tiếp",
+  Overview: "Tổng quan hướng dẫn",
+  "Table of contents": "Mục lục",
+  "Best for": "Phù hợp nhất với",
+  "Main advantage": "Ưu điểm chính",
+  "Main consideration": "Điểm cần lưu ý chính",
+  "Typical system role": "Vai trò điển hình trong hệ thống",
+  "Related planning reference": "Tài liệu lập kế hoạch liên quan",
+  "Frequently asked questions": "Câu hỏi thường gặp",
+  "Safe B2B scope": "Phạm vi thông tin B2B an toàn",
+  "Project quotation": "Báo giá dự án",
+};
+
 function resourceLabel(locale: Locale, english: string, chinese: string, arabic: string) {
   if (locale === "ar") return arabic;
   if (locale === "zh") return chinese;
+  if (locale === "vi") return vietnameseResourceLabels[english] ?? english;
   return english;
 }
 
@@ -172,13 +189,14 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
   ) {
     return <LocalizedPublicationPageView page={localizedPage} />;
   }
-  if (locale !== "en" && locale !== "zh" && locale !== "ar") notFound();
+  if (locale !== "en" && !localizedPage) notFound();
   const sourceResource = getResourceBySlug(slug);
   if (!sourceResource) notFound();
   const resource = localizedPage
     ? localizeResourceGuide(sourceResource, localizedPage)
     : sourceResource;
   const isChinese = locale === "zh" && Boolean(localizedPage);
+  const isVietnamese = locale === "vi" && Boolean(localizedPage);
 
   const whatsappUrl = createWhatsAppUrl(resource.cta.whatsappMessage);
   const resourceAttribution = {
@@ -308,6 +326,8 @@ export default async function ResourcePage({ params }: ResourcePageProps) {
                   ? `صُمم هذا الدليل لـ ${resource.audience.join("، ")} لإعداد الاختيار الأولي وعرض المشروع ومراجعة الوثائق لمشروعات التحكم وأتمتة غرف الفنادق.`
                   : isChinese
                   ? `本指南面向${resource.audience.join("、")}，用于酒店客控与自动化项目的前期选型、报价准备和资料核对。`
+                  : isVietnamese
+                  ? `Hướng dẫn này dành cho ${resource.audience.join(", ")} khi chuẩn bị lựa chọn sản phẩm ban đầu, báo giá dự án và rà soát tài liệu cho hệ thống điều khiển và tự động hóa phòng khách sạn.`
                   : `This guide is designed for ${resource.audience.join(", ")} teams preparing early product selection, project quotation, and document review for hotel room control and automation projects.`}
               </p>
             </section>

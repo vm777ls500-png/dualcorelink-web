@@ -148,6 +148,16 @@ export function ProductFilteredList({
           emptyDescription:
             "لا توجد منتجات منشورة تطابق هذا المرشح. اعرض كل المنتجات أو تواصل معنا لمطابقة المشروع.",
         }
+      : locale === "vi"
+        ? {
+            eyebrow: "Kết quả sản phẩm đã lọc",
+            showing: (shown: number, total: number) =>
+              `Hiển thị ${shown} trong tổng số ${total} sản phẩm.`,
+            all: "Xem tất cả sản phẩm",
+            empty: "Không tìm thấy sản phẩm",
+            emptyDescription:
+              "Không có sản phẩm đã xuất bản phù hợp với bộ lọc này. Xem tất cả sản phẩm hoặc liên hệ đội ngũ để đối chiếu theo dự án.",
+          }
       : {
           eyebrow: "Filtered product results",
           showing: (shown: number, total: number) =>
@@ -168,10 +178,10 @@ export function ProductFilteredList({
   });
   const filterLabels = [
     activeCategory
-      ? `${locale === "ar" ? "الفئة" : "Category"}: ${activeCategory.title}`
+      ? `${locale === "ar" ? "الفئة" : locale === "vi" ? "Danh mục" : "Category"}: ${activeCategory.title}`
       : "",
     activeSeries
-      ? `${locale === "ar" ? "السلسلة" : "Series"}: ${activeSeries.title}`
+      ? `${locale === "ar" ? "السلسلة" : locale === "vi" ? "Dòng sản phẩm" : "Series"}: ${activeSeries.title}`
       : "",
   ].filter(Boolean);
   const hasFilter = Boolean(activeCategory || activeSeries);

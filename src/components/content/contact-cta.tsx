@@ -18,6 +18,7 @@ export function ContactCta({
   attribution,
 }: ContactCtaProps) {
   const isChinese = locale === "zh";
+  const isVietnamese = locale === "vi";
   const baseAttribution = attribution ?? {
     sourcePage: `/${locale}/`,
     contentType: "site",
@@ -33,11 +34,13 @@ export function ContactCta({
       <div className="relative mx-auto flex max-w-7xl flex-col justify-between gap-5 lg:flex-row lg:items-center">
         <div>
           <p className="text-sm font-semibold uppercase text-white/70">
-            {isChinese ? "B2B 项目支持" : "B2B project support"}
+            {isChinese ? "B2B 项目支持" : isVietnamese ? "Hỗ trợ dự án B2B" : "B2B project support"}
           </p>
           <p className="mt-2 text-2xl font-semibold">
             {isChinese
               ? "技术适配、OEM 选项与供货规划。"
+              : isVietnamese
+                ? "Đánh giá kỹ thuật, lựa chọn OEM và kế hoạch cung ứng."
               : "Technical fit, OEM options, and supply planning."}
           </p>
         </div>
@@ -55,9 +58,11 @@ export function ContactCta({
             message={
               isChinese
                 ? "您好，DUALCORE LINK。我想咨询项目报价。"
+                : isVietnamese
+                  ? "Xin chào DUALCORE LINK, tôi muốn yêu cầu báo giá cho dự án."
                 : "Hello DUALCORE LINK, I would like to get a quote."
             }
-            label={isChinese ? "通过 WhatsApp 咨询" : undefined}
+            label={isChinese ? "通过 WhatsApp 咨询" : isVietnamese ? "Trao đổi qua WhatsApp" : undefined}
             attribution={{
               ...baseAttribution,
               ctaPosition: "bottom_whatsapp_cta",

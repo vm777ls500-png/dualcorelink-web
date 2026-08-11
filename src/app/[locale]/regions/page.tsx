@@ -83,7 +83,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
   }
   const isChinese = locale === "zh" && Boolean(localizedPage);
   const isArabic = locale === "ar" && Boolean(localizedPage);
-  const isLocalized = Boolean(localizedPage) && (locale === "zh" || locale === "ar");
+  const isVietnamese = locale === "vi" && Boolean(localizedPage);
+  const isLocalized = Boolean(localizedPage) && (locale === "zh" || locale === "ar" || locale === "vi");
   const regions = isLocalized
     ? regionLandingPages.map((region, index) => {
         const page = getLocalizedPublicationPage(
@@ -94,8 +95,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
         return {
           id: -(index + 1),
           slug: region.slug,
-          regionType: locale === "ar" ? "المنطقة" : "区域",
-          marketMaturity: locale === "ar" ? "سوق المشروع" : "项目市场",
+          regionType: locale === "ar" ? "المنطقة" : locale === "vi" ? "Khu vực" : "区域",
+          marketMaturity: locale === "ar" ? "سوق المشروع" : locale === "vi" ? "Thị trường dự án" : "项目市场",
           title: page?.title ?? region.h1,
           marketSummary: page?.description ?? region.metaDescription,
           excerpt: page?.description ?? region.metaDescription,
@@ -166,16 +167,18 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
       )}
       <section className="region-market-quote mt-10 border border-line bg-surface p-6">
         <p className="text-sm font-semibold uppercase text-brand">
-          {isArabic ? "الأسواق المستهدفة" : isChinese ? "目标市场" : "Target markets"}
+          {isArabic ? "الأسواق المستهدفة" : isChinese ? "目标市场" : isVietnamese ? "Thị trường mục tiêu" : "Target markets"}
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-foreground">
-          {isArabic ? "دعم استفسارات المشروعات الإقليمية" : isChinese ? "区域项目询盘支持" : "Regional Project Inquiry Support"}
+          {isArabic ? "دعم استفسارات المشروعات الإقليمية" : isChinese ? "区域项目询盘支持" : isVietnamese ? "Hỗ trợ yêu cầu dự án theo khu vực" : "Regional Project Inquiry Support"}
         </h2>
         <p className="mt-3 max-w-4xl leading-7 text-muted">
           {isArabic
             ? "ندعم استفسارات مشروعات الفنادق الذكية وOEM/ODM في الشرق الأوسط وجنوب شرق آسيا، بما يشمل اختيار المنتجات وتخصيص اللوحات والكتالوجات والوثائق الخاضعة للضبط."
             : isChinese
             ? "我们支持来自中东和东南亚的智能酒店及 OEM/ODM 项目询盘，包括产品选型、面板定制、目录共享与受控资料申请。"
+            : isVietnamese
+            ? "Chúng tôi hỗ trợ yêu cầu dự án khách sạn thông minh và OEM/ODM tại Trung Đông và Đông Nam Á, gồm lựa chọn sản phẩm, tùy chỉnh bảng điều khiển, chia sẻ danh mục và yêu cầu tài liệu có kiểm soát."
             : "We support smart hotel and OEM/ODM project inquiries from the Middle East and Southeast Asia, including product selection, panel customization, catalog sharing, and controlled document requests."}
         </p>
         <ul className="mt-5 flex flex-wrap gap-2">
@@ -202,6 +205,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
             ? "للمشروعات الإقليمية، أرسل الدولة ونوع غرفة الفندق ومتطلبات الجهد والتردد والبروتوكول والكمية المتوقعة والوثائق المطلوبة."
             : isChinese
             ? "区域项目请提供国家、酒店房型、电压与频率、协议偏好、预计数量和所需资料，以便团队准备合适的产品方向。"
+            : isVietnamese
+            ? "Với dự án theo khu vực, hãy cung cấp quốc gia, loại phòng khách sạn, yêu cầu điện áp và tần số, giao thức ưu tiên, số lượng dự kiến và tài liệu cần thiết."
             : "For regional projects, share your country, hotel room type, voltage and frequency requirements, protocol preference, estimated quantity, and required documents so our team can prepare the right product direction."}
         </p>
         <div className="region-market-actions mt-6 flex flex-wrap gap-3">
@@ -209,13 +214,13 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            {isArabic ? "ناقش مشروعاً إقليمياً" : isChinese ? "讨论区域项目" : "Discuss Regional Project"}
+            {isArabic ? "ناقش مشروعاً إقليمياً" : isChinese ? "讨论区域项目" : isVietnamese ? "Trao đổi về dự án khu vực" : "Discuss Regional Project"}
           </Link>
           <Link
-            href={localizeReleasedHref("/en/downloads/", locale)}
+            href={isVietnamese ? "/vi/resources/" : localizeReleasedHref("/en/downloads/", locale)}
             className="inline-flex min-h-11 items-center justify-center border border-line bg-background px-5 py-3 font-semibold text-brand"
           >
-            {isArabic ? "عرض الكتالوجات" : isChinese ? "查看产品目录" : "View Catalogs"}
+            {isArabic ? "عرض الكتالوجات" : isChinese ? "查看产品目录" : isVietnamese ? "Xem tài nguyên" : "View Catalogs"}
           </Link>
         </div>
       </section>

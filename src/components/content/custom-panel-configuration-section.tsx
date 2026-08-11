@@ -18,6 +18,7 @@ export function CustomPanelConfigurationSection({
   locale,
 }: CustomPanelConfigurationSectionProps) {
   const isChinese = locale === "zh";
+  const isVietnamese = locale === "vi";
   const copy = isChinese
     ? {
         eyebrow: "OEM/ODM 配置",
@@ -29,7 +30,19 @@ export function CustomPanelConfigurationSection({
         primaryCta: "提交 OEM/ODM 配置需求",
         secondaryCta: "发送客房布局",
       }
-    : panelConfigurationCopy;
+    : isVietnamese
+      ? {
+          ...panelConfigurationCopy,
+          eyebrow: "Cấu hình OEM/ODM",
+          title: "Tùy chọn cấu hình bảng điều khiển phòng khách sạn",
+          subtitle: "Phối hợp bề mặt và mô-đun chức năng tùy chọn cho phòng khách sạn và dự án OEM/ODM.",
+          intro: "Các bố cục sau hỗ trợ trao đổi về tổ hợp chiếu sáng, rèm, trạng thái phòng, thẻ tiết kiệm điện, điều nhiệt, ổ cắm, USB và chức năng điện áp thấp; mỗi hình là ví dụ cấu hình dự án, không phải model tồn kho cố định.",
+          cardNote: "Ví dụ cấu hình. Lựa chọn mô-đun và phạm vi sản xuất cuối cùng phải được xác nhận bằng văn bản theo dự án.",
+          disclaimer: "Hình ảnh minh họa cấu hình OEM/ODM, không đại diện cho model tồn kho tiêu chuẩn. Mô-đun, màu sắc, bố cục, chức năng và số lượng có thể trao đổi theo dự án; khả năng tương thích, MOQ, thời gian giao hàng và báo giá phải được xác nhận bằng văn bản.",
+          primaryCta: "Gửi yêu cầu cấu hình OEM/ODM",
+          secondaryCta: "Gửi bố cục phòng",
+        }
+      : panelConfigurationCopy;
   const emailUrl = `mailto:${brand.emails.sales}?subject=${encodeURIComponent(
     "OEM/ODM room panel configuration",
   )}`;
@@ -85,6 +98,8 @@ export function CustomPanelConfigurationSection({
                 <p className="text-sm text-muted">
                   {isChinese
                     ? `${configurations.length} 个配置示例`
+                    : isVietnamese
+                      ? `${configurations.length} ví dụ cấu hình`
                     : `${configurations.length} configuration${
                         configurations.length === 1 ? "" : "s"
                       }`}
@@ -103,6 +118,8 @@ export function CustomPanelConfigurationSection({
                         alt={
                           isChinese
                             ? `${series}酒店客房面板配置示例 ${index + 1}`
+                            : isVietnamese
+                              ? `Ví dụ cấu hình bảng điều khiển phòng khách sạn ${series} ${index + 1}`
                             : configuration.alt
                         }
                         fill
@@ -112,16 +129,20 @@ export function CustomPanelConfigurationSection({
                     </div>
                     <div className="p-5">
                       <p className="text-xs font-semibold uppercase text-brand">
-                        {isChinese ? "配置示例" : "Configuration example"}
+                        {isChinese ? "配置示例" : isVietnamese ? "Ví dụ cấu hình" : "Configuration example"}
                       </p>
                       <h4 className="mt-2 text-lg font-semibold leading-7 text-foreground">
                         {isChinese
                           ? `${series}配置方案 ${index + 1}`
+                          : isVietnamese
+                            ? `Phương án cấu hình ${series} ${index + 1}`
                           : configuration.title}
                       </h4>
                       <p className="mt-2 text-sm leading-6 text-muted">
                         {isChinese
                           ? "用于酒店客房控制与供电面板的项目规划"
+                          : isVietnamese
+                            ? "Dùng để lập kế hoạch bảng điều khiển và cấp nguồn cho phòng khách sạn"
                           : configuration.useCase}
                       </p>
                       <ul className="mt-4 flex flex-wrap gap-2">
@@ -130,7 +151,7 @@ export function CustomPanelConfigurationSection({
                             key={module}
                             className="border border-line bg-background px-3 py-2 text-xs font-medium text-foreground"
                           >
-                            {isChinese ? "可选功能模块" : module}
+                            {isChinese ? "可选功能模块" : isVietnamese ? "Mô-đun chức năng tùy chọn" : module}
                           </li>
                         ))}
                       </ul>

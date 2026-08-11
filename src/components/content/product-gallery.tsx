@@ -43,6 +43,7 @@ export function ProductGallery({
   const activeImageFailed = failedImages.includes(activeImage.src);
   const isChinese = locale === "zh";
   const isArabic = locale === "ar";
+  const isVietnamese = locale === "vi";
 
   function markImageFailed(src: string) {
     setFailedImages((current) =>
@@ -53,12 +54,12 @@ export function ProductGallery({
   return (
     <div
       className="product-gallery"
-      aria-label={isArabic ? `معرض صور ${productTitle}` : isChinese ? `${productTitle}产品图库` : `${productTitle} image gallery`}
+      aria-label={isArabic ? `معرض صور ${productTitle}` : isChinese ? `${productTitle}产品图库` : isVietnamese ? `Thư viện ảnh ${productTitle}` : `${productTitle} image gallery`}
     >
       <div className="media-shell aspect-[4/3] shadow-[0_24px_60px_rgba(23,32,42,0.09)]">
         {activeImageFailed ? (
           <div className="relative z-10 grid h-full place-items-center p-6 text-center text-sm font-medium text-muted">
-            {isArabic ? "الصورة غير متاحة" : isChinese ? "图片暂不可用" : "Image unavailable"}
+            {isArabic ? "الصورة غير متاحة" : isChinese ? "图片暂不可用" : isVietnamese ? "Hình ảnh không khả dụng" : "Image unavailable"}
           </div>
         ) : (
           <Image
@@ -87,6 +88,10 @@ export function ProductGallery({
             ? activeImage.type === "hero"
               ? "主图"
               : `产品图 ${activeIndex + 1}`
+            : isVietnamese
+            ? activeImage.type === "hero"
+              ? "Ảnh chính"
+              : `Ảnh sản phẩm ${activeIndex + 1}`
             : imageTypeLabels[activeImage.type]}
         </span>
         <span>
@@ -98,7 +103,7 @@ export function ProductGallery({
         <div
           className="product-gallery-thumbnails mt-3"
           role="group"
-          aria-label={isArabic ? "اختر صورة المنتج" : isChinese ? "选择产品图片" : "Choose a product image"}
+          aria-label={isArabic ? "اختر صورة المنتج" : isChinese ? "选择产品图片" : isVietnamese ? "Chọn ảnh sản phẩm" : "Choose a product image"}
         >
           {images.map((image, index) => {
             const isActive = index === activeIndex;
@@ -108,14 +113,14 @@ export function ProductGallery({
               <button
                 key={`${image.src}-${index}`}
                 type="button"
-                aria-label={isArabic ? `عرض ${image.alt}` : isChinese ? `查看${image.alt}` : `View ${image.alt}`}
+                aria-label={isArabic ? `عرض ${image.alt}` : isChinese ? `查看${image.alt}` : isVietnamese ? `Xem ${image.alt}` : `View ${image.alt}`}
                 aria-pressed={isActive}
                 onClick={() => setActiveIndex(index)}
                 className="product-gallery-thumbnail"
               >
                 {failed ? (
                   <span className="grid h-full place-items-center px-1 text-[10px] font-semibold text-muted">
-                    {isArabic ? "غير متاحة" : isChinese ? "不可用" : "Unavailable"}
+                    {isArabic ? "غير متاحة" : isChinese ? "不可用" : isVietnamese ? "Không khả dụng" : "Unavailable"}
                   </span>
                 ) : (
                   <Image

@@ -12,6 +12,7 @@ import { isLocale } from "@/config/i18n";
 import {
   arabicAboutCopy,
   chineseAboutCopy,
+  vietnameseAboutCopy,
 } from "@/config/static-page-localization";
 import {
   buildLocalizedPath,
@@ -96,12 +97,15 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
   const isChinese = locale === "zh" && Boolean(localizedPage);
   const isArabic = locale === "ar" && Boolean(localizedPage);
-  const isLocalized = isChinese || isArabic;
+  const isVietnamese = locale === "vi" && Boolean(localizedPage);
+  const isLocalized = isChinese || isArabic || isVietnamese;
   const aboutCopy = isArabic
     ? arabicAboutCopy
     : isChinese
       ? chineseAboutCopy
-      : null;
+      : isVietnamese
+        ? vietnameseAboutCopy
+        : null;
   const localizedSections = localizedPage?.content.sections ?? [];
   const profileParagraphs = isLocalized
     ? localizedSections[0]?.paragraphs ?? []

@@ -16,6 +16,7 @@ import { isLocale } from "@/config/i18n";
 import {
   arabicContactCopy,
   chineseContactCopy,
+  vietnameseContactCopy,
 } from "@/config/static-page-localization";
 import {
   buildLocalizedPath,
@@ -84,11 +85,14 @@ export default async function ContactPage({ params }: ContactPageProps) {
   }
   const isChinese = locale === "zh" && Boolean(localizedPage);
   const isArabic = locale === "ar" && Boolean(localizedPage);
+  const isVietnamese = locale === "vi" && Boolean(localizedPage);
   const contactCopy = isArabic
     ? arabicContactCopy
     : isChinese
       ? chineseContactCopy
-      : null;
+      : isVietnamese
+        ? vietnameseContactCopy
+        : null;
   const page = localizedPage
     ? undefined
     : await pageRepository.getBySlug(locale, "contact");
@@ -96,7 +100,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
     ? `مرحباً ${brand.name}، أود مناقشة مشروع فندق أو منزل ذكي B2B.`
     : isChinese
       ? `您好 ${brand.name}，我想咨询智能酒店或智能家居 B2B 项目。`
-      : `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
+      : isVietnamese
+        ? `Xin chào ${brand.name}, tôi muốn trao đổi về dự án khách sạn hoặc nhà thông minh B2B.`
+        : `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
   const body = stripHtml(page?.content || "");
   const contactSource = {
     sourcePage: `/${locale}/contact/`,
@@ -129,7 +135,13 @@ export default async function ContactPage({ params }: ContactPageProps) {
           },
           createBreadcrumbSchema(`${contactUrl}#breadcrumb`, [
             {
-              name: isArabic ? "الرئيسية" : isChinese ? "首页" : "Home",
+              name: isArabic
+                ? "الرئيسية"
+                : isChinese
+                  ? "首页"
+                  : isVietnamese
+                    ? "Trang chủ"
+                    : "Home",
               url: buildSiteUrl(getLocalizedCompositionHomePath(locale)),
             },
             {

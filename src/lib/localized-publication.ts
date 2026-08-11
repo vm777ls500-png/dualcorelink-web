@@ -16,7 +16,10 @@ import {
   getCandidatePublicationEntries,
   getHreflangEligibleEntries,
 } from "./multilingual-publication-control";
-import { getReviewPreviewLocale } from "./multilingual-review-preview";
+import {
+  getReviewPreviewLocale,
+  type ReviewPreviewLocale,
+} from "./multilingual-review-preview";
 import type { Locale } from "@/config/i18n";
 import {
   buildLocalizedPath,
@@ -159,7 +162,7 @@ function createLocalizedPageFromEntry(
 }
 
 export function getReviewPreviewPublicationPages(
-  locale: "ar",
+  locale: ReviewPreviewLocale,
 ): LocalizedPublicationPage[] {
   return getCandidatePublicationEntries(multilingualPublicationManifest)
     .filter((entry) => entry.locale === locale)

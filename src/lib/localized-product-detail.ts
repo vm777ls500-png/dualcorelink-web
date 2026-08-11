@@ -62,8 +62,14 @@ export function createLocalizedProductDetailCopy(
   page: LocalizedPublicationPage,
 ): LocalizedProductDetailCopy {
   const applications =
-    matchingSectionText(page, /适用|应用|场景|مشروع|تطبيق|استخدام/) ||
-    matchingSpecificationValue(page, /适用|应用|场景|مشروع|تطبيق|استخدام/) ||
+    matchingSectionText(
+      page,
+      /适用|应用|场景|مشروع|تطبيق|استخدام|ứng dụng|dự án|vai trò/i,
+    ) ||
+    matchingSpecificationValue(
+      page,
+      /适用|应用|场景|مشروع|تطبيق|استخدام|ứng dụng|dự án|vai trò/i,
+    ) ||
     sectionText(page, 0);
 
   return {
@@ -98,7 +104,26 @@ export function localizeProductDetailModel(
             "hotel-audio-communication-devices": "أجهزة الصوت والاتصال الفندقية",
             "hotel-delivery-robot-system": "نظام روبوت التوصيل الفندقي",
           } as Record<string, string>)[category.slug] ?? category.title
-        : category.chineseTitle,
+        : page.locale === "vi"
+          ? ({
+              "smart-panels-switches":
+                "Bảng điều khiển và công tắc thông minh",
+              "ai-smart-displays": "Màn hình điều khiển thông minh AI",
+              "rcu-room-control-host": "Bộ điều khiển phòng RCU",
+              sensors: "Cảm biến",
+              "smart-sockets-power-modules":
+                "Ổ cắm thông minh và mô-đun nguồn",
+              "hvac-thermostat-control":
+                "Điều khiển HVAC và bộ điều nhiệt",
+              "curtain-control-panels": "Bảng điều khiển rèm",
+              "room-status-hotel-service-panels":
+                "Bảng trạng thái phòng và dịch vụ khách sạn",
+              "hotel-audio-communication-devices":
+                "Thiết bị âm thanh và liên lạc khách sạn",
+              "hotel-delivery-robot-system":
+                "Hệ thống robot giao hàng khách sạn",
+            } as Record<string, string>)[category.slug] ?? category.title
+          : category.chineseTitle,
     ]),
   );
 
@@ -163,14 +188,18 @@ export function localizeProductGallery(
         page.content.imageAlt ||
         (page.locale === "ar"
           ? `الصورة الرئيسية لمنتج ${page.title}`
-          : `${page.title}产品主图`),
+          : page.locale === "vi"
+            ? `Hình ảnh chính của ${page.title}`
+            : `${page.title}产品主图`),
     },
     gallery: gallery.gallery.map((image, index) => ({
       ...image,
       alt:
         page.locale === "ar"
           ? `صورة المنتج ${page.title} ${index + 2}`
-          : `${page.title}产品图 ${index + 2}`,
+          : page.locale === "vi"
+            ? `Hình ảnh sản phẩm ${page.title} ${index + 2}`
+            : `${page.title}产品图 ${index + 2}`,
     })),
   };
 }
@@ -198,6 +227,26 @@ export function localizeProductConversionProfile(
         },
       ],
       whatsappPrompt: `مرحباً DUALCORE LINK، أود مناقشة اختيار ${page.title} لمشروع فندقي.`,
+    };
+  }
+
+  if (page.locale === "vi") {
+    return {
+      ...profile,
+      label: "Lập kế hoạch mua sắm dự án",
+      summary: page.content.introduction,
+      highlights: [
+        { label: "Vai trò trong dự án", value: page.content.eyebrow },
+        {
+          label: "Đối tượng phù hợp",
+          value: "Chủ đầu tư khách sạn, nhà thầu và đơn vị tích hợp hệ thống",
+        },
+        {
+          label: "Nội dung cần xác nhận",
+          value: "Lắp đặt, giao diện, số lượng và điều kiện giao hàng",
+        },
+      ],
+      whatsappPrompt: `Xin chào DUALCORE LINK, tôi muốn trao đổi về việc lựa chọn ${page.title} cho dự án khách sạn.`,
     };
   }
 

@@ -78,21 +78,57 @@ const arabicProjectStageLabels = [
   "التجديد أو الاستبدال",
 ] as const;
 
+const vietnameseCustomerTypeLabels = [
+  "Chủ đầu tư / nhà phát triển khách sạn",
+  "Nhà thầu",
+  "Đơn vị tích hợp hệ thống",
+  "Nhà phân phối / bán buôn",
+  "Bên mua OEM / ODM",
+  "Đơn vị lắp đặt nhà thông minh",
+  "Khác",
+] as const;
+
+const vietnameseProductInterestLabels = [
+  "Bảng điều khiển và công tắc thông minh",
+  "Màn hình điều khiển thông minh AI",
+  "Bộ điều khiển phòng RCU",
+  "Cảm biến",
+  "Ổ cắm thông minh và mô-đun nguồn",
+  "Điều khiển HVAC và bộ điều nhiệt",
+  "Bảng điều khiển rèm",
+  "Bảng trạng thái phòng và dịch vụ khách sạn",
+  "Hệ thống robot giao hàng khách sạn",
+  "Sản phẩm tùy chỉnh OEM / ODM",
+  "Khác",
+] as const;
+
+const vietnameseProjectStageLabels = [
+  "Nghiên cứu ban đầu",
+  "Đặc tả và thiết kế",
+  "Báo giá và lựa chọn nhà cung cấp",
+  "Đánh giá mẫu",
+  "Mua sắm",
+  "Cải tạo hoặc thay thế",
+] as const;
+
 export const contactFormOptions = {
   customerTypes: customerTypeOptions.map((value, index) => ({
     value,
     zhLabel: chineseCustomerTypeLabels[index],
     arLabel: arabicCustomerTypeLabels[index],
+    viLabel: vietnameseCustomerTypeLabels[index],
   })),
   productInterests: productInterestOptions.map((value, index) => ({
     value,
     zhLabel: chineseProductInterestLabels[index],
     arLabel: arabicProductInterestLabels[index],
+    viLabel: vietnameseProductInterestLabels[index],
   })),
   projectStages: projectStageOptions.map((value, index) => ({
     value,
     zhLabel: chineseProjectStageLabels[index],
     arLabel: arabicProjectStageLabels[index],
+    viLabel: vietnameseProjectStageLabels[index],
   })),
 } as const;
 
@@ -178,6 +214,53 @@ export const arabicContactFormCopy = {
   productMessage: (productName: string) => `أرغب في الحصول على عرض سعر للمنتج ${productName}.`,
   attributedMessage: (sourceTitle: string) => `أود مناقشة مشروع متعلق بـ ${sourceTitle}.`,
   whatsappMessage: "مرحباً DUALCORE LINK، أود مناقشة مشروع B2B.",
+  whatsappLabel: "WhatsApp",
+} as const;
+
+export const vietnameseContactFormCopy = {
+  contextEyebrow: "Nguồn yêu cầu",
+  directContext: "Liên hệ trực tiếp",
+  sourceLabel: "Nguồn",
+  name: "Họ và tên *",
+  company: "Công ty",
+  email: "Email *",
+  phone: "WhatsApp / Điện thoại",
+  country: "Quốc gia / Khu vực *",
+  customerType: "Loại khách hàng *",
+  selectCustomerType: "Chọn loại khách hàng",
+  projectStage: "Giai đoạn dự án",
+  selectProjectStage: "Chọn giai đoạn dự án",
+  targetDelivery: "Thời gian giao hàng mục tiêu",
+  targetDeliveryPlaceholder: "Ví dụ: tháng 10 năm 2026",
+  productInterest: "Sản phẩm quan tâm *",
+  selectProductInterest: "Chọn ít nhất một nhóm sản phẩm.",
+  quantity: "Số lượng dự kiến",
+  quantityPlaceholder: "Ví dụ: 100 bộ / 300 phòng / 1 dự án khách sạn",
+  website: "Website",
+  message: "Nội dung yêu cầu *",
+  filesTitle: "Tệp dự án (không bắt buộc)",
+  filesHelp:
+    "Website không tải tệp lên. Sau khi bản nháp email mở, hãy đính kèm bản vẽ, danh mục sản phẩm, BOM hoặc yêu cầu dự án trong ứng dụng email.",
+  submitting: "Đang gửi yêu cầu...",
+  preparing: "Đang chuẩn bị bản nháp email...",
+  submit: "Gửi yêu cầu dự án",
+  prepare: "Chuẩn bị bản nháp email",
+  fallbackServer: "Nếu gửi qua máy chủ tạm thời không khả dụng, hãy dùng",
+  fallbackMailto: "Biểu mẫu sẽ mở bản nháp email gửi đến",
+  fallbackReview:
+    ". Hãy kiểm tra và tự gửi bản nháp, đính kèm tệp dự án nếu cần hoặc dùng",
+  draftReady:
+    "Đã yêu cầu mở bản nháp email. Hãy kiểm tra nội dung, đính kèm tệp cần thiết và nhấn gửi trong ứng dụng email; website chưa gửi yêu cầu của bạn.",
+  accepted:
+    "Hệ thống đã tiếp nhận yêu cầu để chuyển tiếp. Trạng thái này không bảo đảm email đã vào hộp thư; chúng tôi sẽ liên hệ qua thông tin bạn cung cấp.",
+  genericError:
+    "Không thể mở ứng dụng email. Nội dung bạn nhập vẫn được giữ lại; hãy dùng email kinh doanh hoặc WhatsApp ở trên, hoặc thử chuẩn bị lại bản nháp.",
+  productMessage: (productName: string) =>
+    `Tôi quan tâm đến ${productName} và muốn nhận thông tin báo giá.`,
+  attributedMessage: (sourceTitle: string) =>
+    `Tôi muốn trao đổi về dự án liên quan đến ${sourceTitle}.`,
+  whatsappMessage:
+    "Xin chào DUALCORE LINK, tôi muốn trao đổi về một dự án B2B.",
   whatsappLabel: "WhatsApp",
 } as const;
 

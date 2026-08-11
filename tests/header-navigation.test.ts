@@ -130,7 +130,7 @@ test("desktop and mobile controls expose the required interaction and a11y hooks
     "aria-expanded",
     "aria-controls",
     "aria-haspopup",
-    'aria-label="Mobile primary"',
+    "aria-label={mobileNavigationLabels.nav}",
     "mobile-accordion-panel",
   ]) {
     assert.match(clientSource, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));

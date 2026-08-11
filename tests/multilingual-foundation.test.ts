@@ -850,7 +850,7 @@ test("canonical and hreflang are self-consistent and reference only published pa
   assert.ok(shared.ar);
   assert.equal(shared.de, undefined);
   assert.equal(shared.es, undefined);
-  assert.equal(shared.vi, undefined);
+  assert.equal(shared.vi, "https://dualcorelink.com/vi/about/");
   assert.equal(shared.fa, undefined);
 });
 

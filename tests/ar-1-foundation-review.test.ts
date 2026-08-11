@@ -211,7 +211,7 @@ test("AR-1 specialized schemas remain intact after production release", () => {
   assert.equal(
     multilingualPublicationManifest.filter(
       (entry) =>
-        entry.locale !== "ar" &&
+        !["ar", "vi"].includes(entry.locale) &&
         entry.nativeReviewer === "Allan" &&
         entry.nativeReviewDate === "2026-08-11",
     ).length,

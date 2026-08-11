@@ -101,7 +101,10 @@ test("Chinese FAQ supplies the complete 30-question purchasing set and schema", 
   assert.match(routeSources.faqs, /getStaticFaqCategories\(locale\)/);
   assert.match(routeSources.faqs, /createFaqPageSchema/);
   assert.match(routeSources.faqs, /createBreadcrumbSchema/);
-  assert.match(routeSources.faqs, /href="\/en\/downloads\/"/);
+  assert.match(
+    routeSources.faqs,
+    /href=\{isVietnamese \? "\/vi\/resources\/" : "\/en\/downloads\/"\}/,
+  );
 
   const serialized = JSON.stringify(chineseStaticFaqItems);
   for (const required of [
@@ -119,7 +122,7 @@ test("Chinese FAQ supplies the complete 30-question purchasing set and schema", 
   }
 });
 
-test("released Chinese and Arabic static pages use specialized composition", () => {
+test("released Chinese, Arabic, and Vietnamese static pages use specialized composition", () => {
   for (const route of [routeSources.about, routeSources.contact, routeSources.faqs]) {
     assert.match(route, /supportsSpecializedLocalizedComposition\(locale\)/);
   }
@@ -132,7 +135,16 @@ test("released Chinese and Arabic static pages use specialized composition", () 
     ).length,
     3,
   );
-  for (const locale of ["de", "es", "vi", "fa"] as const) {
+  assert.equal(
+    localizedPublicationPages.filter(
+      (page) =>
+        page.locale === "vi" &&
+        page.pageType === "static" &&
+        ["about", "contact", "faqs"].includes(page.slug),
+    ).length,
+    3,
+  );
+  for (const locale of ["de", "es", "fa"] as const) {
     assert.equal(
       localizedPublicationPages.some(
         (page) =>

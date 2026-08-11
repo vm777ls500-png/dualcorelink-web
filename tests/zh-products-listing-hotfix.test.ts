@@ -114,7 +114,7 @@ test("Chinese category and series filters return products and reset to 36", () =
 });
 
 test("pending locales keep their existing listing source behavior", () => {
-  for (const locale of ["ar", "de", "es", "vi", "fa"] as const) {
+  for (const locale of ["ar", "de", "es", "fa"] as const) {
     assert.equal(getProductListingSourceLocale(locale), locale);
     assert.deepEqual(
       localizeProductListingProducts(locale, sourceProducts),

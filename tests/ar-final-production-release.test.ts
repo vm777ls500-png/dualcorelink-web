@@ -94,7 +94,7 @@ test("production Nginx and workflow expose only the exact Arabic release", () =>
   assert.match(nginx, /try_files \/\$reviewed_rsc_locale\/\$reviewed_rsc_path\/index\.txt =404/);
   assert.doesNotMatch(nginx, /location\s+(?:\^~\s+)?\/ar\//);
   assert.match(workflow, /multilingual:release-check -- --locale=ar --batch=remaining-final/);
-  assert.match(workflow, /Generating static pages\.\*287\/287/);
+  assert.match(workflow, /Generating static pages\.\*280\/280/);
   assert.match(deploy, /EXPECTED_SITEMAP_URLS:-214/);
   assert.match(deploy, /EXPECTED_AR_PAGES:-69/);
 });

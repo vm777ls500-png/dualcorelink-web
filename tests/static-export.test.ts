@@ -164,7 +164,7 @@ test("AWS export baselines include all approved Chinese and Arabic pages", async
   );
 
   assert.equal(resources.length, 15);
-  assert.match(workflow, /Generating static pages\.\*287\/287/);
+  assert.match(workflow, /Generating static pages\.\*280\/280/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(

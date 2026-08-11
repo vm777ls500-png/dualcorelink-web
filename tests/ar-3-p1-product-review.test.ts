@@ -89,12 +89,12 @@ test("AR-3 inventory is exactly fifteen approved Arabic P1 product details", () 
   assert.equal(ar3Pages.length, 15);
 });
 
-test("the prior twenty-one approvals remain sealed and only AR-3 receives approval", () => {
+test("the AR-3 approval scope remains sealed after final release", () => {
   const approved = arabicEntries.filter(
     (entry) => entry.nativeReviewStatus === "approved",
   );
   assert.equal(arabicEntries.length, 69);
-  assert.equal(approved.length, 36);
+  assert.equal(approved.length, 69);
   assert.equal(
     approved.every(
       (entry) =>
@@ -110,14 +110,14 @@ test("the prior twenty-one approvals remain sealed and only AR-3 receives approv
   );
   assert.equal(
     arabicEntries.filter((entry) => entry.nativeReviewStatus === "pending").length,
-    33,
+    0,
   );
   assert.equal(
     arabicEntries.filter((entry) => entry.productionReleaseReady).length,
-    0,
+    69,
   );
-  assert.equal(getStaticExportEligibleEntries(arabicEntries).length, 0);
-  assert.equal(getSitemapEligibleEntries(arabicEntries).length, 0);
+  assert.equal(getStaticExportEligibleEntries(arabicEntries).length, 69);
+  assert.equal(getSitemapEligibleEntries(arabicEntries).length, 69);
 });
 
 test("all fifteen products retain complete localized product composition", () => {
@@ -270,7 +270,7 @@ test("RTL product hero grid items allow long Arabic headings to wrap", () => {
   );
 });
 
-test("review-preview canonical, hreflang, Product schema, and breadcrumb evidence remain isolated", () => {
+test("reviewed canonical, hreflang, Product schema, and breadcrumb evidence is published", () => {
   const routeSource = readFileSync(
     "src/app/[locale]/products/[slug]/page.tsx",
     "utf8",
@@ -294,7 +294,7 @@ test("review-preview canonical, hreflang, Product schema, and breadcrumb evidenc
     getSitemapEligibleEntries(multilingualPublicationManifest).some(
       (entry) => entry.locale === "ar",
     ),
-    false,
+    true,
   );
 });
 

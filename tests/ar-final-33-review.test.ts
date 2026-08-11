@@ -168,13 +168,13 @@ test("FINAL-33 inventory is exact and approved only by Allan", () => {
         entry.nativeReviewStatus === "approved" &&
         entry.nativeReviewer === "Allan" &&
         entry.nativeReviewDate === "2026-08-11" &&
-        !entry.productionReleaseReady,
+        entry.productionReleaseReady,
     ),
     true,
   );
 });
 
-test("all sixty-nine approvals retain exact batch counts behind the publication gate", () => {
+test("all sixty-nine approvals retain exact batch counts through the publication gate", () => {
   const approved = arabicEntries.filter(
     (entry) => entry.nativeReviewStatus === "approved",
   );
@@ -207,10 +207,10 @@ test("all sixty-nine approvals retain exact batch counts behind the publication 
   );
   assert.equal(
     arabicEntries.filter((entry) => entry.productionReleaseReady).length,
-    0,
+    69,
   );
-  assert.equal(getStaticExportEligibleEntries(arabicEntries).length, 0);
-  assert.equal(getSitemapEligibleEntries(arabicEntries).length, 0);
+  assert.equal(getStaticExportEligibleEntries(arabicEntries).length, 69);
+  assert.equal(getSitemapEligibleEntries(arabicEntries).length, 69);
 });
 
 test("the seventeen products retain full composition and 55-image parity", () => {
@@ -410,7 +410,7 @@ test("technical tokens remain isolated by the established bidi helper", () => {
   }
 });
 
-test("canonical, hreflang, and schema evidence remain review-only", () => {
+test("canonical, hreflang, and schema evidence remains valid after publication", () => {
   const routeEvidence = [
     ["src/app/[locale]/products/[slug]/page.tsx", ["createProductSchema", "createBreadcrumbSchema"]],
     ["src/app/[locale]/solutions/[slug]/page.tsx", ["createServiceSchema", "createBreadcrumbSchema"]],
@@ -435,7 +435,7 @@ test("canonical, hreflang, and schema evidence remain review-only", () => {
     getSitemapEligibleEntries(multilingualPublicationManifest).some(
       (entry) => entry.locale === "ar",
     ),
-    false,
+    true,
   );
 });
 

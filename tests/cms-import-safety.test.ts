@@ -180,7 +180,7 @@ test("WordPress repository validates a complete write plan before wp_insert_post
   assert.match(repository, /meta_keys_for\(\$locale, \$batch\)/);
 });
 
-test("payload schema requires waiver evidence only for Arabic", async () => {
+test("payload schema preserves review controls for every supported import batch", async () => {
   const schema = JSON.parse(
     await readFile(
       path.join(
@@ -190,13 +190,14 @@ test("payload schema requires waiver evidence only for Arabic", async () => {
       "utf8",
     ),
   ) as { items: { allOf: unknown[] } };
-  assert.equal(schema.items.allOf.length, 3);
+  assert.equal(schema.items.allOf.length, 4);
   assert.match(JSON.stringify(schema.items.allOf), /ownerReviewWaiverStatus/);
   assert.match(JSON.stringify(schema.items.allOf), /nativeReviewStatus/);
   assert.match(JSON.stringify(schema.items.allOf), /2026-08-02/);
   assert.match(JSON.stringify(schema.items.allOf), /2026-08-03/);
+  assert.match(JSON.stringify(schema.items.allOf), /2026-08-11/);
   assert.match(JSON.stringify(schema.items.allOf), /remaining-final/);
-  assert.equal(schema.maxItems, 18);
+  assert.equal(schema.maxItems, 42);
 });
 
 test("ordinary build command contains no CMS import side effect", async () => {

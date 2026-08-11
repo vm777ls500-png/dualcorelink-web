@@ -119,11 +119,20 @@ test("Chinese FAQ supplies the complete 30-question purchasing set and schema", 
   }
 });
 
-test("only released Chinese static pages use specialized composition", () => {
+test("released Chinese and Arabic static pages use specialized composition", () => {
   for (const route of [routeSources.about, routeSources.contact, routeSources.faqs]) {
     assert.match(route, /supportsSpecializedLocalizedComposition\(locale\)/);
   }
-  for (const locale of ["de", "es", "ar", "vi", "fa"] as const) {
+  assert.equal(
+    localizedPublicationPages.filter(
+      (page) =>
+        page.locale === "ar" &&
+        page.pageType === "static" &&
+        ["about", "contact", "faqs"].includes(page.slug),
+    ).length,
+    3,
+  );
+  for (const locale of ["de", "es", "vi", "fa"] as const) {
     assert.equal(
       localizedPublicationPages.some(
         (page) =>

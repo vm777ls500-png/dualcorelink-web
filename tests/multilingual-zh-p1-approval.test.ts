@@ -156,17 +156,25 @@ test("the final release approves remaining Chinese pages while other locales rem
   const p2 = multilingualPublicationManifest.filter(
     (entry) => entry.locale === "zh" && entry.priority === "P2",
   );
-  const otherLocales = multilingualPublicationManifest.filter(
-    (entry) => entry.locale !== "zh",
+  const arabic = multilingualPublicationManifest.filter((entry) => entry.locale === "ar");
+  const pendingLocales = multilingualPublicationManifest.filter((entry) =>
+    ["de", "es", "vi", "fa"].includes(entry.locale),
   );
   const remainingChinese = multilingualPublicationManifest.filter(
     (entry) => entry.locale === "zh" && entry.nativeReviewStatus === "pending",
   );
   assert.equal(p2.length, 19);
   assert.equal(remainingChinese.length, 0);
-  assert.equal(otherLocales.length, 345);
+  assert.equal(arabic.length, 69);
+  assert.equal(
+    arabic.every(
+      (entry) => entry.nativeReviewStatus === "approved" && entry.productionReleaseReady,
+    ),
+    true,
+  );
+  assert.equal(pendingLocales.length, 276);
   assert.ok(
-    otherLocales.every(
+    pendingLocales.every(
       (entry) =>
         entry.nativeReviewStatus === "pending" &&
         entry.productionReleaseReady === false,

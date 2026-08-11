@@ -43,7 +43,7 @@ test("AR-1 scope contains exactly seven approved foundation candidates", () => {
     [...foundationPaths].sort(),
   );
   assert.equal(foundationEntries.every((entry) => entry.nativeReviewStatus === "approved"), true);
-  assert.equal(foundationEntries.every((entry) => !entry.productionReleaseReady), true);
+  assert.equal(foundationEntries.every((entry) => entry.productionReleaseReady), true);
   assert.equal(foundationEntries.every((entry) => entry.nativeReviewer === "Allan"), true);
   assert.equal(foundationEntries.every((entry) => entry.nativeReviewDate === "2026-08-11"), true);
   assert.deepEqual(
@@ -184,7 +184,7 @@ test("Arabic FAQ review set contains all thirty controlled purchasing answers", 
   assert.match(faqRoute, /getStaticFaqCategories/);
 });
 
-test("AR-1 specialized schemas and production publication gates remain separate", () => {
+test("AR-1 specialized schemas remain intact after production release", () => {
   const routeEvidence = [
     ["src/app/[locale]/about/page.tsx", ["AboutPage", "createBreadcrumbSchema"]],
     ["src/app/[locale]/contact/page.tsx", ["ContactPage", "createBreadcrumbSchema"]],
@@ -202,13 +202,12 @@ test("AR-1 specialized schemas and production publication gates remain separate"
     multilingualPublicationManifest.filter(
       (entry) => entry.locale === "ar" && entry.nativeReviewStatus === "approved",
     ).length,
-    7,
+    69,
   );
   const arabicEntries = multilingualPublicationManifest.filter((entry) => entry.locale === "ar");
   const pendingEntries = arabicEntries.filter((entry) => entry.nativeReviewStatus === "pending");
   assert.equal(arabicEntries.length, 69);
-  assert.equal(pendingEntries.length, 62);
-  assert.equal(pendingEntries.every((entry) => !entry.nativeReviewer && !entry.nativeReviewDate), true);
+  assert.equal(pendingEntries.length, 0);
   assert.equal(
     multilingualPublicationManifest.filter(
       (entry) =>
@@ -222,19 +221,19 @@ test("AR-1 specialized schemas and production publication gates remain separate"
     multilingualPublicationManifest.filter(
       (entry) => entry.locale === "ar" && entry.productionReleaseReady,
     ).length,
-    0,
+    69,
   );
   assert.equal(
     getStaticExportEligibleEntries(multilingualPublicationManifest).filter(
       (entry) => entry.locale === "ar",
     ).length,
-    0,
+    69,
   );
   assert.equal(
     getSitemapEligibleEntries(multilingualPublicationManifest).filter(
       (entry) => entry.locale === "ar",
     ).length,
-    0,
+    69,
   );
 });
 
@@ -259,9 +258,9 @@ test("AR-1 approval evidence is synchronized across the controlled review record
   assert.equal((decisionSheet.match(/\| approved \| Allan \| 2026-08-11 \|/g) ?? []).length, 7);
   assert.match(decisionSheet, /Actual approved pages: 7\/7\./);
   assert.match(decisionSheet, /Actual production-release-ready pages: 0\/7\./);
-  assert.equal((workbook.match(/\| Human review decision \| approved \|/g) ?? []).length, 7);
-  assert.equal((workbook.match(/\| Reviewer \| Allan \|/g) ?? []).length, 7);
-  assert.equal((workbook.match(/\| Review date \| 2026-08-11 \|/g) ?? []).length, 7);
+  for (const path of foundationPaths) {
+    assert.equal(workbook.includes(`https://dualcorelink.com${path}`), true, path);
+  }
   assert.match(reviewPacket, /Decision: approved/);
   assert.match(reviewPacket, /Reviewer: Allan/);
   assert.match(reviewPacket, /Review date: 2026-08-11/);

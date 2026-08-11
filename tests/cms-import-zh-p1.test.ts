@@ -90,11 +90,11 @@ test("Chinese P1 rejects P0, P2, and other locale evidence", () => {
 test("Chinese P1 rejects reviewer/date and release readiness drift", () => {
   const reviewer = payload();
   reviewer[0].nativeReviewer = "Unknown";
-  expectPreflightFailure(reviewer, /native review evidence mismatch/);
+  expectPreflightFailure(reviewer, /native review evidence mismatch/i);
 
   const date = payload();
   date[0].nativeReviewDate = "2026-08-01";
-  expectPreflightFailure(date, /native review evidence mismatch/);
+  expectPreflightFailure(date, /native review evidence mismatch/i);
 
   const readiness = payload();
   readiness[0].productionReleaseReady = false;

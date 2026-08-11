@@ -142,14 +142,19 @@ test("AR-2 inventory is the exact fourteen P0 detail candidates", () => {
   assert.equal(ar2Pages.length, 14);
 });
 
-test("AR-1 stays sealed and only the exact AR-2 scope receives approval", () => {
+test("AR-1 and AR-2 approval scopes remain sealed after final release", () => {
   const approved = arabicEntries.filter(
     (entry) => entry.nativeReviewStatus === "approved",
   );
+  const approvedScopePaths = new Set<string>([...ar1Paths, ...ar2Paths]);
+  const approvedScope = approved.filter((entry) =>
+    approvedScopePaths.has(new URL(entry.localizedUrl).pathname),
+  );
   assert.equal(arabicEntries.length, 69);
-  assert.equal(approved.length, 21);
+  assert.equal(approved.length, 69);
+  assert.equal(approvedScope.length, 21);
   assert.deepEqual(
-    approved.map((entry) => new URL(entry.localizedUrl).pathname).sort(),
+    approvedScope.map((entry) => new URL(entry.localizedUrl).pathname).sort(),
     [...ar1Paths, ...ar2Paths].sort(),
   );
   assert.equal(approved.every((entry) => entry.nativeReviewer === "Allan"), true);
@@ -157,16 +162,10 @@ test("AR-1 stays sealed and only the exact AR-2 scope receives approval", () => 
   assert.equal(ar2Entries.every((entry) => entry.nativeReviewStatus === "approved"), true);
   assert.equal(ar2Entries.every((entry) => entry.nativeReviewer === "Allan"), true);
   assert.equal(ar2Entries.every((entry) => entry.nativeReviewDate === "2026-08-11"), true);
-  assert.equal(
-    arabicEntries.filter(
-      (entry) => entry.nativeReviewStatus === "pending" && !ar2PathSet.has(new URL(entry.localizedUrl).pathname),
-    ).length,
-    48,
-  );
-  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewStatus === "pending").length, 48);
-  assert.equal(arabicEntries.filter((entry) => entry.productionReleaseReady).length, 0);
-  assert.equal(getStaticExportEligibleEntries(arabicEntries).length, 0);
-  assert.equal(getSitemapEligibleEntries(arabicEntries).length, 0);
+  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewStatus === "pending").length, 0);
+  assert.equal(arabicEntries.filter((entry) => entry.productionReleaseReady).length, 69);
+  assert.equal(getStaticExportEligibleEntries(arabicEntries).length, 69);
+  assert.equal(getSitemapEligibleEntries(arabicEntries).length, 69);
 });
 
 test("the four AR-2 products preserve gallery, content, specification, and conversion parity", () => {
@@ -318,7 +317,7 @@ test("AR-2 uses the existing bidi helper and contains only scoped editorial over
   );
 });
 
-test("review-preview SEO/schema composition stays isolated from production publication", () => {
+test("reviewed SEO/schema composition is retained in production publication", () => {
   const routeEvidence = [
     ["src/app/[locale]/products/[slug]/page.tsx", ["createProductSchema", "createBreadcrumbSchema"]],
     ["src/app/[locale]/solutions/[slug]/page.tsx", ["createServiceSchema", "createBreadcrumbSchema"]],
@@ -340,8 +339,8 @@ test("review-preview SEO/schema composition stays isolated from production publi
   const productionLocalizedEntries = getSitemapEligibleEntries(
     multilingualPublicationManifest,
   );
-  assert.equal(productionLocalizedEntries.length, 69);
-  assert.equal(productionLocalizedEntries.some((entry) => entry.locale === "ar"), false);
+  assert.equal(productionLocalizedEntries.filter((entry) => entry.locale === "zh").length, 69);
+  assert.equal(productionLocalizedEntries.filter((entry) => entry.locale === "ar").length, 69);
 });
 
 test("AR-2 review package and decision sheet seal exactly fourteen approvals", () => {

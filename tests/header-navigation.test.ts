@@ -101,14 +101,15 @@ test("language availability comes from the release batch", () => {
     "products/rcu-controller-cabinet",
   );
 
-  assert.deepEqual(released.map((item) => item.locale), ["en", "zh"]);
+  assert.deepEqual(released.map((item) => item.locale), ["en", "zh", "ar"]);
   assert.equal(released[1]?.href, "/zh/products/rcu-controller-cabinet/");
-  assert.equal(unavailable[1]?.available, false);
-  assert.equal(unavailable[1]?.href, undefined);
+  assert.equal(released[2]?.href, "/ar/products/rcu-controller-cabinet/");
+  assert.equal(unavailable.slice(1).every((item) => !item.available && !item.href), true);
   assert.equal(unavailable[1]?.unavailableMessage, "当前页面暂未提供");
   assert.equal(chinese[0]?.href, "/en/products/rcu-controller-cabinet/");
   assert.equal(chinese[1]?.active, true);
   assert.equal(chinese[1]?.href, undefined);
+  assert.equal(chinese[2]?.href, "/ar/products/rcu-controller-cabinet/");
 });
 
 test("desktop and mobile controls expose the required interaction and a11y hooks", () => {

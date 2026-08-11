@@ -87,6 +87,10 @@ export const zhReviewedReleaseUrls = [
   ...zhRemainingFinalReleaseUrls,
 ] as const;
 
+export const arReviewedReleaseUrls = zhReviewedReleaseUrls.map((url) =>
+  url.replace("https://dualcorelink.com/zh/", "https://dualcorelink.com/ar/"),
+);
+
 export type MultilingualReleaseBatch = {
   locale: MultilingualLocale;
   batch: string;
@@ -133,6 +137,18 @@ const releaseBatches: readonly MultilingualReleaseBatch[] = [
       "docs/reviews/multilingual/zh-remaining-26-final-decisions-20260803.md",
     cmsPayloadCount: 18,
     localizedUrls: zhRemainingFinalReleaseUrls,
+  },
+  {
+    locale: "ar",
+    batch: "remaining-final",
+    priority: "mixed",
+    priorityCounts: { P0: 18, P1: 32, P2: 19 },
+    reviewer: "Allan",
+    reviewDate: "2026-08-11",
+    decisionFile:
+      "docs/reviews/multilingual/ar-native-review-workbook-20260729.md",
+    cmsPayloadCount: 42,
+    localizedUrls: arReviewedReleaseUrls,
   },
 ];
 

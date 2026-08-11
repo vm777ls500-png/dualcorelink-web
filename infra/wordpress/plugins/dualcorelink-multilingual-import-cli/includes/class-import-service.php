@@ -291,7 +291,7 @@ final class DualCoreLink_Multilingual_Import_Service
                         array_keys($record),
                         DualCoreLink_Import_Config::OWNER_WAIVER_PAYLOAD_KEYS
                     )) {
-                    $errors[] = "Chinese native review evidence mismatch: {$id}";
+                    $errors[] = "Native review evidence mismatch: {$id}";
                 }
             } elseif (($record['nativeReviewStatus'] ?? null) !== 'pending' ||
                 !array_key_exists('nativeReviewer', $record) ||

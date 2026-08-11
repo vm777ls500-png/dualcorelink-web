@@ -144,7 +144,7 @@ final class DualCoreLink_Import_Renderer
             DualCoreLink_Import_Config::META_REVIEWER => $record['nativeReviewer'] ?? '',
             DualCoreLink_Import_Config::META_REVIEW_DATE => $record['nativeReviewDate'] ?? '',
         ];
-        if (($record['locale'] ?? '') === 'ar') {
+        if (($record['locale'] ?? '') === 'ar' && ($record['batch'] ?? '') === 'p0') {
             $meta += [
                 DualCoreLink_Import_Config::META_OWNER_WAIVER_SCHEMA_VERSION =>
                     $record['ownerReviewWaiverSchemaVersion'],

@@ -1,5 +1,9 @@
 import { arCmsImportPayload } from "./ar";
 import {
+  arFinalCmsApprovedIdentities,
+  arFinalReviewedCmsImportPayload,
+} from "./ar-final-reviewed";
+import {
   arP0CmsSourceIds,
   arP0OwnerWaivedCmsImportPayload,
   arP0OwnerWaiverScopeSha256,
@@ -24,8 +28,7 @@ import {
 import { zhCmsImportPayload } from "./zh";
 
 export const cmsTranslationImportPayload = [
-  ...arCmsImportPayload,
-  ...arM3aCmsImportPayload,
+  ...arFinalReviewedCmsImportPayload,
   ...zhCmsImportPayload,
   ...zhM3aCmsImportPayload,
   ...m4aCmsImportPayload,
@@ -33,6 +36,8 @@ export const cmsTranslationImportPayload = [
 
 export {
   arCmsImportPayload,
+  arFinalCmsApprovedIdentities,
+  arFinalReviewedCmsImportPayload,
   arP0CmsSourceIds,
   arP0OwnerWaivedCmsImportPayload,
   arP0OwnerWaiverScopeSha256,

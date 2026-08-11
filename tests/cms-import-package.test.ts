@@ -94,8 +94,8 @@ function patchAll(
   return output;
 }
 
-test("runtime sources are complete and identify plugin version 1.3.1", async () => {
-  assert.equal(pluginVersion, "1.3.1");
+test("runtime sources are complete and identify plugin version 1.4.0", async () => {
+  assert.equal(pluginVersion, "1.4.0");
   const files = await collectNormalizedFiles(defaultPackagePaths().sourceRoot);
   for (const file of files) {
     const text = file.bytes.toString("utf8");
@@ -105,7 +105,7 @@ test("runtime sources are complete and identify plugin version 1.3.1", async () 
     (file) => file.relativePath === "dualcorelink-multilingual-import-cli.php",
   );
   assert.ok(pluginHeader);
-  assert.match(pluginHeader.bytes.toString("utf8"), /Version: 1\.3\.1/);
+  assert.match(pluginHeader.bytes.toString("utf8"), /Version: 1\.4\.0/);
   const phpHarness = await readFile(
     path.join(process.cwd(), "tests", "cms-import-php", "run.php"),
     "utf8",

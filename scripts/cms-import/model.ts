@@ -9,6 +9,8 @@ export const zhP1ApprovedReviewer = "Allan";
 export const zhP1ApprovedReviewDate = "2026-08-02";
 export const zhRemainingFinalApprovedReviewer = "Allan";
 export const zhRemainingFinalApprovedReviewDate = "2026-08-03";
+export const arFinalApprovedReviewer = "Allan";
+export const arFinalApprovedReviewDate = "2026-08-11";
 export const translationSchemaVersion = 1;
 export const ownerWaiverSchemaVersion = 1;
 export const ownerWaiverReason =
@@ -211,6 +213,54 @@ const arabicExpected = new Map<number, { postType: ContentType; slug: string }>(
   [137, { postType: "solution", slug: "hotel-guest-room-control-solution" }],
 ]);
 
+const arFinalExpected = new Map<
+  number,
+  { postType: ContentType; slug: string; priority: "P0" | "P1" | "P2" }
+>([
+  [6, { postType: "product", slug: "86-type-ai-smart-control-display", priority: "P0" }],
+  [8, { postType: "product", slug: "ai-large-smart-display", priority: "P1" }],
+  [9, { postType: "product", slug: "rotary-knob-smart-control-display", priority: "P1" }],
+  [10, { postType: "product", slug: "thermostat-hvac-control-panel", priority: "P1" }],
+  [11, { postType: "product", slug: "ai-music-control-panel", priority: "P1" }],
+  [12, { postType: "product", slug: "hotel-delivery-robot", priority: "P1" }],
+  [13, { postType: "product", slug: "hotel-smart-delivery-cabinet", priority: "P1" }],
+  [43, { postType: "product", slug: "embedded-human-presence-sensor", priority: "P1" }],
+  [44, { postType: "product", slug: "infrared-repeater", priority: "P2" }],
+  [45, { postType: "product", slug: "hotel-room-door-magnetic-sensor", priority: "P1" }],
+  [46, { postType: "product", slug: "hotel-guest-room-doorbell", priority: "P1" }],
+  [47, { postType: "product", slug: "rcu-controller-cabinet", priority: "P0" }],
+  [48, { postType: "product", slug: "hotel-smart-room-rcu-host-1", priority: "P0" }],
+  [49, { postType: "product", slug: "smart-usb-five-hole-socket", priority: "P2" }],
+  [50, { postType: "product", slug: "smart-key-card-energy-saver-panel", priority: "P1" }],
+  [51, { postType: "product", slug: "smart-four-key-curtain-control-panel", priority: "P1" }],
+  [52, { postType: "product", slug: "brushed-aluminum-86-base-doorbell-panel", priority: "P2" }],
+  [137, { postType: "solution", slug: "hotel-guest-room-control-solution", priority: "P0" }],
+  [138, { postType: "solution", slug: "smart-hotel-automation-solution", priority: "P0" }],
+  [139, { postType: "solution", slug: "ai-smart-display-solution", priority: "P1" }],
+  [140, { postType: "solution", slug: "rcu-room-control-solution", priority: "P0" }],
+  [141, { postType: "solution", slug: "hotel-delivery-robot-solution", priority: "P1" }],
+  [142, { postType: "solution", slug: "oem-odm-custom-panel-solution", priority: "P0" }],
+  [188, { postType: "product", slug: "smart-curtain-motor", priority: "P1" }],
+  [189, { postType: "product", slug: "hotel-smart-room-rcu-host-2", priority: "P1" }],
+  [190, { postType: "product", slug: "hotel-delivery-robot-charging-dock", priority: "P1" }],
+  [191, { postType: "product", slug: "borui-red-matte-usb-five-hole-socket", priority: "P2" }],
+  [192, { postType: "product", slug: "borui-red-matte-room-status-four-key-switch-panel", priority: "P2" }],
+  [193, { postType: "product", slug: "vintage-gold-key-card-energy-saver-panel", priority: "P2" }],
+  [194, { postType: "product", slug: "vintage-gold-four-key-smart-switch-panel", priority: "P2" }],
+  [195, { postType: "product", slug: "brushed-aluminum-sos-alarm-panel", priority: "P2" }],
+  [196, { postType: "product", slug: "brushed-aluminum-thermostat-control-panel", priority: "P2" }],
+  [197, { postType: "product", slug: "smart-voice-telephone-information-socket", priority: "P2" }],
+  [219, { postType: "product", slug: "hotel-smart-room-rcu-host-3", priority: "P1" }],
+  [220, { postType: "product", slug: "smart-single-key-switch-panel", priority: "P2" }],
+  [221, { postType: "product", slug: "smart-three-key-music-control-panel", priority: "P2" }],
+  [222, { postType: "product", slug: "smart-four-key-scene-control-panel", priority: "P0" }],
+  [223, { postType: "product", slug: "smart-footlight-night-light-panel", priority: "P2" }],
+  [224, { postType: "product", slug: "smart-series-dual-vertical-socket-panel", priority: "P2" }],
+  [225, { postType: "product", slug: "borui-red-matte-triple-socket-panel", priority: "P2" }],
+  [226, { postType: "product", slug: "brushed-aluminum-voice-telephone-information-panel", priority: "P2" }],
+  [238, { postType: "product", slug: "hotel-ceiling-background-speaker", priority: "P2" }],
+]);
+
 const zhP1Expected = new Map<number, { postType: ContentType; slug: string }>([
   [219, { postType: "product", slug: "hotel-smart-room-rcu-host-3" }],
   [190, { postType: "product", slug: "hotel-delivery-robot-charging-dock" }],
@@ -316,6 +366,21 @@ function batchPolicy(
       allowOwnerWaiver: true,
       reviewer: null,
       reviewDate: null,
+    };
+  }
+  if (
+    locale === "ar" &&
+    batch === "remaining-final" &&
+    !allowOwnerWaiver
+  ) {
+    return {
+      locale,
+      batch,
+      expected: arFinalExpected,
+      count: 42,
+      allowOwnerWaiver: false,
+      reviewer: arFinalApprovedReviewer,
+      reviewDate: arFinalApprovedReviewDate,
     };
   }
   return undefined;
@@ -593,7 +658,7 @@ export function preflight(
     ) {
       errors.push(`release evidence mismatch: ${record.sourceEnglishContentId}`);
     }
-    if (policy.locale === "zh") {
+    if (!policy.allowOwnerWaiver) {
       if (
         record.nativeReviewStatus !== "approved" ||
         record.nativeReviewer !== policy.reviewer ||
@@ -601,7 +666,7 @@ export function preflight(
         record.ownerReviewWaiverStatus !== undefined
       ) {
         errors.push(
-          `Chinese native review evidence mismatch: ${record.sourceEnglishContentId}`,
+          `Native review evidence mismatch: ${record.sourceEnglishContentId}`,
         );
       }
     } else if (

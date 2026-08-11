@@ -3,7 +3,7 @@
   "title": "DualCoreLink Exact Approved CMS Import Payload",
   "type": "array",
   "minItems": 6,
-  "maxItems": 18,
+  "maxItems": 42,
   "items": {
     "type": "object",
     "additionalProperties": false,
@@ -96,8 +96,11 @@
     "allOf": [
       {
         "if": {
-          "properties": { "locale": { "const": "ar" } },
-          "required": ["locale"]
+          "properties": {
+            "locale": { "const": "ar" },
+            "batch": { "const": "p0" }
+          },
+          "required": ["locale", "batch"]
         },
         "then": {
           "required": [
@@ -126,6 +129,23 @@
               { "required": ["ownerReviewWaiverScopeCount"] },
               { "required": ["ownerReviewWaiverScopeSha256"] }
             ]
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "locale": { "const": "ar" },
+            "batch": { "const": "remaining-final" }
+          },
+          "required": ["locale", "batch"]
+        },
+        "then": {
+          "required": ["priority", "translationGroup"],
+          "properties": {
+            "nativeReviewStatus": { "const": "approved" },
+            "nativeReviewer": { "const": "Allan" },
+            "nativeReviewDate": { "const": "2026-08-11" }
           }
         }
       },

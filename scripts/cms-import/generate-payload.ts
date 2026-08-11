@@ -3,6 +3,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
   arP0OwnerWaivedCmsImportPayload,
+  arFinalReviewedCmsImportPayload,
   zhP1ReviewedCmsImportPayload,
   zhRemainingFinalReviewedCmsImportPayload,
 } from "../../src/content/locales/cms-import";
@@ -25,6 +26,11 @@ async function main(): Promise<void> {
           payload: arP0OwnerWaivedCmsImportPayload,
           filename: "ar-p0-owner-waived.json",
         }
+      : locale === "ar" && batch === "remaining-final"
+        ? {
+            payload: arFinalReviewedCmsImportPayload,
+            filename: "ar-final-reviewed.json",
+          }
       : locale === "zh" && batch === "p1"
         ? {
             payload: zhP1ReviewedCmsImportPayload,
@@ -38,7 +44,7 @@ async function main(): Promise<void> {
         : undefined;
   if (!selected) {
     throw new Error(
-      "Only exact approved payloads are supported: ar/p0, zh/p1, or zh/remaining-final",
+      "Only exact approved payloads are supported: ar/p0, ar/remaining-final, zh/p1, or zh/remaining-final",
     );
   }
   const payload = selected.payload;

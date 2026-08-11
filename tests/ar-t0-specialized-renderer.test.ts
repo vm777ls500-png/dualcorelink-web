@@ -75,14 +75,14 @@ function solutionFixture(slug: string): SolutionDetailModel {
   };
 }
 
-test("Arabic review preview is explicit and production publication eligibility stays closed", () => {
+test("Arabic specialized composition remains available after production approval", () => {
   assert.equal(getReviewPreviewLocale("ar"), "ar");
   assert.equal(getReviewPreviewLocale("de"), null);
   assert.equal(supportsSpecializedLocalizedComposition("ar"), true);
-  assert.equal(localizedPublicationPages.length, 69);
+  assert.equal(localizedPublicationPages.length, 138);
   assert.equal(
-    localizedPublicationPages.some((page) => page.locale === "ar"),
-    false,
+    localizedPublicationPages.filter((page) => page.locale === "ar").length,
+    69,
   );
   assert.equal(arabicPages.length, 69);
   assert.equal(
@@ -120,10 +120,10 @@ test("Arabic review preview is explicit and production publication eligibility s
     ),
     { P0: 18, P1: 32, P2: 19 },
   );
-  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewStatus === "approved").length, 0);
-  assert.equal(arabicEntries.filter((entry) => entry.productionReleaseReady).length, 0);
-  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewer).length, 0);
-  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewDate).length, 0);
+  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewStatus === "approved").length, 69);
+  assert.equal(arabicEntries.filter((entry) => entry.productionReleaseReady).length, 69);
+  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewer === "Allan").length, 69);
+  assert.equal(arabicEntries.filter((entry) => entry.nativeReviewDate === "2026-08-11").length, 69);
 });
 
 test("all Arabic products share the complete English media inventory", () => {

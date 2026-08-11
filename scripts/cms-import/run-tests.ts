@@ -18,6 +18,7 @@ run(process.execPath, [
   "tests/cms-import-safety.test.ts",
   "tests/cms-import-zh-p1.test.ts",
   "tests/cms-import-zh-remaining-final.test.ts",
+  "tests/cms-import-ar-final.test.ts",
   "tests/cms-import-package.test.ts",
 ]);
 run(process.execPath, [
@@ -26,6 +27,13 @@ run(process.execPath, [
   "scripts/cms-import/generate-payload.ts",
   "--locale=ar",
   "--batch=p0",
+]);
+run(process.execPath, [
+  "--import",
+  "tsx",
+  "scripts/cms-import/generate-payload.ts",
+  "--locale=ar",
+  "--batch=remaining-final",
 ]);
 run(process.execPath, [
   "--import",

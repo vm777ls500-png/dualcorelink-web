@@ -234,6 +234,16 @@ function chinese_remaining_final_fixture(): array
     return $payload;
 }
 
+function arabic_remaining_final_fixture(): array
+{
+    $file = dirname(__DIR__, 2) . '/dist/cms-import/ar-final-reviewed.json';
+    $payload = json_decode((string) file_get_contents($file), true);
+    if (!is_array($payload)) {
+        throw new RuntimeException('Final Arabic fixture is invalid.');
+    }
+    return $payload;
+}
+
 function temporary_root(string $name): string
 {
     return sys_get_temp_dir() . '/dualcorelink-import-' . $name . '-' . bin2hex(random_bytes(4));
@@ -1323,6 +1333,50 @@ $tests['Final Chinese batch rejects P0, P1, other locale, and owner waiver'] = f
     $repo = new Mock_Import_Repository($payload);
     [$service] = service($repo, temporary_root('zh-remaining-final-waiver'));
     expect_failure(fn () => $service->preflight($payload, 'zh', 'remaining-final', true), 20);
+};
+$tests['Final Arabic preflight accepts exact 42/42 payload with zero writes'] = function (): void {
+    $payload = arabic_remaining_final_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    $insert_calls_before = $GLOBALS['dualcorelink_wp_insert_post_calls'];
+    $root = temporary_root('ar-remaining-final-preflight');
+    [$service] = service($repo, $root);
+    $result = $service->preflight($payload, 'ar', 'remaining-final');
+    assert_true($result['records'] === 42 && $result['writes'] === 0);
+    assert_true($repo->localized === []);
+    assert_true($repo->write_plan_validations === 42);
+    assert_true($GLOBALS['dualcorelink_wp_insert_post_calls'] === $insert_calls_before);
+    assert_true(!file_exists($root));
+    assert_true(count(array_filter($payload, fn ($record) => $record['contentType'] === 'product')) === 36);
+    assert_true(count(array_filter($payload, fn ($record) => $record['contentType'] === 'solution')) === 6);
+};
+$tests['Final Arabic preflight rejects count, identity, priority, and review drift'] = function (): void {
+    $mutations = [
+        'short' => function (&$payload): void { array_pop($payload); },
+        'extra' => function (&$payload): void { $payload[] = $payload[0]; },
+        'duplicate' => function (&$payload): void { $payload[1] = $payload[0]; },
+        'slug' => function (&$payload): void { $payload[0]['localizedSlug'] = 'wrong-slug'; },
+        'source' => function (&$payload): void { $payload[0]['sourceEnglishContentId'] = 999999; },
+        'type' => function (&$payload): void { $payload[0]['contentType'] = 'solution'; },
+        'priority' => function (&$payload): void { $payload[0]['priority'] = $payload[0]['priority'] === 'P0' ? 'P1' : 'P0'; },
+        'reviewer' => function (&$payload): void { $payload[0]['nativeReviewer'] = 'Unknown'; },
+        'date' => function (&$payload): void { $payload[0]['nativeReviewDate'] = '2026-08-10'; },
+        'readiness' => function (&$payload): void { $payload[0]['productionReleaseReady'] = false; },
+        'locale' => function (&$payload): void { $payload[0]['locale'] = 'zh'; },
+        'batch' => function (&$payload): void { $payload[0]['batch'] = 'p0'; },
+    ];
+    foreach ($mutations as $label => $mutate) {
+        $payload = arabic_remaining_final_fixture();
+        $mutate($payload);
+        $repo = new Mock_Import_Repository($payload);
+        [$service] = service($repo, temporary_root('ar-remaining-final-' . $label));
+        expect_failure(fn () => $service->preflight($payload, 'ar', 'remaining-final'), 20);
+    }
+};
+$tests['Final Arabic batch cannot use owner waiver'] = function (): void {
+    $payload = arabic_remaining_final_fixture();
+    $repo = new Mock_Import_Repository($payload);
+    [$service] = service($repo, temporary_root('ar-remaining-final-waiver'));
+    expect_failure(fn () => $service->preflight($payload, 'ar', 'remaining-final', true), 20);
 };
 $tests['CLI wires owner-waiver flag only into gated commands'] = function () use ($plugin_root): void {
     $command = (string) file_get_contents(

@@ -250,8 +250,10 @@ export function buildHeaderLanguageOptions(
 ): HeaderLanguageOption[] {
   const normalized = normalizedContentPath(contentPath);
   const chineseAvailable = isReleasedLocalizedPath("zh", normalized);
+  const arabicAvailable = isReleasedLocalizedPath("ar", normalized);
   const englishHref = localizedPath("en", normalized);
   const chineseHref = localizedPath("zh", normalized);
+  const arabicHref = localizedPath("ar", normalized);
 
   const options: HeaderLanguageOption[] = [
     {
@@ -273,13 +275,15 @@ export function buildHeaderLanguageOptions(
         : "当前页面暂未提供",
     },
   ];
-  if (locale === "ar") {
-    options.push({
-      locale: "ar",
-      label: "العربية",
-      active: true,
-      available: true,
-    });
-  }
+  options.push({
+    locale: "ar",
+    label: "العربية",
+    active: locale === "ar",
+    available: locale === "ar" || arabicAvailable,
+    href: locale === "ar" || !arabicAvailable ? undefined : arabicHref,
+    unavailableMessage: arabicAvailable
+      ? undefined
+      : "This page is not available yet.",
+  });
   return options;
 }

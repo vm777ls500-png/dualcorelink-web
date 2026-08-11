@@ -14,6 +14,9 @@ final class DualCoreLink_Import_Config
     public const ZH_REMAINING_FINAL_REVIEWER = 'Allan';
     public const ZH_REMAINING_FINAL_REVIEW_DATE = '2026-08-03';
     public const ZH_REMAINING_FINAL_RECORD_COUNT = 18;
+    public const AR_FINAL_REVIEWER = 'Allan';
+    public const AR_FINAL_REVIEW_DATE = '2026-08-11';
+    public const AR_FINAL_RECORD_COUNT = 42;
     public const OWNER_WAIVER_SCHEMA_VERSION = 1;
     public const OWNER_WAIVER_BY = 'Allan';
     public const OWNER_WAIVER_DATE = '2026-07-31';
@@ -146,6 +149,51 @@ final class DualCoreLink_Import_Config
         137 => ['post_type' => 'solution', 'slug' => 'hotel-guest-room-control-solution'],
     ];
 
+    public const AR_FINAL_APPROVED = [
+        6 => ['post_type' => 'product', 'slug' => '86-type-ai-smart-control-display', 'priority' => 'P0'],
+        8 => ['post_type' => 'product', 'slug' => 'ai-large-smart-display', 'priority' => 'P1'],
+        9 => ['post_type' => 'product', 'slug' => 'rotary-knob-smart-control-display', 'priority' => 'P1'],
+        10 => ['post_type' => 'product', 'slug' => 'thermostat-hvac-control-panel', 'priority' => 'P1'],
+        11 => ['post_type' => 'product', 'slug' => 'ai-music-control-panel', 'priority' => 'P1'],
+        12 => ['post_type' => 'product', 'slug' => 'hotel-delivery-robot', 'priority' => 'P1'],
+        13 => ['post_type' => 'product', 'slug' => 'hotel-smart-delivery-cabinet', 'priority' => 'P1'],
+        43 => ['post_type' => 'product', 'slug' => 'embedded-human-presence-sensor', 'priority' => 'P1'],
+        44 => ['post_type' => 'product', 'slug' => 'infrared-repeater', 'priority' => 'P2'],
+        45 => ['post_type' => 'product', 'slug' => 'hotel-room-door-magnetic-sensor', 'priority' => 'P1'],
+        46 => ['post_type' => 'product', 'slug' => 'hotel-guest-room-doorbell', 'priority' => 'P1'],
+        47 => ['post_type' => 'product', 'slug' => 'rcu-controller-cabinet', 'priority' => 'P0'],
+        48 => ['post_type' => 'product', 'slug' => 'hotel-smart-room-rcu-host-1', 'priority' => 'P0'],
+        49 => ['post_type' => 'product', 'slug' => 'smart-usb-five-hole-socket', 'priority' => 'P2'],
+        50 => ['post_type' => 'product', 'slug' => 'smart-key-card-energy-saver-panel', 'priority' => 'P1'],
+        51 => ['post_type' => 'product', 'slug' => 'smart-four-key-curtain-control-panel', 'priority' => 'P1'],
+        52 => ['post_type' => 'product', 'slug' => 'brushed-aluminum-86-base-doorbell-panel', 'priority' => 'P2'],
+        137 => ['post_type' => 'solution', 'slug' => 'hotel-guest-room-control-solution', 'priority' => 'P0'],
+        138 => ['post_type' => 'solution', 'slug' => 'smart-hotel-automation-solution', 'priority' => 'P0'],
+        139 => ['post_type' => 'solution', 'slug' => 'ai-smart-display-solution', 'priority' => 'P1'],
+        140 => ['post_type' => 'solution', 'slug' => 'rcu-room-control-solution', 'priority' => 'P0'],
+        141 => ['post_type' => 'solution', 'slug' => 'hotel-delivery-robot-solution', 'priority' => 'P1'],
+        142 => ['post_type' => 'solution', 'slug' => 'oem-odm-custom-panel-solution', 'priority' => 'P0'],
+        188 => ['post_type' => 'product', 'slug' => 'smart-curtain-motor', 'priority' => 'P1'],
+        189 => ['post_type' => 'product', 'slug' => 'hotel-smart-room-rcu-host-2', 'priority' => 'P1'],
+        190 => ['post_type' => 'product', 'slug' => 'hotel-delivery-robot-charging-dock', 'priority' => 'P1'],
+        191 => ['post_type' => 'product', 'slug' => 'borui-red-matte-usb-five-hole-socket', 'priority' => 'P2'],
+        192 => ['post_type' => 'product', 'slug' => 'borui-red-matte-room-status-four-key-switch-panel', 'priority' => 'P2'],
+        193 => ['post_type' => 'product', 'slug' => 'vintage-gold-key-card-energy-saver-panel', 'priority' => 'P2'],
+        194 => ['post_type' => 'product', 'slug' => 'vintage-gold-four-key-smart-switch-panel', 'priority' => 'P2'],
+        195 => ['post_type' => 'product', 'slug' => 'brushed-aluminum-sos-alarm-panel', 'priority' => 'P2'],
+        196 => ['post_type' => 'product', 'slug' => 'brushed-aluminum-thermostat-control-panel', 'priority' => 'P2'],
+        197 => ['post_type' => 'product', 'slug' => 'smart-voice-telephone-information-socket', 'priority' => 'P2'],
+        219 => ['post_type' => 'product', 'slug' => 'hotel-smart-room-rcu-host-3', 'priority' => 'P1'],
+        220 => ['post_type' => 'product', 'slug' => 'smart-single-key-switch-panel', 'priority' => 'P2'],
+        221 => ['post_type' => 'product', 'slug' => 'smart-three-key-music-control-panel', 'priority' => 'P2'],
+        222 => ['post_type' => 'product', 'slug' => 'smart-four-key-scene-control-panel', 'priority' => 'P0'],
+        223 => ['post_type' => 'product', 'slug' => 'smart-footlight-night-light-panel', 'priority' => 'P2'],
+        224 => ['post_type' => 'product', 'slug' => 'smart-series-dual-vertical-socket-panel', 'priority' => 'P2'],
+        225 => ['post_type' => 'product', 'slug' => 'borui-red-matte-triple-socket-panel', 'priority' => 'P2'],
+        226 => ['post_type' => 'product', 'slug' => 'brushed-aluminum-voice-telephone-information-panel', 'priority' => 'P2'],
+        238 => ['post_type' => 'product', 'slug' => 'hotel-ceiling-background-speaker', 'priority' => 'P2'],
+    ];
+
     public const ZH_P1_APPROVED = [
         219 => ['post_type' => 'product', 'slug' => 'hotel-smart-room-rcu-host-3'],
         190 => ['post_type' => 'product', 'slug' => 'hotel-delivery-robot-charging-dock'],
@@ -265,6 +313,18 @@ final class DualCoreLink_Import_Config
                 'review_date' => null,
             ];
         }
+        if ($locale === 'ar' && $batch === 'remaining-final' && !$allow_owner_waiver) {
+            return [
+                'locale' => 'ar',
+                'batch' => 'remaining-final',
+                'records' => self::AR_FINAL_RECORD_COUNT,
+                'approved' => self::AR_FINAL_APPROVED,
+                'native_review' => true,
+                'owner_waiver' => false,
+                'reviewer' => self::AR_FINAL_REVIEWER,
+                'review_date' => self::AR_FINAL_REVIEW_DATE,
+            ];
+        }
         return null;
     }
 
@@ -272,6 +332,7 @@ final class DualCoreLink_Import_Config
     {
         return array_key_exists($source_id, self::APPROVED) ||
             array_key_exists($source_id, self::ARABIC_APPROVED) ||
+            array_key_exists($source_id, self::AR_FINAL_APPROVED) ||
             array_key_exists($source_id, self::ZH_P1_APPROVED) ||
             array_key_exists($source_id, self::ZH_REMAINING_FINAL_APPROVED);
     }
@@ -283,6 +344,9 @@ final class DualCoreLink_Import_Config
         }
         if ($locale === 'ar' && $batch === self::BATCH) {
             return array_merge(self::META_KEYS, self::OWNER_WAIVER_META_KEYS);
+        }
+        if ($locale === 'ar' && $batch === 'remaining-final') {
+            return self::META_KEYS;
         }
         return [];
     }
@@ -441,7 +505,7 @@ final class DualCoreLink_Import_Config
             );
         }
 
-        if ($locale === 'ar') {
+        if ($locale === 'ar' && $batch === self::BATCH) {
             if ($meta[self::META_OWNER_WAIVER_SCHEMA_VERSION] !==
                     self::OWNER_WAIVER_SCHEMA_VERSION ||
                 $meta[self::META_OWNER_WAIVER_STATUS] !== 'approved' ||

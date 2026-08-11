@@ -1,13 +1,13 @@
 {
   "packageSchemaVersion": 1,
-  "pluginVersion": "1.3.1",
+  "pluginVersion": "1.4.0",
   "translationSchemaVersion": 1,
   "packageFilename": "dualcorelink-multilingual-import-cli.zip",
   "files": [
     {
       "relativePath": "dualcorelink-multilingual-import-cli.php",
       "normalizedByteSize": 3195,
-      "sha256": "b7c36627b906e8fe059536bb8c1ddecc8bbdb72ade9738d38b8b94a1e3185a38",
+      "sha256": "1660174ce0ef4577221ef713734ffbe5919a7a44b58ee01802cc9d76ee838672",
       "mode": "0644"
     },
     {
@@ -18,20 +18,20 @@
     },
     {
       "relativePath": "includes/class-config.php",
-      "normalizedByteSize": 21144,
-      "sha256": "509fbda3af891a29d49a3d18441d8542ff3e11b3f4bc245ff44b3b0ebdc499b5",
+      "normalizedByteSize": 26602,
+      "sha256": "16f3a934849ac77cc593c6692dce323ecb93638c44a797cac11986475e111d83",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-import-service.php",
-      "normalizedByteSize": 34450,
-      "sha256": "f2f8a5554decaa4927cdf94e2c5efe92c069334ba6bd7de4a6770e19a2c4c5a3",
+      "normalizedByteSize": 34442,
+      "sha256": "6dbc169d9aa07db5c697a3891becab912203072bd72737cf9bb94ffe74387f2c",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-renderer.php",
-      "normalizedByteSize": 9001,
-      "sha256": "095b32db1e1cec6e2907ce9c1d3df8e57b48114e59024de5115555e1eff8eda0",
+      "normalizedByteSize": 9038,
+      "sha256": "eb53555765017c9bee9f58c3585cca750ddfb26b5676d34de07d4e56255b3d8d",
       "mode": "0644"
     },
     {
@@ -54,10 +54,10 @@
     },
     {
       "relativePath": "schema/payload.schema.json",
-      "normalizedByteSize": 5764,
-      "sha256": "37cae38c5b10d388c37eb59826e6ffd68efc761011de5fee9b9cbe14626292b0",
+      "normalizedByteSize": 6344,
+      "sha256": "f6d2ad442d3329d62e5a634544d42ed38017f080f449f90b3ed9e028926b37c8",
       "mode": "0644"
     }
   ],
-  "manifestSha256": "e204da248d358173faf9162dcf7cc42bf3b820df280e8294afe924c571d40172"
+  "manifestSha256": "4e5c93558b3426a6b3a97d5fbb5a5401950e3d787730d643c4b0e8dccb521144"
 }

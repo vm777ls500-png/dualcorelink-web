@@ -35,6 +35,7 @@ import {
 import { checkMultilingualProductionRelease } from "../src/lib/multilingual-release";
 import {
   buildPublishedNavigationHref,
+  arReviewedReleaseUrls,
   getReleasedLocalesForPath,
   isReleasedLocalizedPath,
   zhP0ReleaseUrls,
@@ -160,19 +161,19 @@ test("M4A completes 69 paths for every localized language", () => {
   }
 });
 
-test("final Chinese release approves all 69 Chinese pages", () => {
+test("final Chinese release retains all 69 Chinese approvals", () => {
   const candidates = multilingualPublicationManifest.filter(
     (entry) => entry.publishReady,
   );
   assert.equal(candidates.length, 414);
   const approved = candidates.filter(
-    (entry) => entry.nativeReviewStatus === "approved",
+    (entry) => entry.locale === "zh" && entry.nativeReviewStatus === "approved",
   );
   const pending = candidates.filter(
     (entry) => entry.nativeReviewStatus === "pending",
   );
   assert.equal(approved.length, 69);
-  assert.equal(pending.length, 345);
+  assert.equal(pending.length, 276);
   assert.deepEqual(
     new Set(approved.map((entry) => entry.localizedUrl)),
     new Set(zhReviewedReleaseUrls),
@@ -257,22 +258,22 @@ test("all candidates retain evidence while only reviewed pages enter production 
     getCandidatePublicationEntries(multilingualPublicationManifest).length,
     414,
   );
-  assert.equal(localizedPublicationPages.length, 69);
+  assert.equal(localizedPublicationPages.length, 138);
   assert.equal(
     getStaticExportEligibleEntries(multilingualPublicationManifest).length,
-    69,
+    138,
   );
   assert.equal(
     getSitemapEligibleEntries(multilingualPublicationManifest).length,
-    69,
+    138,
   );
   assert.equal(
     getHreflangEligibleEntries(multilingualPublicationManifest).length,
-    69,
+    138,
   );
   assert.deepEqual(
     new Set(localizedPublicationPages.map((page) => page.localizedUrl)),
-    new Set(zhReviewedReleaseUrls),
+    new Set([...zhReviewedReleaseUrls, ...arReviewedReleaseUrls]),
   );
 });
 
@@ -309,6 +310,14 @@ test("CMS import payload uses verified source IDs without invented localized IDs
             ? "2026-08-02"
             : "2026-08-03",
       );
+    } else if (
+      arReviewedReleaseUrls.includes(
+        localizedUrl as (typeof arReviewedReleaseUrls)[number],
+      )
+    ) {
+      assert.equal(payload.nativeReviewStatus, "approved");
+      assert.equal(payload.nativeReviewer, "Allan");
+      assert.equal(payload.nativeReviewDate, "2026-08-11");
     } else {
       assert.equal(payload.nativeReviewStatus, "pending");
       assert.equal(payload.nativeReviewer, null);
@@ -317,7 +326,7 @@ test("CMS import payload uses verified source IDs without invented localized IDs
   }
 });
 
-test("full release check blocks the 345 unapproved non-Chinese pages", async () => {
+test("full release check blocks the 276 pending German, Spanish, Vietnamese, and Persian pages", async () => {
   const nginxConfig = await readFile(
     path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
     "utf8",
@@ -333,12 +342,12 @@ test("full release check blocks the 345 unapproved non-Chinese pages", async () 
   });
   assert.equal(result.technicalValidationPassed, true);
   assert.equal(result.candidateCount, 414);
-  assert.equal(result.pendingUrls.length, 345);
-  assert.equal(result.productionReleaseReadyCount, 69);
+  assert.equal(result.pendingUrls.length, 276);
+  assert.equal(result.productionReleaseReadyCount, 138);
   assert.equal(result.cmsPayloadCount, 252);
   assert.equal(result.cmsPayloadStructurallyReadyCount, 252);
-  assert.equal(result.cmsPayloadNativeApprovedCount, 42);
-  assert.ok(result.errors.some((error) => error.includes("69/414")));
+  assert.equal(result.cmsPayloadNativeApprovedCount, 84);
+  assert.ok(result.errors.some((error) => error.includes("138/414")));
 });
 
 test("M5B Chinese P0 batch release check passes exactly 12 pages and 7 CMS records", async () => {
@@ -449,7 +458,7 @@ test("final Chinese batch passes exactly 26 pages and 18 CMS records", async () 
   assert.equal(zhRemainingFinalReviewedCmsImportPayload.length, 18);
 });
 
-test("AWS production deployment enforces all approved Chinese release gates", async () => {
+test("AWS production deployment enforces all approved multilingual release gates", async () => {
   const workflow = await readFile(
     path.resolve(".github/workflows/aws-production-deploy.yml"),
     "utf8",
@@ -477,7 +486,11 @@ test("AWS production deployment enforces all approved Chinese release gates", as
     workflow,
     /npm run multilingual:release-check -- --locale=zh\s/,
   );
-  assert.match(workflow, /Generating static pages\.\*218\/218/);
+  assert.match(
+    workflow,
+    /npm run multilingual:release-check -- --locale=ar --batch=remaining-final/,
+  );
+  assert.match(workflow, /Generating static pages\.\*287\/287/);
 });
 
 test("native review packs cover all 414 M4A URLs without claiming reviewers", async () => {
@@ -574,8 +587,8 @@ test("M4B Chinese review workbook and pending decision sheet cover 69 URLs", asy
   assert.equal(workbook.match(/\| 审核日期 \|  \|/g)?.length, 69);
 });
 
-test("M4C five-language workbooks and pending decision sheets cover 345 URLs", async () => {
-  for (const locale of ["ar", "de", "es", "vi", "fa"] as const) {
+test("M4C pending-language workbooks and decision sheets cover 276 URLs", async () => {
+  for (const locale of ["de", "es", "vi", "fa"] as const) {
     const workbook = await readFile(
       path.resolve(
         `docs/reviews/multilingual/${locale}-native-review-workbook-20260729.md`,
@@ -821,7 +834,7 @@ test("canonical and hreflang are self-consistent and reference only published pa
   }
   const shared = getPublicationHreflang("about");
   assert.ok(shared.zh);
-  assert.equal(shared.ar, undefined);
+  assert.ok(shared.ar);
   assert.equal(shared.de, undefined);
   assert.equal(shared.es, undefined);
   assert.equal(shared.vi, undefined);
@@ -833,12 +846,17 @@ test("navigation exposes only released localized paths", () => {
     const pathname = new URL(localizedUrl).pathname;
     const contentPath = pathname.replace(/^\/zh\/|\/$/g, "");
     assert.equal(isReleasedLocalizedPath("zh", contentPath), true);
-    assert.deepEqual(getReleasedLocalesForPath(contentPath), ["zh"]);
+    assert.deepEqual(getReleasedLocalesForPath(contentPath), ["zh", "ar"]);
     assert.equal(
       buildPublishedNavigationHref("zh", contentPath),
       pathname,
     );
-    for (const locale of ["ar", "de", "es", "vi", "fa"]) {
+    assert.equal(isReleasedLocalizedPath("ar", contentPath), true);
+    assert.equal(
+      buildPublishedNavigationHref("ar", contentPath),
+      pathname.replace("/zh/", "/ar/"),
+    );
+    for (const locale of ["de", "es", "vi", "fa"]) {
       assert.equal(isReleasedLocalizedPath(locale, contentPath), false);
       assert.equal(
         buildPublishedNavigationHref(locale, contentPath),
@@ -847,14 +865,14 @@ test("navigation exposes only released localized paths", () => {
     }
   }
 
-  assert.deepEqual(getReleasedLocalesForPath("regions"), ["zh"]);
+  assert.deepEqual(getReleasedLocalesForPath("regions"), ["zh", "ar"]);
   assert.equal(
     buildPublishedNavigationHref("zh", "regions"),
     "/zh/regions/",
   );
   assert.deepEqual(
     getReleasedLocalesForPath("products/hotel-ceiling-background-speaker"),
-    ["zh"],
+    ["zh", "ar"],
   );
   assert.equal(
     buildPublishedNavigationHref(
@@ -865,8 +883,8 @@ test("navigation exposes only released localized paths", () => {
   );
 });
 
-test("localized page lookup exposes all Chinese pages but no other language", () => {
-  assert.equal(getLocalizedPublicationPage("ar", "region", "uae"), undefined);
+test("localized page lookup exposes all Chinese and Arabic pages but no pending language", () => {
+  assert.ok(getLocalizedPublicationPage("ar", "region", "uae"));
   assert.ok(
     getLocalizedPublicationPage(
       "zh",
@@ -898,7 +916,7 @@ test("localized page lookup exposes all Chinese pages but no other language", ()
   );
 });
 
-test("all reviewed Chinese pages are served while other locales retain redirects", async () => {
+test("all reviewed Chinese and Arabic pages are served while pending locales retain redirects", async () => {
   const nginx = await readFile(
     path.resolve("deploy/nginx/dualcorelink.com.conf.template"),
     "utf8",
@@ -911,47 +929,47 @@ test("all reviewed Chinese pages are served while other locales retain redirects
   );
   assert.match(
     nginx,
-    /Native-reviewed multilingual release batches: all 69 Chinese content URLs\./,
+    /Native-reviewed multilingual release batches: all 69 Chinese and 69 Arabic content URLs\./,
   );
-  assert.match(nginx, /\^\/zh\/\(\?<zh_reviewed_path>about\|contact\|faqs/);
+  assert.match(nginx, /\^\/\(\?<reviewed_locale>zh\|ar\)\/\(\?<reviewed_path>about\|contact\|faqs/);
   assert.match(
     nginx,
-    /try_files \/zh\/\$zh_reviewed_path\/index\.html =404;/,
-  );
-  assert.match(
-    nginx,
-    /\^\/zh\/\(\?<zh_reviewed_rsc_path>about\|contact\|faqs/,
+    /try_files \/\$reviewed_locale\/\$reviewed_path\/index\.html =404;/,
   );
   assert.match(
     nginx,
-    /try_files \/zh\/\$zh_reviewed_rsc_path\/index\.txt =404;/,
+    /\^\/\(\?<reviewed_rsc_locale>zh\|ar\)\/\(\?<reviewed_rsc_path>about\|contact\|faqs/,
+  );
+  assert.match(
+    nginx,
+    /try_files \/\$reviewed_rsc_locale\/\$reviewed_rsc_path\/index\.txt =404;/,
   );
   assert.ok(
-    nginx.indexOf("?<zh_reviewed_rsc_path>") <
+    nginx.indexOf("?<reviewed_rsc_path>") <
       nginx.indexOf(
         "?<legacy_path>",
-        nginx.indexOf("?<zh_reviewed_rsc_path>"),
+        nginx.indexOf("?<reviewed_rsc_path>"),
       ),
-    "approved Chinese RSC payloads must be matched before legacy locale redirects",
+    "approved multilingual RSC payloads must be matched before legacy locale redirects",
   );
-  assert.doesNotMatch(nginx, /zh_reviewed_rsc_path[^\n]*_rsc/);
+  assert.doesNotMatch(nginx, /reviewed_rsc_path[^\n]*_rsc/);
   const rscLocationLine = nginx
     .split(/\r?\n/)
-    .find((line) => line.includes("?<zh_reviewed_rsc_path>"));
-  assert.ok(rscLocationLine, "approved Chinese RSC location must exist");
+    .find((line) => line.includes("?<reviewed_rsc_path>"));
+  assert.ok(rscLocationLine, "approved multilingual RSC location must exist");
   const rscLocationPattern = rscLocationLine
     .trim()
     .replace(/^location ~ /, "")
     .replace(/ \{$/, "");
   const approvedRscMatcher = new RegExp(rscLocationPattern);
-  for (const localizedUrl of zhReviewedReleaseUrls) {
+  for (const localizedUrl of [...zhReviewedReleaseUrls, ...arReviewedReleaseUrls]) {
     assert.match(`${new URL(localizedUrl).pathname}index.txt`, approvedRscMatcher);
   }
   assert.doesNotMatch(
     "/zh/resources/unpublished-resource/index.txt",
     approvedRscMatcher,
   );
-  assert.doesNotMatch("/ar/about/index.txt", approvedRscMatcher);
+  assert.match("/ar/about/index.txt", approvedRscMatcher);
   assert.match(nginx, /hotel-smart-room-rcu-host-1/);
   assert.match(nginx, /smart-hotel-automation-solution/);
   assert.match(nginx, /\^\/\(\?:ar\|zh\|de\|es\|vi\|fa\)\//);

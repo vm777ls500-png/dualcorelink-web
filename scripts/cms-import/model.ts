@@ -11,6 +11,8 @@ export const zhRemainingFinalApprovedReviewer = "Allan";
 export const zhRemainingFinalApprovedReviewDate = "2026-08-03";
 export const arFinalApprovedReviewer = "Allan";
 export const arFinalApprovedReviewDate = "2026-08-11";
+export const viFinalApprovedReviewer = "Allan";
+export const viFinalApprovedReviewDate = "2026-08-11";
 export const translationSchemaVersion = 1;
 export const ownerWaiverSchemaVersion = 1;
 export const ownerWaiverReason =
@@ -35,6 +37,7 @@ export const exitCodes = {
 } as const;
 
 export type ContentType = "product" | "solution";
+export type SupportedImportLocale = "zh" | "ar" | "vi";
 
 export type StructuredContent = {
   eyebrow: string;
@@ -138,7 +141,7 @@ export type RunRecord = {
   verifyPassed: boolean;
   published: boolean;
   rolledBack: boolean;
-  locale: "zh" | "ar";
+  locale: SupportedImportLocale;
   batch: "p0" | "p1" | "remaining-final";
   allowOwnerWaiver: boolean;
 };
@@ -261,6 +264,8 @@ const arFinalExpected = new Map<
   [238, { postType: "product", slug: "hotel-ceiling-background-speaker", priority: "P2" }],
 ]);
 
+const viFinalExpected = arFinalExpected;
+
 const zhP1Expected = new Map<number, { postType: ContentType; slug: string }>([
   [219, { postType: "product", slug: "hotel-smart-room-rcu-host-3" }],
   [190, { postType: "product", slug: "hotel-delivery-robot-charging-dock" }],
@@ -306,7 +311,7 @@ const zhRemainingFinalExpected = new Map<
 ]);
 
 type BatchPolicy = {
-  locale: "zh" | "ar";
+  locale: SupportedImportLocale;
   batch: "p0" | "p1" | "remaining-final";
   expected: Map<number, { postType: ContentType; slug: string; priority?: "P0" | "P1" | "P2" }>;
   count: number;
@@ -383,6 +388,21 @@ function batchPolicy(
       reviewDate: arFinalApprovedReviewDate,
     };
   }
+  if (
+    locale === "vi" &&
+    batch === "remaining-final" &&
+    !allowOwnerWaiver
+  ) {
+    return {
+      locale,
+      batch,
+      expected: viFinalExpected,
+      count: 42,
+      allowOwnerWaiver: false,
+      reviewer: viFinalApprovedReviewer,
+      reviewDate: viFinalApprovedReviewDate,
+    };
+  }
   return undefined;
 }
 
@@ -415,7 +435,7 @@ function html(value: string): string {
     .replaceAll("'", "&#039;");
 }
 
-function safeHref(value: string, locale: "zh" | "ar"): string {
+function safeHref(value: string, locale: SupportedImportLocale): string {
   if (
     !new RegExp(
       `^/${locale}/[a-z0-9/_-]*(?:#[a-z0-9_-]+)?$`,
@@ -436,7 +456,13 @@ export function renderStructuredContent(record: ImportPayloadRecord): string {
           faq: "الأسئلة الشائعة",
           related: "صفحات ذات صلة",
         }
-      : {
+      : record.locale === "vi"
+        ? {
+            specifications: "Thông số và thông tin mua hàng",
+            faq: "Câu hỏi thường gặp",
+            related: "Trang liên quan",
+          }
+        : {
           specifications: "规格与采购信息",
           faq: "常见问题",
           related: "相关页面",
@@ -471,18 +497,18 @@ export function renderStructuredContent(record: ImportPayloadRecord): string {
   output.push("</section>", `<section><h2>${headings.related}</h2><ul>`);
   for (const link of content.relatedLinks) {
     output.push(
-      `<li><a href="${safeHref(link.href, record.locale as "zh" | "ar")}">${html(link.label)}</a><p>${html(link.description)}</p></li>`,
+      `<li><a href="${safeHref(link.href, record.locale as SupportedImportLocale)}">${html(link.label)}</a><p>${html(link.description)}</p></li>`,
     );
   }
   output.push(
     "</ul></section>",
     `<section class="content-cta"><h2>${html(content.cta.heading)}</h2>`,
     `<p>${html(content.cta.description)}</p>`,
-    `<p><a href="${safeHref(content.cta.href, record.locale as "zh" | "ar")}">${html(content.cta.label)}</a></p>`,
+    `<p><a href="${safeHref(content.cta.href, record.locale as SupportedImportLocale)}">${html(content.cta.label)}</a></p>`,
   );
   if (content.cta.secondaryLabel && content.cta.secondaryHref) {
     output.push(
-      `<p><a href="${safeHref(content.cta.secondaryHref, record.locale as "zh" | "ar")}">${html(content.cta.secondaryLabel)}</a></p>`,
+      `<p><a href="${safeHref(content.cta.secondaryHref, record.locale as SupportedImportLocale)}">${html(content.cta.secondaryLabel)}</a></p>`,
     );
   }
   output.push("</section>");
@@ -594,7 +620,7 @@ export function preflight(
   payload: ImportPayloadRecord[],
   repository: CmsRepository,
   options: {
-    locale?: "zh" | "ar";
+    locale?: SupportedImportLocale;
     batch?: "p0" | "p1" | "remaining-final";
     allowOwnerWaiver?: boolean;
   } = {},
@@ -832,7 +858,7 @@ export class ImportEngine {
     options: {
       confirmRunId: string;
       allowUpdate?: boolean;
-      locale?: "zh" | "ar";
+      locale?: SupportedImportLocale;
       batch?: "p0" | "p1" | "remaining-final";
       allowOwnerWaiver?: boolean;
     },

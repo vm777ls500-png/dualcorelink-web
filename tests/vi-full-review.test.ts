@@ -36,7 +36,7 @@ const candidatePaths = new Set(
   pages.map((page) => new URL(page.localizedUrl).pathname),
 );
 
-test("Vietnamese review inventory is exactly sixty-nine approved pages", () => {
+test("Vietnamese release inventory is exactly sixty-nine approved pages", () => {
   assert.equal(getReviewPreviewLocale("vi"), "vi");
   assert.equal(supportsSpecializedLocalizedComposition("vi"), true);
   assert.equal(pages.length, 69);
@@ -69,9 +69,9 @@ test("Vietnamese review inventory is exactly sixty-nine approved pages", () => {
   assert.equal(entries.filter((entry) => entry.nativeReviewStatus === "pending").length, 0);
   assert.equal(entries.every((entry) => entry.nativeReviewer === "Allan"), true);
   assert.equal(entries.every((entry) => entry.nativeReviewDate === "2026-08-11"), true);
-  assert.equal(entries.filter((entry) => entry.productionReleaseReady).length, 0);
-  assert.equal(getStaticExportEligibleEntries(entries).length, 0);
-  assert.equal(getSitemapEligibleEntries(entries).length, 0);
+  assert.equal(entries.filter((entry) => entry.productionReleaseReady).length, 69);
+  assert.equal(getStaticExportEligibleEntries(entries).length, 69);
+  assert.equal(getSitemapEligibleEntries(entries).length, 69);
 
   const decisionRows = readFileSync(
     "docs/reviews/multilingual/vi-full-decisions-20260811.md",
@@ -87,7 +87,7 @@ test("Vietnamese review inventory is exactly sixty-nine approved pages", () => {
   for (const row of decisionRows) {
     assert.match(
       row,
-      /^\| \/vi\/.* \| [a-z-]+ \| approved \| Allan \| 2026-08-11 \| false \|$/,
+      /^\| \/vi\/.* \| [a-z-]+ \| approved \| Allan \| 2026-08-11 \| true \|$/,
     );
   }
 });

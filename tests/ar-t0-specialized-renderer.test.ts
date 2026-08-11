@@ -79,7 +79,7 @@ test("Arabic specialized composition remains available after production approval
   assert.equal(getReviewPreviewLocale("ar"), "ar");
   assert.equal(getReviewPreviewLocale("de"), null);
   assert.equal(supportsSpecializedLocalizedComposition("ar"), true);
-  assert.equal(localizedPublicationPages.length, 138);
+  assert.equal(localizedPublicationPages.length, 207);
   assert.equal(
     localizedPublicationPages.filter((page) => page.locale === "ar").length,
     69,

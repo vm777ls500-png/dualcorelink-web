@@ -25,6 +25,10 @@ import {
   zhRemainingFinalCmsApprovedIdentities,
   zhRemainingFinalReviewedCmsImportPayload,
 } from "./zh-remaining-final-reviewed";
+import {
+  viFinalCmsApprovedIdentities,
+  viFinalReviewedCmsImportPayload,
+} from "./vi-final-reviewed";
 import { zhCmsImportPayload } from "./zh";
 
 export const cmsTranslationImportPayload = [
@@ -48,6 +52,8 @@ export {
   zhP1ReviewedCmsImportPayload,
   zhRemainingFinalCmsApprovedIdentities,
   zhRemainingFinalReviewedCmsImportPayload,
+  viFinalCmsApprovedIdentities,
+  viFinalReviewedCmsImportPayload,
   zhM3aCmsImportPayload,
   m4aCmsImportPayload,
   m4aCmsImportPayloadByLocale,

@@ -49,7 +49,7 @@
       "localizedContentId": { "type": "null" },
       "importKey": { "type": "string", "minLength": 1, "maxLength": 200 },
       "deliveryMode": { "const": "validated-import-payload" },
-      "locale": { "enum": ["zh", "ar"] },
+      "locale": { "enum": ["zh", "ar", "vi"] },
       "batch": { "enum": ["p0", "p1", "remaining-final"] },
       "priority": { "enum": ["P0", "P1", "P2"] },
       "translationGroup": {
@@ -180,6 +180,23 @@
             "nativeReviewStatus": { "const": "approved" },
             "nativeReviewer": { "const": "Allan" },
             "nativeReviewDate": { "const": "2026-08-03" }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "locale": { "const": "vi" },
+            "batch": { "const": "remaining-final" }
+          },
+          "required": ["locale", "batch"]
+        },
+        "then": {
+          "required": ["priority", "translationGroup"],
+          "properties": {
+            "nativeReviewStatus": { "const": "approved" },
+            "nativeReviewer": { "const": "Allan" },
+            "nativeReviewDate": { "const": "2026-08-11" }
           }
         }
       }

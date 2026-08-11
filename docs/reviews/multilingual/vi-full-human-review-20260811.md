@@ -1,10 +1,10 @@
 # Vietnamese Full Human Review Workbook
 
-Prepared: 2026-08-11  
-Branch: `review/vi-full-human-review-20260811`  
-Status: **approved by Allan on 2026-08-11; production release not yet enabled**
+Prepared: 2026-08-11
+Branch: `review/vi-full-human-review-20260811`
+Status: **approved by Allan on 2026-08-11; CMS publication verified and production release enabled**
 
-This workbook covers the exact 69-page Vietnamese candidate inventory. Allan approved all 69 pages on 2026-08-11. The approval is review evidence only; `productionReleaseReady` remains `false` until the separately gated release phase.
+This workbook covers the exact 69-page Vietnamese inventory. Allan approved all 69 pages on 2026-08-11. Production readiness was enabled only after the controlled CMS transaction published and verified the exact 36 Product and 6 Solution records.
 
 ## Review Scope
 
@@ -17,6 +17,18 @@ This workbook covers the exact 69-page Vietnamese candidate inventory. Allan app
 | Static pages | 3 | File-backed candidate |
 | Listings | 4 | File-backed candidate |
 | **Total** | **69** | **CMS 42 / file 27** |
+
+## CMS Publication Gate
+
+- Transaction: `vi-final-20260811-141031-001`
+- Preflight / draft apply / verify / publish: 42/42 each
+- Products / Solutions: 36 / 6
+- Drafts / duplicate / unexpected: 0 / 0 / 0
+- Users: 3 before / 3 after
+- Posts: 368 before / 452 after
+- Postmeta: 4216 before / 5104 after
+- Rollback: not triggered
+- `productionReleaseReady=true`: 69/69
 
 ## Technical Review Result
 
@@ -133,6 +145,6 @@ Automatic technical revision coverage is 69 pages across four tracked defect cla
 
 ## Decision
 
-Current actual decision for every page: **approved** by Allan on 2026-08-11.  
-Approved: 69/69; pending: 0.  
+Current actual decision for every page: **approved** by Allan on 2026-08-11.
+Approved: 69/69; pending: 0.
 No page is production-ready from this approval seal alone.

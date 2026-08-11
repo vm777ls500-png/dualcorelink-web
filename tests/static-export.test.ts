@@ -153,7 +153,7 @@ test("static export cleanup CLI reports real failures with a nonzero exit", asyn
   }
 });
 
-test("AWS export baselines include all approved Chinese and Arabic pages", async () => {
+test("AWS export baselines include all approved Chinese, Arabic, and Vietnamese pages", async () => {
   const workflow = await readFile(
     path.join(projectRoot, ".github", "workflows", "aws-production-deploy.yml"),
     "utf8",
@@ -164,12 +164,12 @@ test("AWS export baselines include all approved Chinese and Arabic pages", async
   );
 
   assert.equal(resources.length, 15);
-  assert.match(workflow, /Generating static pages\.\*280\/280/);
+  assert.match(workflow, /Generating static pages\.\*342\/342/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(
     workflow,
-    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Enforce multilingual production release gates[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p0[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p1[\s\S]*?npm run multilingual:release-check -- --locale=ar --batch=remaining-final[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
+    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Enforce multilingual production release gates[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p0[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p1[\s\S]*?npm run multilingual:release-check -- --locale=ar --batch=remaining-final[\s\S]*?npm run multilingual:release-check -- --locale=vi --batch=remaining-final[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
   );
   assert.match(
     workflow,
@@ -181,12 +181,12 @@ test("AWS export baselines include all approved Chinese and Arabic pages", async
   assert.ok(mediaAuditStep);
   assert.doesNotMatch(mediaAuditStep, /continue-on-error|\|\| true/);
   assert.match(deployScript, /EXPECTED_RESOURCES:-15/);
-  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-214/);
+  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-283/);
   assert.match(deployScript, /EXPECTED_AR_PAGES:-69/);
   assert.match(deployScript, /EXPECTED_ZH_PAGES:-69/);
   assert.match(deployScript, /EXPECTED_DE_PAGES:-0/);
   assert.match(deployScript, /EXPECTED_ES_PAGES:-0/);
-  assert.match(deployScript, /EXPECTED_VI_PAGES:-0/);
+  assert.match(deployScript, /EXPECTED_VI_PAGES:-69/);
   assert.match(deployScript, /EXPECTED_FA_PAGES:-0/);
   assert.match(deployScript, /EXPECTED_ARTICLES:-15/);
   assert.match(deployScript, /EXPECTED_BREADCRUMBS:-15/);

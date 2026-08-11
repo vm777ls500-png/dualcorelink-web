@@ -15,7 +15,7 @@ final class DualCoreLink_Import_Renderer
 
     private static function href($value, string $locale): string
     {
-        if (!in_array($locale, ['zh', 'ar'], true) ||
+        if (!in_array($locale, ['zh', 'ar', 'vi'], true) ||
             !is_string($value) ||
             preg_match('~^/' . preg_quote($locale, '~') . '/[a-z0-9/_-]*(?:#[a-z0-9_-]+)?$~iD', $value) !== 1) {
             throw new DualCoreLink_Import_Exception(
@@ -61,6 +61,13 @@ final class DualCoreLink_Import_Renderer
                 'faq' => '常见问题',
                 'related' => '相关页面',
             ];
+        if ($locale === 'vi') {
+            $headings = [
+                'specifications' => 'Thông số và thông tin mua hàng',
+                'faq' => 'Câu hỏi thường gặp',
+                'related' => 'Trang liên quan',
+            ];
+        }
         $output = [
             '<p class="content-eyebrow">' . self::text($content['eyebrow']) . '</p>',
             '<h1>' . self::text($content['h1']) . '</h1>',

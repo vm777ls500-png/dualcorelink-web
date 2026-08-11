@@ -1,4 +1,5 @@
 import type { Locale } from "@/config/i18n";
+import { isReleasedLocalizedPath } from "@/lib/multilingual-release-batches";
 
 export const supportedReviewPreviewLocales = ["ar", "vi"] as const;
 
@@ -28,10 +29,14 @@ export function supportsSpecializedLocalizedComposition(
     locale === "en" ||
     locale === "zh" ||
     locale === "ar" ||
+    (locale === "vi" && isReleasedLocalizedPath("vi", "about")) ||
     isReviewPreviewLocale(locale)
   );
 }
 
 export function getLocalizedCompositionHomePath(locale: Locale): string {
-  return isReviewPreviewLocale(locale) ? `/${locale}/about/` : `/${locale}/`;
+  return isReviewPreviewLocale(locale) ||
+    (locale === "vi" && isReleasedLocalizedPath("vi", "about"))
+    ? `/${locale}/about/`
+    : `/${locale}/`;
 }

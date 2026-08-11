@@ -190,13 +190,17 @@ test("payload schema preserves review controls for every supported import batch"
       "utf8",
     ),
   ) as { items: { allOf: unknown[] } };
-  assert.equal(schema.items.allOf.length, 4);
+  assert.equal(schema.items.allOf.length, 5);
   assert.match(JSON.stringify(schema.items.allOf), /ownerReviewWaiverStatus/);
   assert.match(JSON.stringify(schema.items.allOf), /nativeReviewStatus/);
   assert.match(JSON.stringify(schema.items.allOf), /2026-08-02/);
   assert.match(JSON.stringify(schema.items.allOf), /2026-08-03/);
   assert.match(JSON.stringify(schema.items.allOf), /2026-08-11/);
   assert.match(JSON.stringify(schema.items.allOf), /remaining-final/);
+  assert.match(
+    JSON.stringify(schema.items.allOf),
+    /"locale":\{"const":"vi"\}.*"batch":\{"const":"remaining-final"\}/,
+  );
   assert.equal(schema.maxItems, 42);
 });
 

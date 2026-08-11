@@ -158,7 +158,7 @@ test("the final release approves remaining Chinese pages while other locales rem
   );
   const arabic = multilingualPublicationManifest.filter((entry) => entry.locale === "ar");
   const pendingLocales = multilingualPublicationManifest.filter((entry) =>
-    ["de", "es", "vi", "fa"].includes(entry.locale),
+    ["de", "es", "fa"].includes(entry.locale),
   );
   const remainingChinese = multilingualPublicationManifest.filter(
     (entry) => entry.locale === "zh" && entry.nativeReviewStatus === "pending",
@@ -172,7 +172,7 @@ test("the final release approves remaining Chinese pages while other locales rem
     ),
     true,
   );
-  assert.equal(pendingLocales.length, 276);
+  assert.equal(pendingLocales.length, 207);
   assert.ok(
     pendingLocales.every(
       (entry) =>

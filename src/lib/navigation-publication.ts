@@ -96,12 +96,19 @@ function localizedPath(locale: "en" | "zh" | "ar" | "vi", contentPath: string): 
   return normalized ? `/${locale}/${normalized}/` : `/${locale}/`;
 }
 
+function isVietnameseNavigation(locale: Locale): boolean {
+  return (
+    locale === "vi" &&
+    (isReviewPreviewLocale(locale) || isReleasedLocalizedPath("vi", "about"))
+  );
+}
+
 function releasedHref(locale: Locale, contentPath: string): string {
   const normalized = normalizedContentPath(contentPath);
   if (!normalized) {
     if (locale === "zh") return "/zh/about/";
     if (locale === "ar") return "/ar/about/";
-    if (locale === "vi" && isReviewPreviewLocale(locale)) return "/vi/about/";
+    if (isVietnameseNavigation(locale)) return "/vi/about/";
     return "/en/";
   }
   if (locale === "ar") return localizedPath("ar", normalized);
@@ -114,7 +121,7 @@ export function buildHeaderPrimaryNavigation(
 ): HeaderNavigationLink[] {
   const chinese = locale === "zh";
   const arabic = locale === "ar";
-  const vietnamese = locale === "vi" && isReviewPreviewLocale(locale);
+  const vietnamese = isVietnameseNavigation(locale);
   const items = chinese
     ? [
         ["home", "首页", ""],
@@ -165,7 +172,7 @@ export function buildHeaderPrimaryNavigation(
 export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
   const chinese = locale === "zh";
   const arabic = locale === "ar";
-  const vietnamese = locale === "vi" && isReviewPreviewLocale(locale);
+  const vietnamese = isVietnameseNavigation(locale);
   const targetLocale: "en" | "zh" | "ar" | "vi" = chinese
     ? "zh"
     : arabic
@@ -287,8 +294,8 @@ export function buildHeaderLanguageOptions(
   const chineseAvailable = isReleasedLocalizedPath("zh", normalized);
   const arabicAvailable = isReleasedLocalizedPath("ar", normalized);
   const vietnameseAvailable =
-    isReviewPreviewLocale("vi") &&
-    Boolean(getPublicationHreflang(normalized).vi);
+    isReleasedLocalizedPath("vi", normalized) ||
+    (isReviewPreviewLocale("vi") && Boolean(getPublicationHreflang(normalized).vi));
   const englishHref = localizedPath("en", normalized);
   const chineseHref = localizedPath("zh", normalized);
   const arabicHref = localizedPath("ar", normalized);

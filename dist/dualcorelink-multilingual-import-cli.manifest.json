@@ -1,13 +1,13 @@
 {
   "packageSchemaVersion": 1,
-  "pluginVersion": "1.4.0",
+  "pluginVersion": "1.5.0",
   "translationSchemaVersion": 1,
   "packageFilename": "dualcorelink-multilingual-import-cli.zip",
   "files": [
     {
       "relativePath": "dualcorelink-multilingual-import-cli.php",
       "normalizedByteSize": 3195,
-      "sha256": "1660174ce0ef4577221ef713734ffbe5919a7a44b58ee01802cc9d76ee838672",
+      "sha256": "e11e1aeedc271762c8917fa0f3ac6c95c5f2e0bdc231c2b54435751928c0cbdb",
       "mode": "0644"
     },
     {
@@ -18,20 +18,20 @@
     },
     {
       "relativePath": "includes/class-config.php",
-      "normalizedByteSize": 26602,
-      "sha256": "16f3a934849ac77cc593c6692dce323ecb93638c44a797cac11986475e111d83",
+      "normalizedByteSize": 27514,
+      "sha256": "03d8c9d1bd4165f8db9ffdb2b78245419618b53ecc7bdda769e4e7728522c3bf",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-import-service.php",
-      "normalizedByteSize": 34442,
-      "sha256": "6dbc169d9aa07db5c697a3891becab912203072bd72737cf9bb94ffe74387f2c",
+      "normalizedByteSize": 34448,
+      "sha256": "df63b147bb749e7135b930f5275e0b7e93a8d96c023beb38095c3eb5db10616f",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-renderer.php",
-      "normalizedByteSize": 9038,
-      "sha256": "eb53555765017c9bee9f58c3585cca750ddfb26b5676d34de07d4e56255b3d8d",
+      "normalizedByteSize": 9307,
+      "sha256": "cf363bb2e4ab38132fc6a7722d6de3cc0b9d3fbcc2b655ccb2909bce2f8cf363",
       "mode": "0644"
     },
     {
@@ -54,10 +54,10 @@
     },
     {
       "relativePath": "schema/payload.schema.json",
-      "normalizedByteSize": 6344,
-      "sha256": "f6d2ad442d3329d62e5a634544d42ed38017f080f449f90b3ed9e028926b37c8",
+      "normalizedByteSize": 6859,
+      "sha256": "49d1c0d3e5a77ac3670f10b4a4041bd7bea214a5c3e14a118ec1ebd119952dea",
       "mode": "0644"
     }
   ],
-  "manifestSha256": "4e5c93558b3426a6b3a97d5fbb5a5401950e3d787730d643c4b0e8dccb521144"
+  "manifestSha256": "69b314350118f3cdc2ed99aa381f9005a7dbb23248705aeaab7f0f03f322c835"
 }

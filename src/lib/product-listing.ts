@@ -6,7 +6,9 @@ import { isReviewPreviewLocale } from "@/lib/multilingual-review-preview";
 import type { ProductListItem } from "@/types/content";
 
 export function getProductListingSourceLocale(locale: Locale): Locale {
-  return locale === "zh" || isReviewPreviewLocale(locale) ? "en" : locale;
+  return locale === "zh" || locale === "vi" || isReviewPreviewLocale(locale)
+    ? "en"
+    : locale;
 }
 
 const arabicCategoryNames: Record<string, string> = {
@@ -53,7 +55,9 @@ export function localizeProductListingProducts(
   locale: Locale,
   products: readonly ProductListItem[],
 ): ProductListItem[] {
-  if (locale !== "zh" && !isReviewPreviewLocale(locale)) return [...products];
+  if (locale !== "zh" && locale !== "vi" && !isReviewPreviewLocale(locale)) {
+    return [...products];
+  }
 
   const categoryNames = new Map(
     productCategories.map((category) => [

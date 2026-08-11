@@ -384,7 +384,7 @@ final class DualCoreLink_Multilingual_Import_Service
                 if ((int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) !== $id ||
                     !in_array(
                         ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? ''),
-                        ['zh', 'ar'],
+                        ['zh', 'ar', 'vi'],
                         true
                     )) {
                     $errors[] = "localized slug conflict: {$slug}";

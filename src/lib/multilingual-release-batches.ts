@@ -91,6 +91,10 @@ export const arReviewedReleaseUrls = zhReviewedReleaseUrls.map((url) =>
   url.replace("https://dualcorelink.com/zh/", "https://dualcorelink.com/ar/"),
 );
 
+export const viReviewedReleaseUrls = zhReviewedReleaseUrls.map((url) =>
+  url.replace("https://dualcorelink.com/zh/", "https://dualcorelink.com/vi/"),
+);
+
 export type MultilingualReleaseBatch = {
   locale: MultilingualLocale;
   batch: string;
@@ -149,6 +153,18 @@ const releaseBatches: readonly MultilingualReleaseBatch[] = [
       "docs/reviews/multilingual/ar-native-review-workbook-20260729.md",
     cmsPayloadCount: 42,
     localizedUrls: arReviewedReleaseUrls,
+  },
+  {
+    locale: "vi",
+    batch: "remaining-final",
+    priority: "mixed",
+    priorityCounts: { P0: 18, P1: 32, P2: 19 },
+    reviewer: "Allan",
+    reviewDate: "2026-08-11",
+    decisionFile:
+      "docs/reviews/multilingual/vi-full-decisions-20260811.md",
+    cmsPayloadCount: 42,
+    localizedUrls: viReviewedReleaseUrls,
   },
 ];
 

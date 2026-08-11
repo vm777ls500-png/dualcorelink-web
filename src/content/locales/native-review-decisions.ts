@@ -1255,7 +1255,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-ceiling-background-speaker/",
@@ -1264,7 +1264,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/brushed-aluminum-voice-telephone-information-panel/",
@@ -1273,7 +1273,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/borui-red-matte-triple-socket-panel/",
@@ -1282,7 +1282,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-series-dual-vertical-socket-panel/",
@@ -1291,7 +1291,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-footlight-night-light-panel/",
@@ -1300,7 +1300,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-four-key-scene-control-panel/",
@@ -1309,7 +1309,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-three-key-music-control-panel/",
@@ -1318,7 +1318,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-single-key-switch-panel/",
@@ -1327,7 +1327,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-smart-room-rcu-host-3/",
@@ -1336,7 +1336,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-voice-telephone-information-socket/",
@@ -1345,7 +1345,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/brushed-aluminum-thermostat-control-panel/",
@@ -1354,7 +1354,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/brushed-aluminum-sos-alarm-panel/",
@@ -1363,7 +1363,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/vintage-gold-four-key-smart-switch-panel/",
@@ -1372,7 +1372,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/vintage-gold-key-card-energy-saver-panel/",
@@ -1381,7 +1381,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/borui-red-matte-room-status-four-key-switch-panel/",
@@ -1390,7 +1390,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/borui-red-matte-usb-five-hole-socket/",
@@ -1399,7 +1399,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-delivery-robot-charging-dock/",
@@ -1408,7 +1408,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-smart-room-rcu-host-2/",
@@ -1417,7 +1417,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-curtain-motor/",
@@ -1426,7 +1426,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/brushed-aluminum-86-base-doorbell-panel/",
@@ -1435,7 +1435,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-four-key-curtain-control-panel/",
@@ -1444,7 +1444,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-key-card-energy-saver-panel/",
@@ -1453,7 +1453,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/smart-usb-five-hole-socket/",
@@ -1462,7 +1462,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-smart-room-rcu-host-1/",
@@ -1471,7 +1471,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/rcu-controller-cabinet/",
@@ -1480,7 +1480,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-guest-room-doorbell/",
@@ -1489,7 +1489,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-room-door-magnetic-sensor/",
@@ -1498,7 +1498,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/infrared-repeater/",
@@ -1507,7 +1507,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/embedded-human-presence-sensor/",
@@ -1516,7 +1516,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-smart-delivery-cabinet/",
@@ -1525,7 +1525,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/hotel-delivery-robot/",
@@ -1534,7 +1534,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/ai-music-control-panel/",
@@ -1543,7 +1543,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/thermostat-hvac-control-panel/",
@@ -1552,7 +1552,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/rotary-knob-smart-control-display/",
@@ -1561,7 +1561,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/ai-large-smart-display/",
@@ -1570,7 +1570,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/products/86-type-ai-smart-control-display/",
@@ -1579,7 +1579,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/solutions/",
@@ -1588,7 +1588,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/solutions/oem-odm-custom-panel-solution/",
@@ -1597,7 +1597,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/solutions/hotel-delivery-robot-solution/",
@@ -1606,7 +1606,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/solutions/rcu-room-control-solution/",
@@ -1615,7 +1615,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/solutions/ai-smart-display-solution/",
@@ -1624,7 +1624,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/solutions/smart-hotel-automation-solution/",
@@ -1633,7 +1633,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/solutions/hotel-guest-room-control-solution/",
@@ -1642,7 +1642,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/",
@@ -1651,7 +1651,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/what-is-hotel-rcu-room-control-system/",
@@ -1660,7 +1660,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-rcu-wiring-system-architecture-guide/",
@@ -1669,7 +1669,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-rcu-buying-guide/",
@@ -1678,7 +1678,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/smart-hotel-room-control-system-guide/",
@@ -1687,7 +1687,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-smart-switch-panel-guide/",
@@ -1696,7 +1696,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/oem-odm-smart-panel-customization-guide/",
@@ -1705,7 +1705,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-guest-room-automation-guide/",
@@ -1714,7 +1714,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-room-control-system-cost-factors/",
@@ -1723,7 +1723,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-occupancy-sensor-selection-guide/",
@@ -1732,7 +1732,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-doorplate-room-display-buying-guide/",
@@ -1741,7 +1741,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/oem-odm-hotel-control-panel-development-process/",
@@ -1750,7 +1750,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-renovation-smart-room-upgrade-guide/",
@@ -1759,7 +1759,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/smart-panel-material-finish-selection-guide/",
@@ -1768,7 +1768,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/knx-vs-rcu-hotel-room-control/",
@@ -1777,7 +1777,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/resources/hotel-guest-room-control-interfaces-guide/",
@@ -1786,7 +1786,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/regions/",
@@ -1795,7 +1795,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/regions/middle-east/",
@@ -1804,7 +1804,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/regions/saudi-arabia/",
@@ -1813,7 +1813,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/regions/uae/",
@@ -1822,7 +1822,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/regions/southeast-asia/",
@@ -1831,7 +1831,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/regions/vietnam/",
@@ -1840,7 +1840,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/about/",
@@ -1849,7 +1849,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/faqs/",
@@ -1858,7 +1858,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/contact/",
@@ -1867,6 +1867,6 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-11",
     "nativeReviewNotes": "Human Vietnamese review approved for the full 69-page batch",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   }
 ];

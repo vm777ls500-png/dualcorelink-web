@@ -15,7 +15,10 @@ export type ViFinalReviewedCmsImportRecord = CmsTranslationRecord & {
 
 export const viFinalCmsApprovedIdentities = arFinalCmsApprovedIdentities;
 
-const identityBySourceId = new Map(
+const identityBySourceId = new Map<
+  number,
+  (typeof viFinalCmsApprovedIdentities)[number]
+>(
   viFinalCmsApprovedIdentities.map((identity) => [identity.sourceId, identity]),
 );
 

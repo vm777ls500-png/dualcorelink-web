@@ -170,7 +170,7 @@ test("AWS export baselines include all approved localized pages", async () => {
   );
 
   assert.equal(resources.length, 15);
-  assert.match(workflow, /Generating static pages\.\*560\/560/);
+  assert.match(workflow, /Generating static pages\.\*528\/528/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(

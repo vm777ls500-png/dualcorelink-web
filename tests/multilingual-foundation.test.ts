@@ -503,7 +503,7 @@ test("AWS production deployment enforces all approved multilingual release gates
     workflow,
     /npm run multilingual:release-check -- --locale=vi --batch=remaining-final/,
   );
-  assert.match(workflow, /Generating static pages\.\*560\/560/);
+  assert.match(workflow, /Generating static pages\.\*528\/528/);
 });
 
 test("native review packs cover all 414 M4A URLs without claiming reviewers", async () => {

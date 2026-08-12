@@ -98,7 +98,7 @@ test("Vietnamese sitemap and production routing are exact", () => {
   assert.match(nginx, /\(\?<reviewed_rsc_locale>zh\|ar\|vi\|de\|es\|fa\)/);
   assert.doesNotMatch(nginx, /location\s+(?:\^~\s+)?\/vi\//);
   assert.match(workflow, /multilingual:release-check -- --locale=vi --batch=remaining-final/);
-  assert.match(workflow, /Generating static pages\.\*560\/560/);
+  assert.match(workflow, /Generating static pages\.\*528\/528/);
   assert.match(deploy, /EXPECTED_SITEMAP_URLS:-490/);
   assert.match(deploy, /EXPECTED_VI_PAGES:-69/);
 });

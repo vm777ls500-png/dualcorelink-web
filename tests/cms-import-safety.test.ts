@@ -190,7 +190,7 @@ test("payload schema preserves review controls for every supported import batch"
       "utf8",
     ),
   ) as { items: { allOf: unknown[] } };
-  assert.equal(schema.items.allOf.length, 5);
+  assert.equal(schema.items.allOf.length, 6);
   assert.match(JSON.stringify(schema.items.allOf), /ownerReviewWaiverStatus/);
   assert.match(JSON.stringify(schema.items.allOf), /nativeReviewStatus/);
   assert.match(JSON.stringify(schema.items.allOf), /2026-08-02/);

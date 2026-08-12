@@ -24,8 +24,8 @@
     },
     {
       "relativePath": "includes/class-import-service.php",
-      "normalizedByteSize": 40070,
-      "sha256": "10d96555e21309a0dd51773238d4b3d83ae43dc75c438391a6010df84fa5fb15",
+      "normalizedByteSize": 40855,
+      "sha256": "c4a88b8fb078409a58f75cfb18ca04c440e6397bb9bb34cff92f9adcb3e735b7",
       "mode": "0644"
     },
     {
@@ -59,5 +59,5 @@
       "mode": "0644"
     }
   ],
-  "manifestSha256": "f8e0e4fe1d942e20935cc4c638f80ce4f40c97064b35504e36c07d01a11761e2"
+  "manifestSha256": "9bb109a04145ce73099e071a38790661e8aa667bfbba4a33158c861ca007556c"
 }

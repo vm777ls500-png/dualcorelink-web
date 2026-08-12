@@ -427,15 +427,22 @@ final class DualCoreLink_Multilingual_Import_Service
                 if (isset($collision['language']) && (int) $collision['id'] === $id) {
                     continue;
                 }
+                $collision_locale =
+                    $collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? '';
+                $is_cross_locale_sibling =
+                    $collision_locale !== $locale &&
+                    in_array($collision_locale, ['zh', 'ar', 'vi', 'de', 'es', 'fa'], true) &&
+                    ($collision['status'] ?? '') === 'publish';
+                $is_legacy_same_locale_record =
+                    !$expected_existing &&
+                    $collision_locale === $locale &&
+                    in_array($collision_locale, ['zh', 'ar', 'vi'], true);
                 $is_existing_supported_locale =
+                    ($is_cross_locale_sibling || $is_legacy_same_locale_record) &&
                     (int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) === $id &&
-                    (!$expected_existing ||
-                        ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? '') !== $locale) &&
-                    in_array(
-                        ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? ''),
-                        ['zh', 'ar', 'vi'],
-                        true
-                    );
+                    ($collision['post_type'] ?? '') === $post_type &&
+                    ($collision['meta'][DualCoreLink_Import_Config::META_GROUP] ?? '') ===
+                        "shb2b-{$post_type}-{$id}";
                 if ($is_existing_supported_locale) {
                     continue;
                 }

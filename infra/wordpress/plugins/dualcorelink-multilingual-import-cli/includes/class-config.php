@@ -20,6 +20,9 @@ final class DualCoreLink_Import_Config
     public const VI_FINAL_REVIEWER = 'Allan';
     public const VI_FINAL_REVIEW_DATE = '2026-08-11';
     public const VI_FINAL_RECORD_COUNT = 42;
+    public const FINAL_THREE_REVIEWER = 'Allan';
+    public const FINAL_THREE_REVIEW_DATE = '2026-08-12';
+    public const FINAL_THREE_RECORD_COUNT = 42;
     public const OWNER_WAIVER_SCHEMA_VERSION = 1;
     public const OWNER_WAIVER_BY = 'Allan';
     public const OWNER_WAIVER_DATE = '2026-07-31';
@@ -198,6 +201,7 @@ final class DualCoreLink_Import_Config
     ];
 
     public const VI_FINAL_APPROVED = self::AR_FINAL_APPROVED;
+    public const FINAL_THREE_APPROVED = self::AR_FINAL_APPROVED;
 
     public const ZH_P1_APPROVED = [
         219 => ['post_type' => 'product', 'slug' => 'hotel-smart-room-rcu-host-3'],
@@ -342,6 +346,19 @@ final class DualCoreLink_Import_Config
                 'review_date' => self::VI_FINAL_REVIEW_DATE,
             ];
         }
+        if (in_array($locale, ['de', 'es', 'fa'], true) &&
+            $batch === 'remaining-final' && !$allow_owner_waiver) {
+            return [
+                'locale' => $locale,
+                'batch' => 'remaining-final',
+                'records' => self::FINAL_THREE_RECORD_COUNT,
+                'approved' => self::FINAL_THREE_APPROVED,
+                'native_review' => true,
+                'owner_waiver' => false,
+                'reviewer' => self::FINAL_THREE_REVIEWER,
+                'review_date' => self::FINAL_THREE_REVIEW_DATE,
+            ];
+        }
         return null;
     }
 
@@ -351,6 +368,7 @@ final class DualCoreLink_Import_Config
             array_key_exists($source_id, self::ARABIC_APPROVED) ||
             array_key_exists($source_id, self::AR_FINAL_APPROVED) ||
             array_key_exists($source_id, self::VI_FINAL_APPROVED) ||
+            array_key_exists($source_id, self::FINAL_THREE_APPROVED) ||
             array_key_exists($source_id, self::ZH_P1_APPROVED) ||
             array_key_exists($source_id, self::ZH_REMAINING_FINAL_APPROVED);
     }
@@ -367,6 +385,9 @@ final class DualCoreLink_Import_Config
             return self::META_KEYS;
         }
         if ($locale === 'vi' && $batch === 'remaining-final') {
+            return self::META_KEYS;
+        }
+        if (in_array($locale, ['de', 'es', 'fa'], true) && $batch === 'remaining-final') {
             return self::META_KEYS;
         }
         return [];

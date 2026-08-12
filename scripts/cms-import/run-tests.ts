@@ -20,6 +20,7 @@ run(process.execPath, [
   "tests/cms-import-zh-remaining-final.test.ts",
   "tests/cms-import-ar-final.test.ts",
   "tests/cms-import-vi-final.test.ts",
+  "tests/cms-import-final-three.test.ts",
   "tests/cms-import-package.test.ts",
 ]);
 run(process.execPath, [
@@ -36,6 +37,15 @@ run(process.execPath, [
   "--locale=ar",
   "--batch=remaining-final",
 ]);
+for (const locale of ["de", "es", "fa"]) {
+  run(process.execPath, [
+    "--import",
+    "tsx",
+    "scripts/cms-import/generate-payload.ts",
+    `--locale=${locale}`,
+    "--batch=remaining-final",
+  ]);
+}
 run(process.execPath, [
   "--import",
   "tsx",

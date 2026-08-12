@@ -15,7 +15,7 @@ final class DualCoreLink_Import_Renderer
 
     private static function href($value, string $locale): string
     {
-        if (!in_array($locale, ['zh', 'ar', 'vi'], true) ||
+        if (!in_array($locale, ['zh', 'ar', 'vi', 'de', 'es', 'fa'], true) ||
             !is_string($value) ||
             preg_match('~^/' . preg_quote($locale, '~') . '/[a-z0-9/_-]*(?:#[a-z0-9_-]+)?$~iD', $value) !== 1) {
             throw new DualCoreLink_Import_Exception(

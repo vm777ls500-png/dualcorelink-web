@@ -7,6 +7,7 @@ import {
   zhP1ReviewedCmsImportPayload,
   zhRemainingFinalReviewedCmsImportPayload,
   viFinalReviewedCmsImportPayload,
+  finalThreeReviewedCmsImportPayloadByLocale,
 } from "../../src/content/locales/cms-import";
 import { canonicalJson, sha256 } from "./model";
 
@@ -47,10 +48,16 @@ async function main(): Promise<void> {
                 payload: viFinalReviewedCmsImportPayload,
                 filename: "vi-final-reviewed.json",
               }
+          : (locale === "de" || locale === "es" || locale === "fa") &&
+              batch === "remaining-final"
+            ? {
+                payload: finalThreeReviewedCmsImportPayloadByLocale[locale],
+                filename: `${locale}-final-reviewed.json`,
+              }
         : undefined;
   if (!selected) {
     throw new Error(
-      "Only exact approved payloads are supported: ar/p0, ar/remaining-final, zh/p1, zh/remaining-final, or vi/remaining-final",
+      "Only exact approved payloads are supported: ar/p0, ar/remaining-final, zh/p1, zh/remaining-final, vi/remaining-final, de/remaining-final, es/remaining-final, or fa/remaining-final",
     );
   }
   const payload = selected.payload;

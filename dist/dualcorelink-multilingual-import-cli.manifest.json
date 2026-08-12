@@ -1,37 +1,37 @@
 {
   "packageSchemaVersion": 1,
-  "pluginVersion": "1.5.0",
+  "pluginVersion": "1.5.1",
   "translationSchemaVersion": 1,
   "packageFilename": "dualcorelink-multilingual-import-cli.zip",
   "files": [
     {
       "relativePath": "dualcorelink-multilingual-import-cli.php",
       "normalizedByteSize": 3195,
-      "sha256": "e11e1aeedc271762c8917fa0f3ac6c95c5f2e0bdc231c2b54435751928c0cbdb",
+      "sha256": "e355d7d328a2d1086a223a624a06ddadaeeec849f88a9f757750c87fd3128ab0",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-cli-command.php",
-      "normalizedByteSize": 4715,
-      "sha256": "988df627f8a2ca038297012497f48ce87cf800e94c004e3e0a6f2be2c05cdf06",
+      "normalizedByteSize": 5124,
+      "sha256": "c22469b3aa55486c74b3124244218e0666975d2e3bcdb570623c20f8363479b6",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-config.php",
-      "normalizedByteSize": 27514,
-      "sha256": "03d8c9d1bd4165f8db9ffdb2b78245419618b53ecc7bdda769e4e7728522c3bf",
+      "normalizedByteSize": 28521,
+      "sha256": "f58985c6bd6595287c38114fc48fc21ab05044ea246a4f031e64b7c04f95a73c",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-import-service.php",
-      "normalizedByteSize": 34448,
-      "sha256": "df63b147bb749e7135b930f5275e0b7e93a8d96c023beb38095c3eb5db10616f",
+      "normalizedByteSize": 40070,
+      "sha256": "10d96555e21309a0dd51773238d4b3d83ae43dc75c438391a6010df84fa5fb15",
       "mode": "0644"
     },
     {
       "relativePath": "includes/class-renderer.php",
-      "normalizedByteSize": 9307,
-      "sha256": "cf363bb2e4ab38132fc6a7722d6de3cc0b9d3fbcc2b655ccb2909bce2f8cf363",
+      "normalizedByteSize": 9325,
+      "sha256": "eeeadd55878fd296a19b2c4f749c587e82e577f5f4a831efdfaa5f35ba2abb98",
       "mode": "0644"
     },
     {
@@ -54,10 +54,10 @@
     },
     {
       "relativePath": "schema/payload.schema.json",
-      "normalizedByteSize": 6859,
-      "sha256": "49d1c0d3e5a77ac3670f10b4a4041bd7bea214a5c3e14a118ec1ebd119952dea",
+      "normalizedByteSize": 7399,
+      "sha256": "2702e5254b75fa0d06a00118ad194a4b7acefd948ec5129ded05629713d375ee",
       "mode": "0644"
     }
   ],
-  "manifestSha256": "69b314350118f3cdc2ed99aa381f9005a7dbb23248705aeaab7f0f03f322c835"
+  "manifestSha256": "f8e0e4fe1d942e20935cc4c638f80ce4f40c97064b35504e36c07d01a11761e2"
 }

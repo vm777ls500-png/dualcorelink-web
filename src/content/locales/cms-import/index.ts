@@ -16,6 +16,12 @@ import {
   m4aCmsImportPayload,
   m4aCmsImportPayloadByLocale,
 } from "./m4a-generated";
+import {
+  finalThreeCmsApprovedIdentities,
+  finalThreeCmsLocales,
+  finalThreeReviewedCmsImportPayload,
+  finalThreeReviewedCmsImportPayloadByLocale,
+} from "./final-three-reviewed";
 import { zhP0ReviewedCmsImportPayload } from "./zh-p0-reviewed";
 import {
   zhP1CmsApprovedIdentities,
@@ -35,7 +41,8 @@ export const cmsTranslationImportPayload = [
   ...arFinalReviewedCmsImportPayload,
   ...zhCmsImportPayload,
   ...zhM3aCmsImportPayload,
-  ...m4aCmsImportPayload,
+  ...m4aCmsImportPayloadByLocale.vi,
+  ...finalThreeReviewedCmsImportPayload,
 ] as const;
 
 export {
@@ -54,6 +61,10 @@ export {
   zhRemainingFinalReviewedCmsImportPayload,
   viFinalCmsApprovedIdentities,
   viFinalReviewedCmsImportPayload,
+  finalThreeCmsApprovedIdentities,
+  finalThreeCmsLocales,
+  finalThreeReviewedCmsImportPayload,
+  finalThreeReviewedCmsImportPayloadByLocale,
   zhM3aCmsImportPayload,
   m4aCmsImportPayload,
   m4aCmsImportPayloadByLocale,

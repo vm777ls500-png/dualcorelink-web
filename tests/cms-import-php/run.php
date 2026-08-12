@@ -200,6 +200,12 @@ function arabic_fixture(): array
     if (!is_array($payload)) {
         throw new RuntimeException('Arabic fixture is invalid.');
     }
+    foreach ($payload as &$record) {
+        $record['nativeReviewStatus'] = 'pending';
+        $record['nativeReviewer'] = null;
+        $record['nativeReviewDate'] = null;
+    }
+    unset($record);
     $replace = static function ($value) use (&$replace) {
         if (is_string($value)) {
             return str_replace('مضيف RCU', 'وحدة RCU رئيسية للتحكم (RCU Host)', $value);
@@ -250,6 +256,16 @@ function vietnamese_final_fixture(): array
     $payload = json_decode((string) file_get_contents($file), true);
     if (!is_array($payload)) {
         throw new RuntimeException('Final Vietnamese fixture is invalid.');
+    }
+    return $payload;
+}
+
+function final_three_fixture(string $locale): array
+{
+    $file = dirname(__DIR__, 2) . "/dist/cms-import/{$locale}-final-reviewed.json";
+    $payload = json_decode((string) file_get_contents($file), true);
+    if (!is_array($payload)) {
+        throw new RuntimeException("Final {$locale} fixture is invalid.");
     }
     return $payload;
 }
@@ -341,7 +357,10 @@ function verify_with_numeric_meta(
         $repository->localized[$id]['slug'] = 'numeric-meta-test-' . $name;
     }
     try {
-        return expect_failure(fn () => $service->verify($name), 60);
+        return expect_failure(
+            fn () => $service->verify($name),
+            $key === DualCoreLink_Import_Config::META_SOURCE_ID ? 20 : 60
+        );
     } finally {
         remove_tree($root);
     }
@@ -622,7 +641,7 @@ $tests['verify rejects source ID outside approved whitelist'] = function (): voi
     );
     assert_true(str_contains(
         $exception->getMessage(),
-        'outside the approved whitelist'
+        'exact transaction record mismatch'
     ));
 };
 $tests['verify keeps nonnumeric translation meta strict'] = function (): void {
@@ -1432,6 +1451,196 @@ $tests['Final Vietnamese batch cannot use owner waiver'] = function (): void {
     $repo = new Mock_Import_Repository($payload);
     [$service] = service($repo, temporary_root('vi-remaining-final-waiver'));
     expect_failure(fn () => $service->preflight($payload, 'vi', 'remaining-final', true), 20);
+};
+foreach (['de', 'es', 'fa'] as $final_locale) {
+    $tests["Final {$final_locale} preflight accepts exact 42/42 payload with zero writes"] = function () use ($final_locale): void {
+        $payload = final_three_fixture($final_locale);
+        $repo = new Mock_Import_Repository($payload);
+        $insert_calls_before = $GLOBALS['dualcorelink_wp_insert_post_calls'];
+        $root = temporary_root("{$final_locale}-remaining-final-preflight");
+        [$service] = service($repo, $root);
+        $result = $service->preflight($payload, $final_locale, 'remaining-final');
+        assert_true($result['records'] === 42 && $result['writes'] === 0);
+        assert_true($repo->localized === []);
+        assert_true($repo->write_plan_validations === 42);
+        assert_true($GLOBALS['dualcorelink_wp_insert_post_calls'] === $insert_calls_before);
+        assert_true(!file_exists($root));
+    };
+    $tests["Final {$final_locale} preflight rejects drift and owner waiver"] = function () use ($final_locale): void {
+        $mutations = [
+            function (&$payload): void { array_pop($payload); },
+            function (&$payload): void { $payload[0]['localizedSlug'] = 'wrong-slug'; },
+            function (&$payload): void { $payload[0]['priority'] = $payload[0]['priority'] === 'P0' ? 'P1' : 'P0'; },
+            function (&$payload): void { $payload[0]['nativeReviewer'] = 'Unknown'; },
+            function (&$payload): void { $payload[0]['nativeReviewDate'] = '2026-08-11'; },
+            function (&$payload): void { $payload[0]['productionReleaseReady'] = false; },
+        ];
+        foreach ($mutations as $index => $mutate) {
+            $payload = final_three_fixture($final_locale);
+            $mutate($payload);
+            $repo = new Mock_Import_Repository($payload);
+            [$service] = service($repo, temporary_root("{$final_locale}-drift-{$index}"));
+            expect_failure(fn () => $service->preflight($payload, $final_locale, 'remaining-final'), 20);
+        }
+        $payload = final_three_fixture($final_locale);
+        $repo = new Mock_Import_Repository($payload);
+        [$service] = service($repo, temporary_root("{$final_locale}-waiver"));
+        expect_failure(fn () => $service->preflight($payload, $final_locale, 'remaining-final', true), 20);
+    };
+}
+$tests['Final German rolled-back transaction resumes exact 42 drafts without writes'] = function (): void {
+    $payload = final_three_fixture('de');
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('de-exact-resume');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'de',
+        'remaining-final',
+        'draft',
+        'de-exact-resume',
+        'de-exact-resume',
+        false
+    );
+    $service->rollback('de-exact-resume', 'de-exact-resume');
+    $before = $repo->localized;
+    $result = $service->resume('de-exact-resume');
+    assert_true($result['records'] === 42);
+    assert_true($result['existing_expected'] === 42);
+    assert_true($result['new'] === 0 && $result['conflicts'] === 0 && $result['writes'] === 0);
+    assert_true($repo->localized === $before);
+    remove_tree($root);
+};
+$tests['Final German create preflight still rejects existing drafts'] = function (): void {
+    $payload = final_three_fixture('de');
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('de-create-collision');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'de',
+        'remaining-final',
+        'draft',
+        'de-create-collision',
+        'de-create-collision',
+        false
+    );
+    expect_failure(fn () => $service->preflight($payload, 'de', 'remaining-final'), 20);
+    remove_tree($root);
+};
+$tests['Final German exact resume rejects identity and status drift'] = function (): void {
+    foreach (['source', 'locale', 'type', 'slug', 'group', 'status'] as $drift) {
+        $payload = final_three_fixture('de');
+        $repo = new Mock_Import_Repository($payload);
+        $root = temporary_root('de-resume-' . $drift);
+        [$service] = service($repo, $root);
+        $result = $service->apply(
+            $payload,
+            'de',
+            'remaining-final',
+            'draft',
+            'de-resume-' . $drift,
+            'de-resume-' . $drift,
+            false
+        );
+        $id = $result['operations'][0]['localized_id'];
+        if ($drift === 'source') {
+            $repo->localized[$id]['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] = 999999;
+        } elseif ($drift === 'locale') {
+            $repo->localized[$id]['meta'][DualCoreLink_Import_Config::META_LOCALE] = 'es';
+        } elseif ($drift === 'type') {
+            $repo->localized[$id]['post_type'] = 'solution';
+        } elseif ($drift === 'slug') {
+            $repo->localized[$id]['slug'] = 'wrong-slug';
+        } elseif ($drift === 'group') {
+            $repo->localized[$id]['meta'][DualCoreLink_Import_Config::META_GROUP] = 'wrong-group';
+        } else {
+            $repo->localized[$id]['status'] = 'publish';
+            $repo->localized[$id]['core']['post_status'] = 'publish';
+        }
+        expect_failure(fn () => $service->resume('de-resume-' . $drift));
+        remove_tree($root);
+    }
+};
+$tests['Final German exact resume rejects missing duplicate and extra records'] = function (): void {
+    foreach (['missing', 'duplicate', 'extra'] as $drift) {
+        $payload = final_three_fixture('de');
+        $repo = new Mock_Import_Repository($payload);
+        $root = temporary_root('de-resume-set-' . $drift);
+        [$service] = service($repo, $root);
+        $result = $service->apply(
+            $payload,
+            'de',
+            'remaining-final',
+            'draft',
+            'de-resume-set-' . $drift,
+            'de-resume-set-' . $drift,
+            false
+        );
+        $id = $result['operations'][0]['localized_id'];
+        if ($drift === 'missing') {
+            unset($repo->localized[$id]);
+        } elseif ($drift === 'duplicate') {
+            $duplicate = $repo->localized[$id];
+            $duplicate['id'] = 9000;
+            $repo->localized[9000] = $duplicate;
+        } else {
+            $extra = $repo->localized[$id];
+            $extra['id'] = 9001;
+            $extra['slug'] = 'unexpected-extra-record';
+            $extra['core']['post_name'] = 'unexpected-extra-record';
+            $repo->localized[9001] = $extra;
+        }
+        expect_failure(fn () => $service->resume('de-resume-set-' . $drift));
+        remove_tree($root);
+    }
+};
+$tests['Final German exact resume rejects transaction post ID drift'] = function (): void {
+    $payload = final_three_fixture('de');
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('de-resume-transaction-id');
+    [$service, $store] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'de',
+        'remaining-final',
+        'draft',
+        'de-resume-transaction-id',
+        'de-resume-transaction-id',
+        false
+    );
+    $operations = $store->read('de-resume-transaction-id', 'operations.json');
+    $operations['operations'][0]['localized_id'] = 999999;
+    $store->write('de-resume-transaction-id', 'operations.json', $operations);
+    expect_failure(fn () => $service->resume('de-resume-transaction-id'));
+    remove_tree($root);
+};
+$tests['Final German resumed transaction verifies publishes and re-verifies'] = function (): void {
+    $payload = final_three_fixture('de');
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('de-resume-publish');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'de',
+        'remaining-final',
+        'draft',
+        'de-resume-publish',
+        'de-resume-publish',
+        false
+    );
+    $service->rollback('de-resume-publish', 'de-resume-publish');
+    $service->resume('de-resume-publish');
+    assert_true($service->verify('de-resume-publish')['records'] === 42);
+    assert_true(
+        $service->publish('de-resume-publish', 'de-resume-publish')['records'] === 42
+    );
+    assert_true($service->verify('de-resume-publish')['records'] === 42);
+    assert_true(count(array_filter(
+        $repo->localized,
+        fn ($record) => $record['status'] === 'publish'
+    )) === 42);
+    remove_tree($root);
 };
 $tests['CLI wires owner-waiver flag only into gated commands'] = function () use ($plugin_root): void {
     $command = (string) file_get_contents(

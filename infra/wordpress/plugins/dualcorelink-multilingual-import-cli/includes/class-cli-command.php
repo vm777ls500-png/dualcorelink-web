@@ -92,6 +92,19 @@ final class DualCoreLink_Multilingual_Import_CLI_Command
     }
 
     /**
+     * Validate that an existing draft batch exactly matches its original run.
+     */
+    public function resume(array $args, array $assoc_args): void
+    {
+        try {
+            $result = $this->service()->resume($this->value($assoc_args, 'run-id'));
+            $this->output($result, $assoc_args);
+        } catch (Throwable $throwable) {
+            $this->fail($throwable);
+        }
+    }
+
+    /**
      * Re-read and verify a completed draft run.
      */
     public function verify(array $args, array $assoc_args): void

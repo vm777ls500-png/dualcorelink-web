@@ -13,6 +13,8 @@ export const arFinalApprovedReviewer = "Allan";
 export const arFinalApprovedReviewDate = "2026-08-11";
 export const viFinalApprovedReviewer = "Allan";
 export const viFinalApprovedReviewDate = "2026-08-11";
+export const finalThreeApprovedReviewer = "Allan";
+export const finalThreeApprovedReviewDate = "2026-08-12";
 export const translationSchemaVersion = 1;
 export const ownerWaiverSchemaVersion = 1;
 export const ownerWaiverReason =
@@ -37,7 +39,7 @@ export const exitCodes = {
 } as const;
 
 export type ContentType = "product" | "solution";
-export type SupportedImportLocale = "zh" | "ar" | "vi";
+export type SupportedImportLocale = "zh" | "ar" | "vi" | "de" | "es" | "fa";
 
 export type StructuredContent = {
   eyebrow: string;
@@ -265,6 +267,7 @@ const arFinalExpected = new Map<
 ]);
 
 const viFinalExpected = arFinalExpected;
+const finalThreeExpected = arFinalExpected;
 
 const zhP1Expected = new Map<number, { postType: ContentType; slug: string }>([
   [219, { postType: "product", slug: "hotel-smart-room-rcu-host-3" }],
@@ -401,6 +404,21 @@ function batchPolicy(
       allowOwnerWaiver: false,
       reviewer: viFinalApprovedReviewer,
       reviewDate: viFinalApprovedReviewDate,
+    };
+  }
+  if (
+    (locale === "de" || locale === "es" || locale === "fa") &&
+    batch === "remaining-final" &&
+    !allowOwnerWaiver
+  ) {
+    return {
+      locale,
+      batch,
+      expected: finalThreeExpected,
+      count: 42,
+      allowOwnerWaiver: false,
+      reviewer: finalThreeApprovedReviewer,
+      reviewDate: finalThreeApprovedReviewDate,
     };
   }
   return undefined;

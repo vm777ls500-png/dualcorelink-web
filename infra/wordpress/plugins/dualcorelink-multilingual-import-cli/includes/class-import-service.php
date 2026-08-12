@@ -218,11 +218,56 @@ final class DualCoreLink_Multilingual_Import_Service
         return $diff;
     }
 
+    private static function expected_existing_records(
+        array $operations,
+        string $locale,
+        string $status
+    ): array {
+        $expected = [];
+        foreach ($operations as $operation) {
+            $source_id = (int) ($operation['source_id'] ?? 0);
+            if ($source_id <= 0 || isset($expected[$source_id])) {
+                throw new RuntimeException('Run operations contain an invalid or duplicate source ID.');
+            }
+            $expected[$source_id] = [
+                'localized_id' => (int) ($operation['localized_id'] ?? 0),
+                'locale' => $locale,
+                'post_type' => (string) ($operation['post_type'] ?? ''),
+                'slug' => (string) ($operation['slug'] ?? ''),
+                'status' => $status,
+            ];
+        }
+        return $expected;
+    }
+
+    private static function exact_existing_record(
+        array $collision,
+        array $record,
+        array $expected,
+        string $locale,
+        string $batch
+    ): bool {
+        $source_id = (int) $record['sourceEnglishContentId'];
+        return (int) ($collision['id'] ?? 0) === $expected['localized_id'] &&
+            ($collision['post_type'] ?? '') === $expected['post_type'] &&
+            ($collision['post_type'] ?? '') === $record['contentType'] &&
+            ($collision['slug'] ?? '') === $expected['slug'] &&
+            ($collision['slug'] ?? '') === $record['localizedSlug'] &&
+            ($collision['status'] ?? '') === $expected['status'] &&
+            ($collision['core']['post_status'] ?? '') === $expected['status'] &&
+            (int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) === $source_id &&
+            ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? '') === $locale &&
+            ($collision['meta'][DualCoreLink_Import_Config::META_BATCH] ?? '') === $batch &&
+            ($collision['meta'][DualCoreLink_Import_Config::META_GROUP] ?? '') ===
+                "shb2b-{$record['contentType']}-{$source_id}";
+    }
+
     public function preflight(
         array $payload,
         string $locale,
         string $batch,
-        bool $allow_owner_waiver = false
+        bool $allow_owner_waiver = false,
+        array $expected_existing = []
     ): array
     {
         $errors = [];
@@ -242,6 +287,7 @@ final class DualCoreLink_Multilingual_Import_Service
         }
         $ids = [];
         $slugs = [];
+        $exact_matches = [];
         foreach ($payload as $record) {
             if (!is_array($record)) {
                 $errors[] = 'payload record must be an object';
@@ -381,14 +427,27 @@ final class DualCoreLink_Multilingual_Import_Service
                 if (isset($collision['language']) && (int) $collision['id'] === $id) {
                     continue;
                 }
-                if ((int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) !== $id ||
-                    !in_array(
+                $expected = $expected_existing[$id] ?? null;
+                if ($expected) {
+                    if (self::exact_existing_record(
+                        $collision,
+                        $record,
+                        $expected,
+                        $locale,
+                        $batch
+                    )) {
+                        $exact_matches[$id] = ($exact_matches[$id] ?? 0) + 1;
+                        continue;
+                    }
+                } elseif ((int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) === $id &&
+                    in_array(
                         ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? ''),
                         ['zh', 'ar', 'vi'],
                         true
                     )) {
-                    $errors[] = "localized slug conflict: {$slug}";
+                    continue;
                 }
+                $errors[] = "localized slug conflict: {$slug}";
             }
         }
         if (count(array_unique($ids)) !== count($ids)) {
@@ -403,6 +462,16 @@ final class DualCoreLink_Multilingual_Import_Service
         sort($expected_ids, SORT_NUMERIC);
         if ($actual_ids !== $expected_ids) {
             $errors[] = 'source ID whitelist mismatch';
+        }
+        if ($expected_existing) {
+            if (count($expected_existing) !== count($payload)) {
+                $errors[] = 'transaction record count mismatch';
+            }
+            foreach ($ids as $id) {
+                if (($exact_matches[$id] ?? 0) !== 1) {
+                    $errors[] = "exact transaction record mismatch: {$id}";
+                }
+            }
         }
         if ($errors) {
             throw new DualCoreLink_Import_Exception(
@@ -436,6 +505,54 @@ final class DualCoreLink_Multilingual_Import_Service
             'source_hashes' => $source_hashes,
             'writes' => 0,
         ];
+    }
+
+    public function resume(string $run_id): array
+    {
+        try {
+            $request = $this->store->read($run_id, 'request.json');
+            $operations_log = $this->store->read($run_id, 'operations.json');
+            if (($operations_log['status'] ?? '') !== 'completed') {
+                throw new RuntimeException('Apply operations are incomplete.');
+            }
+            $operations = $operations_log['operations'] ?? [];
+            $locale = (string) ($request['locale'] ?? '');
+            $batch = (string) ($request['batch'] ?? '');
+            $expected = self::expected_existing_records($operations, $locale, 'draft');
+            $checked = $this->preflight(
+                $request['payload'] ?? [],
+                $locale,
+                $batch,
+                ($request['allow_owner_waiver'] ?? false) === true,
+                $expected
+            );
+            $actual_ids = array_map(
+                static fn ($record) => (int) $record['id'],
+                $this->repository->list_localized($locale, $batch)
+            );
+            $expected_ids = array_column($expected, 'localized_id');
+            sort($actual_ids, SORT_NUMERIC);
+            sort($expected_ids, SORT_NUMERIC);
+            if ($actual_ids !== $expected_ids) {
+                throw new RuntimeException('Localized batch does not match the original transaction.');
+            }
+            return [
+                'status' => 'passed',
+                'run_id' => $run_id,
+                'records' => $checked['records'],
+                'existing_expected' => count($expected),
+                'new' => 0,
+                'conflicts' => 0,
+                'writes' => 0,
+            ];
+        } catch (DualCoreLink_Import_Exception $exception) {
+            throw $exception;
+        } catch (Throwable $throwable) {
+            throw new DualCoreLink_Import_Exception(
+                'Resume failed: ' . $throwable->getMessage(),
+                DualCoreLink_Import_Config::EXIT_VERIFY
+            );
+        }
     }
 
     public function apply(
@@ -612,11 +729,20 @@ final class DualCoreLink_Multilingual_Import_Service
                 throw new RuntimeException('Apply operations are incomplete.');
             }
             $payload = $request['payload'] ?? [];
+            $expected_status = $this->store->has($run_id, 'publish.json')
+                ? 'publish'
+                : 'draft';
+            $expected_existing = self::expected_existing_records(
+                $operations_log['operations'] ?? [],
+                (string) ($request['locale'] ?? ''),
+                $expected_status
+            );
             $checked = $this->preflight(
                 $payload,
                 (string) ($request['locale'] ?? ''),
                 (string) ($request['batch'] ?? ''),
-                ($request['allow_owner_waiver'] ?? false) === true
+                ($request['allow_owner_waiver'] ?? false) === true,
+                $expected_existing
             );
             if (($checksums['payload_sha256'] ?? '') !== $checked['payload_hash']) {
                 throw new RuntimeException('Payload hash changed.');
@@ -636,6 +762,10 @@ final class DualCoreLink_Multilingual_Import_Service
                 $mapped = $mapped_by_source[(string) $operation['source_id']] ?? null;
                 if (!$actual || !$mapped) {
                     throw new RuntimeException('Localized record is missing.');
+                }
+                if ($expected_status === 'publish') {
+                    $mapped['status'] = 'publish';
+                    $mapped['core']['post_status'] = 'publish';
                 }
                 [$comparable_actual, $comparable_mapped] =
                     self::normalize_verification_numeric_meta(

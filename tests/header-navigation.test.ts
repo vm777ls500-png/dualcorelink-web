@@ -101,7 +101,7 @@ test("language availability comes from the release batch", () => {
     "products/rcu-controller-cabinet",
   );
 
-  assert.deepEqual(released.map((item) => item.locale), ["en", "zh", "ar", "vi"]);
+  assert.deepEqual(released.map((item) => item.locale), ["en", "zh", "ar", "vi", "de", "es", "fa"]);
   assert.equal(released[1]?.href, "/zh/products/rcu-controller-cabinet/");
   assert.equal(released[2]?.href, "/ar/products/rcu-controller-cabinet/");
   assert.equal(released[3]?.href, "/vi/products/rcu-controller-cabinet/");

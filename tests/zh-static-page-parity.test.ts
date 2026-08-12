@@ -103,7 +103,7 @@ test("Chinese FAQ supplies the complete 30-question purchasing set and schema", 
   assert.match(routeSources.faqs, /createBreadcrumbSchema/);
   assert.match(
     routeSources.faqs,
-    /href=\{isVietnamese \? "\/vi\/resources\/" : "\/en\/downloads\/"\}/,
+    /isVietnamese \|\| isFinalReviewLocale\(locale\)[\s\S]*?`\/\$\{locale\}\/resources\/`[\s\S]*?: "\/en\/downloads\/"/,
   );
 
   const serialized = JSON.stringify(chineseStaticFaqItems);
@@ -122,7 +122,7 @@ test("Chinese FAQ supplies the complete 30-question purchasing set and schema", 
   }
 });
 
-test("released Chinese, Arabic, and Vietnamese static pages use specialized composition", () => {
+test("all released localized static pages use specialized composition", () => {
   for (const route of [routeSources.about, routeSources.contact, routeSources.faqs]) {
     assert.match(route, /supportsSpecializedLocalizedComposition\(locale\)/);
   }
@@ -152,7 +152,7 @@ test("released Chinese, Arabic, and Vietnamese static pages use specialized comp
           page.pageType === "static" &&
           ["about", "contact", "faqs"].includes(page.slug),
       ),
-      false,
+      true,
       locale,
     );
   }

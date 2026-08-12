@@ -152,12 +152,12 @@ test("applying P1 preserves the original P0 reviewer history", async () => {
   }
 });
 
-test("the final release approves remaining Chinese pages while other locales remain pending", () => {
+test("the final releases approve Chinese and the remaining localized pages", () => {
   const p2 = multilingualPublicationManifest.filter(
     (entry) => entry.locale === "zh" && entry.priority === "P2",
   );
   const arabic = multilingualPublicationManifest.filter((entry) => entry.locale === "ar");
-  const pendingLocales = multilingualPublicationManifest.filter((entry) =>
+  const finalThree = multilingualPublicationManifest.filter((entry) =>
     ["de", "es", "fa"].includes(entry.locale),
   );
   const remainingChinese = multilingualPublicationManifest.filter(
@@ -172,12 +172,12 @@ test("the final release approves remaining Chinese pages while other locales rem
     ),
     true,
   );
-  assert.equal(pendingLocales.length, 207);
+  assert.equal(finalThree.length, 207);
   assert.ok(
-    pendingLocales.every(
+    finalThree.every(
       (entry) =>
-        entry.nativeReviewStatus === "pending" &&
-        entry.productionReleaseReady === false,
+        entry.nativeReviewStatus === "approved" &&
+        entry.productionReleaseReady === true,
     ),
   );
 });

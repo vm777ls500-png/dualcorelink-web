@@ -59,7 +59,7 @@ test("static export cleanup removes only collection sentinels", async () => {
   }
 });
 
-test("static export keeps approved Chinese and Arabic pages and blocks other locales", async () => {
+test("static export keeps released localized pages and blocks unapproved paths", async () => {
   const temporaryRoot = await mkdtemp(path.join(os.tmpdir(), "dcl-m5b-clean-"));
   const approvedChineseAbout = path.join(temporaryRoot, "zh", "about");
   const approvedChinese = path.join(
@@ -69,7 +69,7 @@ test("static export keeps approved Chinese and Arabic pages and blocks other loc
     "smart-four-key-scene-control-panel",
   );
   const approvedArabic = path.join(temporaryRoot, "ar", "about");
-  const blockedGerman = path.join(temporaryRoot, "de", "about");
+  const approvedGerman = path.join(temporaryRoot, "de", "about");
   const blockedChinese = path.join(
     temporaryRoot,
     "zh",
@@ -82,7 +82,7 @@ test("static export keeps approved Chinese and Arabic pages and blocks other loc
       approvedChineseAbout,
       approvedChinese,
       approvedArabic,
-      blockedGerman,
+      approvedGerman,
       blockedChinese,
     ]) {
       await mkdir(directory, { recursive: true });
@@ -121,8 +121,14 @@ test("static export keeps approved Chinese and Arabic pages and blocks other loc
       await readFile(path.join(approvedArabic, "index.txt"), "utf8"),
       "rsc payload",
     );
-    await assert.rejects(readFile(path.join(blockedGerman, "index.html")));
-    await assert.rejects(readFile(path.join(blockedGerman, "index.txt")));
+    assert.match(
+      await readFile(path.join(approvedGerman, "index.html"), "utf8"),
+      /<html lang="de" dir="ltr"/,
+    );
+    assert.equal(
+      await readFile(path.join(approvedGerman, "index.txt"), "utf8"),
+      "rsc payload",
+    );
     await assert.rejects(readFile(path.join(blockedChinese, "index.html")));
     await assert.rejects(readFile(path.join(blockedChinese, "index.txt")));
     await assert.rejects(readFile(path.join(temporaryRoot, "ar.html")));
@@ -153,7 +159,7 @@ test("static export cleanup CLI reports real failures with a nonzero exit", asyn
   }
 });
 
-test("AWS export baselines include all approved Chinese, Arabic, and Vietnamese pages", async () => {
+test("AWS export baselines include all approved localized pages", async () => {
   const workflow = await readFile(
     path.join(projectRoot, ".github", "workflows", "aws-production-deploy.yml"),
     "utf8",
@@ -164,12 +170,12 @@ test("AWS export baselines include all approved Chinese, Arabic, and Vietnamese 
   );
 
   assert.equal(resources.length, 15);
-  assert.match(workflow, /Generating static pages\.\*342\/342/);
+  assert.match(workflow, /Generating static pages\.\*560\/560/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*156\/156/);
   assert.doesNotMatch(workflow, /Generating static pages\.\*155\/155/);
   assert.match(
     workflow,
-    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Enforce multilingual production release gates[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p0[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p1[\s\S]*?npm run multilingual:release-check -- --locale=ar --batch=remaining-final[\s\S]*?npm run multilingual:release-check -- --locale=vi --batch=remaining-final[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
+    /- name: Validate data[\s\S]*?- name: Audit product media\s+run: npm run media:audit[\s\S]*?- name: Enforce multilingual production release gates[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p0[\s\S]*?npm run multilingual:release-check -- --locale=zh --batch=p1[\s\S]*?npm run multilingual:release-check -- --locale=ar --batch=remaining-final[\s\S]*?npm run multilingual:release-check -- --locale=vi --batch=remaining-final[\s\S]*?npm run multilingual:release-check -- --locale=de --batch=remaining-final[\s\S]*?npm run multilingual:release-check -- --locale=es --batch=remaining-final[\s\S]*?npm run multilingual:release-check -- --locale=fa --batch=remaining-final[\s\S]*?- name: Build static export[\s\S]*?- name: Deploy atomic release/,
   );
   assert.match(
     workflow,
@@ -181,13 +187,13 @@ test("AWS export baselines include all approved Chinese, Arabic, and Vietnamese 
   assert.ok(mediaAuditStep);
   assert.doesNotMatch(mediaAuditStep, /continue-on-error|\|\| true/);
   assert.match(deployScript, /EXPECTED_RESOURCES:-15/);
-  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-283/);
+  assert.match(deployScript, /EXPECTED_SITEMAP_URLS:-490/);
   assert.match(deployScript, /EXPECTED_AR_PAGES:-69/);
   assert.match(deployScript, /EXPECTED_ZH_PAGES:-69/);
-  assert.match(deployScript, /EXPECTED_DE_PAGES:-0/);
-  assert.match(deployScript, /EXPECTED_ES_PAGES:-0/);
+  assert.match(deployScript, /EXPECTED_DE_PAGES:-69/);
+  assert.match(deployScript, /EXPECTED_ES_PAGES:-69/);
   assert.match(deployScript, /EXPECTED_VI_PAGES:-69/);
-  assert.match(deployScript, /EXPECTED_FA_PAGES:-0/);
+  assert.match(deployScript, /EXPECTED_FA_PAGES:-69/);
   assert.match(deployScript, /EXPECTED_ARTICLES:-15/);
   assert.match(deployScript, /EXPECTED_BREADCRUMBS:-15/);
   assert.match(deployScript, /forbidden environment reference found/);

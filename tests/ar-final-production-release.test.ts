@@ -72,14 +72,14 @@ test("Arabic hreflang, switcher, and pending-locale boundaries are exact", () =>
     assert.equal(hreflang["x-default"], hreflang.en);
     assert.deepEqual(
       buildHeaderLanguageOptions("en", contentPath).map((option) => option.locale),
-      ["en", "zh", "ar", "vi"],
+      ["en", "zh", "ar", "vi", "de", "es", "fa"],
     );
   }
-  const pending = multilingualPublicationManifest.filter(
+  const finalThree = multilingualPublicationManifest.filter(
     (entry) => ["de", "es", "fa"].includes(entry.locale),
   );
-  assert.equal(pending.length, 207);
-  assert.equal(pending.filter((entry) => entry.productionReleaseReady).length, 0);
+  assert.equal(finalThree.length, 207);
+  assert.equal(finalThree.filter((entry) => entry.productionReleaseReady).length, 207);
   assert.equal(/\/ar\/[^"\s]*\?/.test(JSON.stringify(arabicPages)), false);
 });
 
@@ -88,14 +88,14 @@ test("production Nginx and workflow expose only the exact Arabic release", () =>
   const workflow = readFileSync(".github/workflows/aws-production-deploy.yml", "utf8");
   const deploy = readFileSync("deploy/scripts/deploy-static.sh", "utf8");
 
-  assert.match(nginx, /\(\?<reviewed_locale>zh\|ar\|vi\)/);
-  assert.match(nginx, /\(\?<reviewed_rsc_locale>zh\|ar\|vi\)/);
+  assert.match(nginx, /\(\?<reviewed_locale>zh\|ar\|vi\|de\|es\|fa\)/);
+  assert.match(nginx, /\(\?<reviewed_rsc_locale>zh\|ar\|vi\|de\|es\|fa\)/);
   assert.match(nginx, /try_files \/\$reviewed_locale\/\$reviewed_path\/index\.html =404/);
   assert.match(nginx, /try_files \/\$reviewed_rsc_locale\/\$reviewed_rsc_path\/index\.txt =404/);
   assert.doesNotMatch(nginx, /location\s+(?:\^~\s+)?\/ar\//);
   assert.match(workflow, /multilingual:release-check -- --locale=ar --batch=remaining-final/);
-  assert.match(workflow, /Generating static pages\.\*342\/342/);
-  assert.match(deploy, /EXPECTED_SITEMAP_URLS:-283/);
+  assert.match(workflow, /Generating static pages\.\*560\/560/);
+  assert.match(deploy, /EXPECTED_SITEMAP_URLS:-490/);
   assert.match(deploy, /EXPECTED_AR_PAGES:-69/);
   assert.match(deploy, /EXPECTED_VI_PAGES:-69/);
 });

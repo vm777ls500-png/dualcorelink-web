@@ -57,7 +57,7 @@ const expectedDistribution = {
   static: 3,
 };
 
-test("DE, ES, and FA inventories are exactly 69 each and are approved without release readiness", () => {
+test("DE, ES, and FA inventories are exactly 69 each and production ready", () => {
   assert.deepEqual(getReviewPreviewLocales("de,es,fa"), locales);
   let total = 0;
   for (const locale of locales) {
@@ -88,9 +88,9 @@ test("DE, ES, and FA inventories are exactly 69 each and are approved without re
     assert.equal(entries.filter((entry) => entry.nativeReviewStatus === "approved").length, 69, locale);
     assert.equal(entries.every((entry) => entry.nativeReviewer === "Allan"), true, locale);
     assert.equal(entries.every((entry) => entry.nativeReviewDate === "2026-08-12"), true, locale);
-    assert.equal(entries.filter((entry) => entry.productionReleaseReady).length, 0, locale);
-    assert.equal(getStaticExportEligibleEntries(entries).length, 0, locale);
-    assert.equal(getSitemapEligibleEntries(entries).length, 0, locale);
+    assert.equal(entries.filter((entry) => entry.productionReleaseReady).length, 69, locale);
+    assert.equal(getStaticExportEligibleEntries(entries).length, 69, locale);
+    assert.equal(getSitemapEligibleEntries(entries).length, 69, locale);
   }
   assert.equal(total, 207);
 });

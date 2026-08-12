@@ -542,7 +542,7 @@ export function auditMultilingualFoundation(
   }
   for (const marker of [
     "(?:ar|zh|de|es|vi|fa)",
-    "Native-reviewed multilingual release batches: all 69 Chinese, 69 Arabic, and 69 Vietnamese content URLs.",
+    "Native-reviewed multilingual release batches: 69 URLs for each released locale.",
     "hotel-smart-room-rcu-host-1",
     "hotel-smart-room-rcu-host-3",
     "smart-hotel-automation-solution",
@@ -558,7 +558,7 @@ export function auditMultilingualFoundation(
     .map((line) => line.trim())
     .find(
       (line) =>
-        line.startsWith("location ~ ^/(?<reviewed_locale>zh|ar|vi)/") &&
+        line.startsWith("location ~ ^/(?<reviewed_locale>zh|ar|vi|de|es|fa)/") &&
         line.includes("?<reviewed_path>") &&
         line.includes("hotel-smart-room-rcu-host-1") &&
         line.includes("smart-hotel-automation-solution") &&

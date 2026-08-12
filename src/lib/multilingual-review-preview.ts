@@ -41,13 +41,17 @@ export function supportsSpecializedLocalizedComposition(
     locale === "zh" ||
     locale === "ar" ||
     (locale === "vi" && isReleasedLocalizedPath("vi", "about")) ||
+    (["de", "es", "fa"] as const).some(
+      (releasedLocale) =>
+        locale === releasedLocale && isReleasedLocalizedPath(releasedLocale, "about"),
+    ) ||
     isReviewPreviewLocale(locale)
   );
 }
 
 export function getLocalizedCompositionHomePath(locale: Locale): string {
   return isReviewPreviewLocale(locale) ||
-    (locale === "vi" && isReleasedLocalizedPath("vi", "about"))
+    (locale !== "en" && isReleasedLocalizedPath(locale, "about"))
     ? `/${locale}/about/`
     : `/${locale}/`;
 }

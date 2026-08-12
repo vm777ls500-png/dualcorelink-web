@@ -71,15 +71,15 @@ test("Vietnamese media, FAQ, links, and publication metadata stay complete", () 
     assert.equal(hreflang["x-default"], hreflang.en);
     assert.deepEqual(
       buildHeaderLanguageOptions("en", contentPath).map((option) => option.locale),
-      ["en", "zh", "ar", "vi"],
+      ["en", "zh", "ar", "vi", "de", "es", "fa"],
     );
   }
 
-  const pending = multilingualPublicationManifest.filter(
+  const finalThree = multilingualPublicationManifest.filter(
     (entry) => ["de", "es", "fa"].includes(entry.locale),
   );
-  assert.equal(pending.length, 207);
-  assert.equal(pending.filter((entry) => entry.productionReleaseReady).length, 0);
+  assert.equal(finalThree.length, 207);
+  assert.equal(finalThree.filter((entry) => entry.productionReleaseReady).length, 207);
 });
 
 test("Vietnamese sitemap and production routing are exact", () => {
@@ -91,14 +91,14 @@ test("Vietnamese sitemap and production routing are exact", () => {
   const workflow = readFileSync(".github/workflows/aws-production-deploy.yml", "utf8");
   const deploy = readFileSync("deploy/scripts/deploy-static.sh", "utf8");
 
-  assert.equal(76 + urls.length, 283);
+  assert.equal(76 + urls.length, 490);
   assert.equal(urls.filter((url) => /\/vi\//.test(url)).length, 69);
-  assert.equal(urls.some((url) => /\/(de|es|fa)\//.test(url)), false);
-  assert.match(nginx, /\(\?<reviewed_locale>zh\|ar\|vi\)/);
-  assert.match(nginx, /\(\?<reviewed_rsc_locale>zh\|ar\|vi\)/);
+  assert.equal(urls.filter((url) => /\/(de|es|fa)\//.test(url)).length, 207);
+  assert.match(nginx, /\(\?<reviewed_locale>zh\|ar\|vi\|de\|es\|fa\)/);
+  assert.match(nginx, /\(\?<reviewed_rsc_locale>zh\|ar\|vi\|de\|es\|fa\)/);
   assert.doesNotMatch(nginx, /location\s+(?:\^~\s+)?\/vi\//);
   assert.match(workflow, /multilingual:release-check -- --locale=vi --batch=remaining-final/);
-  assert.match(workflow, /Generating static pages\.\*342\/342/);
-  assert.match(deploy, /EXPECTED_SITEMAP_URLS:-283/);
+  assert.match(workflow, /Generating static pages\.\*560\/560/);
+  assert.match(deploy, /EXPECTED_SITEMAP_URLS:-490/);
   assert.match(deploy, /EXPECTED_VI_PAGES:-69/);
 });

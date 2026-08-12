@@ -117,6 +117,7 @@ function isLocalizedNavigation(locale: Locale): boolean {
     locale === "zh" ||
     locale === "ar" ||
     isVietnameseNavigation(locale) ||
+    (isFinalReviewLocale(locale) && isReleasedLocalizedPath(locale, "about")) ||
     isReviewPreviewLocale(locale)
   );
 }
@@ -127,7 +128,12 @@ function releasedHref(locale: Locale, contentPath: string): string {
     if (locale === "zh") return "/zh/about/";
     if (locale === "ar") return "/ar/about/";
     if (isVietnameseNavigation(locale)) return "/vi/about/";
-    if (isReviewPreviewLocale(locale)) return localizedPath(locale, "about");
+    if (
+      isReviewPreviewLocale(locale) ||
+      (isFinalReviewLocale(locale) && isReleasedLocalizedPath(locale, "about"))
+    ) {
+      return localizedPath(locale, "about");
+    }
     return "/en/";
   }
   if (locale === "ar") return localizedPath("ar", normalized);
@@ -141,7 +147,9 @@ export function buildHeaderPrimaryNavigation(
   const chinese = locale === "zh";
   const arabic = locale === "ar";
   const vietnamese = isVietnameseNavigation(locale);
-  const finalReview = isFinalReviewLocale(locale) && isReviewPreviewLocale(locale);
+  const finalReview =
+    isFinalReviewLocale(locale) &&
+    (isReviewPreviewLocale(locale) || isReleasedLocalizedPath(locale, "about"));
   const items = finalReview
     ? [
         ["home", getSpecializedLabel(locale, "Home"), "about"],
@@ -203,7 +211,9 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
   const chinese = locale === "zh";
   const arabic = locale === "ar";
   const vietnamese = isVietnameseNavigation(locale);
-  const finalReview = isFinalReviewLocale(locale) && isReviewPreviewLocale(locale);
+  const finalReview =
+    isFinalReviewLocale(locale) &&
+    (isReviewPreviewLocale(locale) || isReleasedLocalizedPath(locale, "about"));
   const localizedNavigation = isLocalizedNavigation(locale);
   const targetLocale: Locale = chinese
     ? "zh"

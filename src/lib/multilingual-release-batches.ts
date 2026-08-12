@@ -95,6 +95,15 @@ export const viReviewedReleaseUrls = zhReviewedReleaseUrls.map((url) =>
   url.replace("https://dualcorelink.com/zh/", "https://dualcorelink.com/vi/"),
 );
 
+const finalThreeReviewedReleaseUrls = Object.fromEntries(
+  (["de", "es", "fa"] as const).map((locale) => [
+    locale,
+    zhReviewedReleaseUrls.map((url) =>
+      url.replace("https://dualcorelink.com/zh/", `https://dualcorelink.com/${locale}/`),
+    ),
+  ]),
+) as Record<"de" | "es" | "fa", string[]>;
+
 export type MultilingualReleaseBatch = {
   locale: MultilingualLocale;
   batch: string;
@@ -166,6 +175,17 @@ const releaseBatches: readonly MultilingualReleaseBatch[] = [
     cmsPayloadCount: 42,
     localizedUrls: viReviewedReleaseUrls,
   },
+  ...(["de", "es", "fa"] as const).map((locale) => ({
+    locale,
+    batch: "remaining-final",
+    priority: "mixed" as const,
+    priorityCounts: { P0: 18, P1: 32, P2: 19 },
+    reviewer: "Allan",
+    reviewDate: "2026-08-12",
+    decisionFile: `docs/reviews/multilingual/${locale}-full-decisions-20260812.md`,
+    cmsPayloadCount: 42,
+    localizedUrls: finalThreeReviewedReleaseUrls[locale],
+  })),
 ];
 
 function normalizeContentPath(pathname: string): string {

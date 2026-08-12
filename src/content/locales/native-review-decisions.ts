@@ -634,7 +634,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/contact/",
@@ -643,7 +643,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/faqs/",
@@ -652,7 +652,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/",
@@ -661,7 +661,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/86-type-ai-smart-control-display/",
@@ -670,7 +670,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/ai-large-smart-display/",
@@ -679,7 +679,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/ai-music-control-panel/",
@@ -688,7 +688,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/borui-red-matte-room-status-four-key-switch-panel/",
@@ -697,7 +697,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/borui-red-matte-triple-socket-panel/",
@@ -706,7 +706,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/borui-red-matte-usb-five-hole-socket/",
@@ -715,7 +715,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/brushed-aluminum-86-base-doorbell-panel/",
@@ -724,7 +724,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/brushed-aluminum-sos-alarm-panel/",
@@ -733,7 +733,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/brushed-aluminum-thermostat-control-panel/",
@@ -742,7 +742,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/brushed-aluminum-voice-telephone-information-panel/",
@@ -751,7 +751,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/embedded-human-presence-sensor/",
@@ -760,7 +760,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-ceiling-background-speaker/",
@@ -769,7 +769,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-delivery-robot-charging-dock/",
@@ -778,7 +778,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-delivery-robot/",
@@ -787,7 +787,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-guest-room-doorbell/",
@@ -796,7 +796,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-room-door-magnetic-sensor/",
@@ -805,7 +805,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-smart-delivery-cabinet/",
@@ -814,7 +814,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-smart-room-rcu-host-1/",
@@ -823,7 +823,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-smart-room-rcu-host-2/",
@@ -832,7 +832,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/hotel-smart-room-rcu-host-3/",
@@ -841,7 +841,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/infrared-repeater/",
@@ -850,7 +850,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/rcu-controller-cabinet/",
@@ -859,7 +859,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/rotary-knob-smart-control-display/",
@@ -868,7 +868,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-curtain-motor/",
@@ -877,7 +877,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-footlight-night-light-panel/",
@@ -886,7 +886,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-four-key-curtain-control-panel/",
@@ -895,7 +895,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-four-key-scene-control-panel/",
@@ -904,7 +904,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-key-card-energy-saver-panel/",
@@ -913,7 +913,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-series-dual-vertical-socket-panel/",
@@ -922,7 +922,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-single-key-switch-panel/",
@@ -931,7 +931,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-three-key-music-control-panel/",
@@ -940,7 +940,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-usb-five-hole-socket/",
@@ -949,7 +949,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/smart-voice-telephone-information-socket/",
@@ -958,7 +958,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/thermostat-hvac-control-panel/",
@@ -967,7 +967,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/vintage-gold-four-key-smart-switch-panel/",
@@ -976,7 +976,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/products/vintage-gold-key-card-energy-saver-panel/",
@@ -985,7 +985,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/regions/",
@@ -994,7 +994,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for region-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/regions/middle-east/",
@@ -1003,7 +1003,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/regions/saudi-arabia/",
@@ -1012,7 +1012,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/regions/southeast-asia/",
@@ -1021,7 +1021,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/regions/uae/",
@@ -1030,7 +1030,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/regions/vietnam/",
@@ -1039,7 +1039,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/",
@@ -1048,7 +1048,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-doorplate-room-display-buying-guide/",
@@ -1057,7 +1057,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-guest-room-automation-guide/",
@@ -1066,7 +1066,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-guest-room-control-interfaces-guide/",
@@ -1075,7 +1075,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-occupancy-sensor-selection-guide/",
@@ -1084,7 +1084,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-rcu-buying-guide/",
@@ -1093,7 +1093,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-rcu-wiring-system-architecture-guide/",
@@ -1102,7 +1102,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-renovation-smart-room-upgrade-guide/",
@@ -1111,7 +1111,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-room-control-system-cost-factors/",
@@ -1120,7 +1120,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/hotel-smart-switch-panel-guide/",
@@ -1129,7 +1129,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/knx-vs-rcu-hotel-room-control/",
@@ -1138,7 +1138,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/oem-odm-hotel-control-panel-development-process/",
@@ -1147,7 +1147,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/oem-odm-smart-panel-customization-guide/",
@@ -1156,7 +1156,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/smart-hotel-room-control-system-guide/",
@@ -1165,7 +1165,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/smart-panel-material-finish-selection-guide/",
@@ -1174,7 +1174,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/resources/what-is-hotel-rcu-room-control-system/",
@@ -1183,7 +1183,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/solutions/",
@@ -1192,7 +1192,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for solution-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/solutions/ai-smart-display-solution/",
@@ -1201,7 +1201,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/solutions/hotel-delivery-robot-solution/",
@@ -1210,7 +1210,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/solutions/hotel-guest-room-control-solution/",
@@ -1219,7 +1219,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/solutions/oem-odm-custom-panel-solution/",
@@ -1228,7 +1228,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/solutions/rcu-room-control-solution/",
@@ -1237,7 +1237,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/de/solutions/smart-hotel-automation-solution/",
@@ -1246,7 +1246,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human DE full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/about/",
@@ -1255,7 +1255,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/contact/",
@@ -1264,7 +1264,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/faqs/",
@@ -1273,7 +1273,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/",
@@ -1282,7 +1282,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/86-type-ai-smart-control-display/",
@@ -1291,7 +1291,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/ai-large-smart-display/",
@@ -1300,7 +1300,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/ai-music-control-panel/",
@@ -1309,7 +1309,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/borui-red-matte-room-status-four-key-switch-panel/",
@@ -1318,7 +1318,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/borui-red-matte-triple-socket-panel/",
@@ -1327,7 +1327,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/borui-red-matte-usb-five-hole-socket/",
@@ -1336,7 +1336,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/brushed-aluminum-86-base-doorbell-panel/",
@@ -1345,7 +1345,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/brushed-aluminum-sos-alarm-panel/",
@@ -1354,7 +1354,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/brushed-aluminum-thermostat-control-panel/",
@@ -1363,7 +1363,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/brushed-aluminum-voice-telephone-information-panel/",
@@ -1372,7 +1372,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/embedded-human-presence-sensor/",
@@ -1381,7 +1381,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-ceiling-background-speaker/",
@@ -1390,7 +1390,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-delivery-robot-charging-dock/",
@@ -1399,7 +1399,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-delivery-robot/",
@@ -1408,7 +1408,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-guest-room-doorbell/",
@@ -1417,7 +1417,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-room-door-magnetic-sensor/",
@@ -1426,7 +1426,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-smart-delivery-cabinet/",
@@ -1435,7 +1435,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-smart-room-rcu-host-1/",
@@ -1444,7 +1444,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-smart-room-rcu-host-2/",
@@ -1453,7 +1453,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/hotel-smart-room-rcu-host-3/",
@@ -1462,7 +1462,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/infrared-repeater/",
@@ -1471,7 +1471,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/rcu-controller-cabinet/",
@@ -1480,7 +1480,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/rotary-knob-smart-control-display/",
@@ -1489,7 +1489,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-curtain-motor/",
@@ -1498,7 +1498,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-footlight-night-light-panel/",
@@ -1507,7 +1507,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-four-key-curtain-control-panel/",
@@ -1516,7 +1516,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-four-key-scene-control-panel/",
@@ -1525,7 +1525,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-key-card-energy-saver-panel/",
@@ -1534,7 +1534,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-series-dual-vertical-socket-panel/",
@@ -1543,7 +1543,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-single-key-switch-panel/",
@@ -1552,7 +1552,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-three-key-music-control-panel/",
@@ -1561,7 +1561,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-usb-five-hole-socket/",
@@ -1570,7 +1570,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/smart-voice-telephone-information-socket/",
@@ -1579,7 +1579,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/thermostat-hvac-control-panel/",
@@ -1588,7 +1588,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/vintage-gold-four-key-smart-switch-panel/",
@@ -1597,7 +1597,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/products/vintage-gold-key-card-energy-saver-panel/",
@@ -1606,7 +1606,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/regions/",
@@ -1615,7 +1615,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for region-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/regions/middle-east/",
@@ -1624,7 +1624,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/regions/saudi-arabia/",
@@ -1633,7 +1633,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/regions/southeast-asia/",
@@ -1642,7 +1642,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/regions/uae/",
@@ -1651,7 +1651,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/regions/vietnam/",
@@ -1660,7 +1660,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/",
@@ -1669,7 +1669,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-doorplate-room-display-buying-guide/",
@@ -1678,7 +1678,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-guest-room-automation-guide/",
@@ -1687,7 +1687,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-guest-room-control-interfaces-guide/",
@@ -1696,7 +1696,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-occupancy-sensor-selection-guide/",
@@ -1705,7 +1705,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-rcu-buying-guide/",
@@ -1714,7 +1714,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-rcu-wiring-system-architecture-guide/",
@@ -1723,7 +1723,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-renovation-smart-room-upgrade-guide/",
@@ -1732,7 +1732,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-room-control-system-cost-factors/",
@@ -1741,7 +1741,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/hotel-smart-switch-panel-guide/",
@@ -1750,7 +1750,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/knx-vs-rcu-hotel-room-control/",
@@ -1759,7 +1759,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/oem-odm-hotel-control-panel-development-process/",
@@ -1768,7 +1768,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/oem-odm-smart-panel-customization-guide/",
@@ -1777,7 +1777,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/smart-hotel-room-control-system-guide/",
@@ -1786,7 +1786,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/smart-panel-material-finish-selection-guide/",
@@ -1795,7 +1795,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/resources/what-is-hotel-rcu-room-control-system/",
@@ -1804,7 +1804,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/solutions/",
@@ -1813,7 +1813,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for solution-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/solutions/ai-smart-display-solution/",
@@ -1822,7 +1822,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/solutions/hotel-delivery-robot-solution/",
@@ -1831,7 +1831,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/solutions/hotel-guest-room-control-solution/",
@@ -1840,7 +1840,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/solutions/oem-odm-custom-panel-solution/",
@@ -1849,7 +1849,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/solutions/rcu-room-control-solution/",
@@ -1858,7 +1858,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/es/solutions/smart-hotel-automation-solution/",
@@ -1867,7 +1867,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human ES full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/about/",
@@ -1876,7 +1876,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/contact/",
@@ -1885,7 +1885,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/faqs/",
@@ -1894,7 +1894,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for static",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/",
@@ -1903,7 +1903,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/86-type-ai-smart-control-display/",
@@ -1912,7 +1912,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/ai-large-smart-display/",
@@ -1921,7 +1921,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/ai-music-control-panel/",
@@ -1930,7 +1930,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/borui-red-matte-room-status-four-key-switch-panel/",
@@ -1939,7 +1939,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/borui-red-matte-triple-socket-panel/",
@@ -1948,7 +1948,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/borui-red-matte-usb-five-hole-socket/",
@@ -1957,7 +1957,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/brushed-aluminum-86-base-doorbell-panel/",
@@ -1966,7 +1966,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/brushed-aluminum-sos-alarm-panel/",
@@ -1975,7 +1975,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/brushed-aluminum-thermostat-control-panel/",
@@ -1984,7 +1984,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/brushed-aluminum-voice-telephone-information-panel/",
@@ -1993,7 +1993,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/embedded-human-presence-sensor/",
@@ -2002,7 +2002,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-ceiling-background-speaker/",
@@ -2011,7 +2011,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-delivery-robot-charging-dock/",
@@ -2020,7 +2020,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-delivery-robot/",
@@ -2029,7 +2029,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-guest-room-doorbell/",
@@ -2038,7 +2038,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-room-door-magnetic-sensor/",
@@ -2047,7 +2047,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-smart-delivery-cabinet/",
@@ -2056,7 +2056,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-smart-room-rcu-host-1/",
@@ -2065,7 +2065,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-smart-room-rcu-host-2/",
@@ -2074,7 +2074,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/hotel-smart-room-rcu-host-3/",
@@ -2083,7 +2083,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/infrared-repeater/",
@@ -2092,7 +2092,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/rcu-controller-cabinet/",
@@ -2101,7 +2101,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/rotary-knob-smart-control-display/",
@@ -2110,7 +2110,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-curtain-motor/",
@@ -2119,7 +2119,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-footlight-night-light-panel/",
@@ -2128,7 +2128,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-four-key-curtain-control-panel/",
@@ -2137,7 +2137,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-four-key-scene-control-panel/",
@@ -2146,7 +2146,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-key-card-energy-saver-panel/",
@@ -2155,7 +2155,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-series-dual-vertical-socket-panel/",
@@ -2164,7 +2164,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-single-key-switch-panel/",
@@ -2173,7 +2173,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-three-key-music-control-panel/",
@@ -2182,7 +2182,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-usb-five-hole-socket/",
@@ -2191,7 +2191,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/smart-voice-telephone-information-socket/",
@@ -2200,7 +2200,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/thermostat-hvac-control-panel/",
@@ -2209,7 +2209,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/vintage-gold-four-key-smart-switch-panel/",
@@ -2218,7 +2218,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/products/vintage-gold-key-card-energy-saver-panel/",
@@ -2227,7 +2227,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for product",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/regions/",
@@ -2236,7 +2236,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for region-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/regions/middle-east/",
@@ -2245,7 +2245,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/regions/saudi-arabia/",
@@ -2254,7 +2254,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/regions/southeast-asia/",
@@ -2263,7 +2263,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/regions/uae/",
@@ -2272,7 +2272,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/regions/vietnam/",
@@ -2281,7 +2281,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for region",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/",
@@ -2290,7 +2290,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-doorplate-room-display-buying-guide/",
@@ -2299,7 +2299,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-guest-room-automation-guide/",
@@ -2308,7 +2308,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-guest-room-control-interfaces-guide/",
@@ -2317,7 +2317,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-occupancy-sensor-selection-guide/",
@@ -2326,7 +2326,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-rcu-buying-guide/",
@@ -2335,7 +2335,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-rcu-wiring-system-architecture-guide/",
@@ -2344,7 +2344,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-renovation-smart-room-upgrade-guide/",
@@ -2353,7 +2353,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-room-control-system-cost-factors/",
@@ -2362,7 +2362,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/hotel-smart-switch-panel-guide/",
@@ -2371,7 +2371,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/knx-vs-rcu-hotel-room-control/",
@@ -2380,7 +2380,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/oem-odm-hotel-control-panel-development-process/",
@@ -2389,7 +2389,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/oem-odm-smart-panel-customization-guide/",
@@ -2398,7 +2398,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/smart-hotel-room-control-system-guide/",
@@ -2407,7 +2407,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/smart-panel-material-finish-selection-guide/",
@@ -2416,7 +2416,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/resources/what-is-hotel-rcu-room-control-system/",
@@ -2425,7 +2425,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for resource",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/solutions/",
@@ -2434,7 +2434,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for solution-listing",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/solutions/ai-smart-display-solution/",
@@ -2443,7 +2443,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/solutions/hotel-delivery-robot-solution/",
@@ -2452,7 +2452,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/solutions/hotel-guest-room-control-solution/",
@@ -2461,7 +2461,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/solutions/oem-odm-custom-panel-solution/",
@@ -2470,7 +2470,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/solutions/rcu-room-control-solution/",
@@ -2479,7 +2479,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/fa/solutions/smart-hotel-automation-solution/",
@@ -2488,7 +2488,7 @@ export const nativeReviewEvidenceOverrides: readonly NativeReviewEvidenceOverrid
     "nativeReviewer": "Allan",
     "nativeReviewDate": "2026-08-12",
     "nativeReviewNotes": "Human FA full-batch review approved for solution",
-    "productionReleaseReady": false
+    "productionReleaseReady": true
   },
   {
     "localizedUrl": "https://dualcorelink.com/vi/about/",

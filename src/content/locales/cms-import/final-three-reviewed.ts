@@ -19,7 +19,10 @@ export type FinalThreeReviewedCmsImportRecord = CmsTranslationRecord & {
 
 export const finalThreeCmsApprovedIdentities = arFinalCmsApprovedIdentities;
 
-const identityBySourceId = new Map(
+const identityBySourceId = new Map<
+  number,
+  (typeof finalThreeCmsApprovedIdentities)[number]
+>(
   finalThreeCmsApprovedIdentities.map((identity) => [identity.sourceId, identity]),
 );
 

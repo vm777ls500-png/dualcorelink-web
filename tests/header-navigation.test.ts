@@ -114,6 +114,32 @@ test("language availability comes from the release batch", () => {
   assert.equal(chinese[3]?.href, "/vi/products/rcu-controller-cabinet/");
 });
 
+test("the English homepage language menu links every released locale", () => {
+  const homepage = buildHeaderLanguageOptions("en", "");
+
+  assert.deepEqual(
+    homepage.map((item) => item.locale),
+    ["en", "zh", "ar", "vi", "de", "es", "fa"],
+  );
+  assert.equal(homepage.every((item) => item.available), true);
+  assert.deepEqual(
+    homepage.map((item) => item.href),
+    [
+      undefined,
+      "/zh/about/",
+      "/ar/about/",
+      "/vi/about/",
+      "/de/about/",
+      "/es/about/",
+      "/fa/about/",
+    ],
+  );
+  assert.equal(
+    homepage.every((item) => item.unavailableMessage === undefined),
+    true,
+  );
+});
+
 test("desktop and mobile controls expose the required interaction and a11y hooks", () => {
   for (const marker of [
     'aria-label="Primary"',

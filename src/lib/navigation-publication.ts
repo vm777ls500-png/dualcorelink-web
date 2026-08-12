@@ -343,15 +343,16 @@ export function buildHeaderLanguageOptions(
   contentPath: string,
 ): HeaderLanguageOption[] {
   const normalized = normalizedContentPath(contentPath);
-  const chineseAvailable = isReleasedLocalizedPath("zh", normalized);
-  const arabicAvailable = isReleasedLocalizedPath("ar", normalized);
+  const releasePath = normalized || "about";
+  const chineseAvailable = isReleasedLocalizedPath("zh", releasePath);
+  const arabicAvailable = isReleasedLocalizedPath("ar", releasePath);
   const vietnameseAvailable =
-    isReleasedLocalizedPath("vi", normalized) ||
-    (isReviewPreviewLocale("vi") && Boolean(getPublicationHreflang(normalized).vi));
+    isReleasedLocalizedPath("vi", releasePath) ||
+    (isReviewPreviewLocale("vi") && Boolean(getPublicationHreflang(releasePath).vi));
   const englishHref = localizedPath("en", normalized);
-  const chineseHref = localizedPath("zh", normalized);
-  const arabicHref = localizedPath("ar", normalized);
-  const vietnameseHref = localizedPath("vi", normalized);
+  const chineseHref = releasedHref("zh", normalized);
+  const arabicHref = releasedHref("ar", normalized);
+  const vietnameseHref = releasedHref("vi", normalized);
 
   const options: HeaderLanguageOption[] = [
     {
@@ -394,9 +395,9 @@ export function buildHeaderLanguageOptions(
   }
   for (const candidateLocale of ["de", "es", "fa"] as const) {
     const candidateAvailable =
-      isReleasedLocalizedPath(candidateLocale, normalized) ||
+      isReleasedLocalizedPath(candidateLocale, releasePath) ||
       (isReviewPreviewLocale(candidateLocale) &&
-        Boolean(getPublicationHreflang(normalized)[candidateLocale]));
+        Boolean(getPublicationHreflang(releasePath)[candidateLocale]));
     if (!candidateAvailable && locale !== candidateLocale) continue;
     options.push({
       locale: candidateLocale,
@@ -406,7 +407,7 @@ export function buildHeaderLanguageOptions(
       href:
         locale === candidateLocale || !candidateAvailable
           ? undefined
-          : localizedPath(candidateLocale, normalized),
+          : releasedHref(candidateLocale, normalized),
       unavailableMessage: candidateAvailable
         ? undefined
         : "This page is not available yet.",

@@ -1511,6 +1511,50 @@ $tests['Final German rolled-back transaction resumes exact 42 drafts without wri
     assert_true($repo->localized === $before);
     remove_tree($root);
 };
+$tests['Final German exact resume tolerates existing supported locale siblings'] = function (): void {
+    $payload = final_three_fixture('de');
+    $repo = new Mock_Import_Repository($payload);
+    $root = temporary_root('de-exact-resume-with-siblings');
+    [$service] = service($repo, $root);
+    $service->apply(
+        $payload,
+        'de',
+        'remaining-final',
+        'draft',
+        'de-exact-resume-with-siblings',
+        'de-exact-resume-with-siblings',
+        false
+    );
+    $service->rollback(
+        'de-exact-resume-with-siblings',
+        'de-exact-resume-with-siblings'
+    );
+    foreach ($payload as $index => $record) {
+        $source_id = (int) $record['sourceEnglishContentId'];
+        $id = 5000 + $index;
+        $repo->localized[$id] = [
+            'id' => $id,
+            'post_type' => $record['contentType'],
+            'slug' => $record['localizedSlug'],
+            'status' => 'publish',
+            'core' => ['post_status' => 'publish'],
+            'acf' => [],
+            'meta' => [
+                DualCoreLink_Import_Config::META_SOURCE_ID => $source_id,
+                DualCoreLink_Import_Config::META_LOCALE => 'zh',
+                DualCoreLink_Import_Config::META_BATCH => 'remaining-final',
+                DualCoreLink_Import_Config::META_GROUP =>
+                    "shb2b-{$record['contentType']}-{$source_id}",
+            ],
+        ];
+    }
+    $before = $repo->localized;
+    $result = $service->resume('de-exact-resume-with-siblings');
+    assert_true($result['existing_expected'] === 42);
+    assert_true($result['new'] === 0 && $result['conflicts'] === 0 && $result['writes'] === 0);
+    assert_true($repo->localized === $before);
+    remove_tree($root);
+};
 $tests['Final German create preflight still rejects existing drafts'] = function (): void {
     $payload = final_three_fixture('de');
     $repo = new Mock_Import_Repository($payload);

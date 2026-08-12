@@ -427,6 +427,18 @@ final class DualCoreLink_Multilingual_Import_Service
                 if (isset($collision['language']) && (int) $collision['id'] === $id) {
                     continue;
                 }
+                $is_existing_supported_locale =
+                    (int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) === $id &&
+                    (!$expected_existing ||
+                        ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? '') !== $locale) &&
+                    in_array(
+                        ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? ''),
+                        ['zh', 'ar', 'vi'],
+                        true
+                    );
+                if ($is_existing_supported_locale) {
+                    continue;
+                }
                 $expected = $expected_existing[$id] ?? null;
                 if ($expected) {
                     if (self::exact_existing_record(
@@ -439,13 +451,6 @@ final class DualCoreLink_Multilingual_Import_Service
                         $exact_matches[$id] = ($exact_matches[$id] ?? 0) + 1;
                         continue;
                     }
-                } elseif ((int) ($collision['meta'][DualCoreLink_Import_Config::META_SOURCE_ID] ?? 0) === $id &&
-                    in_array(
-                        ($collision['meta'][DualCoreLink_Import_Config::META_LOCALE] ?? ''),
-                        ['zh', 'ar', 'vi'],
-                        true
-                    )) {
-                    continue;
                 }
                 $errors[] = "localized slug conflict: {$slug}";
             }

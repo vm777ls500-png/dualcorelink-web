@@ -17,7 +17,7 @@ import {
   getHreflangEligibleEntries,
 } from "./multilingual-publication-control";
 import {
-  getReviewPreviewLocale,
+  getReviewPreviewLocales,
   type ReviewPreviewLocale,
 } from "./multilingual-review-preview";
 import type { Locale } from "@/config/i18n";
@@ -48,10 +48,10 @@ export type LocalizedPublicationPage = {
 const eligibleEntries = getHreflangEligibleEntries(
   multilingualPublicationManifest,
 );
-const reviewPreviewLocale = getReviewPreviewLocale();
-const reviewPreviewEntries = reviewPreviewLocale
+const reviewPreviewLocales = getReviewPreviewLocales();
+const reviewPreviewEntries = reviewPreviewLocales.length > 0
   ? getCandidatePublicationEntries(multilingualPublicationManifest).filter(
-      (entry) => entry.locale === reviewPreviewLocale,
+      (entry) => reviewPreviewLocales.includes(entry.locale as ReviewPreviewLocale),
     )
   : [];
 const renderableEntries = [...eligibleEntries, ...reviewPreviewEntries].filter(

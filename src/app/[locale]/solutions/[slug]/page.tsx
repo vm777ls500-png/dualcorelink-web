@@ -39,6 +39,7 @@ import {
 } from "@/lib/multilingual-review-preview";
 import type { LocalizedPublicationPage } from "@/lib/localized-publication";
 import { localizeSolutionDetail } from "@/lib/localized-nonproduct";
+import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 
 type SolutionPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -109,7 +110,7 @@ function solutionLabel(locale: Locale, english: string, chinese: string, arabic:
   if (locale === "ar") return arabic;
   if (locale === "zh") return chinese;
   if (locale === "vi") return vietnameseSolutionLabels[english] ?? english;
-  return english;
+  return getSpecializedLabel(locale, english);
 }
 
 function cleanDisplayText(value?: string) {

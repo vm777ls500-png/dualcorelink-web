@@ -1,3 +1,5 @@
+import { isFinalReviewLocale, type FinalReviewLocale } from "@/content/locales/m4a-specialized-ui";
+
 export type StaticFaqItem = {
   question: string;
   answer: string;
@@ -661,9 +663,151 @@ export const vietnameseStaticFaqItems = vietnameseStaticFaqCategories.flatMap(
   (category) => category.items,
 );
 
+const finalReviewFaqCopy = {
+  de: {
+    titles: ["Unternehmen und Geschäft", "Produkte und Lösungen", "OEM/ODM-Anpassung", "Bestellung und Lieferung", "Technischer Support", "Dokumente und regionale Projekte"],
+    questions: ["Welche Art Unternehmen ist DualCoreLink?", "Sind Sie Hersteller oder Handelsunternehmen?", "Welche Märkte bedienen Sie?", "Wer sind Ihre typischen Kunden?", "Welche Produkte bieten Sie an?", "Bieten Sie eine vollständige Hotelzimmersteuerung?", "Sind die Produkte für Hotelprojekte geeignet?", "Unterstützen Sie die Produktauswahl?", "Unterstützen Sie OEM/ODM?", "Können Farbe, Logo und Tastenlayout angepasst werden?", "Können Produkte nach Anforderungen entwickelt werden?", "Bieten Sie Eigenmarken an?", "Wie erhalte ich ein Angebot?", "Welche MOQ gilt?", "Sind Muster verfügbar?", "Wie lang ist die typische Lieferzeit?", "Kann ich Zeichnungen, BOM oder Produktlisten senden?", "Liefern Sie in den Nahen Osten und nach Südostasien?", "Welche Protokoll- und Verdrahtungsangaben sind nötig?", "Bieten Sie Installations- und Verdrahtungsunterstützung?", "Unterstützen Sie die Inbetriebnahme?", "Unterstützen Sie RCU-Anforderungen?", "Welche Garantie gilt?", "Wie können Kunden Kontakt aufnehmen?", "Wo finde ich Produktkataloge?", "Bieten Sie Datenblätter, Zertifikatskopien und Schaltpläne?", "Sind Zertifikate öffentlich herunterladbar?", "Sind die Produkte für Projekte im Nahen Osten und Südostasien geeignet?", "Arbeiten Sie mit Distributoren, Auftragnehmern und Integratoren?", "Unterstützen Sie Hotel-BOM und Zimmerlisten?"],
+    answers: [
+      "DualCoreLink plant Produkte, Systemstrukturen und Lösungen für intelligente Hotels und Smart Homes und arbeitet für die Fertigung mit qualifizierten OEM-Partnern.",
+      "Wir sind kein reiner Händler. Unser Schwerpunkt liegt auf Lösungsplanung, Produktauswahl, Projektabstimmung und Integrationsunterstützung.",
+      "Unsere Schwerpunkte sind der Nahe Osten und Südostasien; auch weitere internationale B2B-Projekte werden nach Prüfung unterstützt.",
+      "Zu unseren Kunden gehören Hotelbetreiber, Auftragnehmer, Systemintegratoren, Distributoren, Ingenieurbüros und OEM/ODM-Partner.",
+      "Das Portfolio umfasst AI-Displays, RCU-Steuerungen, Bedienfelder, Sensoren, Vorhangsteuerungen, Steckdosen, Service-Panels und Lösungen für Hotelroboter.",
+      "Ja. Eine Lösung kann RCU, Panels, Sensoren, Beleuchtung, Vorhänge, HVAC und Zimmerstatus umfassen; der konkrete Umfang wird projektbezogen bestätigt.",
+      "Ja. Sie sind für Hotelzimmer und vergleichbare Automatisierungsprojekte vorgesehen, sofern Modell und Projektanforderungen zusammenpassen.",
+      "Ja. Senden Sie Raumtypen, Funktionen, Mengen und Zielmarkt; wir prüfen eine passende Kombination.",
+      "Ja. OEM/ODM ist für geeignete Produktserien und bestätigte Projektanforderungen möglich.",
+      "Ja. Farbe, Logo und Tastenlayout können je nach Serie, Werkzeug und Projektanforderung geprüft werden.",
+      "Ja. Produktkonzepte und Systemlösungen können anhand klarer Anforderungen und Anwendungsszenarien entwickelt werden.",
+      "Ja. Eigenmarken sind abhängig von Produkt, Menge und Anpassungsumfang möglich.",
+      "Fordern Sie per Formular, E-Mail oder WhatsApp ein Angebot an und nennen Sie Produktliste, Land, Menge, Spannung, Schnittstellen und Lieferziel.",
+      "Standardprodukte haben keine feste MOQ. Ein neues Werkzeug kann Kosten verursachen; reine Farbänderungen mit bestehendem Werkzeug verursachen keine Anpassungsgebühr.",
+      "Muster können vor Serienbestellungen geprüft werden. Verfügbarkeit, Kosten, Versand und Vorbereitungszeit hängen vom Produkt ab.",
+      "Die typische Lieferzeit beträgt 7–15 Tage und hängt von Produkt, Menge und Anpassungsumfang ab; sie ist keine pauschale Garantie.",
+      "Ja. Zeichnungen, BOM, Zimmerlisten und Produktlisten helfen bei der Auswahl; Dateien werden über E-Mail übermittelt.",
+      "Ja. Lieferungen in den Nahen Osten und nach Südostasien sowie weitere Ziele werden je Auftrag geprüft.",
+      "Bestätigen Sie Spannung, Frequenz, Verdrahtung, Funktionen, gewünschtes Protokoll, RCU/Gateway und nötige Hotelintegration.",
+      "Ja. Installationshinweise, Verdrahtungsreferenzen, Produktinformationen und technische Abstimmung sind projektbezogen verfügbar.",
+      "Ja. Kommunikations-, Auswahl-, Verdrahtungs- und Koordinationsunterstützung wird entsprechend dem Projektumfang abgestimmt.",
+      "Ja. RCU-Projekte mit Steuerungen, Panels, Sensoren, Thermostaten, Vorhängen und Service-Panels werden unterstützt.",
+      "Garantie und Kundendienst hängen von Produkt, Auftrag und Projekt ab und werden für das konkrete Modell bestätigt.",
+      "Kontakt ist über Formular, E-Mail oder WhatsApp möglich.",
+      "Öffentliche mehrsprachige Kataloge und technische Ratgeber unterstützen die frühe Produktauswahl.",
+      "Ja. Datenblätter, verifizierte Zertifikatskopien und Schaltpläne können nach Produkt- und Projektbestätigung bereitgestellt werden.",
+      "Nicht alle Nachweise sind öffentlich. Relevante verifizierte Kopien werden für das angefragte Produkt und den Markt geprüft.",
+      "Ja, nach Bestätigung von Land, Spannung, Frequenz, Schnittstellen, Menge und erforderlichen Unterlagen.",
+      "Ja. Wir unterstützen Distributoren, Auftragnehmer und Systemintegratoren mit klaren Projektanforderungen.",
+      "Ja. Zimmerlisten, BOM und Funktionslisten können zur Zuordnung von RCU, Panels, Sensoren, Steckdosen und Zubehör geprüft werden.",
+    ],
+  },
+  es: {
+    titles: ["Empresa y negocio", "Productos y soluciones", "Personalización OEM/ODM", "Pedidos y entrega", "Soporte técnico", "Documentos y proyectos regionales"],
+    questions: ["¿Qué tipo de empresa es DualCoreLink?", "¿Son fábrica o empresa comercial?", "¿Qué mercados atienden?", "¿Quiénes son sus clientes habituales?", "¿Qué productos ofrecen?", "¿Ofrecen una solución completa de control hotelero?", "¿Son los productos adecuados para hoteles?", "¿Ayudan a seleccionar productos?", "¿Ofrecen OEM/ODM?", "¿Pueden personalizar color, logo y teclas?", "¿Pueden desarrollar productos según requisitos?", "¿Ofrecen marca privada?", "¿Cómo solicito cotización?", "¿Cuál es el MOQ?", "¿Hay muestras disponibles?", "¿Cuál es el plazo habitual?", "¿Puedo enviar planos, BOM o listas?", "¿Realizan envíos a Oriente Medio y Sudeste Asiático?", "¿Qué datos de protocolo y cableado debo confirmar?", "¿Ofrecen soporte de instalación y cableado?", "¿Apoyan la puesta en marcha?", "¿Atienden requisitos RCU?", "¿Qué garantía se aplica?", "¿Cómo pueden contactar los clientes?", "¿Dónde están los catálogos?", "¿Proporcionan fichas, certificados y diagramas?", "¿Los certificados son de descarga pública?", "¿Son adecuados para Oriente Medio y Sudeste Asiático?", "¿Trabajan con distribuidores, contratistas e integradores?", "¿Ayudan con BOM y cuadros de habitaciones?"],
+    answers: [
+      "DualCoreLink planifica productos, arquitecturas y soluciones para hoteles y viviendas inteligentes y coordina la fabricación con socios OEM cualificados.",
+      "No somos un simple intermediario. Nos centramos en planificación, selección, ajuste al proyecto y soporte de integración.",
+      "Los mercados principales son Oriente Medio y Sudeste Asiático; otros proyectos B2B internacionales se revisan caso por caso.",
+      "Atendemos a propietarios hoteleros, contratistas, integradores, distribuidores, ingenierías y socios OEM/ODM.",
+      "La gama incluye pantallas AI, RCU, paneles, sensores, cortinas, tomas, paneles de servicio y soluciones para robots hoteleros.",
+      "Sí. Puede incluir RCU, paneles, sensores, iluminación, cortinas, HVAC y estado de habitación; el alcance se confirma por proyecto.",
+      "Sí. Están orientados a habitaciones hoteleras y automatización similar cuando modelo y requisitos son compatibles.",
+      "Sí. Envíe tipos de habitación, funciones, cantidades y mercado para revisar una combinación adecuada.",
+      "Sí. OEM/ODM está disponible para series y requisitos de proyecto compatibles.",
+      "Sí. Color, logotipo y teclas se evalúan según serie, molde y requisitos.",
+      "Sí. Podemos desarrollar conceptos y soluciones a partir de requisitos y aplicaciones definidos.",
+      "Sí. La marca privada depende del producto, cantidad y alcance de personalización.",
+      "Solicite por formulario, correo o WhatsApp e incluya productos, país, cantidad, tensión, interfaces y entrega.",
+      "Los productos estándar no tienen MOQ fijo. Un molde nuevo puede generar costes; cambiar solo el color con molde existente no genera tarifa de personalización.",
+      "Se pueden evaluar muestras. Disponibilidad, coste, transporte y preparación dependen del producto.",
+      "El plazo habitual es de 7–15 días según producto, cantidad y personalización; no es una garantía universal.",
+      "Sí. Planos, BOM, cuadros de habitaciones y listas ayudan a la selección y se envían por correo.",
+      "Sí. Se revisan envíos a Oriente Medio, Sudeste Asiático y otros destinos según el pedido.",
+      "Confirme tensión, frecuencia, cableado, funciones, protocolo, RCU o gateway e integración hotelera.",
+      "Sí. Hay orientación de instalación, referencias de cableado, información y coordinación técnica según proyecto.",
+      "Sí. El soporte de comunicación, selección, cableado y coordinación depende del alcance acordado.",
+      "Sí. Se apoyan proyectos RCU con controladores, paneles, sensores, termostatos, cortinas y servicio.",
+      "La garantía y posventa dependen del producto y las condiciones y se confirman para el modelo concreto.",
+      "Los clientes pueden usar formulario, correo electrónico o WhatsApp.",
+      "Los catálogos públicos y las guías técnicas apoyan la selección inicial.",
+      "Sí. Se pueden facilitar fichas, copias de certificados verificadas y diagramas tras confirmar producto y proyecto.",
+      "No todos los documentos son públicos; las copias pertinentes se revisan para el producto y mercado solicitados.",
+      "Sí, tras confirmar país, tensión, frecuencia, interfaces, cantidad y documentación necesaria.",
+      "Sí. Apoyamos a distribuidores, contratistas e integradores con requisitos definidos.",
+      "Sí. Revisamos cuadros, BOM y funciones para relacionar RCU, paneles, sensores, tomas y accesorios.",
+    ],
+  },
+  fa: {
+    titles: ["شرکت و همکاری", "محصولات و راهکارها", "سفارشی‌سازی OEM/ODM", "سفارش و تحویل", "پشتیبانی فنی", "مدارک و پروژه‌های منطقه‌ای"],
+    questions: ["DualCoreLink چه نوع شرکتی است؟", "آیا کارخانه هستید یا شرکت بازرگانی؟", "در چه بازارهایی فعالیت می‌کنید؟", "مشتریان معمول شما چه کسانی هستند؟", "چه محصولاتی ارائه می‌کنید؟", "آیا راهکار کامل کنترل اتاق هتل دارید؟", "آیا محصولات برای پروژه هتل مناسب‌اند؟", "آیا در انتخاب محصول کمک می‌کنید؟", "آیا OEM/ODM پشتیبانی می‌شود؟", "آیا رنگ، لوگو و چیدمان کلید قابل سفارشی‌سازی است؟", "آیا محصول مطابق نیاز توسعه می‌دهید؟", "آیا برند اختصاصی ارائه می‌کنید؟", "چگونه پیش‌فاکتور بگیرم؟", "MOQ چقدر است؟", "آیا نمونه موجود است؟", "زمان تحویل معمول چقدر است؟", "آیا می‌توان نقشه، BOM یا فهرست محصول فرستاد؟", "آیا به خاورمیانه و جنوب شرق آسیا ارسال دارید؟", "کدام جزئیات پروتکل و سیم‌کشی لازم است؟", "آیا پشتیبانی نصب و سیم‌کشی دارید؟", "آیا در راه‌اندازی پروژه کمک می‌کنید؟", "آیا نیازهای RCU را پشتیبانی می‌کنید؟", "شرایط ضمانت چیست؟", "راه تماس مشتریان چیست؟", "کاتالوگ‌ها کجا هستند؟", "آیا دیتاشیت، گواهی و نقشه سیم‌کشی ارائه می‌شود؟", "آیا گواهی‌ها عمومی قابل دانلود هستند؟", "آیا محصولات برای خاورمیانه و جنوب شرق آسیا مناسب‌اند؟", "آیا با توزیع‌کنندگان، پیمانکاران و یکپارچه‌سازان کار می‌کنید؟", "آیا BOM یا جدول اتاق هتل را بررسی می‌کنید؟"],
+    answers: [
+      "DualCoreLink محصولات، معماری سیستم و راهکارهای هتل و خانه هوشمند را برنامه‌ریزی و تولید را با شرکای OEM واجد شرایط هماهنگ می‌کند.",
+      "ما صرفاً شرکت بازرگانی نیستیم؛ تمرکز بر طراحی راهکار، انتخاب محصول، تطبیق پروژه و پشتیبانی یکپارچه‌سازی است.",
+      "بازارهای اصلی خاورمیانه و جنوب شرق آسیا هستند و سایر پروژه‌های B2B پس از بررسی پشتیبانی می‌شوند.",
+      "مشتریان شامل مالکان هتل، پیمانکاران، یکپارچه‌سازان، توزیع‌کنندگان، شرکت‌های مهندسی و شرکای OEM/ODM هستند.",
+      "سبد شامل نمایشگر AI، RCU، پنل، حسگر، کنترل پرده، پریز، پنل خدمات و راهکار ربات هتل است.",
+      "بله. راهکار می‌تواند RCU، پنل، حسگر، روشنایی، پرده، HVAC و وضعیت اتاق را شامل شود؛ دامنه برای هر پروژه تأیید می‌شود.",
+      "بله. در صورت تطابق مدل و نیاز پروژه برای اتاق هتل و کاربردهای مشابه مناسب هستند.",
+      "بله. تیپ اتاق، عملکرد، تعداد و بازار را ارسال کنید تا ترکیب مناسب بررسی شود.",
+      "بله. OEM/ODM برای سری‌های مناسب و نیازهای تأییدشده پروژه پشتیبانی می‌شود.",
+      "بله. رنگ، لوگو و چیدمان کلید بر اساس سری، قالب و نیاز پروژه بررسی می‌شود.",
+      "بله. مفهوم محصول و راهکار سیستم از روی نیاز و سناریوی روشن قابل توسعه است.",
+      "بله. برند اختصاصی به محصول، تعداد و دامنه سفارشی‌سازی بستگی دارد.",
+      "از فرم، ایمیل یا واتساپ استفاده کنید و محصول، کشور، تعداد، ولتاژ، رابط و زمان تحویل را اعلام کنید.",
+      "محصولات استاندارد MOQ ثابت ندارند. قالب جدید ممکن است هزینه داشته باشد؛ تغییر رنگ با قالب موجود هزینه سفارشی‌سازی ندارد.",
+      "نمونه برای ارزیابی قابل بررسی است؛ موجودی، هزینه، حمل و زمان آماده‌سازی به محصول بستگی دارد.",
+      "زمان تحویل معمول ۷ تا ۱۵ روز و وابسته به محصول، تعداد و سفارشی‌سازی است و تضمین عمومی نیست.",
+      "بله. نقشه، BOM، جدول اتاق و فهرست محصول برای انتخاب مفید است و از طریق ایمیل ارسال می‌شود.",
+      "بله. ارسال به خاورمیانه، جنوب شرق آسیا و سایر مقصدها بر اساس سفارش بررسی می‌شود.",
+      "ولتاژ، فرکانس، سیم‌کشی، عملکرد، پروتکل، RCU یا gateway و یکپارچه‌سازی هتل را تأیید کنید.",
+      "بله. راهنمای نصب، مرجع سیم‌کشی، اطلاعات محصول و هماهنگی فنی بر اساس پروژه ارائه می‌شود.",
+      "بله. پشتیبانی ارتباط، انتخاب، سیم‌کشی و هماهنگی مطابق دامنه پروژه تعیین می‌شود.",
+      "بله. پروژه‌های RCU شامل کنترلر، پنل، حسگر، ترموستات، پرده و پنل خدمات پشتیبانی می‌شوند.",
+      "ضمانت و خدمات پس از فروش به محصول و شرایط سفارش بستگی دارد و برای مدل واقعی تأیید می‌شود.",
+      "فرم وب‌سایت، ایمیل و واتساپ راه‌های تماس هستند.",
+      "کاتالوگ‌های عمومی و راهنماهای فنی برای انتخاب اولیه در دسترس‌اند.",
+      "بله. دیتاشیت، نسخه تأییدشده گواهی و نقشه سیم‌کشی پس از تأیید محصول و پروژه ارائه می‌شود.",
+      "همه مدارک عمومی نیستند؛ نسخه مرتبط و تأییدشده برای محصول و بازار درخواستی بررسی می‌شود.",
+      "بله، پس از تأیید کشور، ولتاژ، فرکانس، رابط، تعداد و مدارک مورد نیاز.",
+      "بله. از توزیع‌کننده، پیمانکار و یکپارچه‌ساز با نیاز روشن پشتیبانی می‌شود.",
+      "بله. جدول اتاق، BOM و فهرست عملکرد برای تطبیق RCU، پنل، حسگر، پریز و لوازم بررسی می‌شود.",
+    ],
+  },
+} as const;
+
+function finalReviewFaqCategories(locale: "de" | "es" | "fa"): StaticFaqCategory[] {
+  let index = 0;
+  return staticFaqCategories.map((category, categoryIndex) => ({
+    ...category,
+    title: finalReviewFaqCopy[locale].titles[categoryIndex],
+    items: category.items.map(() => {
+      const item = {
+        question: finalReviewFaqCopy[locale].questions[index],
+        answer: finalReviewFaqCopy[locale].answers[index],
+      };
+      index += 1;
+      return item;
+    }),
+  }));
+}
+
+export const germanStaticFaqCategories = finalReviewFaqCategories("de");
+export const spanishStaticFaqCategories = finalReviewFaqCategories("es");
+export const persianStaticFaqCategories = finalReviewFaqCategories("fa");
+export const germanStaticFaqItems = germanStaticFaqCategories.flatMap((category) => category.items);
+export const spanishStaticFaqItems = spanishStaticFaqCategories.flatMap((category) => category.items);
+export const persianStaticFaqItems = persianStaticFaqCategories.flatMap((category) => category.items);
+
 export function getStaticFaqCategories(locale: string) {
   if (locale === "zh") return chineseStaticFaqCategories;
   if (locale === "ar") return arabicStaticFaqCategories;
   if (locale === "vi") return vietnameseStaticFaqCategories;
+  if (isFinalReviewLocale(locale)) {
+    const categories: Record<FinalReviewLocale, StaticFaqCategory[]> = {
+      de: germanStaticFaqCategories,
+      es: spanishStaticFaqCategories,
+      fa: persianStaticFaqCategories,
+    };
+    return categories[locale];
+  }
   return staticFaqCategories;
 }

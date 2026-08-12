@@ -1,4 +1,10 @@
-import type { Locale } from "@/config/i18n";
+import { localeNames, type Locale } from "@/config/i18n";
+import {
+  getM4aCategoryName,
+  getM4aSeriesName,
+  getSpecializedLabel,
+  isFinalReviewLocale,
+} from "@/content/locales/m4a-specialized-ui";
 import { productSeries } from "@/config/product-series";
 import { productCategories } from "@/config/product-taxonomy";
 import {
@@ -6,7 +12,10 @@ import {
   isReleasedLocalizedPath,
 } from "@/lib/multilingual-release-batches";
 import { isReviewPreviewLocale } from "@/lib/multilingual-review-preview";
-import { getPublicationHreflang } from "@/lib/localized-publication";
+import {
+  getLocalizedPublicationPage,
+  getPublicationHreflang,
+} from "@/lib/localized-publication";
 
 export type HeaderNavigationLink = {
   key: string;
@@ -28,7 +37,7 @@ export type HeaderProductsMenu = {
 };
 
 export type HeaderLanguageOption = {
-  locale: "en" | "zh" | "ar" | "vi";
+  locale: Locale;
   label: string;
   active: boolean;
   available: boolean;
@@ -91,7 +100,7 @@ function normalizedContentPath(pathname: string): string {
   return pathname.replace(/^\/+|\/+$/g, "");
 }
 
-function localizedPath(locale: "en" | "zh" | "ar" | "vi", contentPath: string): string {
+function localizedPath(locale: Locale, contentPath: string): string {
   const normalized = normalizedContentPath(contentPath);
   return normalized ? `/${locale}/${normalized}/` : `/${locale}/`;
 }
@@ -103,16 +112,26 @@ function isVietnameseNavigation(locale: Locale): boolean {
   );
 }
 
+function isLocalizedNavigation(locale: Locale): boolean {
+  return (
+    locale === "zh" ||
+    locale === "ar" ||
+    isVietnameseNavigation(locale) ||
+    isReviewPreviewLocale(locale)
+  );
+}
+
 function releasedHref(locale: Locale, contentPath: string): string {
   const normalized = normalizedContentPath(contentPath);
   if (!normalized) {
     if (locale === "zh") return "/zh/about/";
     if (locale === "ar") return "/ar/about/";
     if (isVietnameseNavigation(locale)) return "/vi/about/";
+    if (isReviewPreviewLocale(locale)) return localizedPath(locale, "about");
     return "/en/";
   }
   if (locale === "ar") return localizedPath("ar", normalized);
-  if (locale === "vi" && isReviewPreviewLocale(locale)) return localizedPath("vi", normalized);
+  if (isReviewPreviewLocale(locale)) return localizedPath(locale, normalized);
   return buildPublishedNavigationHref(locale, normalized);
 }
 
@@ -122,7 +141,18 @@ export function buildHeaderPrimaryNavigation(
   const chinese = locale === "zh";
   const arabic = locale === "ar";
   const vietnamese = isVietnameseNavigation(locale);
-  const items = chinese
+  const finalReview = isFinalReviewLocale(locale) && isReviewPreviewLocale(locale);
+  const items = finalReview
+    ? [
+        ["home", getSpecializedLabel(locale, "Home"), "about"],
+        ["products", getSpecializedLabel(locale, "Products"), "products"],
+        ["solutions", getSpecializedLabel(locale, "Solutions"), "solutions"],
+        ["resources", getSpecializedLabel(locale, "Resources"), "resources"],
+        ["regions", getSpecializedLabel(locale, "Regions"), "regions"],
+        ["about", getSpecializedLabel(locale, "About"), "about"],
+        ["contact", getSpecializedLabel(locale, "Contact"), "contact"],
+      ]
+    : chinese
     ? [
         ["home", "首页", ""],
         ["products", "产品中心", "products"],
@@ -173,12 +203,16 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
   const chinese = locale === "zh";
   const arabic = locale === "ar";
   const vietnamese = isVietnameseNavigation(locale);
-  const targetLocale: "en" | "zh" | "ar" | "vi" = chinese
+  const finalReview = isFinalReviewLocale(locale) && isReviewPreviewLocale(locale);
+  const localizedNavigation = isLocalizedNavigation(locale);
+  const targetLocale: Locale = chinese
     ? "zh"
     : arabic
       ? "ar"
       : vietnamese
         ? "vi"
+        : finalReview
+          ? locale
       : "en";
   const productsHref = localizedPath(targetLocale, "products");
   const productHref = (slug: string) =>
@@ -226,8 +260,10 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
               "hotel-audio-communication-devices": "Âm thanh và liên lạc khách sạn",
               "hotel-delivery-robot-system": "Robot giao hàng khách sạn",
             } as Record<string, string>)[category.slug] ?? category.title
-          : category.title,
-      href: chinese || arabic || vietnamese
+          : finalReview
+            ? getM4aCategoryName(locale, category.slug, category.title)
+            : category.title,
+      href: localizedNavigation
         ? productsHref
         : `${productsHref}#category-${category.slug}`,
       description: category.description,
@@ -241,8 +277,12 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
     )
     .map((seriesItem) => ({
       key: seriesItem.slug,
-      label: chinese ? seriesItem.chineseTitle : seriesItem.title,
-      href: chinese || arabic || vietnamese
+      label: chinese
+        ? seriesItem.chineseTitle
+        : finalReview
+          ? getM4aSeriesName(locale, seriesItem.slug, seriesItem.title)
+          : seriesItem.title,
+      href: localizedNavigation
         ? productsHref
         : `/en/product-series/#${seriesItem.slug}`,
       description: seriesItem.description,
@@ -252,17 +292,17 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
     quickLinks: [
       {
         key: "all-products",
-        label: arabic ? "كل المنتجات" : chinese ? "全部产品" : vietnamese ? "Tất cả sản phẩm" : "All Products",
+        label: finalReview ? getSpecializedLabel(locale, "All Products") : arabic ? "كل المنتجات" : chinese ? "全部产品" : vietnamese ? "Tất cả sản phẩm" : "All Products",
         href: productsHref,
       },
       {
         key: "new-products",
-        label: arabic ? "منتجات جديدة" : chinese ? "新产品" : vietnamese ? "Sản phẩm mới" : "New Products",
+        label: finalReview ? getSpecializedLabel(locale, "New Products") : arabic ? "منتجات جديدة" : chinese ? "新产品" : vietnamese ? "Sản phẩm mới" : "New Products",
         href: productHref("86-type-ai-smart-control-display"),
       },
       {
         key: "oem-odm-products",
-        label: arabic ? "منتجات OEM / ODM" : chinese ? "OEM / ODM 产品" : vietnamese ? "Sản phẩm OEM / ODM" : "OEM / ODM Products",
+        label: finalReview ? getSpecializedLabel(locale, "OEM / ODM Products") : arabic ? "منتجات OEM / ODM" : chinese ? "OEM / ODM 产品" : vietnamese ? "Sản phẩm OEM / ODM" : "OEM / ODM Products",
         href: solutionHref("oem-odm-custom-panel-solution"),
       },
     ],
@@ -270,17 +310,19 @@ export function buildHeaderProductsMenu(locale: Locale): HeaderProductsMenu {
     series,
     featured: featuredProducts.map((product) => ({
       key: product.slug,
-      label: arabic ? product.ar : chinese ? product.zh : vietnamese ? product.vi : product.en,
+      label: finalReview
+        ? getLocalizedPublicationPage(locale, "product", product.slug)?.title ?? product.en
+        : arabic ? product.ar : chinese ? product.zh : vietnamese ? product.vi : product.en,
       href: productHref(product.slug),
     })),
     viewAllCategories: {
       key: "view-all-categories",
-      label: arabic ? "عرض كل الفئات" : chinese ? "查看全部分类" : vietnamese ? "Xem tất cả danh mục" : "View All Categories",
+      label: finalReview ? getSpecializedLabel(locale, "View All Categories") : arabic ? "عرض كل الفئات" : chinese ? "查看全部分类" : vietnamese ? "Xem tất cả danh mục" : "View All Categories",
       href: productsHref,
     },
     viewAllProducts: {
       key: "view-all-products",
-      label: arabic ? "عرض كل المنتجات" : chinese ? "查看全部产品" : vietnamese ? "Xem tất cả sản phẩm" : "View All Products",
+      label: finalReview ? getSpecializedLabel(locale, "View All Products") : arabic ? "عرض كل المنتجات" : chinese ? "查看全部产品" : vietnamese ? "Xem tất cả sản phẩm" : "View All Products",
       href: productsHref,
     },
   };
@@ -338,6 +380,26 @@ export function buildHeaderLanguageOptions(
       active: locale === "vi",
       available: true,
       href: locale === "vi" ? undefined : vietnameseHref,
+    });
+  }
+  for (const candidateLocale of ["de", "es", "fa"] as const) {
+    const candidateAvailable =
+      isReleasedLocalizedPath(candidateLocale, normalized) ||
+      (isReviewPreviewLocale(candidateLocale) &&
+        Boolean(getPublicationHreflang(normalized)[candidateLocale]));
+    if (!candidateAvailable && locale !== candidateLocale) continue;
+    options.push({
+      locale: candidateLocale,
+      label: localeNames[candidateLocale],
+      active: locale === candidateLocale,
+      available: candidateAvailable || locale === candidateLocale,
+      href:
+        locale === candidateLocale || !candidateAvailable
+          ? undefined
+          : localizedPath(candidateLocale, normalized),
+      unavailableMessage: candidateAvailable
+        ? undefined
+        : "This page is not available yet.",
     });
   }
   return options;

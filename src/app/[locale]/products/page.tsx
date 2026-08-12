@@ -42,6 +42,7 @@ import {
 } from "@/lib/schema";
 import { stripHtml } from "@/lib/text";
 import { productRepository } from "@/lib/wordpress/repositories";
+import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 
 type ProductsPageProps = {
   params: Promise<{ locale: string }>;
@@ -111,6 +112,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
   const products = localizeProductListingProducts(locale, sourceProducts);
   const isArabic = locale === "ar";
   const isVietnamese = locale === "vi";
+  const label = (english: string) => getSpecializedLabel(locale, english);
   const productCountsByCategory = new Map<string, number>();
   const publishedSlugs = new Set(products.map((product) => product.slug));
   const seriesSlugsByProduct = new Map<string, string[]>();
@@ -163,8 +165,8 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
       description: localizedPage?.metaDescription ?? productsDescription,
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
-      { name: localizedPage?.content.breadcrumbLabel ?? "Products", url },
+      { name: label("Home"), url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
+      { name: localizedPage?.content.breadcrumbLabel ?? label("Products"), url },
     ]),
   ]);
 
@@ -205,13 +207,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : "Send Inquiry"}
+            {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : label("Send Inquiry")}
           </Link>
           <a
             href={whatsappUrl}
             className="inline-flex min-h-11 items-center justify-center border border-line px-5 py-3 font-semibold text-brand"
           >
-            {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : isVietnamese ? "Yêu cầu báo giá qua WhatsApp" : "Get a Quote on WhatsApp"}
+            {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : isVietnamese ? "Yêu cầu báo giá qua WhatsApp" : label("Get a Quote on WhatsApp")}
           </a>
         </div>
       </header>
@@ -222,7 +224,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         }`}
       >
         <section className="products-browse-panel border border-line bg-surface p-5">
-          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب الفئة" : locale === "zh" ? "按类别浏览" : isVietnamese ? "Duyệt theo danh mục" : "Browse by Category"}</h2>
+          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب الفئة" : locale === "zh" ? "按类别浏览" : isVietnamese ? "Duyệt theo danh mục" : label("Browse by Category")}</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             {isArabic
                 ? "اختر مجموعات المنتجات لغرف الفنادق والمناطق العامة وحزم التكامل وتوريد المشروع."
@@ -288,7 +290,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         </section>
 
         <section className="products-browse-panel border border-line bg-surface p-5">
-          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب السلسلة" : locale === "zh" ? "按系列浏览" : isVietnamese ? "Duyệt theo dòng sản phẩm" : "Browse by Series"}</h2>
+          <h2 className="text-lg font-semibold">{isArabic ? "التصفح حسب السلسلة" : locale === "zh" ? "按系列浏览" : isVietnamese ? "Duyệt theo dòng sản phẩm" : label("Browse by Series")}</h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             {isArabic
                 ? "قارن تشطيبات المنتجات وأنماط اللوحات وملاءمتها للمشروع."
@@ -420,7 +422,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
             <h2 className="text-2xl font-semibold text-foreground">
-              {isArabic ? "هل تحتاج مزيج منتجات للمشروع؟" : locale === "zh" ? "需要项目产品组合？" : isVietnamese ? "Bạn cần danh mục sản phẩm cho dự án?" : "Need a project product mix?"}
+              {isArabic ? "هل تحتاج مزيج منتجات للمشروع؟" : locale === "zh" ? "需要项目产品组合？" : isVietnamese ? "Bạn cần danh mục sản phẩm cho dự án?" : label("Need a project product mix?")}
             </h2>
             <p className="mt-2 max-w-3xl leading-7 text-muted">
               {isArabic
@@ -437,13 +439,13 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
               href={`/${locale}/contact/#get-a-quote`}
               className="inline-flex min-h-11 items-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
             >
-              {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : "Send Inquiry"}
+              {isArabic ? "إرسال استفسار" : locale === "zh" ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : label("Send Inquiry")}
             </Link>
             <a
               href={whatsappUrl}
               className="inline-flex min-h-11 items-center border border-line px-5 py-3 font-semibold text-brand"
             >
-              {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : isVietnamese ? "Yêu cầu báo giá qua WhatsApp" : "Get a Quote on WhatsApp"}
+              {isArabic ? "طلب عرض عبر WhatsApp" : locale === "zh" ? "通过 WhatsApp 获取报价" : isVietnamese ? "Yêu cầu báo giá qua WhatsApp" : label("Get a Quote on WhatsApp")}
             </a>
           </div>
         </div>

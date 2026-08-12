@@ -52,19 +52,54 @@ function requestedBatch(): string | undefined {
     ?.slice("--batch=".length);
 }
 
+function approvalOnlyRequested(): boolean {
+  return process.argv.includes("--approval-only");
+}
+
+function decisionFileFor(locale: MultilingualLocale): string {
+  if (["de", "es", "fa"].includes(locale)) {
+    return `docs/reviews/multilingual/${locale}-full-decisions-20260812.md`;
+  }
+  return `docs/reviews/multilingual/${locale}-native-review-decisions-20260729.md`;
+}
+
+function normalizeFinalReviewDecisionSheet(
+  markdown: string,
+  locale: MultilingualLocale,
+): string {
+  if (!["de", "es", "fa"].includes(locale)) return markdown;
+  return markdown
+    .split(/\r?\n/)
+    .map((line) => {
+      if (!line.startsWith(`| /${locale}/`)) return line;
+      const cells = line
+        .slice(1, -1)
+        .split("|")
+        .map((cell) => cell.trim());
+      if (cells.length !== 6) {
+        throw new Error(`Invalid ${locale} final review decision row: ${line}`);
+      }
+      const [localizedPath, pageType, decision, reviewer, reviewDate] = cells;
+      return `| https://dualcorelink.com${localizedPath} | ${decision} | ${reviewer} | ${reviewDate} | Human ${locale.toUpperCase()} full-batch review approved for ${pageType} |`;
+    })
+    .join("\n");
+}
+
 async function main() {
   const locale = requestedLocale();
   const batchName = requestedBatch();
   if (batchName && locale !== "zh") {
     throw new Error("Review batches are currently supported only for zh");
   }
-  const decisionsPath = path.resolve(
-    `docs/reviews/multilingual/${locale}-native-review-decisions-20260729.md`,
-  );
+  const approvalOnly = approvalOnlyRequested();
+  const decisionsPath = path.resolve(decisionFileFor(locale));
   const statePath = path.resolve(
     "src/content/locales/native-review-decisions.ts",
   );
-  const markdown = await readFile(decisionsPath, "utf8");
+  const markdown = normalizeFinalReviewDecisionSheet(
+    await readFile(decisionsPath, "utf8"),
+    locale,
+  );
   const baseRows = parseNativeReviewDecisions(markdown);
   let rows = baseRows;
 
@@ -129,7 +164,7 @@ async function main() {
     existing: nativeReviewEvidenceOverrides,
     locale,
     rows,
-    technicalValidationPassed: true,
+    technicalValidationPassed: !approvalOnly,
   });
   await writeFile(
     statePath,
@@ -145,7 +180,7 @@ async function main() {
     ).length,
   };
   console.log(
-    `[multilingual:apply-native-review] ${locale}${batchName ? `:${batchName}` : ""}: pending=${counts.pending} approved=${counts.approved} changes-required=${counts.changesRequired}`,
+    `[multilingual:apply-native-review] ${locale}${batchName ? `:${batchName}` : ""}: pending=${counts.pending} approved=${counts.approved} changes-required=${counts.changesRequired} release-ready=${approvalOnly ? 0 : counts.approved}`,
   );
   console.log(
     `[multilingual:apply-native-review] preserved other-locale overrides=${next.filter((entry) => entry.locale !== locale).length}`,

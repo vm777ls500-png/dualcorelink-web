@@ -41,6 +41,7 @@ import {
   supportsSpecializedLocalizedComposition,
 } from "@/lib/multilingual-review-preview";
 import { localizeResourceGuide } from "@/lib/localized-nonproduct";
+import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 
 type ResourcePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -68,7 +69,7 @@ function resourceLabel(locale: Locale, english: string, chinese: string, arabic:
   if (locale === "ar") return arabic;
   if (locale === "zh") return chinese;
   if (locale === "vi") return vietnameseResourceLabels[english] ?? english;
-  return english;
+  return getSpecializedLabel(locale, english);
 }
 
 export function generateStaticParams() {

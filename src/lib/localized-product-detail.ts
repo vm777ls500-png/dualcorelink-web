@@ -5,6 +5,7 @@ import type { ProductConversionProfile } from "@/config/product-conversion";
 import type { LocalizedPublicationPage } from "@/lib/localized-publication";
 import { getLocalizedPublicationPage } from "@/lib/localized-publication";
 import type { ProductDetailModel } from "@/types/content";
+import { getFinalReviewDynamicCopy, getM4aCategoryName, isFinalReviewLocale } from "@/content/locales/m4a-specialized-ui";
 
 export const productDetailSectionKeys = [
   "overview",
@@ -64,11 +65,11 @@ export function createLocalizedProductDetailCopy(
   const applications =
     matchingSectionText(
       page,
-      /适用|应用|场景|مشروع|تطبيق|استخدام|ứng dụng|dự án|vai trò/i,
+      /适用|应用|场景|مشروع|تطبيق|استخدام|ứng dụng|dự án|vai trò|anwendung|projektfunktion|aplicación|función en el proyecto|کاربرد|نقش در پروژه/i,
     ) ||
     matchingSpecificationValue(
       page,
-      /适用|应用|场景|مشروع|تطبيق|استخدام|ứng dụng|dự án|vai trò/i,
+      /适用|应用|场景|مشروع|تطبيق|استخدام|ứng dụng|dự án|vai trò|anwendung|projektfunktion|aplicación|función en el proyecto|کاربرد|نقش در پروژه/i,
     ) ||
     sectionText(page, 0);
 
@@ -123,7 +124,9 @@ export function localizeProductDetailModel(
               "hotel-delivery-robot-system":
                 "Hệ thống robot giao hàng khách sạn",
             } as Record<string, string>)[category.slug] ?? category.title
-          : category.chineseTitle,
+          : page.locale === "zh"
+            ? category.chineseTitle
+            : getM4aCategoryName(page.locale, category.slug, category.title),
     ]),
   );
 
@@ -190,7 +193,8 @@ export function localizeProductGallery(
           ? `الصورة الرئيسية لمنتج ${page.title}`
           : page.locale === "vi"
             ? `Hình ảnh chính của ${page.title}`
-            : `${page.title}产品主图`),
+            : getFinalReviewDynamicCopy(page.locale)?.featuredImageAlt(page.title) ??
+              `${page.title}产品主图`),
     },
     gallery: gallery.gallery.map((image, index) => ({
       ...image,
@@ -199,7 +203,8 @@ export function localizeProductGallery(
           ? `صورة المنتج ${page.title} ${index + 2}`
           : page.locale === "vi"
             ? `Hình ảnh sản phẩm ${page.title} ${index + 2}`
-            : `${page.title}产品图 ${index + 2}`,
+            : getFinalReviewDynamicCopy(page.locale)?.galleryImageAlt(page.title, index + 2) ??
+              `${page.title}产品图 ${index + 2}`,
     })),
   };
 }
@@ -247,6 +252,22 @@ export function localizeProductConversionProfile(
         },
       ],
       whatsappPrompt: `Xin chào DUALCORE LINK, tôi muốn trao đổi về việc lựa chọn ${page.title} cho dự án khách sạn.`,
+    };
+  }
+
+  if (isFinalReviewLocale(page.locale)) {
+    const copy = page.content.sections;
+    const dynamicCopy = getFinalReviewDynamicCopy(page.locale);
+    return {
+      ...profile,
+      label: dynamicCopy?.productProfileLabel ?? profile.label,
+      summary: page.content.introduction,
+      highlights: [
+        { label: copy[0]?.heading ?? page.content.eyebrow, value: sectionText(page, 0) },
+        { label: copy[1]?.heading ?? page.content.eyebrow, value: sectionText(page, 1) },
+        { label: copy[2]?.heading ?? page.content.eyebrow, value: sectionText(page, 2) },
+      ],
+      whatsappPrompt: dynamicCopy?.productWhatsApp(page.title) ?? profile.whatsappPrompt,
     };
   }
 

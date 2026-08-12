@@ -15,6 +15,7 @@ import {
 import { TrackedInquiryLink } from "@/components/contact/tracked-inquiry-link";
 import { getDirection, type Locale } from "@/config/i18n";
 import { getUiMessages } from "@/content/locales/ui";
+import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 import {
   buildQuoteHref,
   type InquiryContentType,
@@ -82,21 +83,22 @@ function ProductsMenuContent({
   mobile?: boolean;
   onNavigate?: MouseEventHandler<HTMLAnchorElement>;
 }) {
+  const label = (english: string) => getSpecializedLabel(locale, english);
   return (
     <div className={mobile ? "mobile-products-grid" : "products-mega-grid"}>
       <div className="products-mega-column">
         <section>
-          <h2>{locale === "ar" ? "وصول سريع" : locale === "zh" ? "快速入口" : locale === "vi" ? "Truy cập nhanh" : "Quick Access"}</h2>
+          <h2>{locale === "ar" ? "وصول سريع" : locale === "zh" ? "快速入口" : locale === "vi" ? "Truy cập nhanh" : label("Quick Access")}</h2>
           <ProductLinkList links={menu.quickLinks} onNavigate={onNavigate} />
         </section>
         <section className="products-mega-section-spaced">
-          <h2>{locale === "ar" ? "سلاسل المنتجات" : locale === "zh" ? "产品系列" : locale === "vi" ? "Dòng sản phẩm" : "Product Series"}</h2>
+          <h2>{locale === "ar" ? "سلاسل المنتجات" : locale === "zh" ? "产品系列" : locale === "vi" ? "Dòng sản phẩm" : label("Product Series")}</h2>
           <ProductLinkList links={menu.series} onNavigate={onNavigate} />
         </section>
       </div>
 
       <section className="products-mega-column products-mega-categories">
-        <h2>{locale === "ar" ? "فئات المنتجات" : locale === "zh" ? "产品分类" : locale === "vi" ? "Danh mục sản phẩm" : "Product Categories"}</h2>
+        <h2>{locale === "ar" ? "فئات المنتجات" : locale === "zh" ? "产品分类" : locale === "vi" ? "Danh mục sản phẩm" : label("Product Categories")}</h2>
         <ProductLinkList links={menu.categories} onNavigate={onNavigate} />
         <Link className="header-menu-view-all" href={menu.viewAllCategories.href} onClick={onNavigate}>
           {menu.viewAllCategories.label}
@@ -104,7 +106,7 @@ function ProductsMenuContent({
       </section>
 
       <section className="products-mega-column products-mega-featured">
-        <h2>{locale === "ar" ? "منتجات مختارة" : locale === "zh" ? "推荐产品" : locale === "vi" ? "Sản phẩm nổi bật" : "Featured Products"}</h2>
+        <h2>{locale === "ar" ? "منتجات مختارة" : locale === "zh" ? "推荐产品" : locale === "vi" ? "Sản phẩm nổi bật" : label("Featured Products")}</h2>
         <ProductLinkList links={menu.featured} onNavigate={onNavigate} />
         <Link className="header-menu-view-all" href={menu.viewAllProducts.href} onClick={onNavigate}>
           {menu.viewAllProducts.label}
@@ -313,7 +315,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
     <header ref={headerRef} className="site-header site-header-sticky">
       <div className="header-shell">
         <Link
-          href={locale === "ar" ? "/ar/about/" : locale === "zh" ? "/zh/about/" : locale === "vi" ? "/vi/about/" : "/en/"}
+          href={navigation[0]?.href ?? "/en/"}
           className="header-brand"
           aria-label={messages.homeLabel}
           onClick={handleHeaderNavigation}
@@ -362,7 +364,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                       ref={productsButtonRef}
                       type="button"
                       className="header-dropdown-toggle"
-                      aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : locale === "vi" ? "Mở menu sản phẩm" : "Toggle Products menu"}
+                      aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : locale === "vi" ? "Mở menu sản phẩm" : getSpecializedLabel(locale, "Toggle Products menu")}
                       aria-expanded={openDropdown === "products"}
                       aria-controls="desktop-products-menu"
                       aria-haspopup="true"
@@ -518,7 +520,7 @@ export function HeaderNavigation({ locale, productsMenu }: HeaderNavigationProps
                       <Link href={item.href} onClick={handleHeaderNavigation}>{item.label}</Link>
                       <button
                         type="button"
-              aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : locale === "vi" ? "Mở menu sản phẩm" : "Toggle Products menu"}
+              aria-label={locale === "ar" ? "فتح قائمة المنتجات" : locale === "zh" ? "展开产品菜单" : locale === "vi" ? "Mở menu sản phẩm" : getSpecializedLabel(locale, "Toggle Products menu")}
                         aria-expanded={mobileSection === "products"}
                         aria-controls="mobile-products-menu"
                         onClick={() => setMobileSection((current) => current === "products" ? null : "products")}

@@ -1,8 +1,9 @@
 import { spawnSync } from "node:child_process";
 
-const locale = process.argv[2];
-const supportedLocales = ["ar", "vi"];
-if (!supportedLocales.includes(locale)) {
+const localeSet = process.argv[2];
+const supportedLocales = ["ar", "vi", "de", "es", "fa"];
+const locales = [...new Set((localeSet ?? "").split(",").map((item) => item.trim()).filter(Boolean))];
+if (locales.length === 0 || locales.some((locale) => !supportedLocales.includes(locale))) {
   console.error(
     `[multilingual:review-preview] supported locales: ${supportedLocales.join(", ")}`,
   );
@@ -17,8 +18,8 @@ if (!supportedLocales.includes(locale)) {
   const result = spawnSync(command, args, {
     env: {
       ...process.env,
-      MULTILINGUAL_REVIEW_LOCALE: locale,
-      NEXT_PUBLIC_MULTILINGUAL_REVIEW_LOCALE: locale,
+      MULTILINGUAL_REVIEW_LOCALE: locales.join(","),
+      NEXT_PUBLIC_MULTILINGUAL_REVIEW_LOCALE: locales.join(","),
     },
     stdio: "inherit",
     shell: false,

@@ -43,6 +43,7 @@ import {
   localizeRegionLandingPage,
   localizeReleasedHref,
 } from "@/lib/localized-nonproduct";
+import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 
 type RegionPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -75,7 +76,7 @@ function regionLabel(locale: Locale, english: string, chinese: string, arabic: s
   if (locale === "ar") return arabic;
   if (locale === "zh") return chinese;
   if (locale === "vi") return vietnameseRegionLabels[english] ?? english;
-  return english;
+  return getSpecializedLabel(locale, english);
 }
 
 export async function generateStaticParams() {

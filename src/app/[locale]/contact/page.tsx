@@ -13,9 +13,12 @@ import {
 import { JsonLd } from "@/components/seo/json-ld";
 import { brand } from "@/config/brand";
 import { isLocale } from "@/config/i18n";
+import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 import {
   arabicContactCopy,
   chineseContactCopy,
+  getFinalReviewContactCopy,
+  getFinalReviewContactWhatsAppMessage,
   vietnameseContactCopy,
 } from "@/config/static-page-localization";
 import {
@@ -92,7 +95,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
       ? chineseContactCopy
       : isVietnamese
         ? vietnameseContactCopy
-        : null;
+        : getFinalReviewContactCopy(locale);
   const page = localizedPage
     ? undefined
     : await pageRepository.getBySlug(locale, "contact");
@@ -102,7 +105,8 @@ export default async function ContactPage({ params }: ContactPageProps) {
       ? `您好 ${brand.name}，我想咨询智能酒店或智能家居 B2B 项目。`
       : isVietnamese
         ? `Xin chào ${brand.name}, tôi muốn trao đổi về dự án khách sạn hoặc nhà thông minh B2B.`
-        : `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
+        : getFinalReviewContactWhatsAppMessage(locale, brand.name) ??
+          `Hello ${brand.name}, I would like to discuss a smart hotel or smart home B2B project.`;
   const body = stripHtml(page?.content || "");
   const contactSource = {
     sourcePage: `/${locale}/contact/`,
@@ -141,7 +145,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
                   ? "首页"
                   : isVietnamese
                     ? "Trang chủ"
-                    : "Home",
+                    : getSpecializedLabel(locale, "Home"),
               url: buildSiteUrl(getLocalizedCompositionHomePath(locale)),
             },
             {

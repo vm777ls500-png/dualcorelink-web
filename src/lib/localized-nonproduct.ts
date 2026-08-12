@@ -15,6 +15,19 @@ import type {
   RelatedContentModel,
   SolutionDetailModel,
 } from "@/types/content";
+import { getFinalReviewDynamicCopy, getM4aCategoryName, getSpecializedLabel, isFinalReviewLocale } from "@/content/locales/m4a-specialized-ui";
+
+const finalReviewAudience = {
+  de: ["Hotelbetreiber", "Projektentwickler", "Fachplaner und Generalunternehmer", "Systemintegratoren", "Distributoren und OEM/ODM-Einkäufer"],
+  es: ["Propietarios de hoteles", "Promotores", "Contratistas", "Integradores de sistemas", "Distribuidores y compradores OEM/ODM"],
+  fa: ["مالکان هتل", "توسعه‌دهندگان", "پیمانکاران", "یکپارچه‌سازان سیستم", "توزیع‌کنندگان و خریداران OEM/ODM"],
+} as const;
+
+const finalReviewSafeClaims = {
+  de: ["Unterstützung für B2B-Hotelprojekte.", "Produktspezifikationen und Unterlagen werden für das konkrete Modell und Projekt bestätigt.", "Spannung, Protokoll und Schnittstellen sind schriftlich zu prüfen.", "OEM/ODM richtet sich nach Produktserie und Projektanforderungen.", "Standardprodukte haben keine feste Mindestbestellmenge.", "Ein neues Werkzeug kann Werkzeug- oder Anpassungskosten verursachen; reine Farbänderungen mit bestehendem Werkzeug verursachen keine Anpassungsgebühr.", "Die typische Lieferzeit beträgt 7–15 Tage und hängt von Produkt, Menge und Anpassungsumfang ab."],
+  es: ["Soporte para proyectos hoteleros B2B.", "Las especificaciones y documentos se confirman para el modelo y proyecto concretos.", "La tensión, el protocolo y las interfaces deben confirmarse por escrito.", "El alcance OEM/ODM depende de la serie y del proyecto.", "Los productos estándar no tienen una cantidad mínima fija.", "Un molde nuevo puede implicar costes de utillaje o personalización; un cambio de color con molde existente no genera tarifa de personalización.", "El plazo habitual es de 7–15 días según producto, cantidad y personalización."],
+  fa: ["پشتیبانی از پروژه‌های هتلی B2B.", "مشخصات و مدارک برای مدل و پروژه واقعی تأیید می‌شود.", "ولتاژ، پروتکل و رابط‌ها باید کتبی تأیید شوند.", "دامنه OEM/ODM به سری محصول و نیاز پروژه بستگی دارد.", "محصولات استاندارد حداقل سفارش ثابت ندارند.", "قالب جدید ممکن است هزینه ابزار یا سفارشی‌سازی داشته باشد؛ تغییر رنگ با قالب موجود هزینه سفارشی‌سازی ندارد.", "زمان تحویل معمول ۷ تا ۱۵ روز و وابسته به محصول، تعداد و دامنه سفارشی‌سازی است."],
+} as const;
 
 const chineseCategoryNames = new Map(
   productCategories.map((category) => [
@@ -112,12 +125,14 @@ const vietnameseCategoryNames = new Map<string, string>([
 function localizedAudience(locale: Locale): string[] {
   if (locale === "ar") return arabicAudience;
   if (locale === "vi") return vietnameseAudience;
+  if (isFinalReviewLocale(locale)) return [...finalReviewAudience[locale]];
   return chineseAudience;
 }
 
 function localizedSafeClaims(locale: Locale): string[] {
   if (locale === "ar") return arabicSafeClaims;
   if (locale === "vi") return vietnameseSafeClaims;
+  if (isFinalReviewLocale(locale)) return [...finalReviewSafeClaims[locale]];
   return chineseSafeClaims;
 }
 
@@ -130,7 +145,10 @@ export function localizeProductCategoryName(
   if (locale === "vi") {
     return vietnameseCategoryNames.get(category) ?? category;
   }
-  return category;
+  const categoryEntry = productCategories.find((item) => item.title === category);
+  return categoryEntry
+    ? getM4aCategoryName(locale, categoryEntry.slug, category)
+    : category;
 }
 
 export function getLocalizedContentTitle(
@@ -174,11 +192,8 @@ export function localizeReleasedHref(href: string, locale: Locale): string {
   }
   const [pathname, hash = ""] = href.split("#", 2);
   const normalized = pathname.replace(/^\/en\//, "").replace(/^\/+|\/+$/g, "");
-  if (locale === "ar" && normalized === "downloads") {
-    return "/ar/resources/";
-  }
-  if (locale === "vi" && normalized === "downloads") {
-    return "/vi/resources/";
+  if ((locale === "ar" || locale === "vi" || isFinalReviewLocale(locale)) && normalized === "downloads") {
+    return `/${locale}/resources/`;
   }
   const localizedUrl = getPublicationHreflang(normalized)[locale];
   if (!localizedUrl) return href;
@@ -205,6 +220,14 @@ export function localizeResourceLink(
       description:
         "Xem các hướng dẫn lựa chọn và lập kế hoạch kỹ thuật hiện có bằng tiếng Việt.",
       href: "/vi/resources/",
+    };
+  }
+  if (isFinalReviewLocale(locale) && /^\/en\/downloads\/?(?:#.*)?$/.test(link.href)) {
+    return {
+      ...link,
+      title: getSpecializedLabel(locale, "Resources"),
+      description: getSpecializedLabel(locale, "Continue Reading"),
+      href: `/${locale}/resources/`,
     };
   }
   const localizedPage = localizedPageForHref(link.href, locale);
@@ -253,7 +276,12 @@ export function localizeResourceGuide(
         ? source.readingTime.replace("min read", "دقائق قراءة")
         : page.locale === "vi"
           ? source.readingTime.replace("min read", "phút đọc")
-          : source.readingTime.replace("min read", "分钟阅读"),
+          : isFinalReviewLocale(page.locale)
+            ? source.readingTime.replace(
+                "min read",
+                getFinalReviewDynamicCopy(page.locale)?.readingTimeSuffix ?? "min read",
+              )
+            : source.readingTime.replace("min read", "分钟阅读"),
     audience: localizedAudience(page.locale),
     sections: localizedResourceSections(page),
     conversion: source.conversion
@@ -286,7 +314,9 @@ export function localizeResourceGuide(
           ? "عرض الحلول ذات الصلة"
           : page.locale === "vi"
             ? "Xem giải pháp liên quan"
-            : "查看相关解决方案"),
+            : isFinalReviewLocale(page.locale)
+              ? getSpecializedLabel(page.locale, "Relevant Solutions")
+              : "查看相关解决方案"),
       secondaryHref:
         page.content.cta.secondaryHref ?? `/${page.locale}/solutions/`,
       whatsappLabel:
@@ -294,13 +324,17 @@ export function localizeResourceGuide(
           ? "الاستفسار عبر WhatsApp"
           : page.locale === "vi"
             ? "Trao đổi qua WhatsApp"
-            : "WhatsApp 咨询",
+            : isFinalReviewLocale(page.locale)
+              ? getSpecializedLabel(page.locale, "Get a Quote on WhatsApp")
+              : "WhatsApp 咨询",
       whatsappMessage:
         page.locale === "ar"
           ? `مرحباً DUALCORE LINK، أود مناقشة مشروع فندقي متعلق بـ ${page.content.h1}.`
           : page.locale === "vi"
             ? `Xin chào DUALCORE LINK, tôi muốn trao đổi về dự án khách sạn liên quan đến ${page.content.h1}.`
-            : `您好，DUALCORE LINK。我想咨询《${page.content.h1}》相关的酒店项目。`,
+            : isFinalReviewLocale(page.locale)
+              ? getFinalReviewDynamicCopy(page.locale)?.resourceWhatsApp(page.content.h1) ?? ""
+              : `您好，DUALCORE LINK。我想咨询《${page.content.h1}》相关的酒店项目。`,
     },
     safeClaims: localizedSafeClaims(page.locale),
   };
@@ -402,7 +436,9 @@ export function localizeRegionLandingPage(
         ? "مراجعة الأدلة الفنية"
         : page.locale === "vi"
           ? "Xem hướng dẫn kỹ thuật"
-          : page.content.cta.secondaryLabel ?? "查看产品资料",
+          : isFinalReviewLocale(page.locale)
+            ? getSpecializedLabel(page.locale, "Resources")
+            : page.content.cta.secondaryLabel ?? "查看产品资料",
     finalCtaTitle: page.content.cta.heading,
     finalCtaText: page.content.cta.description,
     safeClaims: localizedSafeClaims(page.locale),

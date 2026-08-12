@@ -32,6 +32,7 @@ import {
   createCollectionPageSchema,
   createSchemaGraph,
 } from "@/lib/schema";
+import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 
 type RegionsPageProps = { params: Promise<{ locale: string }> };
 
@@ -84,7 +85,9 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
   const isChinese = locale === "zh" && Boolean(localizedPage);
   const isArabic = locale === "ar" && Boolean(localizedPage);
   const isVietnamese = locale === "vi" && Boolean(localizedPage);
-  const isLocalized = Boolean(localizedPage) && (locale === "zh" || locale === "ar" || locale === "vi");
+  const isLocalized =
+    Boolean(localizedPage) && supportsSpecializedLocalizedComposition(locale);
+  const label = (english: string) => getSpecializedLabel(locale, english);
   const regions = isLocalized
     ? regionLandingPages.map((region, index) => {
         const page = getLocalizedPublicationPage(
@@ -95,8 +98,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
         return {
           id: -(index + 1),
           slug: region.slug,
-          regionType: locale === "ar" ? "المنطقة" : locale === "vi" ? "Khu vực" : "区域",
-          marketMaturity: locale === "ar" ? "سوق المشروع" : locale === "vi" ? "Thị trường dự án" : "项目市场",
+          regionType: locale === "ar" ? "المنطقة" : locale === "zh" ? "区域" : locale === "vi" ? "Khu vực" : label("Region"),
+          marketMaturity: locale === "ar" ? "سوق المشروع" : locale === "zh" ? "项目市场" : locale === "vi" ? "Thị trường dự án" : label("Project market"),
           title: page?.title ?? region.h1,
           marketSummary: page?.description ?? region.metaDescription,
           excerpt: page?.description ?? region.metaDescription,
@@ -115,8 +118,8 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
         "Smart home requirements, certifications, and project priorities across the Middle East and Southeast Asia.",
     }),
     createBreadcrumbSchema(`${url}#breadcrumb`, [
-      { name: "Home", url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
-      { name: localizedPage?.content.breadcrumbLabel ?? "Regions", url },
+      { name: label("Home"), url: buildSiteUrl(getLocalizedCompositionHomePath(locale)) },
+      { name: localizedPage?.content.breadcrumbLabel ?? label("Regions"), url },
     ]),
   ]);
   return (
@@ -167,10 +170,10 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
       )}
       <section className="region-market-quote mt-10 border border-line bg-surface p-6">
         <p className="text-sm font-semibold uppercase text-brand">
-          {isArabic ? "الأسواق المستهدفة" : isChinese ? "目标市场" : isVietnamese ? "Thị trường mục tiêu" : "Target markets"}
+          {isArabic ? "الأسواق المستهدفة" : isChinese ? "目标市场" : isVietnamese ? "Thị trường mục tiêu" : label("Target markets")}
         </p>
         <h2 className="mt-2 text-2xl font-semibold text-foreground">
-          {isArabic ? "دعم استفسارات المشروعات الإقليمية" : isChinese ? "区域项目询盘支持" : isVietnamese ? "Hỗ trợ yêu cầu dự án theo khu vực" : "Regional Project Inquiry Support"}
+          {isArabic ? "دعم استفسارات المشروعات الإقليمية" : isChinese ? "区域项目询盘支持" : isVietnamese ? "Hỗ trợ yêu cầu dự án theo khu vực" : label("Regional Project Inquiry Support")}
         </h2>
         <p className="mt-3 max-w-4xl leading-7 text-muted">
           {isArabic
@@ -214,13 +217,13 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
             href={`/${locale}/contact/#get-a-quote`}
             className="inline-flex min-h-11 items-center justify-center border border-brand bg-brand px-5 py-3 font-semibold text-white"
           >
-            {isArabic ? "ناقش مشروعاً إقليمياً" : isChinese ? "讨论区域项目" : isVietnamese ? "Trao đổi về dự án khu vực" : "Discuss Regional Project"}
+            {isArabic ? "ناقش مشروعاً إقليمياً" : isChinese ? "讨论区域项目" : isVietnamese ? "Trao đổi về dự án khu vực" : label("Discuss Regional Project")}
           </Link>
           <Link
             href={isVietnamese ? "/vi/resources/" : localizeReleasedHref("/en/downloads/", locale)}
             className="inline-flex min-h-11 items-center justify-center border border-line bg-background px-5 py-3 font-semibold text-brand"
           >
-            {isArabic ? "عرض الكتالوجات" : isChinese ? "查看产品目录" : isVietnamese ? "Xem tài nguyên" : "View Catalogs"}
+            {isArabic ? "عرض الكتالوجات" : isChinese ? "查看产品目录" : isVietnamese ? "Xem tài nguyên" : label("View Catalogs")}
           </Link>
         </div>
       </section>

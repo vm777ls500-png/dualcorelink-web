@@ -2,6 +2,7 @@ import {
   customerTypeOptions,
   productInterestOptions,
 } from "@/config/brand";
+import { isFinalReviewLocale, type FinalReviewLocale } from "@/content/locales/m4a-specialized-ui";
 
 const projectStageOptions = [
   "Early research",
@@ -110,6 +111,29 @@ const vietnameseProjectStageLabels = [
   "Mua sắm",
   "Cải tạo hoặc thay thế",
 ] as const;
+
+type FinalReviewOptionGroup = "customerTypes" | "productInterests" | "projectStages";
+
+const finalReviewOptionLabels: Record<
+  FinalReviewLocale,
+  Record<FinalReviewOptionGroup, readonly string[]>
+> = {
+  de: {
+    customerTypes: ["Hotelbetreiber / Entwickler", "Auftragnehmer", "Systemintegrator", "Distributor / Großhändler", "OEM / ODM-Einkäufer", "Smart-Home-Installateur", "Andere"],
+    productInterests: ["Intelligente Panels und Schalter", "AI-Displays", "RCU-Raumsteuerungen", "Sensoren", "Steckdosen und Leistungsmodule", "HVAC und Thermostate", "Vorhangsteuerung", "Zimmerstatus- und Service-Panels", "Hotel-Servicerobotersystem", "OEM / ODM-Produkte", "Andere"],
+    projectStages: ["Erste Recherche", "Spezifikation und Planung", "Angebot und Lieferantenauswahl", "Musterbewertung", "Beschaffung", "Renovierung oder Austausch"],
+  },
+  es: {
+    customerTypes: ["Propietario / promotor hotelero", "Contratista", "Integrador de sistemas", "Distribuidor / mayorista", "Comprador OEM / ODM", "Instalador de hogar inteligente", "Otro"],
+    productInterests: ["Paneles e interruptores inteligentes", "Pantallas inteligentes con IA", "Controladores RCU", "Sensores", "Tomas y módulos de potencia", "HVAC y termostatos", "Control de cortinas", "Paneles de estado y servicio", "Robot de servicio hotelero", "Productos OEM / ODM", "Otro"],
+    projectStages: ["Investigación inicial", "Especificación y diseño", "Cotización y selección", "Evaluación de muestras", "Compra", "Renovación o sustitución"],
+  },
+  fa: {
+    customerTypes: ["مالک / توسعه‌دهنده هتل", "پیمانکار", "یکپارچه‌ساز سیستم", "توزیع‌کننده / عمده‌فروش", "خریدار OEM / ODM", "نصاب خانه هوشمند", "سایر"],
+    productInterests: ["پنل و کلید هوشمند", "نمایشگر هوشمند AI", "کنترلر اتاق RCU", "حسگر", "پریز و ماژول توان", "HVAC و ترموستات", "کنترل پرده", "پنل وضعیت و خدمات", "ربات خدمات هتل", "محصول OEM / ODM", "سایر"],
+    projectStages: ["بررسی اولیه", "مشخصات و طراحی", "پیش‌فاکتور و انتخاب تأمین‌کننده", "ارزیابی نمونه", "خرید", "بازسازی یا جایگزینی"],
+  },
+};
 
 export const contactFormOptions = {
   customerTypes: customerTypeOptions.map((value, index) => ({
@@ -263,5 +287,26 @@ export const vietnameseContactFormCopy = {
     "Xin chào DUALCORE LINK, tôi muốn trao đổi về một dự án B2B.",
   whatsappLabel: "WhatsApp",
 } as const;
+
+const finalReviewContactFormCopy = {
+  de: { contextEyebrow: "Anfragequelle", directContext: "Direkte Kontaktanfrage", sourceLabel: "Quelle", name: "Name *", company: "Unternehmen", email: "E-Mail *", phone: "WhatsApp / Telefon", country: "Land / Region *", customerType: "Kundentyp *", selectCustomerType: "Kundentyp auswählen", projectStage: "Projektphase", selectProjectStage: "Projektphase auswählen", targetDelivery: "Gewünschter Liefertermin", targetDeliveryPlaceholder: "Beispiel: Oktober 2026", productInterest: "Produktinteresse *", selectProductInterest: "Mindestens eine Produktgruppe auswählen.", quantity: "Geschätzte Menge", quantityPlaceholder: "Beispiel: 100 Stück / 300 Zimmer", website: "Website", message: "Nachricht *", filesTitle: "Projektdateien (optional)", filesHelp: "Dateien werden nicht hochgeladen. Fügen Sie Zeichnungen, BOM oder Anforderungen im E-Mail-Programm hinzu.", submitting: "Anfrage wird gesendet...", preparing: "E-Mail-Entwurf wird vorbereitet...", submit: "Projektanfrage senden", prepare: "E-Mail-Entwurf vorbereiten", fallbackServer: "Falls die Serverübermittlung nicht verfügbar ist, nutzen Sie", fallbackMailto: "Dieses Formular öffnet einen E-Mail-Entwurf an", fallbackReview: ". Prüfen und senden Sie den Entwurf selbst oder nutzen Sie", draftReady: "Der E-Mail-Entwurf wurde angefordert. Die Website hat die Anfrage noch nicht versendet.", accepted: "Die Anfrage wurde vom Server angenommen; dies garantiert keine Zustellung im Posteingang.", genericError: "Die E-Mail-Anwendung konnte nicht geöffnet werden. Ihre Eingaben bleiben erhalten.", productMessage: (name: string) => `Ich interessiere mich für ${name} und bitte um Angebotsinformationen.`, attributedMessage: (title: string) => `Ich möchte ein Projekt zu ${title} besprechen.`, whatsappMessage: "Hallo DUALCORE LINK, ich möchte ein B2B-Projekt besprechen.", whatsappLabel: "WhatsApp" },
+  es: { contextEyebrow: "Origen de la consulta", directContext: "Consulta de contacto directa", sourceLabel: "Origen", name: "Nombre *", company: "Empresa", email: "Correo electrónico *", phone: "WhatsApp / Teléfono", country: "País / Región *", customerType: "Tipo de cliente *", selectCustomerType: "Seleccione el tipo de cliente", projectStage: "Fase del proyecto", selectProjectStage: "Seleccione la fase", targetDelivery: "Entrega objetivo", targetDeliveryPlaceholder: "Ejemplo: octubre de 2026", productInterest: "Productos de interés *", selectProductInterest: "Seleccione al menos un grupo.", quantity: "Cantidad estimada", quantityPlaceholder: "Ejemplo: 100 unidades / 300 habitaciones", website: "Sitio web", message: "Mensaje *", filesTitle: "Archivos del proyecto (opcional)", filesHelp: "No se cargan archivos. Adjunte planos, BOM o requisitos en su aplicación de correo.", submitting: "Enviando consulta...", preparing: "Preparando borrador...", submit: "Enviar consulta del proyecto", prepare: "Preparar borrador de correo", fallbackServer: "Si el envío por servidor no está disponible, utilice", fallbackMailto: "Este formulario abre un borrador para", fallbackReview: ". Revise y envíe el borrador o utilice", draftReady: "Se solicitó el borrador. El sitio aún no ha enviado la consulta.", accepted: "El servidor aceptó la consulta; esto no garantiza su llegada al buzón.", genericError: "No se pudo abrir el correo. Los datos permanecen en el formulario.", productMessage: (name: string) => `Me interesa ${name} y deseo información de cotización.`, attributedMessage: (title: string) => `Quisiera consultar un proyecto relacionado con ${title}.`, whatsappMessage: "Hola DUALCORE LINK, quisiera consultar un proyecto B2B.", whatsappLabel: "WhatsApp" },
+  fa: { contextEyebrow: "منبع درخواست", directContext: "درخواست تماس مستقیم", sourceLabel: "منبع", name: "نام *", company: "شرکت", email: "ایمیل *", phone: "واتساپ / تلفن", country: "کشور / منطقه *", customerType: "نوع مشتری *", selectCustomerType: "نوع مشتری را انتخاب کنید", projectStage: "مرحله پروژه", selectProjectStage: "مرحله پروژه را انتخاب کنید", targetDelivery: "زمان تحویل هدف", targetDeliveryPlaceholder: "نمونه: اکتبر ۲۰۲۶", productInterest: "محصول مورد نظر *", selectProductInterest: "حداقل یک گروه محصول انتخاب کنید.", quantity: "تعداد تقریبی", quantityPlaceholder: "نمونه: ۱۰۰ عدد / ۳۰۰ اتاق", website: "وب‌سایت", message: "پیام *", filesTitle: "فایل پروژه (اختیاری)", filesHelp: "فایلی بارگذاری نمی‌شود. نقشه، BOM یا نیازمندی را در برنامه ایمیل پیوست کنید.", submitting: "در حال ارسال...", preparing: "در حال آماده‌سازی پیش‌نویس...", submit: "ارسال درخواست پروژه", prepare: "آماده‌سازی پیش‌نویس ایمیل", fallbackServer: "اگر ارسال سرور در دسترس نبود، استفاده کنید از", fallbackMailto: "این فرم پیش‌نویس ایمیل را برای این نشانی باز می‌کند", fallbackReview: ". پیش‌نویس را بررسی و ارسال کنید یا استفاده کنید از", draftReady: "پیش‌نویس درخواست شد. وب‌سایت هنوز درخواست را ارسال نکرده است.", accepted: "سرور درخواست را پذیرفت؛ این به معنای تضمین تحویل در صندوق ورودی نیست.", genericError: "برنامه ایمیل باز نشد. اطلاعات فرم حفظ شده است.", productMessage: (name: string) => `به ${name} علاقه‌مندم و اطلاعات پیش‌فاکتور می‌خواهم.`, attributedMessage: (title: string) => `می‌خواهم درباره پروژه مرتبط با ${title} گفت‌وگو کنم.`, whatsappMessage: "سلام DUALCORE LINK، می‌خواهم درباره یک پروژه B2B گفت‌وگو کنم.", whatsappLabel: "واتساپ" },
+} as const;
+
+export function getFinalReviewContactFormCopy(locale: string) {
+  return isFinalReviewLocale(locale) ? finalReviewContactFormCopy[locale] : null;
+}
+
+export function getFinalReviewContactOptionLabel(
+  locale: string,
+  group: FinalReviewOptionGroup,
+  index: number,
+  fallback: string,
+): string {
+  return isFinalReviewLocale(locale)
+    ? finalReviewOptionLabels[locale][group][index] ?? fallback
+    : fallback;
+}
 
 export { projectStageOptions };

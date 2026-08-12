@@ -4,6 +4,7 @@ import { productCategories } from "@/config/product-taxonomy";
 import { getLocalizedPublicationPage } from "@/lib/localized-publication";
 import { isReviewPreviewLocale } from "@/lib/multilingual-review-preview";
 import type { ProductListItem } from "@/types/content";
+import { getM4aCategoryName } from "@/content/locales/m4a-specialized-ui";
 
 export function getProductListingSourceLocale(locale: Locale): Locale {
   return locale === "zh" || locale === "vi" || isReviewPreviewLocale(locale)
@@ -48,7 +49,7 @@ export function getProductListingCategoryLabel(
   if (locale === "vi") {
     return vietnameseCategoryNames[category.slug] ?? category.title;
   }
-  return category.title;
+  return getM4aCategoryName(locale, category.slug, category.title);
 }
 
 export function localizeProductListingProducts(

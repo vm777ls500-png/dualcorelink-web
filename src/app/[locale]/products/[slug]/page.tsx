@@ -50,6 +50,7 @@ import {
   localizeProductDetailModel,
   localizeProductGallery,
 } from "@/lib/localized-product-detail";
+import { getSpecializedLabel, isFinalReviewLocale } from "@/content/locales/m4a-specialized-ui";
 
 type ProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -282,6 +283,35 @@ export default async function ProductPage({ params }: ProductPageProps) {
             sample: "Mẫu",
             quoteDescription:
               "Sử dụng biểu mẫu liên hệ để gửi yêu cầu dự án, số lượng và tài liệu cho đội ngũ kinh doanh.",
+          }
+      : isFinalReviewLocale(locale)
+        ? {
+            home: getSpecializedLabel(locale, "Home"),
+            products: getSpecializedLabel(locale, "Products"),
+            new: getSpecializedLabel(locale, "New"),
+            product: getSpecializedLabel(locale, "Product"),
+            getQuote: getSpecializedLabel(locale, "Get a Quote"),
+            quoteHint: localizedPage?.content.introduction ?? "",
+            leadTime: getSpecializedLabel(locale, "Lead time"),
+            onRequest: getSpecializedLabel(locale, "On request"),
+            available: getSpecializedLabel(locale, "Available"),
+            askTeam: getSpecializedLabel(locale, "Ask our team"),
+            overview: getSpecializedLabel(locale, "Product overview"),
+            coreFunctions: getSpecializedLabel(locale, "Core functions"),
+            features: getSpecializedLabel(locale, "Product features"),
+            applications: getSpecializedLabel(locale, "Application scenarios"),
+            installation: getSpecializedLabel(locale, "Installation position"),
+            customization: getSpecializedLabel(locale, "Customization options"),
+            specifications: getSpecializedLabel(locale, "Technical specifications"),
+            relatedProducts: getSpecializedLabel(locale, "Related products"),
+            faq: getSpecializedLabel(locale, "Frequently asked questions"),
+            commercialOptions: getSpecializedLabel(locale, "Commercial options"),
+            moq: "MOQ",
+            units: getSpecializedLabel(locale, "Units"),
+            warranty: getSpecializedLabel(locale, "Warranty"),
+            privateLabel: getSpecializedLabel(locale, "Private label"),
+            sample: getSpecializedLabel(locale, "Sample"),
+            quoteDescription: localizedPage?.content.cta.description ?? "",
           }
       : {
         home: "Home",

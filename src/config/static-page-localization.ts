@@ -1,3 +1,5 @@
+import { getFinalReviewDynamicCopy, isFinalReviewLocale } from "@/content/locales/m4a-specialized-ui";
+
 export const chineseAboutCopy = {
   heroEyebrow: "公司简介",
   profileEyebrow: "公司简介",
@@ -254,3 +256,77 @@ export const vietnameseContactCopy = {
     "Tiếp tục xác nhận báo giá qua email hoặc WhatsApp.",
   ],
 } as const;
+
+const finalReviewAboutCopy = {
+  de: {
+    heroEyebrow: "Unternehmensprofil", profileEyebrow: "Unternehmen", profileTitle: "Wer wir sind",
+    deliveryEyebrow: "Liefermodell", deliveryTitle: "Von der Produktplanung bis zur qualifizierten Fertigung",
+    workflowEyebrow: "Projektablauf", workflowTitle: "Ein klarer Weg von der Anforderung bis zur Projektunterstützung",
+    capabilityEyebrow: "Lösungskompetenz", capabilityTitle: "Kompetenz für intelligente Hotelzimmersteuerung",
+    capabilityDescription: "Wir planen Produktkombinationen für Hotelzimmersteuerungen und vernetzte Smart-Home-Projekte.",
+    capabilities: ["RCU-Raumsteuerungen", "Intelligente AI-Displays", "Intelligente Bedienfelder und Schalter", "Sensoren", "Intelligente Steckdosen und Leistungsmodule", "Vorhangsteuerung", "HVAC- und Thermostatsteuerung", "Zimmerstatus- und Service-Panels", "Hotel-Servicerobotersysteme"],
+    customizationEyebrow: "Anpassung", customizationTitle: "OEM/ODM-Projektunterstützung",
+    customersEyebrow: "Kunden", customersTitle: "Für wen wir arbeiten",
+    customerTypes: ["Hotelbetreiber", "Hotelprojektentwickler", "Fachplaner und Generalunternehmer", "Systemintegratoren", "Distributoren", "OEM/ODM-Partner"],
+    marketsEyebrow: "Zielmärkte", marketsTitle: "Naher Osten und Südostasien", marketsDescription: "Unser Schwerpunkt liegt im Nahen Osten und in Südostasien; weitere B2B-Projekte unterstützen wir, wenn Produkt- und Projektanforderungen klar geprüft werden können.",
+    commercialEyebrow: "Kaufbedingungen", commercialTitle: "Muster, MOQ und Lieferzeit",
+    commercialItems: ["Muster sind zur Bewertung verfügbar.", "Muster- und Versandkosten trägt der Kunde.", "Standardprodukte haben keine feste Mindestbestellmenge. Ein neues Werkzeug kann Werkzeug- oder Anpassungskosten verursachen; reine Farbänderungen mit bestehendem Werkzeug verursachen keine Anpassungsgebühr.", "Die typische Lieferzeit beträgt 7–15 Tage und hängt von Produkt, Menge, Anpassungsumfang und Projektanforderungen ab."],
+    supportEyebrow: "Technische Unterstützung", supportTitle: "Projekt- und technische Unterstützung",
+    inquiryEyebrow: "Projektanfrage", inquiryTitle: "Besprechen Sie Ihr Projekt", inquiryDescription: "Senden Sie Zimmertyp, gewünschte Produkte, Mengen, Anpassungsbedarf und Lieferziel an unser B2B-Team.",
+    contactLabel: "Kontakt", solutionsLabel: "Lösungen ansehen", whatsappLabel: "Angebot über WhatsApp anfragen", breadcrumbHome: "Startseite", breadcrumbAbout: "Über uns",
+  },
+  es: {
+    heroEyebrow: "Perfil de empresa", profileEyebrow: "Empresa", profileTitle: "Quiénes somos",
+    deliveryEyebrow: "Modelo de suministro", deliveryTitle: "De la planificación del producto a la fabricación cualificada",
+    workflowEyebrow: "Proceso del proyecto", workflowTitle: "Un recorrido claro desde los requisitos hasta el soporte",
+    capabilityEyebrow: "Capacidad de solución", capabilityTitle: "Control inteligente para habitaciones de hotel",
+    capabilityDescription: "Planificamos combinaciones de producto para el control de habitaciones y proyectos de hogar inteligente conectado.",
+    capabilities: ["Controladores RCU", "Pantallas inteligentes con IA", "Paneles e interruptores inteligentes", "Sensores", "Tomas y módulos de potencia", "Control de cortinas", "Control HVAC y termostatos", "Paneles de estado y servicio", "Robots de servicio hotelero"],
+    customizationEyebrow: "Personalización", customizationTitle: "Soporte para proyectos OEM/ODM",
+    customersEyebrow: "Clientes", customersTitle: "Con quién trabajamos",
+    customerTypes: ["Propietarios de hoteles", "Promotores hoteleros", "Contratistas", "Integradores de sistemas", "Distribuidores", "Socios OEM/ODM"],
+    marketsEyebrow: "Mercados objetivo", marketsTitle: "Oriente Medio y Sudeste Asiático", marketsDescription: "Nos centramos en Oriente Medio y Sudeste Asiático y apoyamos otros proyectos B2B cuando sus requisitos pueden verificarse con claridad.",
+    commercialEyebrow: "Condiciones comerciales", commercialTitle: "Muestras, MOQ y plazo de entrega",
+    commercialItems: ["Hay muestras disponibles para evaluación.", "El cliente asume el coste de la muestra y del envío.", "Los productos estándar no tienen una cantidad mínima fija. Un molde nuevo puede implicar costes de utillaje o personalización; un cambio de color con molde existente no genera tarifa de personalización.", "El plazo habitual es de 7–15 días según producto, cantidad, personalización y requisitos del proyecto."],
+    supportEyebrow: "Soporte técnico", supportTitle: "Soporte técnico y de proyecto",
+    inquiryEyebrow: "Consulta del proyecto", inquiryTitle: "Hablemos de su proyecto", inquiryDescription: "Envíe tipo de habitación, productos, cantidades, personalización y fecha objetivo a nuestro equipo B2B.",
+    contactLabel: "Contacto", solutionsLabel: "Ver soluciones", whatsappLabel: "Solicitar cotización por WhatsApp", breadcrumbHome: "Inicio", breadcrumbAbout: "Quiénes somos",
+  },
+  fa: {
+    heroEyebrow: "معرفی شرکت", profileEyebrow: "شرکت", profileTitle: "ما که هستیم",
+    deliveryEyebrow: "مدل تأمین", deliveryTitle: "از برنامه‌ریزی محصول تا تولید واجد شرایط",
+    workflowEyebrow: "فرایند پروژه", workflowTitle: "مسیر روشن از نیازمندی تا پشتیبانی پروژه",
+    capabilityEyebrow: "توان راهکار", capabilityTitle: "توان کنترل هوشمند اتاق هتل",
+    capabilityDescription: "ترکیب محصولات را برای کنترل اتاق هتل و پروژه‌های خانه هوشمند متصل برنامه‌ریزی می‌کنیم.",
+    capabilities: ["کنترلر اتاق RCU", "نمایشگر هوشمند AI", "پنل و کلید هوشمند", "حسگر", "پریز و ماژول توان", "کنترل پرده", "کنترل HVAC و ترموستات", "پنل وضعیت و خدمات اتاق", "ربات خدمات هتل"],
+    customizationEyebrow: "سفارشی‌سازی", customizationTitle: "پشتیبانی پروژه OEM/ODM",
+    customersEyebrow: "مشتریان", customersTitle: "با چه گروه‌هایی کار می‌کنیم",
+    customerTypes: ["مالکان هتل", "توسعه‌دهندگان هتل", "پیمانکاران", "یکپارچه‌سازان سیستم", "توزیع‌کنندگان", "شرکای OEM/ODM"],
+    marketsEyebrow: "بازارهای هدف", marketsTitle: "خاورمیانه و جنوب شرق آسیا", marketsDescription: "تمرکز ما خاورمیانه و جنوب شرق آسیا است و پروژه‌های B2B سایر مناطق را نیز در صورت امکان بررسی روشن نیازها پشتیبانی می‌کنیم.",
+    commercialEyebrow: "شرایط تجاری", commercialTitle: "نمونه، MOQ و زمان تحویل",
+    commercialItems: ["نمونه برای ارزیابی موجود است.", "هزینه نمونه و ارسال بر عهده مشتری است.", "محصولات استاندارد حداقل سفارش ثابت ندارند. قالب جدید ممکن است هزینه ابزار یا سفارشی‌سازی داشته باشد؛ تغییر رنگ با قالب موجود هزینه سفارشی‌سازی ندارد.", "زمان تحویل معمول ۷ تا ۱۵ روز و وابسته به محصول، تعداد، دامنه سفارشی‌سازی و نیاز پروژه است."],
+    supportEyebrow: "پشتیبانی فنی", supportTitle: "پشتیبانی فنی و پروژه",
+    inquiryEyebrow: "درخواست پروژه", inquiryTitle: "درباره پروژه خود گفت‌وگو کنید", inquiryDescription: "نوع اتاق، محصولات، تعداد، سفارشی‌سازی و زمان تحویل را برای تیم B2B ارسال کنید.",
+    contactLabel: "تماس", solutionsLabel: "مشاهده راهکارها", whatsappLabel: "درخواست پیش‌فاکتور در واتساپ", breadcrumbHome: "صفحه اصلی", breadcrumbAbout: "درباره ما",
+  },
+} as const;
+
+const finalReviewContactCopy = {
+  de: { eyebrow: "Projektkontakt", salesLabel: "Vertrieb und Angebote", salesDescription: "Anfragen, Angebote, Bestellungen und OEM/ODM", generalLabel: "Allgemeiner Kontakt", generalDescription: "Allgemeine, Marken- und Partnerschaftsanfragen", supportLabel: "Technischer Support", supportDescription: "Installation, Dokumentation und technischer Support", whatsappDescription: "Schnelle Abstimmung zu Produktlisten und Hotelprojekten.", whatsappLabel: "Angebot über WhatsApp anfragen", reviewEyebrow: "Schnellere Prüfung", reviewTitle: "Angaben für die Produktauswahl", reviewItems: [["Projektumfang", "Land, Hoteltyp, Zimmerzahl, Phase und Lieferziel."], ["Technische Eignung", "Spannung, Frequenz, Protokoll, Verkabelung und Oberfläche."], ["Kaufbedarf", "Menge, OEM/ODM, Dokumente, Muster und Verpackung."]], detailsEyebrow: "Kontaktdaten", detailsTitle: "Büro, WeChat und Telefon", officeLabel: "Büroanschrift", wechatLabel: "WeChat", phoneLabel: "Telefon", qrAlt: "WeChat-QR-Code von DUALCORE LINK", qrHelp: "Scannen, um den WeChat-Kontakt hinzuzufügen.", quoteTitle: "Angebot anfragen", quoteServerIntro: "Senden Sie die Anfrage sicher an den Vertrieb. Falls der Dienst nicht verfügbar ist, nutzen Sie", quoteMailtoIntro: "Dieses Formular öffnet einen E-Mail-Entwurf an", quoteHelp: "Geben Sie Land, Zimmertyp, Spannung, Frequenz, Protokoll, Menge und benötigte Dokumente an.", quoteSteps: ["Projekt und Produkte beschreiben.", "Wir prüfen technische Eignung und Dokumente.", "Angebotsdetails per E-Mail oder WhatsApp abstimmen."] },
+  es: { eyebrow: "Contacto de proyecto", salesLabel: "Ventas y cotizaciones", salesDescription: "Consultas, cotizaciones, pedidos y OEM/ODM", generalLabel: "Contacto general", generalDescription: "Consultas generales, de marca y colaboración", supportLabel: "Soporte técnico", supportDescription: "Instalación, documentación y soporte técnico", whatsappDescription: "Respuesta rápida para listas de productos y proyectos hoteleros.", whatsappLabel: "Solicitar cotización por WhatsApp", reviewEyebrow: "Revisión más rápida", reviewTitle: "Datos que orientan la selección", reviewItems: [["Alcance", "País, tipo de hotel, habitaciones, fase y entrega."], ["Ajuste técnico", "Tensión, frecuencia, protocolo, cableado y acabado."], ["Necesidades comerciales", "Cantidad, OEM/ODM, documentos, muestras y embalaje."]], detailsEyebrow: "Datos de contacto", detailsTitle: "Oficina, WeChat y teléfono", officeLabel: "Dirección de la oficina", wechatLabel: "WeChat", phoneLabel: "Teléfono", qrAlt: "Código QR de WeChat de DUALCORE LINK", qrHelp: "Escanee para añadir el contacto de WeChat.", quoteTitle: "Solicitar cotización", quoteServerIntro: "Envíe la consulta de forma segura al equipo comercial. Si el servicio no está disponible, utilice", quoteMailtoIntro: "Este formulario abre un borrador de correo para", quoteHelp: "Incluya país, tipo de habitación, tensión, frecuencia, protocolo, cantidad y documentos.", quoteSteps: ["Comparta el proyecto y los productos.", "Revisamos el ajuste técnico y los documentos.", "Confirme la cotización por correo o WhatsApp."] },
+  fa: { eyebrow: "تماس پروژه", salesLabel: "فروش و پیش‌فاکتور", salesDescription: "درخواست، پیش‌فاکتور، سفارش و OEM/ODM", generalLabel: "تماس عمومی", generalDescription: "پرسش عمومی، برند و همکاری", supportLabel: "پشتیبانی فنی", supportDescription: "نصب، مدارک و پشتیبانی فنی", whatsappDescription: "پاسخ سریع برای فهرست محصول و پروژه هتل.", whatsappLabel: "درخواست پیش‌فاکتور در واتساپ", reviewEyebrow: "بررسی سریع‌تر", reviewTitle: "اطلاعات مؤثر بر انتخاب محصول", reviewItems: [["دامنه پروژه", "کشور، نوع هتل، تعداد اتاق، مرحله و زمان تحویل."], ["تناسب فنی", "ولتاژ، فرکانس، پروتکل، سیم‌کشی و پرداخت سطح."], ["نیاز تجاری", "تعداد، OEM/ODM، مدارک، نمونه و بسته‌بندی."]], detailsEyebrow: "اطلاعات تماس", detailsTitle: "دفتر، WeChat و تلفن", officeLabel: "نشانی دفتر", wechatLabel: "WeChat", phoneLabel: "تلفن", qrAlt: "کد QR وی‌چت DUALCORE LINK", qrHelp: "برای افزودن تماس WeChat اسکن کنید.", quoteTitle: "درخواست پیش‌فاکتور", quoteServerIntro: "اطلاعات را امن برای تیم فروش ارسال کنید. اگر سرویس در دسترس نبود، استفاده کنید از", quoteMailtoIntro: "این فرم پیش‌نویس ایمیل را برای این نشانی باز می‌کند", quoteHelp: "کشور، نوع اتاق، ولتاژ، فرکانس، پروتکل، تعداد و مدارک لازم را اعلام کنید.", quoteSteps: ["خلاصه پروژه و محصول را ارسال کنید.", "تناسب فنی و مدارک بررسی می‌شود.", "جزئیات پیش‌فاکتور با ایمیل یا واتساپ پیگیری می‌شود."] },
+} as const;
+
+export function getFinalReviewAboutCopy(locale: string) {
+  return isFinalReviewLocale(locale) ? finalReviewAboutCopy[locale] : null;
+}
+
+export function getFinalReviewContactCopy(locale: string) {
+  return isFinalReviewLocale(locale) ? finalReviewContactCopy[locale] : null;
+}
+
+export function getFinalReviewContactWhatsAppMessage(locale: string, brandName: string) {
+  return isFinalReviewLocale(locale)
+    ? getFinalReviewDynamicCopy(locale)?.contactWhatsApp(brandName)
+    : undefined;
+}

@@ -25,6 +25,10 @@ import {
   getLocalizedPublicationPage,
   getPublicationHreflang,
 } from "@/lib/localized-publication";
+import {
+  getSpecializedLabel,
+  isFinalReviewLocale,
+} from "@/content/locales/m4a-specialized-ui";
 
 type FaqPageProps = { params: Promise<{ locale: string }> };
 
@@ -59,6 +63,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
   const isChinese = locale === "zh" && Boolean(localizedPage);
   const isArabic = locale === "ar" && Boolean(localizedPage);
   const isVietnamese = locale === "vi" && Boolean(localizedPage);
+  const label = (english: string) => getSpecializedLabel(locale, english);
   const faqCategories = getStaticFaqCategories(locale);
   const faqItems = faqCategories.flatMap((category) => category.items);
   const path = buildLocalizedPath(locale, "faqs");
@@ -81,11 +86,11 @@ export default async function FaqPage({ params }: FaqPageProps) {
                   ? "首页"
                   : isVietnamese
                     ? "Trang chủ"
-                    : "Home",
+                    : label("Home"),
               url: buildSiteUrl(getLocalizedCompositionHomePath(locale)),
             },
             {
-              name: localizedPage?.content.breadcrumbLabel ?? "FAQ",
+              name: localizedPage?.content.breadcrumbLabel ?? label("FAQ"),
               url,
             },
           ]),
@@ -139,7 +144,11 @@ export default async function FaqPage({ params }: FaqPageProps) {
                   {isArabic ? "إرسال استفسار" : isChinese ? "提交询盘" : isVietnamese ? "Gửi yêu cầu" : "Send Inquiry"}
                 </Link>
                 <Link
-                  href={isVietnamese ? "/vi/resources/" : "/en/downloads/"}
+                  href={
+                    isVietnamese || isFinalReviewLocale(locale)
+                      ? `/${locale}/resources/`
+                      : "/en/downloads/"
+                  }
                   className="inline-flex min-h-11 items-center border border-line px-5 py-2 text-sm font-semibold text-foreground"
                 >
                   {isArabic ? "عرض الكتالوجات" : isChinese ? "查看目录" : isVietnamese ? "Xem hướng dẫn kỹ thuật" : "View Catalogs"}

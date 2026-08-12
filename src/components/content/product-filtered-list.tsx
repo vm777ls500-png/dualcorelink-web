@@ -5,6 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { ContentList, type ContentListItem } from "./content-list";
 import { EmptyState } from "./empty-state";
 import type { Locale } from "@/config/i18n";
+import {
+  getFinalReviewProductFilterCopy,
+  getSpecializedLabel,
+} from "@/content/locales/m4a-specialized-ui";
 
 export type ProductFilterOption = {
   slug: string;
@@ -137,6 +141,7 @@ export function ProductFilteredList({
   series,
   variant,
 }: ProductFilteredListProps) {
+  const finalReviewCopy = getFinalReviewProductFilterCopy(locale);
   const copy =
     locale === "ar"
       ? {
@@ -159,12 +164,14 @@ export function ProductFilteredList({
               "Không có sản phẩm đã xuất bản phù hợp với bộ lọc này. Xem tất cả sản phẩm hoặc liên hệ đội ngũ để đối chiếu theo dự án.",
           }
       : {
-          eyebrow: "Filtered product results",
+          eyebrow: getSpecializedLabel(locale, "Filtered product results"),
           showing: (shown: number, total: number) =>
+            finalReviewCopy?.showing(shown, total) ??
             `Showing ${shown} of ${total} products.`,
-          all: "View all products",
-          empty: "No products found",
+          all: getSpecializedLabel(locale, "View all products"),
+          empty: getSpecializedLabel(locale, "No products found"),
           emptyDescription:
+            finalReviewCopy?.emptyDescription ??
             "No published products match this filter. View all products or contact our team for project matching.",
         };
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -178,10 +185,10 @@ export function ProductFilteredList({
   });
   const filterLabels = [
     activeCategory
-      ? `${locale === "ar" ? "الفئة" : locale === "vi" ? "Danh mục" : "Category"}: ${activeCategory.title}`
+      ? `${locale === "ar" ? "الفئة" : locale === "vi" ? "Danh mục" : getSpecializedLabel(locale, "Category")}: ${activeCategory.title}`
       : "",
     activeSeries
-      ? `${locale === "ar" ? "السلسلة" : locale === "vi" ? "Dòng sản phẩm" : "Series"}: ${activeSeries.title}`
+      ? `${locale === "ar" ? "السلسلة" : locale === "vi" ? "Dòng sản phẩm" : getSpecializedLabel(locale, "Series")}: ${activeSeries.title}`
       : "",
   ].filter(Boolean);
   const hasFilter = Boolean(activeCategory || activeSeries);

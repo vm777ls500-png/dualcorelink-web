@@ -11,6 +11,8 @@ import {
   arabicContactFormCopy,
   chineseContactFormCopy,
   contactFormOptions,
+  getFinalReviewContactFormCopy,
+  getFinalReviewContactOptionLabel,
   vietnameseContactFormCopy,
 } from "@/config/contact-form-copy";
 import type { Locale } from "@/config/i18n";
@@ -136,7 +138,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
       ? chineseContactFormCopy
       : isVietnamese
         ? vietnameseContactFormCopy
-        : null;
+        : getFinalReviewContactFormCopy(locale);
   const defaultAttribution: InquiryAttribution = {
     sourcePage: `/${locale}/contact/`,
     contentType: "contact",
@@ -350,7 +352,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
                 ? localizedCopy.selectCustomerType
                 : "Select customer type"}
             </option>
-            {contactFormOptions.customerTypes.map((option) => (
+            {contactFormOptions.customerTypes.map((option, index) => (
               <option key={option.value} value={option.value}>
                 {isArabic
                   ? option.arLabel
@@ -358,7 +360,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
                     ? option.zhLabel
                     : isVietnamese
                       ? option.viLabel
-                      : option.value}
+                      : getFinalReviewContactOptionLabel(locale, "customerTypes", index, option.value)}
               </option>
             ))}
           </select>
@@ -371,7 +373,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
                 ? localizedCopy.selectProjectStage
                 : "Select project stage"}
             </option>
-            {contactFormOptions.projectStages.map((option) => (
+            {contactFormOptions.projectStages.map((option, index) => (
               <option key={option.value} value={option.value}>
                 {isArabic
                   ? option.arLabel
@@ -379,7 +381,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
                     ? option.zhLabel
                     : isVietnamese
                       ? option.viLabel
-                      : option.value}
+                      : getFinalReviewContactOptionLabel(locale, "projectStages", index, option.value)}
               </option>
             ))}
           </select>
@@ -403,7 +405,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
           {localizedCopy?.productInterest ?? "Product Interest *"}
         </legend>
         <div className="mt-3 grid gap-2 md:grid-cols-2">
-          {contactFormOptions.productInterests.map((option) => (
+          {contactFormOptions.productInterests.map((option, index) => (
             <label key={option.value} className="contact-check-option flex gap-3 text-sm text-muted">
               <input
                 name="productInterest"
@@ -425,7 +427,7 @@ export function GetQuoteForm({ productName, locale = "en" }: GetQuoteFormProps) 
                     ? option.zhLabel
                     : isVietnamese
                       ? option.viLabel
-                      : option.value}
+                      : getFinalReviewContactOptionLabel(locale, "productInterests", index, option.value)}
               </span>
             </label>
           ))}

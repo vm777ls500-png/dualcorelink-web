@@ -12,6 +12,8 @@ import type { Locale } from "@/config/i18n";
 import { getUiMessages } from "@/content/locales/ui";
 import { buildPublishedNavigationHref } from "@/lib/multilingual-release-batches";
 import { isReviewPreviewLocale } from "@/lib/multilingual-review-preview";
+import { SocialContactLinks } from "@/components/contact/social-contact-links";
+import { socialContactCopy } from "@/config/social-links";
 
 const officeLocation = "Cangzhou, Hebei, China";
 const arabicOfficeLocation = "تسانغتشو، خبي، الصين";
@@ -35,6 +37,17 @@ export function Footer({ locale }: { locale: Locale }) {
     contentType: contentTypeBySection[pathSegments[1]] ?? ("site" as const),
     contentSlug: pathSegments[2],
   };
+  const footerSocial = (
+    <div className="mx-auto max-w-7xl border-t border-white/20 px-5 py-6 text-sm sm:px-8 lg:px-12">
+      <p className="font-semibold">{socialContactCopy[locale].footerTitle}</p>
+      <SocialContactLinks
+        locale={locale}
+        sourcePage={pathname}
+        ctaPosition="footer_social"
+        variant="footer"
+      />
+    </div>
+  );
 
   if (locale !== "en") {
     const localizedHref = (path: string) =>
@@ -145,6 +158,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </div>
           </div>
         </div>
+        {footerSocial}
       </footer>
     );
   }
@@ -253,6 +267,7 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
         </div>
       </div>
+      {footerSocial}
     </footer>
   );
 }

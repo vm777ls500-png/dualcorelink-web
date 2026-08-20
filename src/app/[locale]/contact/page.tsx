@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ContactCard } from "@/components/contact/contact-card";
 import { GetQuoteForm } from "@/components/contact/get-quote-form";
 import { WhatsAppButton } from "@/components/contact/whatsapp-button";
+import { SocialContactLinks } from "@/components/contact/social-contact-links";
 import { PageHeading } from "@/components/content/page-heading";
 import { LocalizedPublicationPageView } from "@/components/content/localized-publication-page";
 import {
@@ -13,6 +14,7 @@ import {
 import { JsonLd } from "@/components/seo/json-ld";
 import { brand } from "@/config/brand";
 import { isLocale } from "@/config/i18n";
+import { socialContactCopy } from "@/config/social-links";
 import { getSpecializedLabel } from "@/content/locales/m4a-specialized-ui";
 import {
   arabicContactCopy,
@@ -233,6 +235,20 @@ export default async function ContactPage({ params }: ContactPageProps) {
           />
         </div>
       </div>
+      <section className="mt-10 border border-line bg-surface p-6">
+        <h2 className="text-2xl font-semibold text-foreground">
+          {socialContactCopy[locale].title}
+        </h2>
+        <p className="mt-3 max-w-3xl leading-7 text-muted">
+          {socialContactCopy[locale].description}
+        </p>
+        <SocialContactLinks
+          locale={locale}
+          sourcePage={`/${locale}/contact/`}
+          ctaPosition="contact_social"
+          variant="contact"
+        />
+      </section>
       <section className="mt-10 border-y border-line py-8">
         <p className="text-sm font-semibold uppercase text-brand">
           {contactCopy?.reviewEyebrow ?? "Faster project review"}

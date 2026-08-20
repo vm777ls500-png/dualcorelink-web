@@ -10,6 +10,8 @@ export type Ga4InquiryEvent = {
   params: Omit<InquiryEvent, "event">;
 };
 
+type ConsentSafeGa4Params = Record<string, string | undefined>;
+
 type Gtag = (...args: unknown[]) => void;
 
 declare global {
@@ -53,7 +55,10 @@ export function writeAnalyticsConsent(value: AnalyticsConsent) {
   }
 }
 
-export function sendGa4InquiryEvent(event: InquiryEvent) {
+export function sendConsentSafeGa4Event(
+  name: string,
+  params: ConsentSafeGa4Params,
+) {
   if (
     typeof window === "undefined" ||
     readAnalyticsConsent() !== "granted" ||
@@ -63,7 +68,11 @@ export function sendGa4InquiryEvent(event: InquiryEvent) {
     return false;
   }
 
-  const ga4Event = createGa4InquiryEvent(event);
-  window.gtag("event", ga4Event.name, ga4Event.params);
+  window.gtag("event", name, params);
   return true;
+}
+
+export function sendGa4InquiryEvent(event: InquiryEvent) {
+  const ga4Event = createGa4InquiryEvent(event);
+  return sendConsentSafeGa4Event(ga4Event.name, ga4Event.params);
 }

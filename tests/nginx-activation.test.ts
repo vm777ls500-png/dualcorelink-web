@@ -83,6 +83,10 @@ test("production redirect verification requires an exact one-hop 301 and 200 tar
       "https://dualcorelink.com/resources/hotel-rcu-wiring-system-architecture-guide/",
       "https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/",
     ],
+    [
+      "https://dualcorelink.com/resources/hotel-doorplate-room-display-buying-guide/",
+      "https://dualcorelink.com/en/resources/hotel-doorplate-room-display-buying-guide/",
+    ],
   ];
 
   assert.match(workflow, /--max-redirs 0 "\$source_url"/);

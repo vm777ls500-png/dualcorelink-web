@@ -82,7 +82,8 @@ fi
 
 for target in \
   "en/solutions/oem-odm-custom-panel-solution/index.html" \
-  "en/resources/hotel-rcu-wiring-system-architecture-guide/index.html"; do
+  "en/resources/hotel-rcu-wiring-system-architecture-guide/index.html" \
+  "en/resources/hotel-doorplate-room-display-buying-guide/index.html"; do
   if [[ ! -f "${current_release}/${target}" ]]; then
     fail "redirect target artifact is missing: ${target}"
   fi
@@ -266,6 +267,12 @@ if ! verify_local_redirect \
   "/resources/hotel-rcu-wiring-system-architecture-guide/" \
   "https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/"; then
   restore_previous "local verification rejected the RCU wiring resource redirect"
+fi
+
+if ! verify_local_redirect \
+  "/resources/hotel-doorplate-room-display-buying-guide/" \
+  "https://dualcorelink.com/en/resources/hotel-doorplate-room-display-buying-guide/"; then
+  restore_previous "local verification rejected the doorplate resource redirect"
 fi
 
 if ! verify_local_inquiry_get; then

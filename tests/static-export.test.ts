@@ -263,6 +263,11 @@ test("Nginx redirects confirmed locale-less GSC URLs to exact English targets", 
       target:
         "/en/resources/hotel-rcu-wiring-system-architecture-guide/",
     },
+    {
+      source: "/resources/hotel-doorplate-room-display-buying-guide/",
+      target:
+        "/en/resources/hotel-doorplate-room-display-buying-guide/",
+    },
   ];
 
   for (const { source, target } of redirectPairs) {

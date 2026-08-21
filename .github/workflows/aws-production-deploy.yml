@@ -188,6 +188,9 @@ jobs:
           verify_redirect \
             "https://dualcorelink.com/resources/hotel-rcu-wiring-system-architecture-guide/" \
             "https://dualcorelink.com/en/resources/hotel-rcu-wiring-system-architecture-guide/"
+          verify_redirect \
+            "https://dualcorelink.com/resources/hotel-doorplate-room-display-buying-guide/" \
+            "https://dualcorelink.com/en/resources/hotel-doorplate-room-display-buying-guide/"
 
       - name: Verify test-domain indexing protection
         shell: bash

@@ -19,9 +19,10 @@ const projectRoot = process.cwd();
 const readProjectFile = (...segments: string[]) =>
   readFile(path.join(projectRoot, ...segments), "utf8");
 
-test("social contact config exposes only the four approved channels", () => {
+test("social contact config exposes only the five approved channels", () => {
   assert.deepEqual(socialPlatforms, [
     "facebook",
+    "linkedin",
     "telegram_chat",
     "telegram_updates",
     "whatsapp",
@@ -31,6 +32,11 @@ test("social contact config exposes only the four approved channels", () => {
       platform: "facebook",
       label: "Facebook",
       href: "https://www.facebook.com/dualcorelink/",
+    },
+    {
+      platform: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/dualcorelink/",
     },
     {
       platform: "telegram_chat",
@@ -48,7 +54,10 @@ test("social contact config exposes only the four approved channels", () => {
       href: createWhatsAppUrl(),
     },
   ]);
-  assert.equal(JSON.stringify(getSocialLinks()).toLowerCase().includes("linkedin"), false);
+  assert.equal(
+    getSocialLinks().filter((link) => link.platform === "linkedin").length,
+    1,
+  );
   assert.equal(getSocialLinks().some((link) => link.href.includes("?")), false);
 });
 
@@ -65,7 +74,7 @@ test("all seven locales provide social section copy and preserve RTL", () => {
 
 test("social analytics payload contains only approved non-PII dimensions", () => {
   const event = createSocialContactEvent({
-    platform: "telegram_chat",
+    platform: "linkedin",
     locale: "zh",
     sourcePage: "/zh/contact/",
     ctaPosition: "contact_social",
@@ -73,7 +82,7 @@ test("social analytics payload contains only approved non-PII dimensions", () =>
 
   assert.deepEqual(event, {
     event: "social_contact_click",
-    platform: "telegram_chat",
+    platform: "linkedin",
     locale: "zh",
     source_page: "/zh/contact/",
     cta_position: "contact_social",
@@ -150,8 +159,8 @@ test("shared social links are wired into Footer and Contact safely", async () =>
   assert.match(componentSource, /rel="noopener noreferrer"/);
   assert.match(componentSource, /trackSocialContactClick/);
   assert.match(componentSource, /<bdi dir="ltr">/);
+  assert.match(componentSource, /lg:grid-cols-5/);
   assert.match(footerSource, /ctaPosition="footer_social"/);
   assert.match(contactSource, /ctaPosition="contact_social"/);
-  assert.equal(footerSource.toLowerCase().includes("linkedin"), false);
-  assert.equal(contactSource.toLowerCase().includes("linkedin"), false);
+  assert.equal(locales.length * getSocialLinks().length, 35);
 });

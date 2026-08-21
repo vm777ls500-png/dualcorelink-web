@@ -28,7 +28,7 @@ export function SocialContactLinks({
       className={
         isFooter
           ? "mt-3 flex flex-wrap gap-x-5 gap-y-3"
-          : "mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+          : "mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"
       }
     >
       {links.map((link) => (

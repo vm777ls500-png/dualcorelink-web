@@ -3,6 +3,7 @@ import type { Locale } from "@/config/i18n";
 
 export const socialPlatforms = [
   "facebook",
+  "linkedin",
   "telegram_chat",
   "telegram_updates",
   "whatsapp",
@@ -12,7 +13,12 @@ export type SocialPlatform = (typeof socialPlatforms)[number];
 
 export type SocialLink = {
   platform: SocialPlatform;
-  label: "Facebook" | "Telegram Chat" | "Telegram Updates" | "WhatsApp";
+  label:
+    | "Facebook"
+    | "LinkedIn"
+    | "Telegram Chat"
+    | "Telegram Updates"
+    | "WhatsApp";
   href: string;
 };
 
@@ -69,6 +75,11 @@ export function getSocialLinks(): readonly SocialLink[] {
       platform: "facebook",
       label: "Facebook",
       href: "https://www.facebook.com/dualcorelink/",
+    },
+    {
+      platform: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/dualcorelink/",
     },
     {
       platform: "telegram_chat",

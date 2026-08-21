@@ -16,7 +16,7 @@ The ten English URLs were checked for HTTP status, sitemap membership, self-cano
 - Destination status: HTTP 200 with the current Hotel Doorplate and Room Display Buying Guide content.
 - Rejected candidate: `/en/resources/doorplate-room-display-buying/` is HTTP 404 and is not the repository resource slug.
 - Action: add one exact, target-existence-gated permanent 301. No broad `/resources/*` rule is introduced.
-- Deployment guard: require the exact destination artifact before activation, then verify one-hop HTTP 301, exact `Location`, and final HTTP 200 after Nginx reload.
+- Deployment guard: the exact Nginx rule returns 301 only when the destination artifact exists; Actions then verifies one-hop HTTP 301, exact `Location`, and final HTTP 200 after activation.
 - Canonical, sitemap, robots, and current localized routes are unchanged.
 
 ## 10 Long-Term English URLs
